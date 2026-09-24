@@ -1,0 +1,484 @@
+% Independent mathematical derivation, 2026-09-23. SPA1--28.
+\section{Supported parabolic matrices, inverse domains, and the complete action category}
+\label{sec:supported-parabolic-action}
+
+\paragraph{Sources and scope.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1805.10501v1}{\emph{The Riemann--Roch strategy:
+Complex lift of the Scaling Site}}, original author source
+\nolinkurl{thecurve_K.tex}, define $P(R)$, its affine matrix plane, and
+its coordinates in Section 5.2, equations \texttt{alggroupP},
+\texttt{algspaceP}, and \texttt{algspaceiota}. The left rational action
+is \texttt{actionpq}, the adelic quotient is \texttt{adelicomp3},
+and Lemma \texttt{Pdescrofgamma} gives the matrix presentation and
+right real action. Proposition \texttt{ax+bact} and Section 6.6,
+Proposition \texttt{comparescalcs}, describe the complex structure.
+Section 6.2, Lemma \texttt{fundinclusion}, equation \texttt{P2gl20},
+gives the comparison with the $\mathrm{GL}_2$ system. Section 7,
+equations \texttt{tropdet}, \texttt{holom}--\texttt{holom1}, retains
+the distinct complex-structure issue and the Witt-coefficient lift.
+
+The original-source reading for this calculation covers lines
+1115--1457, 1801--1917, 2024--2087, 2342--2411, and 2526--2635.
+Its SHA-256 is
+\begin{center}\small
+\nolinkurl{da52001209424c19fb223905804a9eed1147c72331cf881aa0352bc759976061}.
+\end{center}
+The support operations are those of The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}
+{\emph{Split Support Geometry}, version 11, Definition
+\texttt{def:lattice-split}}. The algebra and actions below are derived
+from these operations. A classical corner is not substituted for the
+complete supported object, and no RH conclusion is inferred.
+
+\subsection{The matrices and their exact product}
+
+Let $R$ be a commutative ring with identity and let $L$ be a bounded
+distributive lattice, initially with $0_L\ne1_L$. Retain
+\begin{equation}\tag{SPA1}
+\begin{gathered}
+G_L(R)=\{(0,\lambda):\lambda\in L\}\cup(R\times\{1_L\}),\\
+(x,\lambda)+(z,\nu)=(x+z,\lambda\vee\nu),\qquad
+(x,\lambda)(z,\nu)=(xz,\lambda\wedge\nu),\\
+\tau=(0,0_L),\quad e=(0,1_L),\quad\mathbf1=(1_R,1_L).
+\end{gathered}
+\end{equation}
+Define
+\begin{equation}\tag{SPA2}
+\mathcal P_L(R)=
+\left\{
+M(a,b,\beta)=
+\begin{pmatrix}(a,1_L)&(b,\beta)\\\tau&\mathbf1\end{pmatrix}:
+a\in R^\times,\ b\in R,\ \beta\in L,\
+b\ne0\Rightarrow\beta=1_L
+\right\}.
+\end{equation}
+An element is also denoted $(a,b,\beta)$. Entrywise multiplication
+using (SPA1) gives
+\begin{equation}\tag{SPA3}
+(a,b,\beta)(c,d,\delta)
+=(ac,ad+b,\beta\vee\delta),\qquad
+1_{\mathcal P}=E_{0_L}:=(1_R,0,0_L).
+\end{equation}
+In particular the upper-right entry is
+$(a,1_L)(d,\delta)+(b,\beta)\mathbf1=(ad+b,\delta\vee\beta)$.
+The lower-left entry stays $\tau$, and the diagonal entries
+have the stated form. A nonzero $ad+b$ forces $b\ne0$ or
+$d\ne0$, hence top output support. This proves closure.
+Both triple-product bracketings give
+$(acr,act+ad+b,\beta\vee\delta\vee\theta)$, proving associativity.
+The displayed identity is two-sided.
+
+\subsection{Generalized inverse and every local group}
+
+The unique inverse in the inverse-semigroup sense is
+\begin{equation}\tag{SPA4}
+s^*=(a^{-1},-a^{-1}b,\beta),\qquad
+ss^*=s^*s=E_\beta:=(1_R,0,\beta),\qquad
+ss^*s=s,\quad s^*ss^*=s^*.
+\end{equation}
+It is admitted because multiplication by a unit preserves
+nonvanishing. The equalities follow from (SPA3).
+For uniqueness, if $t=(c,d,\delta)$ satisfies $sts=s$ and $tst=t$,
+the first amplitude equation gives $aca=a$, hence $c=a^{-1}$,
+and the translation equation then gives $ad+b=0$.
+The first support equation gives $\delta\le\beta$, and the
+second gives $\beta\le\delta$. Thus $t=s^*$ with the same label.
+
+Every idempotent is exactly an $E_\beta$, and
+\begin{equation}\tag{SPA5}
+E_\beta E_\delta=E_{\beta\vee\delta},\qquad
+E_\delta s=sE_\delta.
+\end{equation}
+Indeed $a^2=a$ with $a$ a unit gives $a=1_R$; the remaining
+amplitude equation $2b=b$ gives $b=0$.
+The converse and the displayed formulas follow by multiplication.
+Therefore $\mathcal P_L(R)$ is a Clifford inverse monoid:
+it is an inverse monoid and all its idempotents are central.
+
+The natural inverse-semigroup order, defined by $s\le_{\mathcal P}t$
+if $s=Et$ for some idempotent $E$, is
+\begin{equation}\tag{SPA6}
+(a,b,\beta)\le_{\mathcal P}(c,d,\delta)
+\quad\Longleftrightarrow\quad
+a=c,\quad b=d,\quad\delta\le_L\beta.
+\end{equation}
+Multiplication by $E_\eta$ proves necessity, and $\eta=\beta$
+proves sufficiency. The idempotent order reverses the given
+lattice order; this reversal is retained.
+
+The maximal subgroup with identity $E_\beta$ is
+\begin{equation}\tag{SPA7}
+H_\beta=
+\begin{cases}
+\{(a,0,\beta):a\in R^\times\}\cong R^\times,&\beta<1_L,\\
+\{(a,b,1_L):a\in R^\times,\ b\in R\}\cong P(R),&\beta=1_L.
+\end{cases}
+\end{equation}
+These are exactly the elements with $s^*s=ss^*=E_\beta$, and
+(SPA3)--(SPA4) prove their group laws and inverses.
+For nontrivial $L$, the global units are only $H_{0_L}$.
+A top-supported translation has an inverse in its corner,
+not a global inverse.
+
+Even an inverse sought in the entire matrix monoid cannot
+change that conclusion. Suppose that $M(a,b,\beta)X=I_2$.
+Its bottom
+row forces $X_{21}=\tau$ and $X_{22}=\mathbf1$.
+The upper-right sum can equal $\tau$ only if both summands
+are $\tau$, because a joined support is bottom only when
+both supports are bottom. Since $(a,1_L)$ is a scalar unit,
+this forces $X_{12}=\tau$ and $(b,\beta)=\tau$.
+Conversely those conditions give the diagonal inverse.
+Thus the off-diagonal supported zero cannot be treated as
+the global matrix zero.
+
+\subsection{The exact universal group image}
+
+The amplitude map is the surjective unital homomorphism
+\begin{equation}\tag{SPA8}
+\pi:\mathcal P_L(R)\to P(R),\qquad
+(a,b,\beta)\mapsto\begin{pmatrix}a&b\\0&1\end{pmatrix},\qquad
+\pi^{-1}(a,b)=
+\begin{cases}
+\{(a,b,1_L)\},&b\ne0,\\
+\{(a,0,\beta):\beta\in L\},&b=0.
+\end{cases}
+\end{equation}
+It is universal for homomorphisms into groups. To prove this,
+let $f:\mathcal P_L(R)\to G$ be a unital monoid homomorphism
+with $G$ a group. Every $f(E_\beta)$ is idempotent and hence
+equals $1_G$. Therefore
+\[
+f(a,b,\beta)=f((a,b,\beta)E_{1_L})=f(a,b,1_L).
+\]
+The map $(a,b)\mapsto f(a,b,1_L)$ is the unique group
+homomorphism through which $f$ factors. The multiplicative
+top-corner section sends the classical identity to $E_{1_L}$,
+not to the global identity $E_{0_L}$.
+Thus group completion identifies all distinct support
+idempotents, with its complete fibres given in (SPA8).
+
+\subsection{The total affine action and exact inverse domains}
+
+Put $X_L=G_L(R)$. Multiplying the affine column with lower
+coordinate $\mathbf1$ gives
+\begin{equation}\tag{SPA9}
+F_s(x,\lambda)=(ax+b,\lambda\vee\beta),
+\qquad s=(a,b,\beta).
+\end{equation}
+The output is admitted: nonzero amplitude requires a nonzero
+input amplitude or translation, and the corresponding label
+is top. Substitution proves $F_sF_t=F_{st}$ and
+$F_{E_{0_L}}=\mathrm{id}$.
+The action is faithful: $F_s(\tau)=(b,\beta)$ recovers
+$b,\beta$, and $F_s(\mathbf1)=(a+b,1_L)$ recovers $a$.
+
+The full inverse identities are
+\begin{equation}\tag{SPA10}
+F_{E_\beta}(x,\lambda)=(x,\lambda\vee\beta),\qquad
+F_{s^*}F_s=F_sF_{s^*}=F_{E_\beta}.
+\end{equation}
+The maximal domain on which these displayed inverse maps
+recover the input exactly is
+\begin{equation}\tag{SPA11}
+D_\beta=\operatorname{Fix}(F_{E_\beta})
+=\{(x,\lambda):\beta\le\lambda\}
+=(R\times\{1_L\})\cup\{(0,\lambda):\lambda\ge\beta\}.
+\end{equation}
+Restricted to $D_\beta$, the map $F_s$ is a bijection onto
+$D_\beta$ with inverse $F_{s^*}$ and unchanged label.
+Both necessity and sufficiency follow from
+$\lambda\vee\beta=\lambda$ in (SPA10).
+Also $F_s(X_L)=D_\beta$: the output label is above $\beta$,
+and the restriction is already onto.
+No larger domain containing $D_\beta$ keeps that restriction
+injective. A point $z$ outside it has the same image as
+$F_{E_\beta}z\in D_\beta$, by $F_sF_{E_\beta}=F_s$.
+
+Every fibre of the total action is exactly
+\begin{equation}\tag{SPA12}
+F_s^{-1}(y,\nu)=
+\{(a^{-1}(y-b),\lambda):
+\lambda\vee\beta=\nu,\
+a^{-1}(y-b)\ne0\Rightarrow\lambda=1_L\}.
+\end{equation}
+For $b\ne0$, every zero label is sent to $(b,1_L)$; the
+generalized inverse then returns $e$. At the nonzero input
+$x=-a^{-1}b$, cancellation produces $e$, not $\tau$, and
+the inverse on $D_{1_L}$ recovers the input.
+For $b=0$ and proper $\beta$, unit multiplication preserves
+nonzero amplitudes and raises each zero label by the stated join.
+
+The restrictions form a faithful representation by partial bijections:
+\begin{equation}\tag{SPA13}
+\alpha_s=F_s|_{D_\beta},\quad
+\alpha_s^{-1}=\alpha_{s^*},\quad
+D_\beta\cap D_\delta=D_{\beta\vee\delta},\quad
+\alpha_s\alpha_t=\alpha_{st}.
+\end{equation}
+Indeed $\alpha_t$ preserves its input label, so the composition
+domain consists exactly of labels above both $\delta$ and
+$\beta$. Its formula is that of $st$.
+Equality of two partial maps implies equality of their
+zero-label upsets, hence of $\beta,\delta$, and their values
+on the top copy of $R$ recover both affine coefficients.
+This proves faithfulness.
+
+\subsection{The Karoubi category and its action}
+
+The Karoubi category $\mathcal K_L(R)$ has objects $E_\beta$
+and hom-sets $E_\delta\mathcal P_L(R)E_\beta$ from $E_\beta$
+to $E_\delta$. Their exact form is
+\begin{equation}\tag{SPA14}
+\operatorname{Hom}_{\mathcal K_L(R)}(E_\beta,E_\delta)
+=\{(a,b,\gamma)\in\mathcal P_L(R):\gamma\ge\beta\vee\delta\}.
+\end{equation}
+This follows by multiplying on both sides and comparing
+the resulting label $\delta\vee\gamma\vee\beta$.
+The identity is $E_\beta$. For
+$s=(a,b,\gamma):E_\beta\to E_\delta$ and
+$t=(c,d,\eta):E_\delta\to E_\epsilon$,
+\[
+t\circ s=(ca,cb+d,\eta\vee\gamma).
+\]
+Its support is above $\beta,\epsilon$, and associativity
+and identities follow from (SPA3).
+
+Every arrow factors exactly as
+\begin{equation}\tag{SPA15}
+E_\beta\xrightarrow{E_\gamma}E_\gamma
+\xrightarrow{(a,b,\gamma)}E_\gamma
+\xrightarrow{E_\gamma}E_\delta.
+\end{equation}
+The middle arrow lies in $H_\gamma$.
+An arrow is a categorical isomorphism precisely when
+$\beta=\delta=\gamma$. In fact a categorical inverse of
+support $\eta$ would give composites with support
+$\gamma\vee\eta$ equal to both $\beta$ and $\delta$.
+Since $\gamma\ge\beta,\delta$, this forces equality of all
+four labels; the converse follows from (SPA4).
+Thus distinct support objects are not isomorphic, and
+$\operatorname{Aut}(E_\beta)=H_\beta$.
+
+The total affine action defines
+\begin{equation}\tag{SPA16}
+\mathcal D:\mathcal K_L(R)\to\mathrm{Sets},\qquad
+E_\beta\mapsto D_\beta,\qquad
+s\mapsto F_s|_{D_\beta}:D_\beta\to D_\delta.
+\end{equation}
+For an arrow of support $\gamma\ge\beta,\delta$, its output
+label $\lambda\vee\gamma$ is above $\delta$. The object
+identity acts as the identity, and composition is (SPA9).
+This functor is faithful on each hom-set: evaluation at
+$(0,\beta)$ recovers $(b,\gamma)$; evaluation at
+$(1_R,1_L)$ then recovers $a$.
+A general arrow need not act bijectively, because its
+inverse-pair composites are $F_{E_\gamma}$ rather than
+the source and target identities.
+
+The full one-object top subcategory is
+\begin{equation}\tag{SPA17}
+\operatorname{End}_{\mathcal K_L(R)}(E_{1_L})
+=E_{1_L}\mathcal P_L(R)E_{1_L}=H_{1_L}\cong P(R).
+\end{equation}
+Here \emph{full} means that every arrow between the chosen
+object and itself is included. It does not mean a generating
+or Morita-full idempotent: for nontrivial $L$,
+\[
+\mathcal P_L(R)E_{1_L}\mathcal P_L(R)=H_{1_L}
+\ne\mathcal P_L(R),
+\]
+since the left side omits $E_{0_L}$.
+
+The action category has objects $(E_\beta,z)$, $z\in D_\beta$.
+An arrow labelled $s:E_\beta\to E_\delta$ has target
+$(E_\delta,F_sz)$; composition retains the actual $s$ label.
+Its full subcategory over $E_{1_L}$ is exactly
+\begin{equation}\tag{SPA18}
+P(R)\ltimes R,
+\end{equation}
+via $(x,1_L)\leftrightarrow x$. All stabilizer arrows remain.
+No germ quotient identifying arrows that agree at a single
+point is taken.
+
+\subsection{Both original Connes--Consani coordinates}
+
+Retain independent coordinate supports in
+\begin{equation}\tag{SPA19}
+W(y,\lambda;x,\nu)=
+\begin{pmatrix}(y,\lambda)&(x,\nu)\\\tau&\mathbf1\end{pmatrix},
+\qquad (y,\lambda),(x,\nu)\in G_L(R).
+\end{equation}
+This is $G_L(R)_y\times G_L(R)_x$, not $G_L(R^2)$ with
+one common label. The original matrix
+$\iota(x,y)=\left(\begin{smallmatrix}y&x\\0&1\end{smallmatrix}\right)$
+is its all-top subspace, including both zero amplitudes.
+
+The two entrywise products are
+\begin{equation}\tag{SPA20}
+\begin{aligned}
+M(a,b,\beta)W(y,\lambda;x,\nu)
+ &=W(ay,\lambda;\ ax+b,\nu\vee\beta),\\
+W(y,\lambda;x,\nu)M(u,v,\delta)
+ &=W(yu,\lambda;\ yv+x,\nu\vee(\lambda\wedge\delta)).
+\end{aligned}
+\end{equation}
+They follow directly from (SPA1). Associativity proves
+that the left and right total actions commute. Explicitly
+both orders give amplitudes $(ayu,a(x+yv)+b)$ and labels
+$(\lambda,\nu\vee\beta\vee(\lambda\wedge\delta))$.
+
+Their maximal inverse-pair domains are
+\begin{equation}\tag{SPA21}
+\begin{aligned}
+D^{\mathrm{left}}_\beta
+ &=\{W(y,\lambda;x,\nu):\beta\le\nu\},\\
+D^{\mathrm{right}}_\delta
+ &=\{W(y,\lambda;x,\nu):\lambda\wedge\delta\le\nu\}.
+\end{aligned}
+\end{equation}
+These are the fixed sets of the corresponding idempotent
+maps in (SPA20). On the stated domain each action preserves
+both labels, and its generalized inverse is a genuine
+inverse. Necessity follows by computing its inverse-pair
+composite. Maximality as an injective domain containing the
+stated domain follows because any additional point has the
+same image as its idempotent image inside that domain.
+
+Right multiplication is a right action:
+$\rho_t\circ\rho_s=\rho_{st}$ when $\rho_s(W)=Ws$.
+The corresponding partial maps have this same right
+composition convention. Moreover
+\[
+D^{\mathrm{right}}_\delta\cap D^{\mathrm{right}}_\eta
+=D^{\mathrm{right}}_{\delta\vee\eta},
+\]
+because $\lambda\wedge(\delta\vee\eta)
+=(\lambda\wedge\delta)\vee(\lambda\wedge\eta)$.
+On their respective inverse domains both actions preserve
+both coordinate labels. Consequently the two partial
+actions commute on exactly their common domain.
+All affine cancellations keep the joined supports in (SPA20).
+For example a right translation with $\delta=1_L$ requires
+$\lambda\le\nu$, not that both coordinates be top-supported.
+
+\subsection{The classical action groupoid and its larger supported corner}
+
+The top-translation fixed set is
+\begin{equation}\tag{SPA22}
+X_L^{\mathrm{tr}}(R)
+=G_L(R)_y\times(R\times\{1_L\})_x.
+\end{equation}
+Its $x$ label is top, and every $y$ label remains.
+It is invariant under the top affine group on the left
+and on the right: $\nu=1_L$ satisfies every condition
+in (SPA21), and both inverse-domain actions preserve it.
+The original classical subspace is the smaller invariant set
+\begin{equation}\tag{SPA23}
+X^{\mathrm{cl}}(R)
+=(R\times\{1_L\})_y\times(R\times\{1_L\})_x
+\cong R^2.
+\end{equation}
+The restrictions of (SPA20) there are exactly
+$(y,x)\mapsto(ay,ax+b)$ and
+$(y,x)\mapsto(yu,yv+x)$.
+
+For $R=\mathbb A_{\mathbb Q}$ and rational left coefficients,
+use the injective diagonal map $\mathbb Q\to R$ to let
+$\mathcal P_L(\mathbb Q)$ act. Apply the Karoubi action
+construction to the left fixed sets in (SPA21).
+Its full subcategory on $E_{1_L}$ and states in (SPA23) is
+precisely
+\begin{equation}\tag{SPA24}
+P(\mathbb Q)\ltimes\mathbb A_{\mathbb Q}^2.
+\end{equation}
+The bijection records each original adelic state and each
+rational affine coefficient. All source, target, identity,
+and composition formulas agree by (SPA20). This is the
+transformation groupoid presenting the original
+Connes--Consani quotient \texttt{adelicomp3}.
+The source uses $\iota(x,y)$; the matrix first row is
+$(y,x)$, as retained throughout (SPA19)--(SPA24).
+
+The entire top-translation corner is larger when $L$ is
+nontrivial: it still contains
+$((0,\lambda),(x,1_L))$ for every $\lambda<1_L$.
+Thus the classical groupoid is a full invariant subcategory
+of that corner, not the entire corner.
+The amplitude projection of (SPA22), with $x$ fixed, has
+one-point fibres at $y\ne0$ and fibre $L$ at $y=0$.
+
+A placewise adelic carrier has a separate label at each
+zero place; it is not $G_L(\mathbb A_{\mathbb Q})$ with
+one global label. Formulas (SPA20) apply at every place,
+and the separately constructed adelic product retains its
+placewise fibres. No replacement of that product by one
+global label is asserted.
+
+\subsection{The original real action and its analytic content}
+
+For the source's right real action, the multiplier is
+the identity at every finite place and has real component
+$\left(\begin{smallmatrix}u&v\\0&1\end{smallmatrix}\right)$.
+Thus finite coordinates are unchanged and at infinity
+\begin{equation}\tag{SPA25}
+(y_\infty,x_\infty)\longmapsto
+(u y_\infty,\ x_\infty+v y_\infty).
+\end{equation}
+Differentiating $(u,v)=(e^\epsilon,0)$ and $(1,\epsilon)$
+on the original top-supported complex leaf gives
+\[
+Y=y_\infty\partial_{y_\infty},\qquad
+X=y_\infty\partial_{x_\infty},\qquad [Y,X]=X,\qquad
+X+iY=y_\infty(\partial_{x_\infty}+i\partial_{y_\infty}).
+\]
+There is a typographical error in the original Section 6.6
+display for $u(\epsilon)$: its upper-left entry is printed
+as $0$, although it is called a one-parameter subgroup
+and its following multiplication retains $y$.
+The correct entry is $1$, as follows from the source's
+definition \texttt{alggroupP} and the entrywise product
+(SPA20). No calculation here uses that printed $0$ as
+a group element.
+
+Right scaling $(u,v)=(\mu,0)$ sends the original coordinate
+$z=x_\infty+i y_\infty$ to $x_\infty+i\mu y_\infty$.
+With the source's operator convention,
+\begin{equation}\tag{SPA26}
+(\partial_{x_\infty}+i\partial_{y_\infty})
+ (x_\infty+i\mu y_\infty)=1-\mu.
+\end{equation}
+It is not holomorphic in that unchanged complex structure
+unless $\mu=1$. The support construction retains this exact
+calculation on its faithful classical subcategory.
+It does not by itself replace the distinct Witt-coefficient
+mechanism in \texttt{holom}--\texttt{holom1}.
+This identifies the surviving analytic issue while retaining
+the complete algebraic comparison.
+
+\subsection{Boundary conventions}
+
+The two identity roles remain distinct:
+\begin{equation}\tag{SPA27}
+E_{0_L}\ne E_{1_L},\qquad
+F_{E_{0_L}}(\tau)=\tau,\qquad
+F_{E_{1_L}}(\tau)=e,\qquad F_{E_{1_L}}(e)=e.
+\end{equation}
+Every intermediate idempotent and zero label remains in
+the category and its action. No completeness assumption
+on $L$ is used: all joins and meets are finite.
+Zero divisors in $R$ do not change the proofs, because
+every division is by an explicitly required unit.
+
+If $L$ has one element, its bottom and top coincide and
+\begin{equation}\tag{SPA28}
+G_L(R)=R,\qquad \mathcal P_L(R)=P(R),\qquad D_{0_L}=R.
+\end{equation}
+There is one Karoubi object and the original affine group
+action. If $R$ is the zero ring, its unit set has one
+element, every amplitude is zero, and the formulas reduce
+to $(L,\vee,0_L)$ acting on the zero labels by joins.
+Every local group is then a singleton, while the category
+and the inverse-domain formulas remain valid.
+

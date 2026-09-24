@@ -1,0 +1,248 @@
+\section{The full support contribution to the bounded section module}
+\label{sec:supported-rr-sections}
+
+Alain Connes and Caterina Consani, \emph{Riemann--Roch for the ring
+$\mathbb Z$}, \href{https://arxiv.org/abs/2306.00456}{arXiv:2306.00456},
+define $(HA)_X$ by requiring every partial sum to belong to $X$
+(Lemma \texttt{xlem}, equation \texttt{xdefn}). Their Definition
+\texttt{generator} defines dimension over the spherical base
+$\mathbb S$ by the smallest number of distinct generators, with
+coefficients in $\{0,1\}$ and with the stated tolerance relation.
+We apply those exact definitions to the additive monoid of the full
+Split-Zero semiring. The following calculation concerns that explicitly
+constructed module. It does not presume a new definition of $H^1$ or a
+Riemann--Roch identity for an unspecified cohomology theory.
+
+\subsection{All levels, all fold maps, and the amplitude fibre}
+
+Let $L$ be a bounded distributive lattice with $0_L\ne1_L$.
+Its full carrier and operations are those of \emph{Split Support
+Geometry}, version 11, by The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}{Definition \texttt{def:lattice-split}}.
+Keep
+\begin{equation}\tag{SRR1}
+ M=G_L(\mathbb Z)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+       \cup\{\widehat a=(a,1_L):a\in\mathbb Z\},\qquad
+ \tau=z_{0_L},\quad e=z_{1_L}=\widehat0.
+\end{equation}
+The operations remain
+$(a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu)$ and
+$(a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu)$.
+The additive identity is $\tau$, and the amplitude map is
+$q(a,\lambda)=a$. Fix an integer $m\ge0$ and put
+$X_m=q^{-1}([-m,m]\cap\mathbb Z)$.
+
+For the finite pointed set $r_+=\{*,1,\ldots,r\}$ define
+\begin{equation}\tag{SRR2}
+ \mathcal E_{L,m}(r_+)=
+ \left\{(x_1,\ldots,x_r)\in M^r:
+           \sum_{j\in Z}x_j\in X_m\text{ for every }
+                    Z\subseteq\{1,\ldots,r\}\right\}.
+\end{equation}
+An empty sum is $\tau$. A pointed map $f:r_+\to s_+$ acts by
+\begin{equation}\tag{SRR3}
+ (x_j=(a_j,\lambda_j))_{j=1}^r\longmapsto
+ \left(\sum_{f(j)=i}a_j,\ \bigvee_{f(j)=i}\lambda_j\right)_{i=1}^s.
+\end{equation}
+An empty join is $0_L$. The pointed value in every level is the tuple
+whose entries are all $\tau$. For a subset $W$ of the target indices,
+the sum of the resulting entries is the sum over the disjoint union
+$\bigcup_{i\in W}f^{-1}(i)$. Thus (SRR3) preserves (SRR2).
+Associativity of finite sums and joins proves composition, and the
+identity map acts identically. These are all the structure maps of the
+resulting $\Gamma$-set, or $\mathbb S$-module.
+
+Write
+$\mathcal E_m=(H\mathbb Z)_{[-m,m]}$, with the same all-subset
+definition used by Connes--Consani. Its full relation to (SRR2) is
+\begin{equation}\tag{SRR4}
+ \begin{split}
+ \mathcal E_{L,m}(r_+)
+ =\{((a_j),(\lambda_j))\in\mathcal E_m(r_+)\times L^r:
+                  a_j\ne0\Longrightarrow\lambda_j=1_L\},\\
+ q_r:\mathcal E_{L,m}(r_+)\longrightarrow\mathcal E_m(r_+),
+             \qquad ((a_j),(\lambda_j))\longmapsto(a_j).
+ \end{split}
+\end{equation}
+Indeed the amplitude of a subset sum is its integer sum, independently
+of its retained join support. This proves the equality. The maps $q_r$
+are surjective: assign $1_L$ to every nonzero coordinate and $0_L$ to
+every zero coordinate. Formula (SRR3) proves naturality. This last
+choice is a set-theoretic section in each level. For $m\ge1$ no
+pointed natural section exists: the only possible lifts of $1$ and $-1$
+are $\widehat1$ and $\widehat{-1}$. Naturality for the two coordinate
+projections forces their two-coordinate lift to be that pair. It is
+admissible, but its fold is $e$, while pointedness forces the lift of
+the integer zero to be $\tau$. Since $e\ne\tau$, fold naturality
+fails. This proves the exact obstruction to a section of (SRR4).
+
+For a fixed integer tuple $a\in\mathcal E_m(r_+)$, its fibre is
+exactly $L^{\{j:a_j=0\}}$: all the other supports are forced to be
+$1_L$. In particular
+\begin{equation}\tag{SRR5}
+ q_r^{-1}(0)=\{(z_{\lambda_1},\ldots,z_{\lambda_r}):
+                                     (\lambda_j)\in L^r\}.
+\end{equation}
+The maps induced on this fibre are finite joins along $f$-fibres.
+It is therefore exactly the $\Gamma$-set $H(L,\vee,0_L)$, with its
+explicit inclusion into $\mathcal E_{L,m}$. No support label is
+identified at this stage.
+
+\subsection{The original dimension definition on this module}
+
+Give $\mathcal E_{L,m}(1_+)=X_m$ the equality tolerance relation.
+For a finite set $F\subset X_m$ and a subset $Z\subseteq F$, the
+Connes--Consani sum $\sum_Z x$ exists precisely when every partial
+sum of $Z$ has amplitude in $[-m,m]$. This follows because the
+projection maps $\delta(j,r)$ in their equation \texttt{defnsum}
+force the tuple in (SRR2) to be exactly the listed summands, while
+the fold map is (SRR3). With equality tolerance, $F$ generates if
+and only if every $x\in X_m$ is one of these admissible sums.
+The empty set generates only $\tau$.
+
+Let $J(L)$ denote the set of nonzero join-irreducible elements:
+$j\ne0_L$ is in $J(L)$ if $j=u\vee v$ implies $j=u$ or $j=v$.
+Put $J_{<}(L)=J(L)\setminus\{1_L\}$.
+Every element of a finite lattice is a join of join-irreducible
+elements below it. To prove this, induct on the number of elements
+below $x$. The bottom is the empty join. If $x$ is join-irreducible
+there is nothing further to prove; otherwise $x=u\vee v$ with both
+$u,v<x$, and the induction hypothesis on those two smaller lower
+sets gives the required finite join. If a finite join equals a
+join-irreducible $j$, at least one of its terms equals $j$, by repeated
+application of its defining binary property.
+
+\begin{theorem}\label{thm:srr-dimension}
+For finite $L$, the dimension defined above is exactly
+\begin{equation}\tag{SRR6}
+ \dim_{\mathbb S}\mathcal E_{L,m}=
+ \begin{cases}
+ |J(L)|,&m=0,\\
+ n+1+|J_{<}(L)|,&2^{n-1}\le m<2^n,\quad m\ge1.
+ \end{cases}
+\end{equation}
+In the second line $n\ge1$ is the unique integer with the displayed
+inequalities. In particular the number $n+1$ is the unchanged
+Connes--Consani value for $\mathcal E_m$; the additional term is the
+exact contribution of the proper nonzero join-irreducible supports.
+\end{theorem}
+
+\begin{proof}
+When $m=0$, every point is some $z_\lambda$ and every tuple is
+admissible. Sums are exactly joins. The preceding finite-lattice
+argument proves that the points $z_j$ for $j\in J(L)$ generate,
+and that every generating set must contain each one. This proves
+the first line.
+
+Now let $m\ge1$. Partition any generating set into its nonzero
+amplitude elements and its zero amplitude elements. A sum containing
+a nonzero amplitude summand has support $1_L$, even when its
+amplitudes cancel. Thus any representation of $z_j$, for
+$j\in J_{<}(L)$, uses only zero amplitude summands. Their labels
+have join $j$, so some summand must be $z_j$ itself. Every such
+generator is therefore compulsory.
+
+Project the nonzero amplitude generators to a subset
+$A\subset[-m,m]\setminus\{0\}$. This is a bijection on those
+generators, because nonzero amplitudes have unique lifts. For each
+integer $a\in[-m,m]$, project an admissible representation of
+$\widehat a$ and delete its zero amplitude terms. Every partial
+sum of the remaining terms is still in $[-m,m]$, so $A$ generates
+$\mathcal E_m$. The empty subset represents integer zero.
+Connes--Consani, Lemma \texttt{sequencebleft}(ii), proves that the
+least number of such integer generators is $n+1$. Their counting
+lower bound can also be seen directly here: $2^{|A|}$ subsets must
+represent $2m+1>2^n$ different integers, hence $|A|\ge n+1$.
+Together with the compulsory distinct zero generators this proves
+the lower bound in (SRR6).
+
+For the upper bound take an optimal integer generating set $A_m$
+from that same lemma. It can be chosen to admit a nonempty
+admissible zero sum. We verify this extra property, which is needed
+to generate the supported zero $e$ rather than just integer zero.
+For $n>4$ the source construction is
+$A_m=\{-m\}\cup\{\alpha_1,\ldots,\alpha_n\}$, where
+the distinct $\alpha_i$ are positive, sum to $m$, and have subset
+sums covering $[0,m]$. The full set has sum zero, and every partial
+sum lies in $[-m,m]$, since the positive total is $m$ and its only
+negative summand is $-m$. This proves the required property in
+that range, using the exact source construction.
+
+For the remaining values the following are the source's sets,
+with their values of $m$ stated explicitly:
+\begin{equation}\tag{SRR7}
+\begin{array}{c|l@{\qquad}c|l}
+m&A_m&m&A_m\\\hline
+1&\{-1,1\}&2&\{-2,1,2\}\\
+3&\{-3,1,2\}&4&\{-3,-1,1,3\}\\
+5&\{-4,-1,2,3\}&6&\{-6,1,2,3\}\\
+7&\{-7,1,2,4\}&8&\{-7,-1,1,2,5\}\\
+9&\{-8,-1,1,3,5\}&10&\{-10,1,2,3,4\}\\
+11&\{-11,1,2,3,5\}&12&\{-12,1,2,3,6\}\\
+13&\{-13,1,2,3,7\}&14&\{-14,1,2,4,7\}\\
+15&\{-15,1,2,4,8\}&&
+\end{array}
+\end{equation}
+Except at $m=2$, each whole set has sum zero, positive total $m$
+and negative total $-m$; hence its full zero sum is admissible.
+At $m=2$, the subset $\{-2,2\}$ is the required admissible
+zero sum. The source proves these sets generate their respective
+integer intervals with the stated admissibility condition.
+
+Lift $A_m$ to $\widehat A_m\subset M$ and adjoin
+$\{z_j:j\in J_{<}(L)\}$. All nonzero amplitude targets are
+generated by the lifted admissible integer sums. Every proper
+support zero is generated by its join-irreducible decomposition,
+and $\tau$ is the empty sum. Finally the nonempty admissible
+zero sum just verified generates $e$, since all its summands have
+top support. Thus this set generates every point of $X_m$ and has
+exactly $n+1+|J_{<}(L)|$ elements. This attains the lower bound.
+\end{proof}
+
+For infinite $L$, the construction and exact maps (SRR1)--(SRR5)
+remain unchanged, and no finite set generates
+$\mathcal E_{L,m}$ for any $m\ge0$. Indeed a generating set of
+size $t$ has at most $2^t$ subset sums, whereas the target contains
+the distinct points $z_\lambda$ for every $\lambda\in L$.
+If one extends the minimum-cardinality definition to arbitrary
+generating sets with finitely supported sums, its value is exactly
+$|L|$: an infinite set of size $\kappa$ has $\kappa$ finite
+subsets, forcing $\kappa\ge|L|$, and the full point set $X_m$
+has cardinality $|L|$ and generates by its singletons. This states
+the cardinal convention explicitly; the failure of finite generation
+needs no such extension of the convention.
+
+\subsection{Exact consequences for the stated archimedean bound}
+
+Retain a real parameter $\lambda>0$ and the original bound
+$[-\lambda,\lambda]\cap\mathbb Z$. Put $m=\lfloor\lambda\rfloor$;
+this equality identifies precisely the same subset of integers and
+does not rescale its metric or change its endpoints. Define
+$\mathcal E_{L,\lambda}$ by (SRR2) using that interval. Then
+\begin{equation}\tag{SRR8}
+\dim_{\mathbb S}\mathcal E_{L,\lambda}=
+\begin{cases}
+ |J(L)|,&0<\lambda<1,\\
+ n+1+|J_{<}(L)|,&2^{n-1}\le\lambda<2^n,\quad\lambda\ge1.
+\end{cases}
+\end{equation}
+For the second line, since each $2^{n-1}$ and $2^n$ is an integer,
+the displayed inequalities on $\lambda$ are equivalent to the
+same inequalities on $m$. Formula (SRR6) proves (SRR8).
+For the particular divisor $D=\delta\{\infty\}$ used in the
+source's calculation, keep $\lambda=e^\delta$ exactly. Thus the
+full-support module over its integer sections has dimension $|J(L)|$
+for $\delta<0$, and $n+1+|J_{<}(L)|$ for
+$(n-1)\log2\le\delta<n\log2$. This is a calculation of the
+specified module and its surjection (SRR4), with the entire support
+fibre (SRR5) retained.
+
+For the two-element lattice, $J(L)=\{1_L\}$: the dimension is one
+when $0<\lambda<1$ and equals the original value $n+1$ for
+$\lambda\ge1$. For a chain with four elements
+$0_L<u<v<1_L$, $J(L)=\{u,v,1_L\}$: the two respective values are
+$3$ and $n+3$. For the Boolean lattice of subsets of $\{u,v\}$,
+$J(L)=\{\{u\},\{v\}\}$ and its top is not join-irreducible:
+the two values are $2$ and $n+3$. These follow from the definition
+of join-irreducibility; they show why retaining only the two-element
+support lattice would miss the exact dimension contribution.

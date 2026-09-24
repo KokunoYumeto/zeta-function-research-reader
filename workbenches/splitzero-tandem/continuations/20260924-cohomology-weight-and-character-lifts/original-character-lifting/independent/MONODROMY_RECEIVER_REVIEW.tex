@@ -1,0 +1,847 @@
+% Independent finite compatibility derivation. Prefix MRR.
+% Requires amsmath, amssymb and hyperref. All original metrics retained.
+\section{Exact monodromy compatibility of the original prime receiver}
+\label{sec:monodromy-receiver-review}
+
+\paragraph{Source convention and original input.}
+Uwe Jannsen, \emph{Weights in Arithmetic Geometry},
+\href{https://arxiv.org/abs/1003.0927v1}{arXiv:1003.0927v1},
+original author file \nolinkurl{main.tex}, lines 325--365, was read
+for this calculation. Lines 335--340 state
+$\mathcal N F=q_{\rm res}F\mathcal N$ for geometric Frobenius
+and nilpotent monodromy, with $q_{\rm res}$ the residue-field
+cardinality. Lines 341--352 specify the associated monodromy
+filtration and twists. The retained source has SHA-256
+\par\noindent
+\nolinkurl{deadee9fddd84a96a5f8a5ad282f929ad837b1f0a67bbb04907980681b12ab0a}.
+\par\noindent
+We test the stated geometric convention with residue field
+$\mathbb F_p$, so its equation becomes
+$F_p\mathcal N F_p^{-1}=p^{-1}\mathcal N$.
+The programme's symbol $q=(k+1)^2$ remains its vector-space
+dimension and is not the $q_{\rm res}$ in Jannsen's equation.
+This is a finite compatibility calculation, not an assertion
+that the programme operators already have an arithmetic realization.
+
+The precise programme input is ST1--ST3 of the retained
+\nolinkurl{SUPPORT_TRANSPORT_PUBLIC.md} and TDP1--TDP4, TDP11
+of \nolinkurl{TAU_DELiGNE_PRIME_MEMORY.tex}.
+ST3 states the exact source-metric decomposition below and
+locates its proof in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/EVOLUTION_PROOF.md#L18}{CE2--CE8
+of the pinned original effective-cutoff proof}.
+The present derivation read ST1--ST3 and their displayed proof
+locator; it does not claim a new derivation of those source
+identities from an unspecified metric.
+Keep every original parameter and cutoff:
+\[
+\begin{gathered}
+k\ge17,\quad k\equiv1\pmod4,\quad q=(k+1)^2,
+\quad\delta,\gamma>0,\quad q-1\le N\le2q,\\
+\lambda_{ab}=(2b-k)\gamma-i(2a-k)\delta,\quad
+Q_k(y)=\prod_{a,b=0}^k(y-\lambda_{ab}),\quad
+E=\mathbb C[y]/(Q_k),\quad M[v]=[yv],\\
+F_p=e^{i(\log p)M},\quad\widetilde F_p=p^{k/2}F_p,
+\quad \langle v,w\rangle_N=v^*G_Nw,\\
+M=C+R,\quad C=C^\dagger,\quad R=\epsilon fe^\dagger,
+\quad e^\dagger f=0,\quad\|e\|_N=\|f\|_N=1,\quad\epsilon>0.
+\end{gathered}
+\tag{MRR1}
+\]
+Here the actual ST3 vectors are
+$e=b_N/\sqrt{E_N}$, $f=b_{N+1}/\sqrt{F_N}$ and
+$\epsilon=\sqrt{E_NF_N}/\omega_N$. These are the retained
+source definitions, not substitutions made in this derivation.
+The four cutoffs $q-1,q,2q-1,2q$ remain distinct.
+
+\subsection{Two primes determine the complete all-prime space}
+
+Let $\ell_{ab}$ be the original Lagrange cardinal polynomials.
+Their distinct roots give a basis of $E$ by evaluation, and
+$M\ell_{ab}=\lambda_{ab}\ell_{ab}$.
+Let $\ell^{ab}$ denote the linear evaluation covector at
+$\lambda_{ab}$, so $\ell^{ab}(\ell_{cd})=
+\mathbf1_{(a,b)=(c,d)}$. It is not silently replaced by a
+Hermitian adjoint. Put
+$U_{ab,cd}=\ell_{ab}\ell^{cd}$ and
+$P_{ab}=U_{ab,ab}$.
+These are the exact matrix units and spectral projectors in
+the original coordinates. In particular
+\[
+F_pU_{ab,cd}F_p^{-1}
+=p^{2(a-c)\delta}
+ e^{2i(b-d)\gamma\log p}U_{ab,cd},\qquad
+[M,U_{ab,cd}]=(\lambda_{ab}-\lambda_{cd})U_{ab,cd}.
+\tag{MRR2}
+\]
+Applying either side to every original cardinal vector proves
+these identities, including their phases.
+
+The complete compatibility space is
+\[
+\begin{split}
+\mathscr N
+&=\{T:F_2TF_2^{-1}=2^{-1}T,
+            \ F_3TF_3^{-1}=3^{-1}T\}\\
+&=\{T:F_pTF_p^{-1}=p^{-1}T\text{ for every prime }p\}\\
+&=\ker(\operatorname{ad}_M-iI).
+\end{split}
+\tag{MRR3}
+\]
+To prove equality, a nonzero matrix-unit coefficient must
+satisfy both scalar equations in MRR2. Their moduli force
+$2(a-c)\delta=-1$. Their phases force
+$2(b-d)\gamma\log2=2\pi n_2$ and
+$2(b-d)\gamma\log3=2\pi n_3$, with integers $n_2,n_3$.
+If $(b-d)\gamma\ne0$, both integers are nonzero, so
+$\log2/\log3=n_2/n_3$ would be rational.
+This is impossible: a rational equality gives, after choosing
+positive numerator and denominator, $2^v=3^u$, contradicted
+by the prime divisors of these integers.
+Thus $b=d$ because $\gamma>0$, and the modulus equality gives
+$\lambda_{ab}-\lambda_{cd}=i$.
+Conversely this eigenvalue difference makes the scalar in
+MRR2 equal $e^{-\log p}=p^{-1}$ for every prime, and also
+gives the commutator equation. Independence of all matrix
+units proves the equalities for every operator.
+
+Writing $m=c-a$, the space is therefore exactly
+\[
+\boxed{
+\begin{cases}
+\mathscr N=0,&\delta\ne1/(2m)\text{ for all }1\le m\le k,\\[2pt]
+\mathscr N=
+ \displaystyle\bigoplus_{a=0}^{k-m}\bigoplus_{b=0}^k
+          \mathbb C U_{ab,a+m,b},
+ &\delta=1/(2m),\quad1\le m\le k.
+\end{cases}}
+\tag{MRR4}
+\]
+Indeed $a,c$ are integers in $[0,k]$ and $\delta>0$, so the
+equation $2(a-c)\delta=-1$ has precisely that range of positive
+$m$. For a fixed $\delta$ at most one $m$ occurs.
+At resonance its dimension is $(k+1-m)(k+1)$, and otherwise
+it is zero.
+Multiplication of $F_p$ by its retained scalar $p^{k/2}$ does
+not change conjugation, so exactly the same space results
+from the original uncentred $\widetilde F_p$.
+
+Every operator in this space is nilpotent, with its whole
+chain law specified. At resonance write
+$T=\sum_{a=0}^{k-m}\sum_b n_{ab}U_{ab,a+m,b}$.
+Then
+\[
+T^s\ell_{ab}=
+\begin{cases}
+\left(\displaystyle\prod_{j=1}^s n_{a-jm,b}\right)
+                         \ell_{a-sm,b},&a\ge sm,\\
+0,&a<sm,
+\end{cases}
+\quad T^{\lfloor k/m\rfloor+1}=0.
+\tag{MRR5}
+\]
+The first step is the definition, and induction proves the
+product for every $s$. It lowers $a$ by $m$ and keeps $b$
+fixed, so the last equality follows from $a\le k$.
+The nilpotence bound is sharp: taking all $n_{ab}=1$ keeps
+the longest chain from $a=k$ nonzero through
+$\lfloor k/m\rfloor$ steps.
+
+\subsection{The exact spectral and metric projections}
+
+At resonance the coordinate projection is
+\[
+\mathsf S(T)=\sum_{a=0}^{k-m}\sum_{b=0}^k
+                 P_{ab}T P_{a+m,b};
+\qquad \mathsf S=0\text{ off resonance}.
+\tag{MRR6}
+\]
+The matrix-unit relations prove $\mathsf S^2=\mathsf S$ and
+$\operatorname{im}\mathsf S=\mathscr N$.
+It commutes with $\operatorname{ad}_M$ and all original prime
+conjugations because it selects their simultaneous coordinate
+eigenvectors. It is not asserted to be orthogonal in $G_N$.
+
+The actual metric projection is also explicit.
+Let $V$ be the invertible matrix whose columns are all
+original $\ell_{ab}$ in their retained ordering, and put
+$H=V^*G_NV$.
+On $\operatorname{End}(E)$ use the exact Hilbert--Schmidt
+inner product
+$\langle A,B\rangle_{\rm HS,N}=\operatorname{tr}(A^\dagger B)$,
+$A^\dagger=G_N^{-1}A^*G_N$.
+In the cardinal coordinates this is
+$\operatorname{tr}(H^{-1}A^*HB)$.
+For matrix units labelled by pairs $(i,j)$, $(u,v)$, the
+complete Gram entries are
+\[
+\langle U_{ij},U_{uv}\rangle_{\rm HS,N}
+                          =H_{iu}(H^{-1})_{vj}.
+\tag{MRR7}
+\]
+Indeed $U_{ij}^\dagger=H^{-1}U_{ji}H$ in those coordinates;
+the product $U_{ji}HU_{uv}$ is $H_{iu}U_{jv}$, whose trace
+after multiplication by $H^{-1}$ is the displayed entry.
+Thus every off-diagonal metric contribution is retained.
+
+Let $\{K_\alpha\}$ be exactly the compatible matrix units
+in MRR4 and define
+$\Gamma_{\alpha\beta}=\langle K_\alpha,K_\beta\rangle_{\rm HS,N}$,
+$b_\alpha(T)=\langle K_\alpha,T\rangle_{\rm HS,N}$.
+Their independence and the positive metric make $\Gamma$
+positive definite. The exact orthogonal projection and
+distance are
+\[
+\boxed{
+\begin{aligned}
+\mathsf P_N T
+ &=\sum_{\alpha,\beta}K_\alpha
+                   (\Gamma^{-1})_{\alpha\beta}b_\beta(T),\\
+\operatorname{dist}_{\rm HS,N}(T,\mathscr N)^2
+ &=\|T\|_{\rm HS,N}^2-b(T)^*\Gamma^{-1}b(T).
+\end{aligned}}
+\tag{MRR8}
+\]
+The coefficient vector solves precisely
+$\langle K_\alpha,T-\mathsf P_NT\rangle=0$ for every $\alpha$.
+This proves orthogonality and the norm formula by the
+Pythagorean identity. Off resonance both projections vanish,
+and the distance is $\|T\|_{\rm HS,N}$.
+
+\subsection{The complete two-prime defect and its inverse receiver}
+
+For $\mathcal E=\operatorname{End}(E)$ define
+\[
+\begin{gathered}
+\mathcal D_0(T)=[M,T]-iT,\qquad
+\mathcal D_p(T)=F_pTF_p^{-1}-p^{-1}T,\qquad
+\mathcal D_{2,3}(T)=(\mathcal D_2(T),\mathcal D_3(T)),\\
+\mathcal E/\mathscr N\xrightarrow{\ \simeq\ }
+             \operatorname{im}\mathcal D_{2,3},
+\qquad [T]\longmapsto\mathcal D_{2,3}(T).
+\end{gathered}
+\tag{MRR9}
+\]
+MRR3 proves that the last map is well-defined and injective;
+surjectivity onto its specified image is its definition.
+The analogous map $[T]\mapsto\mathcal D_0(T)$ is likewise
+an isomorphism onto its image.
+These are the exact defect objects even when a nonzero
+compatible space survives.
+
+Write
+$\mu_{ij}=\lambda_i-\lambda_j-i$ and
+$\xi_{p,ij}=\omega_{p,i}/\omega_{p,j}-p^{-1}$, where
+$\omega_{p,ab}=p^{(2a-k)\delta}e^{i(2b-k)\gamma\log p}$.
+Both maps are diagonal on the same matrix units, with
+coefficients $\mu_{ij}$ and $\xi_{p,ij}$ respectively.
+Their full original-metric energy is therefore
+\[
+\begin{split}
+\|\mathcal D_{2,3}(T)\|_{\rm HS,N\oplus HS,N}^2
+=\sum_{ij,uv}\overline{t_{ij}}t_{uv}
+H_{iu}(H^{-1})_{vj}
+\bigl(\overline{\xi_{2,ij}}\xi_{2,uv}
+     +\overline{\xi_{3,ij}}\xi_{3,uv}\bigr),
+\quad T=\sum_{ij}t_{ij}U_{ij}.
+\end{split}
+\tag{MRR10}
+\]
+This is expansion of each squared norm using MRR7, with no
+assumption that the matrix units are orthogonal.
+
+There is an entire forward relation and an exact finite
+reverse relation:
+\[
+\begin{gathered}
+\mathcal D_p=g_p(\mathcal D_0)\mathcal D_0,\qquad
+g_p(z)=p^{-1}\frac{e^{i(\log p)z}-1}{z},\quad
+g_p(0)=p^{-1}i\log p,\\
+\mathcal D_0(T)
+=\sum_{\mu_{ij}\ne0}\sum_{p\in\{2,3\}}
+ \frac{\mu_{ij}\overline{\xi_{p,ij}}}
+ {|\xi_{2,ij}|^2+|\xi_{3,ij}|^2}
+                     P_i\mathcal D_p(T)P_j.
+\end{gathered}
+\tag{MRR11}
+\]
+For the first equality, conjugation by $e^{zM}$ equals
+$e^{z\operatorname{ad}_M}$: differentiating the conjugated
+matrix yields the linear differential equation with that
+generator, and its exponential series is its solution.
+Since $\operatorname{ad}_M=\mathcal D_0+iI$, substituting
+$z=i\log p$ proves the entire relation, including its
+removable value at zero.
+For the second equality, MRR3 shows that every denominator
+in the stated range is strictly positive. On a given matrix
+unit the two summands add to $\mu_{ij}$, whereas the common
+kernel contributes zero. This proves the identity and makes
+the relation of the finite-prime and infinitesimal defects
+explicit in both directions.
+
+\subsection{The actual nilpotent never belongs to this compatibility space}
+
+The exact ST3 decomposition gives
+$[M,R]=[C,R]$, because $[R,R]=0$.
+The operator $\operatorname{ad}_C$ is self-adjoint on the
+original Hilbert--Schmidt space. In fact cyclicity of the
+finite trace gives
+\[
+\langle X,[C,Y]\rangle_{\rm HS,N}
+=\operatorname{tr}(X^\dagger CY-X^\dagger YC)
+=\langle[C,X],Y\rangle_{\rm HS,N}.
+\tag{MRR12}
+\]
+The last equality uses $C=C^\dagger$ from ST3; it would not
+follow by replacing $C$ with an unspecified amplitude shadow.
+Consequently $\langle[C,R],R\rangle_{\rm HS,N}$ is real.
+Expanding the squared norm, its cross term with $-iR$ has
+zero real part. Since the rank-one norm is
+$\|R\|_{\rm HS,N}^2=\epsilon^2\|f\|_N^2\|e\|_N^2=\epsilon^2$,
+the exact obstruction is
+\[
+\boxed{
+\|\mathcal D_0(R)\|_{\rm HS,N}^2
+=\|[C,R]\|_{\rm HS,N}^2+\epsilon^2
+\ge\epsilon^2>0.}
+\tag{MRR13}
+\]
+In particular $R\notin\mathscr N$, including every resonance
+in MRR4. The support nilpotent has not been discarded; its
+nonzero image in the exact defect quotient MRR9 is exhibited.
+By MRR11, its two-prime defect cannot vanish either.
+
+There is a more explicit receiver in the unchanged original
+rank-two plane and its orthogonal complement. Put
+\[
+\begin{gathered}
+\Pi=ee^\dagger+ff^\dagger,\quad
+\alpha=e^\dagger Ce\in\mathbb R,\quad
+\beta=f^\dagger Cf\in\mathbb R,\quad c=e^\dagger Cf,\\
+u=(I-\Pi)Ce,\quad v=(I-\Pi)Cf,\quad
+Ce=\alpha e+\overline c f+u,\quad
+Cf=c e+\beta f+v.
+\end{gathered}
+\tag{MRR14}
+\]
+Self-adjointness proves the conjugate coefficient in $Ce$.
+Both $u$ and $v$ are orthogonal to $e$ and $f$.
+Direct multiplication gives the entire original defect
+\[
+\boxed{
+\mathcal D_0(R)
+=\epsilon\bigl[c(ee^\dagger-ff^\dagger)
+ +(\beta-\alpha-i)fe^\dagger+ve^\dagger-fu^\dagger\bigr].}
+\tag{MRR15}
+\]
+For example $CR=\epsilon(Cf)e^\dagger$ and
+$RC=\epsilon f(Ce)^\dagger$; substitution of MRR14 proves
+every coefficient and sign.
+The displayed four operator terms are mutually orthogonal
+in the Hilbert--Schmidt metric. This follows from the
+rank-one formula
+$\langle xy^\dagger,zw^\dagger\rangle_{\rm HS,N}
+=\langle x,z\rangle_N\langle w,y\rangle_N$
+and the orthogonalities just stated; the diagonal difference
+has squared norm two. Hence
+\[
+\boxed{
+\|\mathcal D_0(R)\|_{\rm HS,N}^2
+=\epsilon^2\bigl[1+(\beta-\alpha)^2+2|c|^2
+                         +\|u\|_N^2+\|v\|_N^2\bigr].}
+\tag{MRR16}
+\]
+It is also
+$\epsilon^2[1+(\beta-\alpha)^2+
+(\|Ce\|_N^2-\alpha^2)+(\|Cf\|_N^2-\beta^2)]$,
+by MRR14. No source variance or cutoff term has been omitted.
+Applying the actual defect to the original unit vector $e$
+gives a stronger operator-norm bound:
+\[
+\begin{split}
+\mathcal D_0(R)e&=\epsilon
+                 \bigl(c e+(\beta-\alpha-i)f+v\bigr),\\
+\|\mathcal D_0(R)\|_N
+&\ge\epsilon\sqrt{|c|^2+(\beta-\alpha)^2+1+\|v\|_N^2}
+\ge\epsilon.
+\end{split}
+\tag{MRR17}
+\]
+The three vectors in the first line are orthogonal, proving
+the exact norm on that vector before taking the bound.
+
+For completeness the metric distance of this actual $R$
+from every compatible replacement is explicit and positive:
+\[
+\begin{gathered}
+\operatorname{dist}_{\rm HS,N}(R,\mathscr N)^2
+=\epsilon^2-b(R)^*\Gamma^{-1}b(R),\\
+\operatorname{dist}_{\rm HS,N}(R,\mathscr N)
+\ge\frac{\|\mathcal D_0(R)\|_{\rm HS,N}}{2\|M\|_N+1}
+\ge\frac{\epsilon}{2\|M\|_N+1}>0.
+\end{gathered}
+\tag{MRR18}
+\]
+Use the off-resonance convention of MRR8 when the compatible
+basis is empty. For any $T\in\mathscr N$,
+$\mathcal D_0(R-T)=\mathcal D_0(R)$.
+The original induced norms satisfy
+$\|MX\|_{\rm HS,N},\|XM\|_{\rm HS,N}
+\le\|M\|_N\|X\|_{\rm HS,N}$, proved by summing norms on
+an original-metric orthonormal basis or by adjoints.
+Thus $\|\mathcal D_0(X)\|_{\rm HS,N}
+\le(2\|M\|_N+1)\|X\|_{\rm HS,N}$.
+Taking the infimum proves the bound, with MRR13 giving
+strict positivity.
+
+\subsection{Complete observation blocks and all support labels}
+
+Retain the original isometric section $J:B\to E$ from ST2,
+$K=\ker\Lambda$, its isometric inclusion $\iota_K$, and
+$W_0:B\oplus K\to E$, $W_0(b,z)=Jb+\iota_Kz$.
+The original orthogonal decomposition proves that $W_0$ is
+unitary for these unchanged metrics.
+For $D=\mathcal D_0(R)$ the exact complete observation is
+\[
+W_0^\dagger D W_0=
+\begin{pmatrix}
+J^\dagger DJ&J^\dagger D\iota_K\\
+\iota_K^\dagger DJ&\iota_K^\dagger D\iota_K
+\end{pmatrix},\qquad
+\|D\|_{\rm HS,N}^2
+=\sum_{a,b\in\{B,K\}}\|D_{ab}\|_{\rm HS}^2.
+\tag{MRR19}
+\]
+This follows by summing squared matrix entries in the
+orthogonal source and target decomposition, and the inverse
+map is $D=W_0(D_{ab})W_0^\dagger$.
+Thus the actual nonzero obstruction MRR16 is retained by
+these four blocks even if its visible $B,B$ compression
+alone vanishes. The same statements hold for each component
+of $\mathcal D_{2,3}(R)$ using MRR11.
+
+For the full bounded distributive lattice $L$, give the
+complex vector spaces $\mathcal E$, $\mathscr N$, their
+quotient and each defect image their synchronized carriers
+$V_L^\uparrow=\{(0,\lambda):\lambda\in L\}
+\cup\{(v,1_L):v\in V\}$.
+Every linear map above lifts by
+$T^\uparrow(v,\lambda)=(Tv,\lambda)$.
+Componentwise addition and support meet prove linearity
+over $G_L(\mathbb C)$ and preservation of compositions.
+In particular
+\[
+\begin{gathered}
+(\mathcal D_0^\uparrow)^{-1}(Z_L)
+=(\mathcal D_{2,3}^\uparrow)^{-1}(Z_L)
+=\mathscr N_L^\uparrow,\\
+(\mathcal E/\mathscr N)_L^\uparrow
+\xrightarrow{\ \simeq\ }
+(\operatorname{im}\mathcal D_{2,3})_L^\uparrow,
+\qquad([T],\lambda)\longmapsto
+                        (\mathcal D_{2,3}T,\lambda).
+\end{gathered}
+\tag{MRR20}
+\]
+In the first line $Z_L$ means the zero-amplitude fibre of
+the appropriate synchronized target, including the direct
+sum target for the pair. MRR3 and MRR9 prove the amplitude
+statements; keeping $\lambda$ proves the displayed lifts.
+For every $\lambda<1_L$, the quotient fibre over
+$(0,\lambda)$ is its singleton zero state; over $(0,1_L)$
+it is $\mathscr N\times\{1_L\}$.
+The actual $R\ne0$ starts at top support and has nonzero
+defect by MRR13, so its defect remains at that same top
+support. All lower zero labels remain distinct and fixed
+by the zero-amplitude action.
+
+The original free-coordinate correspondence is the full
+fibre from OLR17: in any retained basis of the positive
+dimension $\dim\mathcal E=q^2$, synchronization sends
+$(T,\boldsymbol\mu)$ to $(T,\bigvee_i\mu_i)$ with
+$T_i\ne0\Rightarrow\mu_i=1_L$.
+Its inverse fibre retains exactly those masks with that
+join and those forced top coordinates.
+Over the compatibility inverse image in MRR20 the amplitude
+is exactly a member of MRR4 and all its permitted original
+masks survive. No change of free-semimodule basis to the
+spectral units has been asserted.
+The metric pairing on every synchronized space is
+$(\langle x,y\rangle,\lambda\wedge\mu)$, so MRR7--MRR19
+retain their original amplitudes and every support meet.
+
+The calculation therefore identifies the full finite space
+compatible with Jannsen's stated geometric-Frobenius equation,
+proves its exact relation to the two original prime operators,
+and exhibits the complete defect of the actual programme
+nilpotent. It does not replace that nilpotent by a resonant
+matrix unit, identify its slot grades with arithmetic weights,
+or infer a purity statement or RH from finite compatibility.
+
+\subsection{Every resonance chain, break, and Jordan block}
+
+Fix a resonance $\delta=1/(2m)$ with $1\le m\le k$, and
+retain an arbitrary member of MRR4, with its full complex coefficients:
+\[
+\mathcal N=\sum_{a=0}^{k-m}\sum_{b=0}^k n_{ab}U_{ab,a+m,b}.
+\]
+For each $b\in\{0,\ldots,k\}$ and residue
+$r\in\{0,\ldots,m-1\}$ define
+\[
+\begin{gathered}
+L_r=\left\lfloor\frac{k-r}{m}\right\rfloor,\qquad
+v_{r,b,j}=\ell_{r+jm,b}\quad(0\le j\le L_r),\\
+c_{r,b,j}=n_{r+(j-1)m,b}\quad(1\le j\le L_r),\qquad
+\mathcal Nv_{r,b,j}=c_{r,b,j}v_{r,b,j-1}\quad(j\ge1),\qquad
+\mathcal Nv_{r,b,0}=0.
+\end{gathered}
+\tag{MRR21}
+\]
+Every original label occurs in exactly one such chain by
+division with remainder of $a$ by $m$.
+Thus this is the entire original object, with $b$ unchanged;
+no two spectral labels are identified.
+For the boundary tests below put
+$c_{r,b,0}=c_{r,b,L_r+1}=0$. These two values mark the
+absence of an edge outside the original chain; they are
+not additional resonance coefficients.
+
+A segment $[s,u]\subseteq[0,L_r]$ is one Jordan block
+precisely when
+\[
+c_{r,b,s}=0,\qquad c_{r,b,u+1}=0,\qquad
+c_{r,b,j}\ne0\quad(s<j\le u).
+\tag{MRR22}
+\]
+Indeed a zero coefficient deletes exactly its one edge.
+The remaining connected components are exactly these
+segments, since the underlying finite graph is a path.
+Their vector spans are $\mathcal N$-invariant and form
+a direct sum, because they partition the original basis.
+In one segment put
+\[
+w_{r,b,[s,u],h}=\mathcal N^h v_{r,b,u}
+=\left(\prod_{j=u-h+1}^{u}c_{r,b,j}\right)v_{r,b,u-h}
+\quad(0\le h\le u-s).
+\tag{MRR23}
+\]
+The empty product is one. Every displayed product is nonzero
+by MRR22, so these vectors are a basis of the segment.
+They satisfy $\mathcal Nw_h=w_{h+1}$ up to its last vector,
+which is sent to zero. Therefore the segment contributes
+exactly one Jordan block of length $u-s+1$.
+This proves the classification for every coefficient choice,
+including all zero coefficients and all nonzero phases.
+The vectors in MRR23 are actual powers of the original
+operator; they have not been divided by their lengths or norms.
+
+In particular the multiplicity of a Jordan block of length
+$\ell\ge1$ is the completely specified integer
+\[
+\boxed{
+\begin{aligned}
+J_\ell(\mathcal N)
+=\sum_{b=0}^k\sum_{r=0}^{m-1}
+\sum_{s=0}^{L_r+1-\ell}
+ &\mathbf1_{c_{r,b,s}=0}
+  \mathbf1_{c_{r,b,s+\ell}=0}\\[-2pt]
+ &\hspace{-20pt}\cdot
+ \prod_{j=s+1}^{s+\ell-1}\mathbf1_{c_{r,b,j}\ne0}.
+\end{aligned}}
+\tag{MRR24}
+\]
+A sum with negative upper bound is empty.
+Its term is one exactly for the segment in MRR22 whose
+upper endpoint is $s+\ell-1$, and zero otherwise, proving
+the formula. Every admissible Jordan type is thus exactly
+the multiset obtained by partitioning each of the retained
+chain lengths $L_r+1$ into ordered positive segment lengths,
+independently for every $b$. Conversely any such partitions
+are obtained by setting the separating coefficients to zero
+and the remaining coefficients to any chosen nonzero complex
+numbers, so this description is also sufficient.
+
+For every integer $a\ge0$ the exact ranks and kernels are
+\[
+\begin{gathered}
+\operatorname{rank}\mathcal N^a
+=\sum_{\ell\ge1}J_\ell(\mathcal N)\max(\ell-a,0),\qquad
+\dim\ker\mathcal N^a
+=\sum_{\ell\ge1}J_\ell(\mathcal N)\min(a,\ell),\\
+\dim\ker\mathcal N
+=q-\#\{(a,b):n_{ab}\ne0\}.
+\end{gathered}
+\tag{MRR25}
+\]
+The first two identities follow by shifting each basis in
+MRR23. The last follows because every nonzero coefficient
+is one retained edge in a disjoint union of paths, whose
+number of components is the number of vertices minus edges.
+Equivalently the nonzero columns of $\mathcal N$ have
+different target basis vectors and are independent.
+The nilpotence index is the largest segment length, at most
+$\lfloor k/m\rfloor+1$; the zero operator has index one.
+
+The original spectral metric remains exact throughout.
+Write $H_{ij}=\langle\ell_i,\ell_j\rangle_N$ as in MRR7.
+For segments $A,B$, let $d_{A,h}$ be the literal product
+in MRR23 and $i(A,h)$ its original remaining spectral label.
+Then their entire Gram matrix, including different segments,
+is
+\[
+\boxed{
+\langle w_{A,h},w_{B,l}\rangle_N
+=\overline{d_{A,h}}d_{B,l}H_{i(A,h),i(B,l)}.}
+\tag{MRR26}
+\]
+This is substitution of MRR23 into the original sesquilinear
+pairing. In particular distinct Jordan blocks are not assumed
+orthogonal. The map from all these power vectors to the
+original cardinal basis is a permutation followed by the
+displayed nonzero diagonal coefficients; its inverse divides
+each coefficient by that same product. This proves an exact
+coordinate isomorphism and its inverse, with the metric given
+by MRR26 rather than replaced by an identity matrix.
+
+\subsection{The exact semidirect group carried by these chains}
+
+For every positive real number $x$ retain the original
+one-parameter extension
+\[
+F_x=\exp(i(\log x)M),\qquad
+F_x\ell_{ab}=
+x^{(2a-k)\delta}e^{i(2b-k)\gamma\log x}\ell_{ab},
+\qquad F_xF_y=F_{xy}.
+\tag{MRR27}
+\]
+The logarithm here is the unique real logarithm.
+Its additive law and the commuting exponential series prove
+the last equality. The original prime operators are exactly
+the values at $x=p$.
+For $\mathcal N$ in MRR4, the identical matrix-unit
+calculation MRR2 gives
+$F_x\mathcal NF_x^{-1}=x^{-1}\mathcal N$ for every $x>0$.
+
+Define the set $\mathcal G=\mathbb R_{>0}\times\mathbb C$
+with the following full operations:
+\[
+(x,t)(y,s)=(xy,t+x^{-1}s),\qquad
+1_{\mathcal G}=(1,0),\qquad
+(x,t)^{-1}=(x^{-1},-xt).
+\tag{MRR28}
+\]
+Both associations of a triple have second coordinate
+$t+x^{-1}s+(xy)^{-1}u$, proving associativity.
+Substitution proves both the identity and the two inverse
+identities. This is a topological group for the product
+of the usual real and complex topologies, since these
+displayed operations are continuous.
+The exact representation is
+\[
+\boxed{
+\rho_{\mathcal N}(x,t)=\exp(t\mathcal N)F_x,
+\qquad
+\rho_{\mathcal N}((x,t)(y,s))
+=\rho_{\mathcal N}(x,t)\rho_{\mathcal N}(y,s).}
+\tag{MRR29}
+\]
+Indeed conjugating the finite exponential by $F_x$ gives
+$F_xe^{s\mathcal N}F_x^{-1}=e^{x^{-1}s\mathcal N}$,
+term by term. Its product with $e^{t\mathcal N}$ is
+$e^{(t+x^{-1}s)\mathcal N}$, since both exponents are scalar
+multiples of the same operator. MRR27 proves the group law.
+The identity maps to $I_E$, and the inverse maps to
+$(e^{t\mathcal N}F_x)^{-1}$ by that law, with no change in
+the order of the two original factors. Continuity follows
+from the finite exponential polynomial and MRR27.
+
+There is also a precise converse: for any endomorphism $T$,
+the expression $e^{tT}F_x$ is a representation of MRR28
+if and only if $F_xTF_x^{-1}=x^{-1}T$ for all $x>0$.
+Necessity follows by evaluating the representation identity
+on $(x,0)(1,s)=(x,x^{-1}s)$ and differentiating at $s=0$.
+Sufficiency is the same exponential multiplication just
+proved, valid for the convergent exponential even without
+an a priori nilpotence assumption. Differentiating
+$F_{e^u}TF_{e^u}^{-1}=e^{-u}T$ at $u=0$ gives
+$i[M,T]=-T$, equivalently $[M,T]=iT$.
+Conversely that commutator equation gives the conjugation
+identity by exponentiation of $\operatorname{ad}_M$.
+Together with MRR3--MRR4, this proves the full equivalence
+\[
+\boxed{
+\rho_T\text{ is a representation of }\mathcal G
+\ \Longleftrightarrow\
+F_xTF_x^{-1}=x^{-1}T\ (x>0)
+\ \Longleftrightarrow\ T\in\mathscr N.}
+\tag{MRR30}
+\]
+For this original $M$, its last condition implies exactly
+the nilpotent chain classification already proved.
+Thus the representation has been constructed on the entire
+object defined by the obstruction, with a converse
+characterization rather than a merely formal resemblance.
+
+The representation is faithful exactly when $\mathcal N\ne0$.
+In the original cardinal ordering, $e^{t\mathcal N}$ has
+all diagonal entries one and only strictly lowering
+off-diagonal entries. Thus the diagonal of
+$\rho_{\mathcal N}(x,t)$ is the original spectrum of $F_x$.
+If it is the identity, any label with $2a-k\ne0$ gives
+$x^{(2a-k)\delta}=1$, hence $x=1$ since $\delta>0$.
+If $\mathcal N\ne0$ and $t\ne0$, the factorization
+$e^{t\mathcal N}-I=t\mathcal N
+\sum_{j\ge0}(t\mathcal N)^j/(j+1)!$
+has invertible second factor, since it is $I$ plus a
+nilpotent. Its value cannot be zero. Therefore $t=0$.
+When $\mathcal N=0$ its exact kernel is
+$\{(1,t):t\in\mathbb C\}$, by the same diagonal argument.
+
+\subsection{Every phase, chain entry, and metric under the action}
+
+For an original chain label $v_{r,b,j}$ put
+$\omega_{r,b,j}(x)=
+x^{(2(r+jm)-k)\delta}e^{i(2b-k)\gamma\log x}$.
+The full action in the unchanged cardinal basis is
+\[
+\rho_{\mathcal N}(x,t)v_{r,b,j}
+=\omega_{r,b,j}(x)
+\sum_{h=0}^j\frac{t^h}{h!}
+ \left(\prod_{l=j-h+1}^jc_{r,b,l}\right)v_{r,b,j-h}.
+\tag{MRR31}
+\]
+This is the finite exponential applied after the original
+$F_x$. Zero coefficients automatically terminate every
+path at its actual break. The formula therefore works
+without discarding any broken or length-one chain.
+
+On one segment with top label $v_{r,b,u}$, let
+$\omega_A(x)=\omega_{r,b,u}(x)$ and $d_A=u-s$.
+The power basis in MRR23 has the exact diagonal action
+$F_xw_{A,h}=\omega_A(x)x^{-h}w_{A,h}$, either by MRR27
+or its conjugation law. Consequently
+\[
+\rho_{\mathcal N}(x,t)w_{A,h}
+=\omega_A(x)x^{-h}
+\sum_{l=h}^{d_A}\frac{t^{l-h}}{(l-h)!}w_{A,l}.
+\tag{MRR32}
+\]
+This retains the segment's top spectral phase and every
+power of $x$; its coefficients are not arithmetic weight
+assignments. Combining MRR32 with the complete Gram
+matrix $G_{A,l;B,n}$ from MRR26 gives the exact pairing
+\[
+\begin{split}
+\langle\rho_{\mathcal N}(x,t)w_{A,h},
+        \rho_{\mathcal N}(y,s)w_{B,j}\rangle_N
+={}&\overline{\omega_A(x)}\omega_B(y)x^{-h}y^{-j}\\
+&\cdot\sum_{l=h}^{d_A}\sum_{n=j}^{d_B}
+\frac{\overline t^{\,l-h}s^{n-j}}
+ {(l-h)!(n-j)!}\,G_{A,l;B,n}.
+\end{split}
+\tag{MRR33}
+\]
+This is finite sesquilinear expansion; it preserves cross
+terms between distinct Jordan segments and all original
+cutoff-dependent entries of $G_N$.
+
+The uncentred mass has a full representation as well:
+\[
+\widetilde\rho_{\mathcal N}(x,t)
+=x^{k/2}\rho_{\mathcal N}(x,t),\qquad
+\det\rho_{\mathcal N}(x,t)=1,\qquad
+\det\widetilde\rho_{\mathcal N}(x,t)=x^{kq/2}.
+\tag{MRR34}
+\]
+The scalar $x^{k/2}$ is a group character of MRR28, so
+its product with MRR29 obeys the same representation law.
+Its values at $(p,0)$ are the actual $\widetilde F_p$.
+The nilpotent exponential has determinant one by its
+triangular diagonal. Also
+$\sum_{a,b}\lambda_{ab}=0$ by separately summing
+$2a-k$ and $2b-k$ from zero to $k$, so the product of
+all eigenvalues of $F_x$ is one. This proves both
+determinants, with the full original dimension $q$.
+
+\subsection{Units, labelled zeros, and the full support correspondence}
+
+Every operator in MRR29 is invertible, hence has the
+exact full-lattice automorphism
+\[
+\rho_{\mathcal N,L}(x,t)(v,\lambda)
+=(\rho_{\mathcal N}(x,t)v,\lambda),\qquad
+\rho_{\mathcal N,L}(1,0)=I_{E_L^\uparrow}.
+\tag{MRR35}
+\]
+Composition of lifts is composition of their amplitudes
+with support unchanged. Thus MRR29 proves the group law,
+and the lift at $(x^{-1},-xt)$ is its inverse, on every
+original nonzero vector and on every $(0,\lambda)$.
+Each labelled zero is fixed, individually. In particular
+the identity fixes supported zero and actual absence as
+their distinct states; it does not send them both to one
+chosen zero.
+Likewise $(\mathcal N_L^\uparrow)^a=(\mathcal N^a)_L^\uparrow$.
+After the largest segment length, this is the supported-zero
+operator $(v,\lambda)\mapsto(0,\lambda)$ rather than the
+constant map at $\tau$. The exponential lift in MRR35
+retains its identity term and remains an automorphism;
+nilpotence of the amplitude does not make its exponential
+a zero-valued character.
+The pairing of any two lifted vectors is
+$(\langle v,w\rangle_N,\lambda\wedge\mu)$, so the full
+metric identities MRR26 and MRR33 carry exactly the same
+support meet. Isometry is not assumed when the displayed
+metric amplitudes change.
+
+The correspondence with all original free masks can also
+be stated with its exact identity. Let $\mathcal F_L$ be
+the free-coordinate carrier in the original positive
+dimension $q$, and let $P_{\rm syn}:\mathcal F_L\to E_L^\uparrow$
+be the synchronization map of OLR17.
+For $g\in\mathcal G$ define a relation
+\[
+\mathcal R_g=
+\{(u,v)\in\mathcal F_L\times\mathcal F_L:
+             P_{\rm syn}v=\rho_{\mathcal N,L}(g)P_{\rm syn}u\}.
+\tag{MRR36}
+\]
+In original coordinates this means that the output
+amplitude is exactly $\rho_{\mathcal N}(g)$ times the
+input amplitude, their support joins agree, and every
+nonzero coordinate forces its own support to $1_L$.
+Every intermediate synchronized state has a free lift:
+use all support coordinates equal to its label when its
+amplitude is zero, and all equal to $1_L$ otherwise.
+It follows, with relational composition in the indicated
+order, that
+\[
+\mathcal R_g\circ\mathcal R_h=\mathcal R_{gh},\qquad
+\mathcal R_g^{-1}=\mathcal R_{g^{-1}},\qquad
+\mathcal R_{1_{\mathcal G}}
+=\{(u,v):P_{\rm syn}u=P_{\rm syn}v\}.
+\tag{MRR37}
+\]
+For the forward containment in the first equality,
+apply the representation law to any intermediate state.
+For the reverse containment, choose a free lift of
+$\rho_{\mathcal N,L}(h)P_{\rm syn}u$ as the intermediate
+state; the group law puts the prescribed final state
+in the second relation. Inverting the defining equality
+proves the second identity, and MRR35 proves the third.
+Thus the identity relation on free masks is precisely
+equality after synchronization, not the diagonal relation
+on individual masks. The quotient by that equivalence
+is exactly the synchronized carrier, on which MRR35 is
+the proved group action with its genuine identity.
+This gives the full free-mask correspondence without
+claiming a new free-semimodule basis change or deleting
+any original mask.
+
+MRR21--MRR37 construct the chains, group, representation,
+metric and full-support correspondences determined by
+the resonance space. The actual ST3 boundary nilpotent
+$R$ remains outside that space by MRR13--MRR17; none of
+these constructions silently replaces it by a chosen
+compatible coefficient pattern or supplies an arithmetic
+purity identification.

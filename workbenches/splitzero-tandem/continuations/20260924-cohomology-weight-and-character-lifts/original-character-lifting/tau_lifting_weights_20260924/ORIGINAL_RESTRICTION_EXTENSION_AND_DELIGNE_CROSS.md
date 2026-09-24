@@ -1,0 +1,569 @@
+# The original restriction extension, its full supported-cone map, and Deligne's cross
+
+24 September 2026. Independent derivation ORE0–ORE10.
+
+## ORE0. Sources, definitions and the precise receiving calculation
+
+This calculation uses the original Connes–Consani summation map, its actual continuous transpose, and the original Riemann zeta function. It calculates a cyclic extension class, transports that class through the already proved original-zeta residue pairing, and identifies its exact location in the complete supported comparison of UOS. The calculation also proves what the finite numerical-character truncation does to that class. It does not assert a new weight theory on primitive \(Z_1/\tau\).
+
+The current corpus and operation rules (private construction record; not included) were read, together with the complete user passages USR-9ad1c0a2d09dba92, USR-f55d16feb948d8c2 and USR-6152e3bc6302258c in the retained private corpus. The source notation remains \(Z_0,Z_1/\tau,Z_2\). Addition on primitive \(\tau\) was withdrawn and is not reintroduced. Polynomial modules, continuous duals, derivatives and arithmetic prime actions below are operations on the already constructed complex receiving spaces. A failed fixed-order lift in this receiver is not a contradiction of the user's whole-spectrum reconstruction.
+
+Human sources are Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3), for the original coefficient sheaf and Fourier restrictions; Ralf Meyer, [*A spectral interpretation for the zeros of the Riemann zeta function*, arXiv:math/0412277v3](https://arxiv.org/abs/math/0412277v3), for the closed-image framework; and Pierre Deligne, [*La conjecture de Weil. II*, §§3.6.1–3.6.3, pp.213–214](https://www.numdam.org/item/PMIHES_1980__52__137_0/), for the exact cross and weight-truncation argument.
+
+For this calculation Deligne's retained French transcription [S20_FR_record_export.tex](https://www.numdam.org/item/PMIHES_1980__52__137_0/), source lines2468–2595, was read completely. It is a French transcription, not author TeX. Its SHA256 is d6836ae15d98f2b27eb98c9bd039a7d921679becd9fa47ff4717410289dbd351. No claim of a fresh reading of all of Weil II is made.
+
+The exact programme inputs are [OMS1–OMS5](ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md), [ASD1–ASD7 and ASD14](ACTUAL_SUPPORTED_DUALITY_INDEPENDENT.md), [SCL1–SCL9](SPECTRAL_COKERNEL_DIVISIBILITY_AND_FINITE_LIFTING.md), [DPL1–DPL9](DUALITY_COKERNEL_POLYNOMIAL_LIFTING_INDEPENDENT.md), [GZR4–GZR8](GLOBAL_ORIGINAL_ZETA_RESIDUE_DUALITY_INDEPENDENT.md), and [UOS3–UOS8A](GLOBAL_UNIT_ORBIT_AND_SUPPORTED_COMPARISON.md). In particular the finite residue lift and the full supported cones are existing results, not claimed here as new.
+
+## ORE1. The original short exact sequence and every action
+
+Retain the original Fréchet spaces
+\[
+S=\{h\in\mathcal S(\mathbb R;\mathbb C):h(-v)=h(v),\
+h(0)=0,\ \int_{\mathbb R}h(v)\,dv=0\},
+\]
+\[
+A=\{b\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jb(u)|<\infty
+\quad(N,j\ge0)\}.
+\tag{ORE1.1}
+\]
+The exact original maps are
+\[
+\Sigma h(u)=2\sum_{n\ge1}h(nu),\qquad
+\mathcal M_0b(s)=\int_0^\infty b(u)u^s\,\frac{du}{u},
+\]
+\[
+\mathcal M_0\Sigma h(s)=2\zeta(s)
+\int_0^\infty h(v)v^s\,\frac{dv}{v}.
+\tag{ORE1.2}
+\]
+The identity is initially absolute for \(\Re s>1\); its full continuation is the one in OMS, with the pole, endpoint and trivial-zero contributions retained. Write \(J=\Sigma S\), \(Q=A/J\), and \(\pi:A\to Q\). The proved topological isomorphism \(\Sigma:S\to J\), closedness of \(J\), and Hahn–Banach give the exact continuous-dual sequence
+\[
+0\longrightarrow Q'\xrightarrow{\pi'}A'
+\xrightarrow{\Sigma'}S'\longrightarrow0.
+\tag{ORE1.3}
+\]
+For example, a functional on \(S\) transports continuously to \(J\) by \(\Sigma^{-1}\), extends continuously to \(A\), and hence has a preimage under \(\Sigma'\). The kernel consists exactly of functionals annihilating \(J\), which factor uniquely and continuously through \(Q\). We use the weak-* exactness proved in ASD; every displayed transpose is also strong-dual continuous.
+
+The real action is \(T_ab(u)=b(u/a)\), \(T_ah(v)=h(v/a)\), \(a>0\), and it intertwines \(\Sigma\). Its infinitesimal operator on these primal spaces is \(L=-u\partial_u\), respectively \(-v\partial_v\). On \(\mathcal M_0 A=\mathcal B\) it is multiplication by the original parameter \(s\), with no shift. Introduce the already used dilation character \(\chi_{\rm dil}(a)=a\). Twisting all three dual terms gives
+\[
+0\longrightarrow Y:=\chi_{\rm dil}\otimes Q'
+\xrightarrow{i=\pi'}\widetilde A:=\chi_{\rm dil}\otimes A'
+\xrightarrow{R=\Sigma'}\widetilde S:=\chi_{\rm dil}\otimes S'
+\longrightarrow0.
+\tag{ORE1.4}
+\]
+The action on each term is \(a(T_{a^{-1}})'\), and its generator is
+\[
+G_Y=1-L_Q^t,\qquad G_A=1-L_A^t,\qquad G_S=1-L_S^t.
+\tag{ORE1.5}
+\]
+All maps commute with these generators and with every original \(T_p\) for a rational prime \(p\). This twist is distinguished from the original zeta functional-equation multiplier \(\chi_\zeta(s)\) used in ORE5.
+
+The source receiving ring and its faithful extra copies are not changed: \([\tau]=(1,1,1)\), \([n]=(n,0,0)\) in \(\mathbb Z^3\). On ORE1.4 they act by the first scalar coordinate; the other two actions remain on the complete closed copies in ORE8. An original prime dilation and a source integer scalar are different specified operators.
+
+## ORE2. An explicit two-term resolution and the actual connecting class
+
+Let \(\mathcal R=\mathbb C[X]\); \(X\) acts as \(G\) on every term of ORE1.4. For a nonzero polynomial \(q\), the cyclic module \(V_q=\mathcal R/(q)\) has the exact free resolution
+\[
+0\longrightarrow\mathcal R\xrightarrow{q}\mathcal R
+\longrightarrow V_q\longrightarrow0.
+\tag{ORE2.1}
+\]
+Injectivity of its first map follows from the absence of zero divisors in \(\mathcal R\). Applying \(\operatorname{Hom}_{\mathcal R}(-,Y)\), and identifying a map out of \(\mathcal R\) by its value at1, gives the concrete complex
+\[
+Y\xrightarrow{q(G_Y)}Y
+\quad\hbox{in degrees }0,1.
+\]
+Consequently
+\[
+\operatorname{Hom}_{\mathcal R}(V_q,Y)=\ker q(G_Y),
+\qquad
+\operatorname{Ext}^1_{\mathcal R}(V_q,Y)=Y/q(G_Y)Y.
+\tag{ORE2.2}
+\]
+This is an algebraic extension calculation in the stated receiving category, not an assumed sheaf-derived equivalence.
+
+Let \(\eta\in\widetilde S\) satisfy \(q(G_S)\eta=0\). It specifies the map \(V_q\to\widetilde S\) sending \(1\bmod q\) to \(\eta\). Choose \(\alpha\in\widetilde A\) with \(R\alpha=\eta\). There is a unique \(y_\alpha\in Y\) with
+\[
+i y_\alpha=q(G_A)\alpha.
+\]
+The right side lies in \(\ker R\), because \(R q(G_A)\alpha=q(G_S)\eta=0\). The exact connecting map is
+\[
+\boxed{\delta_q(\eta)=[y_\alpha]\in Y/q(G_Y)Y.}
+\tag{ORE2.3}
+\]
+Replacing \(\alpha\) by \(\alpha+i y\) changes \(y_\alpha\) by \(q(G_Y)y\); hence the displayed class is independent of the lift. It is linear and intertwines all real and prime actions because \(q(G)\), \(R\) and \(i\) do.
+
+The pullback extension is explicitly
+\[
+E_\eta=\{(a,v)\in\widetilde A\oplus V_q:R a=f_\eta(v)\},
+\quad
+0\to Y\xrightarrow{y\mapsto(iy,0)}E_\eta\to V_q\to0.
+\tag{ORE2.4}
+\]
+Lifting the free generator in ORE2.1 to \((\alpha,1)\) sends the relation \(q\) to \((iy_\alpha,0)\). Thus ORE2.3 is precisely the class of ORE2.4, including its sign. It vanishes exactly when \(\alpha\) can be replaced by \(\alpha-iy\) with \(q(G_A)(\alpha-iy)=0\). In that case the map
+\[
+p(X)\bmod q\longmapsto p(G_A)(\alpha-iy)
+\tag{ORE2.5}
+\]
+is a \(\mathcal R\)-linear section over the specified cyclic target. No choice of a section of all of \(\Sigma'\) has been asserted.
+
+These maps also arise from the complete two-row diagram with rows ORE1.4 and vertical maps \(q(G_Y),q(G_A),q(G_S)\). Its kernel and cokernel sequence is
+\[
+0\to\ker q_Y\to\ker q_A\to\ker q_S
+\xrightarrow{\delta_q}Y/q_YY
+\to\widetilde A/q_A\widetilde A
+\to\widetilde S/q_S\widetilde S\to0.
+\tag{ORE2.6}
+\]
+Exactness at \(\ker q_S\) is ORE2.5. Exactness at the following quotient follows by taking \(y\) whose image is \(q_A\alpha\) and observing \(R\alpha\in\ker q_S\). All other exactness statements follow by substitution into the two original exact rows. This is the actual resolution diagram; a spectral truncation has not silently replaced it.
+
+## ORE3. Global polynomial facts before a finite character is selected
+
+Multiplication by a polynomial \(p(s)\) is injective on \(\mathcal B\). Its image consists exactly of entire functions having the finite vanishing jets required by the roots of \(p\). Division by \(p\) is continuous on this image: off fixed small disks around its finitely many roots it has polynomial vertical bounds; inside each disk the removable quotient is controlled by Cauchy's estimate on a larger disk. The image is closed because those finite jet evaluations are continuous. Transport through \(\mathcal M_0\) proves the corresponding statement on the original \(A\).
+
+It follows that \(q(G_A)\) is surjective on \(A'\). Indeed, given a continuous functional \(\lambda\) on \(A\), its prescription \(q(1-L_A)b\mapsto\lambda(b)\) is continuous on the closed image of the injective primal map. Hahn–Banach extends it to a continuous functional on \(A\). This extension is a preimage of \(\lambda\) under \(q(1-L_A^t)\). Thus
+\[
+\widetilde A/q_A\widetilde A=0,
+\qquad
+\widetilde S/q_S\widetilde S=0
+\tag{ORE3.1}
+\]
+by surjectivity of \(R\) and commutation. ORE2.6 ends with the surjective connecting map \(\ker q_S\to Y/q_Y Y\to0\).
+
+The actual quotient \(Q=\mathcal B/I_\zeta\) has a continuous full primary projector \(P_z\) at each nontrivial zero \(z\), and \(L_Q-z\) is continuously invertible on its complementary kernel. These are RZ/SCL's global operators on the original test space. Therefore, for \(b=1-z\),
+\[
+Y=Y_z\oplus Y_{\ne z},\qquad
+Y_z=P_z^tY,\qquad
+G_Y-b\text{ is continuously invertible on }Y_{\ne z}.
+\tag{ORE3.2}
+\]
+There is no assertion of an infinite sum of projectors. ORE3.2 uses one actual projector and its complement. At a nontrivial zero of multiplicity \(m\), \(Y_z\) has dimension \(m\), with the full jet action retained.
+
+If \(1-b\) is not an actual nontrivial zero, \(G_Y-b\) is continuously invertible on all of \(Y\). In particular every cyclic class \(\delta_{(X-b)^r}\) is zero there, and ORE2.5 gives its unique equivariant cyclic lift. The inverse is the transpose of the original full-source resolvent. That resolvent retains
+\[
+F_*(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\qquad F_*(0)=F_*(1)=\frac18,
+\tag{ORE3.3}
+\]
+and its nonzero removable values at every negative even integer. Consequently this conclusion includes \(b=0,1\) and the characters corresponding to the trivial zeros. It does not apply a nontrivial-zero jet formula to a trivial zero while forgetting the source Mellin pole that cancels it. The original endpoint and extra closed terms are separately retained in ORE8.
+
+For an arbitrary finite-dimensional generalized-character target, factor its annihilating polynomial and use the finite Chinese-remainder projectors. Those projectors are explicit polynomials obtained from Bézout identities between distinct prime-power factors of \(q\). They commute with the real and prime actions. Thus ORE2.3 and the single-root calculations below determine its full connecting class, with no infinite primary decomposition.
+
+## ORE4. The full original Mellin derivatives and their connecting matrix
+
+Fix an actual nontrivial zero \(\rho\), of its actual order \(m\), and write
+\[
+b=1-\rho,\qquad N=G-b,\qquad q(X)=(X-b)^r,\quad r\ge1.
+\]
+The original functionals and their raw derivatives are
+\[
+A_j=\left.\frac{\partial^j}{\partial z^j}
+\int_0^\infty a(u)u^z\,\frac{du}{u}\right|_{z=\rho}
+\quad(a\in A),
+\]
+\[
+S_j=\left.\frac{\partial^j}{\partial z^j}
+\int_0^\infty h(v)v^z\,\frac{dv}{v}\right|_{z=\rho}
+\quad(h\in S).
+\tag{ORE4.1}
+\]
+Here \(A_j,S_j\) denote functionals, not new primal test spaces. The first transform is entire. The second is holomorphic for \(\Re z>-2\): evenness and \(h(0)=0\) give \(h(v)=O(v^2)\) at zero, and Schwartz decay controls infinity. Differentiation adds powers of \(\log v\), integrable uniformly on compact subsets of this half-plane, with continuous Schwartz bounds. Thus all ORE4.1 functionals are well-defined and continuous at \(\rho\).
+
+Differentiating ORE1.2, keeping every factorial, gives
+\[
+R A_j=2\sum_{k=0}^j\binom jk\zeta^{(k)}(\rho)S_{j-k}.
+\tag{ORE4.2}
+\]
+The full real action and its generator are
+\[
+\mathcal U_a A_j
+=a^{1-\rho}\sum_{k=0}^j\binom jk(-\log a)^{j-k}A_k,
+\qquad
+N A_j=-j A_{j-1},
+\tag{ORE4.3}
+\]
+and the identical formulas hold for \(S_j\), with \(A_{-1}=S_{-1}=0\). They follow by the change of variable \(v\mapsto av\) in the original integrals before differentiation. At every rational prime \(p\), substitute \(a=p\); no logarithm or scalar is dropped.
+
+Use the complete Taylor series at this actual zero:
+\[
+\zeta(\rho+t)=t^m u_\rho(t),\qquad
+u_\rho(t)=\sum_{\ell\ge0}
+\frac{\zeta^{(m+\ell)}(\rho)}{(m+\ell)!}t^\ell,
+\]
+\[
+\frac1{2u_\rho(t)}=\sum_{k\ge0}v_k t^k,\qquad
+v_0=\frac{m!}{2\zeta^{(m)}(\rho)}.
+\tag{ORE4.4}
+\]
+All further coefficients are fixed recursively:
+\[
+v_k=-\frac1{u_\rho(0)}
+\sum_{\ell=1}^k\frac{\zeta^{(m+\ell)}(\rho)}
+{(m+\ell)!}v_{k-\ell}\quad(k\ge1).
+\tag{ORE4.5}
+\]
+For \(j\ge0\), an exact original-dual lift of \(S_j\) is
+\[
+\alpha_j
+=j!\sum_{k=0}^j
+\frac{v_k}{(m+j-k)!}A_{m+j-k},
+\qquad R\alpha_j=S_j.
+\tag{ORE4.6}
+\]
+To prove the last identity, substitute ORE4.2. In the coefficient of \(S_d/d!\), for \(0\le d\le j\), the convolution is \(j!\) times the coefficient of \(t^{j-d}\) in
+\((2u_\rho(t))\sum v_kt^k=1\). It equals \(j!\) for \(d=j\), and zero otherwise; after the displayed \(d!\), this is exactly \(S_j\). Terms with lower \(A\)-index than \(m\) are in the kernel and need not be added to this chosen lift.
+
+The functionals \(A_0,\ldots,A_{n-1}\) are linearly independent. The finite jet map on \(\mathcal B\) is onto: for prescribed jets at \(\rho\), multiply \(e^{(s-\rho)^2}\) by the finite Taylor polynomial of the desired jet polynomial times \(e^{-(s-\rho)^2}\). This is an original entire test function in \(\mathcal B\) with those jets. This assertion about the domain functionals alone does not prove independence of their images under \(R\).
+
+Independence of \(S_0,\ldots,S_{r-1}\) has the following direct proof on the actual source, as in [MCL4](ORIGINAL_MELLIN_CHARACTER_LIFTING.md). Suppose \(\sum_{j=0}^{r-1}c_jS_j=0\), and write \(P(X)=\sum_{j=0}^{r-1}c_jX^j\). Take \(f\in C_c^\infty(0,\infty)\) with \(\int_0^\infty f(v)\,dv=0\) and set \(h(v)=f(|v|)\). Its support avoids zero, so \(h\) is smooth and even, \(h(0)=0\), and \(\int_{\mathbb R}h=2\int_0^\infty f=0\). Hence \(h\in S\). The assumed relation says
+\[
+\int_0^\infty f(v)v^{\rho-1}P(\log v)\,dv=0
+\quad\text{for every such zero-integral }f.
+\]
+Choose a fixed compact test \(f_0\) of integral1. For an arbitrary compact test \(g\), the test \(g-(\int g)f_0\) has integral0. Substitution proves that the smooth function \(v^{\rho-1}P(\log v)\) defines the same distribution as a constant. Therefore it equals that constant pointwise. Setting \(x=\log v\) and differentiating gives
+\[
+P'(x)+(\rho-1)P(x)=0.
+\]
+Since \(\rho-1\ne0\), the leading coefficient of a nonzero polynomial \(P\) makes this impossible: the term \((\rho-1)P\) has its full degree, while \(P'\) has smaller degree. Thus \(P=0\), proving every \(c_j=0\). This proof keeps the source zero-integral constraint and excludes the endpoint \(z=1\) exactly where it must. It repairs the earlier invalid inference from independence before applying the restriction map.
+
+In fact
+\[
+\ker N^r\bigm|_{\widetilde S}
+=V_r:=\operatorname{span}\{S_0,\ldots,S_{r-1}\}.
+\tag{ORE4.7}
+\]
+Here is a dimension proof on the full spaces. The closed multiplication-image argument in ORE3 gives \(\dim\ker N^r|_{\widetilde A}=r\). ORE3.2 gives both
+\(\dim\ker N^r|_Y=\dim(Y/N^rY)=\min(m,r)\).
+The exact sequence ORE2.6 with ORE3.1 then gives
+\(\dim\ker N^r|_{\widetilde S}=r\). The \(r\) independent displayed functionals belong to this kernel by ORE4.3 and hence exhaust it.
+
+For \(0\le j<r\), applying \(N^r\) to ORE4.6 gives the exact representative of its connecting class:
+\[
+i\,y_{r,j}
+=N^r\alpha_j
+=(-1)^rj!\!
+\sum_{\substack{0\le k\le j\\m+j-k-r\ge0}}
+\frac{v_k}{(m+j-k-r)!}A_{m+j-k-r},
+\]
+\[
+\boxed{\delta_q(S_j)=[y_{r,j}]\in Y/N^rY.}
+\tag{ORE4.8}
+\]
+An empty sum is zero. Every displayed \(A\)-index is below \(m\), so this representative is in \(iY_\rho\), exactly as required. For the cyclic generator \(S_{r-1}\), its \(A_{m-1}\) coefficient is
+\[
+(-1)^r\frac{(r-1)!m!}
+{2\zeta^{(m)}(\rho)(m-1)!}\ne0.
+\tag{ORE4.9}
+\]
+The image of \(N^r\) on \(Y_\rho\) contains only the lower indices \(A_0,\ldots,A_{m-r-1}\), when these exist. Thus this particular class is nonzero. This assertion concerns lifting with the specified cyclic relation \(N^r=0\); it does not assert a failure of unrestricted character lifting.
+
+## ORE5. Transport the extension class through the complete original-zeta residue pairing
+
+Let \(D=D_\zeta:Q\to Y\) be the existing original residue map. It is continuous, injective and intertwines \(L_Q\) with \(G_Y\). By SCL/DPL it is an isomorphism on every finite polynomial-kernel space, and its cokernel \(C_\zeta=Y/DQ\) has every nonzero polynomial operator invertible.
+
+These facts also give the exact cyclic quotient isomorphism
+\[
+\boxed{Q/q(L_Q)Q\xrightarrow{\ [x]\mapsto[Dx]\ }
+Y/q(G_Y)Y.}
+\tag{ORE5.1}
+\]
+For surjectivity, given \(y\in Y\), solve \(q c=[y]\) in \(C_\zeta\), choose \(y_1\) representing \(c\), and write \(y-qy_1=Dx\). For injectivity, if \(Dx=qy\), then \(q[y]=0\) in \(C_\zeta\), so \(y=Dx_1\). Injectivity of \(D\) gives \(x=qx_1\). Both arguments use the proved polynomial bijections, not a surjectivity assertion for \(D\) itself.
+
+For the present single-root polynomial, the source quotient in ORE5.1 is exactly
+\[
+Q_b/(L_Q-b)^rQ_b\simeq\mathbb C[t]/(t^d),
+\qquad d=\min(m,r),\qquad t=L_Q-b,
+\tag{ORE5.2}
+\]
+by the original full projector at \(b=1-\rho\) and the continuous inverse on its complement. The equality \(m_b=m_\rho=m\) follows from the full original functional equation, whose multiplier is holomorphic and nonzero inside the critical strip.
+
+Keep that multiplier in its original form:
+\[
+\zeta(s)=\chi_\zeta(s)\zeta(1-s),\qquad
+\chi_\zeta(s)=
+\pi^{s-1/2}\frac{\Gamma((1-s)/2)}{\Gamma(s/2)}.
+\tag{ORE5.3}
+\]
+This is not a replacement of \(\zeta\) by a completed function. At the original reflected zero it gives the exact identity of holomorphic germs
+\[
+u_b(t)=(-1)^m\chi_\zeta(b+t)u_\rho(-t).
+\tag{ORE5.4}
+\]
+
+For \(0\le h<m\), ORE4.2 proves \(A_h\in\ker\Sigma'=iY\). Thus \(i^{-1}(A_h/h!)\) is a well-defined element of the original \(Y\), and the finite residue inverse acts on that element, not directly on an unspecified functional of \(A\). With this annihilator identification explicit, the existing GZR/SCL inverse is
+\[
+j_b(D^{-1}(i^{-1}(A_h/h!)))(t)
+=(-1)^h u_b(t)t^{m-1-h}\pmod {t^m},
+\qquad 0\le h<m.
+\tag{ORE5.5}
+\]
+This formula retains the \(h!\) relating the original raw derivative to the Taylor-coefficient functional. It follows directly from the residue of
+\(x(s)F(1-s)/\zeta(s)\): in the Taylor expansion of \(F(\rho-t)\), the coefficient of \(F^{(h)}(\rho)/h!\) is \((-1)^ht^h\). Multiplication by \(u_b(t)t^{m-1-h}\) cancels exactly the denominator \(t^m u_b(t)\) and selects that coefficient. All other primary observations vanish by the actual RZ isolator.
+
+Insert ORE4.8 into ORE5.5 and retain every sign. Modulo \(t^d\), its source image is
+\[
+(-1)^{m+j}j!\,u_b(t)t^{r-1-j}
+\sum_{k=0}^j v_k(-t)^k.
+\]
+Terms \(k>j\) have degree at least \(r\) after multiplication by \(t^{r-1-j}\), so one may replace the finite sum by its full convergent germ modulo this stated ideal. Using ORE4.4 and ORE5.4 gives
+\[
+u_b(t)\sum_{k\ge0}v_k(-t)^k
+=\frac{(-1)^m}{2}\chi_\zeta(b+t).
+\]
+Therefore the full connecting matrix has the compact but factor-complete formula
+\[
+\boxed{
+(D\bmod q)^{-1}\delta_q(S_j)
+=
+\left[\frac{(-1)^j j!}{2}
+t^{r-1-j}\chi_\zeta(b+t)\right]_{\mathbb C[t]/(t^d)}
+\quad(0\le j<r).}
+\tag{ORE5.6}
+\]
+For the cyclic generator this is
+\[
+\boxed{
+(D\bmod q)^{-1}\delta_q(S_{r-1})
+=\left[\frac{(-1)^{r-1}(r-1)!}{2}
+\pi^{b+t-1/2}
+\frac{\Gamma((1-b-t)/2)}{\Gamma((b+t)/2)}
+\right]_{\mathbb C[t]/(t^d)}.}
+\tag{ORE5.7}
+\]
+The coefficient \(1/2\) comes from the original \(\Sigma=2\sum_{n\ge1}\); the Gamma ratio, \(\pi\)-power, factorial, reflected argument and sign all remain. Its constant term is nonzero. For every higher degree below \(d\), ORE5.7 keeps the corresponding derivative of this entire germ at \(t=0\), not only its constant.
+
+Multiplication by \(\chi_\zeta(b+t)\) is invertible on this finite quotient since \(\chi_\zeta(b)\ne0\). Thus
+\[
+\operatorname{rank}\delta_q=\min(m,r),\qquad
+\ker\delta_q=
+\begin{cases}
+0,&r\le m,\\
+\operatorname{span}\{S_0,\ldots,S_{r-m-1}\},&r>m.
+\end{cases}
+\tag{ORE5.8}
+\]
+This proves the whole connecting map, not only the nonzero top class.
+
+## ORE6. The complete extension and the exact finite truncation
+
+Define the actual finite subspace of \(\widetilde A\)
+\[
+\mathcal E_{\rho,r}=\operatorname{span}
+\{A_0,\ldots,A_{m+r-1}\}.
+\]
+ORE4 proves the exact equivariant sequence
+\[
+0\longrightarrow iY_\rho
+\longrightarrow\mathcal E_{\rho,r}
+\xrightarrow{R}V_r\longrightarrow0.
+\tag{ORE6.1}
+\]
+Its kernel is precisely the first \(m\) derivatives, its surjectivity follows from ORE4.6, and every prime action is the complete triangular matrix ORE4.3. The generator has one Jordan chain of length \(m+r\), with the raw coefficients \(-j\) on its subdiagonal. In particular the lift \(\alpha_{r-1}\) has
+\[
+N^{m+r-1}\alpha_{r-1}
+=(-1)^{m+r-1}(r-1)!v_0 A_0\ne0,\qquad
+N^{m+r}\alpha_{r-1}=0.
+\tag{ORE6.2}
+\]
+
+This finite sequence calculates the full pullback of ORE1.4 over \(V_r\), not an unrelated example. Indeed \(R^{-1}(V_r)\) contains \(\mathcal E_{\rho,r}\); any other preimage differs from an element of that finite space by \(iY\). Decompose \(Y=Y_\rho\oplus Y_{\ne\rho}\) by ORE3.2. The intersection of \(\mathcal E_{\rho,r}\) with \(iY_{\ne\rho}\) is zero, because a vector in this intersection is killed by a power of \(N\), whereas \(N\) is invertible on \(Y_{\ne\rho}\). Hence
+\[
+\boxed{R^{-1}(V_r)=\mathcal E_{\rho,r}\oplus iY_{\ne\rho}.}
+\tag{ORE6.3}
+\]
+Both summands are invariant under all real and prime actions. This is also a topological decomposition onto its stated subspace: the finite-dimensional projection is obtained by choosing the continuous finite lift ORE4.6 of \(R\alpha\), subtracting it, and applying the continuous projector of \(Y\); all inclusion maps use the actual weak-* quotient identifications. No infinite primary series is used.
+
+The nonzero class ORE5.7 says that ORE6.1 has no \(\mathcal R\)-linear section. Nevertheless its map onto \(V_r\) is already surjective, and its whole finite middle space has the same generalized character as \(V_r\). Thus it is essential to distinguish the proved non-splitting of this exact sequence from the surjectivity of its displayed map. These two statements coexist by the explicit formulas.
+
+There is an exact numerical truncation on finite-dimensional representations with the actual action \(a\mapsto e^{(\log a)G}\). For a real \(w\), define
+\[
+W_{\le w}^{\rm num}V
+=\bigoplus_{\lambda:\,2\Re\lambda\le w}
+\ker(G-\lambda)^{\dim V}.
+\tag{ORE6.4}
+\]
+This formula uses every generalized eigenspace, not only eigenvectors or a fixed bound on the nilpotent order. It is functorial and exact: for any exact sequence of finite-dimensional representations, factor the product of the three characteristic polynomials into pairwise coprime primary factors. Bézout gives a common polynomial projector for every selected union of factors. Applying that same projector to the exact sequence retains its kernel and surjectivity, proving exactness.
+
+For every prime \(p\), the eigenvalue of \(T_p\) on each term of ORE6.1 is \(p^b\), of modulus \(p^{\Re b}\). Its numerical Deligne-style weight is therefore \(2\Re b=2(1-\Re\rho)\); all original nilpotents remain in ORE4.3. Consequently
+\[
+W_{\le w}^{\rm num}(\text{ORE6.1})=
+\begin{cases}
+\text{the entire exact sequence ORE6.1},&
+2\Re b\le w,\\
+0\to0\to0\to0,&2\Re b>w.
+\end{cases}
+\tag{ORE6.5}
+\]
+When the target is retained, its extension class ORE5.7 is retained. No such truncation kills this particular class while retaining its same-character target. This is a calculation on this actual finite extension, not an assertion that Deligne's geometric mixed category has been transferred.
+
+On the other hand, the union of all finite generalized \(b\)-character spaces already maps onto the corresponding union in \(\widetilde S\): each \(V_r\) has its lift in \(\mathcal E_{\rho,r}\). Equations ORE6.1–ORE6.2 prove this by an actual enlargement of nilpotent order. The fixed-order functor \(\ker N^r\) has connecting map ORE5.6; the full generalized-character functor permits the longer chain and has this surjectivity. The two operations are therefore calculated separately rather than conflated.
+
+## ORE7. What Deligne's actual cross proves
+
+Retain every term of Deligne's §3.6 cross. In his notation and hypotheses, after descent to a finite field, set
+\[
+A_D=H^i(X_s),\quad E_D=H^i(X_\eta),\quad
+V_D=H^i(X_{\bar\eta})^I,
+\]
+\[
+K_D=H^{i-1}(X_{\bar\eta})_I(-1),\qquad
+B_D=H^{2N-i-1}(X_s)^\vee(-N).
+\tag{ORE7.1}
+\]
+The horizontal sequence and vertical exactness at the centre are
+\[
+0\to K_D\to E_D\to V_D\to0,\qquad
+A_D\to E_D\to B_D.
+\tag{ORE7.2}
+\]
+The left term comes from Hochschild–Serre, with its original \((-1)\) twist. The upper term is the actual support group identified by perfect duality, with its \((-N)\) twist. Proper base change identifies \(A_D\) with the source of specialization. In §3.6.2 Deligne proves \(V_D\) has weights at most \(i\); in §3.6.3 he proves \(B_D\) has weights at least \(i+1\).
+
+His exact \(W_i\) functor therefore makes \(W_iE_D\to V_D\) onto and makes \(W_iE_D\to W_iB_D=0\) zero. Exactness of the vertical pair puts every element of \(W_iE_D\) in the image of \(A_D\). Composing proves \(A_D\to V_D\) onto. The proof does not assert that \(0\to K_D\to E_D\to V_D\to0\) splits as a Frobenius representation, and it does not bound the Jordan length of a lift by that of its image.
+
+For the actual row ORE1.4, the fixed-order resolution produces the upper receiving term \(Y/N^rY\) and the actual map ORE5.6. Both its target \(V_r\) and this upper term have the same character \(b\); ORE6.5 proves exactly why the numerical truncation of this particular cross retains the map. The complete generalized-character lift through ORE6.1 is already surjective, just as a surjective map may have a nonzero extension class. Thus the original connecting class cannot be used as a substitute for Deligne's weight-\(\ge i+1\) support group. ORE8 identifies its actual place in the retained supported geometry.
+
+This comparison keeps the twists and the precise direction of Deligne's reasoning. It establishes neither that primitive \(\tau\) has a numerical weight nor that any zero lies off the critical line.
+
+## ORE8. Locate the class in every degree of the actual supported-cone comparison
+
+Retain UOS's original complete terms
+\[
+P=V_+\oplus V_-\oplus V_{\rm extra},\quad
+H=\ker d=S_{\rm Fourier\ graph}\oplus\mathbb C^4\oplus V_{\rm extra},
+\]
+\[
+E=\mathbb C^4\oplus V_{\rm extra}.
+\tag{ORE8.1}
+\]
+The four endpoints remain \(c_0,c_1,d_0,d_1\), and \(V_{\rm extra}\) consists of the two full extra closed copies. The complete dual localization row is
+\[
+0\to Y\xrightarrow{\lambda\mapsto(\lambda,-\lambda)}Y^2
+\xrightarrow{(\lambda_+,\lambda_-)\mapsto
+\pi'(\lambda_++\lambda_-)}\widetilde A
+\xrightarrow{\operatorname{res}'}\chi_{\rm dil}H'
+\xrightarrow{\iota'}\chi_{\rm dil}E'\to0.
+\tag{ORE8.2}
+\]
+Here \(\operatorname{res}'\alpha=(\Sigma'\alpha,0,0,0,0,0)\), and \(\iota'\) restricts to the four endpoints and both extra dual copies. Thus ORE1.4 is exactly the non-endpoint part of this existing row.
+
+Use the existing cones and their exact maps:
+\[
+K_\zeta=[P\xrightarrow{-d}A
+\xrightarrow{\pi'D\pi}\widetilde A
+\xrightarrow{d'}\chi_{\rm dil}P'],
+\]
+\[
+\mathcal L_\zeta=[P\xrightarrow{-d}A
+\xrightarrow{(\pi'D\pi,-\pi'D\pi)}\widetilde A^2
+\xrightarrow{d_Z'}\chi_{\rm dil}P'],
+\quad\deg=(-1,0,1,2).
+\tag{ORE8.3}
+\]
+The cone map \(\mathcal J:K_\zeta\to\mathcal L_\zeta\) is identity in degrees \(-1,0,2\) and \(\alpha\mapsto(\alpha,-\alpha)\) in degree1. Its cohomology is
+\[
+\begin{array}{c|c|c|c}
+n&H^nK_\zeta&H^n\mathcal L_\zeta&H^n\mathcal J\\ \hline
+-1&H&H&\mathrm{id}\\
+0&0&0&0\\
+1&C_\zeta&C_\zeta\oplus Y&c\mapsto(c,0)\\
+2&\chi_{\rm dil}H'&\chi_{\rm dil}E'&\iota'.
+\end{array}
+\tag{ORE8.4}
+\]
+The degree-one identification uses the exact half-difference and half-sum of UOS6.3; no factor of2 is omitted.
+
+Now apply the explicit resolution ORE2.1 to these actual complexes. For either complex \(K\), its Hom complex has
+\[
+\mathscr H^n(K)=K^n\oplus K^{n-1},\qquad
+\partial(u,v)=(d_Ku,d_Kv-(-1)^nq(G_K)u).
+\tag{ORE8.5}
+\]
+Direct substitution gives \(\partial^2=0\). DPL9 proves from this formula the exact cohomology sequence
+\[
+0\to H^{n-1}(K)/qH^{n-1}(K)
+\to H^n\mathscr H(K)\to\ker(q:H^n(K)\to H^n(K))\to0.
+\tag{ORE8.6}
+\]
+Because every nonzero \(q\) is invertible on \(C_\zeta\), these formulas give
+\[
+\begin{array}{c|c|c}
+n&H^n\operatorname{RHom}_{\mathcal R}(V_q,K_\zeta)&
+H^n\operatorname{RHom}_{\mathcal R}(V_q,\mathcal L_\zeta)\\ \hline
+-1&\ker(q:H\to H)&\ker(q:H\to H)\\
+0&H/qH&H/qH\\
+1&0&\ker(q:Y\to Y)\\
+2&\ker(q:\chi_{\rm dil}H'\to\chi_{\rm dil}H')&
+Y/qY\ \oplus\ \ker(q:\chi_{\rm dil}E'\to\chi_{\rm dil}E')\\
+3&(\chi_{\rm dil}H')/q(\chi_{\rm dil}H')&
+(\chi_{\rm dil}E')/q(\chi_{\rm dil}E').
+\end{array}
+\tag{ORE8.7}
+\]
+All other degrees vanish. The displayed degree-two splitting on the right is canonical for the retained coordinates: \(\chi_{\rm dil}E'\) is a direct subcomplex in degree2, by adjoining zero in the two Schwartz coordinates of \(P'\). The differential into \(P'\) has zero endpoint and extra coordinates. The remaining degree-two cohomology is \(Y/qY\) by ORE8.6 and UOS6.3. This proves the splitting rather than assuming all complexes are formal.
+
+The exact degree-two map induced by \(\mathcal J\) contains the extension class calculated above:
+\[
+\boxed{
+H^2\operatorname{RHom}(V_q,\mathcal J):
+(\eta,e)\longmapsto
+\left(-\frac12\delta_q(\eta),\,e\right),
+\quad
+\chi_{\rm dil}H'=\widetilde S\oplus\chi_{\rm dil}E'.}
+\tag{ORE8.8}
+\]
+Here the domain consists of the \(q\)-annihilated elements of the displayed direct sum.
+
+We prove the sign and factor from the actual cochains. Extend \(\eta\in\ker q_S\) to the plus-chart functional \(u=(\eta,0)\in\chi_{\rm dil}P'\), with zero endpoints, extras and minus-chart Schwartz coordinate. Restriction to the Fourier graph gives exactly \(\eta\). This extension is equivariant: the plus-chart action and the graph's \(S\) action are the same. Hence \(q u=0\), and \((u,0)\) is a degree-two cocycle of \(\mathscr H(K_\zeta)\). Choose \(R\alpha=\eta\). In the supported target, put \(w=(\alpha,0)\in\widetilde A^2\). Then \(d_Z'w=u\). Formula ORE8.5 in degree1 is
+\[
+\partial^1(w,0)=(d_Z'w,\ q w)=(u,(q\alpha,0)).
+\]
+Subtracting this boundary from the image of \((u,0)\) leaves
+\[
+(0,(-q\alpha,0)).
+\tag{ORE8.9}
+\]
+Its second coordinate is a degree-one cycle; write \(q\alpha=i y_\alpha\). Under UOS's half-difference/half-sum it is
+\(([-y_\alpha/2],-y_\alpha/2)\in C_\zeta\oplus Y\).
+The first coordinate disappears only in the proved quotient \(C_\zeta/qC_\zeta=0\); the second gives \(-[y_\alpha]/2\). This is precisely the first component of ORE8.8. Endpoint and extra functionals have the same identity representative in both complexes, proving the second component. A different \(\alpha\) changes this result by \(qY\), in agreement with ORE2.3.
+
+For the actual zero and \(q=(X-b)^r\), ORE5.6 therefore makes the \(S_j\) component of this map
+\[
+\boxed{
+(D\bmod q)^{-1}
+\bigl(H^2\operatorname{RHom}(V_q,\mathcal J)(S_j,0)\bigr)_1
+=
+\left[\frac{(-1)^{j+1}j!}{4}
+t^{r-1-j}\chi_\zeta(b+t)\right]_{\mathbb C[t]/(t^d)}.}
+\tag{ORE8.10}
+\]
+The second factor of \(1/2\) is the actual supported half-sum; the first came from the original summation coefficient2. Thus the nonzero extension is located in the complete existing supported-cone map, including its degree and its full original factors.
+
+The induced maps in degrees \(-1,0\) are identity, and the degree-one map is \(0\to\ker q_Y\). In degree3 the map is the actual restriction
+\((\chi_{\rm dil}H')/q\to(\chi_{\rm dil}E')/q\).
+Since \(q\) is surjective on \(\widetilde S\) by ORE3.1, this last restriction is an isomorphism. These statements retain all \(H,H'\) terms and their complete extra coordinates.
+
+## ORE9. Exact source, support and prime-action preservation
+
+The group action on every finite term and connecting map is the original ORE4.3. The polynomial \(q(G)\) commutes with it; ORE2.3 proves equivariance of \(\delta_q\), and all cochain constructions in ORE8 use equivariant maps. The twist \(\chi_{\rm dil}(a)=a\) is uniformly present in every dual term. The four original endpoint characters \(1,a,a,1\) become \(a,1,1,a\) after the specified contragredient and twist. Both extra dual copies keep their full Schwartz and endpoint actions, rather than being replaced by four characters.
+
+The receiving ring \(\mathbb Z^3\) acts through its first scalar coordinate on the original Schwartz, overlap and spectral terms, and through the other two coordinates on the respective extra copies. All displayed maps are linear on matching scalar components and preserve the endpoint/extra identity maps. Consequently the faithful source distinction between \(\tau\) and integer1 remains in both full complexes. No source operation is inferred from a scalar acting identically on one spectral summand.
+
+For the existing support lattice \(L_{\rm supp}\), every receiving linear map \(f:V\to W\) here has the exact lift
+\[
+G_{L_{\rm supp}}(f)(v,\lambda)=(f(v),\lambda),\qquad
+G_{L_{\rm supp}}(V)=
+\{(0,\lambda):\lambda\in L_{\rm supp}\}
+\cup(V\times\{1_{L_{\rm supp}}\}).
+\tag{ORE9.1}
+\]
+A nontop input has zero amplitude and remains zero with its original label. A nonzero output can only have top support. Substitution proves preservation of identity and composition, including all connecting-map composites. Zero amplitudes in the resolution or cochain boundary retain their labels; they are not identified with primitive \(\tau\). Independently labelled factors of \(P\) and \(P'\) remain separate factors, not a newly identified common-label product.
+
+## ORE10. The mathematical consequence of the completed calculation
+
+The original transpose \(\Sigma'\) has an explicitly calculated fixed-order connecting map. At an actual zero of order \(m\), its cyclic rank is \(\min(m,r)\), and the entire class is the Gamma-ratio germ ORE5.7, including the original summation factor, raw derivative factorial, reflected parameter and signs. The unrestricted finite generalized-character lift exists through the explicit length-\(m+r\) block. The numerical-character truncation retains this extension whenever it retains its target; it does not require a split extension.
+
+The exact retained supported comparison does not lose this distinction: after the two-term cyclic resolution, its degree-two map contains \(-\delta_q/2\), as proved in ORE8.8–ORE8.10. Its other cohomological degrees and the original endpoint and faithful extra copies remain as displayed in ORE8.7. DPL's vanishing of the degree-one derived Hom into \(K_\zeta\) is consistent with this nonzero degree-two map.
+
+This establishes the strongest stated comparison here with Deligne's actual cross: his proof kills a higher-weight support term and proves surjectivity, while the present same-character extension has a calculated nonzero fixed-order class and an already surjective longer-character lift. No numerical weight has been assigned to primitive \(Z_1/\tau\), and no assertion about the truth or falsehood of RH follows from this extension calculation alone.

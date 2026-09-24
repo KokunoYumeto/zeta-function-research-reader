@@ -1,0 +1,53 @@
+"""Exact cohomological and coefficient maps, with proof locators."""
+from pathlib import Path
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+root=Path(__file__).resolve().parent
+fig,ax=plt.subplots(figsize=(18,12))
+fig.patch.set_facecolor('#faf9f4'); ax.set_facecolor('#faf9f4')
+ax.set_xlim(0,18); ax.set_ylim(0,12); ax.axis('off')
+def text(x,y,s,size=17,**kw):
+    ax.text(x,y,s,ha='center',va='center',fontsize=size,color='#182c38',**kw)
+def box(x,y,w,h,color):
+    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.12',facecolor=color,edgecolor='#4b6370',linewidth=1.4))
+def arrow(a,b):
+    ax.add_patch(FancyArrowPatch(a,b,arrowstyle='-|>',mutation_scale=20,linewidth=1.8,color='#316c80'))
+text(9,11.55,'The invariant-cycle quotient keeps its complete kernel',24,weight='bold')
+text(9,11.02,r'$A_i=H^i(X_s),\ B_i=H^i(X_\eta),\ C_i=H^i(X_{\bar\eta})^I,\ K_i=H^{i-1}(X_{\bar\eta})_I(-1)$',19)
+box(5.4,8.8,7.2,1.25,'#f4e8df')
+text(9,9.57,r'$O_i=H^{2N-i-1}(X_s)^\vee(-N)$',21)
+text(9,9.08,r'Weights $\geq i+1$',16)
+box(.5,6.3,4.6,1.3,'#e7f0ec')
+text(2.8,7.08,r'$A_i$',24)
+text(2.8,6.58,r'Weights $\leq i$',16)
+box(6.55,6.3,4.9,1.3,'#e7ecf6')
+text(9,7.07,r'$B_i=W_iB_i\oplus j_iK_i$',20)
+text(9,6.58,r'$\ker\partial_i=W_iB_i$',17)
+box(12.95,6.3,4.55,1.3,'#e7f0ec')
+text(15.22,7.08,r'$C_i$',24)
+text(15.22,6.58,r'Weights $\leq i$',16)
+arrow((5.27,6.98),(6.36,6.98));text(5.82,7.38,r'$\alpha_i$',20)
+arrow((11.64,6.98),(12.76,6.98));text(12.2,7.38,r'$\pi_i$',20)
+arrow((9,7.8),(9,8.61));text(9.52,8.23,r'$\partial_i$',20)
+box(6.55,4.28,4.9,1.1,'#f4e8df')
+text(9,5.03,r'$K_i$',21);text(9,4.54,r'Weights $\geq i+1$',16)
+arrow((9,5.55),(9,6.11));text(9.48,5.81,r'$j_i$',19)
+text(2.85,5.21,r'$A_i/\operatorname{im}g_i\ \simeq\ C_i$',20)
+text(2.85,4.67,r'$\operatorname{sp}_i=\pi_i\alpha_i$',19)
+text(15.22,5.24,r'$K_i\simeq\operatorname{im}\partial_i$',20)
+text(15.22,4.69,r'$W_iB_i\simeq C_i$',20)
+text(9,3.72,r'$O_i/\partial_i j_i(K_i)\ \simeq\ \ker(\operatorname{sp}_{i+1})$',23)
+text(9,3.26,'DQA1–DQA3: the obstruction map vanishes; its codomain records the next kernel.',16)
+ax.plot([.5,17.5],[2.9,2.9],color='#b6bdbe',linewidth=1)
+text(9,2.55,'Arithmetic duality retains the prime factor and the cohomological degree',21,weight='bold')
+text(4.45,1.87,r'$Ri_p^!E=E(-1)[-2]$',25)
+text(13.1,1.87,r'$F\ \longmapsto\ p(F^{-1})^{\mathsf t}$',25)
+text(4.45,1.28,'Frobenius p in degree 2',16)
+text(13.1,1.28,'From degree i to degree 2 − i',16)
+text(9,.68,r'After explicit complex conjugation: $a\mapsto p/\bar a$; $\ \chi_p(1-\bar s)=p/\overline{\chi_p(s)}$.',18)
+text(9,.16,'DQA4–DQA5. No identification with the original-zeta zero cohomology is asserted.',14)
+fig.savefig(root/'deligne_quotient_kernel.png',dpi=145,bbox_inches='tight')
+fig.savefig(root/'deligne_quotient_kernel.svg',bbox_inches='tight')
+plt.close(fig)

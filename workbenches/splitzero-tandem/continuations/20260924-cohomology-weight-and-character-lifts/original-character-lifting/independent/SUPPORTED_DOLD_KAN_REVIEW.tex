@@ -1,0 +1,588 @@
+\section{The supported relative simplicial construction and relational homotopy}
+\label{sec:supported-dold-kan-independent}
+
+The original relative construction is due to Alain Connes and
+Caterina Consani,
+\href{https://arxiv.org/abs/2004.08879v1}{\emph{Segal's Gamma rings
+and universal arithmetic}, arXiv:2004.08879v1},
+original \nolinkurl{Froblifts.tex}, lines 875--1231.
+We use Proposition \texttt{relativeH} and the interval construction
+\texttt{DKsimple}. The other inputs are the bounded functor
+\texttt{simpconstruct1}, the elementary relation \texttt{Maydefn},
+and Proposition \texttt{prophigher}. Their original amplitude construction and
+its relational interpretation are antecedents. The full additive
+carrier is the coefficient construction of The Clankers,
+\emph{Split Support Geometry}, version 11,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}{Definition \texttt{def:lattice-split}}.
+
+The source displays \texttt{pidegn}, lines 1133--1135, and
+\texttt{pidegnk}, lines 1219--1221, omit one amplitude slot.
+Degree $n$ has $n$ $A$ slots and one $B$ slot, as its earlier
+definition and degree-three example require. We derive the faces
+from the interval construction below. Homotopy means the source's
+sphere and elementary relation, not homotopy of a geometric
+realization.
+
+\subsection{The original divisor and full additive carriers}
+
+Fix
+\begin{equation}\tag{SDKR1}
+\begin{gathered}
+D=\sum_p n_p[p]+a[\infty],\qquad
+\Lambda_D=H^0(\operatorname{Spec}\mathbb Z,\mathcal O(D_{\rm fin}))
+       =u_D\mathbb Z,\qquad u_D=\prod_p p^{-n_p}>0,\\
+c=e^a>0,\qquad A=\mathbb R,\qquad B=\mathbb R/\Lambda_D,\qquad
+\phi:A\to B,\quad \phi(r)=r+\Lambda_D.
+\end{gathered}
+\end{equation}
+The equality for $\Lambda_D$ follows from all the original
+conditions $v_p(x)+n_p\ge0$: $x/u_D$ has every finite valuation
+nonnegative and is therefore an integer. No divisor coefficient,
+archimedean bound or period is changed.
+
+Let $L$ be the original nontrivial bounded distributive lattice.
+For an abelian group $C$ put
+\begin{equation}\tag{SDKR2}
+\begin{gathered}
+C_L=\{(0,\ell):\ell\in L\}\cup\{(x,1_L):x\in C\},\\
+(x,\ell)+(y,m)=(x+y,\ell\vee m),\qquad
+\tau_C=(0,0_L),\qquad e_C=(0,1_L).
+\end{gathered}
+\end{equation}
+The pair $(0,1_L)$ occurs once. If a sum has nonzero amplitude,
+a nonzero input forces its support to be top, so the operation
+is closed. It is an associative commutative monoid law, with
+identity $\tau_C$; empty sums mean $\tau_C$.
+The quotient map lifts additively as
+\begin{equation}\tag{SDKR3}
+\phi_L:A_L\to B_L,\qquad (r,\ell)\mapsto(\phi(r),\ell).
+\end{equation}
+A nonzero $r\in\Lambda_D$ maps to $e_B$, not $\tau_B$.
+The construction uses the additive groups; no
+$\mathbb R$-module structure on $B$ is assumed.
+
+\subsection{The relative functor and its exact simplicial coordinates}
+
+For a finite pointed pair $(X,Y)$, $*\in Y\subseteq X$, define
+\begin{equation}\tag{SDKR4}
+\begin{split}
+\mathcal K_D^L(X,Y)=\biggl\{\psi:\ &
+Y\setminus\{*\}\to B_L,\quad X\setminus Y\to A_L:\\
+&\sum_{x\in X\setminus Y}|\operatorname{amp}\psi(x)|\le c
+\biggr\}.
+\end{split}
+\end{equation}
+Its basepoint is the all-$\tau$ function. For a map of pointed
+pairs $f:(X,Y)\to(X',Y')$ its nonbasepoint coordinates are
+\begin{equation}\tag{SDKR5}
+(\mathcal K_D^L(f)\psi)(z)=
+\begin{cases}
+\displaystyle\sum_{x\in X\setminus Y,\ f(x)=z}\psi(x),
+                              &z\in X'\setminus Y',\\[4pt]
+\displaystyle\sum_{y\in Y\setminus\{*\},\ f(y)=z}\psi(y)
++\displaystyle\sum_{x\in X\setminus Y,\ f(x)=z}\phi_L(\psi(x)),
+                              &z\in Y'\setminus\{*\}.
+\end{cases}
+\end{equation}
+In each fibre amplitudes add and supports join. A point outside
+$Y'$ receives only points outside $Y$. The triangle inequality
+therefore bounds the sum of its output absolute amplitudes by
+the original outside sum; coordinates entering $Y'$ or the
+basepoint are omitted from this bound. Thus the output lies in
+SDKR4.
+For a composite, partition each output fibre into the intermediate
+fibres. Associativity of sums, additivity of $\phi_L$, and
+associativity of finite joins give exactly the same amplitudes and
+supports in the two calculations. This argument includes empty
+fibres. Identity maps have singleton fibres. Hence SDKR5 defines
+a pointed covariant functor, with no use of additive inverses.
+Apply it to the source's interval pair
+$\partial[n]^*=(\{0,\ldots,n+1\},\{0,n+1\})$, pointed at $0$,
+smashed with $k_+$. In degree $n$ it gives
+\begin{equation}\tag{SDKR6}
+\begin{split}
+\mathcal X_n(D;k)=\biggl\{(a_1,\ldots,a_n;b):\
+&a_i\in A_L^k,\quad b\in B_L^k,\\
+&\sum_{i=1}^n\sum_{j=1}^k
+        |\operatorname{amp}(a_{i,j})|\le c\biggr\}.
+\end{split}
+\end{equation}
+Thus $\mathcal X_0(D;k)=B_L^k$. For $k=0$ every degree is
+a singleton. The final endpoint is the $B$ slot and the initial
+endpoint is discarded. SDKR5 gives
+\begin{equation}\tag{SDKR7}
+\begin{aligned}
+d_0(a_1,\ldots,a_n;b)&=(a_2,\ldots,a_n;b),\\
+d_i(a_1,\ldots,a_n;b)
+ &=(a_1,\ldots,a_{i-1},a_i+a_{i+1},a_{i+2},\ldots,a_n;b),
+ &&1\le i<n,\\
+d_n(a_1,\ldots,a_n;b)
+ &=(a_1,\ldots,a_{n-1};b+\phi_L(a_n)).
+\end{aligned}
+\end{equation}
+In particular $d_0(a;b)=b$ and $d_1(a;b)=b+\phi_L(a)$.
+The degeneracies are
+\begin{equation}\tag{SDKR8}
+s_i(a_1,\ldots,a_n;b)
+=(a_1,\ldots,a_i,\tau_A^k,a_{i+1},\ldots,a_n;b),
+\qquad 0\le i\le n.
+\end{equation}
+Indeed a collapsed interior fibre adds adjacent $A$ entries;
+a fibre entering the last endpoint applies $\phi_L$ and adds
+to $B$; and a degeneracy inserts an empty fibre, hence $\tau_A$.
+The simplicial identities follow from the interval maps and
+the proved functoriality of SDKR5. This gives $n$ $A$ slots
+and one $B$ slot in every degree, including all the support data.
+For a pointed map $f:k_+\to l_+$ put
+\begin{equation}\tag{SDKR9}
+(f_*x)_h=\sum_{\substack{1\le j\le k\\f(j)=h}}x_j,\qquad
+f_*:\mathcal X_n(D;k)\to\mathcal X_n(D;l),\quad
+(a_i;b)\mapsto(f_*a_i;f_*b).
+\end{equation}
+The triangle inequality proves the bound after merging or
+discarding coordinates. Additivity of $\phi_L$ proves commutation
+with SDKR7--8. Fibre partition proves composition. These are the
+raw pointed $\Gamma$ maps with the all-$\tau$ basepoint.
+\subsection{Spheres and elementary homotopy at every supported basepoint}
+For $s=(s_j)_j\in L^k$ let $z_s=((0,s_j))_j\in B_L^k$.
+Its constant simplices are
+\begin{equation}\tag{SDKR10}
+\kappa_s^{(n)}
+=(\underbrace{\tau_A^k,\ldots,\tau_A^k}_{n\ {\rm slots}};z_s).
+\end{equation}
+SDKR7--8 prove their basepoint identities. An $n$-sphere
+for $n\ge1$ has every face equal to $\kappa_s^{(n-1)}$.
+The complete set of one-spheres is
+\begin{equation}\tag{SDKR11}
+\begin{split}
+\mathcal S_1(D;k,s)=\biggl\{(a;z_s):\
+&a_j=(r_j,\ell_j)\in(\Lambda_D)_L,\quad \ell_j\le s_j,\\
+&\sum_j|r_j|\le c\biggr\}.
+\end{split}
+\end{equation}
+In fact $d_0(a;b)=z_s$ forces $b=z_s$. The other face equation
+is exactly $\phi(r_j)=0$ and $\ell_j\vee s_j=s_j$ in every
+coordinate. These are precisely the displayed conditions,
+and conversely they imply both faces. The carrier condition
+remains: $r_j\ne0$ forces $\ell_j=s_j=1_L$.
+The source elementary relation on these spheres is
+\begin{equation}\tag{SDKR12}
+x\mathcal R_{1,s}y\ \Longleftrightarrow\
+\exists w\in\mathcal X_2(D;k):
+d_0w=\kappa_s^{(1)},\quad d_1w=x,\quad d_2w=y.
+\end{equation}
+Write $w=(u,v;b)$. The first equation forces
+$v=\tau_A^k$, $b=z_s$, including their actual support labels.
+Its other two faces are both $(u;z_s)$. Thus the elementary
+relation is equality. Conversely, for $x=y=(a;z_s)$ the
+witness $(a,\tau_A^k;z_s)$ has the required faces and bound.
+In particular distinct zero-amplitude support labels are
+distinct relational one-sphere classes.
+For all higher degrees,
+\begin{equation}\tag{SDKR13}
+\mathcal S_n(D;k,s)=\{\kappa_s^{(n)}\}\qquad(n\ge2).
+\end{equation}
+Indeed $d_0x=\kappa_s^{(n-1)}$ forces
+$a_2=\cdots=a_n=\tau_A^k$ and $b=z_s$.
+The last face then forces $a_1=\tau_A^k$.
+The constant simplex satisfies every face and has its reflexive
+elementary witness in the next constant simplex. This proves
+triviality of the source's higher sphere relations directly.
+The extremes are therefore
+\begin{equation}\tag{SDKR14}
+\begin{aligned}
+\mathcal S_1(D;k,0_L^k)&=\{(\tau_A^k;\tau_B^k)\},\\
+\mathcal S_1(D;k,1_L^k)
+ &=\{(a;e_B^k):a\in(\Lambda_D)_L^k,\
+                          \sum_j|\operatorname{amp}a_j|\le c\}.
+\end{aligned}
+\end{equation}
+The first is the loop object at the actual pointed zero.
+The second, at the supported basepoint, retains the complete
+bounded $\Gamma$-set of global sections in SDM3. The two
+basepoints give different results and have not been identified.
+\subsection{The exact finite-lattice count}
+Suppose $L$ is finite, put $N=\lfloor c/u_D\rfloor$, and let
+$I_s=\{j:s_j=1_L\}$. Then
+\begin{equation}\tag{SDKR15}
+\#\mathcal S_1(D;k,s)=
+\sum_{\substack{T\subseteq I_s\\ |T|\le N}}
+ 2^{|T|}\binom N{|T|}\prod_{j\notin T}|\downarrow s_j|,
+\qquad
+\downarrow s_j=\{\ell\in L:\ell\le s_j\}.
+\end{equation}
+To prove this, choose the exact set $T$ of nonzero amplitudes.
+It must lie in $I_s$, and those supports are forced to be top.
+Every other coordinate has zero amplitude and independently
+chooses a label in $\downarrow s_j$. The nonzero amplitudes
+are $u_Dm_j$ for nonzero integers $m_j$. For $m=|T|$
+there are $2^m$ sign choices. The positive magnitudes sum to
+at most $N$. Their successive partial sums give an increasing
+$m$-element subset of $\{1,\ldots,N\}$, and taking differences
+is the inverse. Hence there are exactly $\binom Nm$ magnitude
+choices. The empty set has one empty sign and magnitude choice.
+Multiplying and summing proves the formula.
+At full support it becomes
+\begin{equation}\tag{SDKR16}
+\#\mathcal S_1(D;k,1_L^k)
+=\sum_{m=0}^{\min(k,N)}
+ |L|^{k-m}2^m\binom km\binom Nm,
+\qquad N=\left\lfloor\frac{e^a}{u_D}\right\rfloor .
+\end{equation}
+The original $a$ and $u_D$ remain in the expression.
+If $e^a<u_D$, every amplitude is zero but there are $|L|^k$
+distinct classes. At support $0_L^k$ there is one class.
+The source's amplitude count omits these independent label
+choices; its old symmetry is not asserted for SDKR16.
+\subsection{Support transport and a genuine pointed Gamma construction}
+For a pointed map $f:k_+\to l_+$, define
+\begin{equation}\tag{SDKR17}
+(f_*s)_h=\bigvee_{\substack{1\le j\le k\\ f(j)=h}}s_j,
+\end{equation}
+with bottom for an empty fibre. The raw map SDKR9 sends
+$\kappa_s$ to $\kappa_{f_*s}$. In particular full support
+maps to top in nonempty fibres and bottom in empty fibres.
+For the insertion $1_+\to2_+$, its $B$ basepoint becomes
+$(e_B,\tau_B)$, not $(e_B,e_B)$. All-top basepoints are
+therefore not natural for the raw maps.
+The exact support-indexed objects that repair the identity
+law are
+\begin{equation}\tag{SDKR18}
+\mathcal X_n^{\ge s}(D;k)=
+\{(a_i;b)\in\mathcal X_n(D;k):
+             \operatorname{supp}(b_j)\ge s_j\text{ for all }j\}.
+\end{equation}
+They are simplicial subobjects: only the last face changes
+the $B$ slot, by joining more labels, and degeneracies leave
+it unchanged. Their basepoints are $\kappa_s$.
+All the spheres and elementary witnesses above have $B=z_s$,
+so their sphere objects and relations are unchanged.
+For $s\le t$ there is a pointed simplicial transition
+\begin{equation}\tag{SDKR19}
+T_{s,t}:\mathcal X^{\ge s}(D;k)\to\mathcal X^{\ge t}(D;k),
+\qquad (a_i;b)\mapsto(a_i;b+z_t).
+\end{equation}
+No $A$ amplitude changes. Commutation with the last face
+is $b+z_t+\phi_L(a_n)=b+\phi_L(a_n)+z_t$;
+the other faces and degeneracies commute immediately.
+It sends $z_s$ to $z_t$. On its stated domain $T_{s,s}=I$,
+since each $B$ label is already at least $s$.
+For $s\le t\le u$ one has $T_{t,u}T_{s,t}=T_{s,u}$.
+Adding $z_s$ would not be the identity on the unrestricted
+object; SDKR18 is what proves this required identity.
+Form the category whose objects are $(k_+,s)$, $s\in L^k$,
+and whose morphisms $(k_+,s)\to(l_+,t)$ are pointed maps
+$f$ with $f_*s\le t$. Monotonicity and
+$(gf)_*=g_*f_*$ on support vectors prove that this is a
+category. Its action is
+\begin{equation}\tag{SDKR20}
+\Theta_{f;s,t}(a_i;b)=(f_*a_i;f_*b+z_t).
+\end{equation}
+For a subsequent $(g;t,u)$, the composite $B$ slot is
+\[
+g_*(f_*b+z_t)+z_u
+=(gf)_*b+z_{g_*t\vee u}
+=(gf)_*b+z_u,
+\]
+and its $A$ slots are $(gf)_*a_i$. Thus
+\begin{equation}\tag{SDKR21}
+\Theta_{g;t,u}\Theta_{f;s,t}=\Theta_{gf;s,u},
+\qquad \Theta_{\mathrm{id};s,s}=I.
+\end{equation}
+The maps are pointed and simplicial by their construction.
+On one-spheres their exact action is
+\begin{equation}\tag{SDKR22}
+(a;z_s)\longmapsto(f_*a;z_t).
+\end{equation}
+Its supports are at most $f_*s\le t$ and its absolute-amplitude
+sum does not increase. For fixed $k$, upward transition
+is the inclusion of the same $A$ tuple into the larger
+permitted support set.
+
+At full support every pointed $f:k_+\to l_+$ is permitted
+with target $1_L^l$. Thus SDKR20--21 yield a genuine pointed
+simplicial $\Gamma$-object whose loop object is naturally
+\begin{equation}\tag{SDKR23}
+\Pi^{\rm rel}_1(\mathcal X^{\ge1_L^\bullet}(D))(k_+)
+ \cong
+ \{(r_j,\ell_j)_j\in(\Lambda_D)_L^k:
+                                  \sum_j|r_j|\le e^a\}.
+\end{equation}
+The $\Gamma$ operation sums amplitudes and joins labels over
+each fibre, putting $\tau_A$ in an empty fibre, by SDKR22.
+Its pointed zero is the all-$\tau_A$ tuple. This proves
+naturality of the full bounded module rather than assuming
+naturality of the all-top basepoints in the unrestricted object.
+
+\subsection{The complete degree-zero directed relation}
+
+A vertex is exactly
+\begin{equation}\tag{SDKR24}
+(b,\nu)\in B^k\times L^k,\qquad
+b_j\ne0\Longrightarrow\nu_j=1_L .
+\end{equation}
+The source relation is the existence of one simplex with
+$d_0$ the first vertex and $d_1$ the second. It is
+\begin{equation}\tag{SDKR25}
+(b,\nu)\mathcal R_0(b',\mu)
+\ \Longleftrightarrow\
+\nu\le\mu,\qquad
+\sum_jd_{\Lambda_D}(b_j,b'_j)\le c,
+\end{equation}
+where the exact original quotient distance is
+\begin{equation}\tag{SDKR26}
+d_{\Lambda_D}(r+\Lambda_D,r'+\Lambda_D)
+ =\min_{m\in\mathbb Z}|r-r'+m u_D|.
+\end{equation}
+The minimum exists since the absolute values tend to
+infinity as $|m|\to\infty$; it is independent of representatives
+by reindexing.
+
+For necessity, an edge $(a;(b,\nu))$, $a_j=(r_j,\ell_j)$,
+ends at $(b+\phi(r),\nu\vee\ell)$. The support order follows.
+Each $r_j$ represents the amplitude difference, so the
+distance sum is at most $\sum_j|r_j|\le c$.
+Conversely assume SDKR25 and choose minimum-absolute-value
+representatives $r_j$ of $b'_j-b_j$. If $\mu_j<1_L$,
+admissibility gives $b'_j=0$ and
+$\nu_j\le\mu_j<1_L$ gives $b_j=0$; choose $r_j=0$.
+All other target labels are top. Hence every
+$(r_j,\mu_j)$ is a valid $A_L$ element, its total absolute
+amplitude is at most $c$, and the edge with these $A$
+coordinates ends at $(b',\nu\vee\mu)=(b',\mu)$.
+This proves both directions.
+
+In particular the singular relational object retaining
+both data is
+\begin{equation}\tag{SDKR27}
+\begin{gathered}
+\mathcal V_k=\{(b,\nu)\in B^k\times L^k:
+                              b_j\ne0\Rightarrow\nu_j=1_L\},\\
+\mathcal R_0=\{((b,\nu),(b',\mu))\in\mathcal V_k^2:
+                     \nu\le\mu,\
+                     d_{\Lambda_D}^{(1)}(b,b')\le c\},\\
+d_{\Lambda_D}^{(1)}(b,b')=\sum_jd_{\Lambda_D}(b_j,b'_j).
+\end{gathered}
+\end{equation}
+The amplitude projection maps onto the source distance
+relation: every amplitude edge lifts with both supports
+top. Its full-support section preserves the relation
+in both directions. The support section
+$\nu\mapsto(0,\nu)$ embeds the preorder $L^k$ with its
+exact relation, since its amplitude distance is zero.
+The joint projection is injective by SDKR24.
+
+This relation is reflexive but need not be symmetric:
+$(0,\nu)\to(0,\mu)$ exists precisely when $\nu\le\mu$.
+For $k\ge1$ and nontrivial $L$ it is never the complete
+relation, regardless of $c$, because an $e_B$ coordinate
+cannot move to $\tau_B$. It can fail transitivity even
+on full support: if $c<u_D/4$, the successive first-coordinate
+amplitudes $0,c,2c$ modulo $\Lambda_D$, all other amplitudes
+zero, give two permitted edges but first-to-last distance
+$2c>c$. The one-step relation is retained rather than
+replaced by its transitive closure.
+
+\subsection{Naturality, the amplitude diameter and directed reachability}
+
+Every pointed map satisfies
+\begin{equation}\tag{SDKR28}
+d_{\Lambda_D}^{(1)}(f_*b,f_*b')
+   \le d_{\Lambda_D}^{(1)}(b,b').
+\end{equation}
+Indeed minimum difference representatives $r_j$ sum to
+a representative in each output fibre. Its distance is
+at most that absolute sum, which is at most the sum
+of the $|r_j|$ in that fibre. Summing over output
+nonbasepoint fibres proves the inequality. Thus raw
+$\Gamma$ maps preserve SDKR25, using monotonicity of
+support pushforward. For SDKR20 the vertex map is
+$(b,\nu)\mapsto(f_*b,f_*\nu\vee t)$; joining the same
+$t$ also preserves support order, proving its relational
+naturality.
+
+In the full-top subobject the support order is automatic.
+Its amplitude relation is complete exactly when
+\begin{equation}\tag{SDKR29}
+c\ge ku_D/2
+\quad\Longleftrightarrow\quad k\le2e^{\deg D},
+\qquad \deg D=a-\log u_D .
+\end{equation}
+The circle $\mathbb R/u_D\mathbb Z$ has diameter exactly
+$u_D/2$: representatives in $[-u_D/2,u_D/2]$ give the
+upper bound and the class of $u_D/2$ attains it.
+Taking that class in all $k$ coordinates gives exact
+sum diameter $ku_D/2$. This proves the inclusive
+endpoint in SDKR29. The second equivalence uses
+$e^{\deg D}=e^a/u_D$, without changing $D$.
+
+The separate directed reachability relation, allowing
+finitely many source edges, is
+\begin{equation}\tag{SDKR30}
+(b,\nu)\mathcal R_0^*(b',\mu)
+          \quad\Longleftrightarrow\quad \nu\le\mu.
+\end{equation}
+Necessity follows from support order along a path.
+For sufficiency first use the zero-amplitude edge
+$(b,\nu)\to(b,\mu)$. At fixed support $\mu$ all
+coordinates below top have zero amplitudes at both
+ends. Choose real minimum difference representatives
+$r_j$, zero in those coordinates, and put
+$R=\sum_j|r_j|$. Since $c>0$, choose $N\ge1$ with
+$R/N\le c$. The vertices
+$(b+\phi(i r/N),\mu)$ for $i=0,\ldots,N$ are valid.
+Each successive edge has $A$ tuple $(r_j/N,\mu_j)_j$
+of total absolute amplitude $R/N$. Its endpoint
+after $N$ steps is exactly $(b',\mu)$.
+This proves the finite path. Mutual reachability
+is therefore equality of supports, with classes
+indexed by all of $L^k$ and induced order its
+coordinatewise order. This auxiliary calculation
+does not change SDKR25 or assert a realization-homotopy
+interpretation.
+
+\subsection{Principal-divisor transport in the original coordinates}
+
+For $q\in\mathbb Q^\times$, let $D'=D+(q)$ with
+$(q)=\sum_pv_p(q)[p]-\log|q|[\infty]$. Then
+\begin{equation}\tag{SDKR31}
+\begin{gathered}
+\Lambda_{D'}=q^{-1}\Lambda_D,\qquad
+u_{D'}=u_D/|q|,\qquad c'=c/|q|,\\
+(r,\ell)\mapsto(q^{-1}r,\ell),\qquad
+(b,\ell)\mapsto(q^{-1}b,\ell).
+\end{gathered}
+\end{equation}
+The quotient map on $B$ is well defined because its
+lattice is carried exactly to $q^{-1}\Lambda_D$.
+Both maps commute with $\phi_L$, preserve every join,
+and scale every absolute amplitude by $|q|^{-1}$.
+They therefore give inverse isomorphisms of all the
+relative, simplicial and support-indexed constructions,
+with inverse multiplication by $q$. SDKR26 shows that
+distance scales by the same factor, proving preservation
+of SDKR25 in both directions. Finally
+$c'/u_{D'}=c/u_D$, so the counts are unchanged.
+This proves invariance without first replacing $D$
+by another representative.
+
+\subsection{The controlling arithmetic-site lattice map}
+
+Retain the original tropical coefficient semifield $K$
+with zero and the extension of ASL18--22,
+\begin{equation}\tag{SDKR32}
+K_L=K\otimes_{\mathbb B}L,\qquad
+\iota_L:L\to K_L,\quad\ell\mapsto1_K\otimes\ell,\qquad
+J_L=\iota_L(L).
+\end{equation}
+The target support carrier here is exactly $J_L$,
+not unrestricted $K_L$. In $J_L$, addition and product
+are the joins and meets of the original labels:
+the tensor relations give
+$\iota_L(\ell\vee m)=\iota_L(\ell)+\iota_L(m)$ and
+$\iota_L(\ell\wedge m)=\iota_L(\ell)\iota_L(m)$.
+These elements are multiplicatively idempotent.
+
+For completeness the labels are not identified by this
+map. The nonzero-indicator map $K\to\mathbb B$, taking
+zero to zero and each nonzero coefficient to one,
+is a semiring map: in the positive tropical semifield,
+a sum is zero exactly when both inputs are zero, and a
+product is zero exactly when one is zero. Its tensor
+extension
+\[
+\rho_L:K\otimes_{\mathbb B}L\to L,\qquad
+\rho_L\!\left(\sum_i a_i\otimes\ell_i\right)
+       =\bigvee_{a_i\ne0_K}\ell_i
+\]
+is well defined by the tensor universal property and
+satisfies $\rho_L\iota_L=I_L$. Thus $\iota_L$ is
+injective and identifies $L$ with the bounded
+distributive sublattice $J_L$. This also agrees with
+the joint-character reconstruction in ASL20--22:
+a lattice character $\chi:L\to\mathbb B$ sends
+$\iota_L(\ell)$ to $\chi(\ell)1_K$, and those
+characters separate the original labels.
+
+For either original additive group $C=A$ or $C=B$,
+form its carrier with support restricted to $J_L$.
+The controlling coefficient map and its inverse are
+\begin{equation}\tag{SDKR33}
+\begin{aligned}
+\jmath_C:C_L&\xrightarrow{\ \sim\ }C_{J_L},
+ &(x,\ell)&\longmapsto(x,1_K\otimes\ell),\\
+\jmath_C^{-1}(x,\iota_L(\ell))&=(x,\ell).
+\end{aligned}
+\end{equation}
+This is an isomorphism of additive monoids: amplitude
+sums are unchanged and $\iota_L$ preserves joins and
+bottom. It retains all coefficients, signs and constants.
+Its square with the original quotient map commutes
+exactly:
+\[
+\jmath_B\phi_L(r,\ell)
+ =(\phi(r),\iota_L(\ell))
+ =\phi_{J_L}\jmath_A(r,\ell).
+\]
+Applying it coordinatewise to SDKR4 therefore gives
+a bijection
+$\mathcal K_D^L(X,Y)\to\mathcal K_D^{J_L}(X,Y)$
+with precisely the same amplitude bound. In SDKR5,
+the $B$ terms commute by that square and the finite
+support joins commute by the lattice homomorphism.
+This proves naturality for every map of relative
+pointed pairs, including every empty fibre. It
+therefore commutes with every face, degeneracy
+and raw $\Gamma$ map in SDKR6--9. Its basepoint
+is transported by $s\mapsto\iota_L(s)$.
+Because $\iota_L$ preserves and reflects order,
+it maps SDKR18 bijectively to its corresponding
+support-indexed subobject. Finally
+$\iota_L(\ell\vee t)=\iota_L(\ell)\vee\iota_L(t)$
+proves exact commutation with SDKR19--22.
+
+The pair of amplitude and encoded support reconstructs
+the complete relative simplex: in each $A$ or $B$
+coordinate it belongs to exactly
+\begin{equation}\tag{SDKR34}
+\{(x,h)\in C\times J_L:
+                    x\ne0\Rightarrow h=1_K\otimes1_L\},
+\end{equation}
+and the inverse is $(x,h)\mapsto(x,\rho_L(h))$.
+On the relative object the only additional condition
+is the unchanged sum of the outside absolute amplitudes.
+Thus SDKR34 proves both injectivity and the exact joint
+image, rather than asserting that amplitude and support
+are unrelated presentations. It carries SDKR11, SDKR25
+and their maps to identical reconstructed relations.
+
+More generally, for any bounded lattice homomorphism
+$\theta:L\to L'$ the coordinate map
+$(x,\ell)\mapsto(x,\theta(\ell))$ gives a natural
+map of the relative functors. It is well defined,
+since $\theta(1_L)=1_{L'}$, and additive since
+$\theta$ preserves joins and bottom. It commutes
+with $\phi$, and therefore with SDKR5. Its support
+basepoint is $\theta(s)$, and
+$\theta(f_*s)=f_*\theta(s)$, including empty
+fibres. It preserves the order condition for
+SDKR20 and obeys
+\begin{equation}\tag{SDKR35}
+\theta_*\Theta_{f;s,t}
+ =\Theta_{f;\theta(s),\theta(t)}\theta_*,
+\qquad
+(\mathrm{id}_K\otimes\theta)\iota_L
+                   =\iota_{L'}\theta .
+\end{equation}
+The first equality follows by evaluating its $A$
+coordinates and its $B$ coordinate:
+both give the pushed amplitude and support
+$\theta(f_*\nu)\vee\theta(t)$.
+The second follows on each pure tensor
+$1_K\otimes\ell$. These formulas prove the full
+coefficient and support-transport squares for
+the controlling lattice map. No choice of one
+Boolean branch or loss of a zero label is
+needed for SDKR33--34; a noninjective specialization
+$\theta$ has exactly its stated image and does
+not inherit that bijectivity claim.

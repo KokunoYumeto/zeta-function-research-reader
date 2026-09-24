@@ -1,0 +1,473 @@
+# Full derived prime boundary: exact quasi-isomorphism, mirror, and comparison cone
+
+24 September 2026. Independent mathematical verification FDB0–FDB9. This is a derivation for the specified receiving complexes, with all prime labels, endpoint coordinates, original periodization factors and cochain signs retained.
+
+## FDB0. Scope, sources, and notation
+
+The primitive source remains the supplied \(Z_0,Z_1,Z_2,\tau\) construction. In particular \(Z_1/\tau\) has no source addition or parity. None of the additions, exterior products, coefficients, signs, Fourier transforms or character actions below is an operation on primitive \(\tau\). They belong to the explicitly named complex receiving spaces, after the whole arithmetic reconstruction.
+
+The current CORPUS_AND_OPERATION_RULES.md (private construction record; not included) was read. This review reads and uses the actual definitions and proofs in:
+
+- [CC_ADELIC_COINVARIANT_BRIDGE_INDEPENDENT.tex](../independent/CC_ADELIC_COINVARIANT_BRIDGE_INDEPENDENT.tex), ABR1–ABR22, including the full finite adelic basis, both endpoint moments, both periodization conventions, and the ordered Koszul differential. The reading here covered source lines 1–503.
+- [ACTUAL_ADELIC_COMPLEX_INDEPENDENT.md](ACTUAL_ADELIC_COMPLEX_INDEPENDENT.md), AC0–AC4, including \(J=2\mathcal E\Phi\), its exact inverse and all real-dilation factors.
+- [ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md](ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md), OMS0–OMS1 and OMS7A. Its closed-image result is a proved programme input here, not a new analytic proof in this review.
+- [SOURCE_CC_DOUBLE_PULLBACK.md](SOURCE_CC_DOUBLE_PULLBACK.md), DCP0–DCP12, for the actual chart spaces, restriction maps, real action and ordered-Cech mirror.
+
+Their human source attribution is retained: Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, Section III](https://arxiv.org/abs/math/9811068v1); Alain Connes, Caterina Consani and Matilde Marcolli, [*The Weil proof and the geometry of the adeles class space*](https://arxiv.org/abs/math/0703392v1); Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, §5](https://arxiv.org/abs/0903.2024v3); and Ralf Meyer, [*A spectral interpretation for the zeros of the Riemann zeta function*](https://arxiv.org/abs/math/0412277v3). The original-source readings and exact version records are those documented in the cited programme proofs; this bounded review does not claim a fresh complete reading of these papers. The standard resolution used below is Jean-Louis Koszul's complex; its exactness is proved here in the present Laurent algebra.
+
+We distinguish the centered receiving test space \(\mathcal A\) from the raw receiving test space \(A\), even though their sets have the same strong-decay definition. We also distinguish their quotients \(Q_{\rm cen}\) and \(Q_{\rm raw}\) until the complete comparison map is written. No completed zeta function substitutes for the original \(\zeta\).
+
+All tensor products and exterior powers in the adelic/Koszul construction are algebraic. In particular each vector has finite prime support. The quasi-isomorphisms below are in the algebraic category of complex representations of the specified actions. No extra topology on an infinite algebraic direct sum, and no equivariant continuous section of \(\mathcal A\to Q_{\rm cen}\), is asserted.
+
+## FDB1. Original spaces and the augmented complex
+
+Let
+\[
+G=\mathbb Q_{>0}^{\times},\qquad R=\mathbb C[G],\qquad
+\varepsilon(t_a)=1,\qquad I_R=\ker\varepsilon,
+\]
+\[
+H=\mathcal S_{\rm even}(\mathbb R),\qquad
+m(h)=\left(h(0),\int_{\mathbb R}h(x)\,dx\right),\qquad
+H_{00}=\ker m,
+\]
+\[
+M_0=\ker(\varepsilon\otimes m:R\otimes H\to\mathbb C^2),
+\qquad W=\bigoplus_{p\ {\rm prime}}\mathbb C\ell_p,\qquad
+x_p=t_p-1.
+\tag{FDB1.1}
+\]
+The original adelic realization is
+\[
+\Theta(t_a\otimes h)(x_\infty,x_f)
+=h(x_\infty/a)1_{a\widehat{\mathbb Z}}(x_f).
+\tag{FDB1.2}
+\]
+Finite additive Haar measure has \(\operatorname{vol}(\mathbb Z_p)=1\), so
+\(\operatorname{vol}(a\widehat{\mathbb Z})=a^{-1}\). Real dilation in the integral contributes \(a\). Consequently the original adelic evaluation and integral of (FDB1.2) are exactly \(h(0)\) and \(a\,a^{-1}\int h=\int h\). This is why the actual source with both endpoint conditions is precisely \(M_0\), with its displayed moment map.
+
+Put
+\[
+\Phi=\varepsilon\otimes\operatorname{id}_H:M_0\longrightarrow H_{00},
+\qquad \mathcal E h(u)=u^{1/2}\sum_{n\ge1}h(nu),
+\]
+\[
+\mathcal A=\{k\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jk(u)|<\infty
+\text{ for every }N,j\ge0\},
+\]
+\[
+J=2\mathcal E\Phi:M_0\longrightarrow\mathcal A,
+\qquad I_A=2\mathcal E H_{00},\qquad
+Q_{\rm cen}=\mathcal A/I_A.
+\tag{FDB1.3}
+\]
+The factor \(2\) is the original sum over both nonzero integer signs after the full rational sum is restricted by the finite adelic support. ABR12 proves this reduction. ABR14–ABR15 prove injectivity of \(\mathcal E\), and OMS7A proves that \(I_A\) is closed and equals the earlier closed image. These results use the original identity
+\[
+F_{Jm}(s)=2\zeta(s)\int_0^\infty\Phi(m)(x)x^{s-1}\,dx,
+\quad
+F_k(s)=\int_0^\infty k(u)u^{s-1/2}\frac{du}{u}.
+\tag{FDB1.4}
+\]
+For \(k\in I_A\), their inverse to the map \(2\mathcal E\) is
+\[
+h_k(x)=\frac1{4\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}
+\frac{F_k(s)}{\zeta(s)}x^{-s}\,ds,\qquad \sigma>1.
+\tag{FDB1.5}
+\]
+This retains the factor \(1/2\) from the two-sign summation in addition to the factor \(1/(2\pi i)\) of Mellin inversion.
+
+The augmented cochain complex is
+\[
+C^1=\mathcal A,\qquad C^0=M_0,\qquad
+C^{-k}=M_0\otimes\Lambda^kW\quad(k\ge1),
+\tag{FDB1.6}
+\]
+with \(d_C^0=J\), and, for the ordered wedge
+\(\ell_P=\ell_{p_1}\wedge\cdots\wedge\ell_{p_k}\),
+\[
+d_C^{-k}(m\otimes\ell_P)
+=\sum_{j=1}^k(-1)^{j-1}x_{p_j}m\otimes\ell_{P\setminus p_j}.
+\tag{FDB1.7}
+\]
+There is no extra minus sign in this augmented differential. The two deletion orders of any pair of indices have opposite signs, proving \(d_C^2=0\) in negative degrees. Also \(\Phi(x_pm)=0\), proving \(Jd_C^{-1}=0\).
+
+## FDB2. The full cohomology, retaining all prime wedges
+
+The Koszul complex \(R\otimes\Lambda^\bullet W\) resolves the augmentation module \(\mathbb C\). For a finite prime set, successively setting \(t_p=1\) leaves a Laurent polynomial algebra, and the next \(t_p-1\) is a nonzero divisor. Adjoining that generator forms the mapping cone of multiplication by \(t_p-1\). Induction proves exactness in positive degrees and the stated degree-zero quotient. For infinitely many primes every cycle uses finitely many wedge indices and Laurent variables; the finite-set proof gives a finite primitive. Thus the same exactness holds for the algebraic full complex.
+
+Apply this resolution degreewise to the exact sequence
+\[
+0\longrightarrow M_0\longrightarrow R\otimes H
+\xrightarrow{\varepsilon\otimes m}\mathbb C^2\longrightarrow0.
+\tag{FDB2.1}
+\]
+Surjectivity holds, for example, by the actual moment section
+\[
+\sigma(u_0,u_1)=u_0(1-2\pi x^2)e^{-\pi x^2}
++u_1\,2\pi x^2e^{-\pi x^2}.
+\tag{FDB2.2}
+\]
+Indeed \(\int e^{-\pi x^2}=1\) and \(\int x^2e^{-\pi x^2}=1/(2\pi)\), so its two moments are \((u_0,u_1)\).
+
+The middle complex has homology \(H\) in degree zero and zero in positive degrees. The last complex has zero differential, since each \(x_p\) acts by zero; its degree-\(n\) term is \(\Lambda^nW\otimes\mathbb C^2\). The connecting cycle for an ordered \(n\)-wedge, including \(n=1\), is
+\[
+\delta_n(\ell_{p_1}\wedge\cdots\wedge\ell_{p_n}\otimes u)
+=\sum_{j=1}^n(-1)^{j-1}
+(x_{p_j}\otimes\sigma(u))\otimes\ell_{P\setminus p_j}.
+\tag{FDB2.3}
+\]
+It is a cycle because it is the differential of
+\((t_1\otimes\sigma(u))\otimes\ell_P\) in the middle complex, and \(d^2=0\). Changing the moment section changes (FDB2.3) by the differential of the same full wedge with a coefficient in \(H_{00}\subset M_0\). Its cohomology class is therefore independent of the section.
+
+For \(n\ge2\) the connecting map is an isomorphism: a cycle in the first complex is a boundary in the positive-degree middle complex; projecting such a primitive gives its preimage in the last complex. If this last class connects to a boundary, subtract that first-complex primitive; middle exactness then implies the projected class is zero. For \(n=1\) it identifies the kernel of \(M_0/I_RM_0\to H\) with \(W\otimes\mathbb C^2\). The image in \(H\) is \(H_{00}\), since \(t_1\otimes h\) maps to every \(h\in H_{00}\).
+
+Because \(\mathcal E\) is injective, \(\ker J=\ker\Phi\). Adding the last term \(\mathcal A\) consequently leaves precisely that boundary kernel in degree zero. Writing
+\(B_n=\Lambda^nW\otimes\mathbb C^2\), the complete answer is
+\[
+H^1(C)=Q_{\rm cen},\qquad
+H^{1-n}(C)=B_n\quad(n\ge1),\qquad H^j(C)=0\ (j\ge2).
+\tag{FDB2.4}
+\]
+In particular the higher groups have not been replaced by the two-term degree-zero coinvariant calculation.
+
+## FDB3. An explicit canonical quasi-isomorphism
+
+Define the **scalar augmentation derivation**
+\[
+D_p:R\to\mathbb C,\qquad
+D_p\left(\sum_ac_at_a\right)=\sum_ac_av_p(a).
+\tag{FDB3.1}
+\]
+This is not the \(R\)-valued Euler derivation. Its exact product law is
+\[
+D_p(rs)=\varepsilon(r)D_p(s)+\varepsilon(s)D_p(r),
+\qquad D_p(x_qr)=\delta_{pq}\varepsilon(r).
+\tag{FDB3.2}
+\]
+Both equations follow by expanding finite sums and using \(v_p(ab)=v_p(a)+v_p(b)\).
+
+Let
+\[
+B=Q_{\rm cen}[-1]\oplus\bigoplus_{n\ge1}B_n[n-1]
+\tag{FDB3.3}
+\]
+with zero differential. Our convention is \((K[r])^j=K^{j+r}\); thus \(Q_{\rm cen}\) occurs in degree \(1\), and \(B_n\) in degree \(1-n\). Define
+\[
+\Gamma^1=\pi_{Q_{\rm cen}},
+\]
+\[
+\Gamma^{-k}\left(\left(\sum_i r_i\otimes h_i\right)\otimes\omega\right)
+=\frac1{k+1}\sum_{p,i}D_p(r_i)
+\,\ell_p\wedge\omega\otimes m(h_i),\qquad k\ge0.
+\tag{FDB3.4}
+\]
+This is a well-defined linear map on the algebraic tensor product: \(\sum_pD_p(r)\ell_p\) is a finite, linear function of \(r\), and every operation displayed is multilinear. It depends on no choice of moment section.
+
+For \(k\ge1\), evaluate \(\Gamma^{-k+1}d_C^{-k}\) on a coefficient \(m=\sum_i r_i\otimes h_i\in M_0\) and a \(k\)-wedge. By (FDB3.2) the result is
+\[
+\frac1k\sum_{j=1}^k(-1)^{j-1}
+\ell_{p_j}\wedge\ell_{P\setminus p_j}
+\otimes\sum_i\varepsilon(r_i)m(h_i)
+=\ell_P\otimes 0=0.
+\tag{FDB3.5}
+\]
+The equality uses \((-1)^{j-1}\ell_{p_j}\wedge\ell_{P\setminus p_j}=\ell_P\), and the final zero is exactly the defining total-moment equation of \(M_0\). In the last degree \(\Gamma^1J=0\), since \(J(M_0)=I_A\). Hence \(\Gamma\) is a chain map.
+
+Apply \(\Gamma^{1-n}\) to (FDB2.3). Each of its \(n\) terms contributes the same ordered \(n\)-wedge tensored with \(u\); \(D_p(x_q)=\delta_{pq}\) and \(m\sigma=\operatorname{id}\). Its denominator is exactly \(n\). Therefore
+\[
+\Gamma^{1-n}\delta_n=\operatorname{id}_{B_n}\quad(n\ge1).
+\tag{FDB3.6}
+\]
+In degree \(1\), \(\Gamma\) induces the identity quotient. The cohomology calculation (FDB2.4) now proves
+\[
+\boxed{\Gamma:C\longrightarrow
+Q_{\rm cen}[-1]\oplus\bigoplus_{n\ge1}
+(\Lambda^nW\otimes\mathbb C^2)[n-1]
+\text{ is a canonical quasi-isomorphism}.}
+\tag{FDB3.7}
+\]
+Canonical here refers to the specified rational prime generators, the canonical derivations (FDB3.1), the actual two endpoint moments and the actual quotient map. It does not mean a strict inverse cochain map has been constructed: such an inverse on the quotient degree would in particular require a lift of \(Q_{\rm cen}\) into \(\mathcal A\). No such lift is used.
+
+## FDB4. All real dilations and the full rational action
+
+For every real \(a>0\), set
+\[
+R_a h(x)=h(x/a),\qquad \mathscr R_a=\operatorname{id}_R\otimes R_a,
+\qquad W_a k(u)=a^{1/2}k(u/a).
+\tag{FDB4.1}
+\]
+On negative degrees the real action is \(\mathscr R_a\otimes\operatorname{id}_{\Lambda^kW}\); on degree \(1\) it is \(W_a\). The exact moment formula is
+\[
+m(R_a h)=\begin{pmatrix}1&0\\0&a\end{pmatrix}m(h)=:D_a m(h).
+\tag{FDB4.2}
+\]
+Thus \(\mathscr R_a\) preserves \(M_0\) and commutes with every negative differential. Direct substitution gives
+\[
+J\mathscr R_a m(u)=2u^{1/2}\sum_{n\ge1}\Phi(m)(nu/a)
+=a^{1/2}(Jm)(u/a)=W_aJm(u).
+\tag{FDB4.3}
+\]
+The quasi-isomorphism \(\Gamma\) is equivariant with action \(W_a\) on \(Q_{\rm cen}\) and \(\operatorname{id}_{\Lambda^nW}\otimes D_a\) on every \(B_n\), directly from (FDB3.4).
+
+The **full diagonal rational** action of \(b\in G\) is multiplication by \(t_b\) on the \(R\) coefficient in every nonpositive degree. It is identity on \(\mathcal A\) and its quotient, because actual rational periodization reindexes the full rational sum. The differential commutes with this action and \(J(t_bm)=Jm\). By the product rule,
+\[
+D_p(t_b r_i)=D_p(r_i)+v_p(b)\varepsilon(r_i).
+\]
+The additional term in \(\Gamma(t_bm\otimes\omega)\) is
+\[
+\frac1{k+1}\sum_pv_p(b)\ell_p\wedge\omega
+\otimes\sum_i\varepsilon(r_i)m(h_i)=0.
+\tag{FDB4.4}
+\]
+Therefore the full rational action on every receiving \(B_n\) is trivial, and \(\Gamma\) is equivariant for it. These rational operators and the real-idele operators (FDB4.1) are different specified actions, even when their parameters have the same rational value. Both have now been evaluated rather than identified.
+
+## FDB5. Full adelic Fourier and all higher mirror signs
+
+Use the original real Fourier phase \(e^{-2\pi ix\xi}\), and the finite self-dual character with annihilator of \(\widehat{\mathbb Z}\) equal to \(\widehat{\mathbb Z}\). The finite ball transform is
+\[
+\widehat{1_{a\widehat{\mathbb Z}}}
+=a^{-1}1_{a^{-1}\widehat{\mathbb Z}},
+\]
+because the integral of a character on that compact additive subgroup is its volume if the character is trivial there and is zero otherwise. The real transform is
+\[
+\widehat{h(\,\cdot/a)}(\xi)=a\widehat h(a\xi).
+\]
+Multiplying these two original factors gives \(a\,a^{-1}=1\). Consequently the full adelic Fourier operator in the original \(\Theta\) coordinates is exactly
+\[
+\mathcal F_0(t_a\otimes h)=t_{a^{-1}}\otimes\widehat h.
+\tag{FDB5.1}
+\]
+It preserves \(M_0\) because \(m(\widehat h)=S m(h)\), where
+\(S(u_0,u_1)=(u_1,u_0)\), and augmentation is unchanged. Its square is identity: Fourier squared is real reflection, identity on the even source, while rational inversion squares to identity.
+
+Write \(\iota(t_a)=t_{a^{-1}}\) and \(t_P=\prod_{p\in P}t_p\). The exact higher-degree lift is
+\[
+\mathcal F_k((r\otimes h)\otimes\ell_P)
+=(-1)^k(t_P^{-1}\iota(r)\otimes\widehat h)\otimes\ell_P.
+\tag{FDB5.2}
+\]
+The coefficient remains in \(M_0\) for every coefficient sum, since \(\varepsilon(t_P^{-1})=1\). To check the chain equation, use
+\[
+\iota(x_p)=t_p^{-1}-1=-t_p^{-1}x_p.
+\]
+Applying \(\mathcal F_{k-1}\) to the term deleting \(p_j\) introduces
+\((-1)^{k-1}t_{P\setminus p_j}^{-1}(-t_{p_j}^{-1})
+=(-1)^k t_P^{-1}\), exactly its coefficient in \(d\mathcal F_k\), with the unchanged deletion sign \((-1)^{j-1}\). Hence
+\[
+d\mathcal F_k=\mathcal F_{k-1}d,\qquad \mathcal F_k^2=1.
+\tag{FDB5.3}
+\]
+For the second equality, the two monomial multipliers cancel because
+\(t_P^{-1}\iota(t_P^{-1})=1\), and the two signs multiply to \(1\).
+
+At degree \(1\) define \(R_{\rm cen}k(u)=k(u^{-1})\). The full Poisson formula is
+\[
+2\sum_{n\ge1}\widehat h(nu)
+=u^{-1}2\sum_{n\ge1}h(n/u)+u^{-1}h(0)-\int h.
+\tag{FDB5.4}
+\]
+For \(h=\Phi(m)\in H_{00}\), both endpoint terms vanish by its actual defining conditions. Multiplication by \(u^{1/2}\) then proves
+\[
+J\mathcal F_0=R_{\rm cen}J.
+\tag{FDB5.5}
+\]
+Thus (FDB5.2) with \(R_{\rm cen}\) in degree \(1\) is an involutive chain action on \(C\).
+
+Its exact action under \(\Gamma\) follows from
+\[
+D_q(t_P^{-1}\iota(r))=-D_q(r)-1_{q\in P}\varepsilon(r).
+\tag{FDB5.6}
+\]
+The second term gives zero when wedged with \(\ell_P\), because \(q\in P\); it also disappears after the total-moment summation. The first term and the sign \((-1)^k\) give
+\[
+\Gamma^{-k}\mathcal F_k
+=(-1)^{k+1}(\operatorname{id}\otimes S)\Gamma^{-k}.
+\tag{FDB5.7}
+\]
+Therefore the un-oriented mirror on \(B_n\) is \((-1)^n\operatorname{id}_{\Lambda^nW}\otimes S\), and on \(Q_{\rm cen}\) it is the induced \(R_{\rm cen}\).
+
+All actions retain their original twist relation. Direct Fourier substitution and direct evaluation on \(\mathcal A\) give
+\[
+\mathcal F_k\mathscr R_a=a\mathscr R_{a^{-1}}\mathcal F_k,
+\qquad R_{\rm cen}W_a=aW_{a^{-1}}R_{\rm cen}.
+\tag{FDB5.8}
+\]
+On endpoints this is \(S D_a=a D_{a^{-1}}S\). Also
+\(\mathcal F_k t_b=t_{b^{-1}}\mathcal F_k\), so inversion of the full rational action is retained.
+
+## FDB6. The exact map to the actual two-chart complex
+
+Use DCP's original coefficient spaces and restrictions:
+\[
+V_+=H_{00}\oplus\mathbb C^2,\quad
+V_-=H_{00}\oplus\mathbb C^2,\quad
+\Sigma h(u)=2\sum_{n\ge1}h(nu),\quad
+R_{\rm raw}b(u)=u^{-1}b(u^{-1}),
+\]
+\[
+D^0=V_+\oplus V_-,\qquad D^1=A,\qquad
+d_D((h,c_0,c_1),(g,d_0,d_1))=\Sigma h-R_{\rm raw}\Sigma g.
+\tag{FDB6.1}
+\]
+The raw quotient is \(Q_{\rm raw}=A/\Sigma H_{00}\). Its relation to (FDB1.3), with all factors, is
+\[
+T:\mathcal A\xrightarrow{\sim}A,\quad Tk(u)=2u^{-1/2}k(u),
+\qquad T^{-1}b(u)=\tfrac12u^{1/2}b(u).
+\tag{FDB6.2}
+\]
+Indeed \(T\mathcal Eh=\Sigma h\), so \(T(2\mathcal EH_{00})=2\Sigma H_{00}=\Sigma H_{00}\) as vector subspaces. Its induced map \(\bar T:Q_{\rm cen}\to Q_{\rm raw}\) is an isomorphism. The original Mellin comparison is \(\mathcal M_0(Tk)=2F_k\); this receiving factor is not suppressed.
+
+Define the plus-chart comparison
+\[
+(F_+)^1=T,\qquad
+(F_+)^0(m)=((2\Phi(m),0,0),(0,0,0)),\qquad
+(F_+)^j=0\quad(j<0).
+\tag{FDB6.3}
+\]
+Its last chain identity, including every factor, is
+\[
+d_D(F_+)^0m=\Sigma(2\Phi(m))
+=4\sum_{n\ge1}\Phi(m)(nu)
+=2u^{-1/2}(2u^{1/2}\sum_{n\ge1}\Phi(m)(nu))
+=T Jm.
+\tag{FDB6.4}
+\]
+The next identity is \((F_+)^0d_C^{-1}=0\), since \(\Phi(x_pm)=0\). All other identities are between zero maps. Thus \(F_+\) is an actual chain map, not only a proposed map on cohomology.
+
+On the raw complex the full real action is
+\[
+T_a b(u)=b(u/a),
+\quad\rho_+(a)(h,c_0,c_1)=(R_a h,c_0,ac_1),
+\]
+\[
+\rho_-(a)(g,d_0,d_1)=(a g(a\,\cdot),ad_0,d_1).
+\tag{FDB6.5}
+\]
+Substitution proves \(TW_a=T_aT\), and proves that (FDB6.3) intertwines both chart and source real actions. Assigning the full diagonal rational action to be trivial on \(D\) is exactly its action after rational periodization; (FDB6.3) also intertwines this action.
+
+The degree-zero cohomology of \(D\) is the actual space
+\[
+H^0(D)=\{((\widehat h,c_0,c_1),(h,d_0,d_1)):
+h\in H_{00},\ c_0,c_1,d_0,d_1\in\mathbb C\},
+\tag{FDB6.6}
+\]
+because Poisson gives \(R_{\rm raw}\Sigma h=\Sigma\widehat h\) and \(\Sigma\) is injective. Also \(H^1(D)=Q_{\rm raw}\), and all other groups vanish. A degree-zero cycle of \(C\) has \(\Phi(m)=0\), so its image under \(F_+\) is zero already as a cochain. Thus
+\[
+H^1(F_+)=\bar T,\qquad H^j(F_+)=0\quad(j\le0).
+\tag{FDB6.7}
+\]
+
+## FDB7. The mirror-compatible map and its orientation representation
+
+The ordered Cech mirror is
+\[
+w_D^0(v_+,v_-)=(v_-,v_+),\qquad
+w_D^1=-R_{\rm raw}.
+\tag{FDB7.1}
+\]
+The minus sign is forced by reversing the ordered difference in (FDB6.1). On the same underlying complex \(C\), use the oriented mirror
+\[
+w_{C^{\rm or}}^{-k}=-\mathcal F_k\quad(k\ge0),\qquad
+w_{C^{\rm or}}^1=-R_{\rm cen}.
+\tag{FDB7.2}
+\]
+It is still an involutive chain action, since every degree of the previous chain action is multiplied by the same receiving sign. This is a one-dimensional orientation representation in the receiving coefficient category; it supplies no sign operation or parity on primitive \(\tau\).
+
+The exact symmetrized map is
+\[
+F_{\rm sym}=\tfrac12(F_++w_DF_+w_{C^{\rm or}}),
+\]
+\[
+F_{\rm sym}^1=T,\qquad
+F_{\rm sym}^0(m)=((\Phi(m),0,0),(-\widehat{\Phi(m)},0,0)),
+\qquad F_{\rm sym}^j=0\ (j<0).
+\tag{FDB7.3}
+\]
+To evaluate the average, the mirrored degree-zero map is
+\(((0,0,0),(-2\widehat{\Phi(m)},0,0))\). In degree one,
+\((-R_{\rm raw})T(-R_{\rm cen})=T\), because
+\(R_{\rm raw}T=TR_{\rm cen}\). This proves (FDB7.3) with the averaging factor retained.
+
+Directly, its differential is
+\[
+\Sigma\Phi(m)-R_{\rm raw}\Sigma(-\widehat{\Phi(m)})
+=2\Sigma\Phi(m)=TJm.
+\tag{FDB7.4}
+\]
+Its mirror identity in degree zero reads
+\[
+F_{\rm sym}^0(-\mathcal F_0m)
+=((-\widehat{\Phi(m)},0,0),(\Phi(m),0,0))
+=w_D^0F_{\rm sym}^0(m).
+\]
+The degree-one identity is \(T(-R_{\rm cen})=-R_{\rm raw}T\). Real equivariance follows from \(\widehat{R_a h}=a\widehat h(a\,\cdot)\), exactly the minus-chart action in (FDB6.5). Full diagonal rational equivariance follows from unchanged augmentation. Hence \(F_{\rm sym}\) is simultaneously equivariant for the original real actions, full rational action and oriented mirror. It has the same maps on cohomology as (FDB6.7).
+
+Under \(\Gamma\), the oriented mirror on \(B_n\) is
+\[
+(-1)^{n+1}\operatorname{id}_{\Lambda^nW}\otimes S,
+\tag{FDB7.5}
+\]
+and on \(Q_{\rm cen}\) it is \(-R_{\rm cen}\). Thus (FDB3.7) is equivariant for this full oriented action as well.
+
+## FDB8. The entire mapping-cone cohomology, without an asserted splitting
+
+Let \(F\) mean either \(F_+\), or \(F_{\rm sym}\) with the oriented actions. Fix the mapping-cone convention
+\[
+\operatorname{Cone}(F)^j=D^j\oplus C^{j+1},\qquad
+d_{\rm Cone}(v,c)=(d_Dv+Fc,-d_Cc).
+\tag{FDB8.1}
+\]
+This cone differential has its displayed minus sign on the shifted \(C\) term. It is separate from the unmodified augmented differential (FDB1.7).
+
+For \(j\le-2\), the \(D\) terms vanish, and the cone is the shifted negative complex of \(C\). In degree \(-1\), a cone cochain is \(m\in M_0\); its differential is \((F^0m,-Jm)\). Since \(J\) is injective after \(\Phi\), and both displayed versions of \(F^0\) factor through \(\Phi\), this is zero exactly when \(\Phi(m)=0\). Its boundaries are \(-d_C^{-1}\) of the degree \(-1\) Koszul terms, so the sign changes no boundary subspace. These calculations give canonical projection isomorphisms
+\[
+H^{-n}(\operatorname{Cone}(F))\cong B_n
+=\Lambda^nW\otimes\mathbb C^2\qquad(n\ge1).
+\tag{FDB8.2}
+\]
+
+In degree zero a cochain is \((v,k)\in D^0\oplus\mathcal A\). It is a cycle exactly when
+\(d_Dv+Tk=0\). Since \(T\) is bijective, each \(v\) gives the unique cycle \((v,-T^{-1}d_Dv)\). The boundaries are precisely \((F^0m,-Jm)\), so
+\[
+H^0(\operatorname{Cone}(F))\cong D^0/F^0(M_0).
+\tag{FDB8.3}
+\]
+The natural inclusion of \(H^0(D)\) into this quotient is an isomorphism. To prove surjectivity, write \(d_Dv\in\Sigma H_{00}\). The map \(T\) sends \(I_A\) onto \(\Sigma H_{00}\), and \(J\) sends \(M_0\) onto \(I_A\). Therefore there is \(m\in M_0\) with \(TJm=d_Dv\). Then \(v-F^0m\) lies in \(\ker d_D=H^0(D)\). To prove injectivity, if \(v\in H^0(D)\cap F^0(M_0)\), write \(v=F^0m\); then \(0=d_Dv=TJm\), hence \(\Phi(m)=0\), and consequently \(v=F^0m=0\). This proves
+\[
+H^0(\operatorname{Cone}(F))\cong H^0(D)
+\cong H_{00}\oplus\mathbb C^4,
+\tag{FDB8.4}
+\]
+where the first isomorphism is the canonical one induced by \(D\to\operatorname{Cone}(F)\). The second uses exactly the Fourier-parametrization (FDB6.6), not an arbitrary choice of representatives.
+
+In degree one the cone is \(A\); its incoming differential is surjective because the \(\mathcal A\) summand of degree zero maps by the isomorphism \(T\). There are no terms above degree one. Thus
+\[
+H^j(\operatorname{Cone}(F))=0\quad(j\ge1).
+\tag{FDB8.5}
+\]
+Equations (FDB8.2), (FDB8.4) and (FDB8.5) give every cohomological degree.
+
+The actions are retained explicitly. In (FDB8.2), real dilation acts by \(\operatorname{id}_{\Lambda^nW}\otimes\operatorname{diag}(1,a)\), and full rational dilation acts trivially. For \(F_{\rm sym}\), its mirror is (FDB7.5). On the coordinates \((h,c_0,c_1,d_0,d_1)\) of (FDB8.4), real dilation is
+\[
+(h,c_0,c_1,d_0,d_1)
+\longmapsto(a h(a\,\cdot),c_0,ac_1,ad_0,d_1),
+\tag{FDB8.6}
+\]
+and the mirror is
+\[
+(h,c_0,c_1,d_0,d_1)
+\longmapsto(\widehat h,d_0,d_1,c_0,c_1).
+\tag{FDB8.7}
+\]
+These formulas follow by applying the chart actions to (FDB6.6), including \(\widehat{a h(a\,\cdot)}=R_a\widehat h\). They retain all four endpoint lines, with real characters \(1,a,a,1\).
+
+No equivariant decomposition of the **cone complex** as the direct sum of these cohomology groups has been asserted or used. The maps proving (FDB8.2)–(FDB8.4) are canonical cohomology maps; a derived splitting of this cone would be a further statement. In contrast, the quasi-isomorphism of the **source complex** \(C\) was actually constructed in (FDB3.4), so its derived direct-sum conclusion (FDB3.7) is proved.
+
+## FDB9. Verified conclusion and exact scope of the additional result
+
+The requested map \(\Gamma\), including its degree-one quotient, is a canonical equivariant quasi-isomorphism of the full augmented complex. It proves the formal decomposition of that particular entire derived-coinvariant receiver, with every higher prime wedge and both original endpoint coordinates retained. It strengthens the earlier two-term extension calculation without replacing the original quotient by an unrestricted product of zero jets.
+
+The maps \(F_+\) and \(F_{\rm sym}\) are actual cochain maps to the specified Connes–Consani two-chart coefficient complex, with the exact factors \(2\), \(u^{-1/2}\), Fourier transform and orientation signs. They induce an isomorphism only in degree one; their lower cohomology maps are zero. The full cone records precisely the retained comparison data given in FDB8. It therefore supplies an exact global object measuring this comparison, rather than inferring that the extra prime data vanish.
+
+These calculations do not prove that the entire geometric specialization of a different source equals this augmented complex, do not prove that an entire extension group vanishes, and do not assign a numerical weight to primitive \(\tau\). They establish the displayed maps, quasi-isomorphism, actions and all cone cohomology for the original receiving objects.

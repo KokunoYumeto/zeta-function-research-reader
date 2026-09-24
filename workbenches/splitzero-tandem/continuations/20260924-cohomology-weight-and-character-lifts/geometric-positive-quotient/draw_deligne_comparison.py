@@ -1,0 +1,55 @@
+"""Exact proof diagram; no sampled prime or zero range."""
+from pathlib import Path
+import re
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch,FancyArrowPatch
+root=Path(__file__).resolve().parent
+fig,ax=plt.subplots(figsize=(18,12))
+fig.patch.set_facecolor('#faf9f4');ax.set_facecolor('#faf9f4')
+ax.set_xlim(0,18);ax.set_ylim(0,12);ax.axis('off')
+def text(x,y,s,size=16,**kw):
+    s=re.sub(r'\\(mathcal|mathbb)\s+([A-Za-z])',r'\\\1{\2}',s)
+    ax.text(x,y,s,ha='center',va='center',fontsize=size,color='#182c38',**kw)
+def box(x,y,w,h,color):
+    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.12',facecolor=color,edgecolor='#4b6370',linewidth=1.4))
+def arrow(a,b):
+    ax.add_patch(FancyArrowPatch(a,b,arrowstyle='-|>',mutation_scale=20,linewidth=1.8,color='#316c80'))
+text(9,11.55,'Deligne: remove every excess weight through the actual geometric maps',23,weight='bold')
+text(9,11.05,r'Input $\mathcal F$ has weight $\beta$; the product coefficient is $\mathcal G=\mathcal F\boxtimes\mathcal F$ of weight $2\beta$.',17)
+box(.6,8.8,7.1,1.65,'#e7f0ec');box(10.3,8.8,7.1,1.65,'#e7ecf6')
+text(4.15,10.04,'Vanishing cycles + strict analytic bound',17,weight='bold')
+text(4.15,9.48,r'$w\in 2\beta+\mathbb Z,\quad w<2\beta+2$',22)
+text(4.15,9.05,r'$\Longrightarrow\quad w\leq 2\beta+1$',21)
+text(13.85,10.04,'Leray + all coefficient constituents',17,weight='bold')
+text(13.85,9.47,r'$w(H_c^2(\widetilde V,\pi^*\mathcal G))\leq 2\beta+2+2^{-k}$',18)
+text(13.85,9.03,'Axis and boundary contributions retained',14)
+arrow((7.95,9.63),(10.02,9.63));text(9,10.08,'DWR8.5',13)
+arrow((13.85,8.55),(13.85,7.95))
+box(10.3,6.1,7.1,1.65,'#e7ecf6');box(.6,6.1,7.1,1.65,'#e7f0ec')
+text(13.85,7.38,'Künneth and blowup pullback',17,weight='bold')
+text(13.85,6.9,r'$\alpha\mapsto\alpha^2,\quad 2w(\alpha)\leq 2\beta+2+2^{-k}$',18)
+text(13.85,6.42,r'$w(\alpha)\leq\beta+1+2^{-(k+1)}$',20)
+arrow((10.02,6.93),(7.95,6.93));text(9,7.37,r'Every $k\geq0$',14)
+text(4.15,7.35,'Limit of the proved bounds, then duality',16,weight='bold')
+text(4.15,6.88,r'$w(\alpha)\leq\beta+1,\quad w(\alpha^{-1})\leq-\beta-1$',18)
+text(4.15,6.42,r'$|\iota\alpha|=q^{(\beta+1)/2}$ on $H^1(X,j_*\mathcal F)$',19)
+text(9,5.63,'Source: Deligne, Weil II, §§3.1–3.3. Full reconstruction: DWR7–DWR10.',14)
+ax.plot([.6,17.4],[5.27,5.27],color='#b6bdbe',linewidth=1)
+text(9,4.89,'The programme’s complete returns identify the analytic input exactly',22,weight='bold')
+box(.6,2.2,6.5,2.05,'#f2ebdb');box(10.9,2.2,6.5,2.05,'#e7ecf6')
+text(3.85,3.86,'Original counting measure',17,weight='bold')
+text(3.85,3.43,r'$\mathcal D=\delta_0+\sum_{n\geq2}\delta_{\log n}$',20)
+text(3.85,2.62,r'$\mathcal R=\log_*\mathcal D=\sum_{p,m\geq1}\frac{1}{m}\delta_{m\log p}$',17)
+text(14.15,3.86,'Deligne §2.1.9, for every real σ > 1',16,weight='bold')
+text(14.15,3.32,r'$\mu_\sigma=\sum_{p,m\geq1}(\log p)p^{-m\sigma}\delta_{m\log p}$',19)
+text(14.15,2.75,r'$\widehat\mu_\sigma(u)=-\zeta^\prime(\sigma+iu)/\zeta(\sigma+iu)$',18)
+arrow((7.3,3.48),(10.66,3.48));text(9,3.88,r'$e^{-\sigma t}\,t\log_*$',19)
+arrow((10.66,2.63),(7.3,2.63));text(9,2.2,r'$\exp_*\left(\frac{e^{\sigma t}}{t}\,\cdot\right)$',19)
+text(9,1.55,r'The inverse multiplier acts on $t>0$; $\exp_*$ restores the unit atom $\delta_0$.',17)
+text(9,1.0,r'All maps here act in the arithmetic receiver; the parityless support $Z_1/\tau$ remains attached.',15)
+text(9,.48,'DWR12 proves both directions. This shared measure does not yet identify the two cohomology theories.',14)
+fig.savefig(root/'deligne_weight_return_comparison.png',dpi=145,bbox_inches='tight')
+fig.savefig(root/'deligne_weight_return_comparison.svg',bbox_inches='tight')
+plt.close(fig)

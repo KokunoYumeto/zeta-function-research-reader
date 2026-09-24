@@ -1,0 +1,285 @@
+# Independent verification of the classical boundary and its radial complex
+
+24 September 2026. Proof locators GR0–GR7. This checks CB0–CB6 and the stated scope of CB8 in CLASSICAL_BOUNDARY_LIFTING.md. The previously proved CW map used in CB7 was not independently reread during this bounded verification. The additional exact sequence GR6 records the complete effect of the factor of the radial coordinate at the boundary.
+
+## GR0. Sources, the source object and the receiving calculation
+
+The human mathematical source is Alain Connes and Caterina Consani, [The Riemann–Roch strategy: Complex lift of the Scaling Site, arXiv:1805.10501](https://arxiv.org/abs/1805.10501), original author source thecurve_K.tex. The source passages checked directly are §5.4, lines 1634–1719, especially Jdefn1, classorb1, projgnlim1, proetcov and additivestruct; and §7.1, lines 2532–2624, especially holom, holombis, holom1, holom2 and functionq. The original operator and moving coefficients, including their radial factors, are retained below.
+
+The complete user passages USR-9ad1c0a2d09dba92, USR-f55d16feb948d8c2, USR-6152e3bc6302258c and USR-4322be19bff532cd were consulted again together with CORPUS_AND_OPERATION_RULES.md and the previously read U01–U18. The receiving arithmetic below is the arithmetic already reconstructed in the programme. None of the coordinate calculations constructs that arithmetic from a finite sample. Primitive \(Z_1/\tau\) receives no addition, parity, count, coordinate or numerical weight. Its notation is not replaced by the source paper's Teichmüller notation.
+
+Every construction below has its domain and topology specified. The failure of one receiving function to extend to one collapsed receiving point is not an assertion that the user's complete global construction fails. GR2–GR3 construct the exact graph and algebra retaining its lost directions.
+
+## GR1. Complete classical coordinates and gauge comparison
+
+Write \(\mathbb A=\mathbb A_f\times\mathbb R\) and \(G=\mathbb A/\mathbb Q\), with the diagonal copy of \(\mathbb Q\). The finite coordinates admitted here are finite ideles:
+\[
+\mathbb A_f^\times=\mathbb Q_{>0}\widehat{\mathbb Z}^{\times}.
+\]
+This means that each coordinate is nonzero and that its valuation is zero outside a finite set of primes. It is stronger than merely being a finite adele with all components nonzero.
+
+For every \(Y_f\in\mathbb A_f^\times\) there is a unique decomposition
+\[
+Y_f=c u,\qquad
+c=\prod_p p^{v_p(Y_p)}\in\mathbb Q_{>0},\qquad
+u\in\widehat{\mathbb Z}^{\times}.
+\tag{GR1.1}
+\]
+All factors occur in the displayed finite product. Their valuations show existence. If \(c u=c'u'\), then the positive rational \(c/c'\) has zero valuation at every prime. Its numerator and denominator therefore have no prime factors, so \(c/c'=1\), which gives uniqueness.
+
+On the cover with \(Y_\infty>0\), set
+\[
+\kappa(X_f,Y_f,X_\infty,Y_\infty)
+=\left([(X_f/c,X_\infty/c)],\,Y_\infty/c\right)
+ = (g,y).
+\tag{GR1.2}
+\]
+For the source left action \((X,Y)\mapsto(aX+b,aY)\), where \(a\in\mathbb Q_{>0}\) and \(b\in\mathbb Q\), the new factor is \(c'=ac\), and hence
+\[
+g'=[X/c+b/(ac)]=g,\qquad y'=y.
+\tag{GR1.3}
+\]
+The equality in \(G\) follows from the actual rational diagonal translation \(b/(ac)\). A right finite unit changes \(u\) and leaves \(c,g,y\) unchanged.
+
+Conversely, two such points with equal \(g,y\) become equivalent after this finite unit quotient. Indeed, take \(a=c'/c\). Equal \(y\) gives \(Y'_\infty=aY_\infty\), and equality of \(g\) gives
+\[
+X'/c'-X/c=b_0\in\mathbb Q.
+\]
+Thus \(X'=aX+c'b_0\), which is the required rational affine action; the finite second-coordinate units are matched by the separate unit quotient. This proves the quotient-set comparison, without inferring a topology from it.
+
+If both nonzero signs of \(Y_\infty\) are included and the left group is \(\mathbb Q^\times\), one may select the positive archimedean representative explicitly by
+\[
+\sigma=\operatorname{sgn}(Y_\infty),\qquad
+g=[\sigma X/c],\qquad y=|Y_\infty|/c.
+\]
+For arbitrary nonzero \(a\), \(c'=|a|c\) and \(\sigma'=\sigma\operatorname{sgn}(a)\). Therefore
+\[
+g'=g+\left[\frac{\sigma' b}{|a|c}\right]=g,\qquad y'=y.
+\tag{GR1.4}
+\]
+This sign formula is not an identification of a finite-adele collapsed point with the archimedean zero locus of the source's separate extension.
+
+There is an essential topology issue. Let \(c_n=1+n!\). Then \(c_n\to1\) in \(\mathbb A_f\): every \(c_n\) is integral at every prime, and \(n!\) has arbitrarily large valuation at every fixed finite collection of primes. The points
+\[
+(X_f,Y_f,X_\infty,Y_\infty)=(0,c_n,0,1)
+\]
+converge in the ambient additive-adele topology to \((0,1,0,1)\), but their \(y\)-coordinates tend to zero, whereas the limit point has \(y=1\). Consequently \(\kappa\) is not continuous for that inherited topology, even on this classical locus. The product topology of the source's \(G\times\mathbb R_{>0}\) chart must be carried separately. The closure below is an explicit graph correspondence; no blowup or original coarse compactification is inferred.
+
+## GR2. The graph fibre over the collapsed finite-adele boundary
+
+Let
+\[
+E=\mathbb A_f^2\times\mathbb R_X\times\mathbb R_{>0,Y},
+\]
+with the indicated product topology, and let \(\mathscr G\) be the closure in \(E\times G\times[0,\infty)\) of the graph of (GR1.2) on the finite-idele locus. Fix
+\[
+e_*=(0,0,s,t),\qquad s\in\mathbb R,\quad t>0.
+\]
+Then
+\[
+\mathscr G_{e_*}=G\times\{0\}.
+\tag{GR2.1}
+\]
+
+For the inclusion from left to right, take a convergent graph net over \(e_*\). Eventually \(Y_f\) belongs to the open compact subgroup \(\widehat{\mathbb Z}\). Formula (GR1.1) then makes \(c\) a positive integer. Since \(Y_2\to0\), for every \(M\) eventually \(v_2(c)\ge M\). It follows that \(c\ge2^M\), so \(c\to+\infty\) in the real topology. Because \(Y_\infty\to t\), the quotient \(y=Y_\infty/c\) tends to zero.
+
+For the reverse inclusion, first fix \(t_f\in\mathbb A_f\). There is an integer \(d>0\) with \(dt_f\in\widehat{\mathbb Z}\), since only finitely many negative valuations need to be cleared. Put \(c_n=d n!\). Then \(c_n\to0\) and \(c_nt_f\to0\) in \(\mathbb A_f\), while \(c_n\to+\infty\) in \(\mathbb R\). The graph points arising from
+\[
+(X_f,Y_f,X_\infty,Y_\infty)=(c_nt_f,c_n,s,t)
+\]
+approach
+\[
+(e_*,[(t_f,0)],0).
+\]
+Finally the image of \(\mathbb A_f\times\{0\}\) is dense in \(G\). To verify this directly, take any \([(t_f,t_\infty)]\) and rationals \(b_n\to t_\infty\) in \(\mathbb R\). In the quotient,
+\[
+[(t_f-b_n,0)]-[(t_f,t_\infty)]
+=[(0,b_n-t_\infty)]\longrightarrow0.
+\]
+The fibre of the closed set \(\mathscr G\) is closed, so it contains the closure \(G\times\{0\}\) of the points already obtained. This proves (GR2.1).
+
+The projection of the graph closure to \(G\times[0,\infty)\) is continuous by construction. Its subsequent map into the source space \((G\times\mathbb R)/\{\pm1\}\) is also continuous. Over \(e_*\) it retains the full map \(G\to G/\{\pm1\}\), rather than identifying the direction fibre with a single point.
+
+## GR3. Exact restriction of the full finite coefficient algebra
+
+Retain the source algebraic coefficient ring
+\[
+W_{\mathrm{alg}}=\mathbb C[\mathbb R_{>0}^{\times}],\qquad
+\chi_\lambda([x])=x^\lambda,\qquad
+\theta_\mu([x])=[x^\mu],\qquad \lambda,\mu>0.
+\]
+For \(r\in\mathbb Q\), the source function is
+\[
+q^r(g,y)=e_r(g)[e^{-2\pi r y}],\qquad
+\chi_\lambda(q^r)=e_r(g)e^{-2\pi r\lambda y}.
+\tag{GR3.1}
+\]
+Negative and zero frequencies are included. The base of every Teichmüller coefficient remains positive for every real \(y\).
+
+Let \(\mathcal A\) consist of finite sums \(\sum_r w_rq^r\). Every character evaluation extends on \(\mathscr G\) by the right side of
+\[
+\chi_\lambda\!\left(\sum_r w_rq^r\right)
+=\sum_r\chi_\lambda(w_r)e_r(g)e^{-2\pi r\lambda y}.
+\tag{GR3.2}
+\]
+This is a statement about the specified family of scalar characters, and does not presume an unspecified topology on the group algebra.
+
+Let \(\nu\) be Haar measure on \(G\) of any retained total mass \(M>0\). Translation invariance gives \(\int_Ge_r\,d\nu=0\) for \(r\ne0\): translating by an element on which \(e_r\ne1\) multiplies the integral by a factor different from one. Thus
+\[
+\frac1M\int_G e_r(g)\overline{e_s(g)}\,d\nu(g)
+=\begin{cases}1&r=s,\\0&r\ne s.\end{cases}
+\tag{GR3.3}
+\]
+This formula retains the measure factor. Taking the source's probability Haar measure sets \(M=1\).
+
+The family of coefficient characters is faithful. For distinct \(x_1,\ldots,x_d>0\), evaluation of \(\sum_ja_j[x_j]\) at \(\lambda=1,\ldots,d\) has determinant
+\[
+\left(\prod_jx_j\right)\prod_{i<j}(x_j-x_i)\ne0.
+\]
+Consequently (GR3.3) followed by these character evaluations proves that the \(\{q^r\}\) are linearly independent over \(W_{\mathrm{alg}}\). Both \(\mathcal A\) and its generated boundary algebra are exactly copies of \(W_{\mathrm{alg}}[\mathbb Q]\), and restriction is the algebra isomorphism
+\[
+\mathrm{res}:\mathcal A\longrightarrow
+\mathcal B:=W_{\mathrm{alg}}\otimes\mathbb C[\mathbb Q],
+\qquad wq^r\longmapsto w\otimes[r].
+\tag{GR3.4}
+\]
+The faithful boundary realization of \(w\otimes[r]\) is the family \(\chi_\lambda(w)e_r(g)\). The inverse sends \(w\otimes[r]\) to the actual function \(wq^r\). No rational frequency has been removed.
+
+Equations (GR2.1) and (GR3.3) also give the exact extension criterion at the single collapsed point in \(E\). A finite sum (GR3.2) has a characterwise continuous extension there, independent of the approach, exactly when \(w_r=0\) for every \(r\ne0\). Indeed, all \(g\) occur in the graph fibre. Its boundary evaluation must therefore be constant in \(g\). Formula (GR3.3) gives \(\chi_\lambda(w_r)=0\) for every \(r\ne0\) and every \(\lambda>0\); faithfulness gives \(w_r=0\). The converse is constant extension. Thus the extendable subalgebra at the collapsed point is \(W_{\mathrm{alg}}\), while the graph retains the full algebra \(\mathcal B\).
+
+Under arithmetic Frobenius the finite coordinates and \(g\) remain fixed, the radial coordinate becomes \(y/\mu\), and coefficients receive \(\theta_\mu\). In particular,
+\[
+\theta_\mu([e^{-2\pi r y/\mu}])=[e^{-2\pi r y}],
+\]
+so
+\[
+\mathfrak F_\mu\!\left(\sum_r w_rq^r\right)
+=\sum_r\theta_\mu(w_r)q^r.
+\tag{GR3.5}
+\]
+Restriction (GR3.4) intertwines this with \(\theta_\mu\otimes I\) on the full boundary algebra.
+
+## GR4. Verification of the actual radial differential and lifting homotopy
+
+The source's Remark additivestruct adds the locus \(G/\{\pm1\}\) by extending to \((G\times\mathbb R)/\{\pm1\}\). On its oriented cover use exactly the algebra
+\[
+\mathcal C=C^\infty(\mathbb R)\otimes W_{\mathrm{alg}}
+ \otimes\mathbb C[\mathbb Q],
+\]
+realized by \(h(y)wq^r(g,y)\). The same Fourier and character argument as GR3 proves that this realization is injective, now pointwise for every \(y\); linear independence of the group-algebra basis then makes each smooth coefficient unique.
+
+For \(L_\lambda=y(\lambda\partial_g+i\partial_y)\), the complete calculation is
+\[
+\begin{aligned}
+L_\lambda\chi_\lambda(h wq^r)
+&=\chi_\lambda(w)e_r(g)e^{-2\pi r\lambda y}
+ \left(2\pi i\lambda r yh+iyh'-2\pi i r\lambda yh\right)\\
+&=iyh'\chi_\lambda(w)e_r(g)e^{-2\pi r\lambda y}.
+\end{aligned}
+\tag{GR4.1}
+\]
+Therefore its actual induced differential is \(d(h wq^r)=iyh'wq^r\).
+
+Define the chain maps in both degrees by
+\[
+R(h wq^r)=h(0)w\otimes[r],\qquad
+E(w\otimes[r])=wq^r.
+\]
+The boundary differential is zero. We have \(RE=I\), \(Rd=0\), and \(dE=0\).
+
+On scalar coefficients let
+\[
+(Th)(y)=\frac1i\int_0^y\frac{h(t)-h(0)}t\,dt.
+\tag{GR4.2}
+\]
+The integrand extends smoothly at zero because it equals \(\int_0^1h'(ut)\,du\). This equality also supplies every derivative at zero. Consequently \(T\) is a map on the stated smooth coefficient space, and
+\[
+dTh=h-h(0),\qquad Tdh=h-h(0).
+\tag{GR4.3}
+\]
+The first identity follows by differentiating (GR4.2). The second follows by substituting \(dh(t)=it h'(t)\) and integrating. These are respectively the degree-one and degree-zero components of
+\[
+dT+Td=I-ER.
+\tag{GR4.4}
+\]
+Thus \(R,E\) induce inverse isomorphisms in degrees zero and one, each with \(\mathcal B\). Moreover \(T\) preserves \(\ker R\) because \(Th(0)=0\), so the kernel complex is contracted. This proves the zero connecting homomorphism for this actual short exact sequence of specified complexes.
+
+## GR5. Frobenius, the sign involution and both cochain degrees
+
+Write
+\[
+B_\mu(h(y)wq^r)=h(y/\mu)\theta_\mu(w)q^r.
+\]
+Direct differentiation gives \(dB_\mu=B_\mu d\). The factor \(y/\mu\) in the differentiated coefficient occurs on both sides; no factor has been removed. Substitution \(t=\mu u\) in (GR4.2) gives \(TB_\mu=B_\mu T\). The maps \(E,R\) also intertwine \(B_\mu\) with \(\theta_\mu\otimes I\).
+
+The source's simultaneous sign involution is
+\[
+I(h(y)wq^r)=h(-y)wq^{-r}.
+\tag{GR5.1}
+\]
+It has the same action in both degrees of the \(L_\lambda\) complex. Indeed \(dI=Id\), because differentiation contributes a negative sign and the reflected radial coordinate contributes the other negative sign. Substitution \(t=-u\), including the orientation of the integral, gives \(TI=IT\). Boundary restriction and extension commute with the corresponding frequency reflection. Thus all the homotopy identities restrict to invariants. Both cohomology groups on that invariant complex are precisely
+\[
+\mathcal B^I=
+W_{\mathrm{alg}}\otimes\mathbb C[\mathbb Q]^{r\mapsto-r}.
+\tag{GR5.2}
+\]
+This is proved by restriction of the explicit maps, without assuming exactness of an unspecified invariant functor.
+
+## GR6. The complete boundary contribution of the radial factor
+
+The raw family \(D_\lambda=\lambda\partial_g+i\partial_y\) acts on the same realized finite algebra by
+\[
+d_{\mathrm{raw}}(h wq^r)=ih'wq^r.
+\]
+It defines \(\mathcal C_{\mathrm{raw}}=(\mathcal C\xrightarrow{i\partial_y}\mathcal C)\); the original family defines \(\mathcal C_{\mathrm{original}}=(\mathcal C\xrightarrow{iy\partial_y}\mathcal C)\). There is the exact chain map
+\[
+F=(F^0,F^1)=(\mathrm{id},M_y):
+\mathcal C_{\mathrm{raw}}\longrightarrow
+\mathcal C_{\mathrm{original}}.
+\tag{GR6.1}
+\]
+It is a chain map because \(M_y(i\partial_y)=iy\partial_y\).
+
+Multiplication by \(y\) is injective on smooth functions: \(yh=0\) implies \(h(y)=0\) away from zero, and continuity gives \(h(0)=0\). Its image is exactly the smooth functions vanishing at zero, by
+\[
+h(y)=y\int_0^1h'(uy)\,du\quad\text{when }h(0)=0.
+\]
+These statements apply coefficientwise to the finite tensor algebra. Its cokernel is therefore \(\mathcal B\), by evaluation at zero. There is a short exact sequence of complexes
+\[
+0\longrightarrow\mathcal C_{\mathrm{raw}}
+\xrightarrow{(\mathrm{id},M_y)}
+\mathcal C_{\mathrm{original}}
+\xrightarrow{(0,R)}
+\mathcal B[-1]\longrightarrow0,
+\tag{GR6.2}
+\]
+where \(\mathcal B[-1]\) denotes \(\mathcal B\) in degree one and zero in every other degree.
+
+The derivative \(i\partial_y\) is surjective on \(C^\infty(\mathbb R)\), since \(g\) has smooth preimage \((1/i)\int_0^y g(t)\,dt\). Its kernel consists exactly of constants. Hence
+\[
+H^0(\mathcal C_{\mathrm{raw}})=\mathcal B,\qquad
+H^1(\mathcal C_{\mathrm{raw}})=0,
+\]
+whereas GR4 gives \(H^0(\mathcal C_{\mathrm{original}})=H^1(\mathcal C_{\mathrm{original}})=\mathcal B\). In (GR6.2), evaluation identifies the additional degree-one class with the boundary algebra itself. Inverting the factor \(y\) at \(y=0\) would remove exactly this contribution and would not be an isomorphism of the stated complexes.
+
+The cochain actions agree with this sequence. For the raw complex,
+\[
+d_{\mathrm{raw}}B_\mu=\mu^{-1}B_\mu d_{\mathrm{raw}},
+\]
+so its degree-zero Frobenius is \(B_\mu\) and its degree-one Frobenius is \(\mu^{-1}B_\mu\). For the original complex both degrees have \(B_\mu\). The intertwining equality
+\[
+B_\mu M_y=M_y(\mu^{-1}B_\mu)
+\tag{GR6.3}
+\]
+proves equivariance of (GR6.1) in degree one. The raw sign action is \(I\) in degree zero and \(-I\) in degree one, since \(d_{\mathrm{raw}}I=-Id_{\mathrm{raw}}\). The original sign action is \(I\) in both degrees, and
+\[
+IM_y=M_y(-I).
+\tag{GR6.4}
+\]
+Thus (GR6.2) respects both Frobenius and the source sign quotient. These degree factors cannot be transferred unchanged from the raw operator to the original operator at the boundary.
+
+## GR7. Review conclusion and exact range
+
+The graph fibre statement, coarse extension criterion, injective boundary algebra, full radial homotopy, arithmetic Frobenius equivariance and sign equivariance in CB0–CB6 are correct for their specified domains. The source formula \(L_\lambda=yD_\lambda\) is essential. GR6 proves its complete extra boundary contribution and supplies the required comparison without inverting \(y\).
+
+This is a lifting theorem for the actual original-character differential on the explicitly defined smooth-radial, finite-frequency coefficient algebra. It is not a calculation of every completed \(W\)-valued section, every adelic support stratum, or the entire tau specialization. It neither assigns a boundary coordinate to primitive \(Z_1/\tau\) nor supplies Deligne's numerical weight separation by itself. The full coefficient and frequency data survive the lift. The independent review does not recertify the earlier CW proof cited in CB7; the latter remains a stated dependency, with its complete proof in its own source.

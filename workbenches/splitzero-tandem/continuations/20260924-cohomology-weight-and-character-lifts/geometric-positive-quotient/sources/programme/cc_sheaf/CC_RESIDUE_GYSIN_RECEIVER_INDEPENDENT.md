@@ -1,0 +1,566 @@
+# The supported residue map, its signed Gysin obstruction, and its actual receiver
+
+Independent derivation, 24 September 2026. Proof locators RGR0–RGR12.
+
+## RGR0. Construction stage and the precise problem
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). The operations in this note are on the already constructed arithmetic coefficient sheaf. They give no addition, subtraction, midpoint, metric, vector coordinate, or extra parity to \(\tau\). The complete-history reconstruction and separate branch counters precede these coefficient operations. The connected user argument, its correction table, and the full passages U126–U128, U135–U141, WU050–WU055 and WU061–WU062 were consulted before this derivation. In particular, a local analytic lifting problem is not identified with the user's entire construction or with Deligne's arithmetic lifting problem merely by using the word obstruction.
+
+The actual inputs are CSP's inverse-image sheaf, CSD's continuous compact-test current dual, and RTT's original-zeta residue map. The source extension is the retained original component \(e_0\) of FOD3. The calculation asks whether the residue map on the supported quotient lifts to the existing local dual sheaf. It computes the exact obstruction and then constructs its homotopy-pullback receiver. RGR9 derives its relation to the original coefficient extension. RGR11 also carries the already computed positive-adjoint defect into the same local receiver; it does not substitute the nonzero total residue form for that defect.
+
+All derived sheaf calculations below take place in sheaves of complex vector spaces. The specified maps between coefficient spaces and currents remain continuous. No derived category of arbitrary locally convex spaces, finite-dimensionality of the coefficient spaces, Artinian perverse category, or equality of continuous and algebraic duals is assumed.
+
+The primary geometric provenance is Connes–Consani, *Schemes over \(\mathbb F_1\) and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3), transported by the explicit map in CSP0.2. The independent calculations used here are complete local proof files retained beside this note: CC_SPHERE_PULLBACK_AND_NORMAL_DIRECTION.md, CSP0–CSP7; CC_CONTINUOUS_SUPPORT_DUAL_SHEAF.md, CSD1–CSD6 and CSD10–CSD11; CC_FULL_SOURCE_OBSTRUCTION_DECOMPOSITION.md, FOD1–FOD5; and the peer's RESIDUE_TRACE_TRANSFER_INDEPENDENT.md, RTT0–RTT6. The positive-adjoint receiver in RGR11 uses GEOMETRIC_TRANSFER_POSITIVE_ADJOINT_DEFECT.md, GTAH0–GTAH2. The exact proof dependence is given rather than attributing these programme calculations to the primary paper.
+
+## RGR1. Full coefficient source and original-zeta factors
+
+Use
+\[
+ A=\left\{a\in C^\infty(\mathbb R_{>0}):
+ \sup_{u>0}(u^N+u^{-N})|(u\partial_u)^j a(u)|<\infty
+ \quad(N,j\ge0)\right\},
+\]
+\[
+ S=\{f\in\mathcal S(\mathbb R;\mathbb C):f(-v)=f(v),\ f(0)=0,
+ \ \int_{\mathbb R}f(v)\,dv=0\},\qquad
+ \Sigma f(u)=2\sum_{n\ge1}f(nu),
+\]
+\[
+ J=\Sigma S\subset A,\qquad Q=A/J,\qquad q:A\longrightarrow Q.
+ \tag{RGR1.1}
+\]
+The exact summation-image theorem used by CSP proves that \(J\) is closed and that \(\Sigma:S\to J\) is a topological isomorphism. Both \(A\) and \(Q\) carry their proved Fréchet topologies.
+
+The full Mellin comparison is
+\[
+ \Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u},\qquad
+ \Theta^{-1}F(u)=\frac{u^{-1/2}}\pi
+ \int_{\mathbb R}F(1/2+it)u^{-it}\,dt.
+ \tag{RGR1.2}
+\]
+It identifies \(A\) with the entire rapid-strip space
+\[
+ \mathcal B=\{F\text{ entire}:b_{R,N}(F)
+ =\sup_{|\Re s|\le R}(1+|\Im s|)^N|F(s)|<\infty
+ \text{ for every }R,N\ge0\}
+\]
+and \(J\) with
+\[
+ \mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0\text{ for every actual
+ nontrivial zero }\rho\text{ of }\zeta, 0\le j<m_\rho\}.
+ \tag{RGR1.3}
+\]
+Thus \(\Theta_Q:Q\to\mathcal Q=\mathcal B/\mathcal I\) is the exact quotient isomorphism. The summation formula before continuation is
+\[
+ \Theta\Sigma f(s)=\zeta(s)\int_0^\infty f(v)v^s\frac{dv}{v}
+ \quad(\Re s>1).
+ \tag{RGR1.4}
+\]
+In particular the original Schwartz function and its entire image remain
+\[
+ f_0(v)=\frac\pi2v^2(2\pi v^2-3)e^{-\pi v^2},\qquad
+ F_0(s)=\Theta\Sigma f_0(s)
+ =\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s).
+ \tag{RGR1.5}
+\]
+The exceptional values are
+\[
+ F_0(0)=F_0(1)=\frac18,\quad F_0(-1)=\frac\pi{24},\qquad
+ F_0(-2r)=\frac{r(2r+1)(-1)^r\pi^r}{2\,r!}\zeta'(-2r)
+ \quad(r\ge1).
+ \tag{RGR1.6}
+\]
+At a nontrivial zero \(\rho\),
+\[
+ F_0(\rho+t)=t^{m_\rho}
+ \frac{(\rho+t)(\rho+t-1)}8\pi^{-(\rho+t)/2}
+ \Gamma((\rho+t)/2)\frac{\zeta(\rho+t)}{t^{m_\rho}}.
+ \tag{RGR1.7}
+\]
+The full local holomorphic unit near \(t=0\) on the right is retained, including every derivative. It is not asserted to be an entire zero-free function. The working residue denominator below is original \(\zeta\), not \(F_0\). The original arithmetic is still
+\[
+ \zeta(s)=1+\sum_{n\ge2}n^{-s}=\prod_p(1-p^{-s})^{-1},\qquad
+ -\frac{\zeta'(s)}{\zeta(s)}
+ =\sum_p\sum_{k\ge1}(\log p)p^{-ks}\quad(\Re s>1).
+ \tag{RGR1.8}
+\]
+
+Fix one positively oriented small disk \(D\) about a pole, with inclusion \(i:\{p\}\hookrightarrow D\). The local coordinate is \(z\) at the positive pole and \(1/z\) at the other pole. CSP and CSD give the full local source \(V_p=S\oplus E_p\), where the two lines of \(E_p\) record value at zero and real integral. Its restriction is \(\Sigma\), or \(R\Sigma=\Sigma\widehat{\phantom f}\), respectively, with
+\[
+ Ra(u)=u^{-1}a(u^{-1}),\qquad
+ \widehat f(t)=\int_{\mathbb R}f(v)e^{-2\pi ivt}\,dv.
+\]
+The full Poisson correction is \(u^{-1}f(0)-\int f\); it is zero on this stated \(S\), and its two coordinates are retained in \(E_p\).
+
+Because the endpoint coordinates are explicit direct summands, the local sheaf has the actual splitting
+\[
+ \mathscr F|_D=\mathscr F_{\rm red}\oplus i_*E_p,
+ \qquad
+ \mathscr F_{\rm red}=\ker(\underline A_D\xrightarrow{q\,\mathrm{ev}_p}i_*Q).
+ \tag{RGR1.9}
+\]
+Set \(P=\mathscr F_{\rm red}[1]\). The endpoint summand is restored in RGR10. This splitting is proved by sending a source vector \((f,e)\) to \((\Sigma f,e)\), or \((R\Sigma f,e)\), using the proved inverse on \(J\). It does not remove a source contribution without its comparison map.
+
+## RGR2. The actual residue map, with its complete radical
+
+Let \(\mathscr Z\) denote the set of distinct actual nontrivial zeros, retaining multiplicities \(m_\rho\), and put \(\rho^\#=1-\overline\rho\). Define
+\[
+ H=\ell^2(\mathscr Z,m),\qquad
+ \langle x,y\rangle_+=\sum_\rho m_\rho x_\rho\overline{y_\rho},
+ \qquad (\mathsf Jx)_\rho=x_{\rho^\#},
+\]
+\[
+ E:Q\longrightarrow H,\qquad E(F)_\rho=(\Theta_QF)(\rho).
+ \tag{RGR2.1}
+\]
+Evaluation is independent of representatives. For \(f\in A\) representing a class \([f]\in Q\), the unconditional zero count and the rapid-strip seminorm defined in RGR1 give the convergent estimate
+\[
+ \|E[f]\|_+^2\le b_{1,2}(\Theta f)^2
+ \sum_\rho m_\rho(1+|\Im\rho|)^{-4}.
+ \tag{RGR2.2}
+\]
+The map on \(A\) kills \(J\), so it is continuous on the quotient. RTT's full isolators give every finite value sequence, hence \(E(Q)\) is dense in \(H\). This asserts density of values, not density of finite full-jet classes in the primal topology.
+
+Use the conjugate space \(C=\overline Q\), with scalar action \(\lambda\overline G=\overline{\overline\lambda G}\). Define the linear continuous map
+\[
+ \sigma:C\longrightarrow Q'_\beta,\qquad
+ \sigma(\overline G)(F)
+ =\langle EF,\mathsf JEG\rangle_+
+ =\sum_\rho m_\rho(\Theta_QF)(\rho)
+       \overline{(\Theta_QG)(\rho^\#)}.
+ \tag{RGR2.3}
+\]
+The prime on a coefficient space always means its continuous complex-linear dual; the subscript \(\beta\) means uniform convergence on bounded sets. For bounded \(B_0\subset Q\),
+\[
+ \sup_{F\in B_0}|\sigma(\overline G)(F)|
+ \le\left(\sup_{F\in B_0}\|EF\|_+\right)\|EG\|_+.
+ \tag{RGR2.4}
+\]
+This proves absolute convergence and strong continuity. Testing against each value isolator proves
+\[
+ \ker\sigma=\overline{\mathcal N_0},\qquad
+ \mathcal N_0=\{G\in Q:(\Theta_QG)(\rho)=0\text{ for every }\rho\}.
+ \tag{RGR2.5}
+\]
+Higher jets remain in \(Q\); (RGR2.5) records exactly which of them this map does not detect. No simplicity assumption is used.
+
+The comparison with the full residue completion is RTT's proved isomorphism \(\widehat\iota:\mathcal H_{\rm res}\to\mathcal Q'_\beta\). In the \(\mathcal Q\) coordinate its finite expression is
+\[
+ \mathcal R(F,h)=\sum_\rho\operatorname{Res}_{s=\rho}
+          \frac{F(s)h(1-s)}{\zeta(s)}\,ds.
+ \tag{RGR2.6}
+\]
+For \(\zeta(\rho+t)=t^{m_\rho}u_\rho(t)\), the exact finite approximants are
+\[
+ h_B(G)=\sum_{\rho\in B}m_\rho(-1)^{m_\rho-1}u_\rho(0)
+       \overline{G(\rho^\#)}e_{1-\rho,m_\rho-1}.
+ \tag{RGR2.7}
+\]
+Their residue functionals converge to the full sum (RGR2.3), uniformly on each bounded test set, by the Cauchy–Schwarz tail estimate in (RGR2.4). Thus \(\sigma\) is the continuous-dual version of RTT's residue map, with the stated \(\Theta_Q\) and \(\widehat\iota\) comparisons. It is not an identification of the entire primal quotient with its dual.
+
+Write
+\[
+ B=A'_\beta,\qquad j=q':Q'_\beta\longrightarrow B,
+ \qquad a=j\sigma:C\longrightarrow B.
+ \tag{RGR2.8}
+\]
+Here \(j\) is the actual transpose, \(j(\lambda)(f)=\lambda(qf)\). CSD10 and SDT's bounded-lift theorem give its strong topological identification with \(J^\perp\subset B\). In particular it is injective and
+\[
+ \ker a=\overline{\mathcal N_0}.
+ \tag{RGR2.9}
+\]
+
+## RGR3. The cone sign and the positive angular quotient
+
+For compactly supported smooth \(A\)-valued forms, use CSD's current complex
+\[
+ \mathscr T_A^n(U)=(\mathcal E_c^{-n}(U;A))',\qquad
+ dT(\phi)=(-1)^{n+1}T(d\phi),\qquad -2\le n\le0.
+ \tag{RGR3.1}
+\]
+It represents \(\underline B_D[2]\), by the explicit compact-support integration contraction in CSD2. Its positive Dirac current and positive angular current satisfy
+\[
+ \delta_p\lambda(f)=\lambda(f(p)),\qquad
+ h_p\lambda(\omega)=\int_D\frac{d\arg z_p}{2\pi}\wedge\lambda(\omega),
+ \qquad dh_p\lambda=\delta_p\lambda.
+ \tag{RGR3.2}
+\]
+The last equality follows by Stokes on a punctured disk; the small positive circle has integral one. These currents are continuous on the specified compact-test spaces. No tensor-product description of arbitrary vector-valued distributions is needed.
+
+The reduced sheaf is resolved by
+\[
+ \mathscr K^0=\mathscr E_A^0,\quad
+ \mathscr K^1=\mathscr E_A^1\oplus i_*Q,\quad
+ \mathscr K^2=\mathscr E_A^2,\qquad
+ d^0f=(df,qf(p)),\quad d^1(\omega,x)=d\omega.
+ \tag{RGR3.3}
+\]
+At the pole a primitive of a closed one-form can be altered by a constant representative of its required quotient value; \(q\) is onto. This proves algebraic stalkwise exactness, and the written differentials are continuous. It does not provide a continuous linear choice of representatives \(Q\to A\). On the puncture it is the coefficient de Rham resolution. Its continuous transpose has the cone written below, but identifying that cone with the actual CSD current dual requires the separate comparison that follows; no general exactness of continuous dualization is being used.
+\[
+ D_c\mathscr F_{\rm red}\simeq\operatorname{Cone}(g),\qquad
+ g=\delta_p j:i_*Q'_\beta\longrightarrow\mathscr T_A,
+ \qquad D_cP\simeq\operatorname{Cone}(g)[-1].
+ \tag{RGR3.4}
+\]
+Here is the comparison with the already constructed current dual. Use the reduced version of CSD4, whose literal complex is
+\[
+ D_{\mathrm{old}}=\operatorname{Cone}\bigl(i_*A'
+       \xrightarrow{(\delta_p,-k')}\mathscr T_A\oplus i_*J'\bigr).
+ \tag{RGR3.4a}
+\]
+There is a continuous cochain inclusion \(\operatorname{Cone}(g)\to D_{\mathrm{old}}\): identity on the current terms, \((T,\lambda)\mapsto(T,q'\lambda)\) in degree minus one, and \(T\mapsto(T,0)\) in degree zero. The differential commutes because \(k'q'=0\). The quotient complex is
+\[
+ i_*(A'/q'Q')\xrightarrow{-k'}i_*J'
+ \quad\text{in degrees }-1,0.
+ \tag{RGR3.4b}
+\]
+This is algebraically acyclic: the induced map is bijective by the quotient definition and continuous Hahn–Banach extension from closed \(J\) to \(A\). Hence the inclusion is a sheaf quasi-isomorphism. No continuous splitting \(Q\to A\), no strong openness of \(A'\to J'\), and no termwise exactness assertion about arbitrary dual complexes was needed. The local cohomology topologies of the small cone are computed directly by the same angular-current and fixed-test maps as CSD5. In particular the middle coefficient is \(Q'_\beta\) by the proved strong embedding \(q'\). We use the small cone as this verified representative of \(D_cP\) below.
+
+For the standard cone \(d(b,x)=(d_Bb+fx,-d_Xx)\), the latter representative has
+\[
+ (D_cP)^{-1}=\mathscr T_A^{-2},\quad
+ (D_cP)^0=\mathscr T_A^{-1}\oplus i_*Q',\quad
+ (D_cP)^1=\mathscr T_A^0,
+\]
+\[
+ d^{-1}b=(-d_Tb,0),\qquad
+ d^0(b,\lambda)=-d_Tb-g\lambda.
+ \tag{RGR3.5}
+\]
+With literal projection \(\pi(b,\lambda)=\lambda\), the connecting arrow of the short exact sequence of complexes is \(-g\): lift \(\lambda\) as \((0,\lambda)\), whose differential is \(-g\lambda\). This is the dual counterpart of the negative connecting arrow in the coordinate triangle \(i_*Q\to\operatorname{Cone}(q)\to\underline A[1]\to i_*Q[1]\).
+
+The positive angular stalk class labelled \(\mu\in Q'\) is
+\[
+ (h_pj\mu,-\mu).
+ \tag{RGR3.6}
+\]
+Its differential is zero by (RGR3.2). It restricts to the positive angular class \(h_pj\mu\). Consequently the quotient map recovering that label is
+\[
+ \gamma:D_cP\longrightarrow i_*Q',\qquad
+ \gamma(b,\lambda)=-\lambda.
+ \tag{RGR3.7}
+\]
+This is an explicit change of the quotient coordinate, not a suppressed sign. With this convention the actual triangle is
+\[
+ \mathscr T_A[-1]\longrightarrow D_cP
+ \xrightarrow{\gamma}i_*Q'
+ \xrightarrow{\ g\ }\mathscr T_A.
+ \tag{RGR3.8}
+\]
+Indeed the lift of \(\mu\) in this quotient coordinate is \((0,-\mu)\), whose differential is \(+g\mu\). The first arrow is the unchanged inclusion of currents.
+
+## RGR4. Gysin adjunction and the exact lifting obstruction
+
+We ask for a morphism \(\ell:i_*C\to D_cP\) with \(\gamma\ell=i_*\sigma\). The exact Hom sequence of (RGR3.8) identifies its obstruction as
+\[
+ \boxed{\mathfrak o_\sigma=g\,i_*\sigma
+       =\mathrm{Gys}_B\circ i_*a:
+       i_*C\longrightarrow\underline B_D[2].}
+ \tag{RGR4.1}
+\]
+At the current level this is exactly \(x\mapsto\delta_p(a x)\), with positive sign.
+
+Here the Gysin adjunction is valid for these full coefficient spaces. To see it without a finite-rank hypothesis, compute supported cohomology of \(\mathscr T_A\) by the restriction fibre from a disk to its puncture. The disk current cohomology is \(B\) in degree \(-2\). The puncture has \(B\) in degrees \(-2,-1\), represented by constant and angular currents. Cancelling the identity constant restriction leaves \(B\) in degree zero. The positive generator is the class of the supported positive Dirac current. Equivalently, in the restriction fibre, \((\delta_p\lambda,0)\) is cohomologous to \((0,-h_p\lambda)\). Thus
+\[
+ i^!\underline B_D[2]\simeq B[0],\qquad
+ \operatorname{Hom}_{D(D)}(i_*C,\underline B_D[2])
+ \simeq\operatorname{Hom}_{\mathbb C}(C,B),
+ \tag{RGR4.2}
+\]
+and (RGR4.1) corresponds to \(+a\). The derived adjunction uses the exact point functor and the category of vector spaces; no dimension bound is needed. Every displayed continuous coefficient map gives a continuous current representative. The Hom group in (RGR4.2) is not claimed to contain only continuous coefficient maps.
+
+Since \(j\) is injective,
+\[
+ \mathfrak o_\sigma=0\quad\Longleftrightarrow\quad a=0
+ \quad\Longleftrightarrow\quad\sigma=0.
+ \tag{RGR4.3}
+\]
+For the actual residue map it is nonzero. Choose any actual zero \(\rho\), its full value isolator \(F\), and the isolator at \(\rho^\#\) as \(G\). Equation (RGR2.3) gives \(\sigma(\overline G)(F)=m_\rho\ne0\). All arithmetic has already been reconstructed before this use of its zero divisor. In particular the same witness works at a zero on the critical line: this total-residue obstruction does not distinguish on-line from off-line zeros.
+
+The identity \(dh_p a x=\delta_pa x\) does not supply a supported sheaf null-homotopy. The current \(h_pa x\) restricts to a nonzero angular current on the puncture whenever \(a x\ne0\), while a section of \(i_*C\) restricts to zero there. Thus \(x\mapsto h_pa x\) is a primitive on a disk or at its stalk, but it cannot be a morphism \(i_*C\to\mathscr T_A^{-1}\) for nonzero \(a\). This is the precise reason a zero stalkwise Gysin map can represent the nonzero supported derived morphism (RGR4.1).
+
+For an arbitrary vector subspace \(C_0\subset C\), the restricted map lifts exactly when \(C_0\subset\overline{\mathcal N_0}\). This follows by applying the same adjunction to the restriction of \(a\). Thus the exact largest liftable part of the supported source is its retained value-zero radical. No absence of higher jets is presumed.
+
+## RGR5. The actual receiver constructed from the obstruction
+
+Use the sign in (RGR3.8) and define
+\[
+ \mathscr E_\sigma=\operatorname{Cone}(-\delta_p a)[-1].
+ \tag{RGR5.1}
+\]
+The entire complex is
+\[
+ \mathscr E_\sigma^{-1}=\mathscr T_A^{-2},\quad
+ \mathscr E_\sigma^0=\mathscr T_A^{-1}\oplus i_*C,\quad
+ \mathscr E_\sigma^1=\mathscr T_A^0,
+\]
+\[
+ d^{-1}b=(-d_Tb,0),\qquad d^0(b,x)=-d_Tb+\delta_p(a x).
+ \tag{RGR5.2}
+\]
+It has the explicit morphisms
+\[
+ p_\sigma:\mathscr E_\sigma\longrightarrow i_*C,\quad (b,x)\mapsto x,
+\qquad
+ v_\sigma:\mathscr E_\sigma\longrightarrow D_cP,\quad
+ (b,x)\mapsto(b,-\sigma x),
+ \tag{RGR5.3}
+\]
+and identity on the other current terms. Substitution into (RGR3.5) gives
+\(-d_Tb-g(-\sigma x)=-d_Tb+\delta_p a x\), so this is a cochain map, and
+\[
+ \gamma v_\sigma=i_*\sigma\,p_\sigma.
+ \tag{RGR5.4}
+\]
+Because \(\gamma\) is a degreewise split surjection of the written complexes, their strict pullback is the homotopy pullback. Its equation is \(-\lambda=\sigma x\), yielding exactly (RGR5.2). The associated triangle is
+\[
+ \underline B_D[1]\longrightarrow\mathscr E_\sigma
+ \xrightarrow{p_\sigma}i_*C
+ \xrightarrow{\mathfrak o_\sigma}\underline B_D[2].
+ \tag{RGR5.5}
+\]
+This receiver retains the obstruction as its attaching map. It does not declare that the original unsupported lift exists.
+
+## RGR6. Stalk, costalk, nearby cycles, and variation
+
+On the puncture, \(\mathscr E_\sigma\) is the current realization of \(\underline B[1]\), so its local system has monodromy identity. On a small disk its two cohomology groups have explicit representatives
+\[
+ B\ni\lambda\longmapsto c_\lambda\quad(\deg -1),\qquad
+ C\ni x\longmapsto(h_p a x,x)\quad(\deg0).
+ \tag{RGR6.1}
+\]
+The second is closed because \(dh_p a x=\delta_p a x\). CSD's compact-test contraction kills the remaining current terms and provides inverse continuous maps on the cohomology of each fixed disk. Consequently
+\[
+ i^*\mathscr E_\sigma\simeq B[1]\oplus C[0].
+ \tag{RGR6.2}
+\]
+Restriction to the punctured disk is identity on the degree-minus-one constant class and is \(x\mapsto a x\) on the degree-zero angular class. The supported restriction fibre cancels the constant identity. With the positive Dirac convention of (RGR4.2), the remaining costalk complex is
+\[
+ \boxed{i^!\mathscr E_\sigma\simeq[C\xrightarrow{\ a\ }B]
+       \quad\text{in degrees }0,1.}
+ \tag{RGR6.3}
+\]
+For an explicit cancellation, the restriction fibre in the convention \(d(s,t)=(ds,\mathrm{res}(s)-dt)\) has coefficient complex
+\[
+ B\xrightarrow{b\mapsto(0,b)}C\oplus B
+    \xrightarrow{(x,b)\mapsto a x}B
+ \quad\text{in degrees }-1,0,1.
+ \tag{RGR6.3a}
+\]
+Eliminating the identity pair gives (RGR6.3). In the shifted current complex, \(d h_p b=-\delta_pb\); hence in this fibre \(d(h_pb,0)=(-\delta_pb,h_pb)\), so \((\delta_pb,0)\) and \((0,h_pb)\) give the same positive supported class. Thus the target \(B\) in (RGR6.3) uses positive Dirac orientation.
+
+The literal standard expression \(\operatorname{Cone}(\mathrm{var})[-1]\), for \(\mathrm{var}=a:C\to B\), instead has differential \(-a\). Its exact comparison with (RGR6.3) is identity on \(C\) and multiplication by \(-1\) on the target \(B\). Thus its literal target coordinate is the negative of the positive supported coordinate just specified. This sign change does not change \(\mathrm{var}=+a\) in (RGR6.5). For the comparison to \([Q'\xrightarrow jB]\), change the target coordinate on both complexes together: the costalk arrow remains \((\sigma,1_B)\). For \([C\to Q']\to[C\to B]\) in RGR9, change both target coordinates together: its arrow remains \((1_C,j)\). This explicitly reconciles the standard shifted-cone convention with the positive-Dirac restriction-fibre convention.
+
+The sign can also be read without cancellation: applying \(i^!\) to (RGR5.5), its connecting morphism is \(+a:C\to B\) by (RGR4.2). The costalk cohomology is therefore
+\[
+ H^0(i^!\mathscr E_\sigma)=\overline{\mathcal N_0},\qquad
+ H^1(i^!\mathscr E_\sigma)=B/a(C).
+ \tag{RGR6.4}
+\]
+These are the algebraic cohomology groups with their indicated kernel and quotient topologies. No closedness of \(a(C)\), Hausdorffness of its quotient, or strong-open mapping theorem for a dual restriction map is asserted.
+
+For completeness one can read the nearby and vanishing maps directly. Pull back the constant punctured local system to the universal cover and contract there; its shifted nearby complex is \(B[0]\). The ordinary restriction model on the puncture is \(B[1]\oplus B[0]\). In the stalk model (RGR6.2), its first component is projection onto \(B[1]\), and its angular component is \(a:C\to B\). The shifted vanishing cone of the first component cancels this identity pair and leaves \(C[0]\). Thus, in the positive angular convention,
+\[
+ \Psi(\mathscr E_\sigma)=B,\qquad
+ \Phi(\mathscr E_\sigma)=C,\qquad
+ \operatorname{can}=0,\qquad
+ \operatorname{var}=a,\qquad T=1.
+ \tag{RGR6.5}
+\]
+Here \(\Psi=R\psi[-1]\) and \(\Phi=R\phi[-1]\). Both composites of can and var are zero, agreeing with \(1-T=0\). This is a direct calculation on the specified complexes, rather than an invocation of finite-constructible gluing theory.
+
+The full morphism to \(D_cP\) is
+\[
+ (\Psi(v_\sigma),\Phi(v_\sigma))=(1_B,\sigma).
+ \tag{RGR6.6}
+\]
+On costalks it is the map \([C\xrightarrow a B]\to[Q'\xrightarrow j B]\) with components \((\sigma,1_B)\). In particular the radical appears as an actual supported cohomology group; it has not been erased by passing to values.
+
+## RGR7. Exact supported kernel and cokernel of the receiver map
+
+The current term is common to the two triangles (RGR3.8) and (RGR5.5), and the map there is identity. Taking the cone of the displayed morphism of triangles gives
+\[
+ \operatorname{Cone}(v_\sigma)\simeq i_*\operatorname{Cone}(\sigma),
+ \qquad \operatorname{Cone}(\sigma)=[C\xrightarrow\sigma Q']
+ \text{ in degrees }-1,0.
+ \tag{RGR7.1}
+\]
+Here is an explicit cone comparison. Put \(L=\mathscr T_A[-1]\) and write a cone element as \((b,\lambda;u,x)\in(D_cP)^n\oplus\mathscr E_\sigma^{n+1}\). The map
+\[
+ (b,\lambda;u,x)\longmapsto(-\lambda,x)
+ \tag{RGR7.1a}
+\]
+to \(i_*\operatorname{Cone}(\sigma)\) is a surjective cochain map: the target differential is \((\eta,x)\mapsto(\sigma x,0)\). Its kernel is \(\operatorname{Cone}(1_L)\), with contraction \((b;u)\mapsto(0;b)\). Indeed the sum of the two compositions with the cone differential is \((b;u)\). This proves (RGR7.1) and its sign. It follows that
+\[
+ \mathcal H^{-1}\operatorname{Cone}(v_\sigma)
+    =i_*\overline{\mathcal N_0},\qquad
+ \mathcal H^0\operatorname{Cone}(v_\sigma)=i_*(Q'/\sigma C).
+ \tag{RGR7.2}
+\]
+The inclusion of \(i_*\overline{\mathcal N_0}\) into \(\mathscr E_\sigma\) is literal: send \(x\) to \((0,x)\) in degree zero. Its differential vanishes because \(a x=0\). This supported map records the maximal liftable subspace from RGR4.
+
+Applying (RGR6.3) with \(C=Q'\), \(a=j\), gives
+\[
+ i^!D_cP\simeq[Q'\xrightarrow j B]\simeq J'[-1]
+ \tag{RGR7.3}
+\]
+as complexes of vector spaces. The last assertion uses Hahn–Banach to identify the algebraic cokernel with \(J'\). It asserts no strong-topology inverse. Since this has cohomology only in degree one, \(\operatorname{Hom}_{D(D)}(i_*C,D_cP)=0\). Thus a lift of a zero supported residue map is the zero morphism in this derived category; the failure to lift the actual nonzero residue map is not an ambiguity among several lifts.
+
+## RGR8. The image topology and the retained multiplicity information
+
+RTT6 proves in the strong dual
+\[
+ \overline{\sigma(C)}=\mathcal N_0^\perp\subset Q'_\beta.
+ \tag{RGR8.1}
+\]
+One proof is to note that the image contains every value functional. A continuous functional on the strong dual separating its closure from an element of \(\mathcal N_0^\perp\) is, by SDT's proved bidual result, evaluation at an actual class in \(Q\). Vanishing on every value functional places that class in \(\mathcal N_0\), a contradiction. Conversely every image functional annihilates \(\mathcal N_0\).
+
+Since \(j\) is a strong topological embedding with closed image, this gives
+\[
+ \overline{a(C)}=j(\mathcal N_0^\perp)\subset J^\perp\subset B.
+ \tag{RGR8.2}
+\]
+The separated quotient of the second group in (RGR6.4) is therefore \(B/j(\mathcal N_0^\perp)\). The unseparated quotient \(B/a(C)\) remains the actual cohomology with its original quotient topology. The two are not silently identified.
+
+At a zero of multiplicity \(m\), the full primal local block is \(\mathbb C[t]/(t^m)\). Its value-zero part \(t\mathbb C[t]/(t^m)\) has dimension \(m-1\). The actual residue numerator in (RGR2.7) uses \(m(-1)^{m-1}u_\rho(0)\) and the highest-jet line of the reflected block. Thus the receiver retains the full input block and records the precise rank-one value observation; it does not replace multiplicity by one or identify the value radical with a removed part of the sheaf.
+
+## RGR9. Exact relation to the retained original extension
+
+Under (RGR1.2), FOD's actual original source row is
+\[
+ e_0:\quad0\longrightarrow J\xrightarrow{k}A\xrightarrow q Q\longrightarrow0.
+ \tag{RGR9.1}
+\]
+Its continuous transpose is the vector-space exact sequence
+\[
+ 0\longrightarrow Q'\xrightarrow{j=q'}B=A'
+   \xrightarrow{k'}J'\longrightarrow0.
+ \tag{RGR9.2}
+\]
+Injectivity and the kernel follow from the quotient definition. Surjectivity is precisely Hahn–Banach for continuous functionals on the closed subspace \(J\subset A\). All three maps are continuous for strong duals because the primal maps carry bounded sets to bounded sets. We do not infer that \(k'\) is strongly open or that a continuous section exists.
+
+There is a further actual receiver
+\[
+ \mathscr K_\sigma=\operatorname{Fib}
+ \bigl(i_*C\xrightarrow{\mathrm{Gys}_{Q'}\,\sigma}
+                 \underline{Q'}_D[2]\bigr),
+ \tag{RGR9.3}
+\]
+where Fib denotes the positive-quotient convention used in (RGR5.1)–(RGR5.5). It has a continuous-current representative. Form \(\mathscr T_Q\) from compactly supported smooth \(Q\)-valued tests by exactly (RGR3.1). The compact-support integrations of CSD2 apply because \(Q\) is Fréchet and complete. They identify \(\mathscr T_Q\simeq\underline{Q'}[2]\), with its actual strong coefficient topology on local cohomology. Then
+\[
+ \mathscr K_\sigma^n=\mathscr T_Q^{n-1}\oplus i_*C^n,
+ \qquad d(v,x)=(-dv+\delta_Q\sigma x,0).
+ \tag{RGR9.3a}
+\]
+Transposing the continuous maps on compactly supported tests induced by \(q:A\to Q\) and \(k:J\to A\) gives
+\[
+ q^\vee:\mathscr T_Q\to\mathscr T_A,\qquad
+ k^\vee:\mathscr T_A\to\mathscr T_J,\qquad k^\vee q^\vee=0.
+ \tag{RGR9.3b}
+\]
+Their maps on constant-current coefficients are precisely \(j=q'\) and \(k'\). The resulting receiver maps are \((v,x)\mapsto(q^\vee v,x)\) and \((b,x)\mapsto k^\vee b\). These are continuous cochain maps. No assertion that the three current complexes form a termwise exact strong-dual sequence is required. The same object can alternatively be defined by the positively oriented scalar Gysin map tensored with the coefficient vector space in the stated vector-sheaf category.
+
+Naturality of the oriented Gysin map gives
+\[
+ \mathrm{Gys}_{B}\,j\sigma
+ =\underline j[2]\,\mathrm{Gys}_{Q'}\,\sigma.
+ \tag{RGR9.4}
+\]
+Apply the fibre triangle for this composite. The fibre of \(\underline j[2]\) is \(\underline{J'}[1]\) by the exact row (RGR9.2). For the written current complexes this identification also follows from the continuous constant-current comparisons: after cancelling the common supported \(C\) coordinate, the cone is \(\operatorname{Cone}(\mathscr T_Q[-1]\to\mathscr T_A[-1])\), and its comparison to \(\mathscr T_J[-1]\) is a quasi-isomorphism by the coefficient row (RGR9.2). Consequently there is a precise triangle
+\[
+ \boxed{\mathscr K_\sigma\longrightarrow\mathscr E_\sigma
+       \longrightarrow\underline{J'}_D[1]
+       \longrightarrow\mathscr K_\sigma[1].}
+ \tag{RGR9.5}
+\]
+The map on nearby coefficients is \(j:Q'\to B\), and on vanishing coefficients it is \(1_C\). The second map on nearby coefficients is \(k':B\to J'\), and on vanishing coefficients it is zero. These formulas prove compatibility since \(k'j\sigma=0\). In an explicit cone proof, eliminate the common supported \(C\) coordinates; what remains is the coefficient cone of \(j\), giving \(J'[1]\). This also fixes the arrows in (RGR9.5), rather than asserting a decomposition of its middle object.
+
+The complete local data of \(\mathscr K_\sigma\) are
+\[
+ \Psi\mathscr K_\sigma=Q',\quad \Phi\mathscr K_\sigma=C,
+ \quad\mathrm{can}=0,\quad\mathrm{var}=\sigma,
+\]
+\[
+ i^*\mathscr K_\sigma\simeq Q'[1]\oplus C,
+ \qquad i^!\mathscr K_\sigma\simeq[C\xrightarrow\sigma Q']
+ \quad(\deg0,1).
+ \tag{RGR9.6}
+\]
+Its costalk groups are \(\overline{\mathcal N_0}\) and \(Q'/\sigma C\). The latter maps injectively into \(B/a(C)\); explicitly,
+\[
+ 0\longrightarrow Q'/\sigma C\xrightarrow{[\lambda]\mapsto[j\lambda]}
+ B/a(C)\xrightarrow{[b]\mapsto k'b}J'\longrightarrow0.
+ \tag{RGR9.7}
+\]
+Exactness follows directly from (RGR9.2). This row is the pushout of the actual dual row (RGR9.2) by \(Q'\to Q'/\sigma C\): the pushout map sends \([(b,[\lambda])]\) to \([b+j\lambda]\), and the relation \((j\mu,-[\mu])\) maps to zero. Its inverse is \([b]\mapsto[(b,0)]\). These are continuous maps for the stated quotient topologies, with no assertion that these quotient spaces are separated.
+
+Thus the connection to \(e_0\) is exact: its transpose inclusion is the coefficient of the Gysin obstruction, and its transpose extension produces both the triangle (RGR9.5) and the pushout row (RGR9.7). The class \(\mathfrak o_\sigma\in\operatorname{Hom}(i_*C,\underline B[2])\) is not declared equal to an \(M\)-module \(\operatorname{Ext}^1\) class in a different category. No \(M\)-linearity of the untwisted anti-linear Weil map is inferred; its reflected multiplier covariance is the one proved in RTT and ECI.
+
+The concrete next calculation after the nonzero obstruction is therefore already performed: isolate the arithmetic dual coefficient \(Q'\) inside the full nearby coefficient \(A'\), retain the dual original extension through (RGR9.5), and calculate the exact remaining quotient. Pushing the obstruction along \(k'\) gives zero because \(k'j=0\), but this kills the entire residue coefficient. It cannot be described as a proof that the original residue map lifted unchanged.
+
+## RGR10. Both endpoint lines remain in the complete local receiver
+
+From the explicit source splitting (RGR1.9),
+\[
+ P_{\rm full}=\mathscr F|_D[1]=P\oplus i_*E_p[1],
+ \qquad D_cP_{\rm full}=D_cP\oplus i_*E_p'[-1].
+ \tag{RGR10.1}
+\]
+The two endpoint lines remain separate, with their original source labels. The quotient to \(i_*Q'\) is \(\gamma\) on the first factor and zero on the endpoint factor. The complete homotopy pullback is consequently
+\[
+ \mathscr E_{\sigma,\rm full}
+ =\mathscr E_\sigma\oplus i_*E_p'[-1].
+ \tag{RGR10.2}
+\]
+The endpoint summand has no nearby part; its shifted vanishing part, stalk, and costalk are all \(E_p'[-1]\). The additional summand cannot cancel (RGR4.1), because the connecting map factors through the first summand's quotient and is exactly the same map. At infinity the positive coordinate is \(1/z\); hence the same local Gysin formulas hold with its own positive angular orientation. No assertion about cover-degree transport is added here; those factors remain in CSD9 and the separate full-cover calculation.
+
+## RGR11. The already computed positive-adjoint defect has its own exact Gysin receiver
+
+The total residue form is nonzero even on the critical line. To test the desired adjoint identity one must instead use the actual discrepancy already calculated on the full value completion. For every recovered parameter \(r>1\), retain
+\[
+ (T_r y)_\rho=r^\rho y_\rho,\qquad U_r=rT_{1/r},\qquad
+ D_r=T_r^*-U_r,
+\]
+\[
+ (D_r y)_\rho=
+ e^{-i\Im\rho\log r}\bigl(r^{\Re\rho}-r^{1-\Re\rho}\bigr)y_\rho.
+ \tag{RGR11.1}
+\]
+The known open strip makes these bounded operators. Integer \(r=n\) is the actual geometric cover degree; arbitrary positive \(r\) is only a coefficient parameter. No nonintegral geometric cover is asserted.
+
+RTT6 supplies the continuous injective anti-linear map
+\[
+ A_H:H\longrightarrow Q'_\beta,\qquad
+ A_H(y)(F)=\langle EF,\mathsf Jy\rangle_+.
+ \tag{RGR11.2}
+\]
+Its continuity follows from (RGR2.4) with \(\|y\|_+\), and injectivity follows from density of \(E(Q)\). Put
+\[
+ \sigma_r:\overline H\to Q'_\beta,\qquad
+ \sigma_r(\overline y)=A_H(D_r y),\qquad a_r=j\sigma_r.
+ \tag{RGR11.3}
+\]
+The general current-cone, adjunction, homotopy-pullback, stalk/costalk, and dual-row pushout constructions of RGR3–RGR7 and RGR9 apply to this actual map with source \(\overline H\), using its own \(\ker\sigma_r\) and \(\operatorname{im}\sigma_r\). Those constructions use a continuous coefficient map, not finite dimension or a primal holomorphic lift of \(D_r\). The value-source radical and closure formulas of RGR2 and RGR8 are not transferred to this different source. The resulting objects are
+\[
+ \mathfrak o_r=\mathrm{Gys}_B i_*a_r,\qquad
+ \mathscr E_r=\operatorname{Cone}(-\delta_p a_r)[-1],
+ \quad i^!\mathscr E_r\simeq[\overline H\xrightarrow{a_r}B].
+ \tag{RGR11.4}
+\]
+Both \(j\) and \(A_H\) are injective. The oriented adjunction therefore proves
+\[
+ \mathfrak o_r=0\ \Longleftrightarrow\ D_r=0,
+ \qquad H^0(i^!\mathscr E_r)=\overline{\ker D_r}.
+ \tag{RGR11.5}
+\]
+For the actual diagonal operator in (RGR11.1), \(\ker D_r\) is exactly the value subspace supported on the critical-line zeros: the real function \(r^x\) is strictly increasing, so its displayed difference vanishes exactly at \(x=1/2\). This proves the precise detection map on the entire zero set. It neither postulates nor numerically selects an off-line zero.
+
+The adjoint defect and the total residue map have consequently been given different, fully constructed local receivers. Their costalk kernels are different: \(\overline{\mathcal N_0}\) for the full primal residue source, and the critical-line value subspace for the defect source. The coefficient extension still enters through the same \(q'\), and both retain the exact Gysin sign and degree. No weight separation proving \(\mathfrak o_r=0\) is asserted by this construction; its contribution is the actual sheaf-level map and receiver on which such a calculation would have to act.
+
+## RGR12. Proved scope and continuation data
+
+The lift of the total supported residue map fails by the explicitly nonzero class (RGR4.1). Its meaning is exactly local sheaf support: it is present at an ordinary critical-line zero as well. The full homotopy-pullback receiver, its current complex, all four local functors, its radical, its image topology, and its connection to the actual original source extension are computed in RGR5–RGR10. The separate arithmetic positive-adjoint defect is carried to the same exact geometry in RGR11, without inserting a conclusion about its vanishing.
+
+For a Deligne comparison, retain the actual image quotient in DELIGNE_INVARIANT_CYCLE_QUOTIENT.md, DC5.3–DC5.4. The present Gysin class is not that quotient merely because it is a connecting morphism. The source \(P\) is the explicit singular coefficient sheaf (RGR1.9); Deligne's proper smooth-total family, inertia, and arithmetic weight hypotheses are additional geometric data. This note constructs the receiver needed to compare them instead of assuming those data. It also does not alter FOD7's previously proved vanishing of the specified global derived original-quotient lift: that global map and (RGR4.1) have different sources and targets, both retained here.
+
+The original \(\zeta\), its unit term, all prime-power repetitions, the Gamma and endpoint factors, the full nontrivial multiplicities, and the trivial-zero derivative values remain in RGR1–RGR2 and their exact source comparisons. The note supplies no arithmetic operation on \(\tau\), no arbitrary positive form on the source, and no claim of RH or completion of WU061.

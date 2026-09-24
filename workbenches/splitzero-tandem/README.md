@@ -1,5 +1,15 @@
 # Split-Zero cohomology: complete mathematical workbench
 
+<!-- three-reader-edition-20260924 -->
+## Three-task cohomology edition
+
+The shared [edition guide](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts) brings together the geometric weight-control reconstruction, the positive-quotient and Gysin comparison, and original-character lifting. It explains the maps connecting these contributions to the wider Split-Zero cohomology and original-zeta programme, while retaining the earlier estimates, formalization, connected investigations and self-audit below.
+
+Three complete PDF readers are accompanied by their LaTeX, Markdown proofs, reproducible figures, [result/dependency index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/RESULTS.json) and [precise review record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md). The new calculations identify actual source, boundary, duality and quotient maps; they do not establish arithmetic purity or an RH proof. Human sources and the investigator's construction are credited in the edition.
+
+[Zenodo continuation collection](https://doi.org/10.5281/zenodo.22913061) · [Full base collection](https://doi.org/10.5281/zenodo.22678085)
+<!-- /three-reader-edition-20260924 -->
+
 [The base collection](https://zenodo.org/records/22911829) and [the current continuation collection](https://zenodo.org/records/22920941) together retain the Split-Zero cohomology and zeta research programme: arithmetic geometry, cohomology, theta sources, analytic estimates, spectral and heat calculations, formalization, and the connected investigations. The cohomology paper remains the preview. The continuation retains eleven separate papers (208, 385, 37, 21, 10, 34, 7, 24, 403, 16 and 8 pages), complete programme LaTeX, human citations, figures, checks and 16,530 pinned proof locations. All 100 base files, including 98 separate PDFs, and all sixteen preceding continuation downloads remain unchanged. [Reading guide and verified file-publication receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-retained-source-publication/README.md).
 
 This workbench contains the Split-Zero programme's complete source papers, cumulative manuscripts, supporting proofs, figures and calculation records. Its purpose is to connect support-preserving coefficient geometry and arithmetic theta cohomology to quantitative information about the Riemann zeta function's spectrum.

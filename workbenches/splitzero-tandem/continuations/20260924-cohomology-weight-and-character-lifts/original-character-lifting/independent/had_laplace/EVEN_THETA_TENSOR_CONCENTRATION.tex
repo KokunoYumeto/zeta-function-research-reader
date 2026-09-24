@@ -1,0 +1,455 @@
+% Independent mathematical derivation. Prefix ETC. Requires amsmath,amssymb,hyperref.
+\section{Even theta tensors at a fixed negative heat time}
+\label{sec:even-theta-tensor-concentration}
+
+\paragraph{Sources and exact scope.}
+The kernel and heat sign are those of Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}}, original author file
+\nolinkurl{fmp-template.tex}, SHA--256
+\begin{center}\small
+\nolinkurl{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\end{center}
+Lines 1--155, including \texttt{phidef} and \texttt{htdef}, were
+read directly. No whole-paper reading or application of a
+zero-location theorem is asserted. The programme source
+\nolinkurl{HEAT_TRANSPORTED_PRODUCT.tex}, HTP1--24, was read
+completely, all 539 lines, at SHA--256
+\begin{center}\small
+\nolinkurl{897bbe51fd757d8c4926aac5a82d771090e1d1dbaed5a9030fcbdbd6e2b74d14}.
+\end{center}
+In particular HTP19--20, starting at source lines 357 and 380,
+give the positivity and moment bounds re-proved below. The
+present calculation retains the original kernel, coordinates,
+heat parameter and tensor power. It supplies a quantitative
+asymptotic for that entire function and makes no conclusion
+about the locations of the zeros of $H_0$ or about RH.
+
+\subsection{The original kernel, moments, and strict real maximum}
+
+For $u\ge0$ and $z\in\mathbb C$ retain
+\begin{equation}\tag{ETC1}
+\begin{gathered}
+ \Phi(u)=\sum_{n\ge1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du,
+ \qquad h=H_0(0),\\
+ m_2=\int_0^\infty u^2\Phi(u)\,du,\qquad
+ m_4=\int_0^\infty u^4\Phi(u)\,du.
+\end{gathered}
+\end{equation}
+Every original summand of $\Phi$ is positive: its prefactor
+is $\pi n^2e^{5u}(2\pi n^2e^{4u}-3)>0$. The $n=1$ term
+and the inequalities $n^2-1\ge3(n-1)$, $e^{4u}\ge1$ give
+\begin{equation}\tag{ETC2}
+\begin{gathered}
+ 0<\pi(2\pi-3)e^{9u-\pi e^{4u}}
+       \le\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}},\\
+ C_\Phi=2\pi^2\frac{1+11c_0+11c_0^2+c_0^3}{(1-c_0)^5},
+ \qquad c_0=e^{-3\pi}.
+\end{gathered}
+\end{equation}
+Indeed the lower prefactor satisfies
+$2\pi e^{4u}-3\ge(2\pi-3)e^{4u}$. For the upper bound
+discard the negative term and factor out
+$2\pi^2e^{9u-\pi e^{4u}}$. The remaining series is at most
+$\sum_{n\ge1}n^4c_0^{n-1}$; differentiating the geometric
+series four times with the operator $c\,d/dc$ gives the
+stated rational function. On each bounded $u$ interval the
+original series converges uniformly, since its absolute
+terms are bounded by a fixed multiple of
+$(n^4+n^2)e^{-\pi n^2}$. In particular $\Phi$ is continuous.
+
+For $A,B,p\ge0$ all the following integrals are finite,
+with the original constants:
+\begin{equation}\tag{ETC3}
+\begin{split}
+ I_p(A,B)&=\int_0^\infty u^pe^{Au^2+Bu}\Phi(u)\,du\\
+ &\le\frac{C_\Phi}{2\pi}
+ \exp\left(\frac{3A^2}{32\pi}
+       +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right).
+\end{split}
+\end{equation}
+To prove this, use $u^p\le e^{pu}$ and split
+$-\pi e^{4u}$ into two quarters and a half. The estimates
+$e^{4u}\ge(32/3)u^4$ and $e^{4u}\ge8u^2$ imply
+\[
+ Au^2-\frac\pi4e^{4u}\le\frac{3A^2}{32\pi},\qquad
+ (B+9+p)u-\frac\pi4e^{4u}
+          \le\frac{(B+9+p)^2}{8\pi}.
+\]
+The remaining integral is at most
+$e^{-\pi/2}\int_0^\infty e^{-2\pi u}\,du$
+because $e^{4u}\ge1+4u$. This proves ETC3.
+It follows that $h,m_2,m_4$ are finite and strictly positive.
+The bound $|\cos(zu)|\le e^{|\operatorname{Im}z|u}$,
+and the corresponding bounds with extra powers of $u$,
+justify differentiation under the integral on every compact
+set. Thus $H_0$ is entire and even, is real on the real axis,
+and
+\begin{equation}\tag{ETC4}
+ H_0''(0)=-m_2,\qquad H_0^{(4)}(0)=m_4,\qquad
+ |H_0(x+iy)|\le I_0(0,|y|)\quad(x,y\in\mathbb R).
+\end{equation}
+
+For every real $v\ne0$ there is an open interval of positive
+$u$ on which $|\cos(vu)|<1$. Positivity and continuity of
+$\Phi$ therefore give
+\begin{equation}\tag{ETC5}
+ |H_0(v)|\le\int_0^\infty\Phi(u)|\cos(vu)|\,du<h.
+\end{equation}
+There is also an elementary proof, on this exact kernel, of
+\begin{equation}\tag{ETC6}
+                         \lim_{|v|\to\infty}H_0(v)=0.
+\end{equation}
+Given $\eta>0$, choose $U$ with
+$\int_U^\infty\Phi<\eta/3$, using ETC3. Uniform continuity
+of $\Phi$ on $[0,U]$ supplies a finite step function $s$
+with $\int_0^U|\Phi-s|<\eta/3$. If its successive intervals
+are $[b_j,b_{j+1}]$ and its values $s_j$, then, for $v\ne0$,
+\[
+ \left|\int_0^Us(u)\cos(vu)\,du\right|
+ \le\frac{2}{|v|}\sum_j|s_j|.
+\]
+Choose $|v|$ so large that this is below $\eta/3$.
+The two approximation errors are bounded by their
+$L^1$ norms because $|\cos(vu)|\le1$. Their sum proves
+ETC6 without importing a Fourier decay theorem.
+
+\subsection{Actual heat evolution and the full Gaussian contour shift}
+
+Fix $a>0$ and an integer $k\ge1$, and define precisely
+\begin{equation}\tag{ETC7}
+ T_tf=\sum_{j\ge0}\frac{(-t)^j}{j!}D^{2j}f,
+ \quad D=\frac{d}{dz},\qquad
+ P_{2k}(-a,z)=T_{-a}(H_0^{2k})(z).
+\end{equation}
+The series for this actual function will be shown absolutely
+convergent; no formal heat operator is substituted for it.
+For compatibility with the programme domain,
+$H_0^{2k}\in\mathcal E$, where
+$\mathcal E=\{f\text{ entire}:\sup_z|f(z)|e^{-\alpha|z|^2}
+<\infty\text{ for all }\alpha>0\}$.
+In fact $|z|u\le b|z|^2+u^2/(4b)$ gives
+$|H_0(z)|\le e^{b|z|^2}I_0(1/(4b),0)$.
+Take $b=\alpha/(2k)$ and raise to the exact power $2k$.
+This is the same domain and heat sign as HTP2 and HTP5.
+
+Set $\psi(s)=\Phi(|s|)/2$ for $s\in\mathbb R$.
+The evenness of the cosine and absolute integrability give
+\begin{equation}\tag{ETC8}
+\begin{gathered}
+ H_0(z)=\int_{\mathbb R}\psi(s)e^{izs}\,ds,\\
+ H_0(z)^{2k}=\int_{\mathbb R^{2k}}
+       e^{izS}\prod_{j=1}^{2k}\psi(s_j)\,d\boldsymbol s,
+ \qquad S=\sum_{j=1}^{2k}s_j.
+\end{gathered}
+\end{equation}
+These are absolutely convergent integrals, since
+$|S|\le\sum_j|s_j|$. Differentiation of any finite order
+under them is justified, for example, by absorbing
+$|S|^N$ into a constant times $e^{|S|}$ and using ETC3.
+For the absolute sum of the entire heat series on $|z|\le R$
+one has the integrable majorant
+\begin{equation}\tag{ETC9}
+\begin{split}
+ &\int_{\mathbb R^{2k}}e^{R|S|}
+       \sum_{j\ge0}\frac{a^jS^{2j}}{j!}
+                         \prod_{\ell=1}^{2k}\psi(s_\ell)
+                            \,d\boldsymbol s\\
+ &\hspace{10mm}=\int_{\mathbb R^{2k}}e^{aS^2+R|S|}
+                         \prod_{\ell=1}^{2k}\psi(s_\ell)
+                            \,d\boldsymbol s
+       \le I_0(2ka,R)^{2k}<\infty.
+\end{split}
+\end{equation}
+Here $S^2\le2k\sum_\ell s_\ell^2$ and
+$|S|\le\sum_\ell|s_\ell|$ give the last inequality.
+The derivative $D^{2j}e^{izS}=(-1)^jS^{2j}e^{izS}$
+now proves, with every exchange absolutely justified,
+\begin{equation}\tag{ETC10}
+ P_{2k}(-a,z)=\int_{\mathbb R^{2k}}e^{-aS^2+izS}
+                    \prod_{\ell=1}^{2k}\psi(s_\ell)
+                         \,d\boldsymbol s.
+\end{equation}
+This also verifies the original negative-time sign.
+
+The real Gaussian identity, with its exact factor, is
+\begin{equation}\tag{ETC11}
+ \frac{1}{\sqrt{4\pi a}}\int_{\mathbb R}
+       e^{-x^2/(4a)}e^{iSx}\,dx=e^{-aS^2}
+                    \qquad(S\in\mathbb R).
+\end{equation}
+One direct proof is to differentiate the left integral in
+$S$. Integration by parts, with the Gaussian boundary term
+zero, gives $J'(S)=-2aS J(S)$. At $S=0$ its
+value is $1$, by squaring the real Gaussian integral and
+using polar coordinates. The differential equation gives
+ETC11. All differentiations are dominated by a polynomial
+times the same Gaussian.
+Substituting ETC8 into the following real Gaussian integral
+and using ETC11 proves
+\begin{equation}\tag{ETC12}
+ P_{2k}(-a,z)=\frac{1}{\sqrt{4\pi a}}\int_{\mathbb R}
+             e^{-x^2/(4a)}H_0(z+x)^{2k}\,dx.
+\end{equation}
+The absolute multiple integral before the substitution is
+at most $I_0(0,|\operatorname{Im}z|)^{2k}$, since
+$|e^{ixS}|=1$ and the Gaussian measure in ETC11 has mass one.
+Thus this Fubini interchange is independent of a formal
+complex Gaussian manipulation.
+
+We now prove the required contour shift in full. Write
+$z=\xi+i\eta$ and put
+$F_z(w)=e^{-(z-w)^2/(4a)}H_0(w)^{2k}$, an entire function
+of $w$. Formula ETC12 is its integral along
+$\mathbb R+i\eta$, oriented with increasing real part,
+divided by $\sqrt{4\pi a}$; the real displacement $\xi$
+does not change the complete horizontal line. On the closed
+strip between heights $0$ and $\eta$, ETC4 gives
+$|H_0(w)|\le I_0(0,|\eta|)$. For $|z|\le R$, $M>R$,
+and $w=\pm M+iy$ on either vertical edge of that strip,
+\begin{equation}\tag{ETC13}
+ |F_z(\pm M+iy)|
+ \le I_0(0,R)^{2k}
+       \exp\left(\frac{R^2}{4a}-\frac{(M-R)^2}{4a}\right),
+ \qquad y\text{ between }0\text{ and }\eta.
+\end{equation}
+Indeed
+$\operatorname{Re}(z-w)^2=(\xi\mp M)^2-(\eta-y)^2$,
+$|\xi\mp M|\ge M-R$, and $|\eta-y|\le R$.
+Each edge has length at most $R$, so both vertical integrals
+tend to zero, uniformly on $|z|\le R$ for each fixed $k$.
+Both horizontal integrals converge absolutely: on the real
+line $|H_0(v)|\le h$, and on the other line its bound is
+$I_0(0,R)$, while the real part of the Gaussian supplies
+quadratic decay in the horizontal coordinate. Applying
+Cauchy's theorem to this rectangle and letting $M$ tend to
+infinity, with the same orientation on the two horizontal
+lines, proves the entire-function identity
+\begin{equation}\tag{ETC14}
+ \boxed{\displaystyle
+ P_{2k}(-a,z)=\frac{1}{\sqrt{4\pi a}}\int_{\mathbb R}
+              e^{-(z-v)^2/(4a)}H_0(v)^{2k}\,dv.}
+\end{equation}
+For a zero-height strip the equality is immediate. Negative
+$\eta$ gives the same equality by reversing the rectangle's
+orientation. Thus no sign or half-plane is omitted.
+
+\subsection{Quantitative local concentration and the outer gap}
+
+Define constants from the original moments by
+\begin{equation}\tag{ETC15}
+ \beta=\frac{m_2}{h}>0,\qquad c=\frac{m_4}{24h}>0,
+ \qquad \delta=\min\left\{\beta^{-1/2},
+                       \sqrt{\frac{\beta}{4c}}\right\}>0,
+ \qquad D_0=\max\left\{c,\frac{\beta^2}{4}\right\}.
+\end{equation}
+These are fixed constants of $H_0$; $\delta$ is a proved
+choice, not an assumed Taylor neighborhood. The inequalities
+$\cos x\ge1-x^2/2$ and
+$|\cos x-1+x^2/2|\le x^4/24$ give
+\begin{equation}\tag{ETC16}
+ 0\le \frac{H_0(v)}{h}-1+\frac{\beta v^2}{2}\le cv^4
+                       \qquad(v\in\mathbb R).
+\end{equation}
+The first cosine inequality follows from
+$1-\cos x=2\sin^2(x/2)\le x^2/2$; the second is Taylor's
+integral remainder with the fourth derivative bounded by
+$1$. Integrating against the positive original kernel
+proves ETC16, with no unknown remainder constant.
+For $|v|\le\delta$ it follows that
+\begin{equation}\tag{ETC17}
+ \frac12\le1-\frac{\beta v^2}{2}\le \frac{H_0(v)}{h}
+        \le1-\frac{\beta v^2}{4}\le1,\qquad
+ \log\left(\frac{H_0(v)}{h}\right)\le-\frac{\beta v^2}{4},\qquad
+ \left|\log\left(\frac{H_0(v)}{h}\right)+\frac{\beta v^2}{2}\right|\le D_0v^4.
+\end{equation}
+For the last bound write
+$e(v)=\frac{H_0(v)}{h}-1+\beta v^2/2\in[0,cv^4]$ and
+$y=1-\frac{H_0(v)}{h}=\beta v^2/2-e(v)\in[0,1/2]$.
+The convergent real logarithm series yields
+\[
+ \log\left(\frac{H_0(v)}{h}\right)+\frac{\beta v^2}{2}
+ =e(v)-\sum_{n\ge2}\frac{y^n}{n},\qquad
+ 0\le\sum_{n\ge2}\frac{y^n}{n}
+       \le\frac{y^2}{2(1-y)}\le\frac{\beta^2v^4}{4}.
+\]
+The difference therefore lies between
+$-\beta^2v^4/4$ and $cv^4$, proving the maximum in ETC15.
+The bound on $\log(H_0(v)/h)$ follows also from $\log(1-y)\le-y$
+and $y\ge\beta v^2/4$.
+
+The exact outer gap is
+\begin{equation}\tag{ETC18}
+ \rho=\sup_{|v|\ge\delta}|\frac{H_0(v)}{h}|,\qquad
+ \frac12\le\rho<1,\qquad \lambda=-2\log\rho>0.
+\end{equation}
+Indeed $\frac{H_0(\delta)}{h}\ge1/2$ by ETC17. By ETC6 there is $M$
+so large that $|\frac{H_0(v)}{h}|<1/4$ for $|v|>M$. Hence the
+supremum equals a maximum on the compact set
+$\delta\le|v|\le M$. Each point of this set has modulus
+strictly less than $1$ by ETC5, so its attained maximum is
+less than $1$. This proves every assertion in ETC18 and
+defines an actual kernel constant, rather than postulating
+a uniform outer gap.
+
+For a fixed complex disc $|z|\le R$, $R\ge0$, put
+\begin{equation}\tag{ETC19}
+\begin{gathered}
+ g_z(v)=e^{-v^2/(4a)}\cosh\left(\frac{zv}{2a}\right),\\
+ G_R=\frac1{4a}+\frac{R^2}{8a^2}
+                      \cosh\left(\frac{R\delta}{2a}\right),
+ \qquad
+ L_R=\frac{6\sqrt2D_0}{\beta^2}+\frac{\sqrt2G_R}{\beta}.
+\end{gathered}
+\end{equation}
+For real $v$ with $|v|\le\delta$,
+\begin{equation}\tag{ETC20}
+ |g_z(v)-1|\le G_Rv^2,\qquad
+ |\left(\frac{H_0(v)}{h}\right)^{2k}-e^{-\beta kv^2}|
+          \le2kD_0v^4e^{-\beta kv^2/2}.
+\end{equation}
+For the first inequality use $1-e^{-x}\le x$ for $x\ge0$
+and
+$|\cosh w-1|\le(|w|^2/2)\cosh|w|$, which follows
+term by term from the absolutely convergent series.
+For the second, the two real exponents
+$2k\log\left(\frac{H_0(v)}{h}\right)$ and $-\beta kv^2$ differ by at most
+$2kD_0v^4$ and are both at most $-\beta kv^2/2$.
+The integral form of the mean value formula for the
+exponential proves the second inequality.
+
+Evenness of $H_0^{2k}$ and absolute Gaussian integrability in
+ETC14 permit averaging $v$ and $-v$, so that exactly
+\begin{equation}\tag{ETC21}
+\begin{gathered}
+ P_{2k}(-a,z)=\frac{h^{2k}e^{-z^2/(4a)}}{\sqrt{4\pi a}}
+                              J_k(z),\\
+ J_k(z)=\int_{\mathbb R}g_z(v)\left(\frac{H_0(v)}{h}\right)^{2k}\,dv,
+ \qquad M_k=\int_{\mathbb R}e^{-\beta kv^2}\,dv
+                    =\sqrt{\frac\pi{\beta k}}.
+\end{gathered}
+\end{equation}
+In particular the even complex weight has no linear term.
+On $|v|\le\delta$ the exact decomposition
+\[
+ g_z(v)\left(\frac{H_0(v)}{h}\right)^{2k}-e^{-\beta kv^2}
+ =\bigl(\left(\frac{H_0(v)}{h}\right)^{2k}-e^{-\beta kv^2}\bigr)
+       +(g_z(v)-1)\left(\frac{H_0(v)}{h}\right)^{2k}
+\]
+and ETC17, ETC20 bound the integral of its absolute value
+by the whole-real-line integral of
+$(2kD_0v^4+G_Rv^2)e^{-\beta kv^2/2}$.
+The Gaussian moments
+$\int_{\mathbb R}v^2e^{-bv^2}\,dv=\sqrt\pi/(2b^{3/2})$
+and
+$\int_{\mathbb R}v^4e^{-bv^2}\,dv=3\sqrt\pi/(4b^{5/2})$
+follow by differentiating the Gaussian integral in $b>0$;
+the derivatives are absolutely dominated on each compact
+positive $b$ interval. Substitution of $b=\beta k/2$
+and division by $M_k$ give exactly
+\begin{equation}\tag{ETC22}
+ \frac1{M_k}\left|\int_{-\delta}^{\delta}
+    \bigl(g_z(v)\left(\frac{H_0(v)}{h}\right)^{2k}-e^{-\beta kv^2}\bigr)\,dv\right|
+                         \le\frac{L_R}{k}.
+\end{equation}
+
+The omitted Gaussian tail satisfies
+\begin{equation}\tag{ETC23}
+ \frac1{M_k}\int_{|v|>\delta}e^{-\beta kv^2}\,dv
+                              \le e^{-\beta\delta^2 k}.
+\end{equation}
+On each half-line set $|v|=\delta+x$, $x\ge0$, and use
+$(\delta+x)^2\ge\delta^2+x^2$. The remaining two
+half-Gaussian integrals sum to $M_k$.
+For the actual outer integral, the series gives
+$|\cosh(zv/(2a))|\le\cosh(Rv/(2a))$ for real $v$,
+where the latter is even and positive. ETC18 therefore
+gives, by completing the square in each of the two real
+exponentials making up the hyperbolic cosine,
+\begin{equation}\tag{ETC24}
+\begin{split}
+ \frac1{M_k}\left|\int_{|v|>\delta}g_z(v)\left(\frac{H_0(v)}{h}\right)^{2k}\,dv\right|
+ &\le\frac{\rho^{2k}}{M_k}\int_{\mathbb R}
+                 e^{-v^2/(4a)}\cosh\left(\frac{Rv}{2a}\right)\,dv\\
+ &=2\sqrt{a\beta}\,e^{R^2/(4a)}\sqrt{k}\,\rho^{2k}.
+\end{split}
+\end{equation}
+No decay rate for $H_0(v)$ beyond ETC6 was used; the
+Gaussian supplies the absolute outer integrability.
+
+\subsection{Uniform relative error and the exact nonvanishing consequence}
+
+Combining ETC21--24 proves the following quantitative bound
+for every $k\ge1$ and every $|z|\le R$:
+\begin{equation}\tag{ETC25}
+\boxed{\begin{gathered}
+ \left|
+ \frac{P_{2k}(-a,z)}{
+       h^{2k}e^{-z^2/(4a)}\sqrt{h/(4akm_2)}}-1
+ \right|\le E_{k,R},\\
+ E_{k,R}=\frac{L_R}{k}+e^{-\beta\delta^2k}
+          +2\sqrt{a\beta}\,e^{R^2/(4a)}\sqrt{k}\,\rho^{2k}.
+\end{gathered}}
+\end{equation}
+All denominators here are nonzero: $h,a,m_2,k>0$ and the
+complex exponential never vanishes. In particular the
+factor in the denominator is exactly the factor obtained
+from ETC21; its $\pi$ cancels between the two Gaussian
+integrals, with no change of the original $a$ or moments.
+
+An explicit relative $O(1/k)$ constant is
+\begin{equation}\tag{ETC26}
+ \boxed{\displaystyle
+ C_R=L_R+\frac1{\mathrm e\beta\delta^2}
+       +2\sqrt{a\beta}\,e^{R^2/(4a)}
+                         \left(\frac{3}{2\mathrm e\lambda}\right)^{3/2},
+ \qquad E_{k,R}\le\frac{C_R}{k}.}
+\end{equation}
+Here $\mathrm e$ is the exponential constant. For $x>0$,
+the maximum of $xe^{-bx}$ is $1/(\mathrm e b)$ for
+$b>0$, by direct differentiation. Similarly the maximum
+of $x^{3/2}e^{-\lambda x}$ is
+$(3/(2\mathrm e\lambda))^{3/2}$. Apply the first with
+$b=\beta\delta^2$ to $k e^{-\beta\delta^2k}$ and the
+second to $k^{3/2}\rho^{2k}=k^{3/2}e^{-\lambda k}$.
+This proves ETC26 for every positive integer $k$.
+
+Consequently the actual even tensor has the locally uniform
+complex asymptotic
+\begin{equation}\tag{ETC27}
+ P_{2k}(-a,z)=h^{2k}e^{-z^2/(4a)}
+             \sqrt{\frac{h}{4akm_2}}\,(1+\varepsilon_{k}(z)),
+ \qquad \sup_{|z|\le R}|\varepsilon_k(z)|\le\frac{C_R}{k}.
+\end{equation}
+The statement is uniform in $z$ on each specified disc,
+with $a>0$ fixed; it does not assert uniformity as $a$
+tends to zero. It gives the explicit lower bound
+\begin{equation}\tag{ETC28}
+ \inf_{|z|\le R}|P_{2k}(-a,z)|
+ \ge h^{2k}\sqrt{\frac{h}{4akm_2}}
+              e^{-R^2/(4a)}\left(1-\frac{C_R}{k}\right)>0
+                        \qquad(k>C_R).
+\end{equation}
+Indeed $|e^{-z^2/(4a)}|=e^{-\operatorname{Re}(z^2)/(4a)}
+\ge e^{-R^2/(4a)}$ on this disc, and
+$|1+\varepsilon_k(z)|\ge1-C_R/k$. Thus every fixed
+disc is free of zeros of $P_{2k}(-a,\cdot)$ for all integers
+$k>C_R$. This is an unconditional statement about the
+actual sequence of functions in ETC7.
+
+In particular, retaining the actual root set of the original
+negative-time function, one obtains
+\begin{equation}\tag{ETC29}
+ \{z:|z|\le R,\ H_{-a}(z)=0,\ P_{2k}(-a,z)=0\}
+                      =\varnothing\qquad(k>C_R).
+\end{equation}
+This follows directly from ETC28 and neither presupposes
+nor produces a nonreal root of $H_{-a}$. Any actual fixed
+root of $H_{-a}$, real or nonreal, is covered by taking a
+disc containing it. The functions $P_{2k}(-a,\cdot)$ are
+the heat transforms of the powers $H_0^{2k}$; no argument
+here replaces them by the ordinary powers $H_{-a}^{2k}$.
+Their quantitatively proved nonvanishing in ETC28 therefore
+does not assert nonvanishing of $H_{-a}$ or of $H_0$.

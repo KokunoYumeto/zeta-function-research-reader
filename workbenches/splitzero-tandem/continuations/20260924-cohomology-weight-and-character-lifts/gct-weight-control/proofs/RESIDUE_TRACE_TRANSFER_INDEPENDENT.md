@@ -1,0 +1,449 @@
+# The exact original-zeta map from the Weil trace to the completed residue receiver
+
+24 September 2026. Independent derivation, RTT0–RTT11.
+
+## RTT0. Source objects, prerequisites, and conventions
+
+The support remains the user's \(\tau\langle Z_1;\text{no }Z_2\rangle\). The complete arithmetic reconstruction precedes the coefficient spaces and operations below. Addition at \(\tau\) remains retracted. No number, parity, metric, midpoint, or additional source operation is assigned to that support. The corpus-and-operation rule was read before this derivation. The new workflow rule is implemented here by constructing the actual comparison exposed by the previous distinction between residue duality and the Weil trace.
+
+The complete GTR0–GTR11 proof, RD0–RD9, and the relevant GIQ2, GIQ3, GIQ8 and GIQ9 calculations were read. SDT5–SDT7 was reread for the strong topology and bidual step. GTR10 supplies a proved topological isomorphism, rather than a proposed self-duality:
+\[
+\widehat\iota:\mathcal H_{\rm res}\xrightarrow{\sim}\mathcal Q'_\beta,
+\qquad \mathcal Q=\mathcal B/\mathcal I,
+\tag{RTT0.1}
+\]
+where
+\[
+\mathcal B=\{F\text{ entire}:b_{A,M}(F)=\sup_{|\Re s|\le A}
+(1+|\Im s|)^M|F(s)|<\infty\text{ for every }A,M\},
+\]
+\[
+\mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0
+\text{ for every actual nontrivial zero }\rho\text{ of }\zeta,
+\ 0\le j<m_\rho\}.
+\tag{RTT0.2}
+\]
+Here \(m_\rho\) is the full multiplicity. The completion in (RTT0.1) is the completion of \(\mathcal Q_{\rm fin}\) for the residue seminorms, not the original topology of \(\mathcal Q\). On its dense finite-support subspace,
+\[
+\iota h(F)=\mathcal R(F,h)
+=\sum_\rho\operatorname{Res}_{s=\rho}
+\frac{F(s)h(1-s)}{\zeta(s)}\,ds.
+\tag{RTT0.3}
+\]
+The denominator is original \(\zeta\). RD1 constructs the global isolators \(e_{\rho,j}\), whose full jet at \(\rho\) is \((s-\rho)^j\) and whose required jets at every other zero vanish. No density of their span in the original \(\mathcal Q\) is asserted or used here.
+
+Use the following explicit convention for the Weil form: linear in its first argument and conjugate-linear in its second,
+\[
+W(F,G)=\sum_\rho m_\rho F(\rho)\overline{G(1-\overline\rho)}.
+\tag{RTT0.4}
+\]
+This is GIQ's form with the two arguments exchanged. Since that form is Hermitian, the change of convention does not change any diagonal value. The exact maps proving its continuity and identifying its radical are given again below in the present \(\mathcal B\) coordinate.
+
+## RTT1. The global value map and the full strong-dual functional
+
+Let
+\[
+H=\ell^2(\mathscr Z,m),\quad
+\langle x,y\rangle_+=\sum_\rho m_\rho x_\rho\overline{y_\rho},
+\quad \rho^\#=1-\overline\rho,\quad (Jx)_\rho=x_{\rho^\#}.
+\tag{RTT1.1}
+\]
+The functional equation and complex conjugation preserve multiplicities, so \(J\) is a self-adjoint unitary involution. Every zero here is in the entire actual nontrivial divisor, not a numerical selection.
+
+The map
+\[
+E:\mathcal Q\longrightarrow H,\qquad E[F]=(F(\rho))_\rho
+\tag{RTT1.2}
+\]
+is well defined and continuous. Indeed, the unconditional zero count
+\(\sum_{|\Im\rho|\le T}m_\rho=O(T\log(T+2))\), already used in GIQ2, implies
+\[
+\|E[F]\|_+^2\le b_{1,2}(F)^2
+\sum_\rho m_\rho(1+|\Im\rho|)^{-4}<\infty.
+\tag{RTT1.3}
+\]
+The corresponding map on \(\mathcal B\) kills \(\mathcal I\), so the quotient topology makes (RTT1.2) continuous. RD1's isolator \(e_{\rho,0}\) maps to the coordinate vector at \(\rho\). Therefore \(E(\mathcal Q)\) contains every finitely supported value sequence and is dense in \(H\). This proves density of the value image only; it does not assert density of \(\mathcal Q_{\rm fin}\) in \(\mathcal Q\).
+
+Now
+\[
+W(F,G)=\langle EF,JEG\rangle_+.
+\tag{RTT1.4}
+\]
+In particular its full sum converges absolutely by Cauchy–Schwarz. For a bounded set \(B\subset\mathcal Q\), put \(c_B=\sup_{F\in B}\|EF\|_+<\infty\). Then
+\[
+\sup_{F\in B}|W(F,G)|\le c_B\|EG\|_+.
+\tag{RTT1.5}
+\]
+Consequently
+\[
+\mathsf W:\mathcal Q\longrightarrow\mathcal Q'_\beta,
+\qquad \mathsf W(G)(F)=W(F,G)
+\tag{RTT1.6}
+\]
+is a continuous anti-linear map. Its exact kernel is
+\[
+\mathcal N_0=\{[G]\in\mathcal Q:G(\rho)=0\text{ for every }\rho\}.
+\tag{RTT1.7}
+\]
+One containment follows from the formula; conversely testing against \(e_{\rho,0}\) detects \(m_\rho\overline{G(\rho^\#)}\). Thus this is exactly the higher-jet radical already present in GIQ2, not a discarded multiplicity block.
+
+## RTT2. A continuous original-zeta derivative multiplier on the full quotient
+
+Set
+\[
+(\mathsf C G)(s)=\overline{G(\overline s)},\qquad
+H_\zeta(s)=s^2\zeta'(1-s).
+\tag{RTT2.1}
+\]
+The first map is anti-linear, isometric for the displayed \(b_{A,M}\), and preserves \(\mathcal I\) because complex conjugation preserves the full original zero divisor. The second function is entire: the only pole of \(\zeta'(1-s)\) is the double pole at \(s=0\). Since the residue of original \(\zeta\) at 1 is 1,
+\[
+\zeta'(1-s)=-s^{-2}+\text{a holomorphic germ at }0,
+\qquad H_\zeta(0)=-1.
+\tag{RTT2.2}
+\]
+This original pole and its exact coefficient are retained.
+
+For completeness, \(H_\zeta\) has at most polynomial growth on every bounded real strip. An elementary exact estimate follows from Euler–Maclaurin, with all its terms retained:
+\[
+\zeta(z)=\frac1{z-1}+\frac12+
+\sum_{k=1}^{M}\frac{B_{2k}}{(2k)!}(z)_{2k-1}
+-\frac{(z)_{2M}}{(2M)!}
+\int_1^\infty\widetilde B_{2M}(x)x^{-z-2M}\,dx,
+\quad \Re z>1-2M.
+\tag{RTT2.3}
+\]
+Here \((z)_r=z(z+1)\cdots(z+r-1)\), with \((z)_0=1\), and \(\widetilde B_{2M}(x)=B_{2M}(x-\lfloor x\rfloor)\). The formula follows by applying integration by parts successively on integer intervals to \(x^{-z}\), using \(B_j'=jB_{j-1}\), summing the boundary terms, and taking the upper endpoint to infinity first on \(\Re z>1\). The displayed integral converges on the larger stated half-plane and hence gives the analytic continuation there. At the lower endpoint the even Bernoulli boundary values give precisely the displayed rising-factorial terms; the remainder retains its minus sign.
+
+Choose \(M\) so that a prescribed strip satisfies \(\Re z+2M-1\ge\epsilon>0\). Boundedness of the periodic polynomial gives bounds for the integral and its first derivative by a constant times \(\epsilon^{-1}\) and \(\epsilon^{-2}\), respectively; the derivative contributes \(-\log x\) under the integral. Differentiating (RTT2.3) therefore proves a polynomial bound for \(\zeta'(z)+(z-1)^{-2}\) on that strip. Substitution \(z=1-s\), multiplication by \(s^2\), and (RTT2.2) prove the assertion for \(H_\zeta\). Thus for each \(A\) there are finite \(d_A,C_A\) with
+\[
+b_{A,M}(H_\zeta F)\le C_A b_{A,M+d_A}(F).
+\tag{RTT2.4}
+\]
+Multiplication by \(H_\zeta\) is consequently a continuous endomorphism of \(\mathcal B\) preserving \(\mathcal I\).
+
+Retain the actual isolator source
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\qquad F_0(0)=F_0(1)=\frac18.
+\tag{RTT2.5}
+\]
+Its complete factors are used here to construct an inverse to \(L[F]=[sF]\), not to replace original \(\zeta\). Define
+\[
+(D_0F)(s)=\frac{F(s)-F_0(s)F(0)/F_0(0)}s.
+\tag{RTT2.6}
+\]
+The numerator vanishes at zero. Outside a fixed disk, division by \(s\) has the required polynomial bound; inside the disk Cauchy's formula bounds the removable quotient on a smaller circle by the numerator on a larger circle. This proves \(D_0:\mathcal B\to\mathcal B\) continuous. It preserves \(\mathcal I\), because no nontrivial zero is zero and the numerator retains all required vanishing orders. Moreover
+\[
+L[D_0F]=[F],\qquad [D_0(sF)]=[F].
+\tag{RTT2.7}
+\]
+The first identity uses \(F_0\in\mathcal I\); the second uses \((sF)(0)=0\). Thus the induced operator is the unique continuous inverse \(L^{-1}\). No choice of isolator changes this quotient inverse.
+
+The resulting actual primal map is
+\[
+\boxed{\mathsf P=L^{-2}M_{H_\zeta}\mathsf C:
+\mathcal Q\longrightarrow\mathcal Q.}
+\tag{RTT2.8}
+\]
+It is continuous and anti-linear. At every nontrivial zero its full jet is exactly the jet of
+\[
+\zeta'(1-s)\overline{G(\overline s)}.
+\tag{RTT2.9}
+\]
+Indeed the local inverse of \(L^2\) is multiplication by \(s^{-2}\), a holomorphic unit on each such germ. Formula (RTT2.8) proves existence on the entire quotient even though the uncorrected global expression (RTT2.9) has a pole at zero. The double-pole correction and the explicit inverse are not omitted.
+
+## RTT3. The exact local rank and every nilpotent coordinate
+
+Fix an output zero \(\sigma\), put \(\rho=1-\sigma\), \(\eta=\overline\sigma\), and \(m=m_\sigma=m_\rho=m_\eta\). In the retained local parameter \(t=s-\sigma\), write
+\[
+\zeta(\rho+v)=v^m u_\rho(v),\qquad
+u_\rho(0)=\frac{\zeta^{(m)}(\rho)}{m!}\ne0.
+\tag{RTT3.1}
+\]
+Direct differentiation before taking a jet gives
+\[
+\zeta'(\rho-t)=m(-t)^{m-1}u_\rho(-t)+(-t)^m u_\rho'(-t).
+\tag{RTT3.2}
+\]
+Multiplying the entire Taylor series of \(\mathsf C G\), and reducing only modulo the actual defining ideal \((t^m)\), gives
+\[
+j_\sigma(\mathsf P G)
+=m(-1)^{m-1}u_\rho(0)\overline{G(\eta)}\,t^{m-1}.
+\tag{RTT3.3}
+\]
+Every omitted term in this displayed quotient calculation has degree at least \(m\); the full original expression is (RTT3.2). Thus the anti-linear block map from the input block at \(\eta\) to the output block at \(\overline\eta\) has rank exactly one. Its kernel is \(t_\eta\mathbb C[t_\eta]/(t_\eta^m)\), of complex dimension \(m-1\), and its image is the highest-jet line \(\mathbb C t_\sigma^{m-1}\). These statements include \(m=1\): then the rank is one, the kernel is zero, and the coefficient is the original \(\zeta'(\rho)\).
+
+All coefficients are nonzero on their indicated one-dimensional maps. Hence
+\[
+\ker\mathsf P=\mathcal N_0.
+\tag{RTT3.4}
+\]
+This follows globally because membership in \(\mathcal I\) is exactly vanishing of every full required jet. For \(m>1\) the image is in the local socle, the annihilator of the local maximal ideal; this is a statement about the target line, not the deletion of that maximal ideal from the original quotient. The complete residue matrix in RD3 remains invertible on all \(m\) jets. The rank loss belongs to \(\mathsf P\), the specific map from the Weil trace to that full residue receiver.
+
+## RTT4. The finite-support identity retains the original logarithmic derivative
+
+For \(G\in\mathcal Q_{\rm fin}\), (RTT3.3) shows \(\mathsf P G\in\mathcal Q_{\rm fin}\). For arbitrary \(F\in\mathcal Q\), use the exact germs (RTT2.9) in the original residue:
+\[
+\begin{aligned}
+\mathcal R(F,\mathsf P G)
+&=\sum_\rho\operatorname{Res}_{s=\rho}
+F(s)\overline{G(1-\overline s)}\frac{\zeta'(s)}{\zeta(s)}\,ds\\
+&=\sum_\rho m_\rho F(\rho)\overline{G(1-\overline\rho)}
+=W(F,G).
+\end{aligned}
+\tag{RTT4.1}
+\]
+The sum is finite in this section. At a multiplicity-\(m\) zero,
+\[
+\frac{\zeta'(\rho+t)}{\zeta(\rho+t)}=
+\frac m t+\frac{u_\rho'(t)}{u_\rho(t)}.
+\tag{RTT4.2}
+\]
+The second term is holomorphic and therefore contributes zero residue. This proves why the trace keeps precisely the constant observations and the multiplicity \(m\), while the residue pairing alone sees the whole jet algebra. No derivative factor was set equal to one.
+
+## RTT5. The full completed map, without a primal-density assumption
+
+Define
+\[
+\boxed{\mathsf S=\widehat\iota^{-1}\mathsf W:
+\mathcal Q\longrightarrow\mathcal H_{\rm res}.}
+\tag{RTT5.1}
+\]
+It is continuous and anti-linear by (RTT0.1) and (RTT1.5). It satisfies, on its entire domain,
+\[
+\widehat{\mathcal R}(F,\mathsf S G)=W(F,G),\qquad
+\ker\mathsf S=\mathcal N_0.
+\tag{RTT5.2}
+\]
+Here the completed residue is evaluation as defined in GTR10. Formula (RTT4.1) proves that \(\mathsf S G\) is the canonical image of \(\mathsf P G\) in the completion whenever \(G\) is in \(\mathcal Q_{\rm fin}\). The assertion on all of \(\mathcal Q\) follows from the direct construction (RTT5.1), not an extension by unproved density.
+
+There is also an explicit convergent residue construction for every \(G\). Direct the finite subsets \(E\subset\mathscr Z\) by inclusion and put
+\[
+h_E(G)=\sum_{\rho\in E}
+m_\rho(-1)^{m_\rho-1}u_\rho(0)
+\overline{G(\rho^\#)}\,e_{1-\rho,m_\rho-1}.
+\tag{RTT5.3}
+\]
+By RD3's exact matrix, or by substituting \((s-\rho)\mapsto-(s-\rho)\),
+\[
+\iota h_E(G)(F)=\sum_{\rho\in E}
+m_\rho F(\rho)\overline{G(\rho^\#)}.
+\tag{RTT5.4}
+\]
+For every bounded \(B\subset\mathcal Q\), Cauchy–Schwarz gives
+\[
+\sup_{F\in B}|W(F,G)-\iota h_E(G)(F)|
+\le c_B\left(\sum_{\rho\notin E}
+m_\rho|G(\rho^\#)|^2\right)^{1/2}\longrightarrow0.
+\tag{RTT5.5}
+\]
+This is convergence in the full strong dual. By (RTT0.1), \(h_E(G)\) converges in the specified residue completion to \(\mathsf S G\). It treats every actual zero and all multiplicities; the finite sets are an exact convergent net, not a bounded numerical argument.
+
+Equations (RTT3.3) and (RTT5.3) also give a precise relationship to the primal map. If \(\mathsf P G=\mathsf P K\), then \(G-K\in\mathcal N_0\), so \(\mathsf S G=\mathsf S K\). There is consequently a well-defined injective linear map
+\[
+\mathsf j_{\rm tr}:\mathsf P(\mathcal Q)\longrightarrow\mathcal H_{\rm res},
+\qquad \mathsf j_{\rm tr}(\mathsf P G)=\mathsf S G.
+\tag{RTT5.6}
+\]
+Linearity follows because both \(\mathsf P\) and \(\mathsf S\) are anti-linear. Give \(\mathsf P(\mathcal Q)\) the quotient topology transported from \(\mathcal Q/\mathcal N_0\) by \(\mathsf P\); then \(\mathsf j_{\rm tr}\) is continuous by (RTT5.1). This specifies its topology. No assertion that this quotient topology is the subspace topology from the original \(\mathcal Q\), or that every primal class embeds in the residue completion, is needed.
+
+## RTT6. The exact closed receiver of the trace
+
+The closure of the trace image in the full strong dual is
+\[
+\overline{\mathsf W(\mathcal Q)}^{\,\beta}
+=\mathcal N_0^\perp\subset\mathcal Q'_\beta.
+\tag{RTT6.1}
+\]
+To prove this, each \(\mathsf W(G)\) annihilates \(\mathcal N_0\), so the closure is contained in the closed annihilator. Conversely, \(\mathsf W(\mathcal Q)\) contains each value functional \(\delta_{\rho,0}\) up to its nonzero multiplicity scalar, by choosing \(G=e_{\rho^\#,0}\). Let \(D_0\) be their linear span. SDT6 proves that every continuous linear functional on \(\mathcal Q'_\beta\) is evaluation at an actual \(F\in\mathcal Q\). If a member \(\lambda\in\mathcal N_0^\perp\) were outside the strong closure of \(D_0\), locally convex separation would give such an \(F\) with every \(\delta_{\rho,0}(F)=0\) but \(\lambda(F)\ne0\). The former says \(F\in\mathcal N_0\), contradicting the latter. This proves (RTT6.1).
+
+Accordingly the exact closed subreceiver inside \(\mathcal H_{\rm res}\) is \(\widehat\iota^{-1}(\mathcal N_0^\perp)\). It retains all zero values. If any actual zero has multiplicity at least two, then \(\mathcal N_0\ne0\), as witnessed by \(e_{\rho,1}\), and this closed subreceiver is proper because \(\delta_{\rho,1}\) does not annihilate that witness. This statement does not postulate the existence of a multiple zero. It identifies exactly what the two different receivers record for every multiplicity allowed by the original divisor.
+
+The full positive value completion also has an actual map into the residue receiver:
+\[
+\mathsf A:H\longrightarrow\mathcal H_{\rm res},\qquad
+(\widehat\iota\mathsf A y)(F)=\langle EF,Jy\rangle_+,
+\qquad \mathsf S=\mathsf A E.
+\tag{RTT6.2}
+\]
+This map is anti-linear and continuous from the Hilbert norm to the residue strong topology by the bound \(c_B\|y\|_+\). It is injective because \(E(\mathcal Q)\) is dense: if all pairings with \(Jy\) vanish, then \(Jy=0\), hence \(y=0\). In particular the trace-to-residue map does not collapse a nonzero value direction, even though it kills the separate higher-jet radical in its original source. For a bounded operator \(D:H\to H\), the map \(\mathsf A D\) is therefore zero exactly when \(D=0\). This proves an exact detection statement for the positive-adjoint defect calculated in GTAH, without asserting a lift of that possibly nonholomorphic multiplier to \(\mathcal Q\), or giving \(\mathsf A(H)\) an unproved subspace-topology inverse.
+
+## RTT7. Dilation, generator, and the actual transfer
+
+On the original quotient retain
+\[
+T_a[F]=[a^sF(s)],\qquad L[F]=[sF(s)],\qquad a>0.
+\tag{RTT7.1}
+\]
+The quotient map \(\mathsf P\) commutes with \(T_a\): \(\mathsf C\) commutes with this multiplier because \(a\) is positive real, and the other operators in (RTT2.8) are commuting multipliers and the inverse of \(L\). It also commutes with \(L\). These are anti-linear commutation statements with the indicated real parameter; no complex scalar is moved through \(\mathsf P\) without conjugation.
+
+The continuous dual map has the different, exact action
+\[
+\boxed{\mathsf W T_a=a(T_{a^{-1}})'\mathsf W,
+\qquad \mathsf W L=(1-L')\mathsf W.}
+\tag{RTT7.2}
+\]
+For the first identity, the multiplier in \(W(F,T_aG)\) is
+\(\overline{a^{1-\overline\rho}}=a^{1-\rho}\), which is exactly the multiplier obtained by applying \(aT_{a^{-1}}\) to \(F\). For the second it is \(\overline{1-\overline\rho}=1-\rho\). Absolute convergence follows as before; the extra factor \(\rho\) is controlled by one additional defining strip seminorm. Thus no differentiation of a merely weakly convergent sum is used.
+
+GTR10 proves \(\widehat\iota\widehat T_a=a(T_{a^{-1}})'\widehat\iota\). Therefore (RTT7.2) is equivalent to
+\[
+\boxed{\mathsf S T_a=\widehat T_a\mathsf S.}
+\tag{RTT7.3}
+\]
+The generator on the residue completion is explicitly
+\(\widehat L=\widehat\iota^{-1}(1-L')\widehat\iota\), a continuous operator extending the finite-support residue generator. Hence \(\mathsf S L=\widehat L\mathsf S\). Transposition of a continuous operator is strong-continuous because it maps each bounded set to a bounded set; this verifies continuity of the displayed operator.
+
+For recovered integer covers, set \(\mathsf U_n=nT_{n^{-1}}\) on actual degree-one cohomology. GTR2–GTR4 construct it from the weighted ramified sheaf trace and inverse coefficient action. Retaining \(\kappa:Q_A=A/J\to\mathcal Q\), \(\kappa[a]=[\tfrac12\int_0^\infty a(u)u^sdu/u]\), the actual receiving map is
+\[
+\mathsf S_A=\mathsf S\kappa:Q_A\longrightarrow\mathcal H_{\rm res},
+\qquad \mathfrak I=\kappa'\widehat\iota:
+\mathcal H_{\rm res}\xrightarrow{\sim}Q'_{A,\beta}.
+\tag{RTT7.4}
+\]
+It obeys
+\[
+\mathfrak I\mathsf S_A T_n
+=\mathsf U_n'\mathfrak I\mathsf S_A.
+\tag{RTT7.5}
+\]
+All domains and the Mellin factor \(1/2\) are retained. The two pole restrictions are still \(h\mapsto(h,-h)\), so composing (RTT7.4) gives \(G\mapsto(\mathsf S_A G,-\mathsf S_A G)\). No supported pole is identified with the other one.
+
+## RTT8. The geometric transfer and the Hilbert adjoint have a proved comparison
+
+The Weil form has the exact adjoint identity
+\[
+W(T_aF,G)=W(F,aT_{a^{-1}}G).
+\tag{RTT8.1}
+\]
+Indeed the multiplier on the right is
+\(\overline{a^{1-\rho^\#}}=a^\rho\), the multiplier on the left. This is an adjoint with respect to the specified possibly indefinite and possibly degenerate Weil form. On \(\mathcal Q/\mathcal N_0\) it is nondegenerate; on the full \(\mathcal Q\), an adjoint identity alone cannot determine changes whose image is in \(\mathcal N_0\). The chosen full operator in (RTT8.1) is nevertheless already fixed by the geometric construction and has all its higher jets.
+
+On the positive auxiliary space \(H\), write
+\[
+(D_ax)_\rho=a^\rho x_\rho,\qquad
+(U_ax)_\rho=a^{1-\rho}x_\rho.
+\tag{RTT8.2}
+\]
+These are bounded operators, since \(0<\Re\rho<1\). Direct evaluation in \(\langle\ ,\ \rangle_+\) gives
+\[
+(D_a^*x)_\rho=a^{\overline\rho}x_\rho,
+\qquad \boxed{U_a=J D_a^*J.}
+\tag{RTT8.3}
+\]
+The second identity follows from \(1-\rho^\#=\overline\rho\). Thus the constructed geometric transfer receives the adjoint of pullback for the actual Weil form, and its relation to the positive Hilbert adjoint is the explicit conjugation (RTT8.3). The \(\zeta'\) multiplier in the trace-to-residue map does not remove that involution; (RTT5.2) proves that it recovers exactly the old Weil values.
+
+This answers what additional comparison the residue bridge makes available: any proposed change of the positive adjoint can now be transported through \(\mathsf S\) and tested by (RTT7.2)–(RTT8.3) on the same original quotient. One cannot replace \(U_a\) by \(D_a^*\) merely because a residue pairing is nondegenerate. Their exact relation, including \(J\), has been calculated here; further positivity work must use it rather than assume that it is the identity relation.
+
+## RTT9. Original functional-equation factors and the full arithmetic form
+
+No completed zeta replaces original \(\zeta\) in this construction. The complete original functional equation is
+\[
+\zeta(s)=\chi(s)\zeta(1-s),\qquad
+\chi(s)=2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)
+=\pi^{s-1/2}\frac{\Gamma((1-s)/2)}{\Gamma(s/2)}.
+\tag{RTT9.1}
+\]
+Its exact differentiated identity is
+\[
+\zeta'(1-s)=\frac{\chi'(s)}{\chi(s)^2}\zeta(s)
+-\frac1{\chi(s)}\zeta'(s).
+\tag{RTT9.2}
+\]
+At a nontrivial zero, \(\chi\) is a holomorphic unit. The first term vanishes to the full original multiplicity; hence the full jet of (RTT2.9) can also be computed from the second term, retaining its minus sign and unit. Equation (RTT9.2), rather than a removal of those factors, proves that local quotient comparison. Globally the definition remains (RTT2.8), and it does not require a meromorphic multiplier involving \(\chi^{-1}\) to preserve \(\mathcal B\).
+
+The use of \(F_0\) in (RTT2.5) retains the endpoint values and all its original trivial-zero values
+\[
+F_0(-2r)=\frac{r(2r+1)(-1)^r\pi^r}{2\,r!}\zeta'(-2r)
+=\frac{(1+2r)(2r)}8\pi^{-(1+2r)/2}
+\Gamma((1+2r)/2)\zeta(1+2r),\quad r\ge1.
+\tag{RTT9.3}
+\]
+They are not nontrivial-zero coordinates in \(\mathcal Q\); their role in the full source reconstruction and the four endpoint lines remains RD8 and SSI.
+
+More directly, (RTT5.2) is an equality with the existing complete original arithmetic form, not a newly selected sign form. For
+\(A_{F,G}(s)=F(s)\overline{G(1-\overline s)}\), choose the logarithmic test \(h\) with
+\(A_{F,G}(s)=\int_{\mathbb R}h(v)e^{-(s-1/2)v}\,dv\), whose existence in the full test space follows by the Mellin comparison and convolution proof of GIQ9. Retain \(\widehat h(t)=\int h(v)e^{-itv}dv\). Then
+\[
+\widehat{\mathcal R}(F,\mathsf S G)
+=A_{F,G}(0)+A_{F,G}(1)+A_\infty(h)-P_{\rm hist}(h),
+\tag{RTT9.4}
+\]
+where every original term is
+\[
+P_{\rm hist}(h)=\sum_{n\ge2}
+\frac{\log L_n-\log L_{n-1}}{\sqrt n}
+\bigl(h(\log n)+h(-\log n)\bigr),
+\qquad L_n=\operatorname{lcm}(1,\ldots,n),
+\]
+\[
+A_\infty(h)=\frac1{2\pi}\int_{\mathbb R}\widehat h(t)
+\left(\Re\frac{\Gamma'(1/4+it/2)}{\Gamma(1/4+it/2)}-\log\pi\right)dt.
+\tag{RTT9.5}
+\]
+The coefficient \(\log L_n-\log L_{n-1}=\Lambda(n)\) retains all prime-power repetitions from the complete history. For each finite trivial-zero cutoff \(B\), the raw divisor identity is also retained:
+\[
+V_{\zeta,B}=W(F,G)+\sum_{r=1}^B A_{F,G}(-2r)-A_{F,G}(1),
+\]
+\[
+G_B=A_\infty(h)+A_{F,G}(0)+\sum_{r=1}^B A_{F,G}(-2r),
+\qquad V_{\zeta,B}=G_B-P_{\rm hist}(h).
+\tag{RTT9.6}
+\]
+No divergent infinite sum over trivial zeros is introduced. These equalities follow from the fully proved GIQ9 identity and (RTT5.2). The same support coefficients therefore carry exactly the same arithmetic compensation before and after applying the new map.
+
+## RTT10. Labels and the coefficient extension
+
+Let \(K\) be the complex vector space of the retained formal coefficient or support records, or their already constructed algebraic tensor product. Because \(\mathsf P\) and \(\mathsf S\) are anti-linear, an ordinary tensor with \(1_K\) must first have its domain typed correctly. Write \(\overline{\mathcal Q}\) for the conjugate vector space, with
+\[
+\lambda\cdot\overline q=\overline{\overline\lambda q}.
+\]
+The maps
+\[
+\widetilde{\mathsf P}:\overline{\mathcal Q}\to\mathcal Q,
+\quad \overline q\mapsto\mathsf Pq,
+\qquad
+\widetilde{\mathsf S}:\overline{\mathcal Q}\to\mathcal H_{\rm res},
+\quad \overline q\mapsto\mathsf Sq
+\tag{RTT10.1}
+\]
+are complex-linear: for example \(\mathsf S(\overline\lambda q)=\lambda\mathsf Sq\). Thus their tensor extensions with \(1_K\) have domain \(\overline{\mathcal Q}\otimes_{\mathbb C}K\). Balancing holds explicitly:
+\[
+(\widetilde{\mathsf S}\otimes1_K)((\lambda\overline q)\otimes k)
+=\lambda\mathsf Sq\otimes k
+=\mathsf Sq\otimes\lambda k
+=(\widetilde{\mathsf S}\otimes1_K)(\overline q\otimes\lambda k).
+\tag{RTT10.2}
+\]
+The identical argument applies to \(\widetilde{\mathsf P}\). A finite expansion in a basis of \(K\) proves that both kernels are exactly \(\overline{\mathcal N_0}\otimes_{\mathbb C}K\). Every record is unchanged.
+
+There is also an explicitly anti-linear presentation on \(\mathcal Q\otimes_{\mathbb C}K\) if the specified formal/support basis \((k_b)_b\) is retained. Define \(C_K(\sum_b c_bk_b)=\sum_b\overline{c_b}k_b\); this fixes each label and conjugates only its complex coefficient. Then
+\[
+q\otimes k\longmapsto\mathsf Sq\otimes C_Kk
+\tag{RTT10.3}
+\]
+is well defined and anti-linear. Indeed the two representatives \((\lambda q)\otimes k\) and \(q\otimes\lambda k\) both map to \(\overline\lambda\mathsf Sq\otimes C_Kk\). Its kernel is \(\mathcal N_0\otimes_{\mathbb C}K\) by the same basis argument. The formula with \(\mathsf P\) has the same properties. This second presentation specifies the needed coefficient conjugation instead of implicitly identifying \(\overline{\mathcal Q}\) with \(\mathcal Q\).
+
+Neither presentation identifies \([\tau]\) with \([1]\) or either support branch with the other. No multiplication or addition of the source \(\tau\) is inferred from operations on its already constructed coefficient receiver.
+
+## RTT11. Exact outcome and receiving calculation
+
+There are now two proved maps with different codomains:
+\[
+\mathsf P=L^{-2}M_{s^2\zeta'(1-s)}\mathsf C:\mathcal Q\to\mathcal Q,
+\qquad
+\mathsf S=\widehat\iota^{-1}\mathsf W:\mathcal Q\to\mathcal H_{\rm res}.
+\tag{RTT11.1}
+\]
+Both are continuous and anti-linear, and both have exactly the full value-zero kernel \(\mathcal N_0\). Their finite-support comparison and full strong limit are (RTT4.1) and (RTT5.3)–(RTT5.6). Locally the exact original \(\zeta'\) coefficient maps each multiplicity block onto its conjugate block's highest-jet line. Globally the completed residue pairing of \(\mathsf S G\) is exactly the original full Weil pairing of \(G\), including every arithmetic, Gamma, endpoint and finite trivial-divisor contribution.
+
+The receiving action is the actually constructed geometric transfer transpose, (RTT7.5); the relation to the positive Hilbert adjoint is (RTT8.3). Those maps make a further positivity calculation concrete without changing the original Weil values or assuming purity. The comparison itself establishes neither the absence of off-line zeros nor a new positivity theorem.
+
+### Proof-source paths actually used
+
+- `ORIGINAL_ZETA_RESIDUE_DUAL_AND_SUPPORT_MAPS.md`, RD0–RD9: entire quotient, global isolators, original residue matrices, full functional-equation units, sheaf comparison and original exceptional terms.
+- `CC_RAMIFIED_TRACE_AND_RESIDUE_ACTION.md`, GTR0–GTR11: actual weighted trace, inverse coefficient action, strong completion, signed support maps and derived transfer.
+- `GLOBAL_INFINITESIMAL_QUOTIENT.md`, GIQ2–GIQ3 and GIQ8–GIQ9: value form, nilpotent radical, actual dilation and complete original arithmetic identity.
+- `../tau_weight_cohomology_20260924/CC_STRONG_DUAL_TOPOLOGY_AND_JETS.md`, SDT5–SDT7: exact strong topology, strong bidual and separation argument. The completed residue is used through GTR10's already proved topological isomorphism.
+
+No numerical test, simplicity assumption, finite-support primal-density claim, or new publication receipt occurs in this derivation.

@@ -1,0 +1,728 @@
+\begingroup
+\providecommand{\FF}{\mathbb F}
+\providecommand{\ZZ}{\mathbb Z}
+\providecommand{\WW}{W(\FF_2)}
+\providecommand{\GL}{G_L}
+\providecommand{\rk}{\mathrm{rk}}
+\providecommand{\prism}{\mathrm{Prism}}
+\providecommand{\botL}{\bot}
+\providecommand{\topL}{\top}
+\section{Bhatt--Lurie rank-one return and every arithmetic carry}
+\label{sec:BLR}
+\renewcommand{\theequation}{BLR\arabic{equation}}
+\setcounter{equation}{0}
+
+
+
+\subsection{Scope, source, and notation}
+This note proves arithmetic and support-preserving maps. It makes no
+assertion about zeros of the Riemann zeta function or about any consequence
+for the Riemann hypothesis.
+
+The user's three labels remain distinct:
+\[
+\begin{aligned}
+ Z_0&=\text{absence, with underlying set }\varnothing,\\
+ Z_1&=\text{ungraded presence }\tau,\\
+ Z_2&=\text{parity information for integer elements}.
+\end{aligned}
+\]
+In particular, $Z_2$ is not the notation for the coefficient ring used
+below. That ring is always written $A=\WW$. The symbol $\tau$ at the
+$Z_1$ level carries no parity. The maps below keep the source element
+$\tau\in Z_1$ distinct from its coefficient image $\mu(\tau)=1_A$
+and its supported image $\widehat\mu(\tau)=u_A\in\GL(A)$.
+Parity belongs to a coefficient image after reduction; it is never
+assigned to the source element $\tau$.
+
+For precision, the two-element monoid introduced below adjoins an
+absorbing symbol $0$ to the presence symbol $\tau$. This construction does
+not assert that the empty set $Z_0$ has an element.
+
+The source used for the meaning of rank one and the prismatic logarithm is
+Bhargav Bhatt and Jacob Lurie, \emph{Absolute Prismatic Cohomology},
+\href{https://arxiv.org/abs/2201.06120v1}{arXiv:2201.06120v1}, original
+author source \nolinkurl{apc.tex}, read at the following locations:
+\begin{itemize}
+\item source lines 970--983, in the introduction to
+\texttt{section:twist-and-log}: rank one means $\delta(v)=0$;
+the map from the Tate module to rank-one units is described there;
+\item source lines 1944--1975, including
+\texttt{construction:Tate-logarithm}: the Tate-module logarithm is the
+composite through $(1+I)_{\rk=1}$.
+\end{itemize}
+The exact read file has SHA-256
+\begin{center}\small\ttfamily
+\nolinkurl{BB3264C72D2B348E27B29B6B954B8F8DB3D5A9717D75567DCA02B7935C676F84}.
+\end{center}
+Only these source passages were read for this derivation. The proofs below
+are local derivations, not claims that the support construction occurs in
+Bhatt--Lurie. The use of that source is the rank-one definition and the
+domain and codomain of its logarithm.
+
+\subsection{The full coefficient ring and its Witt coordinates}
+We use the usual $2$-typical Witt ring. Its underlying set on a ring $R$ is
+$R^{\mathbb N}$, and its universal addition and multiplication polynomials
+are specified by the Witt polynomials
+\begin{equation}\label{BLR-eq:witt-polynomials}
+ w_n(X_0,\ldots,X_n)=\sum_{i=0}^{n}2^iX_i^{2^{n-i}}
+ \qquad(n\geq 0).
+\end{equation}
+The standard Witt construction supplies the integral universal
+polynomials with these ghost identities; this is the definition of the
+Witt operations being used. No Witt construction is applied to the
+support semiring defined later.
+
+The Teichm\"uller representative is
+$[a]=(a,0,0,\ldots)$, and the Verschiebung is
+$V(a_0,a_1,\ldots)=(0,a_0,a_1,\ldots)$. Witt Frobenius $F$ is specified by
+$w_n(Fx)=w_{n+1}(x)$. In all subsequent formulas,
+the bracket $[a+b]$ means the representative of the sum in $\FF_2$;
+$[a]+[b]$ means the sum in $A$. These expressions are not interchanged.
+
+\begin{lemma}\label{BLR-lem:witt-identities}
+On $A=\WW$, the following identities hold:
+\[
+ F=\operatorname{id},\qquad V(x)=2x,\qquad
+ [a][b]=[ab],\qquad
+ V^r(A)=2^rA=\{(a_i)_{i\geq0}:a_0=\cdots=a_{r-1}=0\}.
+\]
+Multiplication by $2$ is injective. There is a canonical ring isomorphism
+\begin{equation}\label{BLR-eq:coefficient-limit}
+ A\xrightarrow{\sim}\varprojlim_{r\geq1}\ZZ/2^r\ZZ.
+\end{equation}
+Under it, every element retains the unique full expansion
+\begin{equation}\label{BLR-eq:binary-expansion}
+ (a_0,a_1,a_2,\ldots)=\sum_{i=0}^{\infty}2^i[a_i],
+ \qquad a_i\in\FF_2.
+\end{equation}
+\end{lemma}
+\begin{proof}
+First, universal ghost identities can be checked over a polynomial ring
+over $\ZZ$. Its ghost map is injective: if all ghosts of a Witt vector
+vanish, the zeroth coordinate vanishes, and then the $n$th ghost and the
+vanishing of the previous coordinates give $2^n x_n=0$, hence $x_n=0$.
+An identity of the integral universal coordinate polynomials verified in
+that ring therefore holds after every specialization.
+
+The identity $[a][b]=[ab]$ follows since its $n$th ghosts on both sides are
+$a^{2^n}b^{2^n}=(ab)^{2^n}$. The formula
+\[
+ w_0(Vx)=0,\qquad w_n(Vx)=2w_{n-1}(x)\quad(n\geq1)
+\]
+proves that $V$ is additive and that $FV(x)=2x$.
+
+For completeness, the Frobenius coordinate polynomials satisfy
+$F_n(X)\equiv X_n^2\pmod 2$. Here is the needed divisibility argument.
+If two polynomials $u,v$ satisfy $u-v\in2\ZZ[X]$, repeated squaring gives
+\[
+ u^{2^k}-v^{2^k}\in2^{k+1}\ZZ[X]\qquad(k\geq0),
+\]
+because at every squaring the other factor is even. The identity for the
+zeroth Frobenius coordinate is $F_0=X_0^2+2X_1$. If the assertion is known
+for indices below $n$, the defining ghost identity gives
+\[
+ 2^n(F_n-X_n^2)=2^{n+1}X_{n+1}
+ +\sum_{i=0}^{n-1}2^i
+   \bigl(X_i^{2^{n+1-i}}-F_i^{2^{n-i}}\bigr).
+\]
+Every term on the right is divisible by $2^{n+1}$ by the preceding
+divisibility statement. Division in the torsion-free polynomial ring
+proves the assertion for $n$. On $\FF_2$ every coordinate has square
+equal to itself, so $F=\operatorname{id}$ on $A$. Thus $FV=2$ gives
+$V(x)=2x$. The coordinate shift $V$ is injective, proving injectivity of
+multiplication by $2$ and the displayed description of $2^rA$.
+
+Consequently $A/2^rA$ has exactly $2^r$ elements, represented by its first
+$r$ Witt coordinates. In this quotient the element $1=[1]$ has additive
+order exactly $2^r$: $2^r1=V^r1$ vanishes, but
+$2^{r-1}1=V^{r-1}1$ has coordinate $1$ at index $r-1$ and does not vanish.
+Its order is a divisor of $2^r$ and is not a divisor of $2^{r-1}$, so is
+$2^r$. The unital ring map
+\[
+ \ZZ/2^r\ZZ\longrightarrow A/2^rA,\qquad \bar n\longmapsto n1,
+\]
+is therefore injective and, by equality of the finite cardinalities,
+surjective. These ring isomorphisms commute with the quotient maps.
+The underlying coordinate sequences identify $A$ with
+$\varprojlim_r A/2^rA$, giving \eqref{BLR-eq:coefficient-limit}.
+
+Finally, the finite Witt vector $(a_0,\ldots,a_{r-1},0,\ldots)$ equals
+$\sum_{i=0}^{r-1}V^i[a_i]$: their $n$th ghosts are both
+$\sum_{i=0}^{\min(n,r-1)}2^ia_i^{2^{n-i}}$, so the universal identity
+argument applies. Passing to the coordinate limit and using $V^i=2^i$
+gives \eqref{BLR-eq:binary-expansion}, including uniqueness of every digit.
+\end{proof}
+
+\begin{lemma}\label{BLR-lem:domain}
+The ring $A$ is an integral domain. Every nonzero $a\in A$ has a unique
+expression $a=2^m u$, where $m\geq0$ and $u$ is a unit with odd reduction.
+\end{lemma}
+\begin{proof}
+Let $m$ be the index of the first nonzero Witt coordinate of $a$.
+Lemma~\ref{BLR-lem:witt-identities} gives a unique $u$ with $a=2^m u$ and
+first coordinate $1$. At every finite level its residue is odd, hence
+invertible in $\ZZ/2^r\ZZ$ by B\'ezout's identity. Its unique inverses
+commute with reduction, and \eqref{BLR-eq:coefficient-limit} gives their
+inverse limit, an inverse of $u$ in $A$. If
+$b=2^n v\ne0$, then $ab=2^{m+n}uv\ne0$, since $uv$ is a unit and
+multiplication by $2$ is injective. This also proves uniqueness of $m$;
+injectivity of multiplication by $2^m$ proves uniqueness of $u$.
+\end{proof}
+
+\subsection{The rank-one image of presence and the base prism}
+\begin{proposition}\label{BLR-prop:delta}
+With $\varphi=F=\operatorname{id}$, the canonical $2$-derivation on $A$ is
+\begin{equation}\label{BLR-eq:delta-full}
+ \delta(a)=\frac{a-a^2}{2},\qquad
+ \varphi(a)=a^2+2\delta(a)=a.
+\end{equation}
+The fraction denotes the unique element whose product with $2$ is
+$a-a^2$. In particular,
+\[
+ \delta(0)=0,\qquad\delta(1)=0,\qquad\delta(2)=-1.
+\]
+The rank-one locus is exactly $A_{\rk=1}=\{0,1\}$; its unit part is
+$A^\times_{\rk=1}=\{1\}$.
+\end{proposition}
+\begin{proof}
+The first coordinate of $a-a^2$ is zero, so this difference belongs to
+$2A$, and injectivity of multiplication by $2$ proves uniqueness.
+Direct expansion in the original coefficient ring gives
+\begin{align*}
+ \delta(a+b)&=\delta(a)+\delta(b)-ab,\\
+ \delta(ab)&=a^2\delta(b)+b^2\delta(a)
+                    +2\delta(a)\delta(b).
+\end{align*}
+For the second identity, the numerator on the right after multiplication
+by $2$ is
+\[
+ a^2(b-b^2)+b^2(a-a^2)+(a-a^2)(b-b^2)=ab-a^2b^2.
+\]
+These identities, together with $\delta(0)=\delta(1)=0$, are the
+$2$-derivation identities. Substitution of $2$ gives
+$\delta(2)=(2-4)/2=-1$. By Lemma~\ref{BLR-lem:domain}, the equation
+$\delta(a)=0$ is equivalent to $a(a-1)=0$, hence to $a=0$ or $a=1$.
+Only the latter is a unit.
+\end{proof}
+
+\begin{definition}\label{BLR-def:presence-monoid}
+Let $M=\{0,\tau\}$ have multiplication
+\[
+ 0\cdot0=0,\qquad0\cdot\tau=\tau\cdot0=0,\qquad
+ \tau\cdot\tau=\tau.
+\]
+Its identity is $\tau$ and its absorbing element is $0$.
+\end{definition}
+
+\begin{theorem}\label{BLR-thm:presence-rank-one}
+The map
+\[
+ \mu:M\longrightarrow A_{\rk=1},\qquad 0\longmapsto0_A,
+ \quad\tau\longmapsto1_A,
+\]
+is an isomorphism of multiplicative monoids with an absorbing element.
+It neither supplies addition on $M$ nor gives $Z_1$ a parity.
+The composite $M\xrightarrow{\mu}A\xrightarrow{\rho}\FF_2$ satisfies
+$\rho(\mu(\tau))=1_{\FF_2}$. This describes the arithmetic image only:
+the source $\tau$, the coefficient $1_A$, and the residue $1_{\FF_2}$
+remain elements of their respective, different domains.
+\end{theorem}
+\begin{proof}
+The four products in Definition~\ref{BLR-def:presence-monoid} are sent to
+the four equal products in $\{0,1\}$. The image is the whole rank-one
+locus by Proposition~\ref{BLR-prop:delta}, and the two images are distinct.
+The claims about structure are literal domain statements: $M$ was given
+only multiplication, while reduction is a map from the coefficient ring.
+\end{proof}
+
+\begin{proposition}\label{BLR-prop:base-prism}
+The pair $(A,I)=(\WW,(2))$ is a bounded prism. In this prism
+\[
+ (1+I)_{\rk=1}=\{1\},\qquad
+ T_2((A/I)^\times)=\{1\}.
+\]
+Thus the Bhatt--Lurie maps in this particular prism are
+\[
+ \{1\}\xrightarrow{\rho_0}\{1\}
+ \xrightarrow{\log_{\prism}}A\{1\},
+ \qquad 1\longmapsto1\longmapsto0.
+\]
+\end{proposition}
+\begin{proof}
+The ring $A$ is a $\delta$-ring by Proposition~\ref{BLR-prop:delta}.
+The ideal $(2)$ is generated by a non-zero-divisor and is therefore an
+invertible Cartier ideal. The prism inclusion is
+$2\in I+\varphi(I)=(2)$, since $\varphi(2)=2$.
+The ring is derived $2$-complete: it is $2$-torsion-free, so its derived
+quotients by $2^r$ are the ordinary quotients; the transition maps of
+these quotients are surjective, so their higher inverse limit vanishes;
+and their inverse limit is $A$ by \eqref{BLR-eq:coefficient-limit}.
+For the asserted higher-limit vanishing, the product description of
+$\varprojlim^1$ has difference map
+$(x_r)\mapsto(x_r-q_{r+1,r}(x_{r+1}))$; surjectivity is obtained by
+choosing $x_{r+1}$ successively after $x_r$ has been chosen. This proves
+the required vanishing directly. As $(2,I)=(2)$, this is the required
+derived $(2,I)$-completeness. Finally $A/I=\FF_2$ has $2$-torsion killed
+by $2$, proving boundedness.
+
+The only rank-one unit is $1$ and it lies in $1+I$.
+The group $(A/I)^\times=\FF_2^\times$ has only its identity, so its
+Tate module, the group of compatible root sequences beginning at the
+identity, has only the constant identity sequence. The source construction
+carries that sequence to $1$. Any homomorphism from this one-element
+group to the additive group of $A\{1\}$ sends it to $0$.
+\end{proof}
+
+The symbol $0$ of $M$ does not lie in the domain of the prismatic
+logarithm, because that domain consists of units. The map $\mu$ therefore
+does not by itself give a nonzero logarithm or a new cohomology class.
+
+\subsection{Every support label in the coefficient construction}
+Let $L$ be a bounded distributive lattice. Its least and greatest
+elements are written $\botL$ and $\topL$, and its operations are $\vee$
+and $\wedge$. Its trivial one-element case is permitted; statements
+distinguishing $\botL$ and $\topL$ will explicitly require a nontrivial
+lattice. Let $R$ be a commutative unital ring.
+
+\begin{definition}\label{BLR-def:GL}
+Define the set, with no quotient of its displayed labels,
+\[
+ \GL(R)=(\{0_R\}\times L)\ \cup\ (R\times\{\topL\})
+ \subseteq R\times L.
+\]
+For its elements set
+\begin{align}
+ (a,\lambda)+(b,\eta)&=(a+b,\lambda\vee\eta),\label{BLR-eq:GL-add}\\
+ (a,\lambda)(b,\eta)&=(ab,\lambda\wedge\eta).\label{BLR-eq:GL-mult}
+\end{align}
+Its global zero is $0_G=(0_R,\botL)$ and its identity is
+$1_G=(1_R,\topL)$. Write $z_\lambda=(0_R,\lambda)$ for every supported
+zero. In particular,
+\[
+ \tau_{\mathrm{old}}=z_{\botL},\qquad
+ e=z_{\topL},\qquad u_R=1_G=(1_R,\topL).
+\]
+Here $u_R$ is an element of the receiving semiring $\GL(R)$.
+The retained historical symbol $\tau_{\mathrm{old}}$ names its absorbing
+zero; it does not denote the ungraded source element $\tau\in Z_1$.
+\end{definition}
+
+\begin{theorem}\label{BLR-thm:semiring}
+Equations~\eqref{BLR-eq:GL-add}--\eqref{BLR-eq:GL-mult} give a commutative
+unital semiring. On the supported zeros their exact operations are
+\[
+ z_\lambda+z_\eta=z_{\lambda\vee\eta},\qquad
+ z_\lambda z_\eta=z_{\lambda\wedge\eta}.
+\]
+For any bounded lattice, distributivity of these operations on $\GL(R)$
+forces distributivity of the lattice. Thus this hypothesis is required
+by the displayed construction, not an omitted assumption.
+\end{theorem}
+\begin{proof}
+If $a+b\ne0_R$, at least one of $a,b$ is nonzero; its label is $\topL$,
+so $\lambda\vee\eta=\topL$. This proves addition is closed. If
+$ab\ne0_R$, both $a,b$ are nonzero, so both labels are $\topL$, proving
+multiplication is closed. Associativity and commutativity are componentwise.
+The equations $\lambda\vee\botL=\lambda$,
+$\lambda\wedge\topL=\lambda$, and
+$\lambda\wedge\botL=\botL$ prove the identities and absorption.
+For distributivity, both coefficients are $a(b+c)=ab+ac$, and both
+labels agree because
+$\lambda\wedge(\eta\vee\kappa)
+=(\lambda\wedge\eta)\vee(\lambda\wedge\kappa)$.
+
+Conversely, applying distributivity to
+$z_\lambda(z_\eta+z_\kappa)$ forces this lattice identity, since the
+map $\lambda\mapsto z_\lambda$ is injective. In a lattice this law also
+implies the dual law. Explicitly,
+\begin{align*}
+ (x\vee y)\wedge(x\vee z)
+ &=((x\vee y)\wedge x)\vee((x\vee y)\wedge z)\\
+ &=x\vee(z\wedge x)\vee(z\wedge y)
+ =x\vee(y\wedge z),
+\end{align*}
+by absorption. Hence the lattice is distributive.
+\end{proof}
+
+\begin{proposition}\label{BLR-prop:functor}
+Every unital ring map $f:R\to S$ gives a unital semiring map
+\[
+ \GL(f):\GL(R)\longrightarrow\GL(S),\qquad
+ (a,\lambda)\longmapsto(f(a),\lambda).
+\]
+These maps preserve every support label and commute with composition.
+The amplitude map $\alpha_R:\GL(R)\to R$, $(a,\lambda)\mapsto a$, is
+a unital semiring map. The top-support inclusion
+\[
+ i_R:R\longrightarrow\GL(R),\qquad a\longmapsto(a,\topL),
+\]
+preserves the two binary operations and their multiplicative identity,
+but for nontrivial $L$ it does not preserve the global additive zero.
+It has $\alpha_Ri_R=\operatorname{id}_R$ and $i_R(0_R)=e$.
+\end{proposition}
+\begin{proof}
+If $f(a)\ne0_S$, then $a\ne0_R$, so the original label was $\topL$;
+the image lies in $\GL(S)$. Applying $f$ to the coefficient equations
+proves preservation of addition, multiplication, and their identities.
+Composition and the amplitude assertions follow by substitution.
+For $i_R$, the equalities $\topL\vee\topL=\topL$ and
+$\topL\wedge\topL=\topL$ prove the binary-operation statements. Its
+value at $0_R$ is $e$, which differs from $0_G$ exactly when
+$\botL\ne\topL$.
+\end{proof}
+
+When $R$ is nonzero and $L$ is nontrivial, the three receiving pairs
+$(0_R,\botL)$, $(0_R,\topL)$, and $u_R=(1_R,\topL)$ are different.
+The top-support slice is an additive group with its own identity $e$;
+its inverse map is $(a,\topL)\mapsto(-a,\topL)$.
+The whole semiring is not an additive group: for example
+$e+(b,\eta)$ always has support $\topL$, so it cannot equal $0_G$.
+All these claims follow directly from the equality rule for ordered
+pairs and \eqref{BLR-eq:GL-add}; no zero label is identified with another.
+
+For $R=A$, the precise multiplicative map from presence is
+\[
+ \widehat\mu:M\longrightarrow\GL(A),\qquad
+ 0\longmapsto\tau_{\mathrm{old}},\quad
+ \tau\longmapsto u_A=(1_A,\topL),
+ \qquad \alpha_A\widehat\mu=\mu.
+\]
+Thus $u_A:=\widehat\mu(\tau)$ is the supported arithmetic image,
+not the source element $\tau$. Its four multiplication identities
+follow from absorption and $u_A^2=u_A$.
+
+\subsection{Reduction, Teichm\"uller lifting, and the exact additive defect}
+Let $\rho:A\to\FF_2$ be first-coordinate reduction, and let
+$t:\FF_2\to A$ be $a\mapsto[a]$. The map $\rho$ is a ring map;
+$t$ is multiplicative, preserves $0,1$, and is a section of $\rho$.
+It is not additive.
+
+\begin{theorem}\label{BLR-thm:section}
+Reduction and its label-preserving section are
+\begin{align*}
+ \pi:\GL(A)&\longrightarrow\GL(\FF_2),
+ &(a,\lambda)&\longmapsto(\rho(a),\lambda),\\
+ \sigma:\GL(\FF_2)&\longrightarrow\GL(A),
+ &(a,\lambda)&\longmapsto([a],\lambda).
+\end{align*}
+The map $\pi$ is a surjective unital semiring map, and $\sigma$ is a
+multiplicative section preserving the global zero, identity, and every
+support label. For $x=(a,\lambda)$ and $y=(b,\eta)$, let
+$s=\lambda\vee\eta$. The full coefficient defect and its supported
+version are
+\begin{align}
+ C(a,b)&=[a]+[b]-[a+b]=2[a][b]=V([ab]),\label{BLR-eq:carry}\\
+ K(x,y)&=(C(a,b),s)=(2[a][b],\lambda\vee\eta).\label{BLR-eq:supported-carry}
+\end{align}
+The following is an equality in $\GL(A)$, with every support retained:
+\begin{equation}\label{BLR-eq:section-defect}
+ \sigma(x)+\sigma(y)=\sigma(x+y)+K(x,y).
+\end{equation}
+\end{theorem}
+\begin{proof}
+The assertions about $\pi$ follow from Proposition~\ref{BLR-prop:functor}
+and the section constructed here. If $[a]\ne0$, then $a=1$, and the
+label of $(a,\lambda)$ is $\topL$, so $\sigma$ is well-defined.
+Teichm\"uller multiplication and the unchanged meet of the labels prove
+multiplicativity. The section identity follows from $\rho([a])=a$.
+
+There are exactly four coefficient cases; none is suppressed:
+\[
+\begin{array}{c|c|c|c|c|c}
+ a&b&a+b\text{ in }\FF_2&[a]+[b]\text{ in }A&[a+b]&C(a,b)\\\hline
+ 0&0&0&0&0&0\\
+ 0&1&1&1&1&0\\
+ 1&0&1&1&1&0\\
+ 1&1&0&2&0&2
+\end{array}
+\]
+This proves the first equality in \eqref{BLR-eq:carry}; the last is
+$V=2$ and $[a][b]=[ab]$. If $C(a,b)\ne0$, then $a=b=1$, forcing
+$\lambda=\eta=s=\topL$. Thus $K(x,y)$ belongs to $\GL(A)$ in all
+cases. Both sides of \eqref{BLR-eq:section-defect} have coefficient
+$[a]+[b]=[a+b]+C(a,b)$ and support $s=s\vee s$, proving the equality.
+\end{proof}
+
+There is no subtraction operation asserted on the additive monoid of
+$\GL(A)$. If a difference notation is wanted, define the sign map
+$J(a,\lambda)=(-a,\lambda)$, which is well-defined and preserves
+addition. Then the exact replacement for the coefficient difference is
+\begin{equation}\label{BLR-eq:sign-defect}
+ \sigma(x)+\sigma(y)+J(\sigma(x+y))=K(x,y).
+\end{equation}
+Indeed its coefficient is \eqref{BLR-eq:carry}, and its support is
+$s\vee s=s$. For a general $w=(a,\lambda)$, the same sign map obeys
+$w+J(w)=z_\lambda$, not necessarily $0_G$.
+
+In particular, when the numerical carry is zero, its support is not
+discarded:
+\[
+ K(z_\lambda,z_\eta)=z_{\lambda\vee\eta}.
+\]
+For $\lambda\vee\eta\ne\botL$, this is different from the global zero.
+This selected defect records exactly the support of the pair being
+added; it is not a claim that no other additive correction could give
+the same equality after joining labels.
+
+For two copies of the image $u_A$ the exact arithmetic is
+\begin{equation}\label{BLR-eq:presence-double}
+ u_A+u_A=(2,\topL)
+ \quad\hbox{in }\GL(A),\qquad
+ \pi(2,\topL)=(0,\topL)=e
+ \quad\hbox{in }\GL(\FF_2).
+\end{equation}
+For nontrivial $L$, the latter $e$ is distinct from
+$\tau_{\mathrm{old}}=(0,\botL)$. Also
+\[
+ \sigma\bigl((1,\topL)+(1,\topL)\bigr)=e
+ \ne(2,\topL)=\sigma(1,\topL)+\sigma(1,\topL).
+\]
+This proves failure of additivity. In Witt coordinates the coefficient
+on the right is exactly
+\[
+ [1]+[1]=2=V(1)=(0,1,0,0,\ldots).
+\]
+Its first coordinate is parity zero, while its second coordinate is one.
+Thus the carry stores arithmetic information beyond parity, with no
+change to the support label.
+
+The carry also has an exact expression through the $2$-derivation:
+\begin{equation}\label{BLR-eq:carry-delta}
+ \delta([a]+[b])=-[a][b],\qquad
+ C(a,b)=-2\delta([a]+[b]).
+\end{equation}
+Indeed $[a],[b]\in\{0,1\}$, so each has $\delta$ equal to zero;
+the first equality is the full additive $2$-derivation identity in
+Proposition~\ref{BLR-prop:delta}. The second follows from
+\eqref{BLR-eq:carry}. For $a=b=1$, this is exactly $\delta(2)=-1$ and
+$C(1,1)=2$, with the sign and factor $2$ retained.
+
+\begin{proposition}\label{BLR-prop:kernel-congruence}
+The full kernel congruence of $\pi$ is
+\[
+ (a,\lambda)\sim(b,\eta)
+ \quad\Longleftrightarrow\quad
+ \lambda=\eta\ \hbox{and}\ a-b\in2A.
+\]
+For nontrivial $L$, the fibre over the global zero is the singleton
+$\{\tau_{\mathrm{old}}\}$, even though $\pi$ is not injective.
+For each $\lambda\ne\topL$, the fibre of $(0,\lambda)$ is the singleton
+$\{(0,\lambda)\}$. The fibre of $(c,\topL)$ is
+$\{(a,\topL):\rho(a)=c\}$.
+\end{proposition}
+\begin{proof}
+Equality of the two images is equality of both their ordered-pair
+coordinates, proving the congruence. If $\lambda\ne\topL$, membership
+in $\GL(A)$ forces the coefficient to be exactly zero. This proves all
+the asserted singleton fibres, including $\lambda=\botL$ for a
+nontrivial lattice. The top fibre has no further restriction. In
+particular $(2,\topL)$ and $(0,\topL)$ are distinct and have the same
+image. Semiring congruences, rather than a ring zero-kernel criterion,
+record this noninjectivity.
+\end{proof}
+
+\subsection{The compatible tower, its complete limit, and all later carries}
+For every integer $r\geq1$, put $R_r=\ZZ/2^r\ZZ$ and let
+$q_{r+1,r}:R_{r+1}\to R_r$ be reduction. Set $B_r=\GL(R_r)$ and
+\[
+ Q_{r+1,r}:B_{r+1}\longrightarrow B_r,\qquad
+ (a,\lambda)\longmapsto(q_{r+1,r}(a),\lambda).
+\]
+Every transition is a surjective unital semiring map retaining the exact
+support. A lift of a top-labelled element may be taken in the top slice;
+a lower-labelled element is its supported zero and lifts to the same
+supported zero. This proves the claimed surjectivity.
+
+\begin{theorem}\label{BLR-thm:support-limit}
+The map
+\begin{equation}\label{BLR-eq:support-limit}
+ \Omega:\GL(A)\longrightarrow\varprojlim_{r\geq1}B_r,\qquad
+ (a,\lambda)\longmapsto
+ \bigl((a\bmod2^rA,\lambda)\bigr)_{r\geq1},
+\end{equation}
+where $A/2^rA$ is identified with $R_r$ by
+Lemma~\ref{BLR-lem:witt-identities}, is an isomorphism of unital semirings.
+It retains each individual zero label. If $L$ is discrete, $A$ has its
+$2$-adic topology, and all $B_r$ are discrete, this is also a
+homeomorphism for the indicated subspace and inverse-limit topologies.
+\end{theorem}
+\begin{proof}
+Every coordinate of $\Omega$ is the semiring map obtained from reduction,
+so the map is well-defined and preserves the operations and identities.
+For a compatible sequence $(a_r,\lambda_r)$, exact support preservation
+by every transition forces $\lambda_{r+1}=\lambda_r$ for every $r$.
+Call their common value $\lambda$. If $\lambda\ne\topL$, membership
+in $B_r$ forces $a_r=0$ for every $r$, so the sequence is the image of
+$(0,\lambda)$. If $\lambda=\topL$, the compatible coefficients give a
+unique $a\in A$ by \eqref{BLR-eq:coefficient-limit}, and the sequence is the
+image of $(a,\topL)$. This proves surjectivity without identifying any
+support labels. If two images agree, their labels agree and all residue
+coefficients agree. The coefficient limit then gives equality of the
+coefficients, proving injectivity.
+
+The inverse-limit topology is generated by restrictions at finitely
+many levels. Under $\Omega$, a restriction at level $r$ fixes the
+support and a coefficient residue modulo $2^rA$. These sets are exactly
+the basic open sets of the subspace of $A\times L$, with $L$ discrete.
+This proves the final assertion.
+\end{proof}
+
+For every $r$ there is a compatible multiplicative section
+\[
+ \sigma_r:\GL(\FF_2)\longrightarrow B_r,\qquad
+ (a,\lambda)\longmapsto([a]\bmod2^rA,\lambda).
+\]
+The identities $Q_{r+1,r}\sigma_{r+1}=\sigma_r$ follow by reduction,
+and their inverse limit is exactly $\sigma$. For
+$x=(a,\lambda),y=(b,\eta)$, the entire finite-level defect is
+\[
+ K_r(x,y)=(2[a][b]\bmod2^rA,\lambda\vee\eta),
+ \qquad
+ \sigma_r(x)+\sigma_r(y)=\sigma_r(x+y)+K_r(x,y).
+\]
+These equations follow from \eqref{BLR-eq:section-defect} by reduction. At
+$r=1$ its coefficient is always zero, but its support is still
+$\lambda\vee\eta$. At every $r\geq2$, the case $a=b=1$ has the
+nonzero residue coefficient $2$. Thus each truncation has been named,
+and none replaces the original coefficient equality in $A$.
+
+\begin{proposition}\label{BLR-prop:delta-finite-precision}
+The coefficient $2$-derivation $\delta$ does not descend to a function
+$A/2^rA\to A/2^rA$ for any $r\geq1$. It does give a well-defined
+function with the exact loss of one digit
+\[
+ D_r:R_{r+1}\longrightarrow R_r,\qquad
+ \bar a\longmapsto\frac{a-a^2}{2}\bmod2^r,
+\]
+where $a$ is any integer representative of $\bar a$.
+These functions satisfy
+\[
+ q_{r+1,r}D_{r+1}=D_rq_{r+2,r+1}.
+\]
+They extend to support-preserving functions
+$\widehat D_r:B_{r+1}\to B_r$ by
+$\widehat D_r(a,\lambda)=(D_r(a),\lambda)$.
+Their coefficient inverse limit is the original $\delta:A\to A$.
+\end{proposition}
+\begin{proof}
+The two elements $0,2^r$ agree modulo $2^rA$, but
+\[
+ \delta(2^r)-\delta(0)=2^{r-1}(1-2^r)
+ \equiv2^{r-1}\not\equiv0\pmod{2^rA}.
+\]
+Thus descent at unchanged precision fails. For any $a,h\in A$,
+\[
+ \delta(a+2^{r+1}h)-\delta(a)
+ =2^r h(1-2a)-2^{2r+1}h^2\in2^rA.
+\]
+This identity proves independence of the representative in $D_r$ and
+also proves that evaluating on an integer representative agrees with
+reduction of the original $\delta$ on $A$. Evaluating either composite
+in the compatibility equation on a single integer representative gives
+the same residue, proving that equation. As $D_r(0)=0$, the supported
+formula is well-defined: a nonzero output coefficient forces a nonzero
+input coefficient and therefore top input support. Compatibility and
+the equality of all coefficient residues prove the inverse-limit claim.
+\end{proof}
+
+The maps $D_r$ and $\widehat D_r$ are functions with the stated
+identities; they are not asserted to be ring or semiring homomorphisms.
+In particular, reduction in this tower was proved to preserve the ring
+and semiring operations, and was not declared a morphism of
+$\delta$-rings.
+
+\begin{proposition}\label{BLR-prop:all-carries}
+Let $u,v\in A$ have all their binary digits retained:
+\[
+ u=\sum_{i=0}^\infty2^i[a_i],\qquad
+ v=\sum_{i=0}^\infty2^i[b_i],\qquad a_i,b_i\in\FF_2.
+\]
+Identify each digit with its integer representative $0$ or $1$ only in
+the following recurrence. Starting with $c_0=0$, define
+\begin{equation}\label{BLR-eq:carry-recurrence}
+ t_i=a_i+b_i+c_i,\qquad
+ c_{i+1}=\lfloor t_i/2\rfloor,\qquad d_i=t_i-2c_{i+1}.
+\end{equation}
+Then $c_i,d_i\in\{0,1\}$, and for every $r\geq1$ the exact finite
+identity, including its boundary term, is
+\begin{equation}\label{BLR-eq:finite-carry}
+ \sum_{i=0}^{r-1}2^i[a_i]+\sum_{i=0}^{r-1}2^i[b_i]
+ =\sum_{i=0}^{r-1}2^i[d_i]+2^r c_r.
+\end{equation}
+If $u_r,v_r\in A$ are the unique tails specified by
+\[
+ u=\sum_{i=0}^{r-1}2^i[a_i]+2^r u_r,\qquad
+ v=\sum_{i=0}^{r-1}2^i[b_i]+2^r v_r,
+\]
+then the full equality in the original coefficient ring is
+\begin{equation}\label{BLR-eq:full-carry-with-tail}
+ u+v=\sum_{i=0}^{r-1}2^i[d_i]+2^r(u_r+v_r+c_r).
+\end{equation}
+Its limit is $u+v=\sum_{i=0}^\infty2^i[d_i]$.
+\end{proposition}
+\begin{proof}
+If $c_i\in\{0,1\}$, then $0\leq t_i\leq3$, so its quotient and
+remainder on division by $2$ are both in $\{0,1\}$. Induction from
+$c_0=0$ gives the asserted digit ranges. Rearranging the defining
+identity gives
+$a_i+b_i=d_i+2c_{i+1}-c_i$ as an equality of integers and therefore as
+an equality in $A$. Multiplying by $2^i$ and summing for
+$0\leq i\leq r-1$ gives a telescoping sum in which the initial term is
+$-c_0=0$ and the final term is $2^r c_r$. This is
+\eqref{BLR-eq:finite-carry}. The displayed definitions of $u_r,v_r$ and
+injectivity of multiplication by $2^r$ give existence and uniqueness of
+the tails from Lemma~\ref{BLR-lem:witt-identities}. Adding those tail terms
+to \eqref{BLR-eq:finite-carry} proves
+\eqref{BLR-eq:full-carry-with-tail}. The last term belongs to $2^rA$, so the
+limit of the partial digit sums is $u+v$ by completeness and separation.
+This limiting assertion follows from the exact finite identity; it does
+not omit its boundary term at any finite level.
+\end{proof}
+
+For supported elements $(u,\lambda),(v,\eta)\in\GL(A)$, put
+$s=\lambda\vee\eta$. The full supported form of
+\eqref{BLR-eq:full-carry-with-tail} is
+\begin{equation}\label{BLR-eq:supported-all-carries}
+ (u,\lambda)+(v,\eta)=
+ \left(\sum_{i=0}^{r-1}2^i[d_i],s\right)
+ +\bigl(2^r(u_r+v_r+c_r),s\bigr).
+\end{equation}
+Both terms lie in $\GL(A)$. If $s=\topL$ this follows by definition;
+if $s\ne\topL$, then neither input label is $\topL$, so $u=v=0$;
+every digit, carry, and tail is zero, and both terms are precisely
+$z_s$. Their sum is still $z_s$, since $s\vee s=s$. Thus
+\eqref{BLR-eq:supported-all-carries} retains supported zeros even when every
+arithmetic contribution vanishes.
+
+\subsection{What has, and has not, been transported}
+The construction consists of the following exact maps:
+\[
+\begin{array}{ccccc}
+ M&\xrightarrow{\widehat\mu}&\GL(A)&\xrightarrow{\pi}&\GL(\FF_2)\\
+ & &\big\downarrow\alpha_A&&\big\downarrow\alpha_{\FF_2}\\
+ & & A&\xrightarrow{\rho}&\FF_2,
+\end{array}
+\qquad
+ \GL(A)\xrightarrow[\ \Omega\ ]{\sim}
+ \varprojlim_r\GL(\ZZ/2^r\ZZ).
+\]
+The left multiplicative map sends the source $\tau$ to
+$u_A=\widehat\mu(\tau)\in\GL(A)$; its amplitude is
+$\alpha_A(u_A)=\mu(\tau)=1_A$ in the rank-one locus.
+Reduction measures parity of these coefficients, while $\tau\in Z_1$
+retains no parity. The section $\sigma$
+retains support and multiplication; its full failure to preserve
+addition is \eqref{BLR-eq:section-defect}. The full coefficient ring,
+its arithmetic carries, and every lattice label remain present.
+
+For nontrivial $L$, $\GL(A)$ is not a ring, by the explicit failure of
+additive inverses proved above. Accordingly no assertion here applies
+the ordinary Witt functor or the Bhatt--Lurie prism definition directly
+to that semiring. Witt vectors and the prism occur on the coefficient
+ring $A$. The support construction is transported along the explicit
+ring maps by Proposition~\ref{BLR-prop:functor}, and its full limit is proved
+in Theorem~\ref{BLR-thm:support-limit}.
+
+
+\endgroup

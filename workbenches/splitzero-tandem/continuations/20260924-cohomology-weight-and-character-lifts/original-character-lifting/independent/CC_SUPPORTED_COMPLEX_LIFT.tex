@@ -1,0 +1,562 @@
+% Independent derivation, 2026-09-23. SAP1--SAP24.
+\section{The full supported adelic affine quotient and its real actions}
+\label{sec:supported-complex-lift}
+
+\paragraph{Human source and retained coordinates.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1805.10501v1}{\emph{The Riemann--Roch strategy,
+Complex lift of the Scaling Site}}, original author source \nolinkurl{thecurve_K.tex},
+Section 5.2, define the affine action in \texttt{actionpq}, the
+quotient in \texttt{adelicomp3}, and its matrix coordinates in
+\texttt{algspaceiota}. Lemma \texttt{Pdescrofgamma} gives the two
+commuting actions and proves freeness of the right real action on
+its specified open set. The original source was read here at
+lines 1115--1451, including Proposition \texttt{ax+bact} and the
+calculation of \texttt{lapxy}; this is not a claim to have read the entire paper.
+Their coordinate order in the affine-plane formula is $(x,y)$;
+their actual matrix is $\left(\begin{smallmatrix}y&x\\0&1\end{smallmatrix}\right)$.
+We retain the two entries and write the ordered matrix row $(y,x)$
+throughout. Thus no exchange of the action formulas is implicit.
+
+The coefficient is the placewise carrier proved in PLP1--PLP4 of
+\begin{center}\small
+\nolinkurl{CC_PERIODIC_POINTS_FULL_LATTICE.tex}.
+\end{center}
+It differs from the common-label carrier $G_L(\mathbb A)$.
+Its lattice operations come
+from The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}
+{\emph{Split Support Geometry}, version 11, Definition \texttt{def:lattice-split}}.
+All orbit quotients below are set quotients with the stated actions;
+no topology on an arbitrary lattice, complex structure on its
+elements, or semiring structure on an orbit set is assumed.
+
+\subsection{All places, both labels, and the rational inverse monoid}
+
+Let $L$ be a nontrivial bounded distributive lattice, and let
+$\Sigma=\{\infty\}\cup\{p:p\text{ prime}\}$. Put
+$\Lambda=L^\Sigma$, with coordinatewise order and joins,
+$\boldsymbol0=(0_L)_v$, and $\boldsymbol1=(1_L)_v$. Retain
+\begin{equation}\tag{SAP1}
+\begin{gathered}
+G_L(K)=\{(0,\lambda):\lambda\in L\}\cup(K\times\{1_L\}),\\
+(c,\lambda)+(d,\mu)=(c+d,\lambda\vee\mu),\qquad
+(c,\lambda)(d,\mu)=(cd,\lambda\wedge\mu),\\
+\mathbb A_{G,L}=G_L(\mathbb R)\times\prod_p'G_L(\mathbb Q_p),
+\qquad Z=\mathbb A_{G,L}^{2}.
+\end{gathered}
+\end{equation}
+The restricted product is relative to $G_L(\mathbb Z_p)$.
+An element of $Z$ is denoted $(y,x;\alpha,\beta)$, where
+$y,x\in\mathbb A_{\mathbb Q}$ and
+\begin{equation}\tag{SAP2}
+y_v\ne0\Longrightarrow\alpha_v=1_L,\qquad
+x_v\ne0\Longrightarrow\beta_v=1_L.
+\end{equation}
+All zero coordinates have their independent labels. For an adele
+$w$, write $Z(w)=\{v:w_v=0\}$. A tuple in $L^{Z(w)}$ is always
+extended by top labels outside $Z(w)$ when used below.
+
+The original rational action, including both constants, is
+\begin{equation}\tag{SAP3}
+(a,b)(y,x)=(ay,ax+b),\qquad
+(a,b)(a',b')=(aa',ab'+b),\qquad a,a'\in\mathbb Q^\times.
+\end{equation}
+The rational $b$ is diagonal in \emph{every} local field.
+To give its exact supported partial action, define the monoid
+\begin{equation}\tag{SAP4}
+\begin{gathered}
+M=\mathbb Q^\times\ltimes G_\Lambda(\mathbb Q),\qquad
+m=(a,b,\gamma),\quad b\ne0\Longrightarrow\gamma=\boldsymbol1,\\
+(a,b,\gamma)(a',b',\gamma')
+ =(aa',ab'+b,\gamma\vee\gamma'),\qquad
+1_M=(1,0,\boldsymbol0).
+\end{gathered}
+\end{equation}
+The product belongs to this carrier: a nonzero resulting translation
+requires a nonzero translation in at least one factor and therefore
+top joined support. Its unique inverse in the inverse-monoid sense is
+\begin{equation}\tag{SAP5}
+(a,b,\gamma)^\dagger=(a^{-1},-a^{-1}b,\gamma),\qquad
+m^\dagger m=mm^\dagger=(1,0,\gamma).
+\end{equation}
+Associativity follows by expanding (SAP4). The displayed inverse
+satisfies $mm^\dagger m=m$ and $m^\dagger mm^\dagger=m^\dagger$.
+If $n=(c,d,\delta)$ satisfies both equations, their affine amplitude
+parts force $c=a^{-1}$ and $d=-a^{-1}b$, while the label equations
+give $\gamma\vee\delta=\gamma$ and
+$\delta\vee\gamma=\delta$. Thus $\delta=\gamma$ and the inverse
+is unique. The idempotents are exactly $(1,0,\gamma)$ and commute.
+
+For $\gamma\in\Lambda$ define
+$D_\gamma=\{(y,x;\alpha,\beta)\in Z:\gamma\le\beta\}$.
+Then the faithful representation of $M$ by partial bijections is
+\begin{equation}\tag{SAP6}
+T_{a,b,\gamma}:D_\gamma\longrightarrow D_\gamma,
+\qquad (y,x;\alpha,\beta)\longmapsto(ay,ax+b;\alpha,\beta).
+\end{equation}
+If $b=0$, multiplication by nonzero $a$ changes no zero place.
+If $b\ne0$, $\gamma=\boldsymbol1$ forces $\beta=\boldsymbol1$,
+so every translated coordinate is admitted. The source and target
+labels agree and the inverse is (SAP5), proving bijectivity.
+Composition has domain
+$D_\gamma\cap D_{\gamma'}=D_{\gamma\vee\gamma'}$ and formula
+(SAP4). The identity has domain all of $Z$. Distinct $\gamma$
+have distinct domains, since zero amplitudes permit every $\beta$;
+the amplitude formula on the common top-supported part determines
+$a,b$. This proves faithfulness.
+
+Pure dilations $(a,0,\boldsymbol0)$ act everywhere. Every nonzero
+translation acts only on $\beta=\boldsymbol1$. The element
+$(1,0,\gamma)$ is the identity on its displayed domain; it does
+not discard the points outside that domain or identify their labels.
+
+\subsection{Every rational orbit and every amplitude fibre}
+
+Let $\mathscr C_L=Z/M$ be the equivalence relation generated by
+these partial bijections, and let
+$\mathscr C=P(\mathbb Q)\backslash\mathbb A^2$ be the original
+Connes--Consani set quotient. Amplitudes induce the surjection
+\begin{equation}\tag{SAP7}
+\rho:\mathscr C_L\longrightarrow\mathscr C.
+\end{equation}
+It has the explicit section assigning top labels at every place
+on both entries. That section is well defined under all original
+affine changes of representative, and $\rho$ followed by this
+choice in the reverse order is not asserted to be the identity
+on $\mathscr C_L$.
+
+Each allowed arrow preserves both complete tuples $\alpha,\beta$.
+At $\beta=\boldsymbol1$, its orbits are the original affine
+orbits, retaining the admissible tuple $\alpha$. At each
+$\beta\ne\boldsymbol1$, every available affine arrow has $b=0$;
+the orbits are precisely diagonal $\mathbb Q^\times$-orbits of
+$(y,x)$, retaining both labels. A chain of partial arrows cannot
+leave this label tuple to gain a translation and return: every
+arrow preserves the tuple. This proves the full orbit assertion,
+not only a description of the top corner.
+
+An ordinary point $(y,x)$ has trivial stabilizer under (SAP3)
+unless $y=0$ and $x$ is a diagonal rational. Indeed a nonzero
+coordinate of $y$ forces $a=1$, then $b=0$. When $y=0$, any
+stabilizer with $a\ne1$ gives $x=-b/(a-1)\in\mathbb Q$ at
+every place. Conversely for $y=0,x=r\in\mathbb Q$, all
+$(a,(1-a)r)$ stabilize the pair. These exceptional points make
+one ordinary affine orbit, that of $(0,0)$.
+
+Fix a free ordinary representative $(y,x)$. There is the following
+exact representative-dependent parametrization of its entire fibre:
+\begin{equation}\tag{SAP8}
+\rho^{-1}([y,x])\ \simeq\
+L^{Z(y)}\times
+\left(\{*\}\ \sqcup\
+\coprod_{t\in\mathbb Q}
+       \bigl(L^{Z(x+t)}\setminus\{\boldsymbol1\}\bigr)\right).
+\end{equation}
+For the $*$ summand the representative is
+$(y,x;\alpha,\boldsymbol1)$. For the $(t,\beta)$ summand it is
+$(y,x+t;\alpha,\beta)$, with all forced top entries restored.
+Here the notation $\boldsymbol1$ in each factor means that
+factor's unique all-top tuple, including the unique empty tuple
+when the zero-place set is empty.
+
+To prove surjectivity of (SAP8), an amplitude in the ordinary
+orbit is $(ay,ax+b)$. The supported dilation by $a^{-1}$ is
+always available and gives $(y,x+b/a)$ with the same labels.
+If $\beta=\boldsymbol1$, translation returns to $(y,x)$.
+Otherwise set $t=b/a$; the labels are exactly those permitted
+by $Z(y)$ and $Z(x+t)$. To prove injectivity, labels themselves
+cannot change. In the non-top part, an identification must have
+the form
+$c(y,x+t)=(y,x+t')$, $c\in\mathbb Q^\times$.
+If $y\ne0$ then $c=1$ and $t=t'$. If $y=0$, its free-orbit
+hypothesis says $x\notin\mathbb Q$; $c\ne1$ would give
+$x=(t'-ct)/(c-1)\in\mathbb Q$. Again $c=1,t=t'$.
+Top and non-top labels cannot be identified. This proves the
+bijection, and proves why the rational translation parameter remains.
+
+For another free representative
+$(y',x')=(a_0y,a_0x+b_0)$ the exact transition is
+\begin{equation}\tag{SAP9}
+\alpha'=\alpha,\qquad *=*,\qquad
+t'=a_0t-b_0,\qquad \beta'=\beta,\qquad
+x'+t'=a_0(x+t),\quad Z(y')=Z(y).
+\end{equation}
+Consequently $Z(x'+t')=Z(x+t)$ as subsets of the original place
+set; there is no relabelling of places. Composition of two
+changes gives the corresponding affine transformation of $t$,
+by (SAP3). Thus (SAP8) is canonical relative to the chosen
+representative, with the full transition law recorded.
+
+Above the exceptional orbit the answer is instead
+\begin{equation}\tag{SAP10}
+\rho^{-1}([0,0])\simeq\Lambda\times\Lambda,
+\qquad(\alpha,\beta)\longmapsto[0,0;\alpha,\beta].
+\end{equation}
+Every ordinary amplitude in that orbit is $(0,r)$ with
+$r\in\mathbb Q$. For $r\ne0$ all local $x$-coordinates are
+nonzero, forcing $\beta=\boldsymbol1$; the available translation
+by $-r$ gives the indicated representative. When $r=0$ all
+labels already occur. Distinct labels cannot be identified, proving
+both existence and uniqueness in (SAP10). This also exhibits the
+nonfree stabilizer explicitly rather than applying (SAP8) to it.
+
+The cardinality formula for (SAP8) is the cardinality of that
+displayed disjoint union and product; subtraction of infinite
+cardinals is not used. For finite $L$ of size $m\ge2$, when
+$Z(y)$ and every $Z(x+t)$ are finite it reads
+\begin{equation}\tag{SAP11}
+\bigl|\rho^{-1}([y,x])\bigr|
+ =m^{|Z(y)|}\left(1+\sum_{t\in\mathbb Q}
+                      (m^{|Z(x+t)|}-1)\right).
+\end{equation}
+The sum is an ordinary sum of nonnegative integers if it has
+finite support, and is countably infinite otherwise. Different
+sets $Z(x+t)$ are disjoint: $x_v+t=x_v+t'=0$ forces $t=t'$.
+If $Z(y)$ or one $Z(x+t)$ is infinite, countability of $\Sigma$
+gives the exact cardinal $m^{\aleph_0}$ instead. Indeed the
+corresponding factor or summand has that cardinal, and the whole
+expression has at most a countable union of products of that
+cardinal. The exceptional cardinal is always $m^{\aleph_0}$.
+For an arbitrary infinite $L$, (SAP8),(SAP10) are the exact
+cardinal expressions without a finiteness assumption. For example,
+the free point $(y,x)=(1,0)$ has fibre $\Lambda$: only $t=0$
+has zero coordinates in $x+t$, and $Z(y)$ is empty.
+
+\subsection{The actual top-supported right real formula}
+
+Write $g=(u,v)\in P(\mathbb R)$, $u\ne0$, with multiplication
+$(u,v)(u',v')=(uu',uv'+v)$. At the infinite place the original
+matrix product is $(y_\infty,x_\infty)\mapsto
+(u y_\infty,x_\infty+v y_\infty)$. The finite components are
+unchanged. Lifting every real scalar $c$ as $(c,1_L)$, including
+zero as $e=(0,1_L)$, gives the full formula
+\begin{equation}\tag{SAP12}
+F_g(y,x;\alpha,\beta)_\infty
+ =\bigl((u y_\infty,\alpha_\infty),
+        (x_\infty+v y_\infty,\beta_\infty\vee\alpha_\infty)\bigr),
+\qquad (F_gz)_p=z_p\ (p<\infty).
+\end{equation}
+The zero contribution when $v=0$ still has label
+$\alpha_\infty$; replacing it by $\tau$ would change the formula.
+In particular define
+\begin{equation}\tag{SAP13}
+\begin{gathered}
+C=F_{(1,0)},\qquad
+C(y,x;\alpha,\beta)
+ =(y,x;\alpha,\beta^{\sharp}),\\
+\beta^{\sharp}_\infty=\beta_\infty\vee\alpha_\infty,
+\quad\beta^{\sharp}_p=\beta_p,\\
+\qquad W=\operatorname{im}C
+ =\{\alpha_\infty\le\beta_\infty\}.
+\end{gathered}
+\end{equation}
+All entries remain in their original carriers, and $C^2=C$.
+Direct expansion of both real amplitudes and both labels gives
+\begin{equation}\tag{SAP14}
+F_h\circ F_g=F_{gh},\qquad
+F_gC=CF_g=F_g,\qquad
+F_{g^{-1}}F_g=F_gF_{g^{-1}}=C.
+\end{equation}
+For the translation entry this expansion is
+$x_\infty+v y_\infty+v'u y_\infty
+=x_\infty+(uv'+v)y_\infty$; the repeated join with
+$\alpha_\infty$ is unchanged. Thus the identity element of the
+real group acts as $C$, not as the identity of the full source.
+
+The restrictions $A_g=F_g|_W$ give a genuine right group action,
+with inverse $A_{g^{-1}}$. It is the maximal subset of $Z$ on
+which the \emph{displayed full formula} is a unital group action:
+any such subset must be fixed by $F_{(1,0)}=C$, and hence must
+lie in $W$. The exact factorization on the whole source is
+\begin{equation}\tag{SAP15}
+F_g:\ Z\xrightarrow{C}W\xrightarrow{A_g}W\lhook\joinrel\longrightarrow Z.
+\end{equation}
+For fixed finite entries and fixed real $y_\infty,x_\infty,
+\alpha_\infty,\beta^{\sharp}_\infty$, the fibre of $C$ consists
+exactly of
+\begin{equation}\tag{SAP16}
+\{\beta_\infty\in L:
+  \beta_\infty\vee\alpha_\infty=\beta^{\sharp}_\infty,
+  \quad x_\infty\ne0\Rightarrow\beta_\infty=1_L\}.
+\end{equation}
+The other entries are fixed. This equation retains the complete
+defect introduced by the right matrix identity.
+
+\subsection{Descent and two distinct repairs on the full carrier}
+
+The saturation $C$, and every $F_g$, send each left rational
+partial orbit into a left rational partial orbit. On the domain
+of $T_{a,b,\gamma}$ one has exactly
+\begin{equation}\tag{SAP17}
+F_gT_{a,b,\gamma}z=T_{a,b,\gamma}F_gz,
+\qquad CT_{a,b,\gamma}z=T_{a,b,\gamma}Cz.
+\end{equation}
+For amplitudes, both sides give $au y_\infty$ and
+$a(x_\infty+v y_\infty)+b$ at infinity and the original
+affine formula at finite places. For labels, left maps preserve
+$\alpha,\beta$ and the right map joins only the displayed
+infinite-place label. The right image remains in $D_\gamma$,
+since its $\beta$ is greater than or equal to the original one.
+If $b\ne0$, the original $\beta$ was top at all places and
+remains so. These checks prove the domains as well as the equations.
+
+The set $W$ is saturated for the left partial-orbit relation,
+because that relation preserves labels. It follows that the real
+group acts on $W/M$, that $C$ induces an idempotent
+$\overline C:\mathscr C_L\to W/M$, and that (SAP15) descends.
+Its fixed set is exactly $W/M$: an orbit cannot identify two
+different label tuples. The original amplitude quotient map is
+equivariant for the right real action wherever that action is
+defined, and the all-top section of (SAP7) intertwines the entire
+original real action.
+
+One repair retains the coefficient-exact reversible part and
+adds the already-defined global dilations. Define $D_u$ on all
+of $Z$ by scaling $y_\infty$ by $u\ne0$ and retaining every
+other amplitude and label. It corresponds to using $\tau$ for
+the zero shear coefficient; it is therefore a \emph{different,
+explicitly declared lift} from $F_{(u,0)}$ outside $W$. There is
+the partial right $P(\mathbb R)$ action
+\begin{equation}\tag{SAP18}
+\theta_{(u,v)}=
+\begin{cases}
+D_u:Z\to Z,&v=0,\\
+A_{(u,v)}:W\to W,&v\ne0.
+\end{cases}
+\end{equation}
+Its inverse has the same domain, because the inverse translation
+coefficient is $-v/u$. Composing two maps has domain $Z$ if both
+are pure dilations, and $W$ otherwise. On that domain the amplitude
+law is $(u,v)(u',v')=(uu',uv'+v)$ and labels are unchanged.
+If two nonzero shear coefficients cancel, the result is the
+restriction to $W$ of the resulting global dilation, as required
+for a partial action. The resulting inverse monoid of partial
+bijections is exactly
+$\{D_u:u\in\mathbb R^\times\}\cup
+ \{A_g:W\to W:g\in P(\mathbb R)\}$,
+with idempotents $\operatorname{id}_Z,\operatorname{id}_W$.
+Its two parts are the dilation group and the affine group on
+their stated domains. The sets and formulas are left-orbit
+saturated, preserve all left-action domains, and commute with
+the left action. Thus (SAP18) descends to $\mathscr C_L$.
+
+This inverse monoid also has its exact supported matrix
+realization, rather than only a description by partial maps.
+At the real place put $\mathbf1=(1,1_L)$,
+$e=(0,1_L)$ and $\tau=(0,0_L)$, and retain the two matrix families
+\begin{equation}\tag{SAP18a}
+\mathcal D_u=
+\begin{pmatrix}(u,1_L)&\tau\\ \tau&\mathbf1\end{pmatrix},
+\qquad
+\mathcal B_{u,v}=
+\begin{pmatrix}(u,1_L)&(v,1_L)\\ \tau&\mathbf1\end{pmatrix}.
+\end{equation}
+The original full right map is multiplication of the row by
+$\mathcal B_{u,v}$. The matrix $\mathcal B_{u,0}$ has an $e$
+entry and is different from $\mathcal D_u$. Multiplication in
+the original semiring gives all four products
+\begin{equation}\tag{SAP18b}
+\begin{aligned}
+\mathcal D_u\mathcal D_w&=\mathcal D_{uw},&
+\mathcal D_u\mathcal B_{w,t}&=\mathcal B_{uw,ut},\\
+\mathcal B_{u,v}\mathcal D_w&=\mathcal B_{uw,v},&
+\mathcal B_{u,v}\mathcal B_{w,t}&=\mathcal B_{uw,v+ut}.
+\end{aligned}
+\end{equation}
+In the last product, cancellation of $v+ut$ leaves the upper
+right entry $e$, not $\tau$. The two idempotents are
+$\mathcal D_1$ and $\mathcal E=\mathcal B_{1,0}$, which commute.
+The unique inverse of $\mathcal D_u$ is $\mathcal D_{u^{-1}}$;
+the unique inverse of $\mathcal B_{u,v}$ is
+$\mathcal B_{u^{-1},-v/u}$. The latter pair multiplies to
+$\mathcal E$ in both orders. An inverse between the two
+different families is impossible because a product containing
+a $\mathcal B$ factor still has top upper-right support; within
+each family its amplitude equations force the displayed inverse.
+This proves the inverse-monoid assertion directly for matrices.
+Its faithful right action by partial bijections sends
+$\mathcal D_u$ to $D_u$ on $Z$ and $\mathcal B_{u,v}$ to
+$A_{u,v}$ on $W$, with idempotents
+$\operatorname{id}_Z,\operatorname{id}_W$. The different domains
+distinguish the two families. At top-supported $y_\infty=1,
+x_\infty=0$, the output amplitudes distinguish each $u,v$.
+The action convention is $R_{mn}=R_n\circ R_m$, as required
+for multiplication of rows on the right; it is not silently
+changed to a left action.
+
+A second, larger partial action can be defined if the requirement
+is to keep every label and the original amplitude formula, rather
+than to be the reversible restriction of (SAP12). Its exact
+maximal full-group domain is
+\begin{equation}\tag{SAP19}
+\Omega=\{z:\beta_\infty=1_L\ \text{or}\ y_\infty=0\},
+\qquad W\subset\Omega.
+\end{equation}
+On $\Omega$ use $(u y_\infty,x_\infty+v y_\infty)$ with both
+labels unchanged. If $\beta_\infty=1_L$ this is always
+admissible; if $y_\infty=0$, its $x$-entry is unchanged. These
+two conditions persist under every group element, so this is
+a group action on $\Omega$. Outside $\Omega$, one has
+$y_\infty\ne0$, $\beta_\infty<1_L$ and $x_\infty=0$.
+Any $v\ne0$ would give nonzero $v y_\infty$ with a non-top
+label, outside the carrier. This proves maximality under the
+stated label-preserving amplitude requirement. The same definition
+as (SAP18), with $W$ replaced by $\Omega$, is therefore a
+partial action on all $Z$, and descends to the left orbit set.
+On $\Omega\setminus W$ it differs from the full supported
+matrix product: it retains $\beta_\infty$ instead of replacing
+it by $\beta_\infty\vee\alpha_\infty$. Equations (SAP12),
+(SAP16), and (SAP19) specify that difference; these lifts are
+not identified with each other.
+If $T_g$ denotes this larger group action on $\Omega$, its
+comparison to the full coefficient action is the exact equation
+\begin{equation}\tag{SAP19a}
+C\circ T_g=A_g\circ C=F_g|_\Omega.
+\end{equation}
+Both sides keep the same amplitudes and all finite labels and
+replace only $\beta_\infty$ by $\beta_\infty\vee\alpha_\infty$.
+On $\Omega\setminus W$ both real amplitudes are zero and
+$T_g$ fixes the point, whereas $F_g$ performs that displayed
+support saturation.
+
+There is also an exact groupoid which keeps the full original
+map (SAP12) and all its antecedents. Its objects are all $z\in Z$,
+and its arrows are
+\begin{equation}\tag{SAP20}
+\mathcal G_C^{(1)}
+ =\{(z,g,z'):g\in P(\mathbb R),\ C(z')=A_gC(z)\},
+\qquad (z,g,z'):(z\longrightarrow z').
+\end{equation}
+For arrows $(z,g,z')$ and $(z',h,z'')$, composition is
+$(z,gh,z'')$; its defining equation follows from the right
+action law on $W$. The identity is $(z,1,z)$ and the inverse
+is $(z',g^{-1},z)$. Thus all groupoid laws hold. The arrows
+over the group identity are precisely all pairs in the fibres
+of $C$, with those fibres given by (SAP16). In particular the
+graph $(z,g,F_gz)$ supplies the original maps as arrows, and
+their inverses remain arrows without pretending that
+$F_{g^{-1}}F_gz=z$. The orbit set of this groupoid is exactly
+$W/P(\mathbb R)$: every $z$ is connected to $Cz$ by an
+identity-labelled arrow, and the remaining relation is the
+original group action on $W$. Replacing $Z,W,C$ by
+$\mathscr C_L,W/M,\overline C$ gives the same exact construction
+after the rational partial quotient. Its objects still retain
+every supported rational orbit.
+
+The saturation is also the universal quotient on which the
+original maps become a genuine group action. Precisely, if
+$f:Z\to B$ intertwines every $F_g$ with a genuine right group
+action on $B$, then the group identity gives
+\begin{equation}\tag{SAP20a}
+f(Cz)=f(F_1z)=f(z),\qquad
+f=\widetilde f\circ C,\qquad \widetilde f=f|_W.
+\end{equation}
+This factor is unique because $C$ is onto, and it is equivariant
+because $C|_W$ is the identity and $F_g|_W=A_g$.
+Conversely every equivariant $\widetilde f:W\to B$ yields
+such an $f$ by (SAP15). Thus $Z/\ker C\simeq W$ has the
+stated universal property. After the left partial quotient,
+the same proof gives the quotient by
+$[z]\sim[z']$ if and only if $Cz$ and $Cz'$ lie in the same
+left partial orbit, with target $W/M$.
+
+\subsection{A full-fibre obstruction, beyond failure of one formula}
+
+There is already an obstruction to \emph{any} global bijective
+action with the prescribed original amplitudes and unchanged
+finite data, even allowing the real support labels to change.
+Choose two points with identical finite data and
+$y_\infty=1,x_\infty=0,\alpha_\infty=1_L$, but respectively
+$\beta_\infty=0_L$ and $\beta_\infty=1_L$. A group element
+$(u,v)$ with $u\ne0,v\ne0$ would send both points to real
+amplitudes $(u,v)$; each is nonzero and forces both real labels
+to be top. All finite data were required to remain the same.
+The two images would therefore coincide, contradicting
+injectivity of a group-action map. This argument does not
+assume the particular label formula (SAP12).
+
+There cannot be a global group action by bijections on $Z$ making
+$C:Z\to W$ equivariant for the given action $A$ on $W$.
+Indeed fix all finite coordinates and labels, take
+$y_\infty=1$, $x_\infty=0$, $\alpha_\infty=1_L$, and let
+$w_0\in W$ have $\beta_\infty=1_L$. Equation (SAP16) gives
+$C^{-1}(w_0)\simeq L$. The real shear $g=(1,v)$ for $v\ne0$
+sends $w_0$ to $w_v$ with $x_\infty=v\ne0$, whose $C$-fibre
+is a singleton. An equivariant bijection for $g$ would restrict
+to a bijection of these two fibres, impossible for nontrivial $L$.
+This rules out every such global action, not merely the specific
+formula (SAP12).
+
+The corresponding obstruction persists after taking the actual
+left rational partial quotient. Choose full adeles and labels
+\begin{equation}\tag{SAP21}
+y_v=1\ \ (v\in\Sigma),\qquad x_v=0\ \ (v\in\Sigma),
+\qquad \alpha=\beta=\boldsymbol1,
+\end{equation}
+and let $\overline w_0$ be their class in $W/M$.
+Since all $y$-coordinates are nonzero, every antecedent under
+$\overline C$ has $\alpha=\boldsymbol1$, and its finite
+$\beta$-coordinates must be top. Formula (SAP8) shows
+\begin{equation}\tag{SAP22}
+\overline C^{-1}(\overline w_0)\simeq L:
+\quad\beta_\infty\text{ is arbitrary, all finite }\beta_p=1_L.
+\end{equation}
+For a proper $\beta_\infty$, the representative has $t=0$,
+because $x_\infty+t=0$ is necessary. The top value is the
+top branch of (SAP8), so it contributes one further value of
+that same $L$ parametrization.
+Now choose $v\in\mathbb R\setminus\mathbb Q$ and apply the
+right shear $(1,v)$. Its amplitude representative has
+$y=1$, $x_p=0$ for finite $p$, and $x_\infty=v$.
+An antecedent with proper $\beta_\infty$ would require a
+rational $t$ satisfying $v+t=0$, impossible. Consequently
+\begin{equation}\tag{SAP23}
+\bigl|\overline C^{-1}(\overline w_0\cdot(1,v))\bigr|=1
+\quad (v\notin\mathbb Q),\qquad
+\overline C^{-1}(\overline w_0)\simeq L.
+\end{equation}
+Thus no global bijective real affine action on the supported
+rational orbit set can make $\overline C$ equivariant either.
+The partial actions and the groupoid above are specified
+mathematical replacements with proved maps, not assumptions
+that this obstruction has disappeared.
+
+\subsection{The retained free real leaves}
+
+On the part of $W/M$ with $y_f\ne0$ and $y_\infty\ne0$,
+the right real affine action is free. If $[z]\cdot(u,v)=[z]$
+in this supported quotient, the same holds in the original
+amplitude quotient. There is therefore $(a,b)\in P(\mathbb Q)$
+with $y_f=ay_f$, $x_f=ax_f+b$, $u y_\infty=a y_\infty$,
+and $x_\infty+v y_\infty=a x_\infty+b$.
+A nonzero finite coordinate of $y_f$ forces $a=1$; the finite
+$x$-equation then forces $b=0$; the two real equations force
+$u=1,v=0$. This reproduces the exact argument in the cited
+Lemma \texttt{Pdescrofgamma}, with every support retained.
+
+For a fixed label tuple these free $P_+(\mathbb R)$ orbits
+therefore carry the original homogeneous complex-leaf structure.
+This means the manifold structure transported from the free
+orbit parametrization by $P_+(\mathbb R)$; no new topology on
+the entire label set is being declared. The actual real formulas,
+with their original constants, are
+\begin{equation}\tag{SAP24}
+X=y_\infty\partial_{x_\infty},\qquad
+Y=y_\infty\partial_{y_\infty},\qquad
+ds^2=\frac{dx_\infty^2+dy_\infty^2}{y_\infty^2},\qquad
+\Delta=X^2+(Y-\tfrac12)^2-\tfrac14.
+\end{equation}
+The vector fields follow by differentiating the original right
+shear and dilation, respectively. For a base point $(y_0,x_0)$,
+the orbit coordinates are $y_\infty=u y_0$,
+$x_\infty=x_0+v y_0$, so the metric pullback is exactly
+$y_0^2(du^2+dv^2)/(u^2y_0^2)$. The Laplacian expression retains
+both scalar terms and agrees with
+$y_\infty^2(\partial_{x_\infty}^2+\partial_{y_\infty}^2)$ by
+expanding $Y^2-Y$ and $X^2$. These are the original formulas
+of Proposition \texttt{ax+bact} and equation \texttt{lapxy}.
+They are supported real-leaf statements on the indicated locus,
+not a global complex structure on the full supported carrier.
+No spectral positivity or RH conclusion follows from the orbit
+or fibre calculations alone.

@@ -1,0 +1,534 @@
+% Root mathematical derivation, 2026-09-23. RDT1--20.
+\section{The original divisor, every supported section level, and its theta image}
+\label{sec:rr-theta-degree}
+
+\paragraph{Sources and the comparison being proved.}
+Alain Connes and Caterina Consani, \href{https://arxiv.org/abs/2306.00456v1}
+{\emph{Riemann--Roch for the ring $\mathbb Z$}}, original author file
+\nolinkurl{RRZ.tex}, define the bounded $\mathbb S$-module by the
+\emph{all-subset} condition in \texttt{xlem}, \texttt{xdefn}, and
+\texttt{xdefnr}, and its sums and dimension in \texttt{defnsum} and
+Definition \texttt{generator}. Their Theorem \texttt{RRZ} calculates
+$H^0$; Proposition \texttt{caseh1} and Theorem \texttt{rrspzb} concern
+their stated tolerant $H^1$ and Riemann--Roch identity. The source SHA-256 is
+\par\noindent
+\nolinkurl{1975ade5af5d3facf0f954da414a85c07c8adb7a83d1cc08e38f3112c5d072f9}.
+\par
+The Gaussian below is the one in Connes--Consani--Marcolli,
+\href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof and the
+geometry of the adeles class space}}, \texttt{degmodifyV}; its Mellin
+and trace conventions are \texttt{rhoFourier}, \texttt{degcorrZf},
+\texttt{codegcorrZf}, and \texttt{pairTrvanishV}.
+
+The full support operations come from The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}
+{\emph{Split Support Geometry}, version 11, Definition
+\texttt{def:lattice-split}}. The accompanying programme proof SRR1--8,
+\nolinkurl{SUPPORTED_RIEMANN_ROCH_SECTIONS.tex}, already determines
+the supported integer-section module and its dimension. DOR20a gives
+the exact finite-prime diagonal antecedent. We prove their common
+divisor dictionary, the full section counts, and the counting-to-theta
+transform here. These are maps between specified objects; the tolerant
+$H^1$ of the Riemann--Roch source is not assumed to be the arithmetic
+spectral $H^1$ of the adelic trace construction.
+
+\subsection{All finite divisor coefficients and the archimedean bound}
+
+Let $L$ be a bounded distributive lattice, $0_L\ne1_L$. Retain an
+arbitrary Arakelov divisor with finite support at the finite places:
+\begin{equation}\tag{RDT1}
+\begin{gathered}
+D=\sum_p d_p[p]+d_\infty[\infty],\quad
+d_p\in\mathbb Z,\quad d_\infty\in\mathbb R,\\
+I(D)=\{q\in\mathbb Q:v_p(q)\ge-d_p\text{ for every }p\},\quad
+v_p(0)=+\infty,\\
+N=\prod_p p^{-d_p}>0,\quad a=e^{d_\infty}>0,\quad b=a/N,\qquad
+\deg D=\sum_p d_p\log p+d_\infty.
+\end{gathered}
+\end{equation}
+Here $N$ is a positive rational number, not necessarily an integer.
+For nonzero rational $q$, the inequalities defining $I(D)$ say that
+$v_p(q/N)\ge0$ at every prime. Writing a rational number as a reduced
+fraction proves that this is equivalent to $q/N\in\mathbb Z$.
+The assertion also holds at zero. Hence, with the original parameters
+still present,
+\begin{equation}\tag{RDT2}
+I(D)=N\mathbb Z,\qquad
+\prod_p\operatorname{vol}(p^{-d_p}\mathbb Z_p)
+=\prod_p p^{d_p}=N^{-1},\qquad b=e^{\deg D}.
+\end{equation}
+The local measure is $\operatorname{vol}(\mathbb Z_p)=1$, and the
+real measure is Lebesgue measure. No finite-prime contribution is
+absorbed into a replacement for $D$.
+
+The additive monoid used for sections is
+$G_L(I(D))=\{(0,\lambda):\lambda\in L\}\cup
+(I(D)\times\{1_L\})$, with addition
+$(x,\lambda)+(z,\mu)=(x+z,\lambda\vee\mu)$ and identity
+$\tau=(0,0_L)$. A fractional ideal need not be a ring, so this
+notation here denotes the additive monoid, not an assertion of
+multiplicative closure. Its supported zero is $e=(0,1_L)$.
+
+\subsection{The complete supported bounded section module}
+
+For $r_+=\{*,1,\ldots,r\}$, define
+\begin{equation}\tag{RDT3}
+\begin{split}
+\mathcal H_L^0(D)(r_+)=\{((q_j,\lambda_j))_{j=1}^r:\;&q_j\in I(D),
+\ q_j\ne0\Rightarrow\lambda_j=1_L,\\[-2pt]
+&-a\le\sum_{j\in J}q_j\le a
+\text{ for every }J\subseteq\{1,\ldots,r\}\}.
+\end{split}
+\end{equation}
+The empty sum is $\tau$ and has amplitude zero. The maximum of the
+subset amplitudes is the sum of positive coordinates, and the minimum
+is the sum of negative coordinates. Consequently the complete
+condition is precisely
+\begin{equation}\tag{RDT4}
+q_j=Nn_j,\quad n_j\in\mathbb Z,\qquad
+N\sum_{n_j>0}n_j\le a,\qquad
+N\sum_{n_j<0}|n_j|\le a.
+\end{equation}
+These are two separate bounds. They do not impose a single bound on
+$\sum_j|q_j|$. This distinction is the one between the source's
+$\mathbb S$ construction and its preceding
+$\mathbb S[\pm1]$ construction.
+For a pointed map $f:r_+\to s_+$ the full structure map is
+\begin{equation}\tag{RDT5}
+((q_j,\lambda_j))_j\longmapsto
+\left(\sum_{f(j)=i}q_j,\ \bigvee_{f(j)=i}\lambda_j\right)_{i=1}^s.
+\end{equation}
+Empty fibres give $(0,0_L)$; coordinates sent to $*$ are discarded.
+Every subset sum of the output is a subset sum of the input over a
+disjoint union of fibres, hence remains in $[-a,a]$. If an output
+amplitude is nonzero, one summand was nonzero and had top support,
+so its output label is top. Composition follows from associativity
+of sums and joins. Thus these are actual pointed $\Gamma$-module
+maps at all levels.
+Division of each amplitude by the retained positive number $N$ gives
+the exact pointed natural isomorphism
+\begin{equation}\tag{RDT6}
+\mathcal H_L^0(D)\xrightarrow{\ \cong\ }\mathcal E_{L,b},\qquad
+((q_j,\lambda_j))\longmapsto((q_j/N,\lambda_j)),\qquad
+((n_j,\lambda_j))\longmapsto((Nn_j,\lambda_j))
+\end{equation}
+as its inverse. The target is exactly the module in SRR2--8, with
+the bound $[-b,b]$; (RDT4) proves the domain and range, and (RDT5)
+proves naturality. We retain the source, target, $N$, and both maps.
+The amplitude map onto Connes--Consani's section module has, over
+each admitted tuple $(q_j)$, exactly the fibre
+$L^{\{j:q_j=0\}}$. Its zero fibre is $H(L,\vee,0_L)$. For $b\ge1$
+it has no pointed natural section: the admitted pair $(N,-N)$ has
+unique coordinate lifts, and its fold is $e$; the pointed lift of
+zero is $\tau$. Projection naturality and fold naturality would
+identify these two distinct labels. For $0<b<1$, (RDT4) forces
+every amplitude to be zero in every level, and gives exactly
+\begin{equation}\tag{RDT7}
+\mathcal H_L^0(D)=H(L,\vee,0_L)
+\qquad(0<b<1).
+\end{equation}
+The absence of nonzero amplitude sections does not remove this fibre.
+For finite $L$, the existing complete SRR6--8 proof transported by
+(RDT6) gives, with $J(L)$ the nonzero join-irreducibles and
+$J_{<}(L)=J(L)\setminus\{1_L\}$,
+\begin{equation}\tag{RDT8}
+\dim_{\mathbb S}\mathcal H_L^0(D)=
+\begin{cases}
+|J(L)|,&0<b<1,\\
+n+1+|J_{<}(L)|,&2^{n-1}\le b<2^n,\quad b\ge1.
+\end{cases}
+\end{equation}
+The exact generator definition is the equality-tolerance version of
+the source's Definition \texttt{generator}. The proof is the cited
+SRR proof with the inverse in (RDT6) applied to each generator and
+each admissible sum, so both minimality and attainability transfer.
+For infinite $L$ no finite set generates: a set of $t$ generators
+has at most $2^t$ subset sums while all points $(0,\lambda)$ remain.
+\subsection{Exact counts in every level}
+Let $m=\lfloor b\rfloor$. For a tuple in (RDT4), let $u$ be its
+number of positive coordinates, $v$ its number of negative
+coordinates and $w=r-u-v$ its number of zero coordinates. The number
+of positive integer $u$-tuples with total at most $m$ is
+$\binom m u$, including the value one when $u=0$ and the value zero
+when $u>m$. To prove this for $u>0$, the partial sums
+$n_1,n_1+n_2,\ldots,n_1+\cdots+n_u$ are exactly increasing
+$u$-element subsets of $\{1,\ldots,m\}$, with inverse successive
+differences. The same count applies independently to the magnitudes
+of the negative coordinates. Choosing their disjoint positions gives
+\begin{equation}\tag{RDT9}
+\#\mathcal H_L^0(D)(r_+)
+=\sum_{\substack{u,v\ge0\\u+v\le r}}
+\frac{r!}{u!v!(r-u-v)!}
+\binom m u\binom m v\,|L|^{r-u-v}
+\qquad(L\text{ finite}).
+\end{equation}
+The factor $|L|^{r-u-v}$ counts all zero labels independently.
+Deleting this factor gives the amplitude-tuple count, not the full
+supported count. In particular the amplitude count in level $1_+$
+is $2m+1$, while the full supported count is $2m+|L|$.
+At $r=0$ the formula gives the single pointed empty tuple. For
+arbitrary infinite $L$ the fibre formula preceding (RDT7), rather
+than a finite cardinality assertion, remains exact.
+Vary only the original archimedean bound: for $R>0$ the divisor
+$D_R=D+\log R[\infty]$ retains $I(D)$ and has bound $aR$.
+The nonzero amplitude count in level $1_+$ is
+\begin{equation}\tag{RDT10}
+A_D(R)=\#\{q\in I(D)\setminus\{0\}:|q|\le aR\}
+=2\lfloor bR\rfloor,\qquad
+dA_D=2\sum_{n\ge1}\delta_{n/b}.
+\end{equation}
+This is an exact image of the all-level module under amplitude
+projection and degree-one counting. It is not a faithful replacement
+for that module, and counting is not asserted to be a $\Gamma$-module
+morphism. The full fibres and folds remain (RDT3)--(RDT5).
+\subsection{The original theta source and its diagonal antecedent}
+Retain the entire real function and every finite factor:
+\begin{equation}\tag{RDT11}
+\begin{gathered}
+\eta(x)=\left(\pi^2x^4-\frac{3\pi}{2}x^2\right)e^{-\pi x^2},\\
+\xi_D(x)=\eta(x_\infty/a)\prod_p\mathbf1_{p^{-d_p}\mathbb Z_p}(x_p),\\
+\xi_D(0)=0,\qquad
+\int_{\mathbb A}\xi_D
+=\frac{a}{N}\left(\pi^2\frac{3}{4\pi^2}
+                    -\frac{3\pi}{2}\frac{1}{2\pi}\right)=0.
+\end{gathered}
+\end{equation}
+There are finitely many nonreference finite factors, so this is an
+actual Bruhat--Schwartz function in the original adelic space. For
+$y>0$ and $u\in\widehat{\mathbb Z}^{\times}$, the admissible rational
+summands are exactly $q=Nn$, $n\in\mathbb Z\setminus\{0\}$.
+Its original theta image is therefore
+\begin{equation}\tag{RDT12}
+f_D(y,u)=E\xi_D(y,u)
+=2\sum_{n\ge1}\eta(Nny/a)=2\sum_{n\ge1}\eta(ny/b).
+\end{equation}
+The first expression retains the original finite and real parameters;
+the second records their exact comparison. The sums and all fixed
+$y>0$ derivatives converge absolutely by Gaussian decay.
+For the diagonal source of DOR20a, keep $y_1,y_2>0$ and put
+\begin{equation}\tag{RDT13}
+\begin{gathered}
+F_a(z)=\pi(z/a)(\pi(z/a)^2-\tfrac32)e^{-\pi(z/a)^2/2},\quad
+G_a(z)=(z/a)e^{-\pi(z/a)^2/2},\\
+t_{D,y}(x_1,x_2)=F_a(x_{1,\infty}/y_1)G_a(x_{2,\infty}/y_2)
+\prod_p\mathbf1_{p^{-d_p}\mathbb Z_p}(x_{1,p})
+          \mathbf1_{p^{-d_p}\mathbb Z_p}(x_{2,p}),\\
+\mu_y t_{D,y}(x)=t_{D,y}(y_1x_\infty,x_f;y_2x_\infty,x_f)
+=\xi_D(x).
+\end{gathered}
+\end{equation}
+Both real factors are odd. Each has zero evaluation and zero additive
+integral; pairing rational summands $q,-q$ gives zero independent
+theta image for each factor. The product on the diagonal is exactly
+$F_a(z)G_a(z)=\eta(z/a)$, proving (RDT13), with diagonal moment
+zero by (RDT11). The DMR/DOR maps therefore receive this actual
+tensor in their stipulated joint kernel. This is not a freely
+chosen function without an original source antecedent.
+Combining (RDT10) and (RDT12) gives the exact whole-scale transform
+\begin{equation}\tag{RDT14}
+\begin{split}
+f_D(y,u)&=\int_{(0,\infty)}\eta(yR)\,dA_D(R),\\
+&=-y\int_0^\infty A_D(R)\eta'(yR)\,dR,\\
+\eta'(x)&=\left[4\pi^2x^3-3\pi x
+-2\pi x\left(\pi^2x^4-\frac{3\pi}{2}x^2\right)\right]e^{-\pi x^2}.
+\end{split}
+\end{equation}
+The first integral is absolutely convergent, since its total variation
+integral is $2\sum_{n\ge1}|\eta(ny/b)|<\infty$. Integration by parts
+on finite intervals, then passage to the endpoints, proves the
+second equality. Near zero $A_D$ is zero; at infinity
+$A_D(R)\le2bR$ and $\eta(yR)$ and its derivative have Gaussian
+decay. These estimates prove both vanished boundary terms and
+absolute integrability of the second expression. No endpoint Mellin
+integral is exchanged with the integer sum in this argument.
+\subsection{Full Mellin factors, endpoints and recovery}
+Use $M_D(s)=\int_0^\infty f_D(y,u)y^s\,dy/y$.
+For $\operatorname{Re}s>1$, absolute integration of the original
+Gaussian monomials gives
+\begin{equation}\tag{RDT15}
+M_D(s)=2\left(\frac aN\right)^s\zeta(s)
+\left\{
+\frac{\pi^2\Gamma((s+4)/2)}{2\pi^{(s+4)/2}}
+-\frac{3\pi\Gamma((s+2)/2)}{4\pi^{(s+2)/2}}
+\right\}.
+\end{equation}
+For completeness its original Poisson comparison is exact. For the
+Fourier convention $\widehat f(t)=\int f(x)e^{-2\pi ixt}dx$,
+\[
+\widehat{x^2e^{-\pi x^2}}(t)
+=\left(\frac1{2\pi}-t^2\right)e^{-\pi t^2},\qquad
+\widehat{x^4e^{-\pi x^2}}(t)
+=\left(t^4-\frac{3t^2}{\pi}+\frac3{4\pi^2}\right)e^{-\pi t^2}.
+\]
+These follow by differentiating the Gaussian Fourier identity twice
+and four times, using $\widehat{xf}=-(2\pi i)^{-1}\partial_t\widehat f$.
+Multiplying by the two coefficients in (RDT11) gives
+$\widehat\eta=\eta$, including cancellation of the two constant terms.
+Poisson summation for this Schwartz function, whose value and integral
+at zero vanish, gives for $h(z)=2\sum_{n\ge1}\eta(nz)$
+$h(z)=z^{-1}h(z^{-1})$. The Gaussian series for $z\ge1$ and this
+identity prove faster-than-every-power decay at both ends, including
+all logarithmic derivatives. Hence $M_D$ is entire, and (RDT15)
+continues as that entire integral with all displayed factors retained.
+
+The entire adelic Fourier comparison retains the opposite divisor and
+the full volume factor as well. At each finite place take the original
+additive character of conductor $\mathbb Z_p$ and its self-dual
+measure. The annihilator of $p^{-d_p}\mathbb Z_p$ is
+$p^{d_p}\mathbb Z_p$. The integral of its character is the ball's
+volume $p^{d_p}$ on that annihilator; off the annihilator, translation
+by an element of the ball multiplies the integral by a scalar
+different from one and therefore forces it to zero. Real scaling in
+the proved Gaussian Fourier formula then gives
+\begin{equation}\tag{RDT15a}
+\begin{gathered}
+\widehat{\mathbf1_{p^{-d_p}\mathbb Z_p}}
+=p^{d_p}\mathbf1_{p^{d_p}\mathbb Z_p},\qquad
+\widehat{\eta(\,\cdot\,/a)}(t)=a\eta(at),\\
+\widehat{\xi_D}=\frac aN\xi_{-D},\qquad
+f_D(y,u)=\frac{a}{Ny}f_{-D}(1/y,u^{-1}),\qquad
+M_D(s)=\frac aN M_{-D}(1-s).
+\end{gathered}
+\end{equation}
+Poisson summation on the original adelic source has zero source
+endpoints by (RDT11), so it proves the middle theta identity,
+including the modulus $y^{-1}$. Its compact-unit arguments are
+retained even though these particular functions are independent of
+them. The last identity follows by an absolutely convergent Mellin
+substitution. Thus self-duality of the real polynomial Gaussian has
+not been incorrectly transferred to the whole source: its full dual
+is the displayed multiple of the source for $-D$.
+
+At $s=0$ the expression in braces has value
+$1/2-3/4=-1/4$, while $\zeta(0)=-1/2$; thus $M_D(0)=1/4$.
+The Mellin integral of $h(z)=z^{-1}h(z^{-1})$ gives $M_h(1)=M_h(0)$
+by an absolutely convergent substitution. Real scaling in the original
+integral then proves
+\begin{equation}\tag{RDT16}
+M_D(0)=\frac14,\qquad M_D(1)=\frac{a}{4N},\qquad
+\frac{M_D(1)}{M_D(0)}=\frac aN=e^{\deg D}.
+\end{equation}
+Thus both endpoint constants and the entire finite additive volume
+are explicit. In particular the zero additive integral (RDT11) is
+not the endpoint integral in (RDT16).
+
+The section module can now be recovered from the retained data
+$(N,L,f_D)$, by the exact inverse formulas
+\begin{equation}\tag{RDT17}
+d_p=-v_p(N),\qquad
+a=N\frac{M_D(1)}{M_D(0)},\qquad
+d_\infty=\log\left(N\frac{M_D(1)}{M_D(0)}\right),
+\end{equation}
+followed by (RDT3)--(RDT5). This is a proved inverse on the specified
+divisor family. An arbitrary test function is not asserted to lie in
+that family. The theta function alone recovers $b$; retaining $N$
+and $L$ is necessary to recover the full original presentation and
+all its labelled section fibres.
+
+\subsection{Exact principal-divisor covariance}
+
+For $c\in\mathbb Q^\times$, use the full principal divisor and
+the original dilation convention
+\begin{equation}\tag{RDT18}
+\begin{gathered}
+\operatorname{div}(c)=\sum_pv_p(c)[p]-\log|c|_\infty[\infty],
+\qquad (U_c\xi)(x)=\xi(c^{-1}x),\\
+D'=D+\operatorname{div}(c),\quad
+N'=N/|c|_\infty,\quad a'=a/|c|_\infty,\quad b'=b,\\
+\mathcal H_L^0(D)\longrightarrow\mathcal H_L^0(D'),\qquad
+((q_j,\lambda_j))\longmapsto((q_j/c,\lambda_j)),\\
+\xi_{D'}=U_{1/c}\xi_D,\qquad
+t_{D',y}=(U_{1/c}\otimes U_{1/c})t_{D,y},\qquad f_{D'}=f_D.
+\end{gathered}
+\end{equation}
+The rational product formula here is the elementary equality
+$\prod_pp^{v_p(c)}=|c|_\infty$. It gives the displayed $N'$ and
+$b'$, while the valuation and real inequalities give the section
+map and its inverse, multiplication by $c$. These maps commute with
+all folds and keep every label. For negative $c$, the two signed
+bounds are interchanged. The finite indicators in $\xi_D(cx)$ give
+exactly $p^{-d_p-v_p(c)}\mathbb Z_p$; the real function is even.
+In the tensor identity both odd factors change sign when $c<0$,
+so the two signs cancel. Finally $q\mapsto cq$ permutes
+$\mathbb Q^\times$ in the absolutely convergent theta sum, proving
+$EU_{1/c}\xi_D=E\xi_D$.
+
+Two divisors have the same $f_D$ if and only if they have the same
+$b$, by (RDT12) and (RDT16). This is equivalent to their difference
+being principal: choose the positive rational $c=N/N'$, and equality
+of $a/N$ and $a'/N'$ gives the infinite coefficient in (RDT18).
+Thus the fibres of $D\mapsto f_D$ are exactly its principal-divisor
+orbits. The actual representative and label data are restored by
+(RDT17), rather than assumed recoverable from the quotient alone.
+
+\subsection{Effectivity, positive transforms, and the original trace}
+
+For $z\ge1$ every term of $h(z)$ is strictly positive, because
+$\pi(nz)^2>3/2$. For $0<z<1$ its exact Poisson identity gives
+$h(z)=z^{-1}h(z^{-1})>0$. Therefore
+\begin{equation}\tag{RDT19}
+f_D(y,u)>0\quad\text{for all }y>0,\ u\in K,
+\quad\text{for every original divisor }D.
+\end{equation}
+On the other hand a nonzero amplitude section at the original bound
+exists exactly when $b\ge1$, by (RDT4). For the concrete original
+divisor $D=-(\log2)[\infty]$ one has
+\[
+\begin{gathered}
+N=1,\quad a=b=1/2,\quad
+\mathcal H_L^0(D)=H(L,\vee,0_L),\\
+f_D(y)=2\sum_{n\ge1}\eta(2ny)>0,\qquad
+(M_D(0),M_D(1))=(1/4,1/8).
+\end{gathered}
+\]
+There is no contradiction: (RDT14) uses sections of every $D_R$,
+with its first nonzero amplitude at $R=1/b$, not only sections at
+$R=1$. It is a proved relation between two different effectivity
+tests. Moreover $f_D\in E(T_0)=V$ by (RDT11), so the original
+CCM trace pairing satisfies
+\begin{equation}\tag{RDT20}
+\langle f_D,g\rangle=0\qquad(g\in B).
+\end{equation}
+This is the exact cited theorem \texttt{pairTrvanishV} on the original
+test space, with the actual antecedent already supplied. In the
+endpoint-retaining quotient of CTO21--22a the same source has
+coordinates $(0,1/4,a/(4N))$. Thus its positive function, original
+degree, labelled sections, and zero arithmetic trace all coexist
+in one explicit diagram. A divisor on the arithmetic curve has not
+been silently identified with an effective correspondence on its
+square. The latter comparison in the Weil argument remains a
+different mathematical map.
+
+All scalar linear comparisons above lift at a fixed admissible
+support by $(x,\lambda)\mapsto(Fx,\lambda)$. Every nonzero amplitude
+has label $1_L$; an amplitude cancellation keeps that label and gives
+$e$, while a zero input with lower label retains that exact label.
+The entire section module was defined with coordinatewise labels
+in (RDT3), so it is not reconstructed from scalar counting alone.
+For an infinite series or integral, take its proved amplitude limit
+at a fixed label; no infinite join in an arbitrary lattice is assumed.
+
+\subsection{The canonical divisor, finite prime two, and the full Fourier operator}
+
+The two dualities just encountered have different original formulas.
+Connes--Consani's signed Serre duality uses $K-D$ with $K=-2[2]$
+(their \texttt{serredual}, calculated with all labels in CTD16--20),
+whereas the original self-dual adelic Fourier measure in (RDT15a)
+gives $-D$. Their exact relation uses the finite idele
+\begin{equation}\tag{RDT21}
+\begin{gathered}
+v_\infty=1,\quad v_2=4,\quad v_p=1\ (p\ne2),\qquad
+|v|=|4|_2=\frac14,\\
+D^\vee=K-D,\qquad
+N^\vee=\prod_p p^{-(K_p-d_p)}=\frac4N,\qquad
+a^\vee=e^{-d_\infty}=\frac1a,\qquad
+b^\vee=\frac{a^\vee}{N^\vee}=\frac{N}{4a}.
+\end{gathered}
+\end{equation}
+This idele is not the rational diagonal element $4$: its infinite
+component is $1$. With $(U_v\xi)(x)=\xi(v^{-1}x)$, its action on
+the full original seed is
+\begin{equation}\tag{RDT22}
+\begin{gathered}
+\xi_{-D}(x)=\eta(ax_\infty)
+               \prod_p\mathbf1_{p^{d_p}\mathbb Z_p}(x_p),\\
+U_v\xi_{-D}(x)=\eta(ax_\infty)
+ \mathbf1_{4\,2^{d_2}\mathbb Z_2}(x_2)
+ \prod_{p\ne2}\mathbf1_{p^{d_p}\mathbb Z_p}(x_p)
+ =\xi_{K-D}(x).
+\end{gathered}
+\end{equation}
+The prime-two lattice is $4\,2^{d_2}\mathbb Z_2$.
+At every other prime $4$ is a unit.
+These local equalities prove (RDT22), including its real factor.
+
+Define the actual operator $T_K=U_v\mathcal F$ on the original
+adelic Schwartz space, where $\mathcal F$ has the original additive
+character and self-dual measures of (RDT15a). A Haar change of
+variables proves
+\[
+\mathcal F U_v=|v|U_{v^{-1}}\mathcal F:
+\quad\int\xi(v^{-1}x)\psi(-xy)\,dx
+       =|v|\int\xi(z)\psi(-zvy)\,dz.
+\]
+Writing $\mathcal R\xi(x)=\xi(-x)$, Fourier inversion gives
+\begin{equation}\tag{RDT23}
+T_K\xi_D=\frac aN\xi_{K-D},\qquad
+T_K^2=\frac14\mathcal R,\qquad
+T_K^{-1}=4\mathcal R T_K.
+\end{equation}
+Reflection commutes with $U_v$ and $\mathcal F$, which verifies both
+sides of the inverse formula. The original zero-value, zero-integral
+source space is preserved: Fourier exchanges these two zero
+conditions, and dilation multiplies the integral by $|v|$ while
+leaving the value at zero unchanged. Thus these are operators on the
+actual theta source, not only identities on a scalar family. On the
+even seeds, the product of the two displayed family coefficients is
+$\frac aN\frac{N}{4a}=1/4$, as the operator square requires.
+The involution $D\mapsto K-D$ has therefore not been incorrectly
+transferred to the unscaled operator $T_K$.
+
+The entire rational summation and its Mellin map retain the same
+factor. Since the nonzero rational points of $I(K-D)$ are
+$q=4n/N$, $n\in\mathbb Z\setminus\{0\}$, direct substitution gives
+\begin{equation}\tag{RDT24}
+\begin{gathered}
+f_{K-D}(y,u)=2\sum_{n\ge1}\eta(4any/N)
+                       =f_{-D}(4y,u),\\
+f_D(y,u)=\frac{a}{Ny}
+                  f_{K-D}\bigl(1/(4y),u^{-1}\bigr),\\
+M_D(s)=\frac aN\,4^{1-s}M_{K-D}(1-s).
+\end{gathered}
+\end{equation}
+The first equality is the absolutely convergent original theta
+series. The second follows from that equality and (RDT15a).
+For the third, the Mellin integrals converge absolutely for every
+$s$ by the two-end decay already proved. Substituting
+$z=1/(4y)$ yields $y^{s-1}=(4z)^{1-s}$ and proves exactly the
+stated factor. In original zeta and Gamma factors this says
+\begin{equation}\tag{RDT25}
+\begin{aligned}
+&2\left(\frac aN\right)^s\zeta(s)
+\left\{
+\frac{\pi^2\Gamma((s+4)/2)}{2\pi^{(s+4)/2}}
+-\frac{3\pi\Gamma((s+2)/2)}{4\pi^{(s+2)/2}}
+\right\}\\
+&\quad=\frac aN\,4^{1-s}\,
+2\left(\frac{N}{4a}\right)^{1-s}\zeta(1-s)
+\left\{
+\frac{\pi^2\Gamma((5-s)/2)}{2\pi^{(5-s)/2}}
+-\frac{3\pi\Gamma((3-s)/2)}{4\pi^{(3-s)/2}}
+\right\}.
+\end{aligned}
+\end{equation}
+This is an identity of the entire continuations of the displayed
+products, including their removable singularities; an individual
+Gamma or zeta factor need not be finite at an exceptional point.
+No factor is discarded. At $s=0$, the right side of (RDT24) is
+$\frac aN\,4\,\frac{N}{16a}=1/4$; at $s=1$ it is
+$\frac aN\,1/4=a/(4N)$. Applying (RDT24) twice multiplies its
+prefactors to
+$\frac aN\frac{N}{4a}4^{1-s}4^s=1$, as the divisor involution
+requires. Both endpoint evaluations and the differing operator
+square in (RDT23) are thereby retained.
+
+The same finite-prime contribution occurs in the actual Serre
+evaluation, rather than merely in these Gaussian formulas.
+The original circle has circumference $N$ and characters
+$\chi_n([x])=[nx/N]\in\mathbb R/\mathbb Z$. CTD8--11 prove
+that the full $\Gamma$-level tolerance is exactly
+$\sum_i|n_i|\le N/(4a)$. The signed section in CTD18 is
+\begin{equation}\tag{RDT26}
+q'_i=\frac{4n_i}{N}\in I(K-D),\qquad
+\sum_i|q'_i|\le\frac1a,\qquad
+\chi_{n_i}([x])=[q'_ix/4].
+\end{equation}
+It is an equality of the original character and evaluation maps,
+with all coefficient labels retained, not a claim that Fourier
+transformation is itself the entire duality functor. The full
+internal Hom has the additional support maps calculated in CTD12;
+CTD15 specifies the exact retract to (RDT26). Both $f_D$ and
+$f_{K-D}$ have the original theta-source antecedents and hence the
+zero trace pairing (RDT20). Consequently this proved duality and
+functional equation do not supply positivity of the nonzero
+arithmetic quotient.

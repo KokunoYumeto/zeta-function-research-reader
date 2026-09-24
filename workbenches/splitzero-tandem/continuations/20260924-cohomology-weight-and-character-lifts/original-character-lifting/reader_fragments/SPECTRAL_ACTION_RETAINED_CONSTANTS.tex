@@ -1,0 +1,326 @@
+\section{Spectral-action derivatives with every scalar retained}
+\label{sec:spectral-action-retained-constants}
+
+The source of the Loewner matrix and its rank-one perturbation is
+Alain Connes and Walter D. van Suijlekom,
+\emph{Quadratic Forms, Real Zeros and Echoes of the Spectral Action},
+\href{https://arxiv.org/abs/2511.23257v1}{arXiv:2511.23257v1}.
+The original author file is \path{Araki-final-oct25.tex}.
+The relevant source locators are equations \texttt{form2} and
+\texttt{QD-sa}, Lemmas \texttt{basics-general}, \texttt{key-general}
+and \texttt{lem:sa}, and Proposition \texttt{prop:der-sa}; the
+spectral-action displays occur at lines 1124--1147 and 1396--1523
+of the local original-source file. The derivation below proves the
+finite-dimensional identities directly, including the cyclic factor
+and the original mass of the kernel vector. It does not alter the
+source matrices, their spectra, or the parameter of perturbation.
+
+\subsection{The all-order derivative and its cyclic factor}
+
+Let $D=\operatorname{diag}(\lambda_1,\ldots,\lambda_M)$ with real
+entries, and let $R$ be any complex $M$ by $M$ matrix, without a
+selfadjointness assumption. Let $f$ be holomorphic on a neighbourhood
+of the finite spectrum. Choose a positively oriented union of small
+contours $\Gamma$ in that neighbourhood enclosing every eigenvalue.
+For sufficiently small complex $t$, define $f(D+tR)$ by the same
+contours. For nodes inside them, including repeated nodes, put
+\begin{equation}\tag{SAC1}
+ f[x_1,\ldots,x_n]
+ =\frac{1}{2\pi i}\int_\Gamma
+       \frac{f(z)}{\prod_{j=1}^n(z-x_j)}\,dz.
+\end{equation}
+For one node this is Cauchy's formula. Subtracting the two rational
+integrands verifies the divided-difference recursion at distinct
+end nodes. Taking limits proves the repeated-node extension; in
+particular $f[x,\ldots,x]=f^{(n-1)}(x)/(n-1)!$.
+
+For every integer $n\geq1$ the exact derivative is
+\begin{align}
+ \left.\frac{d^n}{dt^n}\operatorname{tr}f(D+tR)\right|_{t=0}
+ &=n!\sum_{i_1,\ldots,i_n=1}^{M}
+       R_{i_1i_2}\cdots R_{i_ni_1}
+       f[\lambda_{i_1},\ldots,\lambda_{i_n},\lambda_{i_1}]
+       \tag{SAC2}\label{eq:SAC-repeated}\\
+ &=(n-1)!\sum_{i_1,\ldots,i_n=1}^{M}
+       R_{i_1i_2}\cdots R_{i_ni_1}
+       f'[\lambda_{i_1},\ldots,\lambda_{i_n}].
+       \tag{SAC3}\label{eq:SAC-cyclic}
+\end{align}
+For $n=1$ the product is $R_{i_1i_1}$. To prove (SAC2), write
+$A(z)=(z-D)^{-1}$. The norm-convergent Neumann series, uniformly
+on $\Gamma$ for small $|t|$, is
+\[
+ (z-D-tR)^{-1}
+ =\sum_{n=0}^{\infty}t^n(A(z)R)^n A(z).
+\]
+The trace of its $n$th coefficient is
+\[
+ \sum_{i_1,\ldots,i_n}
+ \frac{R_{i_1i_2}\cdots R_{i_ni_1}}
+ {(z-\lambda_{i_1})^2
+       \prod_{k=2}^n(z-\lambda_{i_k})}.
+\]
+Integrating against $f$ and differentiating at zero proves (SAC2),
+with its factor $n!$.
+
+Here is the separate step which changes that factor. The integral
+of the derivative of $f(z)/\prod_{j=1}^{n}(z-x_j)$ around
+$\Gamma$ is zero. Consequently
+\begin{equation}\tag{SAC4}
+ f'[x_1,\ldots,x_n]
+ =\sum_{r=1}^{n} f[x_1,\ldots,x_n,x_r].
+\end{equation}
+This remains true for repeated nodes by the same rational identity,
+with no limiting division by a vanishing difference. In the full
+sum of (SAC2), cyclically moving $i_r$ to the first position does
+not change the product of the $n$ scalar matrix entries and is a
+bijection of the ordered index tuples. Each of the $n$ summands
+in (SAC4) therefore has the same full cyclic sum. The full sum
+containing $f'$ is $n$ times the sum containing one repeated first
+node. Dividing the coefficient $n!$ by that $n$ gives (SAC3).
+Tuples with a nontrivial cyclic stabilizer cause no exception:
+the argument uses $n$ bijections of the full index set, not a
+count of orbits.
+
+The same finite-dimensional result applies to the source's
+Fourier definition whenever its stated factorial moment bounds
+hold. More explicitly, suppose
+$f(x)=\int_{\mathbb R}\widehat f(u)e^{iux}\,du$ and
+\[
+ \int_{\mathbb R}|u|^n|\widehat f(u)|\,du
+ \leq C^{n+1}n!\qquad(n\geq0).
+\]
+Tonelli's theorem applied to the exponential power series gives
+$\int e^{a|u|}|\widehat f(u)|\,du\leq C/(1-aC)$ for
+$0\leq a<C^{-1}$. Thus the Fourier integral extends $f$
+holomorphically to $|\operatorname{Im}z|<C^{-1}$, with uniform
+domination on narrower strips. Cauchy functional calculus and the
+Fourier definition of $f(D+tR)$ agree: insert the uniformly
+dominated Fourier integral in the contour formula and use
+$e^{iu(D+tR)}=(2\pi i)^{-1}\int_\Gamma
+e^{iuz}(z-D-tR)^{-1}\,dz$. The domination just proved permits
+the interchange. Hence (SAC2)--(SAC3) also give the finite
+specialization of the source's Fourier construction.
+
+In particular,
+\begin{equation}\tag{SAC5}
+ F'(0)=\sum_i R_{ii}f'(\lambda_i),\qquad
+ F''(0)=\sum_{i,j}R_{ij}R_{ji}f'[\lambda_i,\lambda_j],
+ \quad F(t)=\operatorname{tr}f(D+tR).
+\end{equation}
+The diagonal divided difference is $f''(\lambda_i)$.
+The statement of source Lemma \texttt{lem:sa} prints $n!$
+instead of $(n-1)!$ in the expression using $f'$. Its proof
+ends with the repeated-node expression, for which $n!$ is
+correct. The earlier display in the source subsection
+\emph{Relation to the spectral action} prints $F''(0)/2$
+equal to the right-hand side of (SAC5); (SAC5) proves that the
+right-hand side is $F''(0)$. The later first and second derivative
+display and Proposition \texttt{prop:der-sa} have the correct
+second derivative factor.
+
+A one-dimensional check already determines both factors. For
+$D=(0)$, $R=(1)$ and $f(x)=x^n$, $F^{(n)}(0)=n!$ whereas
+$f'[0,\ldots,0]=n$. Formula (SAC3) gives
+$(n-1)!n=n!$; replacing its coefficient by $n!$ gives an extra
+factor $n$. For $n=2$, $f(x)=x^2$ gives $F''(0)=2$ and
+$R_{11}^2f''(0)=2$. The discrepancy also occurs within the
+source's decaying Fourier class: $f(x)=e^{-x^2}$, $D=(0)$,
+$R=(1)$ gives $F''(0)=-2$, not $-4$. Its Gaussian Fourier
+transform satisfies the displayed factorial moment bound,
+because $\int e^{a|u|}|\widehat f(u)|\,du<\infty$ for every
+$a>0$ and $|u|^n\leq n!a^{-n}e^{a|u|}$.
+
+\subsection{The original kernel mass and the rank-one perturbation}
+
+Now retain the source index set $I=\{-N,\ldots,N\}$ and its
+distinct real numbers $\lambda_i$ with $\lambda_{-i}=-\lambda_i$.
+Let $a_i,b_i$ be real, $a_{-i}=a_i$ and $b_{-i}=-b_i$, and put
+\begin{equation}\tag{SAC6}
+ D=\operatorname{diag}(\lambda_i)_{i\in I},\quad
+ q_{ii}=a_i,\quad
+ q_{ij}=\frac{b_i-b_j}{\lambda_i-\lambda_j}\ (i\ne j),\quad
+ \eta=(1)_{i\in I},\quad\beta=(b_i)_{i\in I}.
+\end{equation}
+The evenness of the diagonal data is stated explicitly because
+it is needed for $Q\gamma=\gamma Q$, where
+$(\gamma x)_i=x_{-i}$. We use
+$\langle x,y\rangle=x^*y$ and
+$\mathcal Q(x,y)=x^*Qy$. Suppose $Q\xi=0$, $\gamma\xi=\xi$
+and let the original, unaltered mass be
+\begin{equation}\tag{SAC7}
+ s=\eta^*\xi=\sum_{i\in I}\xi_i\ne0,\qquad
+ v=D\xi,\qquad R=-\frac{v\eta^*}{s},\qquad D'=D+R.
+\end{equation}
+No rescaling of $\xi$, of $D$, or of the parameter $t$ is made.
+The vector may be complex; the real-vector case is recovered
+by taking $\xi\in\mathbb R^{2N+1}$.
+
+Entrywise computation and parity give
+\begin{equation}\tag{SAC8}
+ DQ-QD=\beta\eta^*-\eta\beta^*,\qquad
+ \beta^*\xi=0,\quad\eta^*D\xi=0,\qquad Qv=-s\beta.
+\end{equation}
+Indeed the $ij$ entry of the commutator is $b_i-b_j$ off
+the diagonal and zero on it. In both scalar parity sums the
+terms $i$ and $-i$ cancel and the index-zero term is zero.
+Applying the commutator to $\xi$ gives
+$-QD\xi=s\beta$, proving the last formula. In particular
+\begin{equation}\tag{SAC9}
+ R^2=0,\quad D'\xi=0,\quad QR=\beta\eta^*,\quad
+ R^*Q=\eta\beta^*,\quad QD'=D'^*Q.
+\end{equation}
+The first identity follows from $\eta^*v=0$; the second uses
+$\eta^*\xi=s$; the last follows from the two preceding
+identities and (SAC8). These equations remain valid without
+assuming $Q$ positive.
+
+There is always an even polynomial $f$ realizing the entire
+finite data $f'(\lambda_i)=b_i$, $f''(\lambda_i)=a_i$.
+Here is an explicit construction, so that the application does
+not require an assumed interpolating function. Put
+\begin{align}
+ \ell_i(x)&=\prod_{j\ne i}\frac{x-\lambda_j}{\lambda_i-\lambda_j},
+ &h_i(x)&=(1-2\ell_i'(\lambda_i)(x-\lambda_i))\ell_i(x)^2,
+ &k_i(x)&=(x-\lambda_i)\ell_i(x)^2,\notag\\
+ g(x)&=\sum_{i\in I}\bigl(b_i h_i(x)+a_i k_i(x)\bigr),
+ &f(x)&=c+\int_0^xg(u)\,du,\qquad c\in\mathbb R.
+ \tag{SAC10}
+\end{align}
+Direct evaluation gives $g(\lambda_i)=b_i$,
+$g'(\lambda_i)=a_i$. Uniqueness of this interpolating
+polynomial of degree at most $2(2N+1)-1$ follows because a
+difference has a double zero at every node and degree less
+than $2(2N+1)$. The polynomial $-g(-x)$ has the same data,
+so uniqueness gives $g(-x)=-g(x)$ and $f$ is even. The
+constant $c=f(0)$ is retained as an arbitrary constant and is
+never set to zero to change the action.
+
+For this polynomial, or for any holomorphic $f$ with the same
+first two derivative values at the nodes, (SAC5) yields
+\begin{equation}\tag{SAC11}
+ F'(0)=F''(0)
+ =-\frac{\beta^Tv}{s}
+ =\frac{v^TQv}{s^2}
+ =\frac{v^*Qv}{|s|^2}.
+\end{equation}
+To check every equality, $R_{ii}=-v_i/s$ gives the first
+derivative $-\beta^Tv/s$. Since $q_{ij}=f'[\lambda_i,\lambda_j]$
+also on the diagonal, the second derivative is $v^TQv/s^2$.
+Equation (SAC8) equates these two expressions.
+Finally $v^*Qv=-s\,\overline{\beta^Tv}$ is real because $Q$
+is Hermitian. Taking its conjugate gives
+$v^*Qv=-\overline{s}\,\beta^Tv$, which proves the last
+identity. Thus for the original real vector and its real mass,
+\begin{equation}\tag{SAC12}
+ F'(0)=F''(0)=\frac{\mathcal Q(D\xi,D\xi)}{s^2}.
+\end{equation}
+For a complex vector the denominator of the Hermitian
+expression is $|s|^2$, as in (SAC11). If $Q\geq0$ the common
+value is nonnegative. If its kernel is one-dimensional and
+$D\xi\ne0$, it is strictly positive: $D\xi$ is odd, whereas
+the kernel is even, so $D\xi$ is outside the kernel.
+
+In the one-dimensional even-kernel situation the required
+$s\ne0$ follows from the original data. If $s=0$, (SAC8)
+gives $D\xi\in\ker Q$. Its odd parity forces $D\xi=0$.
+Distinctness and symmetry of the $\lambda_i$ show that
+$\ker D$ is spanned by $e_0$. Then nonzero $\xi$ has
+$s=\xi_0\ne0$, a contradiction. If $D\xi=0$ from the outset,
+$R=0$ and (SAC11) gives the correct zero derivative.
+
+\subsection{The exact all-order rank-one expression}
+
+Write
+\begin{equation}\tag{SAC13}
+ h(z)=\sum_{i\in I}\frac{\xi_i}{z-\lambda_i},\qquad
+ B(z)=\frac1s\sum_{i\in I}\frac{\lambda_i\xi_i}{z-\lambda_i}
+     =\frac{z h(z)}s-1.
+\end{equation}
+The determinant identity for a rank-one perturbation gives
+\begin{equation}\tag{SAC14}
+ \det(z-D-tR)=\det(z-D)(1+tB(z))
+             =\det(z-D)\left(1-t+\frac{tz h(z)}s\right).
+\end{equation}
+For completeness, for an invertible $A$ the formula
+$\det(A+u w^*)=\det(A)(1+w^*A^{-1}u)$ follows by
+multilinearity in the columns: terms taking the added column
+twice vanish because they are proportional. Apply this to
+$A=z-D$, $u=tv/s$, $w=\eta$. The resulting rational identity
+extends to a polynomial identity at the nodes by multiplication
+by $\det(z-D)$.
+
+Keeping the same contours as above and taking $|t|$ small
+enough that $|tB|<1$ there, Jacobi's determinant formula and
+integration by parts give
+\begin{align}
+ F(t)-F(0)
+ &=-\frac1{2\pi i}\int_\Gamma f'(z)\log(1+tB(z))\,dz,
+                                                        \tag{SAC15}\\
+ F^{(n)}(0)
+ &=\frac{(-1)^n(n-1)!}{2\pi i}
+           \int_\Gamma f'(z)B(z)^n\,dz\notag\\
+ &=\frac{(-1)^n(n-1)!}{s^n}
+   \sum_{i_1,\ldots,i_n\in I}
+       \left(\prod_{r=1}^n\lambda_{i_r}\xi_{i_r}\right)
+       f'[\lambda_{i_1},\ldots,\lambda_{i_n}].
+                                                        \tag{SAC16}
+\end{align}
+The logarithm in (SAC15) is its convergent power series on
+the contour; there is no global choice of logarithm across
+the eigenvalues. Jacobi's formula is verified by differentiating
+the determinant in its columns, which gives
+$\partial_z\log\det(z-A)=\operatorname{tr}(z-A)^{-1}$
+away from the eigenvalues. Subtract the two contour functional
+calculus formulas, use (SAC14), and integrate the derivative of
+$f\log(1+tB)$ to obtain (SAC15). Termwise expansion, uniformly
+convergent on $\Gamma$, proves (SAC16). This formula retains
+all higher derivatives instead of extrapolating the equality
+of the first two.
+
+\subsection{An exact three-dimensional check}
+
+With indices $-1,0,1$, take the unaltered data
+\begin{equation}\tag{SAC17}
+ D=\begin{pmatrix}-1&0&0\\0&0&0\\0&0&1\end{pmatrix},\quad
+ Q=\begin{pmatrix}2&-1&-1\\-1&2&-1\\-1&-1&2\end{pmatrix},\quad
+ \xi=\begin{pmatrix}2\\2\\2\end{pmatrix},\quad
+ s=6,\quad\beta=\begin{pmatrix}1\\0\\-1\end{pmatrix}.
+\end{equation}
+Here $Q=3I-\eta\eta^T$ is positive with kernel spanned by
+$\eta$, and its off-diagonal entries are exactly the divided
+differences of the displayed $\beta$. We have
+\begin{equation}\tag{SAC18}
+ v=\begin{pmatrix}-2\\0\\2\end{pmatrix},\quad Qv=-6\beta,
+ \quad v^TQv=24,\quad
+ R=\begin{pmatrix}1/3&1/3&1/3\\0&0&0\\-1/3&-1/3&-1/3\end{pmatrix}.
+\end{equation}
+Use the explicit even polynomial
+\begin{equation}\tag{SAC19}
+ f(x)=x^2-\frac{15}{8}x^4+\frac34x^6.
+\end{equation}
+Its derivative is $2x-15x^3/2+9x^5/2$ and its second
+derivative is $2-45x^2/2+45x^4/2$. Therefore
+$f'(-1)=1$, $f'(0)=0$, $f'(1)=-1$ and
+$f''(-1)=f''(0)=f''(1)=2$, as required.
+Directly from (SAC14), or from the displayed matrices,
+\begin{equation}\tag{SAC20}
+ \det(z-D-tR)=z\left(z^2-1+\frac{2t}{3}\right),\qquad
+ F(t)=-\frac14+\frac23t+\frac13t^2-\frac49t^3.
+\end{equation}
+For the second equality put $u=1-2t/3$. The characteristic
+polynomial gives $\operatorname{tr}(D+tR)^{2k}=2u^k$ for
+$k\geq1$; this also holds at repeated roots by polynomial
+continuation. Substitute it into (SAC19) to get
+$2(u-15u^2/8+3u^3/4)$, whose expansion is (SAC20). Hence
+\begin{equation}\tag{SAC21}
+ F'(0)=F''(0)=\frac23=\frac{24}{6^2},\qquad
+ F'''(0)=-\frac83.
+\end{equation}
+Thus the retained-mass first and second derivative identity
+is exact, while even a positive Loewner matrix with a simple
+even kernel does not make the third derivative equal to them.
+The rank-one action in (SAC15)--(SAC16), rather than an
+unproved equality of all derivatives, is the complete finite
+object supplied by these source data. No identification with
+the programme's theta function is asserted by this calculation.

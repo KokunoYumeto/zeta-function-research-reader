@@ -1,0 +1,761 @@
+% Independent full coefficient-divisor derivation. Prefix HFD.
+% Requires amsmath, amssymb, hyperref.
+\section{The heat divisor before coefficient-support synchronization}
+\label{sec:coefficient-flag-heat-divisor}
+
+\paragraph{Sources and original objects.}
+The full coefficient algebra is SHP1--28 of
+\nolinkurl{SUPPORTED_HEAT_PRODUCT.tex}, with analytic completion
+HSL15--35 of \nolinkurl{FULL_LATTICE_HEAT_OPERATOR.tex}.
+The original foundation is retained under the byline The Clankers in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split
+Support Geometry: Universal Zero Fibres, Arithmetic Curves, Frobenius
+and Perfect Quantization}, v11, Definition \texttt{def:lattice-split}}.
+The actual analytic kernel is that of Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}, arXiv:1801.05914v5}.
+The complete proofs THS8--15 and THS18--23 in
+\nolinkurl{THETA_HEAT_FULL_SUPPORT.tex} establish its coefficient
+formula, nonvanishing of every even coefficient at real time,
+membership in the stated analytic space and the exact heat group.
+No theorem about its zero locations is used here.
+
+The prime receiver read for this calculation is HFP11--12 and
+HFP34--37 of \nolinkurl{HEAT_FLAG_PRIME_SPECTRUM.tex}, lines
+216--273 and 682--787, at source SHA--256
+\begin{center}\small
+\nolinkurl{e51115eaa2e70bb97cdf32d113222eace1e37260e1ec6781dbefe62517dab63f}.
+\end{center}
+The synchronized divisor comparison is HZD1--8 of
+\nolinkurl{FULL_LATTICE_HEAT_DIVISOR.tex}, read at source
+\begin{center}\small
+\nolinkurl{986b34093592f4949645a02a2413817809476cb82519f46f61471ba1a03ede3a}.
+\end{center}
+The algebra below calculates the congruence on the full
+coefficient flags before that synchronization. All receiver
+maps used from these sources are proved again in the required
+quotient coordinates.
+
+\subsection{The coefficient fibres and the supported equation}
+
+Let $L$ be the entire nontrivial bounded distributive lattice,
+and retain the original Taylor coefficient space
+\[
+ \mathcal E=\left\{f(z)=\sum_{n\ge0}a_nz^n:
+       \sum_{n\ge0}|a_n|\sqrt{n!}\,h^n<\infty
+                         \text{ for every }h>0\right\}.
+\]
+Equivalently, $f$ is entire and
+$p_\alpha(f)=\sup_z|f(z)|e^{-\alpha|z|^2}<\infty$ for
+every $\alpha>0$, by HSL16. It is a ring under ordinary
+function multiplication, with the proved bound
+$\|fg\|_h\le\|f\|_{\sqrt2h}\|g\|_{\sqrt2h}$.
+Write $\mathcal E^{(0)}$ and $\mathcal E^{(1)}$ for its
+even and odd subspaces. Their projections select the even
+and odd Taylor coefficients, respectively, and preserve
+every defining seminorm.
+
+Let $\mathcal F(L)$ be the full flag semiring. Its elements
+are sequences $\nu_i\in L$ satisfying $\nu_i\ge\nu_{i+2}$.
+Addition is coordinate join and multiplication is
+\begin{equation}\tag{HFD1}
+ (\nu\circledast\mu)_0
+    =(\nu_0\wedge\mu_0)\vee(\nu_1\wedge\mu_1),\qquad
+ (\nu\circledast\mu)_n
+    =\bigvee_{r=0}^{n}\nu_r\wedge\mu_{n-r}\quad(n\ge1).
+\end{equation}
+The unit is $\mathbf u=(1_L,0_L,0_L,\ldots)$.
+SHP3--9 prove its algebra laws by the exact
+parity-tail closure identity. The coefficient algebra is
+\begin{equation}\tag{HFD2}
+ \mathcal A_L=\{(f,\nu):\nu\in\mathcal F(L),\
+       f=\sum a_nz^n\in\mathcal E,\
+       a_n\ne0\Longrightarrow\nu_n=1_L\},\qquad
+ (f,\nu)\circ(g,\mu)=(fg,\nu\circledast\mu).
+\end{equation}
+The zero is $(0,\mathbf0)$ and the unit is $(1,\mathbf u)$.
+Every label in $L$ remains available at a zero coefficient.
+
+For each flag retain its complete amplitude fibre and its
+two full-parity indicators:
+\begin{equation}\tag{HFD3}
+ \begin{gathered}
+ \mathcal E_\nu
+    =\{f=\sum a_nz^n\in\mathcal E:
+                       \nu_n\ne1_L\Longrightarrow a_n=0\},\\
+ \epsilon_p(\nu)=
+  \begin{cases}1,&\nu_{2j+p}=1_L\text{ for every }j\ge0,\\
+                0,&\text{otherwise},
+  \end{cases}
+       \qquad(p=0,1),\\
+ V_\nu=\epsilon_0(\nu)\mathcal E^{(0)}
+                  \oplus\epsilon_1(\nu)\mathcal E^{(1)}.
+ \end{gathered}
+\end{equation}
+These are complex vector spaces. For a parity with
+$\epsilon_p(\nu)=0$, its component of $\mathcal E_\nu$
+consists of polynomials: choose an index of that parity
+whose label is not top. Every later label of that parity
+is below it, and hence also not top, so all those
+coefficients vanish. Before that index only the initial
+top-labelled coefficients are allowed. For a parity
+with indicator $1$, the entire corresponding parity
+subspace of $\mathcal E$ is allowed. This is an exact
+description of $\mathcal E_\nu$, not a change to the
+remaining non-top labels in $\nu$.
+
+Let $s\in\mathbb C$ be the actual theta time, and set
+\begin{equation}\tag{HFD4}
+ H=H_s,\qquad
+ \eta_{2j}=1_L,\quad\eta_{2j+1}=0_L,\qquad
+ h_s=(H_s,\eta),\quad z_\eta=(0,\eta).
+\end{equation}
+The analytic function $H_s$ is even, belongs to $\mathcal E$,
+and is not zero, by the actual heat group and the positive
+real kernel at time zero.
+Both elements in (HFD4) belong to the original coefficient
+algebra. The supported equation is $h_s\sim z_\eta$,
+not $h_s\sim(0,\mathbf0)$.
+
+The crucial support multiplication is exactly
+\begin{equation}\tag{HFD5}
+ \eta\circledast\nu=\kappa(\nu),\qquad
+ \kappa(\nu)_{2j}=\nu_0,\quad
+ \kappa(\nu)_{2j+1}=\nu_1 .
+\end{equation}
+At an even positive output index in (HFD1), the term
+with the $\eta$ index equal to that output index
+contributes $\nu_0$, and the other contributing labels
+are at most $\nu_0$. At an odd index the largest
+contributing label is $\nu_1$. At degree zero (HFD1)
+gives exactly $\nu_0$. This proves every coordinate.
+
+\subsection{The exact generated congruence}
+
+The congruence generated by the single supported equation
+in (HFD4) is the following explicit equivalence:
+\begin{equation}\tag{HFD6}
+ (f,\nu)\equiv_s(g,\mu)
+ \quad\Longleftrightarrow\quad
+ \nu=\mu\ \text{ and }\ f-g=H_s b
+                        \text{ for some }b\in V_\nu .
+\end{equation}
+In particular every original coefficient label is
+unchanged in an equivalence class.
+
+Here is the full congruence proof.
+First $H_sV_\nu\subset\mathcal E_\nu$, since $H_s$
+is even and multiplication preserves parity and
+$\mathcal E$. On a permitted parity the flag is
+top in every degree; no other parity is produced.
+Thus (HFD6) is an equivalence on each vector-space
+fibre. Under addition of a context with flag $\mu$,
+$V_\nu\subset V_{\nu\vee\mu}$, so the equivalence is
+preserved by addition.
+
+For multiplication the needed exact fact is
+\begin{equation}\tag{HFD7}
+ b\in V_\nu,\quad k\in\mathcal E_\mu
+       \quad\Longrightarrow\quad
+ bk\in V_{\nu\circledast\mu}.
+\end{equation}
+Decompose both functions into their even and odd
+parts. If the parity-$p$ part of $b$ is nonzero,
+then every parity-$p$ label of $\nu$ is top.
+If the parity-$q$ part of $k$ is nonzero, some
+Taylor coefficient in that parity is nonzero, so
+its label and therefore $\mu_q$ are top.
+The output flag has every parity-$(p+q\bmod2)$
+label top. For an odd output index this follows
+by using the degree-$0$ or degree-$1$ label of
+$\mu$ in (HFD1) and the appropriate top label
+of $\nu$. The same argument works for positive
+even indices. For output degree zero, the
+even--even case uses $\nu_0\wedge\mu_0$,
+and the odd--odd case uses the indispensable
+additional term $\nu_1\wedge\mu_1$.
+Thus each nonzero parity product in $bk$ lies
+in an allowed full parity of the output.
+Joining these possibilities proves (HFD7).
+It follows that multiplying the difference $H_sb$
+by any context amplitude again has the form in
+(HFD6) for the product flag. This proves
+multiplicative compatibility. Compatibility for
+two equivalent factors follows by changing one
+factor at a time. Hence (HFD6) is a semiring
+congruence, and it contains the generating pair
+because $1\in V_\eta$.
+
+Conversely every pair in (HFD6) is produced by
+one elementary use of that generating pair.
+For $b=b_0+b_1\in V_\nu$, let $\chi_b$ be the
+parity-constant flag that is top on parity $p$
+when $b_p\ne0$, and bottom otherwise. Then
+$(b,\chi_b)\in\mathcal A_L$,
+$\chi_b\le\nu$, and
+$\eta\circledast\chi_b=\chi_b$.
+Multiply $h_s\sim z_\eta$ by this element and
+add the context $(g,\nu)$. The two results are
+\[
+ (g,\nu)+(H_sb,\chi_b)=(f,\nu),\qquad
+ (g,\nu)+(0,\chi_b)=(g,\nu).
+\]
+This proves that every equivalence in (HFD6)
+is generated by the required relation. The
+congruence calculation is therefore exact.
+
+The divisor before synchronization is the concrete
+semiring
+\begin{equation}\tag{HFD8}
+ \mathcal D^{\mathrm{flag}}_{s,L}
+   =\mathcal A_L/\!\equiv_s
+   =\coprod_{\nu\in\mathcal F(L)}
+                \bigl(\mathcal E_\nu/H_sV_\nu\bigr)\times\{\nu\}.
+\end{equation}
+For representatives the operations are
+\begin{equation}\tag{HFD9}
+ ([f]_\nu,\nu)+([g]_\mu,\mu)
+       =([f+g]_{\nu\vee\mu},\nu\vee\mu),\qquad
+ ([f]_\nu,\nu)\circ([g]_\mu,\mu)
+       =([fg]_{\nu\circledast\mu},\nu\circledast\mu).
+\end{equation}
+They are well defined by the congruence proof.
+The unit and zero retain the flags $\mathbf u$
+and $\mathbf0$, respectively. Formula (HFD8)
+records every support-dependent fibre.
+On the actual $\eta$ fibre only even multipliers
+are allowed: its amplitude space is
+$\mathcal E^{(0)}/H_s\mathcal E^{(0)}$.
+
+\subsection{The actual heat function removes the comparison defect}
+
+The following analytic fact is proved directly on
+the original completion: every even, nonpolynomial
+function in $\mathcal E$ has infinitely many distinct
+complex zeros.
+Suppose instead that such an $F$ had only finitely
+many zeros, and form their monic zero polynomial $p$,
+with all multiplicities. Evenness gives equal
+multiplicities at $a$ and $-a$, and an even
+multiplicity at zero. Thus $p$ is even.
+The quotient $G=F/p$ is entire, even and zero-free.
+It is still in $\mathcal E$: outside a sufficiently
+large disc $|p(z)|\ge1$, and on the remaining
+compact disc $G$ is bounded. Consequently every
+positive Gaussian bound for $F$ gives one for $G$.
+
+The entire function $G'/G$ has an entire primitive,
+obtained by integrating its Taylor series.
+Choosing its additive constant to be a logarithm
+of $G(0)$ gives an entire $\ell$ with $G=e^\ell$.
+For every $\alpha>0$,
+\[
+ \operatorname{Re}\ell(z)
+   \le \log p_\alpha(G)+\alpha|z|^2 .
+ \tag{HFD10}
+\]
+Write $\ell(z)=\sum_{n\ge0}c_nz^n$ and, on the circle
+of radius $R$, put
+$u(\theta)=\operatorname{Re}\ell(Re^{i\theta})
+                         -\operatorname{Re}c_0$.
+Its average is zero by the convergent Taylor
+series, and
+$u\le M_{\alpha,R}:=
+\log p_\alpha(G)+\alpha R^2-\operatorname{Re}c_0$.
+This upper bound is nonnegative since
+$p_\alpha(G)\ge|G(0)|$.
+The zero average gives
+$\int_0^{2\pi}|u|=2\int_0^{2\pi}u_+
+                         \le4\pi M_{\alpha,R}$.
+Fourier coefficient extraction from the same
+Taylor series therefore gives, for $n\ge1$,
+\[
+ |c_n|R^n
+ =\left|\frac1\pi\int_0^{2\pi}
+                  u(\theta)e^{-in\theta}\,d\theta\right|
+ \le4M_{\alpha,R}.
+ \tag{HFD11}
+\]
+For $n\ge3$, let $R\to\infty$ with $\alpha$
+fixed; then $c_n=0$. For $n=2$ this yields
+$|c_2|\le4\alpha$, and $\alpha\downarrow0$
+gives $c_2=0$. Thus $\ell=c_0+c_1z$.
+Since $G$ is even, $G'(0)=0$, forcing $c_1=0$.
+It follows that $F$ is a constant times $p$,
+contradicting its nonpolynomiality.
+This proves the analytic fact without assuming
+where any of the zeros lie.
+
+Apply it to every actual $H_s$, including complex
+time. The function $H_0$ has nonzero Taylor
+coefficients in every even degree by THS9,
+so it is not a polynomial.
+If $H_s$ were polynomial, the identity
+$H_0=T_{-s}H_s$ would make $H_0$ polynomial:
+the heat series terminates on a polynomial.
+Also $H_s$ is even and is in $\mathcal E$.
+We have proved
+\begin{equation}\tag{HFD12}
+ H_s\text{ has infinitely many distinct zeros},\qquad
+ H_sb\text{ polynomial},\ b\in\mathcal E
+      \quad\Longrightarrow\quad b=0 .
+\end{equation}
+For the second assertion a polynomial $H_sb$
+vanishes at every zero of $H_s$, and hence is zero.
+The ring of entire functions is an integral
+domain: where $H_s$ is nonzero, $b$ vanishes
+on an open set, and the identity theorem gives
+$b=0$ everywhere. This also proves that $(H_s)$
+is a proper ideal in $\mathcal E$.
+
+The exact comparison defect now vanishes for this
+actual function:
+\begin{equation}\tag{HFD13}
+ H_s\mathcal E\cap\mathcal E_\nu=H_sV_\nu,\qquad
+ \frac{H_s\mathcal E\cap\mathcal E_\nu}{H_sV_\nu}=0
+                     \quad(\nu\in\mathcal F(L)).
+\end{equation}
+Only one inclusion remains to prove.
+Suppose $H_sb\in\mathcal E_\nu$.
+For a parity with $\epsilon_p(\nu)=0$,
+that parity component is a polynomial by
+(HFD3). Since $H_s$ is even, that component
+is $H_sb_p$, which forces $b_p=0$ by
+(HFD12). All other parity components of $b$
+are allowed in $V_\nu$.
+This proves the reverse inclusion and the
+entire displayed defect calculation.
+
+Thus the divisor has an injective pair description,
+but with a proved, restricted image:
+\begin{equation}\tag{HFD14}
+ \begin{gathered}
+ \mathcal D^{\mathrm{flag}}_{s,L}
+      \hookrightarrow(\mathcal E/(H_s))\times\mathcal F(L),
+       \qquad([f]_\nu,\nu)\longmapsto([f],\nu),\\
+ \operatorname{image}
+   =\{(c,\nu):c\in\operatorname{image}
+                   (\mathcal E_\nu\to\mathcal E/(H_s))\}.
+ \end{gathered}
+\end{equation}
+Injectivity is exactly (HFD13).
+The description of the image follows from (HFD8)
+and is both necessary and sufficient.
+It is not the unrestricted product: for example
+$([1],\mathbf0)$ is not in it, since
+$\mathcal E_{\mathbf0}=0$ and $[1]\ne0$ by
+(HFD12). No support constraint has been removed.
+
+\subsection{The induced complete coefficient quotient}
+
+Retain $K_L=K\otimes_{\mathbb B}L$ and the
+injective label map $\iota_L(\lambda)=1_K\otimes\lambda$,
+with retraction $\rho_L$.
+The exact full coefficient map is
+$\boldsymbol\Phi(f,\nu)
+   =(f,(\iota_L(\nu_i))_i)$.
+In its full target
+$\mathcal E\times\mathcal F(K_L)$, the congruence
+generated by $\boldsymbol\Phi(h_s)\sim
+\boldsymbol\Phi(z_\eta)$ is exactly
+\begin{equation}\tag{HFD15}
+ (f,w)\sim(g,v)
+   \quad\Longleftrightarrow\quad
+   w=v,\quad f-g\in H_s\mathcal E .
+\end{equation}
+Reduction of the first coordinate modulo $(H_s)$
+is a homomorphism coequalizing the pair, so
+it gives one containment of congruences.
+For the other, multiply that pair in the full
+target by $(b,\mathbf0)$ and then add $(g,w)$.
+This gives $(g+H_sb,w)\sim(g,w)$.
+The full target really permits this multiplier
+even when $b\ne0$; the original coefficient
+carrier does not. This is why its restriction
+was calculated in (HFD13), rather than assumed.
+
+The complete quotient square is
+\begin{equation}\tag{HFD16}
+ \begin{array}{ccc}
+ \mathcal A_L&\xrightarrow{\ \boldsymbol\Phi\ }&
+               \mathcal E\times\mathcal F(K_L)\\
+ \big\downarrow&&\big\downarrow\\
+ \mathcal D^{\mathrm{flag}}_{s,L}&
+ \xrightarrow{\ \boldsymbol\Phi_s\ }&
+               (\mathcal E/(H_s))\times\mathcal F(K_L),
+ \end{array}
+ \qquad
+ \boldsymbol\Phi_s([f]_\nu,\nu)
+         =([f],(\iota_L(\nu_i))_i).
+\end{equation}
+The lower map is injective by (HFD13) and the
+label retraction. Its image is exactly the
+support-constrained image in (HFD14) after
+applying $\iota_L$ to each flag coordinate.
+Both composites give the displayed pair.
+The square is a pushout: compatible maps from
+the upper-right and lower-left objects impose
+exactly the generating relation on the upper-right
+object, whose entire congruence was calculated
+in (HFD15). The resulting factorization is unique.
+This proves the complete-map statement including
+the induced relation and its exact restriction.
+
+Let $J=(1,(1_L,1_L,\ldots))$ be the synchronization
+idempotent of SHP20. Its image $\overline J$ in
+the divisor still acts by
+\begin{equation}\tag{HFD17}
+ \overline J\circ([f]_\nu,\nu)
+       =([f]_{\mathrm{const}(\nu_0\vee\nu_1)},
+                        \mathrm{const}(\nu_0\vee\nu_1)),\qquad
+ \mathcal D^{\mathrm{flag}}_{s,L}[\overline J^{-1}]
+                 \simeq G_L(\mathcal E/(H_s)).
+\end{equation}
+For a constant flag of label $\lambda\ne1_L$,
+the only amplitude is zero. For the constant
+top flag its amplitude quotient is
+$\mathcal E/(H_s)$, since both parity indicators
+in (HFD3) are one. These are exactly the
+carrier and operations of the right side.
+Multiplication by an idempotent realizes its
+localization, with the idempotent as internal
+unit, proving the isomorphism and all its
+coordinates. In particular the map is
+$([f]_\nu,\nu)\mapsto([f],\nu_0\vee\nu_1)$.
+This is the exact connection to the earlier
+synchronized supported divisor.
+
+\subsection{The mixed prime really descends before synchronization}
+
+The quotient does not identify different flags,
+so it retains the full head-pair receiver
+\begin{equation}\tag{HFD18}
+ \begin{gathered}
+ \overline h:\mathcal D^{\mathrm{flag}}_{s,L}
+          \longrightarrow L[C_2],\qquad
+ \overline h([f]_\nu,\nu)=(\nu_0,\nu_1),\\
+ (a,b)+(c,d)=(a\vee c,b\vee d),\\
+ (a,b)(c,d)=((a\wedge c)\vee(b\wedge d),
+                     (a\wedge d)\vee(b\wedge c)),\\
+ 0=(0_L,0_L),\qquad1=(1_L,0_L).
+ \end{gathered}
+\end{equation}
+The two head formulas in (HFD1) prove that
+this is a unital homomorphism.
+It is onto: use zero amplitude and the
+periodic flag $(a,b,a,b,\ldots)$.
+Moreover $z_\eta^2=z_\eta$, and its image
+$\overline z_\eta=\overline h_s$ acts by
+zeroing the amplitude and making the two
+heads periodic, by (HFD5). Thus
+\begin{equation}\tag{HFD19}
+ \mathcal D^{\mathrm{flag}}_{s,L}
+                  [\overline z_\eta^{-1}]
+       \simeq L[C_2],\qquad
+ ([f]_\nu,\nu)\longmapsto(\nu_0,\nu_1).
+\end{equation}
+The inverse corner map is
+$(a,b)\mapsto([0],(a,b,a,b,\ldots))$.
+It is unital into the corner whose identity
+is $\overline z_\eta$. Distinct flags have
+not been identified by the quotient, so this
+map is injective as well as onto that corner.
+This proves the localization directly.
+Under the complete map (HFD16), the head
+receiver commutes with
+$L[C_2]\hookrightarrow K_L[C_2]$ given by
+$\iota_L$ on both coordinates; it has the
+coordinate retraction $\rho_L$ on both.
+
+Let $\mathfrak q$ be any proper lattice prime
+and $\chi_{\mathfrak q}:L\to\mathbb B$ its
+character. It preserves join and meet:
+membership of a join in the ideal is equivalent
+to membership of both summands, and primality
+tests a meet. The full receiver above gives
+\begin{equation}\tag{HFD20}
+ \overline\pi_{\mathfrak q}([f]_\nu,\nu)
+   =\{\bar p:p=0,1,\ \nu_p\notin\mathfrak q\}
+                         \in\mathscr P(C_2).
+\end{equation}
+The target has union as addition and group-set
+addition as multiplication, zero $\varnothing$
+and unit $\{\bar0\}$. Formula (HFD18) proves
+that this is a surjective unital homomorphism.
+The subset
+$I_{\mathrm{mix}}=\{\varnothing,C_2\}$
+is an ordinary prime ideal: it is closed under
+union and multiplication by every subset, and
+its complement consists of the two singletons,
+whose products are again singletons. Therefore
+\begin{equation}\tag{HFD21}
+ \overline P^{\mathrm{mix}}_{\mathfrak q}
+  =\overline\pi_{\mathfrak q}^{-1}(I_{\mathrm{mix}})
+  =\{([f]_\nu,\nu):
+       \chi_{\mathfrak q}(\nu_0)
+                    =\chi_{\mathfrak q}(\nu_1)\}
+\end{equation}
+is a proper ordinary prime of the divisor.
+
+This also proves the required saturation of
+the source prime, rather than assuming it.
+Every pair in the generated congruence (HFD6)
+has the same complete flag, and hence the same
+$\pi_{\mathfrak q}$ value. Membership of its
+inverse image of $I_{\mathrm{mix}}$ is therefore
+constant on each congruence class.
+Its quotient image is exactly (HFD21).
+Addition and multiplication in the quotient
+preserve that ideal, and primality follows by
+lifting any product to representatives and
+using source primality, or directly from the
+displayed receiver. The prime is not subtractive:
+in the target, $C_2\in I_{\mathrm{mix}}$ and
+$C_2\cup\{\bar0\}\in I_{\mathrm{mix}}$, but
+$\{\bar0\}\notin I_{\mathrm{mix}}$.
+The same counterexample lifts using periodic
+zero-amplitude flags.
+
+The distinction relevant to synchronization is
+exact:
+\begin{equation}\tag{HFD22}
+ \overline J\in\overline P^{\mathrm{mix}}_{\mathfrak q},
+ \qquad
+ \overline h_s=\overline z_\eta
+        \notin\overline P^{\mathrm{mix}}_{\mathfrak q}.
+\end{equation}
+Their head pairs are $(1_L,1_L)$ and
+$(1_L,0_L)$, respectively.
+Thus this prime survives the head localization
+(HFD19), but is excluded by localization at
+$\overline J$ in (HFD17).
+The supported equation kills an analytic
+amplitude while leaving $z_\eta$ different
+from the absorbing zero; that is why the
+proper prime (HFD21) can remain.
+
+\subsection{The off-real analytic comparison retaining all flags}
+
+Put $\Omega=\mathbb C\setminus\mathbb R$ and
+$\mathcal O=\mathcal O(\Omega)$, keeping both
+connected components. Restriction is a unital
+ring map $\mathcal E\to\mathcal O$.
+Define
+\begin{equation}\tag{HFD23}
+ R_s=\mathcal O/(H_s|_\Omega),\qquad
+ I_s^{\mathrm{off}}
+   =\{f\in\mathcal E:f|_\Omega\in
+                           H_s|_\Omega\,\mathcal O\},\qquad
+ B_s=\mathcal E/I_s^{\mathrm{off}}
+          \hookrightarrow R_s .
+\end{equation}
+The last map identifies $B_s$ with the exact
+image of the coefficient ring in the analytic
+quotient. Its injectivity is the definition
+of the kernel $I_s^{\mathrm{off}}$.
+No assertion that arbitrary holomorphic
+classes are represented by $\mathcal E$
+is needed or made.
+
+The ideal in (HFD23) is explicitly determined
+by all off-real zero jets:
+\begin{equation}\tag{HFD24}
+ f\in I_s^{\mathrm{off}}
+ \quad\Longleftrightarrow\quad
+ f^{(j)}(\zeta)=0
+ \quad\text{for every }\zeta\in\Omega
+       \text{ with }H_s(\zeta)=0,\
+          0\le j<\operatorname{ord}_{\zeta}H_s .
+\end{equation}
+Indeed near such a zero write
+$H_s(z)=(z-\zeta)^m u(z)$ with $u(\zeta)\ne0$.
+The quotient $f/H_s$ extends holomorphically
+there exactly when the first $m$ Taylor
+coefficients of $f$ vanish.
+Away from the zeros it is already holomorphic.
+When all the stated conditions hold the
+extensions agree with that quotient on
+punctured neighbourhoods and hence agree
+with one another, defining an element of
+$\mathcal O(\Omega)$. This proves both
+directions with every multiplicity retained.
+
+The exact off-real quotient before synchronization is
+\begin{equation}\tag{HFD25}
+ \begin{gathered}
+ \mathcal D^{\mathrm{flag,off}}_{s,L}
+  =\coprod_{\nu\in\mathcal F(L)}
+       \bigl(\mathcal E_\nu/
+          (I_s^{\mathrm{off}}\cap\mathcal E_\nu)\bigr)
+                                               \times\{\nu\}\\
+  \hookrightarrow R_s\times\mathcal F(L),\qquad
+   ([f]_\nu,\nu)\longmapsto([f|_\Omega],\nu).
+ \end{gathered}
+\end{equation}
+Its image consists exactly of pairs whose
+first coordinate has a representative from
+$\mathcal E_\nu$ for the displayed flag.
+The equivalence on the source is equality
+of flags together with the full jet test
+(HFD24) on $f-g$. This is the kernel of
+the actual semiring map
+$\mathcal A_L\to R_s\times\mathcal F(L)$,
+so its operations are (HFD9) with the
+new amplitude quotients; it is a
+congruence quotient, not an assumed
+unrestricted product.
+Since $H_sV_\nu\subset I_s^{\mathrm{off}}
+\cap\mathcal E_\nu$, the source divisor
+(HFD8) maps onto (HFD25).
+On each fixed flag, the exact additional
+identified subspace is
+\[
+ (I_s^{\mathrm{off}}\cap\mathcal E_\nu)/
+                                     H_sV_\nu .
+ \tag{HFD26}
+\]
+This proves the complete comparison defect
+to the off-real analytic receiver.
+
+The coefficient map retains its full form:
+the map in (HFD25) followed by
+$\operatorname{id}_{R_s}\times\mathcal F(\iota_L)$
+is an injective map to
+$R_s\times\mathcal F(K_L)$.
+It agrees with the composite of (HFD16)
+and the ring map
+$\mathcal E/(H_s)\to R_s$.
+All head maps and the prime (HFD21)
+factor through this further quotient too,
+because its equivalences still preserve
+every label. Their properness and primality
+follow by exactly the same receiver proof.
+
+Synchronization of (HFD25) has the precise
+image and connection to HZD:
+\begin{equation}\tag{HFD27}
+ \mathcal D^{\mathrm{flag,off}}_{s,L}
+       [\overline J^{-1}]
+    \simeq G_L(B_s)\hookrightarrow
+                 G_L(R_s)=\mathscr D_{s,L}.
+\end{equation}
+The map sends a class to
+$([f|_\Omega],\nu_0\vee\nu_1)$.
+Its image contains every nonzero amplitude
+class in $B_s$ with top label, by choosing
+a representing $f$ and the constant top
+flag. It contains every labelled zero by
+choosing zero amplitude and a constant
+flag of that label. These exhaust
+$G_L(B_s)$, including when $B_s$ is the
+zero ring. The idempotent corner calculation
+with $J$ is unchanged, proving (HFD27).
+The last inclusion is induced by the
+injective ring map in (HFD23), with every
+lattice label retained. This is the exact
+map to HZD7 and states its possibly larger
+analytic amplitude ring explicitly.
+
+For a zero-free restriction $H_s|_\Omega$,
+the reciprocal $1/H_s$ is holomorphic on
+$\Omega$, so $R_s=0$ and
+$I_s^{\mathrm{off}}=\mathcal E$.
+Conversely, $R_s=0$ gives a holomorphic
+inverse and excludes zeros by evaluation.
+Accordingly the complete retained object
+in that case is
+\begin{equation}\tag{HFD28}
+ R_s=0
+ \quad\Longrightarrow\quad
+ \mathcal D^{\mathrm{flag,off}}_{s,L}
+          \simeq\mathcal F(L),\qquad
+ G_L(R_s)\simeq L .
+\end{equation}
+The first equality follows in every fibre
+of (HFD25), whose amplitude quotient is
+then zero. It retains every flag and the
+proper mixed prime (HFD21).
+Thus the existence of that residual
+support prime is not evidence for an
+off-real zero; it persists even after
+the analytic amplitude quotient vanishes.
+This conclusion follows from the computed
+objects and does not decide whether the
+actual restriction has such a zero.
+
+\subsection{The transported product and the correct time in the divisor}
+
+Keep the actual theta time $s$ distinct
+from the algebra transport time $t$.
+On $(\mathcal A_L,\star_t)$ the full
+heat map
+$U_{-t}(f,\nu)=(T_{-t}f,\nu)$ is a
+unital algebra isomorphism to
+$(\mathcal A_L,\circ)$.
+It sends $h_s$ to $h_{s-t}$ and
+$z_\eta$ to itself by the proved
+actual heat law. Therefore the exact
+generated transported congruence is
+\begin{equation}\tag{HFD29}
+ (f,\nu)\equiv_{s;t}(g,\mu)
+ \quad\Longleftrightarrow\quad
+ \nu=\mu,\quad
+ T_{-t}(f-g)=H_{s-t}b
+                         \text{ for some }b\in V_\nu .
+\end{equation}
+This follows by applying the algebra
+isomorphism to the entire proved
+congruence (HFD6), not only to its
+generating pair.
+The spaces $\mathcal E_\nu$ and $V_\nu$
+are stable under $T_t$ and $T_{-t}$:
+each allowed unrestricted parity stays
+in its parity, and every restricted
+parity is a finite-degree polynomial
+space on which the even derivatives
+only lower the degree.
+Thus (HFD29) also gives the exact
+vector-space fibres in the original
+coefficient coordinates.
+
+Writing $\mathcal D^{\mathrm{flag},\star_t}_{s,L}$
+for this quotient, the full comparison is
+\begin{equation}\tag{HFD30}
+ \begin{gathered}
+ \mathcal D^{\mathrm{flag},\star_t}_{s,L}
+      \xrightarrow[{\ [f]_\nu\mapsto[T_{-t}f]_\nu\ }]{\ \sim\ }
+                   \mathcal D^{\mathrm{flag}}_{s-t,L},\\
+ \mathcal D^{\mathrm{flag},\star_t}_{s,L}
+       \longrightarrow G_L(\mathcal E/(H_{s-t}))
+       \longrightarrow
+          G_L(\mathcal O(\Omega)/(H_{s-t}|_\Omega)).
+ \end{gathered}
+\end{equation}
+The global amplitude representative is $T_{-t}f$.
+The complete off-real jet test is (HFD24)
+with $H_{s-t}$ and $T_{-t}(f-g)$.
+The full coefficient quotient map likewise
+has amplitude ring
+$(\mathcal E,\star_t)/(H_s)_{\star_t}$,
+which $T_{-t}$ identifies with
+$\mathcal E/(H_{s-t})$; its support
+flag map is unchanged.
+Every parity receiver and saturation
+argument (HFD18)--(HFD22) remains exact.
+
+For the same physical divisor at time
+$s$ in the transported presentation,
+the generator is $h_{s+t}=U_t h_s$.
+In that notation the exact identification is
+\begin{equation}\tag{HFD31}
+ \mathcal D^{\mathrm{flag},\star_t}_{s+t,L}
+       \simeq\mathcal D^{\mathrm{flag}}_{s,L}.
+\end{equation}
+Ordinary evaluation on the unchanged
+amplitude $f$ is not silently substituted
+for the transported amplitude map.
+The ordinary and transported constructions,
+their full coefficient quotients, their
+off-real jet receivers and their mixed
+prime therefore have specified connecting
+morphisms throughout.

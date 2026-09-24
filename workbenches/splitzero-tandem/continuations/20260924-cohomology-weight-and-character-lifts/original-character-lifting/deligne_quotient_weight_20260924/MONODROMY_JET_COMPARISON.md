@@ -1,0 +1,230 @@
+# Deligne's twisted monodromy and the original zeta primary jet
+
+24 September 2026. Independent mathematical derivation. The supplied `READ_FR_local_monodromy.txt`, printed pages 165–175 of Pierre Deligne, *La conjecture de Weil. II*, was read in full. The comparison uses the equivariant map of §1.7.2–§1.7.3 and the filtration criterion of §1.6.1. It is a comparison of explicit complex receiving operators, not an asserted equivalence of arithmetic sheaves or cohomology theories.
+
+Source \(\tau\) retains \(Z_1\) presence, no \(Z_2\) parity, and no addition. All linear operations and grading indices below belong to named complex receiving objects. The monodromy grading is not parity assigned to \(\tau\). The original zeta zero, its multiplicity, and every original prime factor remain explicit.
+
+## MJ1. The exact source relation and the actual primary action
+
+Fix an integer \(q>1\). Under the specified geometric Frobenius convention, Frobenius on the Tate object \((1)\) is \(q^{-1}\). After choosing a basis of that one-dimensional object, equivariance of \(N:V(1)\to V\) gives
+\[
+FN=N(q^{-1}F),\qquad FNF^{-1}=q^{-1}N.
+\tag{MJ1.1}
+\]
+This follows by writing the domain operator as \(q^{-1}F\). The receiving data considered here are an invertible complex linear operator \(F\) and a nilpotent \(N\) satisfying this relation. A simultaneous intertwiner preserves both operators.
+
+For an actual nontrivial zero \(\rho\) of the original \(\zeta\), of multiplicity \(m\ge1\), retain
+\[
+A_\rho=\mathbb C[t]/(t^m),\qquad T=M_t,\qquad e_j=t^j\quad(0\le j<m).
+\tag{MJ1.2}
+\]
+Thus \(Te_j=e_{j+1}\) except that \(Te_{m-1}=0\). For a prime \(p\), set \(\alpha=p^\rho\) and \(\ell=\log p\), using the real logarithm. The programme's actual unshifted prime action is
+\[
+F_0=W_p=\alpha\exp(\ell T)
+=\alpha\sum_{r=0}^{m-1}\frac{\ell^rT^r}{r!}.
+\tag{MJ1.3}
+\]
+This is the original Mellin-jet action, including the explicit \(p^{1/2}\) comparison with its centered presentation. It has inverse \(\alpha^{-1}\exp(-\ell T)\), by multiplying the finite sums. Its matrix in the unchanged basis is triangular with diagonal \(\alpha\), so its characteristic polynomial, determinant, and trace are respectively
+\[
+(X-\alpha)^m,\qquad\alpha^m,\qquad m\alpha.
+\]
+Since it is a polynomial in \(T\), it satisfies the different exact relation
+\[
+F_0T=TF_0.
+\tag{MJ1.4}
+\]
+
+## MJ2. Complete classification of simultaneous intertwiners
+
+For any pair \((V,F,N)\) satisfying (MJ1.1), every linear map \(a:A_\rho\to V\) with
+\[
+Fa=aF_0,\qquad Na=aT
+\tag{MJ2.1}
+\]
+is exactly of the form
+\[
+a(f(t))=f(0)v,\qquad v\in\ker N\cap\ker(F-\alpha I).
+\tag{MJ2.2}
+\]
+Indeed, the two intertwining identities and (MJ1.4) give
+\(FNa=aF_0T=aTF_0=NFa\). But (MJ1.1) gives \(FNa=q^{-1}NFa\). Hence \((1-q^{-1})NaF_0=0\). Since \(F_0\) is invertible and \(q>1\), \(Na=aT=0\). Thus \(a\) factors through the constant-coordinate quotient \(A_\rho/TA_\rho\), and its value at 1 has the properties in (MJ2.2). Conversely every displayed map satisfies (MJ2.1), proving the classification in both directions.
+
+Every linear map \(b:V\to A_\rho\) with
+\[
+F_0b=bF,\qquad Tb=bN
+\tag{MJ2.3}
+\]
+is exactly of the form
+\[
+b(v)=\lambda(v)t^{m-1},\qquad
+\lambda\in\bigl(V/(NV+(F-\alpha I)V)\bigr)^*.
+\tag{MJ2.4}
+\]
+In fact \(F_0Tb=TF_0b=TbF=bNF\), while also \(F_0Tb=bFN=q^{-1}bNF\). Invertibility of \(F\) now gives \(bN=Tb=0\). Thus the image is in \(\ker T=\mathbb Ct^{m-1}\). On that line \(F_0\) acts by \(\alpha\), so the remaining intertwining equation is \(\lambda F=\alpha\lambda\); the nilpotent equation is \(\lambda N=0\). These are precisely the displayed quotient conditions and also prove sufficiency.
+
+For \(m>1\), no map of the first kind is injective and no map of the second kind is surjective. At \(m=1\), \(T=0\), and those particular obstructions disappear. This makes no assumption about actual simplicity of zeros.
+
+The obstruction is basis-independent. For every scalar \(\lambda\) and nonnegative integer \(r\),
+\[
+(F-q^{-1}\lambda I)^rN=q^{-r}N(F-\lambda I)^r.
+\tag{MJ2.5}
+\]
+Subtracting the scalar term in (MJ1.1) proves the case \(r=1\), and multiplication proves the induction. Therefore \(N\) sends the generalized \(\lambda\)-eigenspace to the generalized \(q^{-1}\lambda\)-eigenspace. If an invertible \(F\) has only the eigenvalue \(\alpha\), then \(F-q^{-1}\alpha I\) is invertible and (MJ2.5) forces \(N=0\). Thus conjugating the original single primary block cannot turn its nonzero \(T\) into Deligne's monodromy while retaining the same Frobenius.
+
+## MJ3. The exact twisted ladder on the same nilpotent space
+
+A related pair on the same vector space is obtained by displaying the changed Frobenius:
+\[
+D_qe_j=q^{-j}e_j,\qquad F_{\mathrm{lad}}=F_0D_q,\qquad N_{\mathrm{lad}}=T.
+\tag{MJ3.1}
+\]
+Evaluation on the basis gives \(D_qTD_q^{-1}=q^{-1}T\), including the final zero. Since \(F_0\) commutes with \(T\),
+\[
+F_{\mathrm{lad}}TF_{\mathrm{lad}}^{-1}=q^{-1}T,
+\qquad F_{\mathrm{lad}}-F_0=F_0(D_q-I).
+\tag{MJ3.2}
+\]
+The change is nonzero for \(m>1\). Its complete eigenvalue and determinant data are
+\[
+\operatorname{char}_{F_{\mathrm{lad}}}(X)=\prod_{j=0}^{m-1}(X-\alpha q^{-j}),
+\quad\det F_{\mathrm{lad}}=\alpha^m\prod_{j=0}^{m-1}q^{-j},
+\quad\operatorname{Tr}F_{\mathrm{lad}}=\alpha\sum_{j=0}^{m-1}q^{-j}.
+\tag{MJ3.3}
+\]
+These follow from the triangular matrix in the retained basis. The full off-diagonal exponential has an explicit diagonal comparison, not a deletion. Set \(c=\ell/(1-q^{-1})\) and \(P=\exp(cT)\). Then \(P\) commutes with \(T\), is invertible, and
+\[
+P(\alpha D_q)P^{-1}
+=\alpha\exp(cT)\exp(-cq^{-1}T)D_q
+=F_{\mathrm{lad}}.
+\tag{MJ3.4}
+\]
+
+Put \(d=m-1\) and define the monodromy filtration directly:
+\[
+M_i=\operatorname{span}\{e_j:d-2j\le i\}.
+\tag{MJ3.5}
+\]
+It satisfies \(TM_i\subseteq M_{i-2}\). For every \(k\ge0\), the map \(T^k:\operatorname{Gr}_k^M\to\operatorname{Gr}_{-k}^M\) is an isomorphism: whenever nonzero, the source and target have respective bases \(e_{(d-k)/2}\) and \(e_{(d+k)/2}\), and \(T^k\) sends the first exactly to the second; when the index range or parity excludes them, both spaces are zero. Thus this is exactly the block filtration characterized in Deligne §1.6.1. The auxiliary indices do not change the user's \(Z_2\) notation.
+
+On its graded pieces, the original \(F_0\) acts by \(\alpha\), since positive powers of \(T\) strictly lower the filtration index. The ladder acts at index \(i=d-2j\) by \(\alpha q^{-j}\). With the numerical weight \(w_q(\alpha)=2\log|\alpha|/\log q\),
+\[
+w_q(\alpha q^{-j})=w_q(\alpha)-2j
+=\bigl(w_q(\alpha)-d\bigr)+(d-2j).
+\tag{MJ3.6}
+\]
+This proves the weight spacing, without fixing the central weight to a prescribed value. At \(q=p\), the new eigenvalues are \(p^{\rho-j}\), explicitly added receiver data, not asserted zeros of the original zeta function.
+
+The top-versus-bottom comparison can be classified exactly. Replace the ladder Frobenius by \(q^rF_{\mathrm{lad}}\), where \(r\) is an integer. MJ2 shows that the simultaneous-map space from the original jet has dimension one exactly for \(r=d\), and zero otherwise; the reverse-map space has dimension one exactly for \(r=0\), and zero otherwise. For the first assertion, \(\ker T=\mathbb Ce_d\) has eigenvalue \(\alpha q^{r-d}\), equal to \(\alpha\) exactly for \(r=d\). For the second, the quotient by \(TA_\rho\) has eigenvalue \(\alpha q^r\), equal to \(\alpha\) exactly for \(r=0\). These conditions coincide at \(m=1\), as required.
+
+## MJ4. A larger module retaining the complete original primary block
+
+The preceding construction changes Frobenius. The following one instead retains the full original block and adds an explicitly distinct monodromy coordinate:
+\[
+B_\rho=\mathbb C[x,y]/(x,y)^m,\qquad J=M_x,\qquad N=M_y.
+\tag{MJ4.1}
+\]
+Its basis is all \(x^iy^j\) with \(i,j\ge0\), \(i+j<m\), so its dimension is \(\sum_{j=0}^{m-1}(m-j)\). Both nilpotents have order \(m\) when \(m>1\), and commute. Let \(D_q\) now be the automorphism of this new algebra given by \(D_q(x)=x\), \(D_q(y)=q^{-1}y\), and define the invertible linear operator
+\[
+\mathcal F_{p,q}=M_{p^\rho\exp((\log p)x)}D_q.
+\tag{MJ4.2}
+\]
+The exponential terminates in the stated quotient. Evaluating on monomials gives
+\[
+\mathcal F_{p,q}J=J\mathcal F_{p,q},\qquad
+\mathcal F_{p,q}N\mathcal F_{p,q}^{-1}=q^{-1}N.
+\tag{MJ4.3}
+\]
+Thus the original spectral nilpotent and the source-type monodromy coexist as different named operators.
+
+There are algebra maps
+\[
+i:A_\rho\longrightarrow B_\rho,\quad t\longmapsto x,
+\qquad r:B_\rho\longrightarrow A_\rho,\quad x\longmapsto t,\ y\longmapsto t,
+\qquad ri=\operatorname{id}_{A_\rho}.
+\tag{MJ4.4}
+\]
+The monomial basis proves that \(i\) is injective. Every degree-\(m\) monomial maps to \(t^m=0\), proving that \(r\) is well-defined; the section proves surjectivity. Its complete kernel is
+\[
+K=(y-x)B_\rho,
+\quad B_\rho/K\simeq\mathbb C[x]/x^m=A_\rho.
+\tag{MJ4.5}
+\]
+Indeed imposing \(y=x\) sends the total-degree-\(m\) ideal exactly to \((x^m)\). The precise preserved operators are
+\[
+\mathcal F_{p,q}i=iF_0,\quad Ji=iT,\quad rJ=Tr,\quad rN=Tr.
+\tag{MJ4.6}
+\]
+All four equations follow by substitution, retaining every coefficient. Thus \(i\) includes the complete original Frobenius primary block. The return \(r\) identifies both receiving nilpotents with the original \(T\).
+
+Their failure to preserve all data simultaneously is the explicit formula
+\[
+r\mathcal F_{p,q}-F_0r=F_0r(D_q-I).
+\tag{MJ4.7}
+\]
+On \(b=\sum_{i+j<m}b_{ij}x^iy^j\), its complete value is
+\[
+\alpha\exp(\ell t)\sum_{i+j<m}(q^{-j}-1)b_{ij}t^{i+j}.
+\tag{MJ4.8}
+\]
+In particular,
+\[
+r\mathcal F_{p,q}(y-x)=\alpha\exp(\ell t)(q^{-1}-1)t.
+\tag{MJ4.9}
+\]
+For \(m>1\) this is nonzero, because \(t\ne0\), \(q^{-1}-1\ne0\), and the other factors are invertible. Hence the calculated return kernel is not Frobenius-stable, and its quotient does not inherit \(\mathcal F_{p,q}\). The other defect is \((Ni-iT)(f(t))=(y-x)f(x)\), which lies in the same explicit kernel. At \(m=1\), all these nilpotent defects vanish. These are exact maps and defects; neither map is falsely described as a simultaneous intertwiner of all three operators.
+
+## MJ5. All added blocks and all prime actions
+
+The complete decomposition by the displayed \(y\)-degree is
+\[
+B_\rho=\bigoplus_{j=0}^{m-1}y^j\mathbb C[x]/x^{m-j}.
+\tag{MJ5.1}
+\]
+The \(j\)-summand has full operator \(p^\rho q^{-j}\exp((\log p)M_x)\), with characteristic polynomial \((X-p^\rho q^{-j})^{m-j}\). It has one Jordan block of that length: \(\exp(\ell x)-1=xg(x)\) with \(g(0)=\ell\ne0\); multiplication by \(g\) is invertible, so all kernels of powers equal those of \(M_x\). Consequently
+\[
+\operatorname{char}_{\mathcal F_{p,q}}(X)=\prod_{j=0}^{m-1}(X-p^\rho q^{-j})^{m-j},
+\]
+\[
+\det\mathcal F_{p,q}=\prod_{j=0}^{m-1}(p^\rho q^{-j})^{m-j},\qquad
+\operatorname{Tr}\mathcal F_{p,q}=\sum_{j=0}^{m-1}(m-j)p^\rho q^{-j}.
+\tag{MJ5.2}
+\]
+The complete \(j=0\) summand is the original primary block. Every other summand remains explicitly labelled as additional receiver data.
+
+For all \(a>0\), define
+\[
+D_a(x)=x,\quad D_a(y)=a^{-1}y,\qquad
+\mathcal F_a=M_{a^\rho\exp((\log a)x)}D_a.
+\tag{MJ5.3}
+\]
+Since \(D_a\) fixes \(x\), direct multiplication gives
+\[
+\mathcal F_a\mathcal F_b=\mathcal F_{ab},\qquad
+\mathcal F_aN\mathcal F_a^{-1}=a^{-1}N,\qquad
+\mathcal F_ai=iW_a.
+\tag{MJ5.4}
+\]
+Thus one object retains the programme's original multiplicative action at every prime. At \(a=p\), it is MJ4 with \(q=p\). All added eigenvalues are \(a^{\rho-j}\), with the complete blocks in (MJ5.1); none has been declared an actual added zero or a changed prime event.
+
+The simultaneous-map classification MJ2 can be specialized fully to this new module. The kernel of \(N=M_y\) consists precisely of the total-degree-\(m-1\) polynomials: multiplication by \(y\) sends all lower-degree monomials to distinct surviving monomials. On that kernel the exponential in \(x\) acts identically, while \(D_q\) has eigenvalues \(q^{-j}\). Its \(\alpha\)-eigenline is therefore \(\mathbb Cx^{m-1}\). Every simultaneous map from the original jet is \(f(t)\mapsto cf(0)x^{m-1}\).
+
+For the reverse maps, quotienting by \(NB_\rho=yB_\rho\) leaves \(\mathbb C[x]/x^m\). On it \(\mathcal F_{p,q}-\alpha I\) is multiplication by \(\alpha(\exp(\ell x)-1)\), whose ideal is \((x)\). Therefore \(B_\rho/(NB_\rho+(\mathcal F_{p,q}-\alpha I)B_\rho)\simeq\mathbb C\), and every reverse simultaneous map is \(b\mapsto cb(0,0)t^{m-1}\). These formulas include \(m=1\). They describe every simultaneous intertwiner alongside the larger, differently preserving maps of MJ4.
+
+## MJ6. The complete representation and the limit of the transfer
+
+The twisted relation yields an actual representation. Let \(H_q=\mathbb C\rtimes\mathbb Z\), with group law \((u,k)(v,l)=(u+q^{-k}v,k+l)\). For every pair satisfying (MJ1.1),
+\[
+(u,k)\longmapsto\exp(uN)F^k
+\tag{MJ6.1}
+\]
+is a representation: \(F^k\exp(vN)F^{-k}=\exp(q^{-k}vN)\), and multiplication verifies the displayed law. All exponentials terminate. This applies to the ladder and the larger module. This explicit complex representation is not asserted to supply the additional topology, coefficient field, or geometric origin of an arithmetic Weil representation.
+
+The comparison now retains the exact original objects. MJ2 proves every possible intertwiner of the original two operators. MJ3 gives the complete Frobenius change needed for a same-space ladder and computes its filtration. MJ4–MJ5 retain the original prime block inside a larger source-type pair, with both an exact inclusion and an exact return; the return's Frobenius defect is (MJ4.8)–(MJ4.9). No failed identification has been treated as evidence that the two programmes are unrelated.
+
+Deligne §1.7.6 assumes purity before deducing vanishing of monodromy. No purity of the original zeta quotient follows merely from the calculated equivariance. The added ladder weights and their original center are explicit in MJ3.6, and the original zero \(\rho\) is unchanged in the included block. No RH conclusion is claimed.
+
+## Reading coverage and transcription caution
+
+The supplied Deligne excerpt was read in full. This note uses its stated twist map and filtration criterion, and proves all operator comparisons itself. It does not certify the supplied transcription as an error-free author source. For example, the sentence in §1.6.7 excluding the upper index from the lowering formula is inconsistent with the displayed Jordan matrix and the separately stated zero at the lower index. MJ1 and MJ3 define and verify the block action directly, so no result depends on that apparent transcription slip. The chosen geometric Frobenius convention is explicit in MJ1.1.
+
+The programme input is the actual primary action read in `GLOBAL_INFINITESIMAL_QUOTIENT.md`, GIQ3.2–GIQ3.3, and expanded independently in `DERIVATION.md`, IP4.2. Deligne's theorem and human authorship remain distinct from these finite-dimensional comparisons. No root source file was edited and no publication or rendering was performed.

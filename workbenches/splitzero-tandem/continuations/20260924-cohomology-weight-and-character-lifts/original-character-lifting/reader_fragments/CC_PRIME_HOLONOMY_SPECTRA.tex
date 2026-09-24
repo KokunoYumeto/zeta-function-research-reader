@@ -1,0 +1,526 @@
+% PHS: independent exact derivation, 2026-09-23.
+\section{Prime holonomy, every finite character, and the full compact-orbit spectrum}
+\label{sec:cc-prime-holonomy-spectra}
+
+\paragraph{Sources and scope.}
+The original adelic orbit is from Alain Connes, Caterina Consani,
+and Matilde Marcolli,
+\href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof and
+the geometry of the adeles class space}}, original author locators
+\texttt{globalper}, \texttt{avwadele}, \texttt{Xiorbits},
+\texttt{muscalehaar}, and \texttt{XiKalgpts}.
+The complete programme derivation
+\nolinkurl{CC_PERIODIC_POINTS_FULL_LATTICE.tex}, PLP1--38,
+was read for this calculation; its SHA-256 is
+\texttt{4a472874c8c58c5c\allowbreak{}c98503c498cda5bd\allowbreak{}692e96d1eb5c98dc\allowbreak{}6b1f69587bb9004d}.
+The actual inputs are its full common-label carrier and support
+maps PLP1--14, the forward return PLP20--23 and PLP28, and the
+original Haar and distribution conventions PLP25--32. The finite
+quotients, character calculations, and infinite spectrum below are
+proved directly. They concern this compact homogeneous orbit,
+not an identification with the full arithmetic cohomological trace.
+
+\subsection{The finite quotient and its exact components}
+
+Fix a rational prime $p$, and retain
+\begin{equation}\tag{PHS1}
+ \ell=\log p,\qquad K^{(p)}=\prod_{r\ne p}\mathbb Z_r^\times,
+ \qquad
+ O_p=(\mathbb R\times K^{(p)})/
+       ((x,u)\sim(x+\ell,pu)).
+\end{equation}
+The forward flow is $\Phi_t[x,u]=[x+t,u]$. It returns to the
+$x=0$ transversal after time $\ell$ as $u\mapsto p^{-1}u$.
+With the actual transverse coordinate of PLP28, that return is
+\begin{equation}\tag{PHS2}
+ R_p(u,z)=(p^{-1}u,p^{-1}z).
+\end{equation}
+No inverse time convention is substituted for this point action.
+
+For a positive integer $N$ coprime to $p$ put
+\begin{equation}\tag{PHS3}
+ U_N=(\mathbb Z/N\mathbb Z)^\times,\quad n_N=|U_N|=\varphi(N),
+ \quad d_N=\operatorname{ord}_{U_N}(p),\quad h_N=n_N/d_N.
+\end{equation}
+For $N=1$, use the one-element group, $\varphi(1)=1$, and
+$d_1=h_1=1$. The reduction map $K^{(p)}\to U_N$ is onto:
+factor $N$ into prime powers, reduce the corresponding $r$-adic
+units, and apply the Chinese remainder theorem. It intertwines
+multiplication by $p$ and gives
+\begin{equation}\tag{PHS4}
+ O_{p,N}=(\mathbb R\times U_N)/
+       ((x,u)\sim(x+\ell,pu)),
+ \qquad O_p\longrightarrow O_{p,N}.
+\end{equation}
+The permutation $u\mapsto p^{-1}u$ has precisely the cosets of
+$\langle p\rangle$ as its cycles. Each has length $d_N$, since
+$p^{-j}u=u$ is equivalent to $p^j=1$ in $U_N$.
+
+Each coset supplies one circle component of $O_{p,N}$, with
+the explicit parametrization
+\begin{equation}\tag{PHS5}
+ \mathbb R/(d_N\ell)\mathbb Z\longrightarrow O_{p,N},
+ \qquad [t]\longmapsto[t,u_0].
+\end{equation}
+Indeed $[x,p^ju_0]=[x-j\ell,u_0]$, proving surjectivity onto
+that component. Equality $[t,u_0]=[t',u_0]$ means
+$t'-t=j\ell$ and $p^ju_0=u_0$, hence $d_N\mid j$.
+This proves injectivity and the exact least period $d_N\ell$.
+The quotient action is properly discontinuous in the real coordinate,
+so its quotient is Hausdorff; the displayed continuous bijection from
+a compact circle is consequently a homeomorphism onto the component.
+There are exactly $h_N$ components, and forward motion increases
+$t$ in every component. Its $d_N$-fold transversal return has
+normal action $z\mapsto p^{-d_N}z$.
+
+Use compact Haar measure of mass one on $K^{(p)}$, its pushforward
+counting measure $du_N$ of mass $1/n_N$ at each $u$, and real
+measure $dx$. A fundamental interval is $0\le x<\ell$. Therefore
+\begin{equation}\tag{PHS6}
+ \mu(O_p)=\mu_N(O_{p,N})=\ell,
+ \qquad d\mu_N\text{ on a component}=\frac{dt}{n_N},
+ \qquad\mu_N(\text{one component})=\frac{d_N\ell}{n_N}.
+\end{equation}
+For the component formula, split the interval of length $d_N\ell$
+into its $d_N$ transversal pieces, each carrying $dx/n_N$.
+This retains the original real length; it is not replaced by mass one.
+
+\subsection{The two different return operators}
+
+On functions on $U_N$ distinguish
+\begin{equation}\tag{PHS7}
+ C_Rf(u)=f(p^{-1}u),\qquad P_Nf(u)=f(pu)=C_{R^{-1}}f(u).
+\end{equation}
+Both preserve the measure in PHS6. The actual pullback convention
+on the full orbit is
+\begin{equation}\tag{PHS8}
+ (U_tF)(x,u)=F(x-t,u),\qquad
+ (U_\ell F)(0,u)=F(-\ell,u)=F(0,pu).
+\end{equation}
+The last equality is the original relation in PHS1. Thus the
+Koopman return is $P_N$, whereas composition with the forward
+point return is $C_R=P_N^{-1}$. In the delta-function basis,
+$P_N\delta_v=\delta_{p^{-1}v}$ and
+$C_R\delta_v=\delta_{pv}$; each basis vector has squared norm
+$1/n_N$ in the specified measure.
+
+For every character $\chi:U_N\to\mathbb C^\times$,
+\begin{equation}\tag{PHS9}
+ P_N\chi=\chi(p)\chi,\qquad
+ C_R\chi=\chi(p)^{-1}\chi,\qquad
+ \frac1{n_N}\sum_{u\in U_N}\chi(u)\overline{\psi(u)}
+       =\begin{cases}1,&\chi=\psi,\\0,&\chi\ne\psi.\end{cases}
+\end{equation}
+The orthogonality follows by translating the sum by an element where
+the quotient character is not 1. These characters form a basis:
+decomposing the finite abelian group into cyclic factors and taking
+their roots-of-unity characters gives exactly $n_N$ orthogonal
+nonzero vectors. Their squared norms are 1 with the retained finite
+Haar measure.
+
+Every character of $\langle p\rangle$ extends to $U_N$.
+Here is a direct extension proof. Given a character on a subgroup
+$H$ of a finite abelian group and $a\notin H$, let $j$ be the
+least positive integer with $a^j\in H$. Choose $z\in\mathbb C$
+with $z^j=\chi(a^j)$, and set
+$\widetilde\chi(ha^k)=\chi(h)z^k$. If two representations
+differ, their exponents differ by a multiple of $j$ and this exact
+root equation proves equality of their values. Thus this extends
+the character to $\langle H,a\rangle$. Finitely many repetitions
+extend it to the whole group. The kernel of restriction consists
+of the characters of $U_N/\langle p\rangle$, of which there
+are $h_N$ by the same cyclic-factor count. Consequently every
+$d_N$th root of unity occurs as $\chi(p)$ exactly $h_N$ times.
+
+The original measure also verifies the permutation trace directly.
+The integral kernel of $P_N^j$ in that measure is
+$n_N1_{v=p^ju}$, so its diagonal integral is
+\begin{equation}\tag{PHS10}
+ \operatorname{Tr}(P_N^j)=
+ \frac1{n_N}\sum_u n_N1_{u=p^ju}
+ =\begin{cases}n_N,&d_N\mid j,\\0,&d_N\nmid j.\end{cases}
+\end{equation}
+The factor $1/n_N$ in the measure therefore does not replace this
+trace by the proportion of fixed points.
+
+\subsection{Finite determinants and all Dirichlet factors}
+
+Retain $q=p^{-s}=e^{-s\ell}$. The exact finite determinants are
+\begin{equation}\tag{PHS11}
+ \begin{split}
+ D_{p,N}^{+}(s)&=\det(I-p^{-s}P_N)
+       =\prod_{\chi\in\widehat U_N}(1-\chi(p)p^{-s})
+       =(1-p^{-d_Ns})^{h_N},\\
+ D_{p,N}^{-}(s)&=\det(I-p^{-s}C_R)
+       =\prod_{\chi\in\widehat U_N}(1-\chi(p)^{-1}p^{-s})
+       =(1-p^{-d_Ns})^{h_N}.
+ \end{split}
+\end{equation}
+The product over all $d_N$th roots is $1-q^{d_N}$, proving the
+last equalities with their multiplicities. Equality of the total
+determinants does not identify their individual character factors.
+
+For $\Re s>0$, expand the logarithm with value zero at $q=0$.
+Absolute convergence of the geometric series gives
+\begin{equation}\tag{PHS12}
+ \begin{gathered}
+ -\log D_{p,N}^{+}(s)
+       =\sum_{j\ge1}\frac{p^{-js}}j\operatorname{Tr}(P_N^j)
+       =h_N\sum_{r\ge1}\frac{p^{-d_Nrs}}r,\\
+ \frac{d}{ds}\log D_{p,N}^{+}(s)
+       =\ell\sum_{j\ge1}p^{-js}\operatorname{Tr}(P_N^j)
+       =\frac{n_N\ell\,p^{-d_Ns}}{1-p^{-d_Ns}}.
+ \end{gathered}
+\end{equation}
+The corresponding formulas for $D^-_{p,N}$ use $P_N^{-j}$
+and have the same total values. The logarithmic derivatives extend
+meromorphically; the determinant zeros are exactly
+$s=2\pi ik/(d_N\ell)$, $k\in\mathbb Z$, each of order $h_N$.
+
+Extend a character of $U_N$ to integers by zero on nonunits.
+Its original Dirichlet series and local factor, with no completion
+multiplier, are
+\begin{equation}\tag{PHS13}
+ L(s,\chi)=\sum_{n\ge1}\chi(n)n^{-s},\qquad
+ L_p(s,\chi)=(1-\chi(p)p^{-s})^{-1}\quad(p\nmid N).
+\end{equation}
+For $\Re s>1$, absolute convergence and unique factorization
+prove its Euler product by expanding finite geometric products and
+taking their dominated limit. Thus the actual Koopman character
+factor in PHS11 is $L_p(s,\chi)^{-1}$. The composition operator
+$C_R$ instead gives $L_p(s,\chi^{-1})^{-1}$; its character has
+not been silently inverted in PHS13. In particular
+\begin{equation}\tag{PHS14}
+ -\frac{L_p'(s,\chi)}{L_p(s,\chi)}
+       =\ell\sum_{j\ge1}\chi(p)^j p^{-js}
+       =\frac{\ell\chi(p)p^{-s}}{1-\chi(p)p^{-s}},
+ \quad\Re s>0.
+\end{equation}
+
+There is also an inverse-character dictionary between unit
+coordinates and the original local-idele coordinate. Extend the
+same finite character to $C_{\mathbb Q}$ by
+$\widetilde\chi(r,u)=\chi(u\bmod N)$. The exact local uniformizer
+image in PLP20 gives
+\begin{equation}\tag{PHS14a}
+ \widetilde\chi(\iota_p(p))=\chi(p)^{-1},\qquad
+ L_p(s,\chi)=
+ \bigl(1-\widetilde\chi^{-1}(\iota_p(p))p^{-s}\bigr)^{-1}.
+\end{equation}
+Indeed the unit coordinates away from $p$ of $\iota_p(p)$ are
+all $p^{-1}$, and $N$ has no $p$ factor. Thus an Euler factor
+written using $\widetilde\chi$ itself at the local uniformizer
+is the one for the inverse integer character. This is compatible
+with the original convolution action: for any absolutely integrable
+test $a$ and a unitary character $F$ of the orbit,
+\begin{equation}\tag{PHS14b}
+ (a*F)(x)=F(x)\int_{C_{\mathbb Q}}a(g)F(g)^{-1}d^{\times}g.
+\end{equation}
+This follows by inserting $F(g^{-1}x)=F(g)^{-1}F(x)$ into the
+convolution integral. For $F(r,u)=r^{i\tau}\widetilde\chi(u)$,
+the multiplier is the original Mellin integral with character
+$\widetilde\chi^{-1}$ and exponent $-i\tau$. Neither character
+inversion is a change in the forward point return.
+
+All missing-prime factors must be stated in a global comparison.
+For the present $p\nmid N$, the full original product is
+\begin{equation}\tag{PHS15}
+ L(s,\chi)=L_p(s,\chi)
+       \prod_{\substack{r\ne p\\r\nmid N}}
+                (1-\chi(r)r^{-s})^{-1},\qquad\Re s>1.
+\end{equation}
+Primes dividing $N$ do not occur because $\chi(r)=0$ there.
+Let $f_\chi\mid N$ be the conductor and $\chi_*$ the inducing
+primitive character. Explicitly, decompose $U_N$ by the Chinese
+remainder theorem and take, at each prime, the least prime-power
+level through which its character factors; their product is
+$f_\chi$. Restriction to these quotients gives $\chi_*$ and
+proves its minimality. Comparing each Euler factor yields
+\begin{equation}\tag{PHS16}
+ \begin{gathered}
+ L(s,\chi)=L(s,\chi_*)
+       \prod_{\substack{r\mid N\\r\nmid f_\chi}}
+                 (1-\chi_*(r)r^{-s}),\\
+ L(s,1_{U_N})=\zeta(s)\prod_{r\mid N}(1-r^{-s}).
+ \end{gathered}
+\end{equation}
+At primes dividing $f_\chi$, the primitive character is already
+zero and no additional factor is omitted. At every other prime
+dividing $N$, the displayed factor cancels exactly the primitive
+Euler factor. Both assertions follow first in $\Re s>1$,
+where every product involved has its original absolute meaning.
+For the product over all finite characters, the entire correction is
+\begin{equation}\tag{PHS17}
+ \prod_{\chi\in\widehat U_N}L(s,\chi)
+ =\left(\prod_{\chi\in\widehat U_N}L(s,\chi_*)\right)
+   \prod_{\chi\in\widehat U_N}
+       \prod_{\substack{r\mid N\\r\nmid f_\chi}}
+                  (1-\chi_*(r)r^{-s}).
+\end{equation}
+No primitive factor or omitted prime is identified merely because
+several characters share its inducing character.
+Characters genuinely ramified at $p$ are not characters of this
+orbit: the stabilizer contains $\mathbb Z_p^\times$, so descent
+requires the original character to be trivial on that subgroup.
+For a primitive Dirichlet character whose conductor is divisible
+by $p$, its integer extension has value zero at $p$ and its local
+Euler factor is $1$. No nonzero phase $\chi(p)$ is assigned to
+that omitted case. If only an imprimitive modulus adds $p$,
+the missing unramified factor is exactly the correction in PHS16.
+
+If $N\mid M$ and both are coprime to $p$, reduction
+$U_M\to U_N$ is onto. This follows prime-power by prime-power
+and then by the Chinese remainder theorem. Its fibres have size
+$\varphi(M)/\varphi(N)$, so it preserves the specified probability
+Haar measures. The induced maps $O_{p,M}\to O_{p,N}$ intertwine
+both return operators and give isometric pullbacks on their
+$L^2$ spaces with mass $\ell$. A character pulled back from
+$U_N$ keeps the same value at $p$. Its global Dirichlet series,
+however, has precisely the extra excluded-prime factors
+\begin{equation}\tag{PHS18}
+ L(s,\chi_M)=L(s,\chi_N)
+       \prod_{\substack{r\mid M\\r\nmid N}}
+                      (1-\chi_N(r)r^{-s}).
+\end{equation}
+Comparing the individual Euler factors proves this identity, so
+the finite-level transition does not hide those exclusions.
+
+\subsection{The normal Haar factors in both time directions}
+
+The original transverse measure has
+$\operatorname{vol}(\mathbb Z_p)=1$. For an integer $j>0$,
+the forward point return is $z\mapsto p^{-j}z$, and
+\begin{equation}\tag{PHS19}
+ \begin{gathered}
+ d(p^{-j}z)=p^jdz,\qquad
+ |1-p^{-j}|_p=p^j,\qquad |1-p^j|_p=1,\\
+ d_{\mathbb A_p}(p^{-j}a)=p^{-j}d_{\mathbb A_p}a,
+ \qquad p^j\cdot p^{-j}=1.
+ \end{gathered}
+\end{equation}
+The last line retains the hyperplane factor from the rational
+product formula PLP32. It is not combined with the normal factor
+before those two original measures have been identified.
+
+For the inverse pullback convention $\vartheta(h)f(z)=f(h^{-1}z)$,
+the kernel with respect to $dy$ is $\delta(y-h^{-1}z)$.
+Its transverse diagonal is consequently
+\begin{equation}\tag{PHS20}
+ \int_{\mathbb Q_p}\delta((1-h^{-1})z)\,dz
+       =|1-h^{-1}|_p^{-1}.
+\end{equation}
+This follows by the Dirac change of variables for the invertible
+scalar $1-h^{-1}$, and only holds here for $h\ne1$.
+Thus the complete forward and backward entries are
+\begin{equation}\tag{PHS21}
+ \begin{array}{c|c|c|c}
+ \text{point time}&\text{normal point multiplier }h&
+ \text{finite Koopman character}&
+ \text{normal pullback diagonal}\\ \hline
+ +j\ell&p^{-j}&\chi(p)^j&1\\
+ -j\ell&p^j&\chi(p)^{-j}&p^{-j}
+ \end{array}
+\end{equation}
+In particular using $|1-h|_p^{-1}$ for the forward pullback would
+give the other row's weight and would be a convention error.
+The norm on transverse test functions also retains its mass:
+\[
+ \|\vartheta(h)f\|_{L^2(dz)}^2=|h|_p\|f\|_{L^2(dz)}^2.
+\]
+For the forward multiplier this factor is $p^j$. No factor
+$|h|_p^{-1/2}$ has been inserted to change that operator.
+The table specifies local distributional factors away from the
+singular identity. It does not replace the regularized identity
+term or the adelic trace theorem.
+
+\subsection{Exact character frequencies on the full compact orbit}
+
+Let $\chi$ be a continuous character of $K^{(p)}$. It factors
+through some $U_N$, $p\nmid N$. To prove this, continuity gives
+an open subgroup whose image lies in a sufficiently short arc of
+the unit circle containing no nontrivial subgroup. Such an open
+subgroup has trivial character image. A congruence subgroup
+defined at finitely many primes lies inside it, giving the asserted
+finite level. In particular $\chi(p)$ is a root of unity.
+
+The function $e^{i\tau x}\chi(u)$ descends to $O_p$ precisely when
+\begin{equation}\tag{PHS22}
+ e^{i\tau\ell}\chi(p)=1.
+\end{equation}
+Indeed this is exactly invariance under the deck generator in PHS1.
+For any chosen argument $\theta_\chi$ of $\chi(p)$ all its
+frequencies and its flow eigenvalues are therefore
+\begin{equation}\tag{PHS23}
+ \tau_{\chi,n}=\frac{2\pi n-\theta_\chi}{\ell},\qquad
+ U_t(e^{i\tau_{\chi,n}x}\chi(u))
+       =e^{-i\tau_{\chi,n}t}e^{i\tau_{\chi,n}x}\chi(u),
+ \quad n\in\mathbb Z.
+\end{equation}
+Changing the chosen argument only changes the integer index. At
+$t=\ell$, this eigenvalue is $\chi(p)$, exactly PHS9.
+
+These functions form a complete orthogonal basis of
+$L^2(O_p,dx\,du)$, each of squared norm $\ell$.
+For two distinct compact characters, integration over $K^{(p)}$
+is zero by translation invariance. For the same character, distinct
+integer indices differ by $2\pi n/\ell$ and integrate to zero
+over $[0,\ell)$. For completeness, first average a function over
+successively smaller compact congruence subgroups. These averages
+are the finite-level projections; they converge in $L^2$ to the
+function. For continuous functions this follows uniformly from
+uniform continuity on the compact orbit, and continuous functions
+are dense in its finite Haar measure. At a fixed level, finite
+Fourier expansion on $U_N$ reduces to real functions satisfying
+the boundary condition
+$a_\chi(x+\ell)=\chi(p)^{-1}a_\chi(x)$.
+Multiplication by $e^{i\theta_\chi x/\ell}$ converts precisely
+this boundary condition to periodicity, and ordinary Fourier
+series on the interval give the frequencies in PHS23. Their
+completeness follows, for example, from convergence of the Fejer
+averages of continuous periodic functions and density in $L^2$.
+The finite-level union proves the asserted full completeness.
+
+In these original coordinates the self-adjoint generator is
+\begin{equation}\tag{PHS24}\begin{gathered}
+ U_t=e^{-itD},\qquad D=-i\partial_x,\\
+ \operatorname{Dom}(D)=
+ \left\{\sum_{\chi,n}a_{\chi,n}e^{i\tau_{\chi,n}x}\chi(u):
+       \ell\sum_{\chi,n}|a_{\chi,n}|^2<\infty,
+       \quad\ell\sum_{\chi,n}\tau_{\chi,n}^2|a_{\chi,n}|^2<\infty
+       \right\}.
+\end{gathered}
+\end{equation}
+Its action multiplies each coefficient by the real number
+$\tau_{\chi,n}$. The same diagonal coefficient test describes
+the adjoint domain, proving self-adjointness. Dominated convergence
+on $\ell\sum|a_{\chi,n}|^2$ proves strong continuity of $U_t$
+and its specified generator. At level $N$ the frequencies are
+exactly $2\pi\mathbb Z/(d_N\ell)$, each of multiplicity $h_N$,
+by the character-extension calculation after PHS9. This agrees
+with all the component circles of PHS5.
+
+The full set of frequencies is exactly
+\begin{equation}\tag{PHS25}
+ \{\tau_{\chi,n}\}=\frac{2\pi}{\log p}\,\mathbb Q.
+\end{equation}
+One inclusion follows because every $\chi(p)$ is a root of unity.
+For the converse, take $N=p^m-1$ for a positive integer $m$.
+It is coprime to $p$. If $N>1$, its order is exactly $m$:
+$p^m=1\pmod N$, whereas for $0<j<m$ the positive integer
+$p^j-1$ is strictly less than $N$, so is not divisible by $N$.
+The extension proof after PHS9 then realizes every $m$th root
+as $\chi(p)$. For a rational number $a/b$, use $m=b$ and
+choose $\chi(p)=e^{-2\pi ia/b}$; equation PHS22 gives
+$\tau=2\pi a/(b\ell)$.
+The exceptional case $p=2,m=1$ has $N=1$; its trivial character
+gives precisely the required integer frequencies. This handles
+that case without an order calculation in a nonexistent nontrivial
+unit group. It follows that the eigenvalues are dense in
+$\mathbb R$.
+
+Every one of these eigenvalues has infinite multiplicity.
+Fix the denominator $b$ of a rational frequency and let $m$ run
+through its positive multiples. At $N=p^m-1$, the required value
+of $\chi(p)$ has exactly $\varphi(N)/m$ character extensions.
+These give distinct orthogonal eigenvectors at that fixed frequency.
+Their number is unbounded. Indeed for any positive integer $n$,
+prime-power factorization gives the elementary bound
+\begin{equation}\tag{PHS26}
+ \varphi(n)\ge\sqrt{n/2}.
+\end{equation}
+For an odd prime power $r^a$,
+$\varphi(r^a)/\sqrt{r^a}=r^{a/2-1}(r-1)\ge1$;
+for powers of 2 this ratio is at least 1 except at $2^1$,
+where it is $1/\sqrt2$. Multiplying these exact inequalities
+proves PHS26, also valid at $n=1$. Thus
+$\varphi(p^m-1)/m\ge\sqrt{(p^m-1)/2}/m\to\infty$.
+Continuous characters form a countable union of finite sets, so
+each of these eigenspaces is countably infinite dimensional.
+
+The spectrum of $D$ as a self-adjoint operator is consequently
+all of $\mathbb R$, although its eigenvalue set is the specified
+countable dense subset. For a real number $a$ choose frequencies
+$\tau_j\to a$; the corresponding vectors have norm $\sqrt\ell$
+and $(D-a)$-image norm $\sqrt\ell|\tau_j-a|$, proving that
+$D-a$ has no bounded inverse. Nonreal numbers are outside its
+spectrum because division by $\tau-z$ defines the bounded inverse,
+of norm at most $1/|\operatorname{Im}z|$, on the full coefficient
+space. The spectral measures are atomic in the complete basis
+already proved; density of the eigenvalue set is not a claim that
+every real number is an eigenvalue.
+In fact the coefficient equation $DF=aF$ forces
+$(\tau_{\chi,n}-a)a_{\chi,n}=0$ for every index, so no additional
+eigenvalue can occur outside PHS25.
+
+There is no compact resolvent. For example the zero eigenspace
+already contains infinitely many pairwise orthogonal vectors of
+norm $\sqrt\ell$. On that space $(D-i)^{-1}$ is multiplication
+by $i$, so the bounded sequence of those vectors has no convergent
+subsequence after applying the resolvent. This contradicts
+compactness. At each finite level the multiplicities are finite
+and the nonzero frequencies tend to infinity, so Fourier truncation
+does give a compact resolvent there; the full space is not one
+such finite level.
+
+Likewise $P=U_\ell$ on the infinite full space is unitary and
+not compact. For $q\ne0$, $qP$ is not trace class, since its
+action on any infinite orthogonal sequence preserves the norm
+up to the fixed nonzero factor $|q|$. Thus PHS11 is a genuine
+finite determinant; no unproved infinite Fredholm determinant is
+obtained by taking its limit.
+
+\subsection{The actual common-label lifts}
+
+For the arbitrary bounded distributive lattice of PLP1--14 and
+any one of the specified complex amplitude spaces $V$, retain
+\begin{equation}\tag{PHS27}
+ G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\}),
+ \qquad T^\uparrow(F,\lambda)=(TF,\lambda).
+\end{equation}
+Each linear return, flow, finite-level pullback, or Fourier map
+above lifts by this formula. Zero amplitudes retain their labels;
+linearity proves addition and the $G_L(\mathbb C)$ scalar action,
+and the displayed inverses lift wherever an inverse exists.
+There is one common label on the entire vector, not independently
+chosen labels on its character coefficients.
+
+For example the exact finite Fourier map and inverse are
+\begin{equation}\tag{PHS28}
+ \widehat f(\chi)=\frac1{n_N}\sum_{u\in U_N}
+                         f(u)\overline{\chi(u)},\qquad
+ f(u)=\sum_{\chi\in\widehat U_N}\widehat f(\chi)\chi(u).
+\end{equation}
+Orthogonality in PHS9 proves the inverse with its original
+$1/n_N$ Haar factor. Its lifted map is
+$G_L(\mathbb C^{U_N})\to G_L(\mathbb C^{\widehat U_N})$,
+not a basis change on the larger independently labelled product
+$G_L(\mathbb C)^{U_N}$. It is a semimodule isomorphism.
+For pointwise multiplication of amplitudes, its transported
+product is explicitly
+$\widehat{fg}(\chi)=\sum_\psi\widehat f(\psi)
+\widehat g(\chi\psi^{-1})$, as follows by inserting the inverse
+sum and using the same orthogonality. It is not ordinary
+coordinatewise multiplication on character coefficients.
+
+The full Hilbert Fourier map in PHS23--24 is lifted only after
+the convergent amplitude sum has been defined, with its one
+unchanged label. No infinite join in $L$ is used. In particular
+$U_t^\uparrow(e)=e$ and $U_t^\uparrow(\tau)=\tau$; these
+remain distinct when $L$ is nontrivial. The actual support
+localization sends $(F,\lambda)$ to $[\lambda]_J$, and every
+label-preserving operator commutes with that map:
+$\sigma_JT^\uparrow(F,\lambda)=[\lambda]_J
+=\sigma_J(F,\lambda)$. This records exactly the localization
+of PLP7 and ULC8, rather than retaining an amplitude at a stalk
+where the proved localization removes it.
+
+The original nonzero adelic orbit has its single common top label
+as proved in PLP15--19. The lifts here concern its coefficient
+spaces; they do not manufacture additional nonzero-point lifts
+in the original carrier. All Haar factors above are measures on
+the stated real, finite-unit, or local-field amplitudes. No
+measure or spectral multiplicity on the arbitrary label set is
+assigned. The finite Euler factors, their precise orientations,
+and the infinite compact-orbit spectrum have been calculated;
+none of these calculations asserts a new Weil-positivity theorem
+or an RH implication.

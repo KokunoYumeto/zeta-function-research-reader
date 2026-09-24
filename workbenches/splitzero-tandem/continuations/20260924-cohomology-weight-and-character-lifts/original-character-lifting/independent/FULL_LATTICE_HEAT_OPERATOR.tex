@@ -1,0 +1,869 @@
+% Independent derivation. Prefix HSL. Requires amsmath, amssymb, hyperref.
+\section{Heat flow on independently labelled coefficients over the full lattice}
+\label{sec:full-lattice-heat-operator}
+
+\paragraph{Sources, carrier and scope.}
+The full carrier is the existing $G_L(R)$ of the programme foundation,
+under the retained byline The Clankers:
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split
+Support Geometry: Universal Zero Fibres, Arithmetic Curves, Frobenius
+and Perfect Quantization}, v11, Definition \texttt{def:lattice-split}}.
+Its full-lattice localization is also proved in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorems \texttt{thm:rebuilt-full-support} and \texttt{thm:e-stalk}}.
+ASL18--22 of the present reader construct the exact coefficient map
+$\Phi_R(r,\lambda)=(r,1_K\otimes\lambda)$; ZIL3--19 prove its
+localization square and exact amplitude loss. The definitions and
+the maps needed here are reproduced and proved below. The work in
+this section is the explicit heat action on that carrier, not an
+inference obtained by renaming an ordinary scalar heat theorem.
+The degree cutoff $d$ below is a new polynomial-degree index; it
+does not replace any retained spectral cutoff or Gaussian metric.
+
+Throughout the finite calculation $R$ is a nonzero commutative
+unital $\mathbb Q$-algebra, and $L$ is the entire nontrivial bounded
+distributive lattice. The analytic calculation specifies $R=\mathbb C$.
+No completeness of $L$ is assumed. Write
+\begin{equation}\tag{HSL1}
+\begin{gathered}
+ S=G_L(R)=\{(0_R,\lambda):\lambda\in L\}
+              \cup\{(r,1_L):r\in R\},\\
+ (r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),\qquad
+ (r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu),\\
+ \tau=(0_R,0_L)=0_S,\qquad e=(0_R,1_L),\qquad
+ 1_S=(1_R,1_L),\qquad z_\lambda=(0_R,\lambda),\\
+ M_d=S^{d+1},\qquad
+ v=((a_i,\nu_i))_{i=0}^{d},\qquad
+ a_i\ne0_R\Longrightarrow\nu_i=1_L.
+\end{gathered}
+\end{equation}
+The labels $\nu_i$ are independent at the start. In particular,
+a zero coefficient may have any label in $L$, not only $0_L$
+or $1_L$. All matrix sums and products in the finite part use
+these semiring operations.
+
+\subsection{The heat matrix, its exact composition and its independent labels}
+
+For $x=(t,\lambda)\in S$ define $x^\dagger=(-t,\lambda)$ and
+\begin{equation}\tag{HSL2}
+ U_x(i,j)=
+ \begin{cases}
+  1_S,&j=i,\\
+  \left(\displaystyle\frac{(-t)^m j!}{m!i!},\lambda\right),
+       &j-i=2m>0,\\
+  \tau,&\text{otherwise}.
+ \end{cases}
+ \qquad(0\le i,j\le d).
+\end{equation}
+These are elements of the original $S$: if $\lambda\ne1_L$
+then $t=0_R$, so every displayed off-diagonal amplitude is zero.
+Let $D_d(i,j)=(j,1_L)$ when $j=i+1$, and $\tau$ otherwise.
+Multiplying along the unique possible index path proves that
+$D_d^n(i,j)=(j!/i!,1_L)$ for $j-i=n$, and is $\tau$ otherwise.
+Also $D_d^{d+1}=0$. Thus (HSL2) is the actual finite semiring
+exponential
+\[
+ U_x=I+\sum_{m=1}^{\lfloor d/2\rfloor}
+       (1/m!,1_L)(x^\dagger)^mD_d^{2m}.
+\]
+The integer factorials, the factor $1/m!$, the sign and the label
+are all retained. In this expression the empty higher terms are
+absent; supported zero is not substituted for the additive zero.
+
+The exact time law is
+\begin{equation}\tag{HSL3}
+ U_xU_y=U_{x+y},\qquad U_\tau=I,
+ \qquad x=(t,\lambda),\quad y=(s,\mu).
+\end{equation}
+Here is a direct proof, including entries whose amplitudes cancel.
+For $j-i=2n>0$, the amplitude in the product entry is
+\[
+ \sum_{m=0}^{n}
+ \frac{(-t)^m(i+2m)!}{m!i!}
+ \frac{(-s)^{n-m}j!}{(n-m)!(i+2m)!}
+ =
+ \frac{j!}{i!}\sum_{m=0}^{n}
+       \frac{(-t)^m(-s)^{n-m}}{m!(n-m)!}
+ =
+ \frac{(-(t+s))^n j!}{n!i!}.
+\]
+The endpoint summands have labels $\mu$ and $\lambda$,
+respectively. Every intermediate summand has label
+$\lambda\wedge\mu$. Their joined label is therefore exactly
+$\lambda\vee\mu$. This conclusion does not depend on whether
+any amplitude vanishes. The diagonal has only the identity
+summand. An entry below the diagonal or of different parity
+has no nonzero-support path and is $\tau$.
+This proves every entry of (HSL3).
+
+Set
+\[
+ H_i=\{j:i<j\le d,\ j-i\text{ is even}\},\qquad
+ T_i(\nu)=\bigvee_{j\in H_i}\nu_j,
+\]
+with an empty join equal to $0_L$. Let $E_t$ be the ordinary
+ring heat matrix, with the same factorial amplitude as (HSL2)
+also for $m=0$, and ring zero elsewhere. Direct matrix action gives
+\begin{equation}\tag{HSL4}
+ \begin{gathered}
+ U_x(a,\nu)=(E_ta,F_\lambda\nu),\\
+ (E_ta)_i=\sum_{\substack{j\ge i\\j-i=2m}}
+                 \frac{(-t)^m j!}{m!i!}a_j,\qquad
+ (F_\lambda\nu)_i=\nu_i\vee(\lambda\wedge T_i(\nu)).
+ \end{gathered}
+\end{equation}
+The diagonal contributes precisely $\nu_i$; each higher
+same-parity coefficient contributes $\lambda\wedge\nu_j$.
+Distributivity gives the second formula. This proves the action
+on independent labels, including labelled zeros of the input.
+
+The exact invariant used throughout the support calculation is
+\begin{equation}\tag{HSL5}
+ T_i(F_\lambda\nu)=T_i(\nu),\qquad
+ F_\lambda F_\mu=F_{\lambda\vee\mu},\qquad
+ F_\lambda^2=F_\lambda.
+\end{equation}
+For the first equality, $F_\lambda\nu\ge\nu$ gives one
+inequality. If $j\in H_i$, both $\nu_j$ and
+$\lambda\wedge T_j(\nu)$ are at most $T_i(\nu)$, since
+$H_j\subset H_i$. Taking their joins proves the other inequality.
+Consequently
+$F_\lambda(F_\mu\nu)_i=
+\nu_i\vee(\mu\wedge T_i(\nu))\vee(\lambda\wedge T_i(\nu))$;
+distributivity proves the remaining assertions.
+
+Every supported-zero time is therefore an idempotent:
+\begin{equation}\tag{HSL6}
+ P_\lambda:=U_{z_\lambda},\quad
+ P_\lambda(a,\nu)=(a,F_\lambda\nu),\quad
+ P_\lambda^2=P_\lambda,\quad
+ U_xU_{x^\dagger}=U_{x^\dagger}U_x=P_\lambda,\quad
+ P_\lambda U_x=U_xP_\lambda=U_x.
+\end{equation}
+The matrix identities follow either from (HSL3) or from the
+explicit formulas. The associated image is
+\begin{equation}\tag{HSL7}
+ \begin{gathered}
+ \operatorname{im}U_x=\operatorname{im}P_\lambda
+ =:\mathcal H_{\lambda,d}\\
+ =\{(b,\eta)\in M_d:
+       \lambda\wedge T_i(\eta)\le\eta_i\text{ for every }i\}\\
+ =\{(b,\eta)\in M_d:
+       \lambda\wedge\eta_{i+2}\le\eta_i
+                         \text{ whenever }i+2\le d\}.
+ \end{gathered}
+\end{equation}
+An idempotent has image equal to its fixed set; (HSL4) gives
+the first description. The full-tail inequalities imply the
+adjacent ones. Conversely the adjacent inequalities, iterated
+along the parity chain after meeting with $\lambda$, imply
+$\lambda\wedge\eta_j\le\eta_i$ for every $j\in H_i$.
+Finite distributivity then gives the full-tail inequalities.
+Finally $U_x=P_\lambda U_x$ and
+$P_\lambda=U_xU_{x^\dagger}$ prove equality of the two images.
+
+The complete finite fibres are explicit and require no choice
+of a least label. For a proposed target $(b,\eta)$ set
+\begin{equation}\tag{HSL8}
+ \delta_i(\eta)=\lambda\wedge T_i(\eta),\qquad
+ a_i=(E_{-t}b)_i
+      =\sum_{\substack{j\ge i\\j-i=2m}}
+                   \frac{t^m j!}{m!i!}b_j .
+\end{equation}
+The fibre is empty if the target is outside $\mathcal H_{\lambda,d}$.
+For a target in that image it is exactly
+\begin{equation}\tag{HSL9}
+ U_x^{-1}(b,\eta)=
+ \left\{((a_i,\nu_i))_{i=0}^{d}:
+ \ \nu_i\vee\delta_i(\eta)=\eta_i\ \text{for every }i,\quad
+ a_i\ne0_R\Longrightarrow\nu_i=1_L\right\}.
+\end{equation}
+In particular the amplitude vector is unique and the permitted
+label choices in this formula are independent between coordinates.
+For necessity, $E_{-t}E_t=I$ follows from the amplitude computation
+in (HSL3), and tail invariance (HSL5) gives the label equations.
+For sufficiency, suppose those label equations hold.
+Descending induction along either parity gives
+$T_i(\nu)=T_i(\eta)$. At a terminal index both tails are empty.
+If $k=i+2\le d$ and the equality is known at $k$, then
+\[
+ \begin{split}
+ T_i(\nu)
+ &=\nu_k\vee T_k(\nu)
+  =\nu_k\vee T_k(\eta)\\
+ &=(\nu_k\vee\delta_k(\eta))\vee T_k(\eta)
+  =\eta_k\vee T_k(\eta)=T_i(\eta),
+ \end{split}
+\]
+because $\delta_k(\eta)\le T_k(\eta)$.
+Thus $F_\lambda\nu=\eta$, proving the converse. The carrier
+condition in (HSL9) is exactly the remaining requirement.
+The fibre is nonempty: $U_{x^\dagger}(b,\eta)=(a,\eta)$ is
+a preimage by (HSL6). This also proves that $\eta_i=1_L$
+whenever the recovered $a_i$ is nonzero.
+
+\subsection{The flag retract and genuine heat automorphisms on it}
+
+Write $U_t=U_{(t,1_L)}$ and $P=U_e$. Then
+\begin{equation}\tag{HSL10}
+ \begin{gathered}
+ U_tU_{-t}=P,\qquad
+ \mathcal H_{1,d}=\operatorname{im}P
+       =\{(a,\nu):\nu_i\ge\nu_{i+2}\text{ when }i+2\le d\},\\
+ U_t(a,\nu)=(E_ta,\nu)\quad\text{on }\mathcal H_{1,d},\qquad
+ U_t|_{\mathcal H_{1,d}}\in
+         \operatorname{Aut}_S(\mathcal H_{1,d}),\\
+ (U_t|_{\mathcal H_{1,d}})^{-1}=U_{-t}|_{\mathcal H_{1,d}}.
+ \end{gathered}
+\end{equation}
+This is the pair of exact parity flags
+\[
+ \nu_0\ge\nu_2\ge\nu_4\ge\cdots,\qquad
+ \nu_1\ge\nu_3\ge\nu_5\ge\cdots.
+\]
+The identity of the restricted group is $P$ restricted to its
+image. The identity on the entire coefficient module is instead
+$U_\tau=I$. Both statements follow from (HSL6) and the defining
+fixed-set condition.
+
+The image of every $P_\lambda$ is a finitely generated projective
+$S$-semimodule in the lifting sense for surjective module maps.
+Indeed it is a retract of the free module $M_d$, with inclusion
+and retraction $P_\lambda$. Explicitly, if $A\to B$ is surjective
+and $f:\mathcal H_{\lambda,d}\to B$ is linear, choose a preimage
+in $A$ of each $f(P_\lambda\epsilon_i)$, where the $\epsilon_i$
+are the free coordinate vectors. Extend those choices linearly
+to $M_d$ and restrict to the retract. The composite to $B$ is
+$f$, since $P_\lambda$ acts identically on the retract. The
+vectors $P_\lambda\epsilon_i$ generate it, proving finite
+generation as well as the asserted lifting property.
+
+For $d\ge2$, the representation $x\mapsto U_x$ is injective:
+the $(0,2)$ entry is $(-2t,\lambda)$, so its amplitude divided
+by $-2$ recovers $t$ and its label recovers $\lambda$.
+Moreover the only globally invertible operator in this family
+on all of $M_d$ is $U_\tau$.
+If $\lambda\ne0_L$, take two zero-amplitude vectors whose
+index $2$ label is $\lambda$ and whose other labels are $0_L$,
+except that their index $0$ labels are respectively $0_L$
+and $\lambda$. They are distinct and have the same image under
+$U_x$, by (HSL4). Thus $U_x$ is not injective. If $\lambda=0_L$,
+the time carrier forces $t=0_R$ and $U_x=I$.
+For $d=0,1$ every matrix in (HSL2) is $I$, and those two
+qualifications about injectivity and units are not asserted.
+
+For $L=\mathbb B$, the zero-amplitude part of the flag retract
+has exactly
+\begin{equation}\tag{HSL11}
+ (n_{\mathrm{even}}+1)(n_{\mathrm{odd}}+1)
+ \quad\text{states},\qquad
+ n_{\mathrm{even}}=\lfloor d/2\rfloor+1,\quad
+ n_{\mathrm{odd}}=\lceil d/2\rceil .
+\end{equation}
+A decreasing Boolean chain of length $n$ consists of an initial
+string of ones and a remaining string of zeros, giving $n+1$
+choices; the two parity chains are independent. At $d=2$ this
+gives six states. This Boolean-semimodule retract is not free:
+a finite free Boolean semimodule has $2^r$ states for an integer
+$r\ge0$, and an infinite free one has infinitely many states.
+The flag module has a concrete nonfree geometry even though it
+is a retract of a free coefficient module.
+
+The automorphisms proved here are linear heat automorphisms of
+a coefficient semimodule. They are not multiplicative
+automorphisms of polynomial algebras. Already on amplitudes
+$E_t(z)=z$ but $E_t(z^2)=z^2-2t$. Moreover for $d\ge2$ the
+ordinarily labelled monomial $z$ lies in $\mathcal H_{1,d}$,
+whereas $z^2$ does not: its index $0$ label is $0_L$ and its
+index $2$ label is $1_L$. Thus closure of this retract under
+polynomial multiplication has not been assumed.
+
+\subsection{Exact amplitude, joint-coefficient and localization morphisms}
+
+For the tropical semifield $K$ with zero, put
+$K_L=K\otimes_{\mathbb B}L$ and
+$\iota_L(\lambda)=1_K\otimes\lambda$.
+The map $\iota_L$ is injective: the nonzero indicator
+$\beta:K\to\mathbb B$ preserves maximum and product, and
+$\beta\otimes\operatorname{id}_L$ is a retraction to $L$.
+Thus the original joint map
+$\Phi_R(r,\lambda)=(r,\iota_L(\lambda))$ is injective.
+Apply it entrywise to (HSL2). It gives exactly the pair
+\begin{equation}\tag{HSL12}
+ \begin{gathered}
+ \Phi_R(U_x)=(E_t,\widetilde B_\lambda),\\
+ \widetilde B_\lambda(i,j)=
+ \begin{cases}
+  1_{K_L},&i=j,\\
+  \iota_L(\lambda),&j>i,\ j-i\text{ even},\\
+  0_{K_L},&\text{otherwise}.
+ \end{cases}\\
+ q^{d+1}U_x=E_tq^{d+1},\qquad
+ \Phi_R^{d+1}U_x=(E_t,\widetilde B_\lambda)\Phi_R^{d+1}.
+ \end{gathered}
+\end{equation}
+The last identities follow by entrywise application of semiring
+homomorphisms to finite matrix multiplication; they also follow
+directly from (HSL4). They retain the full original amplitude
+vector and all its independent support labels.
+
+Supported-zero coefficient localization is
+$S[e^{-1}]\simeq L$, $(r,\nu)\mapsto\nu$:
+inverting the idempotent $e$ sets it equal to the new unit,
+and $e(r,\nu)=z_\nu$ gives precisely that quotient.
+Consequently the matrix specializes to
+\begin{equation}\tag{HSL13}
+ \begin{gathered}
+ B_\lambda(i,j)=
+ \begin{cases}
+  1_L,&i=j,\\
+  \lambda,&j>i,\ j-i\text{ even},\\
+  0_L,&\text{otherwise},
+ \end{cases}\\
+ B_\lambda B_\mu=B_{\lambda\vee\mu},\qquad
+ B_\lambda^2=B_\lambda,\qquad
+ \sigma^{d+1}U_x=F_\lambda\sigma^{d+1}.
+ \end{gathered}
+\end{equation}
+The composition proof is the support part of (HSL3), or (HSL5).
+For top-labelled time every $U_t$ has the same specialized
+matrix $B_{1_L}$, which is not the global identity for $d\ge2$.
+For example at $d=2$ it is
+\[
+ B_{1_L}=
+ \begin{pmatrix}1_L&0_L&1_L\\0_L&1_L&0_L\\0_L&0_L&1_L\end{pmatrix},
+ \qquad
+ B_{1_L}(0_L,0_L,1_L)=B_{1_L}(1_L,0_L,1_L).
+\]
+Thus making the coefficient $e$ invertible does not make the
+heat matrix $U_e$ invertible on the whole coefficient module.
+It makes that matrix the displayed support projection.
+
+For any $S$-semimodule $M$, localization at $e$ is the corner
+$eM$, with scalar action through $eS\simeq L$:
+the map is $v\mapsto ev$. To check the universal property,
+any linear map into a module in which $e$ acts invertibly
+has $e$ acting as the identity, since $e^2=e$.
+It therefore factors uniquely through $eM$.
+Applied to the free module and the flag retract this proves
+\begin{equation}\tag{HSL14}
+ \begin{gathered}
+ M_d[e^{-1}]\simeq L^{d+1},\\
+ \mathcal H_{1,d}[e^{-1}]
+   \simeq\{(\nu_i)\in L^{d+1}:\nu_i\ge\nu_{i+2}\},\\
+ U_t\longmapsto B_{1_L},\qquad
+ U_t|_{\mathcal H_{1,d}}\longmapsto
+       \operatorname{id}_{\mathcal H_{1,d}[e^{-1}]} .
+ \end{gathered}
+\end{equation}
+All these statements retain the original labels; zero-amplitude
+vectors are the actual corners, rather than an imposed Boolean
+replacement.
+
+\subsection{An analytic completion on which every heat sum converges}
+
+Finite polynomial truncation is not a substitute for an infinite
+heat action. We first construct its amplitude completion exactly.
+For a coefficient sequence $a=(a_n)_{n\ge0}$ set
+\begin{equation}\tag{HSL15}
+ \|a\|_h=\sum_{n=0}^{\infty}|a_n|\sqrt{n!}\,h^n,\qquad
+ \mathcal E=\{a:\|a\|_h<\infty\text{ for every }h>0\}.
+\end{equation}
+The positive integer $h$ already give a defining countable
+family of seminorms. Each is a weighted $\ell^1$ norm.
+A Cauchy sequence for all these norms has coordinate limits;
+completeness of every weighted $\ell^1$ space gives the same
+limit in each of them. Thus $\mathcal E$ is complete.
+Polynomial truncations converge in every norm, because the
+corresponding positive summable tail tends to zero.
+This constructs $\mathcal E$ as a Fréchet completion of the
+polynomial amplitudes with this specified topology.
+
+The corresponding entire-function description is exact:
+\begin{equation}\tag{HSL16}
+ \begin{gathered}
+ f(z)=\sum_{n\ge0}a_nz^n,\qquad
+ \mathcal E=\left\{f\text{ entire}:
+   p_\alpha(f):=\sup_{z\in\mathbb C}
+                |f(z)|e^{-\alpha|z|^2}<\infty
+                \text{ for every }\alpha>0\right\},\\
+ p_{1/(2h^2)}(f)\le\|a\|_h,\qquad
+ \|a\|_h\le
+       \frac{p_\alpha(f)}{1-h\sqrt{2\mathrm e\alpha}}
+       \quad\left(h\sqrt{2\mathrm e\alpha}<1\right).
+ \end{gathered}
+\end{equation}
+The symbol $\mathrm e$ here is the ordinary real exponential
+constant, not the supported-zero element $e$.
+For the first estimate, each
+$|z|^n/(h^n\sqrt{n!})$ is at most
+$\exp(|z|^2/(2h^2))$, since its square is a term in that
+exponential series. Summing against the weighted coefficients
+proves uniform convergence on compact sets and the first bound.
+Conversely Cauchy's coefficient estimate on a circle of radius
+$r$ gives $|a_n|\le p_\alpha(f)e^{\alpha r^2}r^{-n}$.
+For $n\ge1$ put $r=\sqrt{n/(2\alpha)}$ and use
+$n!\le n^n$ to obtain
+$|a_n|\sqrt{n!}h^n\le
+p_\alpha(f)(h\sqrt{2\mathrm e\alpha})^n$.
+The $n=0$ estimate is $|a_0|\le p_\alpha(f)$.
+The geometric sum proves the second bound and the equivalence.
+
+For every complex time $t$ the following heat sum is defined
+on all of $\mathcal E$:
+\begin{equation}\tag{HSL17}
+ (T_ta)_i=
+ \sum_{m=0}^{\infty}
+       \frac{(-t)^m(i+2m)!}{m!i!}\,a_{i+2m},\qquad
+ \|T_ta\|_h\le\|a\|_{h+\sqrt{2|t|}}.
+\end{equation}
+In particular no formal interchange of divergent power series
+is being used. To prove the bound, take absolute values before
+any interchange and use nonnegative summation:
+\[
+ \begin{split}
+ &\sum_{i,m\ge0}
+  |a_{i+2m}|\frac{|t|^m(i+2m)!}{m!i!}\sqrt{i!}h^i\\
+ &=\sum_{n\ge0}|a_n|\sqrt{n!}
+     \sum_{m=0}^{\lfloor n/2\rfloor}
+       \frac{\sqrt{n!}}{m!\sqrt{(n-2m)!}}\,
+                    |t|^m h^{n-2m}.
+ \end{split}
+\]
+The inner coefficient is
+$\sqrt{\binom n{2m}}\sqrt{\binom{2m}m}$, at most
+$\binom n{2m}2^m$: the first binomial coefficient is a
+positive integer, and $\binom{2m}m\le2^{2m}$.
+Thus the inner sum is bounded by the even part of
+$(h+\sqrt{2|t|})^n$, and hence by the full expression.
+This proves absolute convergence and the literal estimate in
+(HSL17).
+
+The resulting operators satisfy
+\begin{equation}\tag{HSL18}
+ T_tT_s=T_{t+s},\qquad T_0=I,\qquad
+ T_t^{-1}=T_{-t},\qquad
+ \frac{\partial}{\partial t}T_tf=-\partial_z^2T_tf.
+\end{equation}
+For composition, the absolute double heat sum is bounded in
+$\|\cdot\|_h$ by
+$\|a\|_{h+\sqrt{2|t|}+\sqrt{2|s|}}$.
+It can therefore be regrouped; for each final total derivative
+order the finite binomial calculation in (HSL3) gives $t+s$.
+For time differentiability, (HSL17) applied with $|t|\le A$
+bounds the sum of norms of the power-series terms uniformly
+on every compact time disc. Applying the same bound on a
+larger disc justifies termwise differentiation there. The
+power series is
+$\sum_{m\ge0}(-t)^m\partial_z^{2m}f/m!$.
+Differentiating it gives the displayed heat equation, with
+the same locally uniform convergence in $z$ by (HSL16).
+Thus the analytic amplitude flow is an everywhere-defined
+complex-time group on this completion.
+
+\subsection{The exact support completion and the original-lattice domain}
+
+An arbitrary $L$ need not admit the countable joins occurring
+in an infinite heat row. We therefore specify, rather than
+silently assume, the support completion. Let
+\begin{equation}\tag{HSL19}
+ \widehat L=\operatorname{Idl}(L),\qquad
+ \jmath(\lambda)=\downarrow\lambda,\qquad
+ I\wedge J=I\cap J,\quad
+ \bigvee_\alpha I_\alpha
+      =\text{the ideal generated by }\bigcup_\alpha I_\alpha .
+\end{equation}
+The ideals are nonempty downward-closed subsets closed under
+finite joins. The bottom is $\{0_L\}$ and the top is $L$.
+The map $\jmath$ is an injective bounded lattice homomorphism:
+finite joins of principal ideals give the principal ideal
+of their join, and intersections give the principal ideal
+of their meet. The displayed arbitrary join exists explicitly:
+an element belongs to it exactly when it is below a finite
+join of elements drawn from the indicated ideals.
+
+Finite meets distribute over arbitrary joins in $\widehat L$.
+For example if $a\in I\cap\bigvee_\alpha J_\alpha$, choose
+$b_1,\ldots,b_r$ from the indicated $J_\alpha$ with
+$a\le\bigvee b_k$. Then
+$a=\bigvee_k(a\wedge b_k)$, and each $a\wedge b_k$ lies in
+$I\cap J_{\alpha_k}$. This proves one inclusion of
+$I\cap\bigvee J_\alpha=\bigvee(I\cap J_\alpha)$;
+the opposite inclusion follows from containment.
+This proves the exact infinite distributivity needed below.
+It does not identify an infinite join in the original $L$
+with one in $\widehat L$ without checking that it is principal.
+
+Define the completed, independently labelled coefficient module
+\begin{equation}\tag{HSL20}
+ \widehat{\mathcal M}
+ =\{(a,(I_i)_{i\ge0}):a\in\mathcal E,\ I_i\in\widehat L,\quad
+                         a_i\ne0\Longrightarrow I_i=L\}.
+\end{equation}
+Addition has amplitude addition and coordinate ideal joins;
+the original scalar $(r,\lambda)\in S=G_L(\mathbb C)$ acts
+by amplitudes $ra_i$ and ideals $\jmath(\lambda)\cap I_i$.
+These formulas preserve the carrier: a nonzero amplitude
+after addition has a nonzero contributing summand, and a
+nonzero amplitude after scalar multiplication has both factors
+nonzero and hence both relevant labels top.
+The module laws follow from (HSL19).
+Every original finite vector embeds by principal coefficient
+ideals and by $\{0_L\}$ above its degree.
+
+The completed heat action of the original time parameter
+$x=(t,\lambda)\in S$ is
+\begin{equation}\tag{HSL21}
+ \widehat U_x(a,I)=(T_ta,\widehat F_\lambda I),\qquad
+ (\widehat F_\lambda I)_i
+    =I_i\vee\left(\jmath(\lambda)\cap
+                   \bigvee_{\substack{j>i\\j-i\text{ even}}}I_j\right).
+\end{equation}
+The amplitude sum converges by (HSL17), and the support join
+exists by (HSL19). Admissibility also holds. If $t=0$, the
+amplitude at $i$ remains $a_i$, whose nonvanishing already
+forces $I_i=L$. If $t\ne0$, then $\lambda=1_L$; a nonzero
+output sum has at least one nonzero summand, whose input
+amplitude has top support. Its contribution therefore makes
+the output support top. This proves that the formula defines
+an actual map of the stated carrier.
+
+With $\widehat T_i(I)=\bigvee_{j>i,\ j-i\ {\rm even}}I_j$,
+the proof of (HSL5) uses only nested tails and distributivity.
+It therefore gives exactly
+\begin{equation}\tag{HSL22}
+ \begin{gathered}
+ \widehat T_i(\widehat F_\lambda I)=\widehat T_i(I),\qquad
+ \widehat F_\lambda\widehat F_\mu
+                      =\widehat F_{\lambda\vee\mu},\\
+ \widehat U_x\widehat U_y=\widehat U_{x+y},\qquad
+ \widehat U_\tau=I,\qquad
+ \widehat U_x\widehat U_{x^\dagger}
+       =\widehat U_{z_\lambda}=:\widehat P_\lambda .
+ \end{gathered}
+\end{equation}
+The amplitude assertion follows from (HSL18). Addition and
+scalar linearity follow from join preservation and the
+distributivity proved in (HSL19), together with linearity of
+$T_t$. In particular the completed supported-zero operator
+is again an idempotent with unchanged amplitudes, and every
+$\widehat U_x$ is an automorphism on its exact image
+$\operatorname{im}\widehat P_\lambda$.
+
+The complete infinite image and fibres can also be specified
+without inventing a terminal coordinate at infinity:
+\begin{equation}\tag{HSL23}
+ \operatorname{im}\widehat U_x
+ =\{(b,J)\in\widehat{\mathcal M}:
+       \jmath(\lambda)\cap J_j\subset J_i
+           \text{ for all }j>i\text{ of the same parity}\}.
+\end{equation}
+For a target in this set, put $a=T_{-t}b$.
+Its fibre consists exactly of ideals $I_i$ satisfying
+$I_i\subset J_i$, $a_i\ne0\Rightarrow I_i=L$, and the following
+finite-witness generation condition for every $i$:
+\begin{equation}\tag{HSL24}
+ \begin{gathered}
+ \text{for every }c\in J_i\text{ there are }v_i\in I_i,\quad
+ j_1,\ldots,j_r>i\text{ of the same parity},\quad
+ c_k\in I_{j_k}\text{ such that}\\
+ c\le v_i\vee\bigvee_{k=1}^{r}(\lambda\wedge c_k).
+ \end{gathered}
+\end{equation}
+An empty list is permitted. These conditions are necessary
+and sufficient for (HSL21) to have target $J$: by (HSL19)
+its right side is exactly the ideal generated by $I_i$ and
+the elements $\lambda\wedge c$ with $c$ from a higher
+same-parity $I_j$. All those generators lie in $J_i$
+by (HSL23), and (HSL24) is the reverse containment.
+The amplitude is unique by (HSL18); existence follows also
+from the preimage $\widehat U_{x^\dagger}(b,J)$.
+This proves the full infinite fibre, including its boundary
+condition on arbitrarily high degrees.
+
+The finite independent-coordinate formula (HSL9) must not be
+extended without this condition. For example let $\lambda=1_L$,
+put every $I_i=\{0_L\}$, and let $J_i=L$ at every even index
+and $\{0_L\}$ at every odd index. The equations
+$I_i\vee(\jmath(\lambda)\cap J_{i+2})=J_i$ all hold,
+but $\widehat F_\lambda I$ is zero in every coordinate and
+is not $J$. This exhibits the missing information at infinity
+if the terminating induction used for finite fibres is omitted.
+
+There is an invariant domain entirely within the original
+lattice. Define
+\begin{equation}\tag{HSL25}
+ \begin{gathered}
+ \mathcal M_L^{\mathrm{tail}}
+ =\{(a,\nu):a\in\mathcal E,\ \nu_i\in L,\
+       a_i\ne0\Rightarrow\nu_i=1_L,\
+       \mathcal T_i(\nu)\text{ is principal for every }i\},\\
+ \mathcal T_i(\nu)=
+      \bigvee_{\substack{j\ge i\\j-i\text{ even}}}
+                      \downarrow\nu_j
+       =\downarrow s_i\quad(s_i\in L).
+ \end{gathered}
+\end{equation}
+The generator $s_i$ is unique. Being principal here is the
+precise finite-generation assertion: $s_i$ is a finite join
+of labels from that tail. Indeed $s_i$ belongs to the
+generated ideal and hence is below such a finite join;
+all those labels are at most $s_i$, giving equality.
+Every finite polynomial belongs to this domain.
+For finite $L$, every label sequence satisfies this condition;
+no finiteness of $L$ is required for the definition.
+
+On this domain the completed formula has values in the
+original $L$ and reads
+\begin{equation}\tag{HSL26}
+ (U_x(a,\nu))_i
+  =\left((T_ta)_i,\ \nu_i\vee(\lambda\wedge s_{i+2})\right),
+ \qquad
+ \mathcal T_i(F_\lambda\nu)=\mathcal T_i(\nu).
+\end{equation}
+The ideal $\mathcal T_{i+2}$ is the strict tail in (HSL21).
+Distributivity and principality identify its meet with
+$\downarrow\lambda$ and its join with $\downarrow\nu_i$
+as the principal ideal of the displayed label.
+The invariant equality follows as in (HSL22), now with the
+inclusive tail: the output contains each input label,
+and it imports labels only from that same inclusive tail.
+Hence the new tails have the same principal generators,
+proving invariance of the entire domain.
+It is an $S$-subsemimodule: tails of a sum are joins of
+two principal tail ideals, and tails after scalar support
+multiplication are their meets with a principal ideal.
+This establishes a heat action preserving the full original
+lattice on an explicit infinite domain containing all
+polynomials and the theta family considered below.
+
+\subsection{Polynomial approximation, exact truncation defect and the theta lift}
+
+Let $\iota_d:M_d\to\widehat{\mathcal M}$ extend a polynomial
+by amplitude zero and label $0_L$ above degree $d$.
+Then
+\begin{equation}\tag{HSL27}
+ \widehat U_x\iota_d=\iota_d U_x .
+\end{equation}
+The sums in (HSL21) terminate on this image, proving the
+identity directly. In contrast let $\pi_d$ retain only
+coordinates $0,\ldots,d$ of an infinite object. For $i\le d$,
+its exact amplitude defect is
+\begin{equation}\tag{HSL28}
+ \begin{split}
+ &\left(q\pi_d\widehat U_x(a,I)
+           -q U_x\pi_d(a,I)\right)_i\\
+ &\hspace{8mm}=
+   \sum_{\substack{j>d\\j-i=2m>0}}
+             \frac{(-t)^m j!}{m!i!}a_j .
+ \end{split}
+\end{equation}
+Here $U_x$ on the truncated completed module means the same
+finite formula with ideals as labels. The series is
+absolutely convergent by (HSL17). The support in the first
+expression is the support in the second joined with exactly
+\begin{equation}\tag{HSL29}
+ \jmath(\lambda)\cap
+       \bigvee_{\substack{j>d\\j-i\text{ even}}}I_j .
+\end{equation}
+Both identities follow by splitting the row at $j=d$.
+They give a connecting map for the entire discarded tail,
+rather than treating truncation as an intertwiner.
+For the amplitude polynomial $f(z)=z^{d+2}$ the truncated
+input is zero, whereas the degree-$d$ coefficient after
+heat is $-t(d+2)(d+1)$. Thus (HSL28) can be nonzero even
+on polynomial inputs when the chosen truncation is too low.
+
+For a general element of $\widehat{\mathcal M}$, amplitude
+polynomial truncations converge in every norm (HSL15).
+Their heat images converge in every such norm by (HSL17).
+For each fixed coordinate their heat supports form an
+increasing family of ideals whose join is exactly (HSL21),
+by the explicit definition of joins in (HSL19).
+Thus the analytic limit and the algebraic support limit
+are both specified, with no unsupported infinite join in $L$.
+Any ideal label can itself be obtained as the directed join
+of the principal ideals of its elements, so the ideal
+extension preserves the original labels by an explicit
+injective map and a defined directed completion.
+
+The actual theta family uses the kernel of Brad Rodgers and
+Terence Tao, \href{https://arxiv.org/abs/1801.05914v5}{\emph{The
+De Bruijn--Newman constant is non-negative}, arXiv:1801.05914v5}.
+It provides a particularly exact original-lattice case.
+Its independently proved kernel
+calculation has coefficients
+\begin{equation}\tag{HSL30}
+ \begin{gathered}
+ H_t(z)=\sum_{n\ge0}a_n(t)z^n,\qquad a_{2j+1}(t)=0,\\
+ a_{2j}(t)=
+ \frac{(-1)^j}{(2j)!}
+       \int_0^\infty e^{tu^2}\Phi_{\mathrm{theta}}(u)u^{2j}\,du,\\
+ (-1)^j a_{2j}(t)>0\quad(t\in\mathbb R),\qquad H_t\in\mathcal E.
+ \end{gathered}
+\end{equation}
+The symbol $\Phi_{\mathrm{theta}}$ denotes the analytic
+theta kernel, not the coefficient map $\Phi_R$.
+The full kernel proof and its human-source locators are
+supplied in \nolinkurl{THETA_HEAT_FULL_SUPPORT.tex} of this
+reader: THS9 proves strict real-time nonvanishing, THS15
+proves the entire-function bounds, and THS18--23 calculate
+the original support vector and its heat law. The source
+read for these locators has SHA--256
+\nolinkurl{98f9e873b23b2c2b78b856a448e65d65fb9469e26bc36659e49ebef50346f604}.
+Equation (HSL30) records the exact input used here.
+The following support and map calculation is independent
+of any assertion about the zero locations of $H_t$.
+
+Retain the coefficient lift obtained from these real-time
+nonzero coefficients and its complex-time continuation:
+\begin{equation}\tag{HSL31}
+ \mathbf H_t=
+     ((a_i(t),\nu_i))_{i\ge0},\qquad
+ \nu_{2j}=1_L,\quad \nu_{2j+1}=0_L,\qquad
+ s_{2j}=1_L,\quad s_{2j+1}=0_L.
+\end{equation}
+At real time the even labels are forced by nonvanishing in
+(HSL30); the odd coefficients are the structural zero
+$\tau$. At complex time the same even labels are retained
+even if an even amplitude vanishes. This specifies the
+lift exactly. Its tail ideals are principal with the
+generators displayed in (HSL31), so it belongs to the
+original-lattice domain (HSL25).
+
+The exact heat and coefficient-map laws on this object are
+\begin{equation}\tag{HSL32}
+ \begin{gathered}
+ U_{(r,\lambda)}\mathbf H_t=\mathbf H_{t+r}
+         \quad((r,\lambda)\in G_L(\mathbb C)),\\
+ U_{z_\lambda}\mathbf H_t=\mathbf H_t
+                      \quad(\lambda\in L),\qquad
+ \Phi_{\mathbb C}(a_i(t),\nu_i)
+                =(a_i(t),1_K\otimes\nu_i).
+ \end{gathered}
+\end{equation}
+For amplitudes the actual kernel heat law, or its
+absolutely convergent coefficient form, gives
+$T_rH_t=H_{t+r}$. For supports, an even coordinate already
+has top label from its diagonal term, and an odd coordinate
+receives only odd structural zeros. Equivalently
+$\nu_i\vee(\lambda\wedge s_{i+2})=\nu_i$ for every $i$.
+This proves (HSL32) with every label retained.
+It proves in particular that the actual theta coefficient
+family lies in the flag image on which the top-labelled
+heat operators are genuine inverse automorphisms.
+
+The coefficient map in (HSL32) also commutes with the
+infinite sums used for this family: every amplitude sum is
+absolute, while each even support partial sum is top from
+its diagonal term and every odd support partial sum is zero.
+Thus no infinite tensor-product join or unproved
+continuity of $\Phi_{\mathbb C}$ is needed.
+After supported-zero coefficient localization, all
+$\mathbf H_t$ have the same even-top, odd-zero coefficient
+labels. Before localization their first coordinates retain
+every actual $a_i(t)$ and therefore the entire function
+$H_t$ exactly. These proved morphisms and the heat
+automorphism structure do not assign a value to any
+real-root threshold or assert an RH conclusion.
+
+\subsection{The completed joint coefficient morphism for all support sequences}
+
+The exact joint morphism on the general completed module
+also exists, once its target is specified to admit the
+required joins. It is not necessary to assume that tensoring
+with $K$ preserves every infinite join of $L$.
+For any commutative additively idempotent semiring $A$, let
+$\operatorname{Idl}_{\mathrm{ord}}(A)$ be the nonempty lower
+subsets for the order $a\le b\Longleftrightarrow a+b=b$
+which are closed under finite sums. Define addition and
+arbitrary joins by the lower ideal generated by the union,
+and multiplication by the lower ideal generated by the
+products of elements. The zero is $\downarrow0_A$ and the
+unit is $\downarrow1_A$; the latter need not be the top ideal.
+These operations form a complete idempotent semiring in
+which multiplication distributes over arbitrary joins.
+Indeed both sides of that distributivity statement are
+the lower ideal generated by the same products; finite
+distributivity in $A$ supplies equality of their finite
+generating sums. The same generator argument proves
+associativity and commutativity of multiplication.
+The principal-ideal map $a\mapsto\downarrow a$ is an
+injective unital semiring homomorphism.
+
+Apply this construction to $K_L$, and put
+\begin{equation}\tag{HSL33}
+ \begin{gathered}
+ \mathfrak K_L=\operatorname{Idl}_{\mathrm{ord}}(K_L),\\
+ \iota^\#:\widehat L\longrightarrow\mathfrak K_L,\qquad
+ \iota^\#(I)=
+    \{w\in K_L:\exists a\in I,\ w\le\iota_L(a)\},\\
+ \rho^\#:\mathfrak K_L\longrightarrow\widehat L,\qquad
+ \rho^\#(J)=
+    \{\lambda\in L:\exists w\in J,\ \lambda\le\rho_L(w)\},
+       \qquad \rho^\#\iota^\#=\operatorname{id}_{\widehat L}.
+ \end{gathered}
+\end{equation}
+Here $\rho_L=\beta\otimes\operatorname{id}_L$ is the
+retraction used before (HSL12). The sets displayed in
+(HSL33) are already ideals: finite sums in the target
+are bounded by the image of the finite join or sum of
+their witnesses. A unital semiring homomorphism between
+idempotent semirings induces this lower-ideal map, and
+the generator description proves that it preserves
+arbitrary joins, products, zero and the stated units.
+For $L$ viewed as a semiring, ideal multiplication is
+intersection: the products are meets, and any element
+of an intersection is its own meet. Thus the domain
+really is precisely (HSL19).
+The two induced maps compose to the identity because
+$\rho_L\iota_L=\operatorname{id}_L$; explicitly,
+$w\le\iota_L(a)$ implies $\rho_L(w)\le a$, and every
+$a\in I$ is obtained by $w=\iota_L(a)$.
+This proves injectivity of $\iota^\#$ as well as its
+arbitrary-join compatibility.
+
+The completed coefficient map and its restriction to
+every original coefficient are therefore
+\begin{equation}\tag{HSL34}
+ \begin{gathered}
+ \widehat\Phi:G_{\widehat L}(\mathbb C)
+       \longrightarrow\mathbb C\times\mathfrak K_L,\qquad
+       (a,I)\longmapsto(a,\iota^\#(I)),\\
+ \widehat\Phi(a,\downarrow\nu)
+       =(a,\downarrow\iota_L(\nu)).
+ \end{gathered}
+\end{equation}
+Both coordinates preserve zero, unit and the two operations;
+the map is injective by the retraction in (HSL33).
+The second formula proves the exact commuting square
+with the original $\Phi_{\mathbb C}$ and the principal-ideal
+embedding $K_L\to\mathfrak K_L$. The top ideal $L$ of
+$\widehat L$ maps to $\downarrow1_{K_L}$, the multiplicative
+identity of $\mathfrak K_L$, as required by the carrier.
+
+Define the infinite support matrix $\mathfrak B_\lambda$
+over $\mathfrak K_L$ to have diagonal $\downarrow1_{K_L}$,
+strict same-parity upper entries
+$\downarrow\iota_L(\lambda)$, and zero entries elsewhere.
+Its action uses the existing arbitrary joins in
+$\mathfrak K_L$. Let $\widehat\Phi^{\mathbb N}$ apply
+(HSL34) to every coefficient. Then the exact completed
+joint intertwiner is
+\begin{equation}\tag{HSL35}
+ \widehat\Phi^{\mathbb N}\widehat U_{(t,\lambda)}
+       =(T_t,\mathfrak B_\lambda)
+                         \widehat\Phi^{\mathbb N}.
+\end{equation}
+The amplitude equality is (HSL17). For the support equality,
+apply the arbitrary-join and finite-product preserving
+map $\iota^\#$ to (HSL21); its value is precisely the
+row action of the stated support matrix. This proves
+(HSL35) for every completed independent support sequence,
+not only for the actual theta vector.
+The theta calculation (HSL31)--(HSL32) descends to the
+original coefficient target $K_L$ because its relevant
+joins stabilize, as already proved there.
+Thus the general completion and the original-family
+map are connected by an explicit injective morphism,
+with exact convergence on both coordinates.

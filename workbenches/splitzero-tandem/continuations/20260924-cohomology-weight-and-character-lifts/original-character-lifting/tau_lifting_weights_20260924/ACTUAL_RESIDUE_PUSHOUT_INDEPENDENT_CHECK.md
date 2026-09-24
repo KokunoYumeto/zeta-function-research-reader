@@ -1,0 +1,92 @@
+# Independent check of the actual residue pushout and character lifting
+
+24 September 2026. RQC0–RQC4. The full proof [RPC0–RPC7](ACTUAL_RESIDUE_PUSHOUT_AND_CHARACTER_LIFTING.md) was read. This check uses the actual original spaces and maps, with the independently derived original extension and complete supported-cone maps in [ORE0–ORE10](ORIGINAL_RESTRICTION_EXTENSION_AND_DELIGNE_CROSS.md). It introduces no operation on primitive \(Z_1/\tau\).
+
+## RQC0. The quotient is the actual pushout
+
+In RPC's notation the original exact sequence is
+\[
+0\to Y\xrightarrow{i}E\xrightarrow{p}V\to0,\qquad
+Y=\chi_{\rm dil}Q',\quad E=\chi_{\rm dil}A',\quad
+V=\chi_{\rm dil}S'.
+\]
+The original residue injection is \(D:Q\to Y\), and the defined quotients are \(C=Y/DQ\) and \(E_{\rm res}=E/iDQ\). The induced map \(C\to E_{\rm res}\) is injective: if \(iy=iDx\), injectivity of \(i\) implies \(y=Dx\). The kernel of \(E_{\rm res}\to V\) consists of classes of elements in \(iY\). Surjectivity follows from that of \(p\). This verifies the exact quotient row.
+
+For maps \(f:E\to B\) and \(g:C\to B\) satisfying \(fi=gq_C\), one has \(f(iDx)=0\) for every \(x\in Q\). Thus \(f\) factors uniquely through \(E_{\rm res}\) and restricts to \(g\) on \(C\). Conversely any such factorization gives the compatible pair. This verifies the claimed universal property and quotient continuity. The equality \(iDQ=\operatorname{im}(\pi'D\pi)\) uses the original surjectivity of \(\pi:A\to Q\); consequently this is the actual cochain quotient already present in ASD14.
+
+## RQC1. Check the complete dual differential
+
+The original differential satisfies
+\[
+d'\ell=(\Sigma'\ell,0,0,-\Sigma'R'\ell,0,0,0_{\rm extra}).
+\]
+From \(R\Sigma=\Sigma\mathcal F\) one obtains \(\Sigma'R'=\mathcal F'\Sigma'\). Hence
+\[
+d'=\kappa p,\qquad
+\kappa u=(u,0,0,-\mathcal F'u,0,0,0_{\rm extra}).
+\]
+The first component proves \(\kappa\) injective. Therefore the induced differential on \(E_{\rm res}\) has kernel exactly \(C\). A lift of nonzero \(u\in V\) has differential \(\kappa u\ne0\); RPC correctly does not call it a cocycle. The separate graph restriction into \(\chi_{\rm dil}H'\) appends zeros to the single \(S'\) coordinate and is not this map into \(\chi_{\rm dil}P'\). The endpoints and extra closed terms are retained in these formulas.
+
+## RQC2. Check existence, uniqueness, coherence and group action
+
+For \(v\in V\) with \(q(G)v=0\), choose \(e\in E_{\rm res}\) above \(v\) and write uniquely \(q(G)e=\bar i c_e\). The proved polynomial inverse on the actual \(C\) gives
+\[
+s(v)=e-\bar i\bigl(q(G)|_C^{-1}c_e\bigr).
+\]
+It satisfies \(\bar p s(v)=v\) and \(q(G)s(v)=0\). Replacing \(e\) by \(e+\bar i c\) changes \(c_e\) by \(q(G)c\), so the output is unchanged. For two annihilating polynomials, their product kills the difference of the two outputs; that difference lies in \(\bar i C\), where the product is invertible. The outputs therefore agree.
+
+Taking a common product polynomial proves additivity and scalar linearity. It also proves compatibility on finite subspaces and their overlaps, giving the stated algebraic section on the locally finite union. On a fixed finite target space its image is finite-dimensional and its linear formula is continuous in the stated topological vector spaces. No global topology on the infinite union is inferred.
+
+For every \(a>0\), \(U_as(v)\) and \(s(U_av)\) have the same image and are killed by the same polynomial, because \(U_a\) commutes with \(G\). Their difference is a polynomial-annihilated element of \(C\), hence zero. This proves full real and prime equivariance directly, without inferring equality of group actions merely from equality of generators on a non-Hausdorff quotient.
+
+The decomposition of the complete preimage is now verified by the mutually inverse maps
+\[
+e\longmapsto
+\bigl(\bar i^{-1}(e-s(\bar pe)),\bar pe\bigr),
+\qquad
+(c,v)\longmapsto\bar ic+s(v).
+\]
+The locally finite part meets \(C\) trivially, because every nonzero polynomial is invertible there. This proves all RPC4–RPC5 assertions while retaining the nonzero full kernel.
+
+## RQC3. Check the extension class and its actual pushout
+
+The free resolution \(0\to\mathbb C[X]\xrightarrow q\mathbb C[X]\to\mathbb C[X]/(q)\to0\) computes
+\(\operatorname{Ext}^1(\mathbb C[X]/(q),Y)=Y/qY\).
+For the original lift \(\alpha\in E\) of \(v\), its class is
+\[
+\delta_q(v)=[i^{-1}q(G)\alpha].
+\]
+Replacing the lift by \(iy\) adds \(q(G)y\), proving independence and the sign. The actual pushout sends this class to
+\[
+[q_C(i^{-1}q(G)\alpha)]\in C/q(G)C=0.
+\]
+The final zero follows from the constructed polynomial inverse; it does not assume \(C=0\). The correction in RQC2 realizes this vanishing as an actual lift.
+
+The original class need not vanish. At an actual zero \(\rho\) of order \(m\), \(b=1-\rho\), \(q=(X-b)^r\), ORE5.7 identifies its value on the raw target derivative \(S_{r-1}\), through the residue map modulo \(q\), with
+\[
+\left[
+\frac{(-1)^{r-1}(r-1)!}{2}
+\pi^{b+t-1/2}
+\frac{\Gamma((1-b-t)/2)}{\Gamma((b+t)/2)}
+\right]_{\mathbb C[t]/(t^{\min(m,r)})}.
+\]
+Its constant term is nonzero. RPC's vanishing is therefore an actual quotient of a calculated class, not a claim that the unmodified class had already vanished.
+
+## RQC4. Retain the full supported comparison
+
+The entire supported-cone calculation ORE8 gives
+\[
+H^2\operatorname{RHom}(V_q,K_\zeta)
+=\ker(q:\chi_{\rm dil}H'\to\chi_{\rm dil}H'),
+\]
+\[
+H^2\operatorname{RHom}(V_q,\mathcal L_\zeta)
+=Y/qY\oplus\ker(q:\chi_{\rm dil}E'\to\chi_{\rm dil}E').
+\]
+Its exact map is
+\[
+(\eta,e)\longmapsto(-\delta_q(\eta)/2,e).
+\]
+The minus sign comes from subtracting the Hom boundary in degree1; the factor \(1/2\) comes from UOS's actual half-sum. The \(C/qC\) contribution vanishes, while the \(Y/qY\) contribution remains. RPC's pushout and this full supported map are therefore compatible, with distinct calculated targets.
+
+No mathematical defect was found in RPC0–RPC7. Its fixed-annihilator lifting, full group equivariance and locally finite splitting have the stated scope. They do not erase the other cohomological degrees or turn the quotient statement into a proof of Deligne purity or RH.

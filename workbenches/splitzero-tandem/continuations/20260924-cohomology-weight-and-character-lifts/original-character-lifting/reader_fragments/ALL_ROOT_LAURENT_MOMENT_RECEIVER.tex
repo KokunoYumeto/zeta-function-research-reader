@@ -1,0 +1,471 @@
+% Independent derivation. Prefix ALM. No numerical certificate is asserted here.
+\section{A finite rational Laurent witness for every off-real heat zero}
+\label{sec:all-root-laurent-moment-receiver}
+
+\paragraph{Provenance and scope.}
+The supplied \path{non_eulerian_modular_heat_attempt.md},
+Sections 3--5 and equations (7.1)--(7.3), supplies the particular
+full-root Laurent receiver, its original residue constants, and its
+heat production formula. Its accompanying \path{rational_witness.json}
+supplies a numerical candidate; none of its numerical sign claims is
+an input to the proof below. The supplied report has no verified human
+authorship attribution, and none is inferred. The analytic family and
+its coordinate convention are those of Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman
+constant is non-negative}}, equations defining $\Phi$, $H_t$, and
+$H_0=\xi/8$. The classical factorization theorem used below is
+Hadamard's theorem for entire functions of finite order. The
+calculation supplied here is the explicit finite interpolation and controlled
+infinite-tail construction (ALM12)--(ALM24), its rational coefficient
+version, and its exact passage through the full support lattice.
+It proves completeness of this particular receiver; it does not assert
+positivity of all its matrices at physical time zero.
+
+\subsection{The original heat family and its entire zero multiset}
+
+Retain the original real time $t$, coordinate $Z$, kernel, and mass:
+\begin{equation}\tag{ALM1}
+\begin{gathered}
+ H_t(Z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,\\
+ \Phi(u)=\sum_{n\ge1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+ M_j(t)=\int_0^\infty u^{2j}e^{tu^2}\Phi(u)\,du,
+ \qquad H_t(0)=M_0(t)>0.
+\end{gathered}
+\end{equation}
+Every summand of $\Phi$ is positive on $[0,\infty)$, since
+$2\pi n^2e^{4u}-3>0$. Moreover
+\begin{equation}\tag{ALM2}
+ 0<\Phi(u)\le C e^{9u-(\pi/2)e^{4u}},\qquad
+ C=2\pi^2\sum_{n\ge1}n^4e^{-(\pi/2)n^2}<\infty.
+\end{equation}
+Indeed, discard the negative summand and use
+$n^2e^{4u}\ge(n^2+e^{4u})/2$. This bound justifies all derivatives of
+(ALM1) locally uniformly in $(t,Z)\in\mathbb C^2$. The actual $H_t$
+is entire, even in $Z$, real on the real axis for real $t$, and obeys
+$\partial_t H_t=-\partial_Z^2H_t$.
+
+For completeness, its order is at most one. For fixed real $t$ there
+is a finite $C_t$ such that
+$|t|u^2+9u\le (\pi/8)e^{4u}+C_t$ for all $u\ge0$.
+Use $|\cos Zu|\le e^{|Z|u}$ and split the remaining exponential to get
+\[
+ |H_t(Z)|\le C e^{C_t}
+ \left(\int_0^\infty e^{-(\pi/4)e^{4u}}du\right)
+ \exp\!\left(\sup_{u\ge0}\{|Z|u-(\pi/8)e^{4u}\}\right).
+\]
+The supremum is bounded by $C'(1+|Z|\log(2+|Z|))$, by solving its
+one-variable derivative equation, or by taking its endpoint value if
+that critical point lies outside $[0,\infty)$. Thus
+$\log\max_{|Z|\le R}|H_t(Z)|=O_t(1+R\log(2+R))$.
+Jensen's formula on radius $2R$, with $H_t(0)>0$, gives the zero count
+$n_t(R)=O_t(R\log(2+R))$: each zero in the radius-$R$ disk contributes
+at least $\log2$ to the radius-$2R$ Jensen sum. Dyadic annuli then give
+\begin{equation}\tag{ALM3}
+ V_t:=\sum_{\zeta:H_t(\zeta)=0}\frac{m_\zeta}{|\zeta|^2}<\infty.
+\end{equation}
+The finitely many roots near zero cause no problem, because zero is
+not a root. All sums over $\zeta$ below run over distinct roots with
+their full multiplicities $m_\zeta$.
+
+Hadamard factorization at order at most one, with the factors paired
+under $\zeta\mapsto-\zeta$, now gives
+\begin{equation}\tag{ALM4}
+ H_t(Z)=H_t(0)\prod_{\{\zeta,-\zeta\}}
+                  (1-Z^2/\zeta^2)^{m_\zeta},\qquad
+ \frac{H_t'(Z)}{H_t(Z)}=-\sum_{n\ge1}S_n(t)Z^{2n-1},
+ \quad S_n(t)=\sum_\zeta\frac{m_\zeta}{\zeta^{2n}}.
+\end{equation}
+The product ranges over one representative of each sign pair and
+converges locally uniformly by (ALM3). In the Hadamard expression the
+remaining exponential has degree at most one. The evenness of $H_t$
+and of the paired product forces its linear coefficient to vanish:
+$e^{aZ}=e^{-aZ}$ for all $Z$ implies $a=0$ by differentiation at zero.
+Evaluation at zero fixes the remaining constant as $H_t(0)$.
+Logarithmic differentiation and expansion on a disk containing no
+root prove the second equality. In particular the $S_n$ include
+\emph{both} members of every sign pair.
+
+There are infinitely many distinct roots. Otherwise (ALM4) would be
+a polynomial. But its Taylor coefficient of $Z^{2j}$ is
+$(-1)^jM_j(t)/(2j)!$, which is nonzero for every $j$ by (ALM1).
+Also $H_t(iy)>0$ for every real $y$, since its integrand becomes the
+strictly positive function $e^{tu^2}\Phi(u)\cosh(yu)$. Thus the actual
+theta family has no imaginary-axis roots. We shall nevertheless give
+the negative-real reciprocal-node case explicitly, so that the
+detection argument does not hide that possibility in its algebra.
+
+\subsection{The full local algebras and the exact trace receiver}
+
+Let $\mathcal Z$ be any finite conjugation-stable set of roots. Retain
+\begin{equation}\tag{ALM5}
+ A_{t,\mathcal Z}=\bigoplus_{\zeta\in\mathcal Z}
+       \mathcal O_{\mathbb C,\zeta}/(H_t),\qquad
+ E_{d,t,\mathcal Z}(c)=
+ \left[Z^{-1}p_c(Z^{-2})\right]_{\mathcal Z},\qquad
+ p_c(X)=\sum_{i=0}^{d-1}c_iX^i.
+\end{equation}
+Every inverse power in this expression is the inverse of the
+holomorphic unit $Z$ at a nonzero root. No inverse of supported zero
+or of a root collision gap occurs. The local algebra retains its
+entire length $m_\zeta$. The compatible maps for finite $\mathcal Z$
+also define a map to the product of all these local algebras.
+The precise domain of the infinite pairing is the complex vector space
+\[
+ \mathscr R=\{Z^{-1}p(Z^{-2}):p\in\mathbb C[X]\},\qquad
+ \mathcal E_d:\mathbb C^d\longrightarrow\mathscr R,
+ \quad c\longmapsto Z^{-1}p_c(Z^{-2}).
+\]
+Let
+\[
+ j_t:\mathscr R\longrightarrow
+        \prod_{\zeta:H_t(\zeta)=0}\mathcal O_{\mathbb C,\zeta}/(H_t),
+ \qquad F\longmapsto([F]_\zeta)_\zeta,
+ \qquad E_{d,t}=j_t\mathcal E_d.
+\]
+The map $j_t$ is injective: a nonzero Laurent polynomial has only
+finitely many nonzero zeros, whereas $H_t$ has infinitely many
+distinct roots. Thus $j_t(\mathscr R)$ is a second exact realization
+of this test space. The pairing below has domain
+$\mathcal T_t:\mathscr R\times\mathscr R\to\mathbb C$, or equivalently
+$j_t(\mathscr R)\times j_t(\mathscr R)$ via this injection. It is not
+defined here on an unrestricted product of local algebras. In
+particular, the notation using $E_{d,t}$ below means this specified
+image and its transported pairing.
+
+The original $s$-coordinate and reflected involution are
+\begin{equation}\tag{ALM6}
+ \alpha(Z)=\tfrac12+\tfrac{iZ}{2},\quad
+ g_t(s)=16H_t(-2i(s-\tfrac12)),\quad
+ f^\dagger(s)=\overline{f(1-\bar s)}.
+\end{equation}
+Writing $F=\alpha^*f$, one has
+$\alpha^*(f^\dagger)(Z)=\overline{F(\bar Z)}=:F^\dagger(Z)$ because
+$\alpha(\bar Z)=1-\overline{\alpha(Z)}$. Direct substitution gives
+\begin{equation}\tag{ALM7}
+ \frac{ds}{g_t(s)}=\frac{i}{32}\frac{dZ}{H_t(Z)},\qquad
+ \alpha^*g_t'=-32iH_t',\qquad
+ (i/32)(-32i)=1.
+\end{equation}
+Consequently the complete Jacobian residue contraction is exactly
+\begin{equation}\tag{ALM8}
+ \mathcal T_t(F,G)=\sum_\zeta
+  \operatorname{Res}_{Z=\zeta}
+  F^\dagger(Z)G(Z)\frac{H_t'(Z)}{H_t(Z)}dZ
+ =\sum_\zeta m_\zeta\overline{F(\bar\zeta)}G(\zeta).
+\end{equation}
+Indeed, in a full local algebra write $H_t=u(Z)(Z-\zeta)^m$ with
+$u(\zeta)\ne0$. Then $H_t'/H_t=m/(Z-\zeta)+u'/u$; the second term
+has zero residue. The resulting contraction has a nilpotent radical,
+but neither the local algebra nor its evaluation map has been
+replaced by a reduced algebra. For the functions in (ALM5), the
+summands in (ALM8) are $O(m_\zeta/|\zeta|^2)$ at infinity. They are
+therefore absolutely summable by (ALM3).
+
+For $c,b\in\mathbb C^d$, direct multiplication gives
+\begin{equation}\tag{ALM9}
+ \mathcal T_t(E_{d,t}c,E_{d,t}b)=c^*K_d(t)b,\qquad
+ K_d(t)=(S_{i+j+1}(t))_{0\le i,j<d}.
+\end{equation}
+Conjugate roots have equal multiplicity, so every $S_n$ is real and
+$K_d$ is real symmetric. Notice that at a nonreal root the summand is
+$\overline{F(\bar\zeta)}F(\zeta)$, not $|F(\zeta)|^2$.
+
+\subsection{Aggregation without deleting either root of a sign pair}
+
+Fix $t$ for the following construction. Define the exact reciprocal
+nodes and their aggregated multiplicities by
+\begin{equation}\tag{ALM10}
+ \Lambda=\{\zeta^{-2}:H_t(\zeta)=0\},\qquad
+ M_\lambda=\sum_{\zeta^{-2}=\lambda}m_\zeta,\qquad
+ R=\max_{\lambda\in\Lambda}|\lambda|>0,\qquad
+ V=\sum_{\lambda\in\Lambda}M_\lambda|\lambda|=V_t.
+\end{equation}
+Each nonzero fiber consists of the two distinct roots $\zeta,-\zeta$;
+thus $M_\lambda=2m_\zeta$. This is an exact aggregation of the original
+sum, with no halving of multiplicity. The set $\Lambda$ has no
+accumulation except zero, and each subset bounded away from zero is
+finite. The maximum defining $R$ exists because the nonempty discrete
+root set has a positive minimum modulus. Conjugation preserves
+$\Lambda$ and $M_{\bar\lambda}=M_\lambda$.
+
+If $p$ has real coefficients, (ALM9) becomes
+\begin{equation}\tag{ALM11}
+ Q_t(p):=c^TK_d(t)c
+       =\sum_{\lambda\in\Lambda}M_\lambda\lambda p(\lambda)^2.
+\end{equation}
+This converges absolutely and is real. For a complex polynomial the
+correct expression is instead
+$\sum_\lambda M_\lambda\lambda\overline{p(\bar\lambda)}p(\lambda)$.
+The real polynomial subspace already detects every failure below.
+
+\subsection{Explicit finite witnesses and a bound for the entire omitted tail}
+
+Take a node $\lambda_0\in\Lambda$ which is not positive real. Choose
+any real $r$ with $0<r<|\lambda_0|$, and retain the complete finite set
+\begin{equation}\tag{ALM12}
+ S=\{\lambda\in\Lambda:|\lambda|\ge r\},\qquad
+ L_0(X)=\prod_{\mu\in S\setminus\{\lambda_0\}}
+                    \frac{X-\mu}{\lambda_0-\mu},\qquad
+ B=\prod_{\mu\in S\setminus\{\lambda_0\}}
+                    \frac{r+|\mu|}{|\lambda_0-\mu|}.
+\end{equation}
+All denominators are nonzero, $L_0(\lambda_0)=1$, and $L_0$ vanishes
+at the other nodes in $S$. On $|X|\le r$ one has $|L_0(X)|\le B$ by
+the triangle inequality applied factor by factor. Put $q=r/|\lambda_0|<1$.
+
+\paragraph{A negative real reciprocal node.}
+If $\lambda_0<0$, the finite set $S\setminus\{\lambda_0\}$ is
+conjugation-stable. Hence $L_0$ has real coefficients, as can also be
+seen by pairing its conjugate factors. For every integer $N\ge0$ set
+\begin{equation}\tag{ALM13}
+ p_N(X)=(X/\lambda_0)^N L_0(X),\qquad
+ d_N=N+|S|.
+\end{equation}
+Its degree is at most $d_N-1$, it is real, and its value at the target
+node is one. It vanishes at every other node of $S$. The omitted tail
+has the explicit bound
+\begin{equation}\tag{ALM14}
+ \left|Q_t(p_N)-M_{\lambda_0}\lambda_0\right|
+ \le B^2q^{2N}\sum_{\lambda\notin S}M_\lambda|\lambda|
+ \le B^2Vq^{2N}.
+\end{equation}
+Choose any $N$ with $B^2Vq^{2N}<M_{\lambda_0}|\lambda_0|/2$.
+Then the complete form, including every root, satisfies
+\begin{equation}\tag{ALM15}
+ Q_t(p_N)<-M_{\lambda_0}|\lambda_0|/2<0.
+\end{equation}
+This case corresponds exactly to the nonzero imaginary roots
+$\zeta^2=1/\lambda_0<0$. The positivity argument after (ALM4) already
+rules them out for the actual family, but the receiver detects them
+without using that argument.
+
+\paragraph{A nonreal reciprocal node.}
+If $\lambda_0\notin\mathbb R$, choose a unit complex number $a$ with
+\begin{equation}\tag{ALM16}
+ a^2=-\overline{\lambda_0}/|\lambda_0|.
+\end{equation}
+Either square root works. Define
+$L_{\bar0}(X)=\overline{L_0(\bar X)}$. It is precisely the Lagrange
+polynomial for the node $\bar\lambda_0$ on the same finite set $S$.
+The polynomial
+\begin{equation}\tag{ALM17}
+ p_N(X)=a(X/\lambda_0)^NL_0(X)
+       +\bar a(X/\bar\lambda_0)^NL_{\bar0}(X),\qquad
+ d_N=N+|S|
+\end{equation}
+has real coefficients, because its two summands are coefficientwise
+conjugates. Its values at the two target nodes are $a,\bar a$, and
+it vanishes on $S\setminus\{\lambda_0,\bar\lambda_0\}$.
+The two target contributions to (ALM11) add to
+\[
+ M_{\lambda_0}(\lambda_0a^2+
+                       \bar\lambda_0\bar a^2)
+                   =-2M_{\lambda_0}|\lambda_0|.
+\]
+For $|X|<r$ both Lagrange polynomials are bounded by $B$, so
+\begin{equation}\tag{ALM18}
+ \left|Q_t(p_N)+2M_{\lambda_0}|\lambda_0|\right|
+ \le 4B^2Vq^{2N}.
+\end{equation}
+Choose $N$ with $4B^2Vq^{2N}<M_{\lambda_0}|\lambda_0|$. Then
+\begin{equation}\tag{ALM19}
+ Q_t(p_N)<-M_{\lambda_0}|\lambda_0|<0.
+\end{equation}
+Such an integer is specified finitely, for example by
+\[
+ N=\max\left\{0,
+ 1+\left\lceil
+ \frac{\log(4B^2V/(M_{\lambda_0}|\lambda_0|))}
+      {2\log(|\lambda_0|/r)}\right\rceil\right\}.
+\]
+For the negative-real case use the same formula with $4B^2$ replaced
+by $2B^2$. The additional $1$ makes the required inequality strict
+even if the logarithmic ratio is an integer. These bounds involve
+the actual root multiset and its convergent total $V$; no finite
+root list has been declared complete without a tail estimate.
+
+An off-real root $\zeta$ always produces one of these two cases:
+$\zeta^{-2}$ can be positive real only when $\zeta$ itself is real.
+If its reciprocal square is negative real, $\zeta$ is imaginary;
+otherwise the reciprocal square is nonreal. This proves that the
+construction reaches every off-real root and every multiplicity.
+
+\subsection{Exact rational coefficients and the all-zero equivalence}
+
+The coefficients constructed above need not be rational. There is an
+explicit perturbation bound producing a rational witness of the same
+degree. For a real polynomial define
+\begin{equation}\tag{ALM20}
+ \|p\|_R=\sum_i|c_i|R^i.
+\end{equation}
+This is a coefficient bound, not a change to the original trace form.
+Since $|\lambda|\le R$, if $p,q$ are real polynomials and
+$\delta=\|p-q\|_R$, then (ALM11) gives
+\begin{equation}\tag{ALM21}
+ |Q_t(q)-Q_t(p)|
+ \le V\delta(2\|p\|_R+\delta).
+\end{equation}
+Indeed, $q^2-p^2=(q-p)(q+p)$ pointwise on the reciprocal nodes,
+$|p(\lambda)|\le\|p\|_R$, and
+$|q(\lambda)|\le\|p\|_R+\delta$.
+
+For either negative witness above take a positive proved bound
+$\eta$ with $Q_t(p)\le-\eta$ (the right sides of (ALM15) or (ALM19)
+supply one). Choose
+\begin{equation}\tag{ALM22}
+ 0<\delta_0\le\min\{1,\eta/[4V(2\|p\|_R+1)]\}.
+\end{equation}
+For $d=1+\deg p$, choose rational numbers $b_i$ satisfying
+$|b_i-c_i|<\delta_0/(dR^i)$, and put $q(X)=\sum_{i<d}b_iX^i$.
+The density of the rationals supplies every one of these finite
+choices; for example a sufficiently fine integer grid in each
+coefficient does so. Then $\|q-p\|_R<\delta_0$ and
+\begin{equation}\tag{ALM23}
+ b^TK_d(t)b=Q_t(q)<-3\eta/4<0,\qquad b\in\mathbb Q^d.
+\end{equation}
+Multiplying by a common positive denominator even gives an integer
+coefficient witness; its trace value is multiplied by the square of
+that denominator, so its sign is preserved exactly.
+
+We have therefore proved the complete equivalence for the actual
+family, at every fixed real time $t$:
+\begin{equation}\tag{ALM24}
+\begin{aligned}
+ &\text{every zero of }H_t\text{ is real}\\
+ &\quad\Longleftrightarrow K_d(t)\succeq0\text{ for every }d\ge1\\
+ &\quad\Longleftrightarrow K_d(t)\succ0\text{ for every }d\ge1\\
+ &\quad\Longleftrightarrow
+       b^TK_d(t)b\ge0\text{ for every }d\ge1,\ b\in\mathbb Q^d.
+\end{aligned}
+\end{equation}
+The forward implication follows directly from (ALM8): all summands
+then equal $m_\zeta|F(\zeta)|^2$. Strict positive definiteness holds
+because there are infinitely many distinct reciprocal nodes and a
+nonzero polynomial has only finitely many zeros. The reverse
+implication and the rational version are (ALM12)--(ALM23).
+Complex coefficient vectors add no new positivity condition because
+$K_d$ is real symmetric: for real $a,b$,
+$(a+ib)^*K_d(a+ib)=a^TK_da+b^TK_db$.
+At physical time zero the original coordinate
+$s=1/2+iZ/2$ converts (ALM24) to the assertion that the zeros of the
+original $\xi$ lie on its critical line. A single fixed size, such as
+$d=32$, does not establish the quantifier over every $d$ in (ALM24).
+
+\subsection{The actual coefficient and heat production maps}
+
+No root positions need be inserted into the finite matrices to
+calculate their entries. Let $a_j(t)=(-1)^jM_j(t)/(2j)!$, retaining
+$a_0=M_0=H_t(0)$. Multiplying (ALM4) by $H_t$ and taking the
+coefficient of $Z^{2n-1}$ gives
+\begin{equation}\tag{ALM25}
+ M_0S_n=-2n a_n-\sum_{j=1}^{n-1}a_jS_{n-j}\qquad(n\ge1).
+\end{equation}
+Only the nonzero original mass $M_0(t)$ is a denominator when this
+recurrence is solved. The entire function has not been divided by its
+mass or assigned a different value at zero. Since $M_0(t)>0$ for all
+real $t$, (ALM25) also proves that all $S_n(t)$ are real analytic in
+real time, including times at which other zeros collide.
+
+Put $P=H_t'/H_t$ in a neighborhood of $Z=0$. The actual heat equation
+gives $\partial_tP=-P''-2PP'$. Substituting
+$P=-\sum_{n\ge1}S_nZ^{2n-1}$ proves
+\begin{equation}\tag{ALM26}
+ S_n'=2n\left[\sum_{a=1}^{n}S_aS_{n+1-a}-(2n+1)S_{n+1}\right].
+\end{equation}
+To check the convolution factor, the coefficient of $Z^{2n-1}$ in
+$PP'$ is $\sum_{a+b=n+1}(2b-1)S_aS_b$; exchanging $a$ and $b$ shows
+this equals $n\sum_{a=1}^nS_aS_{n+1-a}$. The coefficient in $-P''$
+is $2n(2n+1)S_{n+1}$. Comparing with $-S_n'$ gives exactly (ALM26).
+Thus the supplied production formula is correct with its original
+time, signs, and factors. In particular, for a constant coefficient
+vector $c$ the exact production is
+\begin{equation}\tag{ALM27}
+ \frac{d}{dt}(c^*K_dc)=
+ \sum_{i,j<d}\bar c_i c_j\,2(i+j+1)
+ \left[\sum_{a=1}^{i+j+1}S_aS_{i+j+2-a}
+                  -(2i+2j+3)S_{i+j+2}\right].
+\end{equation}
+If $c=c(t)$ moves, the additional two terms are
+$c'^*K_dc+c^*K_dc'$; omitting them would change the problem.
+The first production value has the strictly positive exact expression
+\begin{equation}\tag{ALM28}
+ S_1'=\frac{M_2M_0-M_1^2}{M_0^2}>0.
+\end{equation}
+Here $M_0'=M_1$, $M_1'=M_2$, and the numerator is strictly positive
+by Cauchy--Schwarz on the original measure
+$e^{tu^2}\Phi(u)du$: the function $u^2$ is not constant on its support.
+This proves directly that the full-root trace evolves under physical
+heat; it is not an invariant obtained by dropping the production term.
+
+\subsection{Full arbitrary-lattice realization of every map}
+
+Let $L$ be the original arbitrary nontrivial bounded distributive
+lattice. For every complex vector space $V$ retain
+\begin{equation}\tag{ALM29}
+ G_L(V)=\{(0,\ell):\ell\in L\}\cup(V\times\{1_L\}),\quad
+ (v,\ell)+(w,k)=(v+w,\ell\vee k),\quad
+ (c,h)(v,\ell)=(cv,h\wedge\ell).
+\end{equation}
+The scalar semiring is $G_L(\mathbb C)$. The carrier is closed under
+these operations because a nonzero amplitude in a sum requires at
+least one top input label, and a nonzero product requires both labels
+to be top. The semimodule identities follow from the vector-space
+identities and distributivity of $\wedge$ over $\vee$.
+
+For a complex-linear map $A:V\to W$ define
+$A^\uparrow(v,\ell)=(Av,\ell)$. Addition, scalar multiplication, and
+every zero label are preserved by direct substitution. Apply this to
+coefficient inclusions, polynomial evaluation, the entire local-jet
+maps (ALM5), finite packet restriction, and each finite-packet linear
+residue trace. For the infinite pairing use exactly $\mathscr R$ or
+its injective image $j_t(\mathscr R)$ as specified after (ALM5).
+The quadratic trace value is the sesquilinear lift
+\begin{equation}\tag{ALM30}
+ \mathcal T_t^L((F,\ell),(G,k))
+            =(\mathcal T_t(F,G),\ell\wedge k).
+\end{equation}
+It is a well-defined element of $G_L(\mathbb C)$: a nonzero trace
+requires two nonzero amplitudes and hence two top labels. Additivity
+in either argument follows from the scalar trace and lattice
+distributivity; scalar conjugation is
+$(c,h)^*=(\bar c,h)$. Therefore
+\[
+ \mathcal T_t^L(E_{d,t}^\uparrow(c,\ell),
+                       E_{d,t}^\uparrow(b,k))
+                   =(c^*K_d(t)b,\ell\wedge k)
+\]
+is the full supported version of (ALM9), not an amplitude-only
+replacement for it.
+
+Retain the programme's idempotent semifield $K$, its Boolean base
+$\mathbb B$, and $K_L=K\otimes_{\mathbb B}L$. With
+$\iota_L(\ell)=1_K\otimes\ell$, the complete comparison is
+\begin{equation}\tag{ALM31}
+ \Phi_V(v,\ell)=(v,\iota_L(\ell))\in V\times K_L,\qquad
+ (A\times I)\Phi_V=\Phi_W A^\uparrow.
+\end{equation}
+For clarity, the label injection has a retraction. The map
+$\chi:K\to\mathbb B$, $\chi(0)=0$ and $\chi(x)=1$ for $x\ne0$,
+is a semiring homomorphism: idempotent addition cannot sum a nonzero
+element to zero, and the semifield has no zero divisors. Hence
+$\rho_L=\chi\otimes I_L$ satisfies
+$\rho_L\iota_L=I_L$. This proves that $\Phi_V$ is injective on the
+whole carrier and retains each original lattice label. Neither a
+Boolean-character replacement of $L$ nor a localization at $e$ occurs.
+
+The exact residue factors $i/32$ and $-32i$ in (ALM7) are nonzero
+scalar maps, so their lifts commute with (ALM31); their product has
+amplitude one and top label. The full trace pairing also commutes
+with this comparison, with its two input labels multiplied by meet.
+Every negative rational witness in (ALM23) therefore has exactly
+\begin{equation}\tag{ALM32}
+ (b^TK_d(t)b,1_L)\ \xmapsto{\Phi_{\mathbb R}}\
+       (b^TK_d(t)b,1_K\otimes1_L),\qquad b^TK_d(t)b<0.
+\end{equation}
+An amplitude-zero value at the same top support is
+$e=(0,1_L)$, whereas external absence is $\tau=(0,0_L)$; (ALM31)
+does not identify them. Thus (ALM24) is a complete detection result
+inside the full lattice receiver: every off-real root has a finite
+rational test with a negative retained amplitude, and that exact test
+survives the injective $\Phi$ comparison.

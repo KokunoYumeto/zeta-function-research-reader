@@ -1,0 +1,495 @@
+# Polynomial lifting through the actual residue-duality comparison
+
+24 September 2026. Independent derivation DPL0–DPL9.
+
+## DPL0. Actual source, prior results, and the receiving category
+
+This note uses the original quotient and the actual comparison cone constructed in [GZR](GLOBAL_ORIGINAL_ZETA_RESIDUE_DUALITY_INDEPENDENT.md) and [ASD14](ACTUAL_SUPPORTED_DUALITY_INDEPENDENT.md). It proves exact polynomial lifting and extension consequences for their entire dual cokernel. It does not assume that this cokernel is zero.
+
+The source notation remains \(Z_0,Z_1/\tau,Z_2\). The current operations and retractions in CORPUS_AND_OPERATION_RULES.md remain controlling. The complete global user arguments USR-9ad1c0a2d09dba92, USR-f55d16feb948d8c2, and USR-6152e3bc6302258c were read in the preceding GZR derivation and are not replaced by a new source definition here. Complex addition, polynomial operators, and exact sequences below belong to the already constructed receiving spaces. Primitive \(\tau\) is not an operand of any added operation.
+
+The exact prior inputs are [OMS1–OMS6](ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md), the original test-space and quotient identification; [RZ2–RZ8](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/gct-weight-control/proofs/ORIGINAL_ZETA_RESOLVENT_AND_PROJECTORS.md), the continuous resolvent and actual full-jet representatives; GZR3–GZR8, the original-zeta residue pairing; and ASD2, ASD4, and ASD14, the continuous-dual topology and the actual comparison cone. ASD14 was read completely for this calculation. The original analytic source remains Ralf Meyer, [arXiv:math/0412277v3](https://arxiv.org/abs/math/0412277v3), as entered with full original factors in OMS. The receiving coefficient complex is that of Alain Connes and Caterina Consani, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3), through the exact ASD source comparison. No new reading of these entire human papers is claimed here.
+
+Retain the entire-function Fréchet algebra
+\[
+\mathcal B=\{F\text{ entire}:\
+b_{A,N}(F)=\sup_{|\sigma|\le A,t\in\mathbb R}
+(1+|t|)^N|F(\sigma+it)|<\infty\text{ for all }A,N\},
+\]
+\[
+\mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0\
+(\rho\in\mathscr Z,\ 0\le j<m_\rho)\},\qquad Q=\mathcal B/\mathcal I.
+\tag{DPL0.1}
+\]
+Here \(\mathscr Z\) is the actual nontrivial zero set of the original \(\zeta\), with every actual multiplicity. OMS proves that this quotient is the original \(\mathcal A/\mathcal ES\), with its quotient topology. Write \(L[F]=[sF]\), \(T_a[F]=[a^sF]\) for \(a>0\), and \(Q'\) for the continuous complex-linear dual.
+
+The constructed pairing and its injective dual map are
+\[
+B_\zeta([F],[G])=
+\frac1{2\pi i}\left(\int_{2-i\infty}^{2+i\infty}
+-\int_{-1-i\infty}^{-1+i\infty}\right)
+\frac{F(s)G(1-s)}{\zeta(s)}\,ds,\qquad
+D x(y)=B_\zeta(x,y).
+\tag{DPL0.2}
+\]
+GZR proves both integrals converge absolutely, the form descends in both slots, every full primary residue is retained, and \(D:Q\to Q'_b\) is continuous and injective. Here \(Q'_b\) denotes the strong continuous dual. ASD also uses the weak-* dual \(Q'_\sigma\).
+
+Write
+\[
+A=L^t,\qquad (A\lambda)(x)=\lambda(Lx),\qquad
+C=Q'/DQ,\qquad \eta:Q'\to C.
+\tag{DPL0.3}
+\]
+The algebraic quotient is retained, whether or not its quotient topology is Hausdorff. We use either the specified weak-* quotient topology or, when explicitly named, the quotient of the strong dual. These topologies are not identified with each other.
+
+The exact real-action identity and its infinitesimal form are
+\[
+DT_a=aT_a^\vee D,\qquad
+DL=(1-A)D,\qquad
+(T_a^\vee\lambda)(x)=\lambda(T_{a^{-1}}x).
+\tag{DPL0.4}
+\]
+Thus the actual twisted target \(Y=\chi\otimes Q'\), \(\chi(a)=a\), has generator
+\[
+M=1-A,
+\tag{DPL0.5}
+\]
+and \(D:(Q,L)\to(Y,M)\) is an intertwiner. The twisted cokernel \(\widetilde C=\chi\otimes C\) has the same vectors as \(C\), with induced generator \(1-A\). This twist is kept throughout.
+
+For Hom and Ext statements the receiving module ring is \(R=\mathbb C[X]\), with \(X\) acting by the specified generator. Thus \(X\) acts by \(L\) on \(Q\) and by \(M\) on \(Y,\widetilde C\). These are the actual modules from (DPL0.1)–(DPL0.5), not newly postulated spectra. Algebraic \(\operatorname{Ext}^1_R\) means equivalence classes of exact module extensions. A continuous assertion is stated for strict exact rows of locally convex receiving modules: the injection has its subspace topology, and the surjection has its quotient topology. Non-Hausdorff quotients are not silently replaced by their Hausdorffizations.
+
+The phrase “receiving polynomial torsion” below means that each vector in this \(R\)-module is annihilated by some nonzero polynomial in its specified receiving generator. It does not mean the user's integer-amount datum, which the corpus sometimes also calls torsion. A single polynomial annihilating the entire module is a stronger, separately stated condition.
+
+## DPL1. Explicit continuous division on the original quotient
+
+Let \(a\in\mathbb C\), and write \(S_a=L-a\). If \(a\notin\mathscr Z\), the original RZ resolvent proves that \(S_a\) is a continuous automorphism of \(Q\). Its actual representative inverse is
+\[
+\mathscr V_aF(s)=
+\frac{F(s)-F_*(s)F(a)/F_*(a)}{s-a},
+\qquad
+F_*(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\tag{DPL1.1}
+\]
+All endpoint and trivial-zero values in RZ1 remain part of this formula. In particular \(F_*(0)=F_*(1)=1/8\); division at either endpoint is not division by a removed original zeta value.
+
+Now let \(a\in\mathscr Z\), \(m=m_a\). Let \(e_a=E_{a,0}\) be the actual RZ representative with Taylor jet one at \(a\) and zero to the full required order at every other actual zero. Set
+\[
+E_{a,j}(s)=e_a(s)(s-a)^j,\quad 0\le j<m,\qquad
+\ell_{a,j}([F])=F^{(j)}(a)/j!.
+\tag{DPL1.2}
+\]
+All \(\ell_{a,j}\) with \(j<m\) are well-defined and continuous on \(Q\). Define on the entire original test algebra
+\[
+\mathscr U_aF(s)=
+\frac{F(s)-F(a)e_a(s)}{s-a}
+-\left(\frac{F^{(m)}(a)}{m!}
+-F(a)\frac{e_a^{(m)}(a)}{m!}\right)E_{a,m-1}(s).
+\tag{DPL1.3}
+\]
+The first numerator vanishes at \(a\). Its entire division is continuous in \(\mathcal B\): outside a fixed disk around \(a\), divide by the bounded-away-from-zero linear factor; inside the disk use the derivative integral along the segment from \(a\), with Cauchy's estimate on a larger disk. This bounds each output strip seminorm by finitely many input strip seminorms. Every remaining operation in (DPL1.3) is a continuous finite-rank operation.
+
+If \(F\in\mathcal I\), then \(F(a)=0\), \(F^{(j)}(a)=0\) for \(j<m\), and the first quotient has exactly the possible last jet \(F^{(m)}(a)t^{m-1}/m!\). The explicit correction removes that last jet. At every other zero both terms retain its full vanishing order. Thus \(\mathscr U_a\mathcal I\subset\mathcal I\), and (DPL1.3) induces a continuous \(U_a:Q\to Q\).
+
+Its identities are
+\[
+S_aU_a=1-[E_{a,0}]\ell_{a,0},\qquad
+U_aS_a=1-[E_{a,m-1}]\ell_{a,m-1}.
+\tag{DPL1.4}
+\]
+For the first, multiplying (DPL1.3) by \(s-a\) leaves \(F-F(a)e_a\) modulo \(\mathcal I\), since \((s-a)E_{a,m-1}\in\mathcal I\). For the second, replace \(F\) in (DPL1.3) by \((s-a)F\): its value at \(a\) is zero and its coefficient of degree \(m\) is \(F^{(m-1)}(a)/(m-1)!\). This proves the second identity even at the representative level.
+
+Consequently
+\[
+\ker S_a=\mathbb C[E_{a,m-1}],\qquad
+\operatorname{im}S_a=\ker\ell_{a,0}.
+\tag{DPL1.5}
+\]
+The first identity follows by applying \(U_aS_a\) to a kernel vector and observing that \(S_a[E_{a,m-1}]=0\). For the second, evaluation at \(a\) kills the range, and \(S_aU_a\) is identity on \(\ker\ell_{a,0}\). The range is closed. The displayed continuous right inverse on the range and continuous projection away from the kernel give strict division on the actual quotient, with every multiplicity retained.
+
+Transposing (DPL1.4) gives
+\[
+(A-a)U_a^t
+=1-\ell_{a,m-1}\operatorname{ev}_{[E_{a,m-1}]},
+\]
+\[
+U_a^t(A-a)
+=1-\ell_{a,0}\operatorname{ev}_{[E_{a,0}]}.
+\tag{DPL1.6}
+\]
+Here \(\operatorname{ev}_v(\lambda)=\lambda(v)\). Therefore
+\[
+\ker(A-a)=\mathbb C\ell_{a,0},\qquad
+\operatorname{im}(A-a)=\{\lambda:\lambda([E_{a,m-1}])=0\}.
+\tag{DPL1.7}
+\]
+These identities follow directly from (DPL1.6); no extension of a discontinuous functional is involved. Each transpose is continuous for both dual topologies because continuous operators preserve bounded sets and weak-* evaluations.
+
+## DPL2. Every linear factor is invertible on the actual dual cokernel
+
+First \(DQ\) is \(A\)-stable by (DPL0.4), so \(A-a\) induces an operator on \(C\). For \(a\notin\mathscr Z\), also \(1-a\notin\mathscr Z\) by the original functional equation. Both source operators in
+\[
+(A-a)D=-D(L-(1-a))
+\tag{DPL2.1}
+\]
+are continuously invertible on the appropriate full spaces. The transpose inverse on \(Q'\) therefore induces an inverse on \(C\).
+
+For \(a\in\mathscr Z\), put \(b=1-a\), \(m=m_a=m_b\), and retain
+\[
+\zeta(b+t)=t^mu_b(t),\qquad
+c_{b,0}=u_b(0)^{-1}=\frac{m!}{\zeta^{(m)}(b)}.
+\tag{DPL2.2}
+\]
+The finite-residue theorem GZR5, on the original denominator, gives the two exact identities
+\[
+D[E_{b,m-1}]=c_{b,0}\ell_{a,0},
+\qquad
+D[E_{b,0}]([E_{a,m-1}])=(-1)^{m-1}c_{b,0}.
+\tag{DPL2.3}
+\]
+For the first identity evaluate on an arbitrary \(F\): only the residue at \(b\) remains, and its coefficient is \(c_{b,0}F(a)\). For the second, the reflected monomial contributes \((-1)^{m-1}\), with no other allowed residue term. These calculations retain the actual derivative \(\zeta^{(m)}(b)\).
+
+To prove surjectivity on \(C\), take any \(\lambda\in Q'\), and put
+\[
+h_\lambda=
+\frac{\lambda([E_{a,m-1}])}{(-1)^{m-1}c_{b,0}}[E_{b,0}],
+\qquad
+K_a\lambda=U_a^t(\lambda-Dh_\lambda).
+\tag{DPL2.4}
+\]
+The adjusted functional annihilates \([E_{a,m-1}]\). Equation (DPL1.6) therefore proves
+\[
+(A-a)K_a\lambda=\lambda-Dh_\lambda.
+\tag{DPL2.5}
+\]
+Taking classes gives every prescribed class as an image.
+
+To prove injectivity, suppose \((A-a)\lambda=Dh\). Evaluation on \([E_{a,m-1}]\) gives zero on the left. By the same full residue calculation, the right side is \((-1)^{m-1}c_{b,0}\ell_{b,0}(h)\). Thus \(\ell_{b,0}(h)=0\). Put \(k=-U_bh\); then \((L-b)k=-h\) by (DPL1.4). Equation (DPL2.1) gives
+\[
+(A-a)Dk=Dh=(A-a)\lambda.
+\]
+Hence \(\lambda-Dk\in\ker(A-a)=\mathbb C\ell_{a,0}\). This kernel lies in \(DQ\) by (DPL2.3), proving \(\lambda\in DQ\). The induced kernel on \(C\) is zero.
+
+Thus every \(A-a\) is bijective on \(C\). The explicit operator \(K_a\) is continuous on \(Q'\) for either topology: it is a transpose composed with identity minus a finite-rank evaluation map. Equation (DPL2.5) and injectivity on \(C\) imply \(K_a(DQ)\subset DQ\), so it induces the unique inverse on \(C\), continuously for each specified quotient topology. The case \(a\notin\mathscr Z\) uses the transpose of the continuous resolvent instead. Consequently every linear factor is a continuous automorphism of the actual algebraic cokernel with either of these quotient topologies.
+
+## DPL3. Every polynomial and the retained character twist
+
+A nonzero polynomial factors over \(\mathbb C\) as
+\[
+q(X)=c\prod_{j=1}^r(X-a_j),\qquad c\ne0,
+\tag{DPL3.1}
+\]
+with repetitions retained. The commuting operators \(A-a_j\) are all bijective on \(C\); their inverses commute because they invert commuting bijections. Thus
+\[
+q(A)^{-1}=c^{-1}\prod_{j=1}^r(A-a_j)^{-1}
+\tag{DPL3.2}
+\]
+is a continuous two-sided inverse. The empty product covers nonzero constants.
+
+On the actual twisted cokernel the generator is \(M=1-A\), so
+\[
+q(M)=q(1-A)
+\tag{DPL3.3}
+\]
+is also continuously invertible. There is a unique action of the rational-function field \(\mathbb C(X)\) on the actual cokernel given by
+\[
+\frac{p(X)}{q(X)}\cdot c=p(M)q(M)^{-1}c .
+\tag{DPL3.4}
+\]
+If \(p/q=p_1/q_1\), cross-multiplication and invertibility of \(q(M)q_1(M)\) prove the two actions agree. The same identities prove addition and multiplication of rational functions. This constructs an action on the existing quotient, without asserting its dimension over that field or that the quotient is nonzero.
+
+In particular
+\[
+\ker q(M)|_{\widetilde C}=0,\qquad
+q(M)\widetilde C=\widetilde C\qquad(q\ne0).
+\tag{DPL3.5}
+\]
+This excludes every nonzero polynomial-annihilated vector in the actual cokernel. It does not identify the entire cokernel with its Hausdorff quotient or assert surjectivity of \(D\).
+
+## DPL4. Both Hom vanishings and an explicit unique extension splitting
+
+Let \(V\) be an \(R\)-module with \(q(T_V)V=0\) for one specified nonzero polynomial \(q\). Its vector space may be infinite-dimensional; the hypothesis means this one polynomial annihilates the whole module.
+
+For an \(R\)-linear \(f:V\to\widetilde C\),
+\[
+q(M)f(v)=f(q(T_V)v)=0,
+\]
+so injectivity of \(q(M)\) gives \(f=0\). For an \(R\)-linear \(g:\widetilde C\to V\), every \(c\) has the form \(q(M)c_0\), giving \(g(c)=q(T_V)g(c_0)=0\). Therefore
+\[
+\boxed{\operatorname{Hom}_R(V,\widetilde C)=0
+=\operatorname{Hom}_R(\widetilde C,V).}
+\tag{DPL4.1}
+\]
+
+Consider any exact \(R\)-module extension
+\[
+0\longrightarrow\widetilde C\xrightarrow{i}E
+\xrightarrow{p}V\longrightarrow0.
+\tag{DPL4.2}
+\]
+Since \(p\,q(T_E)=q(T_V)p=0\), the operator \(q(T_E)\) has image in \(i\widetilde C\). Define
+\[
+r:E\to\widetilde C,\qquad
+r(e)=q(M)^{-1}\,i^{-1}\bigl(q(T_E)e\bigr).
+\tag{DPL4.3}
+\]
+The inverse \(i^{-1}\) is taken only on its actual image. This is an \(R\)-linear map: every operator in the formula commutes with the indicated generator. Since \(q(T_E)i=i\,q(M)\), it satisfies \(ri=1\).
+
+For \(v\in V\), choose any \(e\) with \(p(e)=v\), and set
+\[
+\boxed{\sigma(v)=e-i\,r(e).}
+\tag{DPL4.4}
+\]
+Replacing \(e\) by \(e+i(c)\) changes this expression by \(i(c)-ir i(c)=0\). Thus the formula is independent of the chosen lift. It is linear and \(R\)-linear because \(1-ir\) is, and \(p\sigma=1\). It is the unique \(R\)-linear splitting: the difference of two splittings factors through \(i\) as an \(R\)-linear map \(V\to\widetilde C\), which is zero by (DPL4.1). This proves
+\[
+\boxed{\operatorname{Ext}^1_R(V,\widetilde C)=0.}
+\tag{DPL4.5}
+\]
+
+For a strict exact row in the locally convex receiving category defined in DPL0, (DPL4.3) is continuous: \(i^{-1}\) is continuous on its subspace image, \(q(T_E)\) is continuous into that image, and DPL3 supplies the continuous inverse \(q(M)^{-1}\). Because \(p\) has its quotient topology and \(\sigma p=1-ir\) is continuous, \(\sigma\) is continuous as well. Thus the same explicit unique splitting proves the corresponding strict continuous extension statement.
+
+Any additional commuting receiving action is preserved by this splitting. In particular, the original positive-real actions and the source receiving ring actions commute with the generator; their operators commute with \(q(M)\) and its inverse, so (DPL4.3)–(DPL4.4) intertwine them. This is a full equivariance statement for extensions that already carry the actual compatible actions, not an inferred action on primitive \(\tau\).
+
+The words “one specified nonzero polynomial” matter for the reverse Hom statement. We have not replaced this condition by elementwise torsion with no common polynomial. Forward Hom into \(\widetilde C\) does vanish for elementwise torsion, because the same argument applies separately to each vector; this stronger observation is not used to enlarge the asserted reverse Hom theorem.
+
+### DPL4A. The algebraic splitting for all receiving polynomial-torsion modules
+
+There is a further exact algebraic extension result when the annihilating polynomial depends on the vector. Let \(V\) have receiving polynomial torsion in the sense just defined, and keep the algebraic extension (DPL4.2). For each \(e\in E\), choose a nonzero polynomial \(q\) annihilating \(p(e)\), and define
+\[
+r_q(e)=q(M)^{-1}i^{-1}(q(T_E)e).
+\tag{DPL4A.1}
+\]
+This expression is independent of \(q\). Indeed if \(r\) is another annihilating polynomial, multiplication of each proposed value by the bijection \(q(M)r(M)\) gives the same vector
+\[
+i^{-1}\bigl(q(T_E)r(T_E)e\bigr).
+\]
+The equality follows because the two polynomials commute with each other and with the injection. Injectivity of the product proves independence.
+
+For \(e_1,e_2\), the product of annihilating polynomials for their two images also annihilates their sum. Using this single product in (DPL4A.1) proves additivity of \(r\). The same polynomial handles scalar multiplication, and a polynomial annihilating \(p(e)\) also annihilates \(T_Vp(e)\); commutation proves \(r(T_Ee)=Mr(e)\). For \(e=i(c)\) one may choose \(q=1\), giving \(r(i(c))=c\). Thus the independent formula defines an \(R\)-linear retraction.
+
+Formula (DPL4.4) now again gives a splitting. It is unique because an \(R\)-linear map from receiving polynomial torsion into \(\widetilde C\) vanishes vector by vector by (DPL3.5). Therefore
+\[
+\operatorname{Hom}_R(V,\widetilde C)=0,\qquad
+\operatorname{Ext}^1_R(V,\widetilde C)=0
+\quad\text{for every receiving polynomial-torsion }V.
+\tag{DPL4A.2}
+\]
+This argument is algebraic. It does not supply a uniform continuity estimate when the annihilating polynomial varies with the vector. The continuous extension theorem in DPL4 retains its single global polynomial and strict-topology hypotheses. Nor does (DPL4A.2) assert the reverse Hom vanishing for arbitrary elementwise torsion.
+
+## DPL5. Every polynomial-annihilated dual vector lifts uniquely to the actual \(Q\)
+
+For the actual exact algebraic row
+\[
+0\longrightarrow Q\xrightarrow{D}Y=\chi\otimes Q'
+\xrightarrow{\eta}\widetilde C\longrightarrow0,
+\tag{DPL5.1}
+\]
+take \(y\in Y\) with \(q(M)y=0\). Its image in \(\widetilde C\) is killed by the same polynomial and hence is zero by DPL3. Thus \(y=Dx\) for a unique \(x\in Q\). Intertwining gives \(Dq(L)x=q(M)y=0\), and injectivity of \(D\) proves \(q(L)x=0\). Therefore
+\[
+\boxed{
+D:\ker q(L)|_Q\xrightarrow{\ \cong\ }\ker q(M)|_Y
+}
+\tag{DPL5.2}
+\]
+for every nonzero polynomial, including every \((X-\rho)^r\).
+
+Both spaces in (DPL5.2) are finite-dimensional with their actual inherited topologies. To verify this on the source, factor \(q\). At an actual zero \(\rho\), the polynomial germ has order \(r_\rho=\operatorname{ord}_\rho q\), where \(r_\rho=0\) if \(q(\rho)\ne0\). In the actual primary algebra \(\mathbb C[t]/(t^{m_\rho})\), the kernel is precisely
+\[
+t^{\max(m_\rho-r_\rho,0)}\mathbb C[t]/(t^{m_\rho}),
+\tag{DPL5.3}
+\]
+of dimension \(\min(m_\rho,r_\rho)\). Only finitely many zeros can occur among the finitely many roots of \(q\). Every other primary jet is zero. Summing the existing RZ primary sections reconstructs these finitely many possible jets, and synthesis makes the remaining class zero. Thus
+\[
+\dim\ker q(L)=
+\sum_{\rho:q(\rho)=0}\min(m_\rho,\operatorname{ord}_\rho q).
+\tag{DPL5.4}
+\]
+The same dimension holds on the target by (DPL5.2). These are subspaces of Hausdorff locally convex spaces, so their finite-dimensional topologies are the usual ones. The bijection in (DPL5.2) and its inverse are continuous.
+
+More generally, any \(R\)-linear map \(f:V\to Y\) from a module annihilated by \(q\) has \(\eta f=0\) by DPL4.1, hence has a unique \(R\)-linear lift \(\widetilde f:V\to Q\) satisfying \(D\widetilde f=f\). Its image lies in the finite-dimensional kernel (DPL5.3). If \(f\) is continuous, the finite-dimensional inverse just proved makes \(\widetilde f\) continuous. If \(f\) also intertwines any of the actual real or source-ring actions, so does its lift, by injectivity and the exact intertwining of \(D\). No continuous inverse of \(D\) on its entire image has been assumed.
+
+There is an exact local formula for this lift, retaining every original zeta derivative. Suppose \((A-a)^r\lambda=0\), let \(b=1-a\), and assume \(a\in\mathscr Z\) of multiplicity \(m\). For its unique preimage \(x\) under \(D\), the \(b\)-jet is
+\[
+j_bx(t)=
+\left[
+u_b(t)\sum_{j=0}^{m-1}(-1)^j
+\lambda([E_{a,j}])\,t^{m-1-j}
+\right]_{<m},
+\qquad
+u_b(t)=\sum_{k\ge0}\frac{\zeta^{(m+k)}(b)}{(m+k)!}t^k.
+\tag{DPL5.5}
+\]
+All other primary jets vanish. Indeed \(D\) identifies this dual generalized eigenspace with the source generalized eigenspace at \(b\), by (DPL0.4) and (DPL5.2). GZR4 gives
+\[
+\lambda([E_{a,j}])
+=(-1)^j[t^{m-1-j}]\bigl(j_bx(t)/u_b(t)\bigr).
+\]
+Solving these \(m\) coefficient equations proves (DPL5.5). Inserting this polynomial into the existing RZ section at \(b\) produces an actual element of \(Q\), with its original Mellin representative and all Gamma and endpoint factors from (DPL1.1), not merely a formal jet.
+
+For \(a\notin\mathscr Z\), the dual generalized eigenspace is zero by (DPL5.2) and the original resolvent. Repeated factors and all nilpotents are included in these statements.
+
+## DPL6. The exact map to the cokernel in the actual ASD14 cone
+
+Keep every degree and sign of ASD14:
+\[
+D_{\mathrm{full}}=[P\xrightarrow d A_{\mathrm{raw}}],
+\qquad
+T=\chi\otimes D_{\mathrm{full}}^\vee[-2],
+\]
+\[
+K_\zeta=
+\left[
+P\xrightarrow{-d}A_{\mathrm{raw}}
+\xrightarrow{\Psi_\zeta^1}\chi\otimes A_{\mathrm{raw}}'
+\xrightarrow{d'}\chi\otimes P'
+\right],
+\quad\deg=(-1,0,1,2),
+\]
+\[
+\Psi_\zeta^1=\pi'D\pi,\qquad
+H^1(T)=Y,\qquad H^1(K_\zeta)=\widetilde C.
+\tag{DPL6.1}
+\]
+The notation \(A_{\mathrm{raw}}\) here names ASD's original overlap test space; it is not the transpose operator \(A=L^t\) of DPL0.
+
+The relevant part of the actual comparison triangle's long exact sequence is
+\[
+0\longrightarrow Q\xrightarrow D Y
+\xrightarrow{\eta}\widetilde C
+\longrightarrow H^2(D_{\mathrm{full}})=0.
+\tag{DPL6.2}
+\]
+Thus the map from the dual cohomology to the cone cohomology is exactly the quotient map \(\eta\). The following arrow, the connecting map to \(H^2(D_{\mathrm{full}})\), is zero because its actual codomain is zero. We do not rename an unspecified arrow a connecting map.
+
+DPL5 proves that \(\eta\) vanishes on every generalized eigenspace of the full twisted generator \(M=1-L^t\), and more generally on every polynomial-annihilated submodule of \(Y\). Each such dual class lifts uniquely to a source cohomology class in \(Q\).
+
+At the actual cochain level, a degree-one cone cycle has the form \(\pi'\lambda\), because \(\ker d'=\pi'Q'\). If its dual cohomology class \(\lambda\) satisfies the polynomial condition, write uniquely \(\lambda=Dx\) by DPL5. Choose any \(b\in A_{\mathrm{raw}}\) with \(\pi b=x\). Then
+\[
+\pi'\lambda=\pi'D\pi b=\Psi_\zeta^1 b=d_{K_\zeta}^0 b.
+\tag{DPL6.3}
+\]
+This is the explicit null-boundary formula, with the positive middle-cone differential retained. The cohomology lift \(x\) is unique. The test-space representative \(b\) is determined modulo the actual summation image \(J=\ker\pi=d(P)\); no unique test-space section has been asserted.
+
+On \(H^1(K_\zeta)\) itself there are no nonzero generalized eigenvectors, by DPL3. This conclusion does not remove the retained groups
+\[
+H^{-1}(K_\zeta)=H,\qquad
+H^2(K_\zeta)=\chi\otimes H',
+\]
+or their full faithful extra closed copies, endpoint lines, and original actions. It does not prove that \(H^1(K_\zeta)=0\) as an algebraic vector space.
+
+## DPL7. The actual companion mirror and supported labels
+
+The mirror of ASD14 compares the original pairing with its companion denominator \(\zeta(1-s)\). It does not assume the original pairing is self-mirror. The exact identity is
+\[
+D^\zeta R=-R'D^{\zeta^\vee}.
+\tag{DPL7.1}
+\]
+On the degree-one terms in the comparison, the source mirror is \(-R\) and the target mirror in the actual cone map is \(+R'\). Therefore a companion lift \(D^{\zeta^\vee}x=\lambda\) transforms into
+\[
+D^\zeta(-Rx)=R'\lambda.
+\tag{DPL7.2}
+\]
+This is the correct signed lift on the original comparison. The mirror conjugates the generator to \(1\) minus the generator, as follows either by differentiating ASD14.13 or directly from \(RL=(1-L)R\). It consequently transports the polynomial \(q(X)\) to \(q(1-X)\). DPL3 applies to both, so polynomial lifting is preserved by this exact companion mirror, including its signs.
+
+For the existing lattice carrier
+\[
+G_{\mathcal L}(V)=
+\{(0,\lambda):\lambda\in\mathcal L\}
+\cup\{(v,1_{\mathcal L}):v\in V\},
+\]
+every receiving linear map above lifts by
+\[
+(v,\lambda)\longmapsto(f(v),\lambda).
+\tag{DPL7.3}
+\]
+This is well-defined because a nonzero input amplitude has top support, and a vanishing output retains its original label. Composition and identities are preserved by substitution. On each polynomial-kernel subspace the inverse in (DPL5.2) has the same lift, so the unique lift retains every support label, including supported zero labels. No ordinary tensor operation identifying different supported zero labels is substituted for this map.
+
+## DPL8. Exact consequence and limit of the calculation
+
+The actual algebraic dual cokernel has no nonzero polynomial-annihilated vector and no nonzero polynomial-annihilated quotient. The second statement follows from the reverse Hom vanishing in DPL4 for the quotient map. Its polynomial operators are continuously invertible in the stated quotient topologies. Every polynomial-annihilated module has the two Hom vanishings and the explicitly proved unique extension splitting in DPL4.
+
+The actual ASD14 map from dual cohomology to its cone cokernel vanishes on every generalized eigenspace, with a unique full-multiplicity source lift and the explicit cochain boundary (DPL6.3). This strengthens density of \(DQ\) to a polynomial lifting theorem. It does not replace the full dual by its algebraic generalized eigenspaces, assert convergence of an infinite primary expansion, or conclude that the entire cokernel vanishes. No Deligne purity bound or RH conclusion has been inferred from this lifting result.
+
+## DPL9. Direct cyclic derived-Hom calculation on every degree of the actual cone
+
+This final calculation is in the algebraic receiving \(R\)-module category. It does not assume an analytic derived category or a spectral sequence. Let \(V=R/(q)\), \(q\ne0\). Its explicit free resolution is
+\[
+P_V^{-1}=R\xrightarrow{\,q\,}P_V^0=R
+\longrightarrow V\longrightarrow0.
+\tag{DPL9.1}
+\]
+Multiplication by \(q\) is injective because \(R=\mathbb C[X]\) has no zero divisors, so this is an exact two-term projective resolution.
+
+On the actual cone (DPL6.1) retain the generator
+\[
+G_K^{-1}=L_P,\qquad G_K^0=L_{A_{\mathrm{raw}}},
+\qquad G_K^1=1-L_{A_{\mathrm{raw}}}^t,\qquad
+G_K^2=1-L_P^t.
+\tag{DPL9.2}
+\]
+Here \(L_P,L_{A_{\mathrm{raw}}}\) are the derivatives of the original real actions on those original spaces, as in ASD7 and ASD14. The identities \(dL_P=L_{A_{\mathrm{raw}}}d\), \(\Psi_\zeta^1L_{A_{\mathrm{raw}}}=(1-L_{A_{\mathrm{raw}}}^t)\Psi_\zeta^1\), and their transpose prove that \(G_K\) commutes with every differential, including the first minus sign. Thus \(q(G_K)\) is an actual cochain operator.
+
+The Hom complex of (DPL9.1) into \(K_\zeta\), which computes \(\operatorname{RHom}_R(V,K_\zeta)\), has terms and differential
+\[
+\mathscr H^n=K_\zeta^n\oplus K_\zeta^{n-1},\qquad
+\delta^n(u,v)=\bigl(d_Ku,\ d_Kv-(-1)^nq(G_K)u\bigr).
+\tag{DPL9.3}
+\]
+These are exactly the Hom differential \(d_Kf-(-1)^nf\,d_{P_V}\). Substitution verifies \(\delta^{n+1}\delta^n=0\): the two mixed polynomial terms have opposite signs.
+
+There is a direct exact cohomology sequence
+\[
+0\longrightarrow
+\frac{H^{n-1}(K_\zeta)}{q(G_K)H^{n-1}(K_\zeta)}
+\longrightarrow H^n(\mathscr H)
+\longrightarrow
+\ker\bigl(q(G_K):H^n(K_\zeta)\to H^n(K_\zeta)\bigr)
+\longrightarrow0.
+\tag{DPL9.4}
+\]
+Here is a proof with all maps. A cocycle \((u,v)\) obeys \(d_Ku=0\) and \(d_Kv=(-1)^nq(G_K)u\), so its image is the class \([u]\) in the displayed kernel. Every such class lifts: choose a cycle \(u\) representing it and \(v\) with the required differential. A class in the kernel of this map has \(u=d_Ka\). Subtracting the boundary
+\[
+\delta^{n-1}(a,0)=(d_Ka,(-1)^nq(G_K)a)
+\]
+leaves \((0,v-(-1)^nq(G_K)a)\), whose second component is a cycle. Two such second components differ by a boundary and a polynomial multiple of a cycle, exactly the left quotient in (DPL9.4). Its injection sends a cycle class \([v]\) to \([(0,v)]\). This proves all parts of (DPL9.4) directly.
+
+Use the actual ASD14 cohomology
+\[
+H^{-1}(K_\zeta)=H,\quad H^0(K_\zeta)=0,\quad
+H^1(K_\zeta)=\widetilde C,\quad H^2(K_\zeta)=\chi\otimes H',
+\]
+and DPL3's bijectivity of \(q(M)\) on \(\widetilde C\). Equation (DPL9.4) then yields every degree:
+\[
+\boxed{
+\begin{aligned}
+H^{-1}\operatorname{RHom}_R(V,K_\zeta)
+&=\ker(q(L_H):H\to H),\\
+H^{0}\operatorname{RHom}_R(V,K_\zeta)
+&=H/q(L_H)H,\\
+H^{1}\operatorname{RHom}_R(V,K_\zeta)
+&=0,\\
+H^{2}\operatorname{RHom}_R(V,K_\zeta)
+&=\ker(q(1-L_H^t):\chi\otimes H'\to\chi\otimes H'),\\
+H^{3}\operatorname{RHom}_R(V,K_\zeta)
+&=(\chi\otimes H')/q(1-L_H^t)(\chi\otimes H'),\\
+H^{n}\operatorname{RHom}_R(V,K_\zeta)&=0
+\quad(n\notin\{-1,0,1,2,3\}).
+\end{aligned}}
+\tag{DPL9.5}
+\]
+The induced \(L_H\) is the original action on \(H=\ker d\). In particular
+\[
+H^2\operatorname{RHom}_R(V,K_\zeta)
+=\operatorname{Hom}_R(V,\chi\otimes H').
+\tag{DPL9.6}
+\]
+The identity follows by evaluating an \(R\)-linear map on the class of \(1\) in \(R/(q)\). Likewise the degree-zero and degree-three quotients are the ordinary cyclic \(\operatorname{Ext}^1_R\) terms computed by (DPL9.1). No purity assertion is involved.
+
+The potentially surviving terms in (DPL9.5) retain \(H,H'\), their four original endpoint lines, and both faithful extra closed coefficient copies. The result proves the specified degree-one vanishing and calculates the exact other terms; it does not assert that the entire comparison is a quasi-isomorphism or that any of the retained terms obstructs the user's full source geometry.
+
+## Exact original character lifting and its full supported return
+
+MCL0–MCL11 now computes the original transpose A′→S′ on every actual zero and all its Mellin jets. A target jet of order j needs generalized-character length exactly m+j+1 at a zero of multiplicity m. The full Euler-distribution classification proves minimality against the whole original continuous dual; two actual primes remove the single-prime character aliases. Every prime logarithm and the full Gamma/Fourier return remain. This is an actual continuous lift, with a nonzero class only when its original annihilator must be preserved.
+
+RPC0–RPC8 constructs the original restriction's actual pushout by the residue image, proves its precise cochain location and a single coherent real/prime-equivariant section on all locally finite classes. ORE0–ORE10 calculates the unmodified connecting class, including its full Gamma germ and rank min(m,r), then proves its place in every degree of the full supported derived comparison. The degree-two map is (eta,e)↦(−delta_q(eta)/2,e). Thus its image in C_zeta/qC_zeta is zero, while the full supported map retains its Y/qY component. Both assertions follow from the constructed maps; no cone degree or extra coefficient is discarded.
+
+These results refine the meaning of the prior finite-lift statement without withdrawing its proved scope. Fixed-annihilator splitting is stronger than the surjectivity in Deligne's invariant-cycle theorem. The original longer-chain map is already surjective. The present numerical character truncation retains its same-character extension whenever it retains the target; it is not Deligne's independently proved geometric weight gap. Complete proofs, independent checks and inspected reproducible diagrams have been inserted into the cumulative TeX. The actual tau weight-separation goal remains active.

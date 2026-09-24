@@ -1,0 +1,708 @@
+% Independent mathematical derivation and root continuation, 2026-09-23.
+% CTO1--28, including 22a--22c; original source bytes retained privately.
+% Original test topology, additive factors and full support labels retained.
+\section{Global theta majorants and the quotient that retains both endpoints}
+\label{sec:cc-theta-order-cofinality}
+
+\paragraph{Original sources and scope of this derivation.}
+The source is Alain Connes, Caterina Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof and the
+geometry of the adeles class space}}, original author file
+\nolinkurl{Yuri70v2.tex}, canonical source
+\texttt{PUBUNIT-5DE2A2D44F8B1470AC701FDA}. Its SHA-256 is
+\par\noindent
+\nolinkurl{b1f694cb934dd4fef829287f1a55dd8de21c67a481e552453c2f7e8fe0ae6fb5}.
+\par
+For this calculation the original passages read were lines 494--589,
+623--640, 688--718, 1371--1462, 1631--1751, 2181--2284,
+and 2286--2435. The exact locators are \texttt{SCK},
+\texttt{rangecVdef}, \texttt{varthetaH1V}, \texttt{varthetafconvol},
+\texttt{rhoFourier}, \texttt{degcorrZf}, \texttt{codegcorrZf},\newline
+\texttt{PositSect}, \texttt{ZfbulletZf}, \texttt{fubini1}--\texttt{fubini4},
+\texttt{nothappen} and \texttt{degmodifyV}.
+The adelic measure conventions are also those of Alain Connes,
+\href{https://arxiv.org/abs/math/9811068v1}{\emph{Trace formula in
+noncommutative geometry and the zeros of the Riemann zeta function}},
+Section III, as retained in the accompanying ABR derivation.
+
+The original polynomial Gaussian comes from CCM's
+\texttt{degmodifyV}. The prior programme proof GTK1--9 in
+\nolinkurl{GLOBAL_THETA_WEIL_KERNEL.tex} already proves its theta image
+strictly positive, its strong decay, its full Mellin formula and its
+two endpoint values. Those facts are inputs, not new results here.
+The original test topology, convolution and involution proofs are SWQ1--15 in
+\nolinkurl{CC_SUPPORTED_WEIL_QUOTIENT.tex}. These precise source
+passages and programme statements were read for this derivation.
+The new construction proves cofinal domination for the entire original
+real test space, an actual adelic antecedent for each majorant, and the
+exact resulting ordered quotient with degree and codegree retained.
+The last section distinguishes this test-function order from the
+geometric effectivity used by Weil and discussed by CCM.
+
+\subsection{The original strong test space and the existing theta test}
+
+For the rational field retain the actual product and measures
+\begin{equation}\tag{CTO1}
+\begin{gathered}
+C_{\mathbb Q}=\mathbb R_{>0}\times K,\qquad
+K=\widehat{\mathbb Z}^{\times},\qquad d^\times c=dy/y\,du,
+\quad \int_Kdu=1,\\
+B={\bf S}(C_{\mathbb Q})
+ =\bigcap_{\beta\in\mathbb R}|\cdot|^\beta\mathcal S(C_{\mathbb Q}),
+\qquad B_{\mathbb R}=\{g\in B:g\text{ is real-valued}\},\\
+T=\mathcal S(\mathbb R)\otimes
+ \bigotimes_p'(\mathcal S(\mathbb Q_p),\mathbf1_{\mathbb Z_p}),\qquad
+T_0=\{\xi\in T:\xi(0)=0,\ \int_{\mathbb A}\xi=0\},\\
+E\xi(y,u)=\sum_{q\in\mathbb Q^\times}\xi(qy,qu),\qquad
+V=E(T_0),\quad V_{\mathbb R}=V\cap B_{\mathbb R}.
+\end{gathered}
+\end{equation}
+CCM's definition \texttt{SCK} uses the intersection of all real
+weights. The symbol $B$ here does not mean the larger space with
+only ordinary Schwartz decay in $\log y$.
+At a fixed compact open level in $K$ its original seminorms are
+\begin{equation}\tag{CTO2}
+p_{A,m,j}(g)=\sup_{t\in\mathbb R,\ u\in K}
+ e^{A|t|}(1+|t|)^m
+          |\partial_t^j g(e^t,u)|,
+\qquad A,m,j\in\mathbb Z_{\ge0}.
+\end{equation}
+The full Bruhat topology is the inductive limit over these finite
+compact-unit levels. Every test considered below remains at a
+specified finite level; the constructed majorants are at the trivial
+level. All additive integrals use Lebesgue measure at infinity and
+$\operatorname{vol}(\mathbb Z_p)=1$ at each finite place.
+
+Retain the original seed and all its factors:
+\begin{equation}\tag{CTO3}
+\begin{gathered}
+\eta(x)=\pi x^2(\pi x^2-\tfrac32)e^{-\pi x^2},\qquad
+\xi(x_\infty,x_f)=\eta(x_\infty)
+                       \prod_p\mathbf1_{\mathbb Z_p}(x_p),\\
+h(y)=E\xi(y,u)=2\sum_{n\ge1}\eta(ny),\qquad H(t)=h(e^t),\\
+\xi(0)=0,\quad \int_{\mathbb A}\xi=0,
+\quad h\in V_{\mathbb R},\quad h(y)>0,
+\quad h(y)=y^{-1}h(y^{-1}).
+\end{gathered}
+\end{equation}
+These are the proved GTK1--5 inputs. The additive zero integral is
+the exact cancellation $3/4-3/4$ of the quartic and quadratic
+Gaussian moments. The factor two in $E\xi$ retains both rational
+signs, and the finite factors permit exactly the nonzero integers.
+All derivatives of $H$ satisfy the strong seminorms CTO2.
+
+An explicit lower bound on the interval used below is
+\begin{equation}\tag{CTO4}
+H(t)\ge\kappa:=2\pi(\pi-\tfrac32)
+                  \exp\{-\pi e^{3/2}\}>0
+\qquad(|t|\le3/4).
+\end{equation}
+For $0\le t\le3/4$, retain the $n=1$ term in CTO3; all other
+terms are positive. In that term $e^{2t}\ge1$,
+$\pi e^{2t}-3/2\ge\pi-3/2$, and
+$e^{-\pi e^{2t}}\ge e^{-\pi e^{3/2}}$. Their product proves
+the bound. For negative $t$, CTO3 gives $H(t)=e^{-t}H(-t)$,
+and its extra positive factor is at least one.
+
+\subsection{A global majorant in the original image}
+
+Fix any $g\in B_{\mathbb R}$, including its full dependence on $K$.
+Define the single compact bump and its original integral by
+\begin{equation}\tag{CTO5}
+\begin{gathered}
+\psi(t)=
+\begin{cases}
+\exp\{-1/(1-16t^2)\},&|t|<1/4,\\
+0,&|t|\ge1/4,
+\end{cases}\qquad b_\psi=\int_{\mathbb R}\psi(t)\,dt>0,\\
+M_n=\sup_{u\in K,\ |t-n|\le1/2}|g(e^t,u)|,\qquad
+a_n=\frac{M_n+e^{-n^2}}{\kappa b_\psi}\quad(n\in\mathbb Z),\\
+W(t)=\sum_{n\in\mathbb Z}a_n\psi(t-n),\qquad
+w(y,u)=W(\log y).
+\end{gathered}
+\end{equation}
+The compact supremum exists and is finite: at the original finite
+unit level it is the maximum of finitely many continuous real
+functions on a compact interval. Each $a_n$ is strictly positive.
+For every $A\ge0$, CTO2 implies
+\[
+M_n\le p_{A,0,0}(g)
+      \exp\{-A\max(|n|-1/2,0)\}.
+\]
+It follows, using an arbitrarily larger exponential weight, that
+\begin{equation}\tag{CTO6}
+\sum_{n\in\mathbb Z}a_n e^{A|n|}(1+|n|)^m<\infty
+\quad\hbox{for every }A,m\ge0.
+\end{equation}
+For the added term $e^{-n^2}$ this follows directly from its
+quadratic exponent. For the $M_n$ term choose the estimate with
+weight $A+2$ and bound $(1+|n|)^m e^{-2|n|}$ by a summable
+sequence. Noninteger $A,m$ are covered by larger integer values.
+
+The bump sum is locally finite, and its supports are disjoint.
+For every seminorm in CTO2, each derivative of its tail is bounded by
+\begin{equation}\tag{CTO7}
+p_{A,m,j}\left(\sum_{|n|>N}a_n\psi(\log y-n)\right)
+\le\|\psi^{(j)}\|_\infty
+\sup_{|n|>N}a_n e^{A(|n|+1/4)}(1+|n|+1/4)^m
+\longrightarrow0.
+\end{equation}
+Thus $w\in B_{\mathbb R}$ and the displayed series converges in
+the original topology at the trivial compact-unit level, with every
+derivative. In particular all integrals
+$\int|W(t)|e^{A|t|}(1+|t|)^m\,dt$ are finite, by integrating
+the bumps and using CTO6. The coefficients do not need to dominate
+the derivatives of $g$; they construct $w$ and its derivatives
+from a fixed bump, while the weighted values of $g$ suffice for
+the domination asserted below.
+
+Use the original multiplicative convolution and keep its Haar factors:
+\begin{equation}\tag{CTO8}
+v(y,u)=(h*w)(y,u)
+ =\int_K\int_0^\infty h(y/a)w(a,k)\,\frac{da}{a}\,dk
+ =\int_{\mathbb R}H(\log y-t)W(t)\,dt.
+\end{equation}
+The compact integral has value factor one; both inputs are radial,
+so the resulting function is independent of $u$.
+Convolution remains in $B$ with its original seminorms. For
+completeness the inequality
+$|s|\le|t|+|s-t|$ and
+$1+|s|\le(1+|t|)(1+|s-t|)$ gives
+\[
+p_{A,m,j}(h*w)
+ \le2p_{A+1,m,0}(w)p_{A,m,j}(h),
+\]
+because $\int_{\mathbb R}e^{-|t|}dt=2$ and $\int_Kdk=1$.
+The same integrable majorant justifies every derivative and proves
+the strong convergence after replacing $W$ by its finite sums.
+
+Given a real $s$, choose an integer $n$ with $|s-n|\le1/2$.
+For every $t$ in the support of $\psi(t-n)$, one has
+$|s-t|\le3/4$. Since all terms in CTO8 are nonnegative,
+CTO4 gives the exact domination
+\begin{equation}\tag{CTO9}
+v(e^s,u)\ge\kappa a_n b_\psi
+ =M_n+e^{-n^2}>|g(e^s,u)|
+\qquad(s\in\mathbb R,\ u\in K).
+\end{equation}
+This is a global inequality on all of $C_{\mathbb Q}$, not a
+finite interval or a finite set of compact-unit characters.
+
+\subsection{The actual adelic antecedent and all convergence}
+
+Membership in the algebraic image $V$, rather than merely its closure,
+has an explicit original Schwartz antecedent:
+\begin{equation}\tag{CTO10}
+\eta_W(x)=\int_{\mathbb R}W(t)\eta(e^{-t}x)\,dt,
+\qquad
+\xi_W(x_\infty,x_f)=\eta_W(x_\infty)
+                          \prod_p\mathbf1_{\mathbb Z_p}(x_p).
+\end{equation}
+For $P_{M,j}(\eta)=\sup_x(1+|x|)^M|\eta^{(j)}(x)|$, a real
+dilation has the precise seminorm bound
+\begin{equation}\tag{CTO11}
+\begin{split}
+\sup_x(1+|x|)^M
+ \left|\frac{d^j}{dx^j}\eta(e^{-t}x)\right|
+&\le P_{M,j}(\eta)e^{M\max(t,0)-jt}\\
+&\le P_{M,j}(\eta)e^{(M+j)|t|}.
+\end{split}
+\end{equation}
+The first inequality uses the actual factor $e^{-jt}$ and
+$(1+e^t|z|)^M\le e^{M\max(t,0)}(1+|z|)^M$.
+CTO6--7 make the integral of this bound against $|W(t)|$ finite
+in every seminorm. Differentiating on compact $x$ intervals and
+then applying the same bound proves that CTO10 is Schwartz and
+that its integral converges in the Schwartz topology. One may
+equivalently first integrate each compact bump and then sum;
+the resulting series is absolutely convergent in each seminorm.
+This constructs one real Schwartz function and a single permissible
+adelic tensor with every finite reference factor retained. It
+does not introduce an infinite algebraic tensor expansion.
+
+Its two source endpoints vanish with absolute justifications:
+\begin{equation}\tag{CTO12}
+\begin{gathered}
+\xi_W(0)=\int W(t)\eta(0)\,dt=0,\\
+\int_{\mathbb A}\xi_W
+ =\left(\prod_p\operatorname{vol}(\mathbb Z_p)\right)
+    \int_{\mathbb R}W(t)e^t\,dt\int_{\mathbb R}\eta(x)\,dx
+ =1\cdot\int_{\mathbb R}W(t)e^t\,dt\cdot(3/4-3/4)=0.
+\end{gathered}
+\end{equation}
+For the second exchange the integral of the absolute values is
+$\int|W(t)|e^tdt\int|\eta(x)|dx<\infty$. Thus
+$\xi_W\in T_0$ in the original topology.
+
+To prove its exact theta image, put
+$P_2=\sup_x(1+|x|)^2|\eta(x)|$. For every $z>0$, monotone
+integral comparison gives
+\[
+\sum_{n\ge1}|\eta(nz)|
+ \le P_2\sum_{n\ge1}(1+nz)^{-2}
+ \le P_2\int_0^\infty(1+uz)^{-2}du=P_2/z.
+\]
+Consequently, at each $y>0$,
+\begin{equation}\tag{CTO13}
+\begin{gathered}
+\sum_{n\ne0}\int_{\mathbb R}
+ |W(t)\eta(ne^{-t}y)|\,dt
+ \le\frac{2P_2}{y}\int|W(t)|e^t\,dt<\infty,\\
+E\xi_W(y,u)
+ =\int_{\mathbb R}W(t)
+                  2\sum_{n\ge1}\eta(ne^{-t}y)\,dt
+ =v(y,u),\qquad v\in V_{\mathbb R}.
+\end{gathered}
+\end{equation}
+The finite argument is still $nu\in\widehat{\mathbb Z}$ precisely
+for integral $n$; unit coordinates and the two signs have not
+been dropped. CTO13 uses an absolutely convergent exchange for
+this fixed $y$ and $t$ integral. It does not interchange a
+multiplicative endpoint integral with the original integer sum,
+the invalid exchange in CCM's \texttt{nothappen}.
+
+\subsection{The original Mellin factors and the endpoint cost}
+
+Use CCM's Fourier convention without an inverse character:
+\begin{equation}\tag{CTO14}
+\widehat f(\chi,s)
+ =\int_K\int_0^\infty f(y,u)\chi(u)y^s\,\frac{dy}{y}\,du,
+\qquad M_f(s)=\widehat f(1,s).
+\end{equation}
+Every such transform is entire, with derivatives obtained by
+inserting $(\log y)^j$, by CTO2. Set
+\[
+B_\psi(s)=\int_{-1/4}^{1/4}\psi(t)e^{st}\,dt,
+\qquad
+M_w(s)=\int_{\mathbb R}W(t)e^{st}\,dt
+       =B_\psi(s)\sum_{n\in\mathbb Z}a_ne^{sn}.
+\]
+CTO6 proves local uniform convergence of this series and of all
+its derivatives. Absolute weighted Fubini in CTO8 gives the full
+original arithmetic formula
+\begin{equation}\tag{CTO15}
+\begin{split}
+M_v(s)&=M_h(s)M_w(s),\\
+M_h(s)&=2\zeta(s)\left\{
+ \frac{\pi^2\Gamma((s+4)/2)}{2\pi^{(s+4)/2}}
+ -\frac{3\pi\Gamma((s+2)/2)}{4\pi^{(s+2)/2}}
+ \right\}\qquad(\operatorname{Re}s>1).
+\end{split}
+\end{equation}
+The first identity holds for every complex $s$. The second is
+GTK7, obtained on its specified domain by integrating the two
+original Gaussian monomials separately. Its equality to the
+entire Mellin integral specifies continuation at each removable
+point of the product; no individual zero, pole, factor or summand
+is deleted. In particular the original zeta function has not been
+replaced by a completed one.
+
+The known original endpoint values are $M_h(0)=M_h(1)=1/4$
+(GTK9). Therefore the exact costs of the majorant are
+\begin{equation}\tag{CTO16}
+\begin{gathered}
+C_v:=M_v(0)=\tfrac14\int_{\mathbb R}W(t)\,dt
+          =\tfrac14 b_\psi\sum_na_n>0,\\
+D_v:=M_v(1)=\tfrac14\int_{\mathbb R}W(t)e^t\,dt
+          =\tfrac14 B_\psi(1)\sum_na_ne^n>0.
+\end{gathered}
+\end{equation}
+These are codegree and degree respectively in CCM's
+\texttt{codegcorrZf} and \texttt{degcorrZf}. They coexist with the
+two additive zeros CTO12 because their receiving integrals are
+different, and CTO13 does not perform the invalid endpoint Fubini
+exchange. Adding this particular $v$ changes both endpoint values
+by the displayed positive amounts.
+
+The construction retains the full spectral jets. For a nontrivial
+zero $\rho$ of the original $\zeta$ of multiplicity $m_\rho$, the
+Gamma expressions in CTO15 are holomorphic at $\rho$ and $M_w$
+is entire. Thus
+\begin{equation}\tag{CTO17}
+\begin{gathered}
+M_v^{(j)}(\rho)=0\quad(0\le j<m_\rho),\\
+\widehat v(\chi,s)=0\quad\text{for every nontrivial continuous
+ character }\chi\text{ of }K\text{ and every }s.
+\end{gathered}
+\end{equation}
+The first statement retains at least the full original multiplicity;
+additional zeros of $M_w$ may increase it. The second follows from
+radiality and Haar invariance: if $\chi(u_0)\ne1$, then
+$\int_K\chi(u)du=\chi(u_0)\int_K\chi(u)du$, forcing that integral
+to zero. All its $s$ derivatives are zero as well. Thus adding the
+constructed majorant leaves those values and jets unchanged.
+
+\subsection{The complete quotient-cone consequence and fixed endpoints}
+
+Let $B_{\mathbb R,+}$ be the cone of everywhere nonnegative
+real tests, and let $q:B_{\mathbb R}\to
+Q_{\mathbb R}:=B_{\mathbb R}/V_{\mathbb R}$ be the algebraic
+quotient. CTO9 and CTO13 prove, for every real $g$, the two
+representatives
+\begin{equation}\tag{CTO18}
+g+v>0,\qquad g-v<0,\qquad q(g+v)=q(g-v)=q(g).
+\end{equation}
+In particular
+\[
+q(B_{\mathbb R,+})=Q_{\mathbb R},\qquad
+q(\{f\in B_{\mathbb R}:f>0\})=Q_{\mathbb R}.
+\]
+This evaluates the entire image cone. Its associated preorder is
+the universal relation: every quotient class is greater than or
+equal to every other one. It does not separate any distinct
+quotient classes. The same conclusion holds after replacing
+$V$ by its closure, because the very same actual antecedents
+already lie in $V$; no new closed-image assertion is needed.
+
+Nonzero nonnegative tests have strictly positive values at both
+endpoints. Indeed continuity at a positive value gives an open
+set of positive Haar measure on which the function is positive;
+both $du\,dy/y$ and $y\,du\,dy/y$ assign positive measure there.
+Their integrals are finite by CTO2. Therefore, putting
+$B_{\mathbb R,00}=\ker(M_0,M_1)$, one has
+\begin{equation}\tag{CTO19}
+B_{\mathbb R,+}\cap\ker M_0
+=B_{\mathbb R,+}\cap\ker M_1
+=B_{\mathbb R,+}\cap B_{\mathbb R,00}=\{0\}.
+\end{equation}
+Consequently a nonzero nonnegative correction cannot preserve
+either zero endpoint change, and in particular cannot preserve
+both prescribed degree and codegree.
+
+There is a precise necessary bound for any nonnegative
+representative with fixed endpoints $C=M_f(0)$, $D=M_f(1)$.
+For every continuous character $\chi$ of $K$ and every
+$\rho=\sigma+i\gamma$ with $0<\sigma<1$, the original integral
+and H\"older's inequality give
+\begin{equation}\tag{CTO20}
+\begin{split}
+|\widehat f(\chi,\rho)|
+&\le\int_K\int_0^\infty f(y,u)y^\sigma\,\frac{dy}{y}\,du\\
+&=\int_K\int_0^\infty
+       f(y,u)^{1-\sigma}\{yf(y,u)\}^{\sigma}
+                                          \,\frac{dy}{y}\,du\\
+&\le C^{1-\sigma}D^\sigma.
+\end{split}
+\end{equation}
+Here $|\chi(u)|=|y^{i\gamma}|=1$, and the H\"older exponents
+are $1/(1-\sigma)$ and $1/\sigma$ on the original measure.
+For the zero test both sides are zero; otherwise CTO19 proves
+$C,D>0$. This is a receiving inequality with an endpoint budget.
+CTO9 by itself supplies no uniform values of that budget, while
+CTO16 gives its exact cost for each input and CTO17 retains
+the indicated spectral data.
+
+\subsection{An actual ordered extension retaining both endpoints}
+
+The failed quotient order defines a more informative exact receiver.
+Set
+\begin{equation}\tag{CTO21}
+N=V_{\mathbb R}\cap B_{\mathbb R,00},\qquad
+\mathcal E_{\rm ord}=B_{\mathbb R}/N,\qquad
+\mathcal E_{{\rm ord},+}=\pi_N(B_{\mathbb R,+}).
+\end{equation}
+These are algebraic quotients with the original topology available;
+no closedness claim about $N$ or the cone is made. The real linear
+endpoint map $\epsilon(f)=(M_f(0),M_f(1))$ descends to
+$\mathcal E_{\rm ord}$.
+For $b>0$ write $h_b(y)=h(y/b)$, with the exact source
+$\eta(x_\infty/b)\prod_p\mathbf1_{\mathbb Z_p}$.
+The source still has evaluation zero and additive integral
+$b(3/4-3/4)=0$, so $h_b\in V_{\mathbb R}$.
+The multiplicative substitutions give
+$\epsilon(h_b)=(1/4,b/4)$. In particular the explicit linear map
+\[
+j(C,D)=\bigl[4(2C-D)h+4(D-C)h_2\bigr]_N
+\]
+has endpoints $(C,D)$. A different representative in $V_{\mathbb R}$
+with the same endpoints differs by exactly an element of $N$,
+so this is the canonical identification of the kernel with its
+endpoint pair, independent of that selected formula. We obtain
+the exact sequence
+\begin{equation}\tag{CTO22}
+0\longrightarrow\mathbb R^2
+ \xrightarrow{\ j\ }\mathcal E_{\rm ord}
+ \xrightarrow{\ q_{\rm ord}\ }Q_{\mathbb R}
+ \longrightarrow0,
+\qquad \epsilon j=I_{\mathbb R^2}.
+\end{equation}
+Indeed the middle kernel is $V_{\mathbb R}/N$, whose endpoint
+map is injective by the definition of $N$ and onto by the
+displayed $h,h_2$ formula. Surjectivity of $q_{\rm ord}$ is
+the original quotient map. Every map in this sequence has
+therefore been specified on its original representatives.
+
+This linear extension splits canonically; its additional information
+is its positive cone, not an asserted non-split linear structure.
+The exact isomorphism and inverse are
+\begin{equation}\tag{CTO22a}
+\begin{gathered}
+\Upsilon:\mathcal E_{\rm ord}\xrightarrow{\ \cong\ }
+          Q_{\mathbb R}\oplus\mathbb R^2,\qquad
+\Upsilon([f]_N)=([f]_V,M_f(0),M_f(1)),\\
+\Upsilon^{-1}(q,C,D)
+=[g]_N+j(C-M_g(0),D-M_g(1)),\qquad [g]_V=q.
+\end{gathered}
+\end{equation}
+If $g$ is replaced by $g+v$ with $v\in V_{\mathbb R}$, then
+$[v]_N=j(M_v(0),M_v(1))$ by the exact kernel identification.
+The two added terms therefore cancel in the inverse formula.
+Thus the inverse is independent of the representative and is
+linear. Applying either composite proves the identity, so
+surjectivity and injectivity are both established. The real
+linear section of $q_{\rm ord}$ is $q\mapsto\Upsilon^{-1}(q,0,0)$.
+No degree or codegree contribution is omitted in this decomposition.
+
+The original convolution algebra structure is retained too. To recall
+its required source calculation, for $f\in B$ and $\xi\in T_0$ the
+actual section $C_{\mathbb Q}\to\mathbb A^\times$ of CTO1 gives
+\[
+\xi_f(x)=\int_C f(a)\xi(a^{-1}x)\,d^\times a,\qquad
+E\xi_f=f*E\xi.
+\]
+SWQ11--14 proves this directly. The compact unit orbit of a fixed
+finite Bruhat test spans a finite-dimensional space, and each real
+Schwartz seminorm is bounded by a constant times
+$\int_C|f(a)|\max(1,|a|)^M|a|^{-j}d^\times a<\infty$.
+Its endpoints are
+$\xi_f(0)=\xi(0)M_f(0)$ and
+$\int\xi_f=(\int\xi)M_f(1)$, both zero. For each fixed receiving
+idele the absolute rational sum has a majorant
+$C_\xi(1+|a|)$; integrating against $|f(a)|$ justifies the
+last displayed identity. These are the original source maps
+and factors, proving $V$ is a convolution ideal. On real tests,
+complex conjugation shows the same for $V_{\mathbb R}$.
+Absolute multiplicative Fubini gives
+$M_{f*g}(0)=M_f(0)M_g(0)$ and
+$M_{f*g}(1)=M_f(1)M_g(1)$, retaining $|ab|=|a||b|$ in the
+second identity. Thus $N$ is a convolution ideal and
+\begin{equation}\tag{CTO22b}
+\begin{gathered}
+\Upsilon([f*g]_N)
+ =([f]_V*[g]_V,M_f(0)M_g(0),M_f(1)M_g(1)),\\
+j(C,D)*[f]_N=j(CM_f(0),DM_f(1)).
+\end{gathered}
+\end{equation}
+This proves the direct-product algebra structure on the same
+canonical coordinates; it introduces no convolution identity
+among the original test functions.
+
+The original involution is
+$f^\sharp(c)=|c|^{-1}\overline{f(c^{-1})}$.
+With the self-dual additive Fourier transform retained by SWQ6--10,
+the full Poisson endpoint comparison is
+\begin{equation}\tag{CTO22c}
+\begin{gathered}
+(E\xi)^\sharp(c)
+ =E\widehat{\overline\xi}(c)
+     -|c|^{-1}\overline{\xi(0)}
+     +\overline{\int_{\mathbb A}\xi},\\
+M_{f^\sharp}(0)=\overline{M_f(1)},\qquad
+M_{f^\sharp}(1)=\overline{M_f(0)}.
+\end{gathered}
+\end{equation}
+The first equality retains the original real Fourier kernel
+$e^{-2\pi ixv}$, finite conductor $\mathbb Z_p$ and both
+source endpoints; SWQ7--10 proves it by Poisson summation.
+The Fourier antecedent has endpoints
+$\overline{\int\xi},\overline{\xi(0)}$, so $V^\sharp=V$.
+The last two equations follow by $c\mapsto c^{-1}$ in the
+original Haar integrals, including the factor $|c|^{-1}$.
+Thus sharp preserves $N$ and, on the real ordered extension,
+acts by the original quotient involution and interchange of
+the two real endpoints. It preserves its positive cone because
+the multiplying modulus is positive. No Hilbert-space positivity
+is inferred from this algebraic involution.
+
+The cone of CTO21 is pointed and generating. If $x$ and $-x$
+have nonnegative representatives $f$ and $g$, then $f+g\in N$,
+so $M_{f+g}(0)=0$. CTO19 implies $f+g=0$, hence $f=g=0$
+and $x=0$. Generating follows from CTO18:
+$[g]_N=[g+v]_N-[v]_N$, with both terms nonnegative.
+Its projection to $Q_{\mathbb R}$ is the entire quotient by
+CTO18. Its intersection with the exact kernel in CTO22 is
+completely determined:
+\begin{equation}\tag{CTO23}
+j^{-1}\bigl(\mathcal E_{{\rm ord},+}\cap\ker q_{\rm ord}\bigr)
+=\{(C,D):C>0,\ D>0\}\cup\{(0,0)\}.
+\end{equation}
+For necessity a representative of a kernel class belongs to
+$V_{\mathbb R}$, and CTO19 gives both strict inequalities unless
+it is zero. For sufficiency, if $C,D>0$, the actual function
+$4C h_{D/C}>0$ belongs to $V_{\mathbb R}$ and has endpoints
+$4C(1/4,(D/C)/4)=(C,D)$. This gives its exact representative
+in the image of $j$. The origin is represented by zero.
+Thus the two coordinate axes, apart from their origin, are not
+silently included in this cone.
+Under CTO22a this cone is therefore not the naive product
+$Q_{\mathbb R}\times\mathbb R_{\ge0}^2$: for example its
+kernel coordinate $(0,1,0)$ has no nonnegative representative,
+by CTO19 and CTO23. The calculation of the kernel cone does
+not assert that the complete positive cone at each prescribed
+nonzero spectral class and each prescribed endpoint pair has
+been evaluated; CTO20 supplies an exact constraint there.
+
+For an idele class $a$, the original translation
+$U_af(c)=f(a^{-1}c)$ preserves pointwise nonnegativity, $V$,
+and $N$. Invariance of $V$ follows already at the source by
+$EU_a=U_aE$, and the additive source integral is multiplied
+by $|a|$ while its zero remains zero. The original multiplicative
+change of variable gives
+$\epsilon(U_af)=(M_f(0),|a|M_f(1))$.
+Consequently CTO22 is equivariant with kernel action
+$(C,D)\mapsto(C,|a|D)$, and the cone CTO23 is invariant.
+The real linear maps in the sequence, rather than a selected
+nonlinear majorant, carry this equivariance.
+
+\subsection{The closed arithmetic quotient and the exact topology of the cone}
+
+The algebraic calculation has an exact map to CCM's quotient by the
+closed theta image. Keep the original topology CTO2 and define
+\begin{equation}\tag{CTO25}
+\begin{gathered}
+s(C,D)=4(2C-D)h+4(D-C)h_2,\qquad P=I-s\epsilon,\\
+\overline Q_{\mathbb R}=B_{\mathbb R}/\overline{V_{\mathbb R}},\qquad
+\overline{\mathcal E}_{\rm ord}=B_{\mathbb R}/\overline N.
+\end{gathered}
+\end{equation}
+The bar on $\overline{\mathcal E}_{\rm ord}$ here denotes this
+specified quotient, not an unproved completion of an ordered space.
+The endpoint integrals are continuous: each is bounded by a constant
+times $p_{2,0,0}$ on each compact-unit level. The fixed two-function
+map $s$ is continuous, has image in $V_{\mathbb R}$, and satisfies
+$\epsilon s=I$. Hence $P$ is a continuous projection onto
+$\ker\epsilon$, with $P(V_{\mathbb R})=N$.
+Continuity of $\epsilon$ first gives
+$\overline N\subseteq\overline{V_{\mathbb R}}\cap\ker\epsilon$.
+Conversely, if $z$ is in the latter intersection, a net $v_i\in
+V_{\mathbb R}$ tends to $z$ and $Pv_i\in N$ tends to $Pz=z$.
+Therefore
+\begin{equation}\tag{CTO26}
+\overline N=\overline{V_{\mathbb R}}\cap\ker\epsilon,\qquad
+\overline\Upsilon:\overline{\mathcal E}_{\rm ord}
+\xrightarrow{\ \cong\ }
+\overline Q_{\mathbb R}\oplus\mathbb R^2,\qquad
+[f]_{\overline N}\longmapsto
+([f]_{\overline{V_{\mathbb R}}},M_f(0),M_f(1)).
+\end{equation}
+This is a topological real vector-space isomorphism, not only an
+algebraic bijection. Indeed $f\mapsto(Pf,\epsilon f)$ is a
+continuous isomorphism from $B_{\mathbb R}$ to
+$\ker\epsilon\oplus\mathbb R^2$, with continuous inverse
+$(z,C,D)\mapsto z+s(C,D)$. It takes $V_{\mathbb R}$ to
+$N\oplus\mathbb R^2$ and its closure to
+$\overline N\oplus\mathbb R^2$. Passing to these quotient
+topologies proves (CTO26) and its inverse. The same argument
+without bars also makes CTO22a a topological isomorphism in the
+possibly non-Hausdorff quotient topologies.
+
+Complex conjugation preserves $V$, since it commutes with $E$.
+Taking real parts of a convergent net proves
+$\overline{V_{\mathbb R}}=\overline V\cap B_{\mathbb R}$.
+Thus (CTO26) uses the actual real part of the closed-image quotient.
+Multiplication by a fixed original test is continuous, by the
+weighted convolution estimate following CTO8. Consequently the
+closures of the ideals $V_{\mathbb R}$ and $N$ remain ideals.
+The endpoint characters give exactly the product law CTO22b on
+(CTO26); it is an isomorphism of the original convolution algebras.
+Sharp and every fixed idele translation are continuous by their
+explicit formulas, so CTO22c and its original actions also descend.
+No closedness assumption on $V$ or $N$ has been inserted.
+
+Give $\overline{\mathcal E}_{\rm ord}$ the image of
+$B_{\mathbb R,+}$, without closing that cone. Its cone is pointed
+by the identical CTO19 argument, since every element of
+$\overline N$ has both endpoints zero. It is generating, its
+projection to $\overline Q_{\mathbb R}$ is onto, and its exact
+kernel cone is still CTO23: necessity uses the positive endpoint
+integrals and sufficiency uses the same function $4Ch_{D/C}$.
+
+Both the algebraic and the closed-image versions have a positive
+cone which is \emph{not closed} in their stated quotient topology.
+For the first, and identically for the second, continuity of $j$ gives
+\begin{equation}\tag{CTO27}
+j(1,1/n)=[4h_{1/n}]_N\in\mathcal E_{{\rm ord},+},\qquad
+j(1,1/n)\longrightarrow j(1,0)
+\notin\mathcal E_{{\rm ord},+}.
+\end{equation}
+The convergence is of quotient classes through the fixed continuous
+map $s$; convergence of $4h_{1/n}$ in the original test space is
+not asserted. The excluded limit follows from CTO23. Similarly
+$j(0,1)\not\ge0$, whereas
+$j(0,1)+\varepsilon j(1,1)=j(\varepsilon,1+\varepsilon)>0$ for
+every $\varepsilon>0$. Thus this order is not Archimedean: positive
+perturbations by arbitrarily small multiples of this order unit do
+not force positivity at their limit.
+
+There is nevertheless an actual order unit $u_{\rm ord}=j(1,1)$
+for the entire extension. For $x=[g]_N$, the constructed $v>|g|$
+has endpoints $C_v,D_v>0$ and $[v]_N=j(C_v,D_v)$. For every
+real $R>\max(C_v,D_v)$,
+\begin{equation}\tag{CTO28}
+Ru_{\rm ord}\pm x
+=[v\pm g]_N+j(R-C_v,R-D_v)
+\in\mathcal E_{{\rm ord},+}.
+\end{equation}
+Both summands have actual positive representatives, by CTO9 and
+CTO23. This proves the order-unit assertion on every class and
+also on (CTO26), keeping its full individual cost. It does not
+justify replacing this cone by its closure, passing a positive
+limit back into it, or declaring the original arithmetic trace
+positive on it. Those inferences would contradict or exceed the
+computed cone properties.
+
+\subsection{Geometric scope and every original support label}
+
+CCM's source discussion \texttt{PositSect} uses Riemann--Roch
+on a curve: after adjusting a correspondence's degree, a principal
+correspondence produces geometric effectivity in its linear
+equivalence class. The preceding definition of effective
+correspondence is a sum of curves with nonnegative integer
+multiplicities, with intersection products and Frobenius action.
+The later \texttt{degmodifyV} gives freedom to adjust degree by
+an actual trivial theta correspondence. The calculation above
+retains and strengthens the test-function part of that comparison:
+it gives a positive representative in every real test quotient
+class, computes its endpoint costs, and constructs the exact
+ordered extension retaining them. It does not identify a
+pointwise-nonnegative test function with an effective divisor,
+construct the missing principal-divisor relation, or establish
+the intersection inequality \texttt{ZfbulletZf}. The universal
+cone in CTO18 is consequently an evaluated defect of this
+particular proposed order, not a no-go statement about all
+geometric notions of effectivity.
+
+For an arbitrary bounded distributive lattice $L$ retain
+\begin{equation}\tag{CTO24}
+G_L(M)=\{(0,\lambda):\lambda\in L\}\cup(M\times\{1_L\}),
+\qquad e=(0,1_L),\quad\tau=(0,0_L),\qquad
+A^\uparrow(z,\lambda)=(Az,\lambda)
+\end{equation}
+for every displayed linear map $A$ on its specified amplitude
+spaces. The originating support source, by The Clankers, is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split Support Geometry}, v11,
+Definition \texttt{def:lattice-split}}.
+Addition retains join and scalar multiplication retains meet.
+All quotients above use the same-label amplitude congruence;
+CTO22 lifts as the corresponding exact amplitude description
+under those congruences. Every zero amplitude retains its
+assigned label, so the positive theta majorant at top support
+maps to $e$ in $G_L(Q_{\mathbb R})$, not to $\tau$.
+
+The cofinal choice $g\mapsto v$ is nonlinear and is asserted
+as a strict majorant construction for top-supported inputs.
+A lower-supported zero $(0,\lambda)$ has no admissible nonzero
+amplitude at that label. For it choose $(0,\lambda)$ itself as
+a non-strict majorant. Thus no strict positive amplitude is
+inserted into a forbidden lower support stratum. The convergent
+series and integrals CTO5--13 are operations on amplitude
+functions with one admissible unchanged label; no infinite
+join or integration on an arbitrary lattice is postulated.
+The endpoint pair in CTO22 likewise has one common label,
+not independently assigned labels on its two coordinates.
+
+This constructs a pointed ordered extension with exact degree
+and codegree, while evaluating why the pointwise cone on the
+unextended spectral quotient fails to separate its classes.
+It supplies neither an assumed positivity theorem for the
+original Weil form nor an RH conclusion.

@@ -1,0 +1,461 @@
+# The adjoint-defect cone: continuous duality and the full original-source comparison
+
+Complete derivation, with proof locators **ACD0–ACD8**. The objects and all maps below use the already reconstructed original arithmetic. The calculation constructs the duality comparison, then follows the same boundary through both poles and the genuine geometric covers.
+
+## ACD0. Input stage and conventions
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). No addition, numerical origin, metric, midpoint, or vector coordinate is assigned to it. Complete-history reconstruction precedes the coefficient spaces below. Winding information and the carried grading remain in the original source; the two branches retain their own recovered counters. The coordinate of a pole disk is a coordinate in the receiving sphere of CSP, whose punctured part lies over the generic point, not a coordinate on this supporting datum.
+
+We use the source and quotient from ADC1 and CSD1, with their proved topologies:
+\[
+S=\{f\in\mathcal S(\mathbb R):f(-v)=f(v),\ f(0)=0,\ \int f=0\},
+\quad \Sigma f(u)=2\sum_{k\geq1}f(ku),
+\]
+\[
+A=\{a\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^ja(u)|<\infty
+\text{ for all }N,j\},\quad J=\Sigma S,\quad Q=A/J.
+\tag{ACD0.1}
+\]
+The quotient map is \(q\). The subspace \(J\) is closed; the inverse of \(\Sigma:S\to J\) is continuous. The original transform and its full source divisor are
+\[
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u},\quad
+F_0(s)=\Theta\Sigma f_0(s)
+=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\]
+\[
+f_0(v)=\frac\pi2 v^2(2\pi v^2-3)e^{-\pi v^2}.
+\tag{ACD0.2}
+\]
+These factors are not replaced by \(\zeta\) or by a different completed function. At the exceptional arguments,
+\[
+F_0(0)=F_0(1)=\frac18,\quad F_0(-1)=F_0(2)=\frac\pi{24},\quad
+F_0(-2k)=\frac{k(2k+1)(-1)^k\pi^k}{2\,k!}\zeta'(-2k).
+\tag{ACD0.3}
+\]
+The full jets at an actual nontrivial zero \(\rho\) are those of
+\[
+F_0(\rho+t)=t^{m_\rho}
+\frac{(\rho+t)(\rho+t-1)}8\pi^{-(\rho+t)/2}
+\Gamma((\rho+t)/2)\frac{\zeta(\rho+t)}{t^{m_\rho}}.
+\tag{ACD0.4}
+\]
+In particular the quotient \(Q\) retains all multiplicities and higher jets. The unit and prime-power repetitions remain in the original source identities
+\[
+\zeta(s)=1+\sum_{n\geq2}n^{-s}=\prod_p(1-p^{-s})^{-1},\qquad
+-\frac{\zeta'(s)}{\zeta(s)}=\sum_p\sum_{k\geq1}(\log p)p^{-ks}
+\quad(\Re s>1).
+\tag{ACD0.5}
+\]
+Here these are properties of the already recovered arithmetic, not initial labels supplied before its reconstruction.
+
+Let \(H=\ell^2(\mathscr Z,m)\) for the actual nontrivial zeros, with inner product \(\langle x,y\rangle_+=\sum_\rho m_\rho x_\rho\overline{y_\rho}\), linear in its first variable, and put
+\[
+\rho^\#=1-\overline\rho,\quad (\mathsf Jy)_\rho=y_{\rho^\#},\quad
+E:Q\to H,\quad (EF)_\rho=(\Theta_QF)(\rho).
+\tag{ACD0.6}
+\]
+The map \(E\) is continuous, has dense image containing all finite value vectors, and retains its higher-jet kernel. These are the actual source results RTT/GTAH/ADC1. Fix a recovered coefficient parameter \(r>1\). Define the bounded operators
+\[
+(T_ry)_\rho=r^\rho y_\rho,\quad U_r=rT_{1/r},\quad
+D_r=T_r^*-U_r,\quad
+d_r(\rho)=e^{-i\Im\rho\log r}(r^{\Re\rho}-r^{1-\Re\rho}).
+\tag{ACD0.7}
+\]
+We write \(B=A'_\beta\), \(C=\overline H\), with the strong continuous dual on \(B\). RGR11's actual map is
+\[
+\sigma_r(\overline y)(F)=\langle EF,\mathsf JD_ry\rangle_+,
+\qquad a_r=q'\sigma_r:C\to B.
+\tag{ACD0.8}
+\]
+No off-line zero is assumed to exist. Images below retain their quotient or ambient subspace topology as explicitly specified; closedness is not inferred from the notation for an image.
+
+## ACD1. The two continuous transposes
+
+Classical human-source attribution: the complex Hilbert-space Riesz representation theorem, with the conjugate-space convention, is recorded in Terence Tao, [245B Notes 5, Theorem 1, Remark 2 and Exercise 15](https://terrytao.wordpress.com/2009/01/17/254a-notes-5-hilbert-spaces/). The explicit maps and signs used here remain displayed below.
+
+The linear isomorphism
+\[
+R:C\longrightarrow H'_\beta,\qquad
+R(\overline y)(h)=\langle h,y\rangle_+
+\tag{ACD1.1}
+\]
+is the Riesz isomorphism with the conjugate complex structure explicitly retained. It is isometric for the dual norm. Similarly \(C'_\beta\simeq H\) sends \(h\) to \(\overline y\mapsto\langle h,y\rangle_+\). SDT6 proves the strong topological evaluation isomorphism \(A\simeq(A'_\beta)'_\beta\). Thus taking the continuous transpose of (ACD0.8) on the entire bidual gives exactly
+\[
+b_r:A\to H,\qquad b_r=D_r^*\mathsf JEq,
+\quad \beta_r:Q\to H,\quad\beta_r=D_r^*\mathsf JE,
+\quad b_r=\beta_rq.
+\tag{ACD1.2}
+\]
+Indeed, for every \(f\in A,y\in H\),
+\[
+a_r(\overline y)(f)=\langle Eqf,\mathsf JD_ry\rangle_+
+=\langle D_r^*\mathsf JEqf,y\rangle_+.
+\tag{ACD1.3}
+\]
+This proves both \(a_r'\mathrm{ev}_A=b_r\) under \(C'=H\) and
+\[
+b_r'R=a_r.
+\tag{ACD1.4}
+\]
+No section of \(q\) is used. For a bounded subset \(K\subset Q\),
+\[
+\sup_{F\in K}|\sigma_r(\overline y)(F)|
+\leq\sup_{F\in K}\|EF\|_+\,\|D_r\|\,\|y\|_+.
+\tag{ACD1.5}
+\]
+This proves the needed strong continuity; continuity of \(b_r\) follows from its three continuous factors.
+
+Write
+\[
+Z_r=\ker\beta_r
+=\{F\in Q:F(\rho)=0\text{ at every actual off-critical zero}\},
+\quad C_{\rm crit}=\overline{\ker D_r}.
+\tag{ACD1.6}
+\]
+The equality uses (ACD0.7), reflection of the zero set, and the coordinate formula for \(\beta_r\). All higher-jet classes with zero values belong to \(Z_r\). The exact relations are
+\[
+\ker a_r=C_{\rm crit},\quad \ker b_r=q^{-1}Z_r,\quad
+b_rA=\beta_rQ,\quad b_r=0\Longleftrightarrow D_r=0.
+\tag{ACD1.7}
+\]
+Injectivity of the anti-linear map \(y\mapsto\langle E(-),\mathsf Jy\rangle\) follows from density of \(E(Q)\), proving the first equality. For the last equivalence, vanishing of \(b_r\) makes the bounded operator \(D_r^*\mathsf J\) zero on that same dense image, and therefore zero on \(H\). These arguments do not discard its kernel or any source jet.
+
+## ACD2. A fine resolution of the actual transpose cone
+
+On a positively oriented pole disk \(D\), let \(i:\{p\}\hookrightarrow D\). Form the specified sheaf complex
+\[
+\mathscr P_r=[\underline A^{-1}\xrightarrow{+b_r\mathrm{ev}_p}i_*H^0].
+\tag{ACD2.1}
+\]
+This is the cone presentation of ADC8; the plus sign is part of this representative. Its fine resolution has
+\[
+\mathscr L_r^{-1}=\mathscr E_A^0,\quad
+\mathscr L_r^0=\mathscr E_A^1\oplus i_*H,\quad
+\mathscr L_r^1=\mathscr E_A^2,
+\]
+\[
+d^{-1}f=(-df,b_rf(p)),\qquad d^0(\omega,h)=-d\omega.
+\tag{ACD2.2}
+\]
+The map from (ACD2.1) inserts locally constant functions and the unchanged \(H\) coordinate. The coefficient-valued Poincaré contraction proves it is a quasi-isomorphism, including at the pole: the de Rham resolution of \(\underline A\) and the identity on the skyscraper give the map of the two cones. It neither requires \(b_r\) to be onto nor its image to be closed. Smooth partitions of unity act on the forms and by their value at \(p\) on the skyscraper. CSD1–2's cutoff and contraction proof therefore establishes compact-support acyclicity and continuity for these exact terms too.
+
+Define the literal continuous compact-test Hom complex
+\[
+\mathscr D_r^k(U)=\operatorname{Hom}_{\rm cont}
+\bigl(\Gamma_c(U,\mathscr L_r^{-k}),\mathbb C\bigr),\qquad
+d_{\mathscr D}^k\ell=(-1)^{k+1}\ell d_{\mathscr L}.
+\tag{ACD2.3}
+\]
+Tests have the fixed-support smooth seminorms and their locally convex inductive limit. Currents restrict by extension-by-zero transpose. A locally finite partition of unity proves the sheaf property exactly as in CSD3. This constructs a sheaf complex; it does not declare continuous dualization exact on all locally convex complexes.
+
+Put \(\mathscr T_A^j=(\mathscr E_c^{-j}(A))'\),
+\(d_Tv(\phi)=(-1)^{j+1}v(d\phi)\), and
+\(\delta_p\lambda(f)=\lambda(f(p))\). In degrees \((-1,0,1)\), (ACD2.3) is
+\[
+\mathscr T_A^{-2},\qquad \mathscr T_A^{-1}\oplus i_*H',\qquad
+\mathscr T_A^0,
+\]
+\[
+d^{-1}_{\mathscr D}v=(d_Tv,0),\qquad
+d^0_{\mathscr D}(u,\lambda)=d_Tu-\delta_pb_r'\lambda.
+\tag{ACD2.4}
+\]
+For example, on a degree-minus-one test \(f\), the degree-zero Hom differential is
+\(-u(-df)-\lambda(b_rf(p))=u(df)-\lambda(b_rf(p))\), which is the second formula. The first follows by applying a degree-minus-one functional to \(-d\omega\). These two computations fix every sign.
+
+## ACD3. The exact current-cone identification and pairing
+
+The previously constructed receiver is
+\[
+\mathscr E_r=\operatorname{Cone}(-\delta_pa_r)[-1],
+\]
+\[
+d^{-1}_{\mathscr E}v=(-d_Tv,0),\qquad
+d^0_{\mathscr E}(u,x)=-d_Tu+\delta_pa_rx.
+\tag{ACD3.1}
+\]
+Using (ACD1.1), define the degreewise map \(\mathscr D_r\to\mathscr E_r\) by
+\[
+v\mapsto-v\quad(\deg-1),\qquad
+(u,Rx)\mapsto(u,x)\quad(\deg0),\qquad
+w\mapsto-w\quad(\deg1).
+\tag{ACD3.2}
+\]
+It is a continuous chain isomorphism. In degree minus one its two differential composites are \((d_Tv,0)\); in degree zero both are \(-d_Tu+\delta_pa_rx\), by (ACD1.4). The inverse uses the same signs and \(R\). Thus this is the exact continuous support-dual comparison for the constructed resolution, not a general assertion about dualizing an unseparated image quotient.
+
+The evaluation pairing of \(\mathscr E_r\) against compact tests of \(\mathscr L_r\) is accordingly
+\[
+\begin{array}{c|c|c}
+\text{degree of current}&\text{test}&\text{pairing}\\\hline
+-1&\eta\in\mathscr E_c^2(A)&-v(\eta)\\
+0&(\omega,h)\in\mathscr E_c^1(A)\oplus H&u(\omega)+\langle h,y\rangle_+,\ x=\overline y\\
+1&f\in\mathscr E_c^0(A)&-w(f).
+\end{array}
+\tag{ACD3.3}
+\]
+For a current of degree \(k\), substitution into (ACD2.2) and (ACD3.1) gives
+\(\langle dv,c\rangle+(-1)^k\langle v,dc\rangle=0\).
+For degree zero, the two terms containing \(b_rf(p)\) cancel precisely because of (ACD1.3). Hence (ACD3.3) descends to the supported cohomology pairings.
+
+The positive angular current is \(h_p\lambda\), with \(d_Th_p\lambda=\delta_p\lambda\). The stalk representatives of \(\mathscr E_r\) are the constant current \(c_\lambda\) in degree \(-1\) and \((h_pa_rx,x)\) in degree zero. Their restriction is \((1_B,a_r)\). These are exactly RGR/ADC's representatives: no sign of the point coordinate was changed in (ACD3.2). A compact positive two-form \(\omega_c\) with integral one represents the compact \(A\) class in degree one of \(\mathscr L_r\); a point vector \(h\) represents its degree-zero \(H\) class. Pairing gives \(-\lambda(a)\) and \(\langle h,y\rangle_+\), respectively. The first minus is retained rather than hidden in an orientation change. CSD2's compact contraction proves these classes compute the entire compact model \(H[0]\oplus A[-1]\).
+
+The full endpoint term in the original source is \(i_*E_p[1]\), with \(E_p=\mathbb C^2\) carrying the separate value-at-zero and integral labels. It pairs with \(i_*E_p'[-1]\) by evaluation. This summand has no nearby group; its special and supported degrees are \(-1\) in the primal and \(+1\) in the dual. Both labels and both poles are retained.
+
+## ACD4. Ordinary algebraic duality and the original source map
+
+For the unrestricted algebraic dual, replace \(\mathscr T_A\) by
+\[
+\mathscr T_{A,\mathrm{alg}}^j(U)
+=\operatorname{Hom}_{\mathbb C}(\mathscr E_c^{-j}(U;A),\mathbb C)
+\tag{ACD4.1}
+\]
+and \(H'\) by \(H^*\). The same Hom differential and degree signs prove the analogous cone formula with attaching map \(b_r^*:H^*\to A^*\). CV2–CV4's compact contraction gives \(\mathscr T_{A,\mathrm{alg}}\simeq\underline{A^*}[2]\) and identifies its positive Dirac map with Gysin. Together with the exact skyscraper comparison this is the ordinary sheaf Verdier dual of (ACD2.1), through these explicit resolutions. No finite-dimensional bidual identity is used.
+
+There is a literal chain injection from (ACD2.3) to this algebraic Hom model: continuous test functionals are algebraic test functionals, \(H'\hookrightarrow H^*\), and
+\(b_r^*\vert_{H'}=b_r'\). In cone coordinates it is
+\[
+(v,(u,x),w)\longmapsto
+(v,(u,Rx),w).
+\tag{ACD4.2}
+\]
+Its target has the same degree-sign convention (ACD3.2). The inclusion need not be an isomorphism. This supplies the comparison instead of conflating the two dual categories.
+
+The original reduced local source is
+\(\mathsf P=\mathscr F_{\rm red}[1]\simeq[\underline A^{-1}\xrightarrow{+q}i_*Q^0]\).
+Its actual map into the new cone is
+\[
+f_r:\mathsf P\to\mathscr P_r,\qquad f_r^{-1}=1_A,\quad
+f_r^0=\beta_r.
+\tag{ACD4.3}
+\]
+It commutes with the differential by \(\beta_rq=b_r\). Add the identity on each original \(E_p[1]\) for the full source. On fine resolutions this is \(1\) on forms and \(\beta_r\) on the point coefficient. Its continuous transpose is therefore \(1\) on currents and \(\beta_r'R=\sigma_r\) on the point functional.
+
+There is a necessary representative sign here. The accepted RGR model of \(D_c\mathsf P\) is \(\operatorname{Cone}(+\delta_pq')[-1]\), whereas the literal Hom dual of the plus-\(q\) cone just used, after (ACD3.2), is \(\operatorname{Cone}(-\delta_pq')[-1]\). Negating its point coordinate and leaving its currents unchanged is a chain isomorphism between these representatives. Hence in the accepted RGR representative the transpose of (ACD4.3) is exactly
+\[
+\mathscr E_r\longrightarrow D_c\mathsf P,\qquad
+(u,x)\longmapsto(u,-\sigma_rx)
+\quad\text{in degree zero},
+\tag{ACD4.4}
+\]
+with identity on the other current degrees. Substitution gives
+\(-d_Tu-\delta_pq'(-\sigma_rx)=-d_Tu+\delta_pa_rx\), proving the differential square. Thus this is the previously constructed RGR map, with its actual source and signs, now proved to be the continuous transpose of the original-source map. A sign-free formal slogan about the dual of a cone would not supply this comparison.
+
+## ACD5. The specialization image and its full local pairing
+
+The local primal stalk is \([A^{-1}\xrightarrow{b_r}H^0]\), its punctured model is \(A[1]\oplus A[\vartheta_p]\), and restriction is identity on the first \(A\) and zero on \(H\). The restriction fibre is
+\[
+A\xrightarrow{a\mapsto(b_ra,a)}H\oplus A\xrightarrow{0}A
+\quad\text{in degrees }-1,0,1.
+\tag{ACD5.1}
+\]
+The quotient coordinate \((h,a)\mapsto h-b_ra\) cancels the first identity pair. Therefore the two positive-orientation localization boundaries are
+\[
+\partial_{-1}=-b_r:A\to H,\qquad
+\partial_0=+1:A[\vartheta_p]\to A.
+\tag{ACD5.2}
+\]
+In degree \(-1\) the angular coinvariant term of DC's cross is zero. Its exact obstruction image is consequently \(b_rA\), and
+\[
+\operatorname{coker}\operatorname{sp}_{-1}
+=A/\ker b_r\simeq Q/Z_r,
+\qquad [a]\longmapsto-b_ra
+\tag{ACD5.3}
+\]
+is the actual boundary comparison to the image. The first isomorphism is a topological quotient isomorphism, induced by the quotient map \(q\). Its bijection to \(b_rA\) is continuous with the ambient Hilbert subspace topology, but inverse continuity is not asserted. In degree zero the entire punctured term is coinvariant, so the quotient of boundary images is zero. The endpoint degrees are those of ACD3 and the full table ADC8.
+
+The original boundary is \(-q:A\to Q\). The map (ACD4.3) gives its exact commuting square with \(-b_r\) by \(\beta_r\). Thus the map on original local obstruction images is
+\[
+Q\xrightarrow{\beta_r}\beta_rQ,\qquad \ker\beta_r=Z_r.
+\tag{ACD5.4}
+\]
+The complementary current-side source is paired with it by
+\[
+(Q/Z_r)\times(C/C_{\rm crit})\to\mathbb C,
+\qquad ([F],[\overline y])\mapsto
+\langle\beta_rF,y\rangle_+=\sigma_r(\overline y)(F).
+\tag{ACD5.5}
+\]
+Both radicals vanish: the left by the definition of \(Z_r\), the right by injectivity of the map from \(H\) to value functionals and (ACD1.7). This is the exact pairing, not a claim that these images exhaust each other's topological duals. The current-side invariant-cycle quotient is zero for every \(a_r\), while its coinvariant-boundary kernel is \(a_rC\) (ADC3). Equations (ACD3.2), (ACD4.4) and (ACD5.5) identify the precise duality relation between these different tests.
+
+## ACD6. Both poles and the global original-source map
+
+On \(Y=\mathbb P^1(\mathbb C)\), use the existing common coefficient trivialization of CSD, with restriction maps \(r_+=\Sigma\) and \(r_-=R\Sigma\) into \(A\). Their common image is \(J\), so after the proved source inverses the reduced source is the kernel of
+\(\underline A_Y\to i_+Q\oplus i_-Q\), with \(q\) at both poles. Define the new global cone by the same actual quotient map followed by \(\beta_r\) at each pole:
+\[
+\mathscr P_r^Y=[\underline A_Y^{-1}\xrightarrow{(b_r,b_r)}
+i_+H\oplus i_-H],\qquad
+\mathscr E_r^Y=\operatorname{Cone}(-\delta_+a_r-\delta_-a_r)[-1].
+\tag{ACD6.1}
+\]
+The local signs (ACD2–3) glue, giving the same continuous dual comparison globally. Dirac currents at both poles are positive for the complex orientation; the expression in (ACD6.1) is a sum, not an unrecorded cancellation. Add \((i_+E_+\oplus i_-E_-)[1]\) in the primal and its full continuous dual shifted by \(-1\).
+
+Here is a full global cochain calculation. Cover the sphere by the two pole disks with annular overlap. The disk complexes and overlap contraction from ACD5 give the Mayer–Vietoris model
+\[
+A\oplus A\ \xrightarrow{d^{-1}}\ H\oplus H\oplus A
+\ \xrightarrow{0}\ A,
+\quad d^{-1}(x_+,x_-)=(b_rx_+,b_rx_-,x_+-x_-)
+\tag{ACD6.2}
+\]
+in degrees \((-1,0,1)\). The last \(A\) is the positively oriented angular overlap class. It is the sphere's degree-two constant-coefficient class after the shift.
+Its orientation comparison includes the shift sign: take a partition function \(\chi_+\) equal to one near zero and zero near infinity, and \(\vartheta=d\arg z/(2\pi)\) on the overlap. In the resolution with differential \(-d\), the overlap class \(\vartheta a\) maps to the global two-form \(-d\chi_+\wedge\vartheta\,a\). Its integral is \(-\int_0^\infty\chi_+'(r)dr\,a=a\). The corresponding unshifted \(+d\) comparison is the negative sign recorded in CDW9. Thus no positive angular coordinate has been silently identified with the unshifted positive integration coordinate.
+The projection to
+\[
+K_r^Y=[A^{-1}\xrightarrow{(b_r,b_r)}H^0\oplus H^0
+\xrightarrow{0}A^1]
+\tag{ACD6.3}
+\]
+is \(p^{-1}(x_+,x_-)=x_-\),
+\(p^0(h_+,h_-,c)=(h_+-b_rc,h_-)\), and \(p^1=1\).
+Its section is \(a\mapsto(a,a)\) and \((h_+,h_-)\mapsto(h_+,h_-,0)\).
+The homotopy \(h^0(h_+,h_-,c)=(c,0)\), zero in other degrees, satisfies
+\(dh+hd=1-ip\). Every identity is verified by inserting (ACD6.2). Thus (ACD6.3) is a continuous cochain equivalence, not only a dimension count.
+
+Its groups, with all endpoint coordinates reattached, are
+\[
+\mathbb H^{-1}(Y,\mathscr P_{r,\rm full}^Y)
+=\ker b_r\oplus E_+\oplus E_-,
+\]
+\[
+\mathbb H^0(Y,\mathscr P_{r,\rm full}^Y)
+\simeq H\oplus(H/b_rA),\qquad
+\mathbb H^1(Y,\mathscr P_{r,\rm full}^Y)=A.
+\tag{ACD6.4}
+\]
+The degree-zero isomorphism is
+\([(h_+,h_-)]\mapsto(h_+-h_-,[h_-])\), with inverse
+\((h,[k])\mapsto[(h+k,k)]\). Changing \(k\) by \(b_ra\) changes the pair by \((b_ra,b_ra)\). Both maps are continuous for the stated quotient topologies, including when the second factor is not separated.
+
+Replace \(H,b_r\) by \(Q,q\) to compute the original source. Since \(q\) is onto, its degree-zero group is exactly \(Q\), by difference of the two quotient coordinates; its other groups are \(J\oplus E_+\oplus E_-\) and \(A\). The map from the original global source into (ACD6.4) is explicitly
+\[
+J\oplus E_+\oplus E_-\hookrightarrow\ker b_r\oplus E_+\oplus E_-,
+\quad Q\to H\oplus(H/b_rA),\quad F\mapsto(\beta_rF,0),
+\quad A\xrightarrow{1}A.
+\tag{ACD6.5}
+\]
+The zero second coordinate follows because \(\beta_rQ=b_rA\), not because the second quotient is discarded. In degree zero the exact kernel is \(Z_r\), just as for the local specialization image.
+
+For the current dual, the corresponding global finite cochain model is
+\[
+B^{-1}\xrightarrow{0}C^0\oplus C^0
+\xrightarrow{(x_+,x_-)\mapsto a_rx_++a_rx_-}B^1,
+\tag{ACD6.6}
+\]
+with endpoint \(E_+'\oplus E_-'\) in degree one. It follows either by the same global current contraction or by applying (ACD3.2) to the continuous Hom of the explicit finite cochain model (ACD6.3). All homotopies used to get that model are continuous and can be transposed. Its groups are
+\[
+\mathbb H^{-1}=B,\quad
+\mathbb H^0=\{(x_+,x_-):a_r(x_++x_-)=0\},\quad
+\mathbb H^1=(B/a_rC)\oplus E_+'\oplus E_-'.
+\tag{ACD6.7}
+\]
+The middle kernel is continuously isomorphic to \(C\oplus C_{\rm crit}\) by
+\((x_+,x_-)\mapsto(x_+,x_++x_-)\); its inverse is \((x,k)\mapsto(x,k-x)\).
+In particular the anti-diagonal classes are always present. They express cancellation between the two retained pole contributions; they do not imply that either map \(a_r\) vanishes. The original global image (ACD6.5) and the local obstruction (ACD5.4) retain precisely the same defect despite this global cancellation.
+
+## ACD7. Genuine covers and their transpose actions
+
+For a recovered integer \(n\geq1\), let \(f_n(z)=z^n\). On constant coefficients the sheaf unit is the diagonal into the \(n\) branches away from a pole. The sheaf trace is branch sum there and multiplication by \(n\) on the single constant pole stalk. The latter follows directly from restriction: a constant pole section restricts to the same value on all branches. These formulas define sheaf maps on disks, and agree on overlaps. Direct image for this finite proper map is exact: its stalks are the finite sums over the fibre, and a disk about a branch value has one connected inverse disk. There is no replacement of all nearby branches by their invariant diagonal.
+
+The actual identities proved in ADC8 are
+\[
+b_rT_n^A=U_n^*b_r,\qquad b_rU_n^A=T_n^*b_r.
+\tag{ACD7.1}
+\]
+They also follow immediately from (ACD1.2), \(ET_n^Q=T_nE\),
+\(\mathsf JT_n=U_n^*\mathsf J\), and commutation of diagonal operators.
+Consequently the literal cones have two sheaf maps
+\[
+\mathsf U_n:\mathscr P_r\to f_{n*}\mathscr P_r,
+\qquad \mathsf V_n:f_{n*}\mathscr P_r\to\mathscr P_r.
+\tag{ACD7.2}
+\]
+Their complete nearby maps, constant pole maps, and point \(H\) maps are
+\[
+\begin{array}{c|c|c|c}
+&\text{nearby}&\text{constant pole }A&\text{point }H\\\hline
+\mathsf U_n&a\mapsto(T_na,\ldots,T_na)&T_n&U_n^*\\
+\mathsf V_n&(a_j)\mapsto T_{1/n}\sum_j a_j&nT_{1/n}=U_n&T_n^*.
+\end{array}
+\tag{ACD7.3}
+\]
+The two differential squares are exactly (ACD7.1). Thus these maps are constructed before dualization and before a weight claim. The trace here is a sheaf trace on locally constant branches; no smooth pullback of a ramified arbitrary distribution is presumed.
+
+The full vanishing coefficient can also be computed, without replacing the cover by its invariant part. Put \(\Delta a=(a,\ldots,a)\), \(\Sigma v=\sum_jv_j\), and let \(P_n\) be the cyclic deck permutation of \(A^n\). The shifted specialization cone has injective first differential \(a\mapsto(-\Delta a,b_ra)\). Its sole remaining vanishing coefficient is therefore
+\[
+V_n=(A^n\oplus H)/\{(-\Delta a,b_ra):a\in A\}.
+\tag{ACD7.3a}
+\]
+This quotient is separated and has the explicit continuous decomposition
+\[
+[(v,h)]\longmapsto
+\bigl(v-\Delta m(v),\ h+b_rm(v)\bigr)
+\in\ker\Sigma\oplus H,\qquad m(v)=\Sigma v/n.
+\tag{ACD7.3b}
+\]
+The inverse sends \((w,k)\) to \([(w,k)]\). Replacing \((v,h)\) by \((v-\Delta a,h+b_ra)\) leaves both displayed coordinates unchanged. Conversely their difference from \((v,h)\) is the defining relation with \(a=m(v)\). This proves the isomorphism and closedness of the relation subspace, without requiring \(b_rA\) closed.
+
+With the same \(1-P_n\) variation convention as the positive-support cut model, the full arrows are
+\[
+\mathrm{can}(v)=[(v,0)],\qquad
+\mathrm{var}[(v,h)]=(1-P_n)v.
+\tag{ACD7.3c}
+\]
+Variation is well-defined since \((1-P_n)\Delta=0\); the vanishing monodromy is \([(v,h)]\mapsto[(P_nv,h)]\). The two composites of canonical and variation maps are the corresponding \(1-T\) operators. For \(n=1\), (ACD7.3b) identifies \(V_1\) with \(H\), and canonical becomes \(b_r\), variation zero, as required.
+To identify the actual variation rather than only its composites, the deck-cut calculation on \([(v,0)]\) is \((1-P_n)v\). Naturality for the supported inclusion \(i_*H\to f_{n*}\mathscr P_r\) makes variation zero on \([(0,h)]\), because that source has zero nearby cycles. These two types span \(V_n\), proving exactly (ACD7.3c).
+
+The two maps (ACD7.2) induce respectively
+\[
+H\longrightarrow V_n,\quad h\longmapsto[(0,U_n^*h)],
+\]
+\[
+V_n\longrightarrow H,\quad
+[(v,h)]\longmapsto b_rT_{1/n}\Sigma v+T_n^*h.
+\tag{ACD7.3d}
+\]
+For the second map a defining relation changes its value by
+\(-b_rU_na+T_n^*b_ra=0\). For the first canonical square,
+\([(\Delta T_na,0)]=[(0,b_rT_na)]=[(0,U_n^*b_ra)]\).
+For the second square apply its displayed formula to \([(v,0)]\).
+Both variation squares follow from \((1-P_n)\Delta=0\) and \(\Sigma(1-P_n)=0\).
+Thus all augmentation coordinates, canonical maps and variation maps have been constructed, not only their invariant or coinvariant reductions.
+
+The composite \(\mathsf V_n\mathsf U_n\) is \(n\) times identity: on \(A\),
+\(U_nT_n=n\); on \(H\), \(T_n^*U_n^*=(U_nT_n)^*=n\).
+The reverse composite on the full nearby object is \(\Delta\Sigma\), the deck norm. It is not \(n\) times identity on the augmentation part. On the pole \(H\) term it is \(n\) times identity. These are the complete constant/skyscraper sheaf maps, so the equalities hold as cone maps. A raw-current cut presentation can have the additional homotopies calculated in DCA without changing these derived maps.
+
+Under the pairing (ACD3.3), the point transpose of \(U_n^*\) is \(\overline U_n\), since
+\(\langle U_n^*h,y\rangle_+=\langle h,U_ny\rangle_+\).
+Similarly the transpose of \(T_n^*\) is \(\overline T_n\).
+On the open coefficient, unit transposes to sum with \(T_n'\) and trace transposes to diagonal with \(T_{1/n}'\). Thus the resulting current maps are precisely the DCA directions
+\[
+f_{n*}\mathscr E_r\to\mathscr E_r:
+\quad\Psi=T_n'\Sigma,\quad i^*=(nT_n',\overline U_n),
+\quad i^!=(\overline U_n,T_n'),
+\]
+\[
+\mathscr E_r\to f_{n*}\mathscr E_r:
+\quad\Psi=\Delta T_{1/n}',\quad i^*=(T_{1/n}',\overline T_n),
+\quad i^!=(\overline T_n,nT_{1/n}').
+\tag{ACD7.4}
+\]
+The angular factor in the second line is \(n\), because the positive circle has covering degree \(n\). The first line's pole-constant factor \(n\) comes from summing the \(n\) nearby branches; its Dirac factor is one before \(T_n'\). DCA gives the explicit raw cut homotopy realizing these arrows. All factors are retained in (ACD7.4).
+
+On the original endpoint labels, ordered as zero-pole value, zero-pole integral, infinity-pole value, infinity-pole integral, the primal unit actions are \((1,n,n,1)\) and the primal weighted trace actions are \((n,1,1,n)\), as in GTR. Their continuous transposes give the same scalar lists on the dual endpoint coordinates. The endpoint map from the original source in (ACD4.3) is identity and respects both lists.
+
+## ACD8. The actual weight comparison and its scope
+
+For the unit direction in (ACD7.3), the local degree-minus-one invariant-cycle source is \(A\) with \(T_n\); its supported target is \(H\) with \(U_n^*\). On a value class in \(Q/Z_r\) concentrated at an actual off-critical \(\rho\), its image under \(\beta_r\) is at \(\rho^\#\). The two eigenvalues are
+\[
+n^\rho\quad\text{and}\quad n^{1-\overline{\rho^\#}}=n^\rho.
+\tag{ACD8.1}
+\]
+For weighted trace they are \(n^{1-\rho}\) and \(n^{\overline{\rho^\#}}=n^{1-\rho}\).
+The eigenvalue statements apply to the indicated quotient value class. A representative in full \(Q\) may also carry higher-jet terms, retained in the kernel \(Z_r\). The entire continuous intertwining identities are (ACD7.1), not a conclusion drawn only from these single lines.
+
+For the global cone, pullback acts on the degree-one \(A\) in (ACD6.3) by \(nT_n\), from the oriented sphere degree. Weighted trace acts there by \(T_{1/n}\); their composite is \(n\) as required. On the degree-minus-one \(A\) the actions are \(T_n\) and \(U_n\). On \(H\oplus H\) in cochain degree zero they are \(U_n^*\) and \(T_n^*\) on each copy. The diagonal boundary commutes with these actions by (ACD7.1). Thus the global degree factor has not been suppressed; it lies on the other cohomological component and does not alter (ACD8.1).
+
+Deligne's §3.6 argument, reconstructed with its exact hypotheses in DC, separates special-source weights from the supported target by a genuine dual geometric estimate. Here the constructed continuous dual, the source map, both actual cover directions, and the full two-pole cohomology have been computed. They give the same eigenvalue on every nonzero image of the particular specialization boundary \(-b_r\). The normal multiplier separator of GMS is identity on the original quotient \(Q\), hence identity on its image \(\beta_rQ\); its annihilation of the different translated normal extension does not annihilate this image.
+
+The calculation therefore identifies what the current geometry actually supplies: (ACD5.4) is the original-source obstruction quotient, (ACD3.2) its continuous duality comparison, (ACD6.5) its global image, and (ACD7.3) its genuine geometric actions. No vanishing of \(D_r\), no pure Frobenius realization, and no RH resolution is asserted. This is a completed attempt to derive the missing weight distinction from the accumulated duality and cover data, rather than assigning a new twist or replacing the original arithmetic.
+
+Source provenance is inherited with its exact reading scope from CSP/CSD and DC: Connes–Consani, [arXiv:0903.2024v3](https://arxiv.org/abs/0903.2024v3), §5, and [arXiv:2609.00299v1](https://arxiv.org/abs/2609.00299v1), signed charts; Deligne, *La conjecture de Weil II*, §3.6, read here through the separately identified French transcription, not claimed to be author TeX. The definitions of nearby/vanishing cycles are compared with Reich's retained [author source, arXiv:1002.1686v4](https://arxiv.org/abs/1002.1686v4); no finite-rank theorem is imported for these infinite coefficients. Complete local proofs used here are retained in this repository as SDT, CSD, CV, LNC, LVD, RGR, ADC, DCA, GTAH and RTT, with their individual proof locators and acceptance scopes.

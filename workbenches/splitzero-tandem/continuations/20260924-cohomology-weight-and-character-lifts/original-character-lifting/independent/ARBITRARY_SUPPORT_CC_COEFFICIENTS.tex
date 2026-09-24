@@ -1,0 +1,350 @@
+% ULC: arbitrary support spectrum, actual localized coefficients, and CC family.
+\section{The Connes--Consani coefficient family on the actual arbitrary support base}
+\label{sec:arbitrary-support-cc}
+
+\paragraph{Sources and scope.}
+The human adelic source is Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/2501.06560v1}{\emph{Knots, primes and class
+field theory}}, Section 4, author-source labels \texttt{localv},
+\texttt{structure}, and \texttt{structure1}. CDV1--25 supplies the
+complete divisor-indexed extension and proofs, retaining the original
+local Haar measures and real factor. FSC1--9 and FSC33--34 supply the
+support topology and localization maps; their full proofs accompany
+this chapter. Their foundation is the
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{pinned Split Support Geometry v11 source},
+Definition \texttt{def:lattice-split} and the subsequent ideal and prime
+classification. This chapter derives the actual coefficient modules
+and the arbitrary-support cohomology comparison. It does not identify
+an idempotent semimodule with an abelian sheaf.
+
+\subsection{The base and its two types of open}
+Let $L$ be a nontrivial bounded distributive lattice, possibly infinite,
+and retain
+\begin{equation}\tag{ULC1}
+ X=\operatorname{Spec}\mathbb Z,\quad
+ S=\operatorname{Spec}_{\mathrm{lat}}L,\quad
+ Y=\operatorname{Spec}G_L(\mathbb Z)=S\sqcup X.
+\end{equation}
+The points of $S$ are proper prime lattice ideals $J$, represented in
+the semiring spectrum by $\{(0,\lambda):\lambda\in J\}$. The points
+of $X$ are $q^{-1}(\mathfrak p)$, where $q(a,\lambda)=a$.
+An ideal containing a top-supported element contains $e=(0,1_L)$:
+add that element to its product with $(-1,1_L)$. Multiplication by
+$e$ then supplies all labelled zeros. Its amplitudes form a ring
+ideal. Every ideal without a top-supported element is a proper lattice
+ideal of zero labels. Primality is respectively ring or meet primality.
+This proves the stated partition of the points. Its basic opens are
+$D((n,1_L))=S\cup D_X(n)$ for $n\ne0$ and
+$D((0,\lambda))=D_L(\lambda)\subset S$.
+Consequently every open of $Y$ is either an open $V\subset S$ or
+\begin{equation}\tag{ULC2}
+ W_U=S\cup U\quad(\varnothing\ne U\subset X\text{ open}).
+\end{equation}
+All nonempty opens of $X$ contain the generic point $\eta$ and are
+cofinite. Write $i:X\hookrightarrow Y$ and $j:S\hookrightarrow Y$.
+The map $r:Y\to X$ is the identity on $X$ and sends every point of
+$S$ to $\eta$. It is continuous since $r^{-1}U=W_U$ for nonempty
+$U$, and $ri=\mathrm{id}$. Nontriviality of $L$ implies $S\ne\varnothing$
+by prime-ideal separation, whose proof is included in FSC6.
+
+The actual structure sheaf has
+\begin{equation}\tag{ULC3}
+ \mathcal O_Y(W_U)=G_L(\mathcal O_X(U)),\quad
+ \mathcal O_Y|_S=\mathcal O_S,\quad
+ \mathcal O_S(D_L(\lambda))=\downarrow\lambda,\quad
+ (\mathcal O_S)_J=L_J.
+\end{equation}
+Here $L_J$ is the localization with equality
+$[\lambda]_J=[\mu]_J$ precisely when
+$\lambda\wedge\nu=\mu\wedge\nu$ for some $\nu\notin J$.
+On basic support opens the restriction is $a\mapsto a\wedge\lambda$.
+Finite covers glue by joins and distributivity; compactness of the
+basic opens reduces an arbitrary covering to this assertion.
+On $W_U$, the generic arithmetic germ fixes one rational amplitude
+and one label, and the amplitude must be regular at every included
+prime; this proves the first formula. Restriction to $S$ retains
+the label and localizes it. These observations prove ULC3 with the
+original structure sheaf, not a constant substitute.
+
+\subsection{The actual localized coefficient semimodule}
+Let $\mathcal H_k$ be either CDV's $\mathcal O_k$ or $\mathcal A_k$
+on $X$, with generic complex vector space $W=V$ or $B$ and stalks
+$W_{p,k}$. It is an $\mathcal O_X$-module by multiplication by the
+rational scalar in each regular section. This scalar action preserves
+each complex subspace and every restriction.
+
+Define a sheaf $\mathcal M_k$ of $\mathcal O_Y$-semimodules by
+\begin{equation}\tag{ULC4}
+ \mathcal M_k(W_U)=G_L(\mathcal H_k(U)),\qquad
+ \mathcal M_k(V)=\mathcal O_S(V)\quad(V\subset S).
+\end{equation}
+On arithmetic opens, restrictions restrict the amplitude and keep
+the label. Restriction from $W_U$ to a support open sends
+$(w,\lambda)$ to the section represented by $\lambda$, with all its
+localizations retained. On support opens use the actual restrictions
+of $\mathcal O_S$. The scalar operation on an arithmetic open is
+$(a,\mu)(w,\lambda)=(aw,\mu\wedge\lambda)$ and addition uses join.
+On support opens scalar operation is meet and addition is join.
+All these formulas commute with restrictions.
+
+Here is a direct gluing proof. A cover of $W_U$ has some arithmetic
+members $W_{U_a}$ covering $U$. Any two have nonempty arithmetic
+intersection, so compatible sections have one common label and their
+amplitudes glue in $\mathcal H_k$. A nonzero glued amplitude has
+nonzero restriction somewhere, hence top label. The arithmetic member
+already covers all of $S$; compatibility forces each purely support
+member to carry precisely the restriction of that common label.
+Thus the glued section is unique and belongs to ULC4. Covers of a
+support open glue in $\mathcal O_S$. This proves the sheaf assertion
+and the scalar operations on the original carrier. Its stalks are
+\begin{equation}\tag{ULC5}
+ (\mathcal M_k)_\eta=G_L(W),\qquad
+ (\mathcal M_k)_p=G_L(W_{p,k}),\qquad
+ (\mathcal M_k)_J=L_J.
+\end{equation}
+The first two follow by the filtered neighbourhood colimits and CDV's
+stalk descriptions. At $J$ the neighbourhoods contained in $S$ are
+cofinal and give the last formula.
+
+This is the actual localization of the coefficient carrier at support.
+For every $w\in W$, multiplication by $e$ sends $(w,\lambda)$ to
+$(0,\lambda)$. Inverting the idempotent $e$ makes it the unit, so
+\begin{equation}\tag{ULC6}
+ G_L(W)[e^{-1}]\simeq L,
+ \qquad G_L(W)_{P_J}\simeq L_J.
+\end{equation}
+To verify the first isomorphism rather than only its surjectivity,
+the support map has the section $\lambda\mapsto(0,\lambda)$;
+every localized element equals its product with $e$, and equality
+of these zero labels is unchanged by multiplication by $e$.
+Further inversion of the zero labels outside $J$ gives exactly
+the relation in ULC3. Every top-supported nonzero integer already
+maps to the unit of that localized lattice. No additional relation
+arises from those integers. This proves the second isomorphism.
+
+Retain separately the inverse-image coefficient sheaf
+\begin{equation}\tag{ULC7}
+ \mathcal P_k=r^{-1}G_L(\mathcal H_k),\qquad
+ \mathcal P_k\longrightarrow\mathcal M_k.
+\end{equation}
+Here $G_L(\mathcal H_k)$ on $X$ has the section formula used in
+ULC4; its sheaf proof follows from the same common-generic-point
+argument. The arrow is the identity on arithmetic opens. On a support
+open it sends a locally constant section of $G_L(W)$ to its support
+label and then to its localizations in $\mathcal O_S$.
+It commutes with restrictions because a section on $W_U$ restricts
+in $\mathcal P_k$ to its constant generic germ, whereas in
+$\mathcal M_k$ it restricts to its localized label. Its stalk map is
+the identity at arithmetic points and
+\begin{equation}\tag{ULC8}
+ G_L(W)\longrightarrow L\longrightarrow L_J,
+ \qquad (w,\lambda)\longmapsto\lambda\longmapsto[\lambda]_J
+\end{equation}
+at a support prime. It is surjective on stalks. The precise fibre
+relation at $J$ is existence of $\nu\notin J$ with
+$\lambda\wedge\nu=\mu\wedge\nu$; amplitudes impose no further
+condition. This comparison is linear over the corresponding sheaf
+map $r^{-1}G_L(\mathcal O_X)\to\mathcal O_Y$.
+One cannot make the unchanged $\mathcal P_k$ into an
+$\mathcal O_Y$-semimodule extending that coefficient action at a
+support point: $e$ is a unit there but kills each nonzero amplitude
+under the original action. The map ULC8 computes the required
+localization rather than assuming it away.
+
+\subsection{Retaining the support ideal and the exact amplitude reflection}
+Let $\mathcal D=j_*\mathcal O_S$. Its sections on $W_U$ are $L$
+and its sections on $V\subset S$ are $\mathcal O_S(V)$.
+There are actual semimodule maps
+\begin{equation}\tag{ULC9}
+ \mathcal D\xrightarrow{z}\mathcal M_k
+ \xrightarrow{\sigma}\mathcal D,\quad\sigma z=\mathrm{id},
+ \qquad q:\mathcal M_k\longrightarrow i_*\mathcal H_k.
+\end{equation}
+On $W_U$, $z(\lambda)=(0,\lambda)$, $\sigma(w,\lambda)=\lambda$,
+and $q(w,\lambda)=w$. On support opens the first two maps are the
+identity, and the last map has zero target. On $\mathcal D$ the
+scalar action is induced by $\mathcal O_Y\to\mathcal D$; on the
+amplitude target it is induced by $\mathcal O_Y\to i_*\mathcal O_X$.
+These formulas prove compatibility with both operations and every
+restriction. They give
+\begin{equation}\tag{ULC10}
+ e\mathcal M_k=z\mathcal D=q^{-1}(0),\qquad
+ \mathcal M_k/\!\sim_{z\mathcal D}\ \simeq i_*\mathcal H_k,
+\end{equation}
+where $x\sim_{z\mathcal D}y$ means locally
+$x+z(u)=y+z(v)$ for support sections $u,v$.
+Indeed multiplication by $e$ is precisely $z\sigma$. Two sections
+$(w,\lambda),(w',\mu)$ on $W_U$ with equal amplitude obey
+$(w,\lambda)+z(\mu)=(w',\mu)+z(\lambda)$. Conversely adding
+zero-amplitude sections cannot change the amplitude. On a support
+open the entire module is $z\mathcal D$. The map $q$ is onto
+on sections, using $(w,1_L)$ as a lift. This proves the quotient
+description, including its original congruence.
+
+The sheaf associated with additive group completion of $\mathcal M_k$
+is exactly $i_*\mathcal H_k$. Every additive map to a sheaf of
+abelian groups kills each idempotent zero label because $z+z=z$.
+It then identifies the two sections in the preceding displayed
+relation and factors uniquely through $q$. Conversely the target
+is already an abelian sheaf, and each $w$ is in the image. This
+proves the universal property locally and hence for sheaves.
+It does not identify $\mathcal M_k$ itself with its group completion.
+The retract $z\mathcal D$, all its localized labels, and the map
+ULC8 remain explicit parts of the original object.
+
+The image of $(q,\sigma)$ inside
+$i_*\mathcal H_k\times\mathcal D$ has on $W_U$ the exact constraint
+$w\ne0\Rightarrow\lambda=1_L$ and has the whole support factor
+on support opens. It is injective on every stalk by ULC5. Thus an
+unrestricted direct product is not the original carrier.
+
+\subsection{Cohomology for an arbitrary support spectrum}
+For any abelian sheaf $F$ on $Y$ there is a natural isomorphism
+\begin{equation}\tag{ULC11}
+ r_*F\simeq i^{-1}F.
+\end{equation}
+The map is induced by restriction from $W_U$ to neighbourhoods
+of $U$ along $i$. Its stalk at $x\in X$ is the identity on
+$F_x$: all neighbourhoods of $x$ in $Y$ are exactly the $W_U$
+for neighbourhoods $U$ in $X$. This proves the isomorphism and
+shows that $r_*$ is exact. It preserves injectives because its
+left adjoint $r^{-1}$ is exact. Since
+$\Gamma(Y,F)=\Gamma(X,r_*F)$, an injective resolution gives
+\begin{equation}\tag{ULC12}
+ R\Gamma(Y,F)\simeq R\Gamma(X,i^{-1}F).
+\end{equation}
+For $F=r^{-1}\mathcal H_k$, the right side is represented by the
+actual CDV complex
+\begin{equation}\tag{ULC13}
+ C_k=[W\xrightarrow{\delta_k}D_k],\quad
+ D_k=\bigoplus_p W/W_{p,k},\quad
+ \delta_kw=([w]_{p,k})_p.
+\end{equation}
+For $F=i_*\mathcal H_k$, the same conclusion follows either
+from ULC11--12 or from the exactness of closed-embedding direct
+image. Consequently the amplitude reflection in ULC10 has
+$H^1=D_k/\delta_kW$, including every mixed-prime summand of
+CDV13, and vanishes in degrees at least two. No finiteness of
+$L$ has been used.
+
+There is more information in the relative comparison for the
+\emph{inverse-image vector sheaf} $r^{-1}\mathcal H_k$.
+Its restriction to $S$ is the constant sheaf $c_SW$, because
+$r|_S$ factors through $\eta$. This is not the support restriction
+$\mathcal O_S$ of the original semimodule $\mathcal M_k$.
+For clarity define an explicit acyclic resolution of $c_SW$ as
+follows. For an abelian sheaf $E$ put
+$T(E)(V)=\prod_{x\in V}E_x$ with projection restrictions.
+This is a sheaf and is flasque; the germ map $E\to T(E)$ is
+injective. Set $E_0=c_SW$, $E_{n+1}=\operatorname{coker}(E_n\to T(E_n))$,
+and use the composites $T(E_n)\to E_{n+1}\to T(E_{n+1})$.
+The resulting sheaf sequence is exact by its kernel and cokernel
+definitions, and all its terms are flasque. Let $B^n=\Gamma(S,T(E_n))$
+with differential $d_B$. Then $B^\bullet$ computes
+$R\Gamma(S,c_SW)$. This construction retains every infinite
+product over the actual points of $S$.
+
+The constant section gives $c:W\to\ker(d_B:B^0\to B^1)$.
+The relative cohomology with support in the closed arithmetic
+stratum is computed by
+\begin{equation}\tag{ULC14}
+ W\xrightarrow{d^0}D_k\oplus B^0\xrightarrow{d^1}B^1
+ \xrightarrow{-d_B}B^2\xrightarrow{-d_B}\cdots,
+ \quad d^0w=(\delta_kw,cw),\quad d^1(d,b)=-d_Bb.
+\end{equation}
+Here degrees start at zero. To justify the relative comparison,
+take an injective resolution on $Y$. Its restrictions to the open
+$S$ are injective since extension by zero is an exact left adjoint.
+Each injective sheaf is flasque, so restriction of its global
+sections to $S$ is onto. The kernel complex therefore computes
+sections with support in $X$, and the short exact sequence of
+complexes yields the fibre of global restriction. Apply the
+CDV flasque resolution to $r^{-1}\mathcal H_k$: inverse image
+is exact, its constant first term is $c_YW$, and its closed-prime
+term has zero restriction to $S$. These terms are acyclic for
+global sections by ULC12, whose direct images are precisely the
+two CDV flasque terms. Restriction of this resolution to $S$
+has just $c_SW$ in degree zero. Its comparison with the displayed
+resolution $B^\bullet$ is the constant germ map in degree zero
+and zero in degree one. Thus the fibre complex, with the sign
+convention shown, is exactly ULC14. Its differential squares to
+zero since $d_Bc=0$.
+
+As $S$ is nonempty, $c$ is injective. Writing
+$\operatorname{LC}(S,W)=\Gamma(S,c_SW)$, calculation of the
+kernels and images in ULC14 gives
+\begin{equation}\tag{ULC15}
+ \begin{gathered}
+ H_X^0(Y,r^{-1}\mathcal H_k)=0,\\
+ H_X^1(Y,r^{-1}\mathcal H_k)
+ =\bigl(D_k\oplus\operatorname{LC}(S,W)\bigr)
+        /\{(\delta_kw,cw):w\in W\},\\
+ H_X^{j+1}(Y,r^{-1}\mathcal H_k)=H^j(S,c_SW)\quad(j\ge1).
+ \end{gathered}
+\end{equation}
+In particular there is an exact sequence
+\begin{equation}\tag{ULC16}
+ 0\longrightarrow D_k\xrightarrow{d\mapsto[(d,0)]}
+ H_X^1\longrightarrow\operatorname{LC}(S,W)/cW\longrightarrow0.
+\end{equation}
+Injectivity of the first map follows from injectivity of $c$.
+The last map sends $[(d,b)]$ to $[b]$; its kernel is the displayed
+image, since subtracting $(\delta_kw,cw)$ removes any constant
+$b$. Choosing a point $s_0\in S$ gives the explicit splitting
+$[(d,b)]\mapsto(d-\delta_k(b(s_0)),[b])$; its inverse uses the
+unique representative $b-b(s_0)$ of a locally constant class
+vanishing at $s_0$. The splitting is not asserted to be independent
+of that point. The natural map to ordinary $H^1(Y,r^{-1}\mathcal H_k)$
+sends $[(d,b)]$ to $[d]\in D_k/\delta_kW$.
+
+No identity replacing $H^j(S,c_SW)$ by
+$W\otimes H^j(S,\mathbb C)$ is used for an arbitrary infinite
+$S$. The full resolution above specifies its coefficient maps
+without commuting tensor products through infinite products.
+
+\subsection{Prime transport on all these objects}
+For every nonzero rational $r$, CDV5 and CDV7 induce the exact maps
+\begin{equation}\tag{ULC17}
+ \mathcal M_k\xrightarrow{\alpha_r}\mathcal M_{k+d(r)},\qquad
+ (w,\lambda)\mapsto(\alpha_rw,\lambda)\text{ on }W_U,
+ \quad\mathrm{id}\text{ on support opens}.
+\end{equation}
+They commute with restrictions, scalar multiplication, $z,\sigma,q$
+and ULC7. They have inverse $\alpha_{r^{-1}}$ and preserve every
+localization relation of $L$. On the arithmetic amplitude complexes
+they are precisely CDV14. On the constant-support vector resolution
+they apply $\alpha_r$ to each stalk coordinate; functoriality of
+the products and cokernels above defines every higher map. Thus
+ULC14--16 commute with prime transport, including their complete
+mixed-prime defects. The support action on the actual localized
+semimodule is the identity, while the auxiliary constant vector
+sheaf carries $\alpha_r$ there. ULC8 is their exact connecting map.
+
+For the original tensors $f_{k,a}$, CDV22--24 now give on this
+same arithmetic stratum
+\begin{equation}\tag{ULC18}
+ \begin{gathered}
+ f_{k,a}(0)=1,\qquad\int f_{k,a}=a/N(k),\\
+ Z(f_{k,a},s)=a^sN(k)^{-s}\pi^{-s/2}\Gamma(s/2)\zeta(s),
+ \qquad\Re s>1,\\
+ \alpha_rf_{k,a}=f_{k+d(r),|r|a},\qquad
+ N(k+d(r))=|r|N(k).
+ \end{gathered}
+\end{equation}
+Both endpoint moments and all Mellin factors are retained. At the
+support stalk ULC8 sends this top-labelled coefficient to $1\in L_J$,
+independently of its amplitude. That local statement follows from
+the localization already proved; it is not a Mellin inversion
+theorem reconstructing $L$ from a scalar function. The earlier
+fixed-prime quotient defect remains CDV17--18 with its full norm;
+ULC17 supplies its invertible family target over the actual base.
+
+For a three-element chain $0<a<1$, the prime $J=\{0\}$ inverts
+$a$, so the zero labels $a$ and $1$ become equal in $L_J$, whereas
+the other prime $\{0,a\}$ leaves all three labels distinct.
+For every $w\ne0$, the pullback stalk retains $(w,1)$, while the
+localized stalk at either prime has its image $1$. Globally ULC4
+still distinguishes $(w,1)$, $(0,1)=e$ and $(0,0)=\tau$.
+This explicit example records the localization, its fibres and its
+arithmetic comparison without reducing the entire support spectrum
+to a single point or a Boolean coordinate.

@@ -1,0 +1,41 @@
+from pathlib import Path
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+R=Path(__file__).resolve().parent
+figdir=R/'figures';figdir.mkdir(exist_ok=True)
+plt.rcParams.update({'font.size':11,'font.family':'DejaVu Sans','mathtext.fontset':'dejavusans'})
+fig=plt.figure(figsize=(12,8),facecolor='white')
+fig.text(.06,.95,'The Hurwitz boundary changes the complete zero trace',fontsize=17,weight='bold')
+fig.text(.06,.905,r'Original coordinate: $s=\frac{1}{2}+\frac{iz}{2}$; original completion: $H_t^{\rm Hur}=A(s)\zeta(s,1+t)/8$.',fontsize=11)
+ax=fig.add_axes([.06,.44,.43,.38]);ax.axis('off')
+ax.text(0,.95,'Retain every zero and every completion pole',weight='bold',fontsize=12)
+ax.text(0,.77,r'$Q(z)=\prod_{m\geq1}(1+z^2/(4m+1)^2)$',fontsize=13)
+ax.text(0,.59,r'$\mathscr{F}_t=Q\,H_t^{\rm Hur}(z)H_t^{\rm Hur}(-z)$',fontsize=13)
+ax.text(0,.42,'Entire, even, real; the original mass is retained.',fontsize=9.5)
+ax.text(0,.25,r'$\mathcal{Z}_t=\operatorname{div}\mathscr{F}_t-\operatorname{div}Q+\mathcal{P}_t$',fontsize=12)
+ax.text(0,.07,'Positive zero multiplicities, including all moved trivial zeros.\nThe last term restores actual poles before counting zeros.',fontsize=9)
+bx=fig.add_axes([.57,.43,.37,.36])
+bx.set_xlim(-.0011,.0011);bx.set_ylim(-.07,.04)
+bx.axhline(0,color='#a5adb8',lw=.8)
+for left,right in [(-.001,-.000004),(.000004,.001)]:
+    bx.fill_between([left,right],-.07,-.04,color='#f7cccc')
+    bx.plot([left,right],[-.04,-.04],color='#a12835',lw=1.8)
+bx.scatter([0],[-.04],s=42,facecolors='white',edgecolors='#a12835',zorder=5)
+bx.scatter([0],[.02310499311541897],s=55,color='#165d9b',zorder=6)
+bx.annotate(r'$T_1(0)=0.0231049931\ldots$',(0,.0231049931),xytext=(-.00102,.032),fontsize=9,
+            arrowprops={'arrowstyle':'->','color':'#165d9b'})
+bx.text(-.00092,-.058,r'$T_1(t)<-1/25$ for $0<|t|\leq10^{-3}$',fontsize=9,color='#8f2530')
+bx.set_xticks([-.001,0,.001]);bx.set_xticklabels([r'$-10^{-3}$','0',r'$10^{-3}$'])
+bx.set_yticks([-.04,0]);bx.set_yticklabels([r'$-1/25$','0'])
+bx.set_xlabel('Hurwitz shift $t$');bx.set_ylabel(r'Complete zero test $z^{-1}$')
+bx.set_title('Certified bound, not an interpolated curve',fontsize=11,loc='left',pad=15)
+fig.text(.06,.315,'Why the value jumps',fontsize=12,weight='bold')
+fig.text(.06,.265,r'At $t=0$, the trivial zero at $s=-2m$ cancels its completion pole.',fontsize=11)
+fig.text(.06,.22,r'For small nonzero $t$: $z_m(t)=i(4m+1)+8i\,\frac{\zeta(2m)}{\zeta(2m+1)}t+O_m(t^2)$.',fontsize=12)
+fig.text(.06,.165,r'Exact return to the arithmetic trace: $2K_d(0)=K_d^{\rm Hur}(t)+E_d(t)-P_d(t)$,  $P_d(t)\preceq0$.',fontsize=12)
+fig.text(.06,.10,'The full boundary term E is retained. The shifted negative test alone does not determine the original residual sign.',fontsize=10)
+fig.text(.06,.035,'Proofs: HPR2–11, HPR16–21; HTB26–35. Original shifted flow: supplied Split-Zero Hurwitz notes.\nOriginal theta coordinate: Rodgers–Tao, arXiv:1801.05914v5. Interval certificate: Python-flint/Arb, all t in the stated interval.',fontsize=8,color='#475160')
+for ext in ['png','pdf','svg']:fig.savefig(figdir/('HURWITZ_BOUNDARY_RECEIVER.'+ext),dpi=180)
+plt.close(fig)
+

@@ -1,0 +1,319 @@
+% Root derivation; prefix OBJ; preserve all original coordinates and labels.
+\section{One-sided distributions, every odd boundary jet, and the actual Weil endpoints}
+\label{sec:one-sided-boundary-jets}
+
+\paragraph{Sources and application.}
+Alain Connes and Walter D. van Suijlekom's
+\href{https://arxiv.org/abs/2511.23257v1}{\emph{Quadratic Forms, Real Zeros
+and Echoes of the Spectral Action}}, original author TeX,
+\texttt{symet}, \texttt{qua0}, and Remark \texttt{nuance}
+(lines 993--1032 and 1121--1122), distinguish a distribution on
+$[0,L]$ from its symmetrization on smooth functions on $[-L,L]$.
+In particular, they explicitly observe that $\delta'_0$ gives a nonzero
+quadratic form although its symmetrization is zero. That observation
+is theirs. The calculation below determines every odd derivative,
+its full boundary-jet space, its completion, and its exact transport
+to the programme's original Mellin endpoints. No ordinary smooth
+symmetrization is substituted for their one-sided construction.
+
+The arithmetic inputs are the complete boundary filter and its inverse
+(BPZ7--11, proved in the accompanying source), and the original
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/569ffbdc3308aeee9db7dc72cfa6d21918736967/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION.md}{HWA28--38
+endpoint and Weil calculation}. The full lattice is the one in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{the
+programme foundation, Definition \texttt{lattice-split}}.
+
+\subsection{The full one-sided boundary calculation}
+
+Retain $L>0$ and $f,g\in C^\infty([0,L],\mathbb C)$. Extend them by zero
+outside this interval for convolution only. For $0\le y\le L$ set
+\begin{equation}\tag{OBJ1}
+ C_{f,g}(y)=\int_0^{L-y}
+ \bigl(\overline{f(x)}g(x+y)+\overline{f(x+y)}g(x)\bigr)\,dx,
+ \qquad Q_{\mathcal D}(f,g)=\mathcal D(C_{f,g}).
+\end{equation}
+This is precisely $(f^**g)(y)+(f^**g)(-y)$ for the source involution
+$f^*(x)=\overline{f(-x)}$. Substitution $x\mapsto x+y$ in the first
+convolution proves the identity; both integrals are over their actual
+overlap interval. The function $C_{f,g}$ is smooth from the right at zero.
+For the one-sided distribution use the unaltered convention
+$\delta_0^{(n)}(h)=(-1)^n h^{(n)}(0+)$. In particular,
+\begin{equation}\tag{OBJ2}
+ Q_{\delta_0}(f,g)=2\int_0^L\overline f g,\qquad
+ Q_{\delta'_0}(f,g)=\overline{f(0)}g(0)+\overline{f(L)}g(L).
+\end{equation}
+The factor two in the first formula and the two distinct endpoint
+values in the second are retained.
+
+Here is the all-order formula, with no periodic endpoint identification:
+\begin{equation}\tag{OBJ3}
+ Q_{\delta_0^{(2r+1)}}(f,g)
+ =\sum_{x\in\{0,L\}}\sum_{j=0}^{2r}(-1)^j
+       \overline{f^{(2r-j)}(x)}g^{(j)}(x),\qquad r\ge0.
+\end{equation}
+To prove it, let
+$A_{f,g}(y)=\int_y^L\overline{f(x-y)}g(x)\,dx$. Differentiation at the
+moving lower endpoint gives
+$A'_{f,g}(y)=-\overline{f(0)}g(y)-A_{f',g}(y)$. Induction yields
+\[
+ A_{f,g}^{(n)}(0+)=(-1)^n\int_0^L\overline{f^{(n)}}g
+ +\sum_{j=0}^{n-1}(-1)^{j+1}\overline{f^{(j)}(0)}g^{(n-1-j)}(0).
+\]
+The other half of $C_{f,g}$ is $\overline{A_{g,f}}$. For odd
+$n=2r+1$, repeated integration by parts gives
+\[
+ \int_0^L(\overline{f^{(n)}}g+\overline f g^{(n)})
+ =\left[\sum_{j=0}^{n-1}(-1)^j
+       \overline{f^{(n-1-j)}}g^{(j)}\right]_0^L.
+\]
+The two lower-endpoint sums from $A$ and its conjugate each contribute
+minus the bracket at zero. Consequently $C_{f,g}^{(n)}(0+)$ is minus
+the sum of the brackets at zero and $L$. Multiplication by $(-1)^n=-1$
+proves (OBJ3), including (OBJ2). This also proves directly that each
+form in (OBJ3) is Hermitian: replacing $j$ by $2r-j$ conjugates the
+formula without changing its sign.
+
+On genuinely smooth functions $h$ defined across zero,
+$(h(y)+h(-y))^{(2r+1)}|_{y=0}=0$. Thus all of these odd distributions
+are erased by ordinary smooth symmetrization. Formula (OBJ3)
+identifies exactly the boundary data that survives their action on
+the source's piecewise smooth correlations.
+
+\subsection{The exact jet space, signature, and completion}
+
+Put $m=2r+1$ and write the complete trace map
+\begin{equation}\tag{OBJ4}
+ J_r:C^\infty([0,L])\longrightarrow\mathbb C^m\oplus\mathbb C^m,
+ \qquad J_rf=((f^{(j)}(0))_{j=0}^{2r},(f^{(j)}(L))_{j=0}^{2r}).
+\end{equation}
+Let $A_r$ have entries $(A_r)_{ij}=(-1)^j$ when $i+j=2r$, and zero
+otherwise, for indices $0\le i,j\le2r$. It is a real symmetric
+involution. Formula (OBJ3) becomes the exact pullback
+\begin{equation}\tag{OBJ5}
+ Q_{\delta_0^{(2r+1)}}(f,g)
+       =(J_rf)^*\operatorname{diag}(A_r,A_r)J_rg.
+\end{equation}
+The map $J_r$ is onto. Indeed, on polynomials of degree at most
+$2m-1$, zero jets at both endpoints mean divisibility by
+$x^m(x-L)^m$, a polynomial of degree $2m$. The polynomial must be
+zero. Domain and codomain both have dimension $2m$, so this restricted
+map is bijective. This supplies a unique polynomial right inverse
+with all original derivative values, without rescaling its coordinates.
+
+The paired coordinates $j,2r-j$ for $j<r$ contribute one positive
+and one negative eigenvalue each. The middle coordinate has eigenvalue
+$(-1)^r$. The boundary form on the quotient by $\ker J_r$ therefore
+has the exact inertia
+\begin{equation}\tag{OBJ6}
+ \begin{cases}(2r+2,2r,0),&r\text{ even},\\
+               (2r,2r+2,0),&r\text{ odd}.
+ \end{cases}
+\end{equation}
+Its algebraic radical on $C^\infty([0,L])$ is exactly $\ker J_r$:
+surjectivity of $J_r$ and invertibility of both $A_r$ show that a
+vector pairing to zero with every test has zero jet. Thus the higher
+odd derivatives provide nontrivial indefinite forms, even though
+the first odd derivative is positive.
+
+They also specify a concrete boundary completion. Retain the norm
+\begin{equation}\tag{OBJ7}
+ \|f\|_{\mathrm{jet},r}^2=\|f\|_{L^2(0,L)}^2+\|J_rf\|_{\mathbb C^{2m}}^2.
+\end{equation}
+The completion of this exact norm is
+\begin{equation}\tag{OBJ8}
+ \mathcal H_{\mathrm{jet},r}
+       =L^2(0,L)\oplus\mathbb C^{2m},
+ \qquad f\longmapsto(f,J_rf),
+\end{equation}
+with the displayed product norm. For a proof of density, choose a
+one-sided smooth cutoff $\chi\in C^\infty([0,\infty))$ supported
+in $[0,1)$ that equals one near zero.
+For prescribed endpoint jets $(a_j)$, the functions
+$\chi(x/\varepsilon)\sum_{j<m}a_jx^j/j!$ have exactly those left
+jets and have $L^2$ norm tending to zero. At the right endpoint use
+$\chi((L-x)/\varepsilon)\sum_{j<m}b_j(x-L)^j/j!$. Their supports
+are disjoint when $2\varepsilon<L$, and all opposite jets vanish.
+Approximate an arbitrary $L^2$ function by interior compact smooth
+functions, add these two functions, and let $\varepsilon$ tend to zero.
+This approximates any $(h,a,b)$ in the product norm, proving (OBJ8).
+The map forgetting the finite boundary vector is a continuous
+surjection, with kernel exactly $0\oplus\mathbb C^{2m}$. Equation
+(OBJ5) extends to this completion as the bounded finite boundary form
+with the same matrix; none of its boundary coordinates is discarded.
+
+Already $Q_{\delta'_0}$ is not closable as a quadratic form on the
+original $L^2(0,L)$ with smooth domain. In fact
+$f_\varepsilon(x)=\chi(x/\varepsilon)$ tends to zero in $L^2$,
+$Q_{\delta'_0}(f_\varepsilon-f_\eta)=0$, but
+$Q_{\delta'_0}(f_\varepsilon)=1$. These are the exact three conditions
+contradicting closability. Adding a fixed multiple of the $L^2$ inner
+product leaves this countersequence unchanged in the limit.
+This is an obstruction for this specific boundary form; it makes no
+claim about the closability of a different full arithmetic form.
+
+In the source's original trigonometric basis
+$U_n(x)=L^{-1/2}e^{2\pi inx/L}$, the $r=0$ matrix is
+\begin{equation}\tag{OBJ9}
+ (Q_{\delta'_0}(U_i,U_j))_{i,j\in\mathbb Z}
+             =(2/L)_{i,j\in\mathbb Z}.
+\end{equation}
+For $u_N(x)=\frac1{2N+1}\sum_{n=-N}^N e^{2\pi inx/L}$,
+$u_N(0)=u_N(L)=1$ and $\|u_N\|_2^2=L/(2N+1)$.
+Hence the same nonclosability occurs on precisely that core:
+$Q(u_N)=2$ and $Q(u_N-u_M)=0$. Its finite matrices have one positive
+eigenvalue $2(2N+1)/L$ and $2N$ zero eigenvalues. The boundary form
+alone does not have the simple isolated bottom eigenvector required
+by Connes--van Suijlekom's real-zero theorem. Equations (OBJ5)--(OBJ8)
+construct the space retained by this obstruction.
+
+\subsection{Transport to the original Mellin endpoints, at every odd order}
+
+Return to the unchanged real coordinate $v$. Fix any $a<b$,
+$L=b-a$, and $f\in C_c^\infty((a,b),\mathbb C)$. Write
+\begin{equation}\tag{OBJ10}
+ M_f(s)=\int_{\mathbb R} f(v)e^{-(s-1/2)v}\,dv,
+ \quad A=M_f(0),\quad B=M_f(1),\quad
+ u(v)=-\int_{\mathbb R}e^{-|v-w|/2}f(w)\,dw.
+\end{equation}
+The operator $T=\partial_v^2-1/4$ satisfies $Tu=f$:
+the kernel $-e^{-|v|/2}$ is continuous and its first derivative has
+jump one at zero, so its distributional image under $T$ is $\delta_0$.
+Smoothness follows by transferring derivatives to $f$.
+For $v$ to the left or right of its support, respectively, the exact
+exterior formula is
+\begin{equation}\tag{OBJ11}
+ u(v)=-e^{v/2}B\quad(v\le a),\qquad
+ u(v)=-e^{-v/2}A\quad(v\ge b).
+\end{equation}
+Because the support lies strictly inside $(a,b)$ these identities
+hold in neighborhoods of the endpoints. Thus for every $j\ge0$
+\begin{equation}\tag{OBJ12}
+ u^{(j)}(a)=-2^{-j}e^{a/2}B,\qquad
+ u^{(j)}(b)=-(-2)^{-j}e^{-b/2}A.
+\end{equation}
+Here $(-2)^{-j}=(-1/2)^j$; neither the original Mellin factors nor
+the length $L$ has been changed.
+
+Use the explicit translation $u_a(x)=u(a+x)$ on $[0,L]$ only to
+apply (OBJ1); it is a named linear map, not a change to the original
+arithmetic test $f$. The endpoint comparison is the invertible
+matrix
+\begin{equation}\tag{OBJ13}
+ \begin{pmatrix}u(a)\\u(b)\end{pmatrix}
+  =B_{a,b}\begin{pmatrix}A\\B\end{pmatrix},\qquad
+ B_{a,b}=\begin{pmatrix}0&-e^{a/2}\\-e^{-b/2}&0\end{pmatrix},
+ \quad \det B_{a,b}=-e^{(a-b)/2}\ne0.
+\end{equation}
+Equations (OBJ3) and (OBJ12) calculate the whole odd-jet family:
+\begin{equation}\tag{OBJ14}
+ \boxed{\quad Q_{\delta_0^{(2r+1)}}(u_a,u_a)
+ =4^{-r}\bigl(e^a|M_f(1)|^2+e^{-b}|M_f(0)|^2\bigr)
+ \quad(r\ge0).\quad}
+\end{equation}
+For each endpoint, the product of derivatives of total order $2r$
+is $4^{-r}$ times the squared endpoint value; at the right endpoint
+the two derivative signs multiply to $(-1)^{2r}=1$. The remaining
+sum is $\sum_{j=0}^{2r}(-1)^j=1$. This proves the formula at every
+order, rather than inferring the higher orders from the first one.
+The polarized version follows by retaining $\overline{M_f}M_g$.
+
+Consequently all odd one-sided jets on these actual Green images
+factor through the same two-dimensional endpoint space. Their common
+kernel is precisely
+\begin{equation}\tag{OBJ15}
+ \{f\in C_c^\infty((a,b)):M_f(0)=M_f(1)=0\}
+ =T C_c^\infty((a,b)).
+\end{equation}
+The inclusion from right to left is integration by parts:
+$M_{Tg}(s)=s(s-1)M_g(s)$. Conversely (OBJ11) shows that $u$ is
+compactly supported inside $(a,b)$ when both endpoints vanish, and
+$Tu=f$. A compactly supported solution of $Th=0$ is zero because
+the only solutions are linear combinations of $e^{v/2}$ and
+$e^{-v/2}$. This proves uniqueness and the equality in (OBJ15).
+
+For completeness the endpoint map is onto on this fixed interval.
+Choose $\beta\in C_c^\infty((a,b))$ nonnegative and positive on an
+interval, set $h_0(v)=e^{v/2}$, $h_1(v)=e^{-v/2}$, and retain
+$C_{ij}=\int\beta h_i h_j$. Its real quadratic form is strictly
+positive because $h_0,h_1$ are linearly independent on every interval.
+The explicit right inverse is
+$R(w)=\beta\sum_j(C^{-1}w)_j h_j$. Direct integration gives
+$(M_{R(w)}(0),M_{R(w)}(1))=w$. Hence the complete exact sequence is
+\begin{equation}\tag{OBJ16}
+ 0\longrightarrow C_c^\infty((a,b))\xrightarrow{T}
+ C_c^\infty((a,b))\xrightarrow{(M(0),M(1))}\mathbb C^2
+ \longrightarrow0.
+\end{equation}
+
+The source's positive boundary form must not be substituted for the
+programme's endpoint form. In the original $A,B$ coordinates HWA gives
+$P_e(f,f)=2\operatorname{Re}(\overline A B)$ and
+$K_e(f,f)=\frac12(|A|^2+|B|^2)-\frac53\operatorname{Re}(\overline A B)$.
+Their exact images under (OBJ13), writing $y_0=u(a),y_L=u(b)$, are
+\begin{align}
+ P_e(f,f)&=2e^{(b-a)/2}\operatorname{Re}(\overline{y_L}y_0),\tag{OBJ17}\\
+ K_e(f,f)&=\tfrac12(e^b|y_L|^2+e^{-a}|y_0|^2)
+ -\tfrac53e^{(b-a)/2}\operatorname{Re}(\overline{y_L}y_0).\tag{OBJ18}
+\end{align}
+These are exact congruences by $B_{a,b}^{-1}$; they keep every original
+coefficient and sign. They prove the relation between the constructions
+even though their individual Hermitian forms differ.
+
+The complete Weil trace from BPZ2 is
+$\mathcal Z(f,g)=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho)$.
+The accompanying BPZ proof shows that every actual off-line zero
+produces a compact test in $\ker(M(0),M(1))$ with
+$\mathcal Z(f,f)<0$. Choose $a,b$ containing that test's support;
+then (OBJ14)--(OBJ18) vanish for that same test, for every $r$.
+Thus increasing the order of these boundary jets never by itself
+removes the complete primitive zero detector. The retained arithmetic
+value is still $\mathcal Z(f,f)$, including the prime and archimedean
+terms in HWA33--34. This is a proved common-kernel statement with an
+exact return map, not an assertion that boundary geometry is unrelated
+to the arithmetic trace.
+
+\subsection{The arbitrary lattice and its injective comparison}
+
+For every vector space $V$ in (OBJ4), (OBJ8), (OBJ10), or (OBJ16), keep
+\begin{equation}\tag{OBJ19}
+ G_\Lambda(V)=\{(0,\lambda):\lambda\in\Lambda\}
+       \cup(V\times\{1_\Lambda\}),\quad
+ (v,\lambda)+(w,\mu)=(v+w,\lambda\vee\mu),\quad
+ (c,\nu)(v,\lambda)=(cv,\nu\wedge\lambda).
+\end{equation}
+Here $\Lambda$ is the full original bounded distributive lattice;
+the change of its letter distinguishes it from the interval length
+$L$ and changes none of its elements or operations. Each displayed
+linear map $F$ has the exact lift $F^\uparrow(v,\lambda)=(Fv,\lambda)$.
+Direct substitution in (OBJ19) proves additivity and scalar linearity.
+The lifted composition is the lift of the composite, so all the
+displayed diagrams, right inverses, and inverse maps still commute.
+On nonzero kernel vectors at top support the image is
+$e=(0,1_\Lambda)$; every lower labelled zero retains its own label.
+In particular such a kernel vector is not mapped to
+$\tau=(0,0_\Lambda)$.
+
+Each Hermitian form $Q$ lifts as
+$Q^\uparrow((v,\lambda),(w,\mu))=(Q(v,w),\lambda\wedge\mu)$.
+It is well-defined since a nonzero amplitude requires both input
+amplitudes, and hence both labels, to be top. Sesquilinearity follows
+from distributivity of meet over join. It follows in particular that
+(OBJ14) is an equality of the retained supported values with the
+original common input label. Independent labels are not assigned to
+the two components of $J_rf$ or to the two Mellin endpoints.
+
+Finally retain the programme's idempotent semifield $K$ and its
+Boolean base $\mathbb B$. The comparison is
+\begin{equation}\tag{OBJ20}
+ \Phi_V(v,\lambda)=(v,1_K\otimes\lambda)
+ \in V\times(K\otimes_{\mathbb B}\Lambda),\qquad
+ (F\times I)\Phi_V=\Phi_WF^\uparrow.
+\end{equation}
+The map $\chi:K\to\mathbb B$ sends zero to zero and every nonzero
+element to one. Idempotent addition cannot sum a nonzero element to
+zero, and a semifield has no zero divisors; therefore $\chi$ preserves
+addition and multiplication. Consequently $\chi\otimes I$ retracts
+$\lambda\mapsto1_K\otimes\lambda$, proving injectivity of (OBJ20).
+All boundary vectors, all common kernels and every lower support
+label calculated above survive this comparison. No localization at
+$e$ and no Boolean specialization of the lattice has occurred.

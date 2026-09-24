@@ -1,0 +1,480 @@
+% Independent exact derivation. Prefix HSQ. Requires amsmath,amssymb,hyperref.
+\section{Every actual off-real heat quartet and its full supported jet receiver}
+\label{sec:full-support-heat-quartet}
+
+\paragraph{Sources and scope.}
+The unchanged kernel and heat coordinate are Brad Rodgers and Terence
+Tao's \href{https://arxiv.org/abs/1801.05914v5}{\emph{The De
+Bruijn--Newman constant is non-negative}}, original author source
+\nolinkurl{fmp-template.tex}, equations \texttt{hoz}, \texttt{sas},
+\texttt{phidef}, and \texttt{htdef}, lines 78--103. Source lines
+74--110 were read for this calculation. The original source's
+SHA--256 is
+\begin{center}\small
+\nolinkurl{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\end{center}
+The complete included theta heat proof THS1--31 and the complete
+supported divisor proof HZD1--18 were read.
+Their integral bounds, actual divisor, and full coefficient map are
+retained below with their exact constants. The split-support carrier
+is the existing construction of The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}{\emph{Split
+Support Geometry}, v11, Definition \texttt{def:lattice-split}}.
+All finite-jet quotient, symmetry, support, and exclusion statements
+made here are proved below. The construction is indexed by actual
+zeros of the given function; it does not assume that the indexing
+set is nonempty.
+
+\subsection{The original moments and the exclusion inequality}
+
+For $u\ge0$ and real $t$ retain exactly
+\begin{equation}\tag{HSQ1}
+ \begin{gathered}
+ \Phi(u)=\sum_{n\ge1}
+       (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du.
+ \end{gathered}
+\end{equation}
+Every summand of the kernel is positive: its prefactor is
+$\pi n^2e^{5u}(2\pi n^2e^{4u}-3)>0$. THS3--6 prove convergence,
+all differentiations used below, and the explicit estimates
+\begin{equation}\tag{HSQ2}
+ \begin{gathered}
+ 0<\pi(2\pi-3)e^{9u-\pi e^{4u}}
+       \le\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}},\\
+ a=e^{-3\pi},\qquad
+ C_\Phi=2\pi^2\frac{1+11a+11a^2+a^3}{(1-a)^5},\\
+ \mathcal M_p(A,B)=\frac{C_\Phi}{2\pi}
+  \exp\left(\frac{3A^2}{32\pi}
+      +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right),\qquad A,B\ge0.
+ \end{gathered}
+\end{equation}
+In particular the integral of $u^pe^{Au^2+Bu}\Phi(u)$ is at
+most $\mathcal M_p(A,B)$. For a direct convergence check of this
+bound, use $u^p\le e^{pu}$, reserve half of
+$-\pi e^{4u}$, and apply $e^{4u}\ge(32/3)u^4$ and
+$e^{4u}\ge8u^2$ to the other two quarters. Completing squares
+bounds the remaining positive exponent by
+$3A^2/(32\pi)+(B+9+p)^2/(8\pi)$. Finally
+$e^{4u}\ge1+4u$ bounds the integral of the reserved exponential
+by $e^{-\pi/2}/(2\pi)$. This recovers the exact constant in
+(HSQ2) and justifies every moment integral below.
+
+For every real $y$ and integer $r\ge0$, define the actual positive
+moments
+\begin{equation}\tag{HSQ3}
+ \begin{gathered}
+ M_{2r}(t,y)=\int_0^\infty u^{2r}e^{tu^2}\Phi(u)\cosh(yu)\,du
+              =\partial_t^rH_t(iy),\\
+ c_t=\pi(2\pi-3)\exp\bigl(\min(t,0)-\pi e^4\bigr),\qquad
+ \frac{c_t}{2r+1}\le M_{2r}(t,y)
+        \le\mathcal M_{2r}(\max(t,0),|y|).
+ \end{gathered}
+\end{equation}
+The upper bound uses $\cosh(yu)\le e^{|y|u}$ and (HSQ2).
+For the lower bound restrict to $0\le u\le1$, use
+$\cosh(yu)\ge1$, $e^{tu^2}\ge e^{\min(t,0)}$, and the lower
+kernel bound in (HSQ2), then integrate $u^{2r}$. Thus
+$H_t(iy)=M_0(t,y)>0$ and $\partial_tH_t(iy)=M_2(t,y)>0$
+for all the stated real coordinates.
+In terms of the original coefficients $h_j(t)$ of THS8 the same
+moments are exactly
+\begin{equation}\tag{HSQ4}
+ M_{2r}(t,y)=\sum_{j=0}^{\infty}
+   \frac{(-1)^{j+r}(2j+2r)!}{(2j)!}\,h_{j+r}(t)y^{2j}.
+\end{equation}
+Indeed expand $\cosh(yu)$ in its power series and substitute the
+moment definition of $h_{j+r}$. Absolute convergence is bounded
+by (HSQ3); all its moment summands are nonnegative for real $t$.
+This proves the formula with every original factorial and sign.
+
+For every real $x,y,t$, the full real and imaginary parts are
+\begin{equation}\tag{HSQ5}
+ \begin{split}
+ \operatorname{Re}H_t(x+iy)
+   &=\int_0^\infty e^{tu^2}\Phi(u)\cos(xu)\cosh(yu)\,du,\\
+ \operatorname{Im}H_t(x+iy)
+   &=-\int_0^\infty e^{tu^2}\Phi(u)\sin(xu)\sinh(yu)\,du.
+ \end{split}
+\end{equation}
+The elementary inequality $\cos v\ge1-v^2/2$ is strict for
+$v\ne0$. To verify strictness, the even function
+$\cos v-1+v^2/2$ vanishes at zero and has derivative
+$v-\sin v>0$ for $v>0$: the latter is the integral of
+$1-\cos s$, positive on any such interval. Integrating the
+inequality against the positive weight in (HSQ5) gives
+\begin{equation}\tag{HSQ6}
+ \operatorname{Re}H_t(x+iy)
+   \ge H_t(iy)-\frac{x^2}{2}\partial_tH_t(iy).
+\end{equation}
+For $x\ne0$ this is a strict inequality, because its exact
+remainder is the integral of the strictly positive function
+$e^{tu^2}\Phi(u)\cosh(yu)
+ [\cos(xu)-1+x^2u^2/2]$ on $u>0$. Its integrability follows
+from (HSQ3) for $r=0,1$.
+Consequently every zero of $H_t$ at $x+iy$ satisfies
+\begin{equation}\tag{HSQ7}
+ x\ne0,\qquad
+ x^2\partial_tH_t(iy)>2H_t(iy)>0,
+ \qquad
+ x^2>\frac{2M_0(t,y)}{M_2(t,y)}
+       \ge\frac{2c_t}{\mathcal M_2(\max(t,0),|y|)}.
+\end{equation}
+In particular the requested non-strict necessary bound follows,
+and the closed region $x^2\le2M_0(t,y)/M_2(t,y)$ is actually
+zero free. A completely explicit uniform version is obtained for
+$t_-\le t\le t_+$ and $|y|\le Y$ by replacing its last ratio
+by $2c_{t_-}/\mathcal M_2(\max(t_+,0),Y)$. No zero location,
+time, or kernel has been changed in deriving these bounds.
+
+\subsection{The four distinct original points and their common multiplicity}
+
+Let $Z_t^{\mathrm{off}}=\{z\in\mathbb C\setminus\mathbb R:
+H_t(z)=0\}$ be the actual zero set at a fixed real $t$.
+For each $z_0=x+iy\in Z_t^{\mathrm{off}}$, both $x$ and $y$
+are nonzero: $y\ne0$ by its definition, and $x\ne0$ by
+(HSQ3). Retain the ordered four points
+\begin{equation}\tag{HSQ8}
+ w_1=z_0=x+iy,\quad w_2=-z_0=-x-iy,\quad
+ w_3=\overline{z_0}=x-iy,\quad
+ w_4=-\overline{z_0}=-x+iy.
+\end{equation}
+They are distinct. For example an equality with its negative
+would force $x=y=0$, an equality with its conjugate would force
+$y=0$, and an equality with its negative conjugate would force
+$x=0$; these cover the pairwise possibilities after symmetry.
+They are the four corners of the actual rectangle with horizontal
+coordinates $\pm x$ and vertical coordinates $\pm y$.
+
+The source integral gives $H_t(-z)=H_t(z)$ and
+$H_t(\bar z)=\overline{H_t(z)}$. Its derivatives obey
+\begin{equation}\tag{HSQ9}
+ H_t^{(k)}(-z)=(-1)^kH_t^{(k)}(z),\qquad
+ H_t^{(k)}(\bar z)=\overline{H_t^{(k)}(z)}.
+\end{equation}
+The first follows by differentiating the even identity, the second
+by conjugating its local power series. Since $H_t(0)>0$, this
+entire function is not identically zero. Its first nonzero Taylor
+coefficient at any root therefore has a finite positive index.
+Equations (HSQ9) prove that the exact multiplicity is one and the
+same integer $m\ge1$ at all four points. In particular the four
+leading coefficients remain
+$H_t^{(m)}(w_i)/m!$ with the signs and conjugations in (HSQ9).
+None is replaced by one.
+
+\subsection{The exact polynomial and the entire residual factor}
+
+Define the monic polynomial with these actual coordinates
+\begin{equation}\tag{HSQ10}
+ \begin{split}
+ p_Q(z)&=\prod_{i=1}^4(z-w_i)^m\\
+ &=\left[(z^2-z_0^2)(z^2-\bar z_0^{\,2})\right]^m\\
+ &=\left[z^4-2(x^2-y^2)z^2+(x^2+y^2)^2\right]^m,
+ \qquad P_i(z)=\prod_{j\ne i}(z-w_j)^m.
+ \end{split}
+\end{equation}
+All three forms follow by multiplying the specified factors; the
+first form retains the four separately indexed points. Division
+gives an actual entire residual factor
+\begin{equation}\tag{HSQ11}
+ H_t(z)=p_Q(z)U_Q(z),\qquad
+ U_Q(w_i)=\frac{H_t^{(m)}(w_i)}{m!P_i(w_i)}\ne0.
+\end{equation}
+Away from the four points take the ordinary quotient. At each
+point its Taylor factor $(z-w_i)^m$ cancels and the other factors
+are units, extending it holomorphically. This proves (HSQ11)
+globally. In the original coordinates its denominators are
+\begin{equation}\tag{HSQ12}
+ (P_1(w_1),P_2(w_2),P_3(w_3),P_4(w_4))
+ =\bigl((8ixyz_0)^m,(-8ixyz_0)^m,
+        (-8ixy\bar z_0)^m,(8ixy\bar z_0)^m\bigr).
+\end{equation}
+They follow by multiplying the three original differences at
+each point. All are nonzero by (HSQ8). The residual factor can
+have other zeros; no global inverse for it is asserted.
+
+\subsection{Explicit Hermite idempotents and the complete CRT map}
+
+Put $\Omega=\mathbb C\setminus\mathbb R$ and
+$A=\mathcal O(\Omega)$, keeping both components. For every $i$
+define, exactly in the original variable,
+\begin{equation}\tag{HSQ13}
+ Q_i(z)=\sum_{k=0}^{m-1}
+      \frac{(1/P_i)^{(k)}(w_i)}{k!}(z-w_i)^k,
+ \qquad E_i(z)=P_i(z)Q_i(z).
+\end{equation}
+The coefficient of $(z-w_i)^k$ can equivalently be written as
+\begin{equation}\tag{HSQ14}
+ \frac1{P_i(w_i)}
+ \sum_{\substack{\alpha_j\ge0\ (j\ne i)\\\sum_{j\ne i}\alpha_j=k}}
+ \prod_{j\ne i}
+   \frac{(-1)^{\alpha_j}\binom{m+\alpha_j-1}{\alpha_j}}
+        {(w_i-w_j)^{\alpha_j}}.
+\end{equation}
+Indeed expand each factor
+$(1+(z-w_i)/(w_i-w_j))^{-m}$ near $w_i$, using its convergent
+negative-integer binomial series, and multiply the three series.
+Only finitely many terms contribute to any displayed coefficient.
+This proves (HSQ14) with its original differences and signs.
+
+By Taylor multiplication, $E_i\equiv1\pmod{(z-w_i)^m}$;
+at every other $w_j$ its factor $P_i$ gives
+$E_i\equiv0\pmod{(z-w_j)^m}$. Each $E_i$ has degree less than
+$4m$. A polynomial vanishing to order at least $m$ at all four
+distinct points is divisible by their product $p_Q$: successive
+division by the individual factors preserves the remaining
+vanishing orders since their values at other points are nonzero.
+It follows that
+\begin{equation}\tag{HSQ15}
+ \sum_iE_i=1\quad\hbox{as polynomials},\qquad
+ E_iE_j\equiv\delta_{ij}E_i\pmod{p_Q}.
+\end{equation}
+For the first identity the difference has degree less than $4m$
+and is divisible by the degree-$4m$ monic polynomial. The second
+follows by checking all four jets and the same divisibility test.
+
+Retain four distinct formal coordinates and rings
+$D_i=\mathbb C[\epsilon_i]/(\epsilon_i^m)$ and $B_Q=\prod_iD_i$.
+The explicit ring map and its inverse on the quotient are
+\begin{equation}\tag{HSQ16}
+ \begin{gathered}
+ J_Q:A/(p_Q)\xrightarrow{\ \sim\ }B_Q,\qquad
+ [f]\longmapsto
+  \left(\sum_{k=0}^{m-1}\frac{f^{(k)}(w_i)}{k!}\epsilon_i^k\right)_{i=1}^4,\\
+ (b_i(\epsilon_i))_i\longmapsto
+        \left[\sum_{i=1}^4E_i(z)b_i(z-w_i)\right],\qquad
+ J_Q([z])=(w_i+\epsilon_i)_i.
+ \end{gathered}
+\end{equation}
+The product rule proves multiplicativity of each jet map with
+its stated factorials. The displayed inverse realizes any tuple
+by a polynomial, because of (HSQ15). The kernel on $A$ is exactly
+$(p_Q)$: a vanishing jet makes $f/p_Q$ extend holomorphically
+at its corresponding point, and away from the four points it is
+already holomorphic on both components of $\Omega$. Conversely
+a multiple of $p_Q$ has all four zero jets. This proves all maps
+and every claimed equality in (HSQ16).
+
+Now retain the original heat divisor ring $R_t=A/(H_t|_\Omega)$.
+Equation (HSQ11) proves $(H_t)\subseteq(p_Q)$, so its actual
+quartet receiver is the surjection
+\begin{equation}\tag{HSQ17}
+ \pi_Q:R_t\twoheadrightarrow B_Q,\qquad
+ [f]\longmapsto\left(\sum_{k=0}^{m-1}
+       \frac{f^{(k)}(w_i)}{k!}\epsilon_i^k\right)_i,
+ \qquad \ker\pi_Q=(p_Q)/(H_t).
+\end{equation}
+Surjectivity and the kernel follow from (HSQ16). The Hermite
+polynomial is a section of $A\to A/(p_Q)$ as a finite-dimensional
+complex vector space, with subsequent remainder understood in
+the quotient. It is not being asserted to define a multiplicative
+section $B_Q\to R_t$. The original $H_t$, the actual residual
+factor $U_Q$, and the exact kernel in (HSQ17) remain present.
+
+\subsection{The whole split-support receiver and the complete coefficient map}
+
+Let $L$ be the full nontrivial bounded distributive lattice and
+write $S_T=G_L(T)$ for any ring $T$. Retain
+\begin{equation}\tag{HSQ18}
+ \begin{gathered}
+ \mathscr D_{t,L}=G_L(R_t),\qquad
+ \mathscr Q_{t,z_0,L}=G_L(B_Q),\qquad
+ G_L(\pi_Q)([f],\lambda)=(\pi_Q[f],\lambda),\\
+ \mathscr D_{t,L}/\langle([p_Q],1_L)\sim(0,1_L)\rangle
+                \simeq\mathscr Q_{t,z_0,L}.
+ \end{gathered}
+\end{equation}
+The full operations are
+$(b,\lambda)+(c,\mu)=(b+c,\lambda\vee\mu)$ and
+$(b,\lambda)(c,\mu)=(bc,\lambda\wedge\mu)$, with nonzero
+amplitudes allowed only at top support. The map is a surjective
+semiring homomorphism by (HSQ17), with every label unchanged.
+Its kernel congruence is equality of labels and amplitude
+difference in $\ker\pi_Q$. At top support every difference
+is a multiple of $[p_Q]$, so multiplication of the displayed
+generating relation followed by addition generates that entire
+congruence. Below top support the amplitude is already zero.
+This proves the supported quotient, including its zero convention.
+
+Let $K$ be the retained tropical semifield with zero, let
+$K_L=K\otimes_{\mathbb B}L$, and keep
+$\iota_L(\lambda)=1_K\otimes\lambda$ with its exact retraction
+$\rho_L(\sum a_i\otimes\lambda_i)=\bigvee_{a_i\ne0}\lambda_i$.
+The complete maps are
+\begin{equation}\tag{HSQ19}
+ \Phi_T:S_T\hookrightarrow T\times K_L,
+ \qquad(b,\lambda)\longmapsto(b,\iota_L(\lambda)),\qquad
+ \Phi_{B_Q}G_L(\pi_Q)
+       =(\pi_Q\times\operatorname{id}_{K_L})\Phi_{R_t}.
+\end{equation}
+Both coordinates preserve the operations, and the retraction
+of $\iota_L$ proves injectivity. The equality is verified on
+each displayed pair. Thus the complete map carries the actual
+quartet quotient, with all four jets and its original shared label.
+In particular the image of the supported equation $H_t=0$ is
+$(0_{B_Q},\iota_L(1_L))$, not $(0_{B_Q},0_{K_L})$.
+
+For each $i$ let $q_i\in B_Q$ be the element with unit in its
+$i$th ring component and zero in the other three; it is the class
+of $E_i$. Its full-supported lift satisfies
+\begin{equation}\tag{HSQ20}
+ \widehat q_i^{\,2}=\widehat q_i,\qquad
+ \widehat q_i\widehat q_j=e\quad(i\ne j),\qquad
+ \sum_i\widehat q_i=1_{G_L(B_Q)}.
+\end{equation}
+The middle amplitude is zero but its meet of top labels is top.
+Each coordinate $\epsilon_i$ retains order $m$ in its ring factor;
+the lift of its zero $m$th power is likewise the supported zero.
+The receiver has complex ring dimension $4m$, with the original
+basis $q_i\epsilon_i^k$, $1\le i\le4$, $0\le k<m$.
+
+There are exactly four arithmetic primes in this receiver, namely
+\begin{equation}\tag{HSQ21}
+ \mathfrak Q_i=\{(0,\lambda):\lambda\in L\}
+       \cup\{(b,1_L):b_i(0)=0\}\qquad(1\le i\le4).
+\end{equation}
+To prove exhaustion on the ring side, the orthogonal idempotents
+$q_i$ sum to one, so a prime selects exactly one factor: two
+excluded idempotents would have zero product, and excluding none
+would put their sum in the prime. In that factor $\epsilon_i$
+is nilpotent and hence belongs to every prime; quotienting by it
+gives $\mathbb C$, which has only the zero prime. The full
+split-support classification therefore adds exactly the support
+primes $\{(0,\lambda):\lambda\in P\}$ for
+$P\in\operatorname{SpecLat}L$, each contained in all four
+(HSQ21). The four primes are distinct, as detected by the
+specified $q_i$. None has been identified with another by a symmetry.
+
+\subsection{Shared labels, independent labels, and the exact synchronization}
+
+The canonical comparison is the injective unital semiring map
+\begin{equation}\tag{HSQ22}
+ \theta:G_L\!\left(\prod_iD_i\right)\hookrightarrow
+           \prod_iG_L(D_i),\qquad
+ ((b_i)_i,\lambda)\longmapsto((b_i,\lambda))_i.
+\end{equation}
+Its image consists exactly of the tuples whose four labels are
+equal. The individual carrier conditions then imply that any
+nonzero amplitude makes that common label top. Conversely those
+conditions are exactly the original carrier of $G_L(B_Q)$.
+All operations and the injection follow coordinatewise.
+
+The strongest elementary synchronization is the actual retraction
+\begin{equation}\tag{HSQ23}
+ r:\prod_iG_L(D_i)\longrightarrow G_L(B_Q),\qquad
+ ((b_i,\lambda_i))_i\longmapsto
+       ((b_i)_i,\bigvee_i\lambda_i),\qquad r\theta=\operatorname{id}.
+\end{equation}
+A nonzero ring tuple forces at least one $\lambda_i$ to be top,
+so this belongs to the required carrier. The retraction preserves
+addition, zero, and unit. More precisely it is a homomorphism of
+$G_L(B_Q)$-semimodules when the product is acted on through
+$\theta$: for a scalar label $\nu$, distributivity gives
+$\bigvee_i(\nu\wedge\lambda_i)=\nu\wedge\bigvee_i\lambda_i$,
+and the amplitude equality is componentwise multiplication.
+Thus $\theta r$ is an idempotent linear projection onto the
+shared-label object, with every amplitude coordinate untouched.
+
+It is not multiplicative in general. The entire defect is explicit:
+for $v=((b_i,\lambda_i))$, $w=((c_i,\mu_i))$, put
+\begin{equation}\tag{HSQ24}
+ \alpha=\bigvee_i(\lambda_i\wedge\mu_i),\qquad
+ \beta=(\bigvee_i\lambda_i)\wedge(\bigvee_j\mu_j).
+\end{equation}
+Then $\alpha\le\beta$ and
+$r(vw)=((b_ic_i)_i,\alpha)$ while
+$r(v)r(w)=((b_ic_i)_i,\beta)=r(vw)+z_\beta$.
+Taking zero amplitudes, top label only in the first coordinate
+of $v$ and only in the second of $w$, gives $\alpha=0_L$ and
+$\beta=1_L$, so the defect is real.
+
+In fact no unital semiring retraction of (HSQ22) exists for this
+nontrivial $L$. For a direct proof let $v_i$ be the product element
+with unit in coordinate $i$ and global zero in the other coordinates.
+For $i\ne j$, $v_iv_j=0$, whereas
+$v_i+\theta(e)=\theta(\widehat q_i)$. If a semiring retraction
+$s$ existed, the latter identity would give
+$s(v_i)+e=\widehat q_i$. Its amplitude is the nonzero ring
+element $q_i$, forcing $s(v_i)=\widehat q_i$ by the carrier
+condition. It follows that $s(v_iv_j)=\widehat q_i\widehat q_j=e$,
+contradicting preservation of zero, since $e\ne\tau$. The
+module retraction (HSQ23) is therefore retained in its proved
+category, rather than promoted to a nonexistent semiring retraction.
+
+The full coefficient maps participate in exactly the same relation.
+Define
+\begin{equation}\tag{HSQ25}
+ \begin{gathered}
+ \Gamma:B_Q\times K_L\hookrightarrow\prod_i(D_i\times K_L),
+ \qquad((b_i),k)\longmapsto((b_i,k))_i,\\
+ \mathcal R:\prod_i(D_i\times K_L)\longrightarrow B_Q\times K_L,
+ \qquad((b_i,k_i))_i\longmapsto((b_i),\sum_i k_i),\\
+ (\prod_i\Phi_{D_i})\theta=\Gamma\Phi_{B_Q},\qquad
+ \mathcal R(\prod_i\Phi_{D_i})=\Phi_{B_Q}r,
+ \qquad\mathcal R\Gamma=\operatorname{id}.
+ \end{gathered}
+\end{equation}
+The map $\Gamma$ is a semiring embedding with common second
+coordinate as its image. The map $\mathcal R$ is additive and
+linear for the $B_Q\times K_L$-action through $\Gamma$.
+Distributivity and the idempotence of addition in $K_L$ prove its
+linearity and retraction property. For the two remaining equations
+use $\sum_i\iota_L(\lambda_i)=\iota_L(\bigvee_i\lambda_i)$.
+On the original supported image, the common tropical value is
+exactly $\iota_L(\lambda)$, retaining all of $L$. These are the
+complete maps, not a projection to a chosen lattice character.
+
+\subsection{Exact symmetry actions on the four jet factors}
+
+On $A$ define $\mathsf a f(z)=f(-z)$ and
+$\mathsf c f(z)=\overline{f(\bar z)}$. The first is a complex
+linear ring involution; the second is a conjugate-linear ring
+involution. They commute, preserve $H_t$ and $p_Q$, and hence act
+on both quotients in (HSQ17). Write
+$a=(1\ 2)(3\ 4)$ and $c=(1\ 3)(2\ 4)$ for their point
+permutations. In the exact jet coordinates, their actions are
+\begin{equation}\tag{HSQ26}
+ \begin{split}
+ (\mathsf a b)_i(\epsilon_i)
+   &=\sum_{k=0}^{m-1}(-1)^k b_{a(i),k}\epsilon_i^k,\\
+ (\mathsf c b)_i(\epsilon_i)
+   &=\sum_{k=0}^{m-1}\overline{b_{c(i),k}}\epsilon_i^k,
+ \qquad b_i(\epsilon_i)=\sum_{k=0}^{m-1}b_{i,k}\epsilon_i^k.
+ \end{split}
+\end{equation}
+Differentiate $f(-z)$ $k$ times and evaluate at $w_i$.
+The result is $(-1)^kf^{(k)}(-w_i)$, proving the first formula.
+For the second, conjugate the Taylor expansion at $\bar w_i$.
+These also prove compatibility with (HSQ16)--(HSQ17), including
+every coefficient sign and conjugation. Squaring either formula
+gives the identity; composing them gives the remaining involution
+with coefficients $(-1)^k\overline{b_{ac(i),k}}$, where
+$ac=(1\ 4)(2\ 3)$.
+
+For the original coordinate element $Z=(w_i+\epsilon_i)_i$,
+$\mathsf aZ=-Z$ and $\mathsf cZ=Z$. The second equality follows
+because this conjugate-linear operation includes conjugation of
+the coefficient and permutes its centre; it is not coefficientwise
+conjugation at a fixed centre. The Hermite polynomials themselves
+satisfy the exact polynomial identities
+\begin{equation}\tag{HSQ27}
+ E_i(-z)=E_{a(i)}(z),\qquad
+ \overline{E_i(\bar z)}=E_{c(i)}(z).
+\end{equation}
+Both sides have degree less than $4m$ and exactly the same four
+jets, by (HSQ13)--(HSQ15); their difference is divisible by $p_Q$
+and is therefore zero. Thus these symmetry assertions preserve the
+explicit CRT inverse as well as the quotient map.
+
+Every symmetry lifts to $G_L$ by changing its amplitude as in
+(HSQ26) and leaving its single support label unchanged. It
+commutes with $\Phi$ when the same amplitude action and the
+identity on $K_L$ are used on the complete receiver. On the
+independently labelled product it also permutes the four labels
+with its factor permutation. Their join is unchanged, so both
+synchronizations in (HSQ23) and (HSQ25) commute with the actions.
+At no stage is the invariant subring substituted for $B_Q$, nor
+are orbit points or their nilpotent coordinates identified.
+The receiver therefore retains four distinct arithmetic points,
+all $4m$ jet coordinates, every lattice label, and the original
+coordinate constraints (HSQ7)--(HSQ8).

@@ -1,0 +1,856 @@
+# The actual sheaf lifts and the geometric normal quotient
+
+Complete derivation, 24 September 2026. Stable proof locators CW0–CW11.
+
+## CW0. Construction stage and exact question
+
+The support is \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). All operations below are on the arithmetic coefficient sheaves already constructed in CSP, after the complete arithmetic reconstruction. There is no addition, scalar multiplication, coordinate, distance, or parity operation on \(\tau\). The two charts remain separately labelled; a difference in a cochain complex is not a pooled branch return measure.
+
+The connected argument and its correction-precedence table in USER_ARGUMENT_RECONSTRUCTION.md, the operative READ_FIRST_USER_CONSTRUCTION.md, and the full governing passages WU050–WU055 and WU061–WU063 in USER_CONSTRUCTION_FULL_LOGBOOK.md were read for this calculation. In particular, no arithmetic label initializes the supporting construction; the original zeta arithmetic is retained; and a calculation on this receiving sheaf is not promoted into a conclusion about every possible geometric realization of the complete construction.
+
+The actual input is the final CC_SPHERE_PULLBACK_AND_NORMAL_DIRECTION.md, CSP0–CSP13, read in full. Its version for this derivation has SHA256
+\[
+\texttt{EBFF9973E1472EA88E3F88D3350FAD8FFA98364067F485F48D3AF4E119EBAF9D}.
+\]
+The two comparison proofs are GLOBAL_SHIFTED_ZETA_LIFT.md, GSL0–GSL11, and DELIGNE_INVARIANT_CYCLE_QUOTIENT.md, DC0–DC12, previously derived and read in full and checked against their unchanged final hashes
+\[
+\texttt{2CC092DD3EBC0F021E9914FC7FD75DA16EA4DE47760B1D12558F33F0A661F529},
+\]
+\[
+\texttt{3A9AFDAEACD7DB0F154348F6487A204852459B08AE8E0F90017E7755FD627521}.
+\]
+The action and inverse calculations used from those notes are proved again below where they determine the present conclusion.
+
+The source construction is Connes and Consani, *Schemes over \(\mathbb F_1\) and zeta functions*, [arXiv:0903.2024v3](https://arxiv.org/abs/0903.2024v3), §5: the original author file sources/CC_0903_2024_v3/author_source/announc3.tex, lines1376–1667, was read in the preceding CSL verification. The relevant source formulas are fonction3, restmaps, bord, hzero, rep1, liftw and court. The finite-unit-sector comparison retains CS2A's full-difference generating-domain qualification. The later signed source CC.tex, lines494–610 and773–899, was also read: its topological comparison does not by itself identify its structure sheaf with this complex coefficient sheaf.
+
+The comparison with Deligne concerns *La conjecture de Weil. II*, [§3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). DC reconstructs that argument from the current French transcription, with its actual geometric hypotheses and arithmetic reduction. No new original-author-TeX reading of Deligne is claimed here.
+
+This note computes both actual sheaf short exact sequences in CSP, their connecting maps, and the actual supported localization sequence. It proves the vanishing and existence of the lifts that those sequences define. It also computes exactly which kernel has a separated original-zero character range, and which kernel does not.
+
+## CW1. Full coefficients, original zeta, and the source image
+
+Use
+\[
+S=\{f\in\mathcal S(\mathbb R;\mathbb C):
+f(-v)=f(v),\ f(0)=0,\ \int_{\mathbb R}f(v)\,dv=0\},
+\qquad
+V_\pm=S\oplus E_\pm,\quad E_\pm=\mathbb C^2.
+\tag{CW1.1}
+\]
+The two endpoint coordinates are labelled value and integral on each chart. Let
+\[
+A=\left\{a\in C^\infty(\mathbb R_{>0}):
+p_{N,j}(a)=\sup_{u>0}(u^N+u^{-N})
+|(u\partial_u)^j a(u)|<\infty\quad(N,j\ge0)\right\}.
+\tag{CW1.2}
+\]
+The actual maps are
+\[
+\Sigma f(u)=2\sum_{k\ge1}f(ku),\qquad
+Ra(u)=u^{-1}a(u^{-1}),\qquad
+r_+(f,c_0,c_1)=\Sigma f,\qquad
+r_-(h,d_0,d_1)=R\Sigma h=\Sigma\widehat h.
+\tag{CW1.3}
+\]
+The factor \(2\) records both rational signs. The Fourier convention is
+\(\widehat h(t)=\int_{\mathbb R}h(v)e^{-2\pi ivt}\,dv\).
+Before imposing the two endpoint conditions, the retained Poisson identity is
+\[
+\Sigma\widehat h(u)
+=u^{-1}\Sigma h(u^{-1})+u^{-1}h(0)-\int_{\mathbb R}h(v)\,dv.
+\tag{CW1.4}
+\]
+Thus \(R^2=1\), Fourier transformation preserves \(S\) and squares to one there, and
+\[
+J=\Sigma(S)=r_+(V_+)=r_-(V_-),\qquad
+\ker r_\pm=E_\pm.
+\tag{CW1.5}
+\]
+Continuity follows by Schwartz summation for \(u\ge1\) and (CW1.4) for \(u\le1\). Injectivity follows by taking the Mellin transform in \(\Re s>1\), dividing by the nonzero Euler product there, and applying Fourier uniqueness on a vertical line. These are the source maps of CSP1, not new restrictions.
+
+Write
+\[
+\mathcal B=\{F\text{ entire}:
+b_{M,N}(F)=\sup_{|\Re s|\le M}(1+|\Im s|)^N|F(s)|<\infty
+\text{ for all }M,N\ge0\}.
+\]
+The exact comparison is
+\[
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\,\frac{du}{u},
+\qquad
+(\Theta^{-1}F)(u)=\frac{u^{-1/2}}{\pi}
+\int_{\mathbb R}F(1/2+it)u^{-it}\,dt.
+\tag{CW1.6}
+\]
+The integrals and their differentiated versions converge by the seminorms. Integration by parts in \(\log u\), followed by the inverse Fourier integral and contour shifts in each fixed strip, proves that \(\Theta:A\to\mathcal B\) is a topological isomorphism. The \(1/2\), \(1/\pi\), and \(u^{-1/2}\) are retained in these comparison maps.
+
+For \(\Re s>1\), absolute summation gives
+\[
+\Theta\Sigma f(s)=\zeta(s)a_f(s),\qquad
+a_f(s)=\int_0^\infty f(v)v^s\,\frac{dv}{v}.
+\tag{CW1.7}
+\]
+The original arithmetic remains
+\[
+\zeta(s)=1+\sum_{k\ge2}k^{-s}
+=\prod_p(1-p^{-s})^{-1},\qquad
+-\frac{\zeta'(s)}{\zeta(s)}
+=\sum_p\sum_{m\ge1}(\log p)p^{-ms}\quad(\Re s>1).
+\tag{CW1.8}
+\]
+In particular, neither the unit summand nor any prime-power repetition is removed.
+
+For the actual source
+\[
+f_0(v)=\frac{\pi}{2}v^2(2\pi v^2-3)e^{-\pi v^2}
+\]
+the full transform is
+\[
+F_0(s)=\Theta\Sigma f_0(s)
+=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\qquad
+\mathcal M_0\Sigma f_0=2F_0.
+\tag{CW1.9}
+\]
+Here \(f_0(0)=0\) and its integral is zero because
+\[
+\frac{\pi}{2}
+\left(2\pi\frac{3}{4\pi^2}-3\frac1{2\pi}\right)=0.
+\]
+Its two Gaussian Mellin integrals, before applying the Gamma recurrence, are
+\[
+\frac{\pi}{2}\left[
+2\pi\cdot\frac12\pi^{-(s+4)/2}\Gamma((s+4)/2)
+-3\cdot\frac12\pi^{-(s+2)/2}\Gamma((s+2)/2)\right].
+\tag{CW1.10}
+\]
+Multiplication by the original \(\zeta(s)\) gives (CW1.9). The endpoint and trivial-zero cancellations have the exact values
+\[
+F_0(0)=F_0(1)=\frac18,
+\]
+\[
+F_0(-2r)
+=\frac{r(2r+1)(-1)^r\pi^r}{2\,r!}\zeta'(-2r)
+=\frac{(1+2r)(2r)}8\pi^{-(1+2r)/2}
+\Gamma((1+2r)/2)\zeta(1+2r)\ne0\quad(r\ge1).
+\tag{CW1.11}
+\]
+The original \(\zeta\) still has its pole at \(1\) and its trivial zeros at \(-2r\). For general \(f\in S\), the retained receiver values are
+\[
+\Theta\Sigma f(-2r)
+=\zeta'(-2r)\frac{f^{(2r)}(0)}{(2r)!},\qquad
+\Theta\Sigma f(1)=a_f'(1),\qquad
+\Theta\Sigma f(0)=-\tfrac12a_f(0).
+\tag{CW1.12}
+\]
+Taylor subtraction in the integral defining \(a_f\) proves its meromorphic continuation. At \(\nu=-2r\), write
+\[
+a_f(\nu+t)=A_{-1}/t+\sum_{k\ge0}A_kt^k,\qquad
+A_{-1}=f^{(2r)}(0)/(2r)!.
+\]
+Then the coefficient of \(t^n\) in \(\zeta(\nu+t)a_f(\nu+t)\) is
+\[
+\frac{\zeta^{(n+1)}(\nu)}{(n+1)!}A_{-1}
++\sum_{j=1}^{n}\frac{\zeta^{(j)}(\nu)}{j!}A_{n-j}.
+\tag{CW1.13}
+\]
+At \(1\), write \(\zeta(1+t)=t^{-1}+\sum_{j\ge0}c_jt^j\) and
+\(a_f(1+t)=\sum_{k\ge1}a_kt^k\). The coefficient of \(t^n\) is
+\[
+a_{n+1}+\sum_{j=0}^{n-1}c_ja_{n-j}.
+\tag{CW1.14}
+\]
+Empty sums are zero. Away from these exceptional points every derivative is the full Leibniz sum
+\(\sum_{j=0}^n\binom nj\zeta^{(j)}a_f^{(n-j)}\).
+Thus the comparison retains derivative data as well as values.
+
+Let \(\mathscr Z\) be the actual nontrivial zeros of the original \(\zeta\), with their multiplicities \(m_\rho\), and let
+\[
+\mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0
+\text{ for every }\rho\in\mathscr Z,\ 0\le j<m_\rho\},
+\qquad \mathcal Q=\mathcal B/\mathcal I.
+\tag{CW1.15}
+\]
+CSP1.7 uses the proved SSI1–SSI7 exact-image theorem, independently checked in ESI0–ESI8:
+\[
+J=\overline J^{\,A},\qquad
+\Sigma:S\xrightarrow{\sim}J\text{ topologically},\qquad
+\Theta J=\mathcal I.
+\tag{CW1.16}
+\]
+The actual inverse in that theorem has, for \(F=\mathcal M_0a\),
+\[
+f_F(x)=\frac1{2\pi}\int_{\mathbb R}
+\frac{F(2+it)}{2\zeta(2+it)}x^{-2-it}\,dt,\quad x>0,\qquad
+f_F(-x)=f_F(x),
+\]
+\[
+\frac{f_F^{(2r)}(0)}{(2r)!}
+=\frac{F(-2r)}{2\zeta'(-2r)},\quad
+f_F(0)=0,\quad \int_{\mathbb R}f_F=0.
+\tag{CW1.17}
+\]
+Its all-strip estimates and Schwartz remainder estimates are the completed source theorem imported here, not a new assumption of closure. Consequently
+\[
+Q:=A/J=Q_{\rm alg}=Q_H
+\xrightarrow[\ [a]\mapsto[\Theta a]\ ]{\sim}\mathcal Q
+\tag{CW1.18}
+\]
+is a topological isomorphism, and the former comparison kernel \(\overline J/J\) is zero. The chain calculations below also make sense algebraically before that theorem; continuity and the stated Fréchet conclusions use the proved closed image.
+
+## CW2. The actual sheaves, finite complexes, and actions
+
+Let \(Y=\mathbb P^1(\mathbb C)\), \(D=\{0,\infty\}\), \(U=\mathbb C^\times\), and \(j:U\hookrightarrow Y\), \(i:D\hookrightarrow Y\). The map \(\pi:Y\to X=\{x_+,\eta,x_-\}\) sends the poles to \(x_+,x_-\) and every other point to \(\eta\). Its inverse-image sheaf is
+\[
+\mathscr F=\pi^{-1}\Omega
+=\underline A_Y\times_{i_*(A\oplus A)}i_*(V_+\oplus V_-).
+\tag{CW2.1}
+\]
+The fibre product uses the map
+\((a,v_+,v_-)\mapsto(a|_0-r_+v_+,a|_\infty-r_-v_-)\).
+At the two poles its stalks are \(V_\pm\); on \(U\) it is the constant sheaf with fibre \(A\).
+
+The actual subsheaf \(\mathscr F_J\) has the same pole stalks and restrictions, with interior stalk \(J\). Put \(\mathscr G=j_!\underline Q_U\). Quotienting the interior coefficients and sending the pole stalks to zero gives the actual sheaf map
+\[
+0\longrightarrow\mathscr F_J
+\longrightarrow\mathscr F\xrightarrow{q_Y}\mathscr G
+\longrightarrow0.
+\tag{CW2.2}
+\]
+Near a pole, the interior value of a section lies in \(r_\pm(V_\pm)=J\). Its quotient is therefore zero near the pole, exactly the extension-by-zero condition. The sequence is exact on every stalk.
+
+CSP2–CSP7 construct fine resolutions and their finite contractions. The resulting finite complexes, with degrees \(0,1,2\), form the degreewise exact row
+\[
+\begin{array}{ccccccccc}
+0&\to&V_+\oplus V_-&\xrightarrow{\mathrm{id}}&
+V_+\oplus V_-&\to&0&\to&0\\
+ &&\downarrow r_+-r_-&&\downarrow r_+-r_-&&\downarrow0\\
+0&\to&J&\xrightarrow{\iota}&A&\xrightarrow{q}&Q&\to&0\\
+ &&\downarrow0&&\downarrow0&&\downarrow0\\
+0&\to&J&\xrightarrow{\iota}&A&\xrightarrow{q}&Q&\to&0.
+\end{array}
+\tag{CW2.3}
+\]
+The three columns compute \(R\Gamma(Y,\mathscr F_J)\),
+\(R\Gamma(Y,\mathscr F)\), and \(R\Gamma(Y,\mathscr G)\).
+The top row is read as \(0\to D_J^0\to D_F^0\to D_G^0\to0\), with \(D_G^0=0\). All maps are continuous.
+
+For clarity, these are simultaneous models for the sheaf maps, not independently chosen cohomology presentations. For any \(B=A,J,Q\), use the fibre-product resolution with its specified pole spaces. It gives the complex
+\[
+B\oplus V_+\oplus V_-\longrightarrow B^2\longrightarrow B,
+\qquad d^0(a,v_+,v_-)=(a-r_+v_+,a-r_-v_-),\quad d^1=0.
+\]
+For \(B=Q\) the pole spaces are zero. The contraction
+\[
+p^0(a,v_+,v_-)=(v_+,v_-),\quad
+p^1(b_+,b_-)=b_--b_+,\quad p^2=\mathrm{id}
+\]
+and the section
+\[
+s^0(v_+,v_-)=(r_-v_-,v_+,v_-),\quad
+s^1(b)=(-b,0),\quad s^2=\mathrm{id}
+\tag{CW2.4}
+\]
+commute with inclusion \(J\to A\) and quotient \(A\to Q\).
+With \(h^1(b_+,b_-)=(b_-,0,0)\), direct substitution gives
+\(ps=1\) and \(1-sp=dh+hd\). This proves the compatibility asserted in (CW2.3).
+
+The coefficient actions are
+\[
+T_a b(u)=b(u/a),\quad
+\rho_+(a)(f,c_0,c_1)=(f(\cdot/a),c_0,ac_1),
+\]
+\[
+\rho_-(a)(h,d_0,d_1)=(a h(a\cdot),ad_0,d_1),\qquad a>0.
+\tag{CW2.5}
+\]
+They preserve every source and satisfy \(r_\pm\rho_\pm(a)=T_ar_\pm\).
+The actual holomorphic covering \(b_n(z)=z^n\), for recovered positive integers \(n\), has degree \(n\) on the sphere and multiplies an annular angular period by \(n\). Combining that pullback with the coefficient action gives
+\[
+\mathsf B_n^0=\rho_+(n)\oplus\rho_-(n),\qquad
+\mathsf B_n^1=T_n,\qquad
+\mathsf B_n^2=nT_n.
+\tag{CW2.6}
+\]
+The same formula applies to the three columns where defined. Degree two uses the positive complex orientation. In the notation \(B(-1)\), the action is \(aT_a\); this records the factor just proved from \(b_n\), without asserting an étale realization.
+
+Integer operators are invertible on the computed cohomology. Their inverses define the positive rational action consistently, and strong continuity extends it to all \(a>0\). This is a cohomological action; no nonintegral holomorphic map \(z\mapsto z^a\) is asserted.
+
+## CW3. The connecting map of the fibre-product presentation
+
+The other actual short exact sequence, CSP2.3, is
+\[
+0\to\mathscr F\to
+\underline A_Y\oplus i_*(V_+\oplus V_-)
+\xrightarrow{\epsilon-r}i_*(A\oplus A)\to0.
+\tag{CW3.1}
+\]
+Constant-sheaf cohomology on the sphere is \(A,0,A\) in degrees \(0,1,2\); a pole skyscraper has no positive cohomology. Hence its complete nonzero long exact sequence is
+\[
+0\to H^0(Y,\mathscr F)\to A\oplus V_+\oplus V_-
+\xrightarrow d A^2
+\xrightarrow{\delta_{\mathrm{fib}}}Q\to0,
+\tag{CW3.2}
+\]
+and the degree-two comparison is the identity
+\[
+H^2(Y,\mathscr F)=A(-1)\xrightarrow{\mathrm{id}}
+H^2(Y,\underline A_Y)=A(-1).
+\tag{CW3.3}
+\]
+Here
+\[
+d(a,v_+,v_-)=(a-r_+v_+,a-r_-v_-),\qquad
+\delta_{\mathrm{fib}}(b_+,b_-)=[b_--b_+].
+\tag{CW3.4}
+\]
+The connecting sign follows from the degree-one contraction \(p^1\) in (CW2.4). Its kernel is exactly
+\[
+\{(b_+,b_-):b_--b_+\in J\}.
+\tag{CW3.5}
+\]
+Indeed \(d\) has differences in \(J\). Conversely, for \(b_--b_+=r_+v_+\), choose \(v_-=0\) and \(a=b_-\). Then \(d(a,v_+,0)=(b_+,b_-)\).
+Every class \([b]\) is \(\delta_{\mathrm{fib}}(0,b)\), so the image is all \(Q\).
+
+This is an actual, generally nonzero connecting map. Its source action is \(T_n\oplus T_n\) and its target action is \(T_n\), with no geometric factor \(n\) in this degree. Its exact lifting quotient is
+\[
+A^2/\operatorname{im}d\xrightarrow{\sim}Q,\qquad
+[(b_+,b_-)]\mapsto[b_--b_+].
+\tag{CW3.6}
+\]
+Pairs in (CW3.5) lift through \(d\); other pairs do not. This statement specifies this sheaf-presentation lifting problem, rather than declaring a failure of a different global construction.
+
+## CW4. The actual quotient-sheaf lift and its zero boundary
+
+From (CW2.3),
+\[
+H^0(Y,\mathscr F_J)=H^0(Y,\mathscr F)
+=\{((\widehat h,c_0,c_1),(h,d_0,d_1))\},
+\]
+\[
+H^1(Y,\mathscr F_J)=0,\quad H^2(Y,\mathscr F_J)=J(-1),
+\]
+\[
+H^1(Y,\mathscr F)=Q,\quad H^2(Y,\mathscr F)=A(-1),
+\]
+\[
+H^0(Y,\mathscr G)=0,\quad H^1(Y,\mathscr G)=Q,\quad
+H^2(Y,\mathscr G)=Q(-1),
+\tag{CW4.1}
+\]
+and all degree-three groups vanish. The actual long exact sequence is therefore
+\[
+0\to H^0(Y,\mathscr F_J)
+\xrightarrow{\mathrm{id}}H^0(Y,\mathscr F)\to0,
+\]
+\[
+0\to H^1(Y,\mathscr F)=Q
+\xrightarrow{\mathrm{id}}H^1(Y,\mathscr G)=Q
+\xrightarrow{\delta^1}J(-1)
+\xrightarrow{\iota}A(-1)
+\xrightarrow{q}Q(-1)\xrightarrow{\delta^2}0.
+\tag{CW4.2}
+\]
+Every sign and map follows from the simultaneous complexes, including
+\[
+\boxed{\delta^1=0,\qquad \delta^2=0.}
+\tag{CW4.3}
+\]
+
+Here is the cochain proof of the first equality, which does not assume a section of \(q:A\to Q\). A class \(x\in H^1(Y,\mathscr G)=Q\) is represented by the degree-one cocycle \(x\) of its zero-differential complex. Choose any \(a\in A\) with \(q(a)=x\), which exists by the definition of the quotient. Its differential in \(D_F\) is \(d_F^1a=0\). Therefore the defining connecting cocycle in \(D_J^2\) is zero. Changing \(a\) by an element of \(J\) still gives zero. The degree-one cohomology class \([a]\in H^1(Y,\mathscr F)=A/J\) depends only on \(x\) and is exactly \(x\).
+
+Thus the actual lift is the continuous equivariant inverse of the identity map in (CW4.2). It is unique at the cohomology-class level because \(H^1(Y,\mathscr F_J)=0\). In degree two every \(x\in Q(-1)\) also lifts, and its set of lifts is the nonempty affine fibre
+\[
+\operatorname{Lift}_2(x)=q^{-1}(x)=a+J(-1).
+\tag{CW4.4}
+\]
+The equality describes all representatives, including their complete kernel. It does not select a representative compatible with every arithmetic action.
+
+The degree-one obstruction receiver itself survives:
+\[
+\operatorname{im}\delta^1=0,\qquad
+\operatorname{coker}\bigl(H^1\mathscr F\to H^1\mathscr G\bigr)=0,
+\qquad
+\ker\bigl(H^2\mathscr F\to H^2\mathscr G\bigr)=J(-1).
+\tag{CW4.5}
+\]
+In the lifting formula of DC5, there is no additional invariant quotient of \(H^1(Y,\mathscr G)\) in this sequence. Taking its actual target as the classes to be lifted means that the further quotient is the identity and its kernel is zero. The corresponding obstruction quotient is therefore \(J(-1)/0\), while the obstruction map into it is zero. This is the complete receiver; it has not been replaced by \(Q(-1)\).
+
+## CW5. Supported localization: every image, kernel, and lift
+
+For the two pole supports, the finite costalk complex is
+\[
+L_D^0=V_+\oplus V_-,\quad L_D^1=A^2,\quad
+L_D^2=A(-1)^2,\quad
+d^0=(r_+,r_-),\quad d^1=0.
+\]
+The support-to-global maps are
+\[
+k^0=\mathrm{id},\qquad
+k^1(b_+,b_-)=b_+-b_-,\qquad
+k^2(c_+,c_-)=c_++c_-.
+\tag{CW5.1}
+\]
+The annular positive \(z\)-circle gives
+\[
+R\Gamma(U,\underline A)=A[0]\oplus A(-1)[-1].
+\]
+The local positive circle at infinity uses \(w=1/z\), so \(d\arg w=-d\arg z\). With the positive complex local fundamental classes, the actual localization boundaries are
+\[
+\partial^0(a)=([a],[a]),\qquad
+\partial^1(a)=(-a,a).
+\tag{CW5.2}
+\]
+These are precisely the cone maps of CSP7, including the negative local boundary sign and the inverse-coordinate sign at infinity.
+
+The resulting entire nonzero row is
+\[
+\begin{aligned}
+0\to E_+\oplus E_-&\to H^0(Y,\mathscr F)
+\xrightarrow r A
+\xrightarrow{\mathrm{diag}\,q}Q^2
+\xrightarrow{\mathrm{diff}}Q\\
+&\xrightarrow0 A(-1)
+\xrightarrow{(-\mathrm{id},\mathrm{id})}A(-1)^2
+\xrightarrow{\mathrm{sum}}A(-1)\to0.
+\end{aligned}
+\tag{CW5.3}
+\]
+Here \(r\) sends a Fourier-graph section to its common restriction and has image \(J\). Consequently:
+
+1. A degree-zero annular section \(a\in A\) extends globally exactly when \(a\in J\). Its obstruction is \(([a],[a])\), with image \(\operatorname{diag}Q\), kernel \(J\), and cokernel identified with \(Q\) by the difference map.
+2. Every global degree-one class in \(Q\) lifts from the two supported groups \(Q^2\). The kernel is \(\operatorname{diag}Q\), and a continuous equivariant section is
+\[
+s_1(q)=\tfrac12(q,-q).
+\tag{CW5.4}
+\]
+The following restriction \(Q\to A(-1)\) is zero.
+3. A degree-one annular class \(a\in A(-1)\) extends to global degree one exactly when \(a=0\). Its boundary is the injective map \(a\mapsto(-a,a)\), with full image the anti-diagonal. On that image its inverse is \((c_+,c_-)\mapsto(c_--c_+)/2\).
+4. Every global degree-two class \(a\in A(-1)\) lifts from \(A(-1)^2\). The kernel is the anti-diagonal, and a continuous equivariant section is
+\[
+s_2(a)=\tfrac12(a,a).
+\tag{CW5.5}
+\]
+
+Each assertion is a direct kernel/image calculation in the displayed row. In particular the quotient after the nonzero annular boundary is
+\[
+A(-1)^2/\{(-a,a):a\in A(-1)\}
+\xrightarrow{\sim}A(-1),\qquad[(b,c)]\mapsto b+c.
+\tag{CW5.6}
+\]
+It survives; the existence of the supported degree-two lift does not assert that this receiver is zero.
+
+For a single pole the supported degree-one map to \(Q\) is \(+\mathrm{id}\) at \(0\), \(-\mathrm{id}\) at infinity, and the supported degree-two map is \(+\mathrm{id}\) at both poles. These are the maps of CSP7.7, so both single-support lifting maps are isomorphisms in their displayed degrees.
+
+Every scalar \(1/2\) in these sections belongs to the recovered coefficient field. The sections do not divide the supporting datum.
+
+The mirror signs are also retained. On \(Q\) both sphere swaps induce \(-R\); on \(Q^2\) they induce \((q_+,q_-)\mapsto(Rq_-,Rq_+)\). Hence \(s_1\) intertwines them. On \(A(-1)\), the holomorphic map \(z\mapsto-1/z\) induces \(+R\), whereas the actual antiholomorphic map \(z\mapsto-1/\overline z\) induces \(-R\). Their supported degree-two maps are respectively \(+R\)-swap and \(-R\)-swap, so \(s_2\) intertwines both. The annular actions are respectively \(-R,+R\), exactly compatible with \(\partial^1(a)=(-a,a)\). These are coefficient and orientation operations, not an exchanged label assigned to \(\tau\).
+
+## CW6. Which character ranges are actually separated
+
+Under \(\Theta\), coefficient dilation is multiplication by \(a^s\):
+\[
+\Theta T_a=a^s\Theta,\qquad L F=sF.
+\tag{CW6.1}
+\]
+Fix \(a>1\) when discussing logarithmic-modulus weights, and define
+\[
+w_a(\lambda)=\frac{2\log|\lambda|}{\log a}\quad(\lambda\ne0).
+\tag{CW6.2}
+\]
+The actions themselves are defined for every \(a>0\), including the identity at \(a=1\).
+
+The full jet at an actual zero \(\rho\), in local coordinate \(t=s-\rho\), has action
+\[
+T_a=a^\rho\sum_{j=0}^{m_\rho-1}
+\frac{(\log a)^j}{j!}M_t^j,\qquad M_t^{m_\rho}=0.
+\tag{CW6.3}
+\]
+On the normal quotient \(\mathcal Q(-1)\), the corresponding action is
+\[
+a^{\rho+1}\sum_{j=0}^{m_\rho-1}
+\frac{(\log a)^j}{j!}M_t^j.
+\tag{CW6.4}
+\]
+The established open strip \(0<\Re\rho<1\) gives the disjoint ranges
+\[
+0<w_a(a^\rho)<2,\qquad
+2<w_a(a^{\rho+1})<4.
+\tag{CW6.5}
+\]
+These preserve every nilpotent and do not impose \(\Re\rho=1/2\). They are ranges of the actual zero characters, not a claim that an infinite-dimensional complex representation is a mixed finite-dimensional étale module.
+
+The endpoint lines retain weights \(0,2\) on \(E_+\), and \(2,0\) on \(E_-\). Their action is explicitly
+\((c_0,c_1,d_0,d_1)\mapsto(c_0,ac_1,ad_0,d_1)\).
+The common-restriction image of \(H^0(Y,\mathscr F)\) is \(J\), with action \(T_a\). Its Fourier-graph parameter transforms as \(h(v)\mapsto a h(av)\).
+
+It is essential to compute the characters of the actual degree-one obstruction receiver \(J(-1)\), rather than assign to it (CW6.5). For any \(\lambda\in\mathbb C\), let \(m_\lambda=\operatorname{ord}_\lambda F_0\), equal to zero off \(\mathscr Z\). For \(F\in\mathcal I\), local division defines
+\[
+\ell_\lambda(F)=\left(\frac{F}{F_0}\right)(\lambda)
+=\frac{F^{(m_\lambda)}(\lambda)}
+{F_0^{(m_\lambda)}(\lambda)}.
+\tag{CW6.6}
+\]
+The denominator is nonzero. All lower numerator and denominator derivatives vanish when \(m_\lambda>0\), giving the displayed ratio. Evaluation of a fixed derivative is continuous for the strip topology by the Cauchy integral formula on a small fixed circle. Thus \(\ell_\lambda\) is continuous.
+Moreover
+\[
+\ell_\lambda(F_0)=1,\qquad
+\ell_\lambda(a^sF)=a^\lambda\ell_\lambda(F).
+\tag{CW6.7}
+\]
+The first equality proves surjectivity to \(\mathbb C\); the second follows either from local division or from Leibniz's formula with all lower vanishing derivatives retained.
+
+Consequently \(\mathcal I(-1)\), and hence \(J(-1)\), has a continuous one-dimensional quotient character
+\[
+a\longmapsto a^{\lambda+1}
+\quad\text{for every }\lambda\in\mathbb C.
+\tag{CW6.8}
+\]
+At \(0,1,-2r\) the order \(m_\lambda\) is zero and the nonzero denominators are exactly (CW1.11), so there is no exceptional gap in this statement. For an actual original zero \(\rho\), the choice \(\lambda=\rho-1\) gives the quotient character \(a^\rho\), the same character that occurs in \(\mathcal Q\). The point \(\rho-1\) is an evaluation point of the full original function; it has not been asserted to be a zero of \(\zeta\).
+
+The same elementary evaluation on \(\mathcal B\) gives all characters \(a^\lambda\) as quotient characters of \(A\), and all \(a^{\lambda+1}\) as quotient characters of \(A(-1)\). Therefore the actual targets \(J(-1)\) and \(A(-1)\) in (CW4.2) and (CW5.3) do not satisfy a bound placing all their continuous character quotients above the original-zero range. The separated space is the *quotient* \(Q(-1)\) of the full normal source, with its complete original-zero ideal removed.
+
+This calculation concerns quotient characters. It does not claim that \(J\) or \(A\) has corresponding eigenvectors. In fact they have no nonzero arithmetic eigenvectors at all: an eigenfunction \(F\in\mathcal B\) for one \(a>1\) would satisfy \((a^s-c)F(s)=0\). The first factor is a nonzero entire function, so the product identity forces \(F=0\). The same argument, with a power of \(a^s-c\), excludes nonzero generalized eigenvectors in these entire-function spaces.
+
+## CW7. A global vanishing theorem for the actual boundary maps
+
+There is a complete global vanishing calculation even though the actual targets in CW6 do not have the proposed separated quotient-character bound. We prove it using the full quotient topology and a resolvent, without assuming that finite zero-jet subspaces are dense.
+
+For \(\mu\notin\mathscr Z\), define on \(\mathcal B\)
+\[
+\mathcal R_\mu F(s)=
+\frac{F(s)-F_0(s)F(\mu)/F_0(\mu)}{\mu-s}.
+\tag{CW7.1}
+\]
+The numerator vanishes at \(s=\mu\), so this is entire. It belongs to \(\mathcal B\) continuously. To verify the topology directly, put
+\(H=F-F_0F(\mu)/F_0(\mu)\).
+Outside \(|s-\mu|<1\), division by \(\mu-s\) is bounded by one. Inside that disk,
+\[
+\frac{H(s)}{\mu-s}
+=-\int_0^1H'(\mu+t(s-\mu))\,dt.
+\]
+Cauchy's estimate bounds \(|H'|\) there by \(\sup_{|z-\mu|\le2}|H(z)|\). For
+\(M'=\max(M,|\Re\mu|+2)\), this gives
+\[
+b_{M,N}(\mathcal R_\mu F)
+\le b_{M,N}(H)+(2+|\Im\mu|)^N b_{M',0}(H).
+\tag{CW7.2}
+\]
+The scalar \(F(\mu)/F_0(\mu)\) is bounded by
+\(b_{M',0}(F)/|F_0(\mu)|\).
+Substituting it in (CW7.2) gives a finite sum of continuous seminorm bounds on \(F\), with the complete \(F_0\) retained.
+
+If \(F\in\mathcal I\), its numerator is in \(\mathcal I\), and division by \(\mu-s\) preserves all original-zero vanishing orders. Thus (CW7.1) descends continuously to \(\mathcal Q\). Direct multiplication gives
+\[
+(\mu-L)\mathcal R_\mu[F]=[F],\qquad
+\mathcal R_\mu(\mu-L)[F]=[F].
+\tag{CW7.3}
+\]
+The discarded term in the first equality is explicitly
+\(F_0F(\mu)/F_0(\mu)\in\mathcal I\); no factor of the original function has been suppressed. This rederives the needed RZ inverse on its exact full domain.
+
+Let \(H:\mathcal Q\to\mathcal B(-1)\) be continuous and complex-linear and commute with the recovered arithmetic actions. If equivariance is initially required only for positive integers, invertibility gives it for positive rationals; continuity and strong continuity of \(T_a\) give it for every \(a>0\).
+Differentiation at \(a=e^t,t=0\) is justified by
+\[
+|e^{ts}-1-ts|\le\tfrac12t^2|s|^2e^{|t||\Re s|},
+\]
+which proves convergence in every strip seminorm, and then in every quotient seminorm. The target generator is \(L+1\). Consequently
+\[
+H L=(L+1)H.
+\tag{CW7.4}
+\]
+For a fixed \(\lambda\in\mathbb C\), evaluation gives
+\[
+\operatorname{ev}_\lambda H\bigl(L-(\lambda+1)\bigr)=0.
+\tag{CW7.5}
+\]
+When \(\lambda+1\notin\mathscr Z\), (CW7.3) makes the operator in parentheses onto \(\mathcal Q\). Hence \(H(x)(\lambda)=0\) for every \(x\in\mathcal Q\).
+For each \(x\), the entire function \(H(x)\) therefore vanishes on the open complement of the discrete set \(\mathscr Z-1\), and is identically zero. We have proved
+\[
+\boxed{\operatorname{Hom}_{\mathrm{cont},T}
+(\mathcal Q,\mathcal B(-1))=0.}
+\tag{CW7.6}
+\]
+Since \(\mathcal I(-1)\) is an invariant subspace, inclusion gives
+\[
+\boxed{\operatorname{Hom}_{\mathrm{cont},T}
+(\mathcal Q,\mathcal I(-1))=0.}
+\tag{CW7.7}
+\]
+Transport through \(\Theta\) proves the corresponding statements for
+\(Q\to A(-1)\) and \(Q\to J(-1)\). Thus both the actual restriction
+\(H^1(Y,\mathscr F)\to H^1(U,\underline A)\) and the actual connecting map
+\(\delta^1:H^1(Y,\mathscr G)\to H^2(Y,\mathscr F_J)\)
+also vanish by this global operator calculation. Their explicit cochain proofs in CW4–CW5 identify which maps are being tested.
+
+No assertion about a direct sum or unrestricted product of zero blocks entered the proof. Nor did overlapping quotient characters produce a nonzero map: the distinction between a quotient character and an entire-function eigenvector is retained.
+
+For comparison, the separated original-zero targets also admit a global proof:
+\[
+\operatorname{Hom}_{\mathrm{cont},T}(\mathcal Q,\mathcal Q(-1))=0.
+\tag{CW7.8}
+\]
+Indeed, for a continuous complex-linear equivariant \(H\), take the full \(m_\rho\)-jet of its target at an actual \(\rho\). The target generator there is \((\rho+1)I+M_t\), so that jet kills
+\((L_{\mathrm{target}}-(\rho+1))^{m_\rho}\).
+Equivariance and (CW7.3), with \(\mu=\rho+1\notin\mathscr Z\), imply that every target jet of \(H(x)\) is zero. The joint original-zero jets are faithful on \(\mathcal Q\) by (CW1.15). Thus \(H=0\). This proves the global assertion behind the separated ranges in (CW6.5), including every multiplicity.
+
+## CW8. The normal quotient lifts classes but has no equivariant linear section
+
+The actual degree-two row is
+\[
+0\to J(-1)\to A(-1)\xrightarrow{q}Q(-1)\to0,
+\quad\text{or, under }\Theta,\quad
+0\to\mathcal I(-1)\to\mathcal B(-1)
+\xrightarrow{q}\mathcal Q(-1)\to0.
+\tag{CW8.1}
+\]
+Every class lifts by its definition as a quotient; the whole fibre is (CW4.4). We now calculate the distinct question of a simultaneous arithmetic-equivariant linear choice of representatives.
+
+For any actual zero \(\rho\), put
+\[
+e_\rho(s)=F_0(s)/(s-\rho).
+\tag{CW8.2}
+\]
+It is entire and in \(\mathcal B\), by the same division estimate near \(\rho\) used above and polynomial division away from \(\rho\). Its order at \(\rho\) is \(m_\rho-1\), so \([e_\rho]\ne0\) in \(\mathcal Q\). Moreover
+\[
+(L-\rho)[e_\rho]=[F_0]=0,\qquad
+T_a[e_\rho]=a^\rho[e_\rho].
+\tag{CW8.3}
+\]
+For the second equality, \((a^s-a^\rho)/(s-\rho)\) is entire and a multiplier with polynomial strip bounds away from a fixed disk; multiplied by \(F_0\), it lies in \(\mathcal I\), with all required orders at every original zero.
+
+The actual zero set is nonempty without an RH assumption. One way using the retained source proof is S2's order-at-most-one Hadamard factorization and \(F_0(s)=F_0(1-s)\). If it were zero-free, that factorization would give \(F_0=e^{a+bs}\); the symmetry forces \(b=0\). This contradicts \(F_0(0)=1/8\) and \(F_0(2)=\pi/24\), since \(\pi\ne3\). This argument uses the original full function and does not assign a location to a fictional zero.
+
+An arithmetic-equivariant linear section of (CW8.1) would send the nonzero class \([e_\rho]\), with its twisted eigencharacter \(a^{\rho+1}\), to a nonzero entire function \(F\). For one \(a>1\), equivariance would require
+\[
+a^{s+1}F(s)=a^{\rho+1}F(s).
+\tag{CW8.4}
+\]
+The nonzero entire factor \(a^{s+1}-a^{\rho+1}\) forces \(F=0\), a contradiction. Thus
+\[
+\boxed{\text{The actual normal quotient has no arithmetic-equivariant
+linear section.}}
+\tag{CW8.5}
+\]
+Continuity is not needed for this no-section statement. In the continuous category, twisting both source and target by the same character and applying the proof of CW7 with target generator \(L\) also gives
+\[
+\operatorname{Hom}_{\mathrm{cont},T}
+(\mathcal Q(-1),\mathcal B(-1))=0.
+\tag{CW8.6}
+\]
+
+This is a statement about simultaneous compatible representatives, not about the existence of individual lifts. The latter are all present, with the exact affine fibres \(a+J(-1)\). In particular (CW8.5) does not contradict the degree-one identity lift in CW4, the surjective degree-two map, or Deligne's surjectivity theorem. DC8 explicitly distinguished its canonical section into the intermediate \(B_i\) from an unspecified choice of lifts into the special-fibre group \(A_i\).
+
+## CW9. The precise separated receiver obtained from the actual normal quotient
+
+The geometric normal quotient is \(\mathcal Q(-1)\), with action (CW6.4). It has the exact map into the GSL extension, rather than an identification with the kernel \(J(-1)\) of (CW8.1).
+
+Let
+\[
+\mathcal I_+=\{F\in\mathcal B:
+F^{(j)}(\rho+1)=0\quad(0\le j<m_\rho)\},\qquad
+\mathcal E_+=\mathcal B/(\mathcal I\cap\mathcal I_+).
+\tag{CW9.1}
+\]
+GSL4–GSL6 construct the entire multiplier \(E_+\), with jet one on the original divisor and jet zero on the divisor translated by \(+1\), and prove its strip bounds
+\[
+|E_+(s)|+|1-E_+(s)|
+\le C_M(1+|\Im s|)^{d_M}\quad(|\Re s|\le M).
+\tag{CW9.2}
+\]
+These give continuous multiplication on \(\mathcal B\):
+\(b_{M,N}(E_+F)\le C_M b_{M,N+d_M}(F)\), and the analogous bound for \(1-E_+\). Those completed global bounds, not a formal blockwise interpolation, are the input from GSL.
+
+With \(VF(s)=F(s-1)\), the complete maps are
+\[
+j_{\mathrm{high}}:\mathcal Q(-1)\to\mathcal E_+,\quad
+[h]\mapsto[(1-E_+(s))h(s-1)],
+\]
+\[
+\pi_{\mathrm{high}}[F]=[F]_{\mathcal I},\qquad
+s_{\mathrm{high}}[f]=[E_+f].
+\tag{CW9.3}
+\]
+They give
+\[
+0\to\mathcal Q(-1)\xrightarrow{j_{\mathrm{high}}}
+\mathcal E_+\xrightarrow{\pi_{\mathrm{high}}}\mathcal Q\to0,
+\qquad \pi_{\mathrm{high}}s_{\mathrm{high}}=1.
+\tag{CW9.4}
+\]
+Independence of representatives follows from the two full jet identities, including all derivatives. The inverse comparison is
+\[
+\mathcal E_+\longrightarrow\mathcal Q\oplus\mathcal Q(-1),
+\qquad
+[F]\longmapsto([F]_{\mathcal I},[F(s+1)]_{\mathcal I}),
+\tag{CW9.5}
+\]
+whose inverse is
+\[
+([f],[h])\longmapsto
+[E_+(s)f(s)+(1-E_+(s))h(s-1)].
+\tag{CW9.6}
+\]
+The two inverse identities hold at every original and translated jet. Continuity follows from (CW9.2), translation
+\(b_{M,N}(VF)\le b_{M+1,N}(F)\), and the quotient seminorms. Equivariance retains the factor
+\[
+a\,a^{s-1}=a^s.
+\tag{CW9.7}
+\]
+
+The complete original product defining the two divisors is
+\[
+F_0(s)F_0(s-1)=
+\left[\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s)\right]
+\left[\frac{(s-1)(s-2)}8\pi^{-(s-1)/2}
+\Gamma((s-1)/2)\zeta(s-1)\right].
+\tag{CW9.8}
+\]
+The translated factor has values \(1/8\) at \(s=1,2\), value (CW1.11) at \(s=1-2r\), and the same value at \(s=2+2r\). Its derivatives are exactly \(F_0^{(j)}(s-1)\); derivatives of the product are the full sum
+\[
+\sum_{j=0}^{n}\binom njF_0^{(j)}(s)F_0^{(n-j)}(s-1).
+\tag{CW9.9}
+\]
+Original and translated endpoint and trivial-zero contributions therefore remain explicit.
+
+The actual geometric normal map is
+\[
+\mathfrak n:A(-1)\to\mathcal E_+,\qquad
+a\mapsto[(1-E_+(s))(\Theta a)(s-1)].
+\tag{CW9.10}
+\]
+Its factorization is exactly
+\[
+A(-1)\xrightarrow{q}\mathcal Q(-1)
+\xrightarrow{j_{\mathrm{high}}}\mathcal E_+.
+\tag{CW9.11}
+\]
+The second arrow is injective, so
+\[
+\ker\mathfrak n=J(-1),\qquad
+\operatorname{im}\mathfrak n=\ker\pi_{\mathrm{high}}.
+\tag{CW9.12}
+\]
+Thus the separated GSL kernel is the complete quotient of the actual normal source by its full original summation image. It is not the summation image itself.
+
+The comparison on the actual connecting-map receiver can be computed without discarding that receiver. If
+\(\iota:J(-1)\hookrightarrow A(-1)\) is the actual map in (CW4.2), then
+\[
+q\iota=0,\qquad
+\mathfrak n\iota=j_{\mathrm{high}}q\iota=0,\qquad
+\mathfrak n\iota\delta^1=0.
+\tag{CW9.15}
+\]
+The middle map is zero on the entire receiver, before considering the value of \(\delta^1\). Therefore vanishing after this comparison is not an injective test for vanishing in \(J(-1)\). The actual vanishing of \(\delta^1\) is instead proved by (CW4.3) and independently by (CW7.7). This identifies the exact comparison map and its kernel, rather than treating the two receiver presentations as unrelated.
+
+The actual two-degree groups give the continuous equivariant isomorphism
+\[
+H^1(Y,\mathscr F)\oplus H^2(Y,\mathscr G)
+\xrightarrow{\sim}\mathcal E_+
+\tag{CW9.13}
+\]
+with formula (CW9.6). This map forgets the distinction between the two cohomological degrees only at its displayed direct-sum target. The degree-one connecting morphism of the actual sheaf sequence remains \(\delta^1:Q\to J(-1)\), not a new morphism \(Q\to Q(-1)\).
+
+For precision, the split algebraic cross on this receiver is
+\[
+0\to\mathcal Q(-1)\to\mathcal Q\oplus\mathcal Q(-1)
+\xrightarrow{\mathrm{pr}_1}\mathcal Q\to0,\qquad
+\partial_{\mathrm{sum}}=\mathrm{pr}_2.
+\tag{CW9.14}
+\]
+The actual degree-one group enters by \(x\mapsto(x,0)\), and its boundary is zero. The image of the kernel under \(\partial_{\mathrm{sum}}\) is all \(\mathcal Q(-1)\), so the DC-style obstruction quotient of this particular cross is zero. Transport through (CW9.13) gives exactly (CW9.4), whose continuous complex-linear equivariant section is unique by (CW7.8).
+
+This cross is constructed from the computed cohomology groups and the exact normal quotient. It is not substituted for (CW4.2) or (CW5.3). In particular, the separated kernel in (CW9.14) is visible only after the stated quotient and assembly of two degrees.
+
+## CW10. Exact comparison with Deligne's invariant-cycle mechanism
+
+DC3–DC9 derive, in Deligne's arithmetic reduction, the two linked rows
+\[
+0\to K_i=H^{i-1}(X_{\bar\eta},E)_I(-1)
+\xrightarrow{j_i}B_i=H^i(X_\eta,E)
+\xrightarrow{\pi_i}C_i=H^i(X_{\bar\eta},E)^I\to0,
+\]
+\[
+A_i=H^i(X_s,E)\xrightarrow{\alpha_i}B_i
+\xrightarrow{\partial_i}
+O_i=H^{2N-i-1}(X_s,E)^\vee(-N).
+\tag{CW10.1}
+\]
+Here \(N\) is the dimension of the smooth total model, not the generic fibre dimension. The invariant-cycle theorem's hypotheses are those of DC1–DC2, including the curve-trait setting and arithmetic reduction; they are not transferred to the sphere sheaf by its notation.
+
+Its exact lifting obstruction is
+\[
+\operatorname{obs}_i(c)=[\partial_i b]
+\in O_i/\partial_i j_i(K_i),\qquad \pi_i(b)=c.
+\tag{CW10.2}
+\]
+Changing \(b\) by \(j_i(k)\) changes the boundary by
+\(\partial_i j_i(k)\), proving well-definedness. Conversely,
+\(\operatorname{obs}_i(c)=0\) permits subtracting such a \(j_i(k)\)
+and then lifting through \(\alpha_i\) by localization. Thus
+\[
+\operatorname{coker}(\pi_i\alpha_i)
+\simeq\operatorname{im}\partial_i/\partial_i j_i(K_i).
+\tag{CW10.3}
+\]
+The geometric theorems prove
+\[
+C_i,\ A_i\text{ have weights }\le i,\qquad
+K_i,\ O_i\text{ have weights }\ge i+1.
+\tag{CW10.4}
+\]
+The bound on \(O_i\) is the full calculation
+\[
+-(2N-i-1)+2N=i+1;
+\]
+the bound on \(K_i\) comes from dual invariant weights followed by the retained \((-1)\) twist. Exactness of the weight cutoff in the finite-dimensional mixed category gives
+\[
+W_iB_i\xrightarrow{\sim}C_i,\quad
+\partial_i(W_iB_i)=0,\quad
+\operatorname{im}\alpha_i=W_iB_i,\quad
+\partial_i j_i(K_i)=\operatorname{im}\partial_i.
+\tag{CW10.5}
+\]
+The whole receiver need not vanish:
+\[
+O_i/\partial_i j_i(K_i)\simeq\ker\operatorname{sp}_{i+1}.
+\tag{CW10.6}
+\]
+
+The actual CSP sequence now has a fully determined comparison:
+
+| Actual calculation | Classes being lifted | Actual receiver or kernel | Calculated result |
+| --- | --- | --- | --- |
+| Quotient-sheaf degree one, (CW4.2) | \(H^1\mathscr G=Q\) | \(H^2\mathscr F_J=J(-1)\) | Boundary zero; unique cohomology lift, the identity |
+| Quotient-sheaf degree two, (CW8.1) | \(H^2\mathscr G=Q(-1)\) | Kernel \(J(-1)\); next boundary target \(0\) | Every class lifts; all lifts form \(a+J(-1)\) |
+| Support to global degree one, (CW5.3) | \(H^1\mathscr F=Q\) | Following receiver \(A(-1)\) | Following map zero; section \(q\mapsto(q/2,-q/2)\) |
+| Global to annular degree zero | \(A\) | \(Q^2\) | Boundary \(\operatorname{diag}q\), image \(\operatorname{diag}Q\) |
+| Global to annular degree one | \(A(-1)\) | \(A(-1)^2\) | Injective boundary \(a\mapsto(-a,a)\) |
+| Normal quotient assembled with degree one, (CW9.14) | \(Q\) | \(Q(-1)\) | Separated continuous split receiver; obstruction quotient zero |
+
+The first and third zero maps are proved both by their actual complexes and by the global continuous intertwiner calculation of CW7. Their full targets \(J(-1)\) and \(A(-1)\) have the character quotients of CW6, so Deligne's finite-dimensional weight-cutoff proof (CW10.4) is not the proof of those target bounds here. This is an exact determination of the present objects and maps, not an assertion that no further geometric comparison can exist.
+
+There is already a precise morphism to the separated normal quotient: (CW9.10)–(CW9.12), with the entire kernel \(J(-1)\) and the entire image \(\ker\pi_{\mathrm{high}}\) calculated. It is this quotient and the two-degree comparison, rather than a renaming of \(J(-1)\), that relates the actual CSP geometry to GSL's separated row.
+
+No map in this calculation forces the original characters \(a^\rho\) all to have weight one. The surviving original quotient still has its complete original zero jets, their nilpotent actions, and their actual strip positions. The results prove the stated actual lifts and their exact receivers; they do not assume a critical-line conclusion or construct a violation of it.
+
+## CW11. Prerequisites, source use, and retained scope
+
+The operations used in this derivation have the following constructed prerequisites:
+
+| Operation | Exact prerequisite and proof |
+| --- | --- |
+| Vector sums, differences and \(1/2\) | Recovered complex coefficient spaces \(A,S,V_\pm,Q\); CW1–CW2. None acts on \(\tau\). |
+| Sheaf kernel and quotient | Stalkwise exact fibre-product and extension-by-zero maps; CSP2/CSP10 and CW2.1–CW2.3. |
+| Long exact sequences and boundaries | Simultaneous finite complexes and their compatible contractions; CW2.3–CW2.4, CW3–CW5. |
+| Ordinary equals Hausdorff cohomology | Actual closed-image/inverse theorem SSI1–SSI7 and ESI0–ESI8, imported through CSP1.7 with its full inverse CW1.17. |
+| Normal degree character | Actual positive-degree covering \(z\mapsto z^n\), annular period and oriented sphere integration; CSP8 and CW2.6. |
+| Original-zero weights | Exact raw Mellin comparison, original zero ideal and full nilpotent action; CW1.6–CW1.18 and CW6. |
+| Evaluation on the full kernel | Local division by the retained full \(F_0\), with all exceptional values; CW6.6–CW6.8. |
+| Global vanishing of continuous intertwiners | Continuous full resolvent, strong differentiability and holomorphic uniqueness; CW7. No density of finite blocks is used. |
+| Shifted normal comparison | GSL's constructed multiplier with strip bounds, full translated factor and continuous CRT inverse; CW9.1–CW9.12. |
+| Deligne comparison | The actual invariant/coinvariant, duality and weight maps of DC3–DC9; full total-dimension and Tate factors retained in CW10. |
+
+The new statements about absence of equivariant linear sections are restricted to the actual coefficient row (CW8.1). They preserve the whole original arithmetic and do not replace it by a different timing history. They do not deny individual lifting, and they do not identify that coefficient-row section problem with an unconstructed obstruction in the user's complete construction.
+
+The concrete mathematical conclusions are the actual cohomological identity lift, both zero connecting maps of (CW4.2), the full localization maps and their explicit sections, the global vanishing (CW7.6)–(CW7.8), the exact normal lift fibres, and the quotient morphism to the separated receiver. Every comparison keeps the support, separate chart labels, full source kernel, original zeta factors, multiplicities, and cohomological degrees at the points where they are used.

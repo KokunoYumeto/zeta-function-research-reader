@@ -1,0 +1,436 @@
+\section{The complete pole-corrected Hurwitz zero receiver}
+\label{sec:hurwitz-pole-receiver}
+
+This calculation uses the original shifted flow, not a deformation of its
+coordinates. The programme source is
+\nolinkurl{split_zero_cue_shifted_hurwitz_phase_space.tex},
+Theorem \texttt{thm:universal-flow}, lines 602--630, and
+Theorem \texttt{thm:zero-motion}, lines 1003--1060.
+Its second occurrence is \nolinkurl{split_zero_secondary_note.tex},
+lines 1439--1633. The original theta coordinate and factor are those of
+Brad Rodgers and Terence Tao, \emph{The de Bruijn--Newman constant is
+non-negative}, arXiv:1801.05914v5, equations \texttt{htdef} and \texttt{hoz}.
+The elementary Hurwitz identities are recorded with original TeX encodings at
+\href{https://dlmf.nist.gov/25.11.E7}{DLMF 25.11.7} and
+\href{https://dlmf.nist.gov/25.11.E14}{DLMF 25.11.14}; the gamma product is
+\href{https://dlmf.nist.gov/5.8.E2}{DLMF 5.8.2}.
+These standard formulas are credited to their human literature; the
+pole-corrected application below is a programme derivation.
+
+\subsection{An entire receiver with an exact divisor correction}
+
+For real $t\ge-1/2$ put $a=1+t$, and retain
+\begin{equation}\tag{HPR1}
+ s(z)=\frac12+\frac{iz}{2},\qquad
+ A(s)=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2),\qquad
+ H_t^{\mathrm{Hur}}(z)=\frac18 A(s(z))\zeta(s(z),a).
+\end{equation}
+Here $H_t^{\mathrm{Hur}}$ denotes the completed \emph{Hurwitz} flow in this section.
+Only $H_0^{\mathrm{Hur}}$ is the Rodgers--Tao time-zero function; their heat evolution
+has a different generator. The full comparison is proved in HTB.
+Define the fixed entire function
+\begin{equation}\tag{HPR2}
+ Q(z)=\prod_{m=1}^{\infty}\left(1+\frac{z^2}{(4m+1)^2}\right)
+ =\frac{\Gamma(5/4)^2}
+ {\Gamma(5/4+iz/4)\Gamma(5/4-iz/4)}.
+\end{equation}
+The product converges locally uniformly because the sum of the absolute
+values of its nonconstant terms does. Its zeros are precisely
+$\pm i(4m+1)$, each simple, and $Q(0)=1$.
+For completeness, Euler's limit formula for $\Gamma$ gives
+\[
+ \frac{\Gamma(b)^2}{\Gamma(b+w)\Gamma(b-w)}
+ =\lim_{N\to\infty}\prod_{k=0}^{N}
+                 \left(1-\frac{w^2}{(b+k)^2}\right).
+\]
+The factors $N^{\pm w}$ cancel. Taking $b=5/4,w=iz/4$ proves
+the second expression without an undetermined exponential factor.
+
+The complete entire receiver is
+\begin{equation}\tag{HPR3}
+ \mathscr F_t(z)=Q(z)H_t^{\mathrm{Hur}}(z)H_t^{\mathrm{Hur}}(-z)
+ =\frac{\Gamma(5/4)^2}{64\sqrt\pi},
+       s(z)(1-s(z))\zeta(s(z),a)\zeta(1-s(z),a).
+\end{equation}
+Indeed $s(-z)=1-s(z)$, and
+\[
+ Q(z)=\frac{4\Gamma(5/4)^2}
+ {s(1-s)\Gamma(s/2)\Gamma((1-s)/2)}.
+\]
+Multiplication by both factors $A/8$ proves every constant in (HPR3).
+The only Hurwitz poles are simple poles at $s=1$ and $s=0$ in the
+two respective factors, so the displayed polynomial cancels them.
+Thus $\mathscr F_t$ is entire. It is even and real on the real $z$ axis;
+more precisely $\mathscr F_t(\bar z)=\overline{\mathscr F_t(z)}$.
+No zero has yet been removed from its divisor by this construction.
+
+Also $H_t^{\mathrm{Hur}}(0)>0$ for this whole range of $t$. At $a=1/2$,
+$\zeta(1/2,a)=(\sqrt2-1)\zeta(1/2)<0$.
+The last sign follows by pairing successive terms in
+$\eta(1/2)=\sum_{n\ge1}(-1)^{n-1}n^{-1/2}>0$ and using
+$\eta(s)=(1-2^{1-s})\zeta(s)$.
+For $a\ge1/2$,
+$\partial_a\zeta(1/2,a)=-\zeta(3/2,a)/2<0$.
+The factor $A(1/2)$ is negative. Consequently
+\begin{equation}\tag{HPR4}
+ H_t^{\mathrm{Hur}}(0)>0,\qquad \mathscr F_t(0)=H_t^{\mathrm{Hur}}(0)^2>0.
+\end{equation}
+
+Here are the growth and summability details needed for an \emph{all}-zero
+argument. Euler--Maclaurin, with $N\ge1$, gives
+\begin{align*}
+ \zeta(s,a)={}&\frac{a^{1-s}}{s-1}+\frac{a^{-s}}2
+ +\sum_{k=1}^{N}\frac{B_{2k}}{(2k)!}(s)_{2k-1}a^{1-s-2k}\\
+ &-\frac{(s)_{2N}}{(2N)!}
+       \int_0^{\infty}\widetilde B_{2N}(x)(a+x)^{-s-2N}\,dx.
+\end{align*}
+Its domain is $\Re s+2N>1$, excluding the displayed pole.
+One proves it first for $\Re s>1$ by integrating by parts on each
+unit interval, using $B_j'=jB_{j-1}$ and the matching periodic endpoint
+values; the boundary at infinity vanishes. The integral is locally
+normally convergent in the stated larger half-plane, giving the
+continuation there. The periodic Bernoulli Fourier series gives
+$\|\widetilde B_{2N}\|_\infty/(2N)!
+\le 2\zeta(2N)/(2\pi)^{2N}\le4/(2\pi)^{2N}$.
+For $|s|\le R$, take $N=\lceil R\rceil+2$.
+Then $|(s)_j|\le(R+2N)^j$, and the absolute integral without
+the periodic factor is
+$a^{1-\Re s-2N}/(\Re s+2N-1)$.
+Every power of the fixed positive $a$ is bounded by
+$\exp(O_a(R+N))$. The finite sum has $N$ terms.
+After multiplying by $s-1$ these estimates give
+\begin{equation}\tag{HPR5}
+ \max_{|s|\le R}|(s-1)\zeta(s,a)|
+       \le \exp(C_a(R+2)\log(R+2))
+\end{equation}
+for a finite constant $C_a$, enlarged to cover bounded $R$.
+Thus $\mathscr F_t$ has order at most one. Jensen's formula applied at its
+nonzero value at zero gives $N_{\mathscr F_t}(R)=O_t(R\log(R+2))$.
+Summing over annuli $2^j\le|z|<2^{j+1}$ proves
+$\sum_{\mathscr F_t(w)=0}\operatorname{ord}_w(\mathscr F_t)|w|^{-2}<\infty$.
+
+The poles of $H_t^{\mathrm{Hur}}$ are at $z=i(4m+1)$, and their residue in the
+original $s$ coordinate is
+\begin{equation}\tag{HPR6}
+ \operatorname{Res}_{s=-2m} A(s)\zeta(s,a)
+ =\frac{2(-1)^{m+1}\pi^m}{(m-1)!}B_{2m+1}(a).
+\end{equation}
+This follows from
+$\operatorname{Res}_{s=-2m}\Gamma(s/2)=2(-1)^m/m!$
+and $\zeta(-2m,a)=-B_{2m+1}(a)/(2m+1)$.
+In the $z$ coordinate the residue is $-i/4$ times (HPR6),
+because the function has the additional factor $1/8$ and $ds/dz=i/2$.
+There is an actual simple pole precisely at the indices
+\[
+ I_t=\{m\ge1:B_{2m+1}(1+t)\ne0\}.
+\]
+At such an index, $H_t^{\mathrm{Hur}}(-i(4m+1))$ evaluates at $s=2m+1>1$;
+all its factors are strictly positive. In particular the reflected
+factor cannot cancel this pole. At $s=0$ and $s=1$ the function is
+regular, with values $A\zeta=1/2+t$ and $1/2$, respectively.
+
+Let $\mathcal Z_t$ be the positive divisor counting every zero of
+$H_t^{\mathrm{Hur}}(z)$ and every zero of $H_t^{\mathrm{Hur}}(-z)$, with their actual multiplicities.
+Let $\mathcal P_t=\sum_{m\in I_t}([i(4m+1)]+[-i(4m+1)])$.
+Writing $\operatorname{div}$ for the signed divisor of a meromorphic
+function, the exact equality of divisors is
+\begin{equation}\tag{HPR7}
+ \mathcal Z_t=\operatorname{div}(\mathscr F_t)-\operatorname{div}(Q)
+                         +\mathcal P_t.
+\end{equation}
+It is the valuation identity for (HPR3), at every point. At an inactive
+index, $Q$ supplies one artificial zero in $\mathscr F_t$, in addition to any
+actual zero there; subtracting $\operatorname{div}(Q)$ removes exactly
+one. At an active index, $\mathscr F_t$ is nonzero at both marked points and
+the last two terms cancel. This also proves directly that the right
+side has nonnegative multiplicities. In particular
+\[
+ \sum_{w}\mathcal Z_t(w)|w|^{-2}<\infty.
+\]
+These divisors are invariant under both $w\mapsto-w$ and conjugation.
+The zero $w=0$ is absent by (HPR4).
+
+\subsection{The complete corrected trace, with no discarded roots}
+
+For $n\ge1$ define
+\begin{equation}\tag{HPR8}
+ \begin{split}
+ S_{F,n}(t)&=\sum_{\mathscr F_t(w)=0}\operatorname{ord}_w(\mathscr F_t)w^{-2n},\\
+ T_n(t)&=S_{F,n}(t)-2(-1)^n\sum_{m\ge1}(4m+1)^{-2n}
+             +2(-1)^n\sum_{m\in I_t}(4m+1)^{-2n}\\
+        &=\sum_w\mathcal Z_t(w)w^{-2n}.
+ \end{split}
+\end{equation}
+All sums are absolutely convergent. The order bound, evenness and
+Hadamard factorization give
+$\mathscr F_t(z)=\mathscr F_t(0)\prod_{\{w,-w\}}(1-z^2/w^2)^{\operatorname{ord}_w(\mathscr F_t)}$.
+Indeed the paired genus-one factors lose their exponential terms;
+the remaining exponential is $e^{b z+c}$, and evenness forces $b=0$.
+Logarithmic differentiation at zero consequently gives
+\begin{equation}\tag{HPR9}
+ \log \mathscr F_t(z)=\log \mathscr F_t(0)-\sum_{n\ge1}\frac{S_{F,n}(t)}{2n}z^{2n}
+\end{equation}
+on the actual zero-free disk at the origin. This fixes both the
+multiplicity convention and the factor two.
+
+Put $\mathcal R=\{z^{-1}p(z^{-2}):p\in\mathbb C[X]\}$.
+The complete zero trace and its finite matrices are
+\begin{equation}\tag{HPR10}
+ \mathcal B_t(f,g)=\sum_w\mathcal Z_t(w)
+                     \overline{f(\bar w)}g(w),\qquad
+ K_d^{\rm Hur}(t)=(T_{i+j+1}(t))_{0\le i,j<d}.
+\end{equation}
+The summability in (HPR7) proves absolute convergence on all of
+$\mathcal R$, not only on a selected finite set of zeros. The form
+is Hermitian by conjugation of the divisor. Substituting the monomials
+gives precisely the displayed matrix.
+
+Here is a full proof of the all-zero criterion for this new receiver:
+\begin{equation}\tag{HPR11}
+ \text{every zero of }H_t^{\mathrm{Hur}}\text{ is real}
+ \quad\Longleftrightarrow\quad
+ K_d^{\rm Hur}(t)\text{ is positive semidefinite for every }d.
+\end{equation}
+The forward implication is the sum of the nonnegative terms
+$\mathcal Z_t(w)|f(w)|^2$ at real $w$.
+For the reverse implication collect $\pm$ pairs into reciprocal nodes
+$\lambda=w^{-2}$ with positive integer masses $M_\lambda$.
+They form a bounded discrete set away from its only possible accumulation
+point zero, are closed under conjugation with equal masses, and satisfy
+$V=\sum M_\lambda|\lambda|<\infty$.
+For a polynomial $p$ the quadratic form is
+\[
+ \sum_\lambda M_\lambda\lambda
+                     \overline{p(\bar\lambda)}p(\lambda).
+\]
+An off-real $w$ gives a negative real or a nonreal $\lambda_0$.
+Choose $0<r<|\lambda_0|$ and the finite set
+$S=\{\lambda:|\lambda|\ge r\}$.
+Let $L_0(X)=\prod_{\mu\in S\setminus\{\lambda_0\}}
+(X-\mu)/(\lambda_0-\mu)$, and
+$B=\prod_{\mu\in S\setminus\{\lambda_0\}}
+(r+|\mu|)/|\lambda_0-\mu|$.
+If $\lambda_0<0$, this polynomial is real and
+$p_N=(X/\lambda_0)^N L_0$ has its only nonzero value on $S$
+at $\lambda_0$. The target contribution is $M_{\lambda_0}\lambda_0<0$;
+the absolute value of the complete remaining tail is at most
+$B^2V(r/|\lambda_0|)^{2N}$, which tends to zero.
+If $\lambda_0$ is nonreal, choose $|c|=1$ with
+$c^2=-\bar\lambda_0/|\lambda_0|$, and set
+\[
+ p_N=c(X/\lambda_0)^N L_0(X)
+       +\bar c(X/\bar\lambda_0)^N\overline{L_0(\bar X)}.
+\]
+This is a real polynomial. Its two target contributions total
+$-2M_{\lambda_0}|\lambda_0|$, while the full tail is bounded by
+$4B^2V(r/|\lambda_0|)^{2N}$. Choosing a sufficiently large finite
+$N$ makes the form strictly negative. These are bounds on every
+remaining zero, not estimates for a sampled tail. Finally approximate
+the finitely many real coefficients by rationals. On the bounded node
+disk the uniform error tends to zero, and the quadratic error is at
+most $V\delta(2\|p_N\|+\delta)$. Thus a rational finite test is
+strictly negative too, proving the converse and a rational witness.
+
+The calculation retains the full split base. For the original bounded
+distributive lattice $L$, take
+$G_L(\mathcal R)=\{(0,\lambda):\lambda\in L\}
+\cup(\mathcal R\times\{1_L\})$, and set
+\begin{equation}\tag{HPR12}
+ \widehat{\mathcal B}_t((f,\lambda),(g,\mu))
+     =(\mathcal B_t(f,g),\lambda\wedge\mu),\qquad
+ \Phi(c,\nu)=(c,1_K\otimes\nu).
+\end{equation}
+The nonzero-amplitude carrier condition is satisfied because both
+input amplitudes must then be nonzero, hence both labels top.
+Additivity holds in each variable with the original join, since
+meet distributes over join. Scalar multiplication and conjugation
+have their original amplitudes and meet labels. Evaluation at every
+zero is $(f,\lambda)\mapsto(f(w),\lambda)$; it is additive and
+linear and retains $e=(0,1_L)$ at amplitude cancellation. Its
+$\tau$ fibre contains only $\tau$.
+The map $\Phi$ commutes with these operations by its two coordinates;
+the original lattice retraction $\rho_L(1_K\otimes\nu)=\nu$
+retains all intermediate labels. Formula (HPR8) is an equality
+of arithmetic coefficients before this lift. It does not subtract
+lattice labels, identify the independent support sectors, or invert $e$.
+
+\subsection{The actual boundary at the unshifted fibre}
+
+At $t=0$ every odd Bernoulli value $B_{2m+1}(1)$ vanishes.
+The functional equation makes $H_0^{\mathrm{Hur}}$ even, so
+\begin{equation}\tag{HPR13}
+ I_0=\varnothing,\quad \mathscr F_0=Q (H_0^{\mathrm{Hur}})^2,\quad
+ T_n(0)=2S_n(H_0^{\mathrm{Hur}}),\quad
+ K_d^{\rm Hur}(0)=2K_d(0).
+\end{equation}
+In particular the arithmetic zero test at this fibre is exactly the
+previous all-root receiver with the factor two retained. All labels
+in (HPR12) are unchanged. Positive definiteness of $K_{64}(0)$
+therefore proves only the corresponding 64-dimensional result here.
+
+The other fibres have an explicitly different all-zero contribution.
+Let $C_n=\sum_{m\ge1}(4m+1)^{-2n}$. Each Bernoulli polynomial is
+nonzero, so the union $E$ of all its real roots $B_{2m+1}(1+t)=0$
+is countable. Its complement is dense. On this complement $I_t$
+contains every positive integer and $T_n(t)=S_{F,n}(t)$.
+The latter is continuous near $t=0$ by (HPR3)--(HPR4) and the Taylor
+coefficient formula (HPR9). Hence
+\begin{equation}\tag{HPR14}
+ \lim_{\substack{t\to0\\t\notin E}}T_n(t)
+       =2S_n(H_0^{\mathrm{Hur}})+2(-1)^n C_n,\qquad
+ T_n(0)=2S_n(H_0^{\mathrm{Hur}}).
+\end{equation}
+The explicitly computed jump is the disappearing zero--pole divisor.
+There is no assertion that taking a parameter limit commutes with
+discarding the poles in a meromorphic divisor.
+
+The first corrected moment gives a stronger uniform statement.
+Write
+\begin{equation}\tag{HPR15}
+ B(t)=\frac12\left.\frac{d^2}{ds^2}
+               \log(A(s)\zeta(s,1+t))\right|_{s=1/2}.
+\end{equation}
+This logarithm is defined near $s=1/2$ by its positive value there.
+Since $ds/dz=i/2$, differentiating (HPR3) and retaining both reflected
+factors proves
+\begin{equation}\tag{HPR16}
+ B(t)=S_{F,1}(t)+2C_1,\qquad
+ T_1(t)=B(t)-2\sum_{m\in I_t}(4m+1)^{-2}.
+\end{equation}
+Now $B_3(1+t)=(1+t)(t+1/2)t$. Thus $1\in I_t$ at every
+$0<|t|\le1/1000$; all other terms in this last sum are nonnegative.
+The reproducible interval certificate
+\nolinkurl{check_hurwitz_pole_receiver.py} evaluates the entire
+parameter interval $1+t\in[999/1000,1001/1000]$ at 256-bit precision
+with power series of length four, using Fredrik Johansson's
+\href{https://arblib.org/}{Arb} through Python-flint 0.9.0. It proves
+$A(1/2)\zeta(1/2,1+t)>0$ and $B(t)<1/25$ on that interval.
+It uses the coefficient of $x^2$ in
+$\log(A(1/2+x)\zeta(1/2+x,1+t))$, which is exactly (HPR15),
+not twice that number. No parameter samples or zero list enter.
+The retained machine receipt specifies the library version, enclosure,
+script hash and the independently retained theta moment comparison.
+Consequently the computer-assisted rational bound is
+\begin{equation}\tag{HPR17}
+ \boxed{\mathcal B_t(z^{-1},z^{-1})=T_1(t)<-\frac1{25}
+                \quad(0<|t|\le1/1000),\qquad T_1(0)>0.}
+\end{equation}
+The exact infinite-sum inequality behind it is simply
+$T_1(t)\le B(t)-2/25$; none of the other poles can weaken it.
+At zero, $T_1(0)=2M_1/M_0>0$ for the original positive theta moments.
+An alternative argument requiring no new Hurwitz numerical enclosure
+is already available: the earlier certified bounds
+$M_0>3/50$ and $M_1<3/4000$ give $B(0)<1/40$.
+Continuity and the same first-pole inequality prove strict negativity
+on a punctured neighborhood, without specifying its radius.
+
+The roots responsible for this jump can be located analytically.
+At every original trivial zero $s=-2m$, the ordinary functional equation
+gives
+\[
+ \zeta'(-2m)=\frac{(-1)^m(2m)!}{2(2\pi)^{2m}}\zeta(2m+1)\ne0,
+ \quad
+ B_{2m}=\frac{(-1)^{m+1}2(2m)!}{(2\pi)^{2m}}\zeta(2m).
+\]
+These follow respectively by differentiating the sine factor in the
+functional equation and evaluating it at $1-2m$.
+The analytic implicit function theorem therefore gives a unique
+zero $\sigma_m(t)$ near $-2m$ for sufficiently small $t$, depending
+on $m$. Differentiating the actual Hurwitz equation
+$\partial_t\zeta(s,1+t)=-s\zeta(s+1,1+t)$ yields
+\begin{equation}\tag{HPR18}
+ \begin{gathered}
+ \sigma_m(0)=-2m,\qquad
+ \sigma_m'(0)=\frac{B_{2m}}{\zeta'(-2m)}
+       =-4\frac{\zeta(2m)}{\zeta(2m+1)}<0,\\
+ z_m(t)=i(4m+1)+8i\frac{\zeta(2m)}{\zeta(2m+1)}t+O_m(t^2).
+ \end{gathered}
+\end{equation}
+The branch is real in $s$ for real $t$, by conjugation and uniqueness.
+Its derivative is nonzero, so for small nonzero $t$ it leaves the
+fixed gamma pole and becomes an actual off-real zero of $H_t^{\mathrm{Hur}}$.
+At $t=0$ it cancels that pole exactly. The radii here are not claimed
+uniform in $m$; (HPR17) separately handles the entire zero divisor
+on its explicit common interval.
+
+At the separated sheet $t=1$ there is also an exact endpoint sign
+witness: $\zeta(-20)-1=-1$ and
+$\zeta(-19)-1=168011/6600>0$. Thus $\zeta(s)-1$ has a real zero
+in $(-20,-19)$. $A(s)$ is finite and nonzero on that open interval,
+so it gives an actual zero of $H_1^{\mathrm{Hur}}$ on $i(39,41)$.
+Criterion (HPR11) produces a finite rational negative trace test for
+that zero, with its complete tail retained. This endpoint observation
+does not assert that the simple test of (HPR17) remains negative all
+the way to $t=1$.
+
+Equations (HPR7), (HPR13) and (HPR16)--(HPR18) identify exactly which
+part of the shifted all-zero trace returns to the original theta
+pairing. The correction is an explicit divisor and an explicit
+infinite series. Neither its nonzero shifted value nor the strict
+negative value in (HPR17) determines the sign of the complete
+unshifted Schur residual constructed in RWR18--27.
+
+\subsection{Exact return to every original arithmetic moment}
+
+The boundary correction itself gives the inverse arithmetic comparison.
+Retain $J_t$ from HTB26--28, so $H_t^{\mathrm{Hur}}+J_t=H_0^{\mathrm{Hur}}$, and on the actual
+nonvanishing disk about zero set
+\[
+ c_t=J_t/H_0^{\mathrm{Hur}},\qquad
+ W_t=(1-c_t(z))(1-c_t(-z))=H_t^{\mathrm{Hur}}(z)H_t^{\mathrm{Hur}}(-z)/H_0^{\mathrm{Hur}}(z)^2.
+\]
+The Mellin kernel determining $J_t$ is the explicit
+$d_t(x)=e^{-x}(1-e^{-tx})/(1-e^{-x})$ of HTB27.
+Define the actual coefficients
+\begin{equation}\tag{HPR19}
+ \begin{gathered}
+ E_n(t)=[z^{2n-1}]\frac{W_t'(z)}{W_t(z)},\qquad
+ P_n(t)=2(-1)^n\sum_{m\in I_t}(4m+1)^{-2n},\\
+ 2S_n(H_0^{\mathrm{Hur}})=T_n(t)+E_n(t)-P_n(t).
+ \end{gathered}
+\end{equation}
+To prove the last identity, differentiate
+$\mathscr F_t=Q(H_0^{\mathrm{Hur}})^2W_t$, use (HPR9) for the first two entire even functions,
+and compare the coefficient of $z^{2n-1}$. The result is
+$S_{F,n}=S_{Q,n}+2S_n(H_0^{\mathrm{Hur}})-E_n$. Substitution in (HPR8) proves
+(HPR19) for every $n$, with no limiting interchange at $t=0$.
+All coefficients exist because $W_t(0)>0$.
+
+For a finite degree $d$ let $E_d=(E_{i+j+1})$ and
+$P_d=(P_{i+j+1})$, and put
+$v_m=(1,-(4m+1)^{-2},\ldots,(-(4m+1)^{-2})^{d-1})^T$.
+Then
+\begin{equation}\tag{HPR20}
+ \begin{gathered}
+ 2K_d(0)=K_d^{\rm Hur}(t)+E_d(t)-P_d(t),\\
+ P_d(t)=-2\sum_{m\in I_t}(4m+1)^{-2}v_mv_m^T\preceq0.
+ \end{gathered}
+\end{equation}
+The matrix series converges absolutely entrywise. Its quadratic value
+on a complex vector $b$ is
+$-2\sum_{m\in I_t}(4m+1)^{-2}|v_m^Tb|^2$, proving the sign.
+The boundary matrix $E_d$ is retained in full and is not assigned a
+sign. In particular the negative test in (HPR17) returns to the
+positive original value by the exact correction $E_1-P_1$; it is
+not transported by an unproved positivity-preserving map.
+
+This also returns to the \emph{entire} earlier residual, not only
+its first 64 coordinates. Put $D_n(t)=T_n(t)+E_n(t)-P_n(t)$,
+$A=K_{64}(0)$ and, for every $i\ge64$,
+$v_i=(D_{i+a+1}(t)/2)_{0\le a<64}$. The exact residual is
+\begin{equation}\tag{HPR21}
+ \mathscr S_{ij}=\frac12 D_{i+j+1}(t)-v_i^T A^{-1}v_j,
+ \qquad i,j\ge64.
+\end{equation}
+It is independent of the chosen shift: (HPR19) identifies every entry
+and every $v_i$ with its original value. Its domain remains the direct
+sum of finitely supported sequences, with no upper cutoff in $i$.
+The positivity of $A$ was certified in RWR15--17; the coordinate map
+and inverse yielding this Schur form are proved in RWR18--27.
+Their complete source is retained with this reader. Formula (HPR21)
+is their exact entrywise identification through the present flow.
+It does not replace the residual by the known negative pole matrix.
+Lifting the equality through (HPR12) keeps a common original support
+label and its tensor image on every side, including when amplitudes
+cancel. Thus the boundary, pole divisor, original arithmetic trace
+and complete residual have explicit connecting maps.

@@ -1,0 +1,555 @@
+% RMK: complete finite rational mixed Hurwitz boundary classification.
+\section{The complete rational mixed boundary kernel}
+\label{sec:rational-mixed-boundary-kernel}
+
+\paragraph{Original inputs and source provenance.}
+The actual restriction map and its two zero endpoint conditions are
+those of Alain Connes, Caterina Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/math/0703392}{\emph{The Weil proof and the
+geometry of the adeles class space}}, original author source
+\nolinkurl{Yuri70v2.tex}, equations \texttt{TrMbf0},
+\texttt{rangecVdef}, \texttt{SCK} and Lemma \texttt{degmodifyV}.
+The full Gaussian-polynomial generator is retained below. HCB1--33
+in \nolinkurl{HURWITZ_CC_TEST_SPACE_BOUNDARY.tex} proves the
+original Hurwitz boundary coefficients with uniform differentiated
+remainders; those exact formulas, reproduced where used, are the
+analytic input. RMB1--10 in \nolinkurl{CC_RATIONAL_MIXED_BOUNDARY.tex}
+constructs rational reflected antecedents and their full compact-unit
+character receiver. The present result classifies every finite mixed
+boundary with commensurable rational parameters; it does not replace
+the original functions, their scales, or the compact-unit coordinate.
+
+The complete public predecessor proofs are
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/acd7016b8232a56f31ae3e69fb800571e8789080/workbenches/splitzero-tandem/continuations/20260923-retained-source-readers/original-zeta-full-boundary/CC_WEIL_BOUNDARY_READER.tex#L1743}{HCB1--33}
+and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/acd7016b8232a56f31ae3e69fb800571e8789080/workbenches/splitzero-tandem/continuations/20260923-retained-source-readers/original-zeta-full-boundary/CC_WEIL_BOUNDARY_READER.tex#L2297}{RMB1--10},
+at the pinned edition whose expanded source matches the retained local reader.
+
+\subsection{All original parameters and the exact frequency map}
+
+Keep $b_0>0$ unchanged. Let $J\geq1$, $a_j=1+t_j\in\mathbb Q_{>0}$,
+$r_j=b_j/b_0\in\mathbb Q_{>0}$, and $\alpha_j\in\mathbb C$ for
+$1\leq j\leq J$. Zero coefficients and repeated parameters are allowed.
+Define the original functions, without suppressing either summand, by
+\begin{equation}\tag{RMK1}
+\begin{split}
+ \eta(x)&=\pi x^2(\pi x^2-\tfrac32)e^{-\pi x^2},
+ \qquad g(x)=2\eta(x),\\
+ S(y)&=\sum_{j=1}^J\alpha_j\Psi_{t_j,b_j}(y)
+   =\sum_{j=1}^J\alpha_j\sum_{n\geq0}
+       \left[2\pi^2\left(\frac{(n+a_j)y}{b_j}\right)^4
+             -3\pi\left(\frac{(n+a_j)y}{b_j}\right)^2\right]
+           e^{-\pi((n+a_j)y/b_j)^2},\quad y>0.
+\end{split}
+\end{equation}
+All sums converge absolutely, locally with every derivative, by
+Gaussian bounds; the finite sum in $j$ introduces no limit interchange.
+
+Choose a positive integer $D$ divisible by the denominators of
+$1/r_j$ and $a_j/r_j$ for every $j$. For example their least common
+multiple is an explicit permitted choice. Put
+\begin{equation}\tag{RMK2}
+ p_j=D a_j/r_j\in\mathbb Z_{>0},\quad
+ q_j=D/r_j\in\mathbb Z_{>0},\quad B=D b_0,\quad
+ Q=\operatorname{lcm}(q_1,\ldots,q_J),\quad
+ K=\max_{1\leq j\leq J}\max(p_j-q_j,0).
+\end{equation}
+The original frequency comparison is the equality
+$(n+a_j)/b_j=(q_jn+p_j)/B$. Thus $n\mapsto q_jn+p_j$
+is an exact bijection onto the positive progression starting at $p_j$.
+The full data $(\alpha_j,a_j,b_j,p_j,q_j)$ remain recorded; aggregating
+coincident frequencies does not identify their original presentations.
+Set, for every positive integer $k$,
+\begin{equation}\tag{RMK3}
+\begin{split}
+ w_k&=\sum_{j=1}^J\alpha_j
+       {\bf1}_{\{k\geq p_j,\ k\equiv p_j\pmod{q_j}\}},\\
+ v_k&=\sum_{j=1}^J\alpha_j
+       {\bf1}_{\{k\equiv p_j\pmod{q_j}\}},\\
+ d_k&=-\sum_{j=1}^J\alpha_j
+       {\bf1}_{\{1\leq k<p_j,\ k\equiv p_j\pmod{q_j}\}}.
+\end{split}
+\end{equation}
+Extend $v$ to every integer by the same formula. It is $Q$-periodic;
+$v_0=v_Q$ is its residue-zero value, not its mean. Each omitted
+positive frequency in the $j$th progression is at most $p_j-q_j$.
+Consequently $d_k=0$ for $k>K$, and
+\begin{equation}\tag{RMK4}
+ S(y)=\sum_{k\geq1}v_k g(ky/B)+\sum_{k=1}^K d_k g(ky/B),
+ \qquad w_k=v_k+d_k.
+\end{equation}
+In particular no finite initial term was suppressed. If $p_j\leq q_j$
+the corresponding initial defect is empty, including the case
+$p_j=q_j$. The frequency zero is absent from RMK1--4 because every
+$a_j>0$; this does not impose $v_0=0$.
+
+The exact ordinary generating function, for $|z|<1$, and its rational
+continuation are
+\begin{equation}\tag{RMK5}
+\begin{gathered}
+ W(z)=\sum_{k\geq1}w_kz^k
+     =\sum_{j=1}^J\frac{\alpha_jz^{p_j}}{1-z^{q_j}}
+     =\frac{P(z)}{1-z^Q}+D_+(z),\\
+ P(z)=\sum_{r=1}^Qv_r z^r,\qquad
+ P^*(z)=z^QP(1/z)=\sum_{r=1}^Qv_r z^{Q-r},\qquad
+ D_+(z)=\sum_{k=1}^K d_kz^k.
+\end{gathered}
+\end{equation}
+These identities follow by summing convergent geometric series in
+each original progression and then the $Q$ residue classes. They
+therefore give exact rational identities, including any cancellations
+caused by the original weights.
+
+\subsection{The full boundary generating function and its finite criterion}
+
+Use the Bernoulli polynomials with their original generating function
+$xe^{a x}/(e^x-1)=\sum_{n\geq0}B_n(a)x^n/n!$. HCB11--12 gives
+the actual differentiated asymptotic expansion of $S$ with coefficients
+\begin{equation}\tag{RMK6}
+\begin{split}
+ C_m&=\sum_{j=1}^J\alpha_j
+   \frac{(-1)^{m+1}\pi^mB_{2m+1}(a_j)}{(m-1)!b_j^{2m}}
+    =\frac{(-1)^{m+1}\pi^m}{(m-1)!B^{2m}}\beta_m,
+       \qquad m\geq1,\\
+ \beta_m&=\sum_{j=1}^J\alpha_jq_j^{2m}B_{2m+1}(p_j/q_j)\\
+ &=Q^{2m}\sum_{r=1}^Qv_r B_{2m+1}(r/Q)
+        -(2m+1)\sum_{k=1}^K d_k k^{2m}.
+\end{split}
+\end{equation}
+The second expression for $\beta_m$ follows either by substituting
+RMK4 and the Taylor series
+$g(x)=\sum_{m\geq1}(-1)^m\pi^m(2m+1)x^{2m}/(m-1)!$, or by the
+Bernoulli shift identity in every progression. Every factor in the
+original $C_m$ is retained in its exact comparison with $\beta_m$.
+For a finite sum, HCB's uniform remainder bounds may be summed;
+in particular
+\begin{equation}\tag{RMK7}
+ S\in\mathcal B
+ \quad\Longleftrightarrow\quad C_m=0\text{ for every }m\geq1,
+ \qquad
+ \mathcal B=\bigcap_{\gamma\in\mathbb R}y^\gamma
+                    \mathcal S(\mathbb R_+^*).
+\end{equation}
+For clarity, the reverse implication here is analytic: the zero
+coefficients and the differentiated remainder of arbitrary order
+give $|(y\partial_y)^rS(y)|=O(y^N)$ at zero for every $r,N$.
+The Gaussian bounds give all powers of decay at infinity. These
+are precisely the strong-space seminorms, including every derivative.
+The forward implication follows by successively taking the actual
+limits defining the asymptotic coefficients.
+
+The full boundary generating function, including its constant, is
+\begin{equation}\tag{RMK8}
+\begin{split}
+ \mathcal A(u)
+ &=W(e^{u/B})+W(e^{-u/B})\\
+ &=\sum_{j=1}^J\alpha_j\left[
+       \frac{e^{a_j u/b_j}}{1-e^{u/b_j}}
+       +\frac{e^{-a_j u/b_j}}{1-e^{-u/b_j}}\right]\\
+ &=C+\sum_{m=1}^\infty
+        \frac{2(-1)^m(m-1)!}{\pi^m(2m+1)!}\,C_m u^{2m},
+ \qquad C=\sum_{j=1}^J\alpha_j(1-2a_j).
+\end{split}
+\end{equation}
+Each pair cancels its opposite simple principal parts at $u=0$;
+the resulting function is holomorphic there. Substitution into the
+Bernoulli generating function proves the Taylor expansion for
+$|u|<2\pi\min_j b_j$. Thus every positive even coefficient is
+specified, rather than merely a selected finite subset. As a
+function of $z=e^{u/B}$, the same expression is
+\begin{equation}\tag{RMK9}
+ W(z)+W(1/z)
+     =\frac{P(z)-P^*(z)}{1-z^Q}+D_+(z)+D_+(1/z).
+\end{equation}
+
+The complete mixed boundary criterion is
+\begin{equation}\tag{RMK10}
+ \boxed{\quad
+ C_m=0\ (m\geq1)
+ \quad\Longleftrightarrow\quad
+ d_k=0\ (1\leq k\leq K),\qquad
+ v_r=v_{Q-r}\ (1\leq r<Q).
+ \quad}
+\end{equation}
+To prove necessity, RMK8 makes the left side equivalent to
+$\mathcal A(u)=C$ near zero. The rational function in RMK9
+therefore equals $C$ identically: after clearing denominators,
+a polynomial vanishes on an open set and hence has all coefficients
+zero. At $z=0$ the first term on the right of RMK9 is regular,
+as is $D_+(z)$. Its only possible negative powers are exactly
+$D_+(1/z)=\sum_{k=1}^K d_kz^{-k}$. Hence every $d_k$ is zero.
+The remaining polynomial identity is
+$P-P^*=C(1-z^Q)$. Its constant coefficient is $-v_Q$, so
+$C=-v_Q=-v_0$; the coefficients of $z^r$, $1\leq r<Q$, are
+$v_r-v_{Q-r}$ and must be zero. Conversely these conditions give
+$P-P^*=-v_0(1-z^Q)$ and $D_+=0$. RMK9 is then constant, so
+RMK8 proves every $C_m=0$. This includes all complex cancellations
+between different original shifts and different original scales.
+
+Here is a finite list of exact linear equations on the original
+weights, requiring no test of an infinite sequence:
+\begin{equation}\tag{RMK11}
+\begin{gathered}
+ \sum_{j=1}^J\alpha_j
+       {\bf1}_{\{k<p_j,\ k\equiv p_j\ (q_j)\}}=0,
+                         \quad 1\leq k\leq K,\\
+ \sum_{j=1}^J\alpha_j\left[
+       {\bf1}_{\{r\equiv p_j\ (q_j)\}}
+       -{\bf1}_{\{-r\equiv p_j\ (q_j)\}}\right]=0,
+                         \quad1\leq r\leq\lfloor(Q-1)/2\rfloor.
+\end{gathered}
+\end{equation}
+The first family is exactly $d_k=0$ and the second is the nonrepeated
+part of the periodic reflection equations. The classes $0$, and
+$Q/2$ when $Q$ is even, are fixed by reflection and impose no
+amplitude equation. Their weights remain part of $P$ and of the
+original function; they have not been set to zero. RMK11 is a
+finite matrix with integer entries acting on the original $\alpha_j$.
+
+There is also a sharp finite bound on the number of initial boundary
+coefficients that suffice. Set
+\begin{equation}\tag{RMK12}
+ M=K+\lfloor(Q-1)/2\rfloor.
+ \qquad
+ C_1=\cdots=C_M=0
+       \quad\Longleftrightarrow\quad C_m=0\text{ for every }m\geq1.
+\end{equation}
+When $M=0$ the left side is the empty condition. To prove this,
+form the actual polynomial
+\begin{equation}\tag{RMK13}
+ N(z)=z^K\left[P(z)-P^*(z)
+       +(1-z^Q)\{D_+(z)+D_+(1/z)-C\}\right].
+\end{equation}
+All its powers are nonnegative and its degree is at most $2K+Q$.
+The constant in RMK8 is the actual value at $z=1$. If the first
+$M$ positive even coefficients vanish, its even holomorphic germ
+has $\mathcal A(u)-C=O(u^{2M+2})$. Since $u=B\log z$ has a
+simple zero at $z=1$, multiplying by $z^K(1-z^Q)$ shows that
+$N$ vanishes at $z=1$ to order at least $2M+3$. This exceeds
+$2K+Q$ for both parities of $Q$. A polynomial of degree at most
+$2K+Q$ cannot have such a zero unless it is zero. RMK9--10 now
+give the result. For $Q=1$ or $Q=2$ and $K=0$, all periodic
+weights are already even, and the empty condition correctly
+certifies the full kernel. For any original family, either RMK11
+or the rational matrix
+$q_j^{2m}B_{2m+1}(p_j/q_j)$, $1\leq m\leq M$, therefore computes
+the complete kernel by finite exact linear algebra.
+
+The bound has the following precise dimension meaning. On the space
+of arbitrary $Q$-periodic amplitudes $v$ and defects $d_1,\ldots,d_K$,
+the obstruction coordinates are
+\begin{equation}\tag{RMK14}
+ \delta_r=v_r-v_{Q-r}\quad(1\leq r\leq h),\qquad
+ h=\lfloor(Q-1)/2\rfloor,
+ \quad(d_1,\ldots,d_K),
+\end{equation}
+and the first $M=h+K$ comparison coefficients are
+\begin{equation}\tag{RMK15}
+ \beta_m=Q^{2m}\sum_{r=1}^h
+       \delta_r B_{2m+1}(r/Q)
+       -(2m+1)\sum_{k=1}^K d_k k^{2m},
+       \quad1\leq m\leq M.
+\end{equation}
+This square rational matrix is invertible. Indeed RMK12 makes a
+zero output force a zero full boundary, and RMK10 then makes every
+$\delta_r,d_k$ zero; an injective linear map between finite spaces
+of equal dimension is invertible by elimination. Every such input
+occurs in an actual finite rational mixture: its periodic part is
+$\sum_{r=1}^Qv_r\Psi_{r/Q-1,B/Q}$, and
+$g(ky/B)=\Psi_{k-1,B}-\Psi_{k,B}$ represents each finite defect.
+Thus the dimension of this obstruction space is exactly $M$.
+Fewer than $M$ scalar linear boundary tests cannot be injective on
+the whole space, by elementary rank. Symmetric periodic amplitudes
+are retained in $(v,d)$ as kernel coordinates; RMK14 is not a
+replacement for that full original object.
+
+For an explicit nonzero finite defect concealed by the first test,
+take $Q=3$, $v_1=1$, $v_2=v_3=0$, and $d_1=1/9$. Then
+\begin{equation}\tag{RMK16}
+ S(y)=\Psi_{-2/3,B/3}(y)
+             +\tfrac19[\Psi_{0,B}(y)-\Psi_{1,B}(y)],\qquad
+ \beta_1=\tfrac13-3\cdot\tfrac19=0,\quad
+ \beta_2=-\tfrac53-5\cdot\tfrac19=-\tfrac{20}{9}.
+\end{equation}
+Here $K=1$ and $M=2$. Its second original boundary coefficient is
+$C_2=20\pi^2/(9B^4)\ne0$. This calculation exhibits the finite
+initial term explicitly and shows why a first-coefficient test alone
+does not classify mixed families.
+
+\subsection{The exact actual adelic receiver and its endpoints}
+
+Suppose the equivalent conditions RMK10 hold. Define the finite
+locally constant function
+$\phi_v(x_f)={\bf1}_{\widehat{\mathbb Z}}(x_f)
+v(x_f\bmod Q)$ on $\mathbb A_{\mathbb Q,f}$ and the actual adelic test
+\begin{equation}\tag{RMK17}
+ \xi_v(x_f,x_\infty)=\phi_v(x_f)\eta(x_\infty/B),\qquad
+ F_v(u,y)=\operatorname{Tr}\rho(\xi_v)(u,y).
+\end{equation}
+Every residue class modulo $Q$ in $\widehat{\mathbb Z}$ has additive
+Haar mass $1/Q$. HCB3 computes $\eta(0)=0$ and
+$\int_{\mathbb R}\eta=3/4-3/4=0$. Therefore, retaining the two
+possibly nonzero finite weights,
+\begin{equation}\tag{RMK18}
+ \xi_v(0)=v_0\eta(0)=0,\qquad
+ \int_{\mathbb A_{\mathbb Q}}\xi_v
+       =\left(\frac1Q\sum_{r=1}^Qv_r\right)B
+                   \int_{\mathbb R}\eta=0.
+\end{equation}
+Thus $\xi_v\in\mathcal S(\mathbb A_{\mathbb Q})_0$ in the original
+CCM source, and $F_v$ lies in its actual restriction image
+$\mathcal V\subset{\bf S}(C_{\mathbb Q})$. Substitution into that
+restriction map gives the complete receiving formula
+\begin{equation}\tag{RMK19}
+ F_v(u,y)=\sum_{k\in\mathbb Z\setminus\{0\}}
+       v(ku\bmod Q)\eta(ky/B)
+       =\sum_{k\geq1}v(ku\bmod Q)g(ky/B),\qquad
+ F_v(1,y)=S(y).
+\end{equation}
+Only integer rationals contribute, since $\alpha u$ is integral at
+every finite place if and only if $\alpha\in\mathbb Z$.
+The second equality uses the proved evenness $v(-k)=v(k)$ and the
+evenness of $\eta$. Both signs of $k$ supply exactly the factor
+$g=2\eta$. The last equality uses $d=0$ as well. This proves the
+existence of the actual finite adelic antecedent for every classified
+kernel function, with $u$ retained, rather than merely a matching
+Mellin symbol.
+
+For direct comparison with RMB1--3, take the pair with
+$a=r/q$, $1-a=(q-r)/q$ and scale $b$, and choose $B=qb$.
+Its even weights are
+$v_k={\bf1}_{k\equiv r\ (q)}+{\bf1}_{k\equiv-r\ (q)}$.
+If $\xi_{r,q,b}=2\eta(x_\infty/b)
+{\bf1}_{r/q+\widehat{\mathbb Z}}(x_f)$ is RMB's antecedent, then
+\begin{equation}\tag{RMK20}
+ \xi_v(x)=\tfrac12\big[\xi_{r,q,b}(x/q)
+                            +\xi_{r,q,b}(-x/q)\big],\qquad
+ \operatorname{Tr}\rho(\xi_v)=\operatorname{Tr}\rho(\xi_{r,q,b}).
+\end{equation}
+The first equality follows directly from the two finite cosets and
+the unchanged real scale $qb$. For the second, multiplying the
+summation variable in $\mathbb Q^*$ by $1/q$ or $-1/q$ is a
+bijection in the absolutely convergent restriction sum. Hence this
+comparison holds on the full $(u,y)$ space, before identity slicing.
+It includes the order-two case by retaining the two identical
+coset contributions and their factor $1/2$.
+
+All Mellin factors and both endpoint values can also be retained.
+For $\operatorname{Re}s>1$, set
+\begin{equation}\tag{RMK21}
+\begin{split}
+ I_g(s)&=\pi^{-s/2}
+       [\Gamma(s/2+2)-\tfrac32\Gamma(s/2+1)],\\
+ \mathcal M S(s)
+ &=I_g(s)\sum_{j=1}^J\alpha_j b_j^s\zeta(s,a_j)\\
+ &=B^sI_g(s)\left[
+       Q^{-s}\sum_{r=1}^Qv_r\zeta(s,r/Q)
+       +\sum_{k=1}^K d_k k^{-s}\right].
+\end{split}
+\end{equation}
+Absolute integration proves the first equality from RMK1 and the
+second from RMK4. HCB's continuation retains at $s=-2m$ exactly
+the residue $C_m$, including the factors in RMK6. When RMK10
+holds, $S\in\mathcal B$, so its Mellin integral is entire; RMK21
+is its exact meromorphic expression with every cancellation
+specified, not a newly chosen completed replacement. The finite
+values at $s=0,1$ are, respectively,
+\begin{equation}\tag{RMK22}
+\begin{split}
+ \int_0^\infty S(y)\frac{dy}{y}
+    &=\sum_j\alpha_j(a_j/2-1/4)=-C/4=v_0/4,\\
+ \int_0^\infty S(y)\,dy
+    &=\tfrac14\sum_j\alpha_jb_j
+      =\frac B4\left(\frac1Q\sum_{r=1}^Qv_r\right).
+\end{split}
+\end{equation}
+The first two expressions in each line hold for the original
+mixture before assuming RMK10. For the last expression in the
+first line use $C=-v_0$ from its proof. For the second line note
+that the periodic mean is $\sum_j\alpha_j/q_j$ and
+$b_j=B/q_j$. Neither $v_0$ nor this mean must vanish.
+
+For an additional direct expression of the cancellation mechanism,
+define the finite additive Fourier coefficients
+\begin{equation}\tag{RMK23}
+ \widehat v_\ell=\frac1Q\sum_{r=0}^{Q-1}
+       v_r e^{-2\pi i\ell r/Q},\qquad
+ v_r=\sum_{\ell=0}^{Q-1}\widehat v_\ell e^{2\pi i\ell r/Q}.
+\end{equation}
+Finite geometric-series summation proves the inverse. Evenness of
+$v$ gives $\widehat v_{-\ell}=\widehat v_\ell$; this is an equality
+without conjugation and holds for complex weights. HCB24 proves
+$\widehat g=g$ with Fourier convention $e^{-2\pi i x\xi}$.
+Poisson summation for each of the finitely many additive characters
+therefore gives the exact formula
+\begin{equation}\tag{RMK24}
+ S(y)=\frac{B}{2y}\sum_{m\in\mathbb Z}
+       \widehat v_m\,g\left(\frac{mB}{Qy}\right)
+     =\frac By\sum_{m\geq1}
+       \widehat v_m\,g\left(\frac{mB}{Qy}\right).
+\end{equation}
+To verify the factor, first write $S=\frac12\sum_{k\in\mathbb Z}
+v_kg(ky/B)$; its zero summand is exactly $v_0g(0)=0$.
+For the character $e^{2\pi i\ell k/Q}$, Poisson gives
+$(B/y)\sum_n g((n-\ell/Q)B/y)$. Put $m=Qn-\ell$ and use
+$\widehat v_{-m}=\widehat v_m$. This proves both equalities in
+RMK24. The dual zero term is $\widehat v_0g(0)=0$, while
+$\widehat v_0=Q^{-1}\sum_rv_r$ is retained as an independent
+endpoint quantity in RMK22. No zero residue or zero Fourier weight
+has been imposed by the classification.
+
+\subsection{The compact coordinate, exact convolution receiver, and supports}
+
+The full compact coordinate in RMK19 can be replaced invertibly by
+its finite character tuple, as in RMB4--9. Let $U_Q=(\mathbb Z/Q
+\mathbb Z)^\times$, with its single element when $Q=1$, and let
+$\chi$ range over all its characters. Give it Haar mass
+$1/\varphi(Q)$ per element, where $\varphi(1)=1$. Define
+\begin{equation}\tag{RMK25}
+\begin{split}
+ F_\chi(y)&=\frac1{\varphi(Q)}\sum_{u\in U_Q}
+                \overline{\chi(u)}F_v(u,y),\\
+ (P_\chi F_v)(u,y)&=\chi(u)F_\chi(y),\qquad
+ F_v(u,y)=\sum_\chi\chi(u)F_\chi(y).
+\end{split}
+\end{equation}
+Character orthogonality proves the inverse; it follows by multiplying
+the sum of a nontrivial character by a unit where its value differs
+from one, and by the usual finite character basis on the finite
+abelian group. Each projected term remains an actual restriction
+image: take the finite linear average of the adelic tests obtained
+from $\xi_v$ by finite-unit multiplication. Both zero endpoint
+conditions persist under that average. No averaging of the original
+$F_v$ to its principal component is performed.
+
+For full level-$Q$ strong functions
+$F(u,y)=\sum_\chi\chi(u)F_\chi(y)$ and
+$G(u,y)=\sum_\chi\chi(u)G_\chi(y)$, the original group convolution is
+\begin{equation}\tag{RMK26}
+ (F*G)(u,y)=\sum_\chi\chi(u)
+       \int_0^\infty F_\chi(z)G_\chi(y/z)\frac{dz}{z}.
+\end{equation}
+Insert the two finite expansions into its Haar integral. Orthogonality
+annuls terms with different characters, and the strong estimates
+make all real integrals absolutely convergent. The identity slice
+instead sums every character before convolution and thereby introduces
+mixed products. Thus RMK19 proves an identity slice and RMK25--26
+prove the full invertible receiving map; these are not asserted to
+be the same morphism.
+
+The radiality of this particular full receiver also has a finite
+exact criterion:
+\begin{equation}\tag{RMK27}
+ F_v(u,y)\text{ is independent of }u
+ \quad\Longleftrightarrow\quad
+ v_{ku}=v_k\text{ for all }k\in\mathbb Z, u\in U_Q.
+\end{equation}
+For the only non-immediate direction, the function map
+$w\mapsto\sum_{k\geq1}w_kg(ky/B)$ is injective on bounded
+sequences. If $k_0$ is the least index with $w_{k_0}\ne0$, then
+\begin{equation}\tag{RMK28}
+ \lim_{h\to\infty}h^{-4}e^{\pi k_0^2h^2}
+       \sum_{k\geq1}w_kg(kh)=2\pi^2 k_0^4w_{k_0}\ne0.
+\end{equation}
+For $h\geq1$, the absolute tail is bounded by a constant times
+$\sum_{k>k_0}(k^4+k^2)e^{-\pi(k^2-k_0^2)h^2}$, dominated by
+its convergent value at $h=1$ and tending termwise to zero. The
+single leading term has exactly the displayed limit. Apply this
+injectivity to $w_k=v_{ku}-v_k$ in RMK19 to prove RMK27.
+
+The unit orbits on residues modulo $Q$ are exactly the sets with
+fixed $\gcd(k,Q)$. To see transitivity, after factoring out that
+gcd $d$ choose the prescribed unit ratio modulo $Q/d$ and lift it
+to a unit modulo $Q$ by the Chinese remainder theorem at each
+prime power. Thus RMK27 is equivalent to $v_k=A_{\gcd(k,Q)}$
+for numbers $A_d$, $d\mid Q$, with $A_Q=v_0$. In that case put
+\begin{equation}\tag{RMK29}
+ c_d=\sum_{e\mid d}\mu(d/e)A_e,\qquad
+ v_k=\sum_{d\mid Q}c_d{\bf1}_{d\mid k},\qquad
+ F_v(u,y)=S(y)=\sum_{d\mid Q}c_d f_{B/d}(y).
+\end{equation}
+Here $\mu$ is the integer M\"obius function. The divisor identity
+$\sum_{e\mid n}\mu(e)=0$ for $n>1$ and $1$ for $n=1$, proved by
+expanding $\prod_{p\mid n}(1-1)$, proves the inverse formula for
+$v$. Substitution into RMK19 gives the exact scales $B/d$ and
+every coefficient in RMK29. In the absence of this unit invariance,
+the nonprincipal even components in RMK25 remain present. No
+nonexistence claim about some different radial antecedent is made.
+
+Finally retain the full support data. For an arbitrary nontrivial
+bounded distributive lattice $L$, use
+$G_L(W)=\{(0,\lambda):\lambda\in L\}\cup(W\times\{1_L\})$
+with join in addition and meet in scalar multiplication, as in
+HCB30. A complex-linear map $T$ has the exact common-label lift
+$G_L(T)(w,\lambda)=(Tw,\lambda)$; its zero-amplitude inverse image
+is $G_L(\ker T)$, not an assertion that its output is $\tau$.
+Thus all finite linear maps RMK3, RMK6, RMK11 and RMK25, and
+the inverse RMK25, admit these lifts. The original data may also
+carry separate labels on each coefficient
+$z_j=(\alpha_j,\lambda_j)\in G_L(\mathbb C)$. In that case retain
+the entire tuple $(z_j)_{j=1}^J$ and its exact incidence images:
+\begin{equation}\tag{RMK30}
+\begin{split}
+ \widetilde w_k&=\sum_{j:k\geq p_j,\ k\equiv p_j(q_j)}z_j,\qquad
+ \widetilde v_k=\sum_{j:k\equiv p_j(q_j)}z_j,\\
+ \widetilde d_k&=(-1,1_L)
+                  \sum_{j:1\leq k<p_j,\ k\equiv p_j(q_j)}z_j,\qquad
+ \widetilde o_r=\widetilde v_r+(-1,1_L)\widetilde v_{-r}.
+\end{split}
+\end{equation}
+Empty sums are $\tau=(0,0_L)$. These are finite sums at each
+frequency, so no infinite join or completeness of $L$ is assumed.
+Their amplitudes are the coefficients and equations already proved;
+their labels are exactly the joins of the contributing original
+labels. In particular a repeated contribution in the difference
+$\widetilde o_r$ remains a supported cancellation and is not
+deleted as a structural zero. The original labelled tuple is not
+identified with the generally non-injective collection of amplitude
+equations. The complete function receiver is
+\begin{equation}\tag{RMK31}
+ \sum_{j=1}^J(\alpha_j\Psi_{t_j,b_j},\lambda_j)
+      =(S,\Lambda),\qquad \Lambda=\bigvee_{j=1}^J\lambda_j.
+\end{equation}
+Only this finite join is needed. When evaluating a particular
+boundary coefficient, use the supported scalar
+$(\kappa_{m,j},1_L)$ with
+$\kappa_{m,j}=(-1)^{m+1}\pi^mB_{2m+1}(a_j)/((m-1)!b_j^{2m})$,
+including its evaluated zero cases. The coefficient receiver is
+then $(C_m,\Lambda)$ for every $m$. When RMK10 holds it is
+$(0,\Lambda)$; for any nonzero original coefficient $\alpha_j$
+this is $e=(0,1_L)$, not $\tau$. The finite criterion tests
+amplitudes, preserves every original input label, and does not
+turn mixed cancellations into absence. The compact-character map
+and its inverse act on one common-labelled direct sum when that
+is the chosen input carrier; they do not assign independent
+labels to components of that common-labelled object.
+
+The incidence construction also gives the exact support correction
+for RMK4 when the original coefficients have separate labels.
+Put
+\begin{equation}\tag{RMK32}
+\begin{gathered}
+ \mu_k=\bigvee_{j:k\geq p_j,\ k\equiv p_j(q_j)}\lambda_j,
+ \qquad
+ \sigma_k=\bigvee_{j:1\leq k<p_j,\ k\equiv p_j(q_j)}\lambda_j,\\
+ \nu_k=\bigvee_{j:k\equiv p_j(q_j)}\lambda_j
+       =\mu_k\vee\sigma_k,\qquad
+ \widetilde v_k+\widetilde d_k
+       =\widetilde w_k+(0,\sigma_k).
+\end{gathered}
+\end{equation}
+Each join is finite, and the join of an empty set is $0_L$.
+The periodic incidences partition into their retained and omitted
+initial incidences, proving $\nu_k=\mu_k\vee\sigma_k$. Both sides
+of the last equality have amplitude $w_k$ by RMK3; their labels
+are respectively $\nu_k\vee\sigma_k=\nu_k$ and
+$\mu_k\vee\sigma_k=\nu_k$. This proves the equality in the actual
+support carrier. The condition $d_k=0$ in RMK10 is an amplitude
+condition and does not set $\sigma_k=0_L$. Likewise equality of
+the reflected amplitudes does not erase the label on
+$\widetilde o_r$. The retained tuples $(\widetilde w_k,(0,\sigma_k))$
+and the original labelled inputs specify the comparison without
+identifying a supported cancellation with absence. On the
+common-label function carrier, RMK4 lifts directly with its one
+unchanged label; no identification of these two support
+presentations is needed or asserted.

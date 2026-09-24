@@ -1,0 +1,257 @@
+\section{Presence, parity, and the information retained by a map}
+\label{sec:PPI}
+\paragraph{The user's intended distinction.}
+The ungraded presence unit $\tau$ has no parity. Integer $1$ is
+present and odd. These descriptions specify different amounts of
+data. We now construct their exact comparison. The labels $Z_0,Z_1,Z_2$ are the user's notation: absence,
+ungraded presence, and integer parity respectively. The source
+unit $\tau$ carries presence at $Z_1$ and has no $Z_2$ parity.
+The notation $Z_0$ for absence is not treated
+as a cyclic group with zero elements. The elementary set and linear
+algebra proofs below are given in full. The quantum comparison uses
+Arun Kumar Pati and Samuel L. Braunstein,
+\href{https://arxiv.org/abs/quant-ph/9911090v2}{\emph{Impossibility of
+deleting an unknown quantum state}}, original author source,
+equations \texttt{del2}, \texttt{tran1}, \texttt{tran2},
+\texttt{almostfinal}, and \texttt{final}. Its distinction between
+erasure, transfer to an ancilla, and deletion is retained.
+
+\subsection{Empty, present, and parity-labelled}
+Define the label sets and their maps by
+\begin{equation}\tag{PPI1}
+Z_0=\varnothing,\qquad Z_1=\{\tau\},\qquad
+Z_2=\{\mathrm{even},\mathrm{odd}\},\qquad
+Z_0\longrightarrow Z_2\xrightarrow{q}Z_1,
+\quad q(\mathrm{even})=q(\mathrm{odd})=\tau.
+\end{equation}
+A $Z_i$-labelled set is a pair $(A,\ell)$ with a function
+$\ell:A\to Z_i$. A morphism $(A,\ell)\to(B,m)$ is a function
+$f:A\to B$ satisfying $m f=\ell$. Composition preserves this
+equation, and identity functions satisfy it, so these objects
+and maps form the slice category $\mathrm{Set}/Z_i$.
+Postcomposition defines the functor
+\begin{equation}\tag{PPI2}
+F:\mathrm{Set}/Z_2\longrightarrow\mathrm{Set}/Z_1,
+\qquad F(A,\ell)=(A,q\ell),\quad F(f)=f.
+\end{equation}
+Indeed $(qm)f=q\ell$; identities and compositions are unchanged.
+It forgets the parity label while retaining every underlying element.
+Let $T=(\{*\},*\mapsto\tau)$ in $\mathrm{Set}/Z_1$, and let
+$E$ and $O$ be the objects with carrier $\{*\}$ labelled even and odd in
+$\mathrm{Set}/Z_2$. Then
+\begin{equation}\tag{PPI3}
+F(E)=T=F(O),\qquad E\not\cong O.
+\end{equation}
+The only function between their singleton carriers sends the single
+element to the single element. It fails the label-preservation
+equation because even and odd are distinct. There is therefore not
+even a morphism $E\to O$ in this slice. In particular $F$ cannot
+have an inverse functor: an inverse up to isomorphism would make
+both $E$ and $O$ isomorphic to the inverse image of $T$.
+Choosing $E$ or $O$ is possible, but does not recover which object
+was supplied. The source unit $\tau$ is represented by unlabelled
+presence $T$, not by a secretly even or odd version of $T$.
+The complete space of parity refinements of $T$ has the two
+objects $E,O$. The label exchange interchanges them and fixes
+neither. There is also a canonical construction retaining both
+choices: $q^*(A)=(A\times Z_2,\operatorname{pr}_2)$. For every
+labelled $(B,\ell)$, the assignments
+\[
+f:B\to A\quad\longleftrightarrow\quad
+\bigl[b\mapsto(f(b),\ell(b))\bigr]:
+(B,\ell)\to q^*(A)
+\]
+are inverse because the second coordinate of a label-preserving
+map must be $\ell$. They commute with precomposition and
+postcomposition, proving $F\dashv q^*$. For a singleton $A$,
+this creates two new tagged elements. It does not give two
+parities to the original ungraded unit.
+
+The parity-labelled integer object is
+\begin{equation}\tag{PPI4}
+I=(\mathbb Z,\pi),\quad \pi(n)=n\bmod2,\qquad
+\pi(n+m)=\pi(n)+\pi(m),\quad
+\pi(nm)=\pi(n)\pi(m)\quad\text{in }\mathbb Z/2\mathbb Z.
+\end{equation}
+The equations follow because writing $n=2a+r$, $m=2b+s$ gives
+$n+m=2(a+b)+(r+s)$ and
+$nm=2(2ab+as+br)+rs$. The element $1$ is an odd-labelled point of
+$I$. Presence and oddness are two descriptors of that one point;
+they are not two alternative states occupied by $1$, and presence
+is not an additional independent binary choice once that point
+has been specified. This statement imposes no parity on $\tau$.
+
+The unique map $A\to\varnothing$ exists exactly when $A$ is empty:
+if $a\in A$ it would require an image in the empty set; if $A$ is
+empty the empty function exists. Thus demanding an actual label
+map into $Z_0$ forces emptiness. Merely omitting a label map does
+not: the singleton $\{*\}$ with no specified parity is nonempty.
+This proves the exact distinction between an empty label target
+and an unspecified grading.
+
+\subsection{Boolean arithmetic and counts}
+Let $\mathbf B$ be the ordered category with objects false and
+true and a unique arrow $b\to c$ when $b\le c$. Define
+\begin{equation}\tag{PPI5}
+\operatorname{supp}(A)=
+\begin{cases}\mathrm{false},&A=\varnothing,\\
+\mathrm{true},&A\ne\varnothing.
+\end{cases}
+\end{equation}
+A function from a nonempty set to an empty set cannot exist, so
+each set map induces the required arrow between supports. The
+arrow is unique; therefore identities and compositions are
+preserved. For all sets $A,B$,
+\begin{equation}\tag{PPI6}
+\operatorname{supp}(A\sqcup B)
+=\operatorname{supp}(A)\vee\operatorname{supp}(B),\qquad
+\operatorname{supp}(A\times B)
+=\operatorname{supp}(A)\wedge\operatorname{supp}(B).
+\end{equation}
+A disjoint union has an element exactly when at least one summand
+does; a product has an element exactly when both factors do.
+These equivalences prove both formulas. Identifying false with
+$\varnothing$ and true with $\{*\}$ as the two subsets of a
+singleton gives Boolean union and intersection, with
+$\mathrm{true}\vee\mathrm{true}=\mathrm{true}$.
+Before this support map, $\{*\}\sqcup\{*\}$ has two distinct
+tagged elements. For finite sets their cardinalities satisfy
+\begin{equation}\tag{PPI7}
+|A\sqcup B|=|A|+|B|,\quad |A\times B|=|A||B|,\quad
+\mathbb N\xrightarrow{p}\mathbf B,quad
+p(0)=\mathrm{false},\ p(n)=\mathrm{true}\ (n>0).
+\end{equation}
+To check the cardinality equations, enumerate the two disjoint
+blocks consecutively, and enumerate the pairs in $|A|$ rows of
+$|B|$ entries. PPI6 then proves that $p$ preserves semiring
+addition, multiplication, zero, and unit. It does not preserve
+parity information: $p(1)=p(2)$, while their parities differ.
+This is the exact finite-set realization of the two procedures
+$(\tau+\tau)1=1$ and $\tau1+\tau1=2$.
+
+There are two questions about zero, with explicitly different
+domains:
+\begin{equation}\tag{PPI8}
+\operatorname{supp}(\varnothing)=\mathrm{false},\qquad
+\operatorname{supp}(\{0\})=\mathrm{true},\qquad
+|\varnothing|=0,\quad\pi(0)=0.
+\end{equation}
+No new numerical zero is introduced. The set containing the
+integer zero has an element, while the empty set has none.
+Even if the integer zero is represented by $\varnothing$, the
+singleton containing that representative is
+$\{\varnothing\}\ne\varnothing$. Consequently ``every specified
+integer is present'' concerns the point $\{n\}$, whereas a
+cardinality-based presence test sends the value zero to false.
+They cannot be interchanged as one map on one domain.
+The truth map in PPI7 cannot extend to a unital semiring map
+$\mathbb Z\to\mathbf B$: such a map would send
+$0=1+(-1)$ to $\mathrm{true}\vee p(-1)=\mathrm{true}$,
+contradicting preservation of zero. This determines the exact
+domain of the comparison rather than discarding integer signs.
+
+\subsection{Trivial symmetry is not emptiness}
+Every set has an identity bijection. In particular the empty
+function $\varnothing\to\varnothing$ is a bijection, as is the
+identity on a singleton. These are their only self-maps, so
+\begin{equation}\tag{PPI9}
+\operatorname{Aut}(\varnothing)\cong\{1\}
+\cong\operatorname{Aut}(\{*\}).
+\end{equation}
+Thus the automorphism group alone cannot distinguish these two
+sets. The trivial group acts on every set by its identity; this
+does not force a set to have one element. A $C_2$ action can be
+restricted along the unique homomorphism $\{1\}\to C_2$ to its
+trivial-group action. That is a precise sense in which this
+particular symmetry can be forgotten. A parity labelling
+$A\to Z_2$ is different data from an action $C_2\times A\to A$:
+the odd-labelled singleton exists although every action on that
+singleton fixes its only point. No parity-flipping bijection is
+supplied by its label alone.
+
+\subsection{An exact linear information receiver}
+The set map $q$ has a complex-linear extension
+\begin{equation}\tag{PPI10}
+V=\mathbb C e_{\mathrm{even}}\oplus\mathbb C e_{\mathrm{odd}},
+\quad W=\mathbb C t,\qquad
+T:V\to W,\quad T(e_{\mathrm{even}})=T(e_{\mathrm{odd}})=t.
+\end{equation}
+For $v=a e_{\mathrm{even}}+b e_{\mathrm{odd}}$, one has
+$T(v)=(a+b)t$. Hence
+\begin{equation}\tag{PPI11}
+\ker T=\mathbb C(e_{\mathrm{even}}-e_{\mathrm{odd}}).
+\end{equation}
+Both inclusions follow immediately from $a+b=0$.
+This kernel is the entire lost parity-difference direction.
+Give the displayed bases orthonormal inner products and define
+$Z e_{\mathrm{even}}=e_{\mathrm{even}}$,
+$Z e_{\mathrm{odd}}=-e_{\mathrm{odd}}$. There is no operator $A$
+on $W$ satisfying $AT=TZ$: the even vector would require $At=t$
+and the odd vector would require $At=-t$. Over $\mathbb C$ these
+are incompatible because $t\ne0$. This proves exactly which
+observable does not descend to presence alone.
+
+Retaining the full record gives an isometry instead:
+\begin{equation}\tag{PPI12}
+J:V\longrightarrow W\otimes V,\quad
+J(v)=t\otimes v,\qquad
+J^*J=I_V,\qquad JZ=(I_W\otimes Z)J.
+\end{equation}
+The first equality follows from $\langle t,t\rangle=1$ and the
+tensor-product inner product. The second follows by evaluating
+both sides on each basis vector. The first factor represents
+ungraded presence and the second retains the parity state.
+It is the second factor, not $t$ or $\tau$, on which $Z$ acts.
+This is a mathematical state-space comparison, without a claim
+that the integers or $\tau$ thereby become physical particles.
+
+\subsection{What the quantum no-deleting comparison proves}
+Pati--Braunstein consider arbitrary unknown states, not just
+distinguishable classical parity labels. The following exact
+inner-product test gives the fixed-environment obstruction.
+Let all displayed state vectors have norm one, and suppose an
+isometry $U$ obeyed, for every input vector $\psi$,
+\begin{equation}\tag{PPI13}
+U(\psi\otimes\psi\otimes a)
+=\psi\otimes\Sigma\otimes a_0,
+\end{equation}
+where $a$, $\Sigma$, and $a_0$ are fixed independently of $\psi$.
+For two allowed inputs $\psi,\phi$ with inner product $c$, taking
+inner products gives
+\begin{equation}\tag{PPI14}
+c^2=c.
+\end{equation}
+Indeed the input product is $c\cdot c\cdot1$ and the output
+product is $c\cdot1\cdot1$. In dimension at least two, choose
+$\psi=e_0$, $\phi=(e_0+e_1)/\sqrt2$; then $c=1/\sqrt2$ and
+PPI14 is false. Thus this fixed-record deletion is impossible.
+Allowing the environment to retain the state instead gives the
+explicit unitary swap
+\begin{equation}\tag{PPI15}
+\psi\otimes\psi\otimes\Sigma
+\longmapsto\psi\otimes\Sigma\otimes\psi.
+\end{equation}
+Swapping the last two tensor factors preserves the inner product
+on pure tensors and is its own inverse, proving unitarity. It
+transfers the information rather than deleting it; the original
+paper explicitly excludes this as the sought deletion.
+
+For the two orthogonal labels $b\in\{0,1\}$, there is also a
+reversible map
+\begin{equation}\tag{PPI16}
+|b\rangle|c\rangle\longmapsto
+|b\rangle|c\mathbin{\oplus}b\rangle,
+\qquad |b\rangle|b\rangle\longmapsto|b\rangle|0\rangle.
+\end{equation}
+It permutes the four orthonormal basis vectors and is its own
+inverse. Its linear extension is therefore unitary. It does not
+delete an arbitrary superposition against a copy: applying it
+to $(\alpha|0\rangle+\beta|1\rangle)^{\otimes2}$ gives
+$\alpha^2|00\rangle+\alpha\beta|01\rangle+
+\alpha\beta|11\rangle+\beta^2|10\rangle$, retaining every term.
+For $\alpha\beta\ne0$ this is not the proposed blank-second-factor
+state. Thus the quantum theorem does not forbid the mathematical
+forgetful functor PPI2 or turn a classical label into a conserved
+physical charge. The constructive information-preserving
+comparison here is PPI12; the exact information lost by PPI10 is
+PPI11. None of these results asserts an RH sign or purity bound.

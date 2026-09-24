@@ -1,0 +1,675 @@
+% Independent complete derivation; requires amsmath, amssymb, amsthm,
+% amscd, hyperref, and proposition/lemma environments. Prefix FSC.
+\section{A common sheaf for spherical, tropical, and full support coefficients}
+
+\subsection{Sources and the exact base}
+The human sources are Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1502.05580}{\emph{Geometry of the Arithmetic
+Site}}, original \nolinkurl{arithmeticsite_Adv_final1.tex}, specifically
+Definition \texttt{site}, Theorem \texttt{structure2}, Remark
+\texttt{caseno}, Theorem \texttt{thmspz}, and Proposition
+\texttt{sheavesonspz0}; and their
+\href{https://arxiv.org/abs/2606.06604}{\emph{On the Absolute Geometry
+of Spec Z and the Fargues--Fontaine curve}}, original \nolinkurl{FF.tex},
+Proposition \texttt{prop12}, the monoid-algebra adjunction in
+Section~2.3, and the Frobenius formula at source lines 150--152.
+The arithmetic-site source was read here at lines 598--704 and
+900--1017, without a claim to exhaustive reading; FF was previously
+read completely, lines 1--1764. The spherical functor $H$ is the
+explicit coordinate functor of Connes--Consani's
+\href{https://arxiv.org/abs/1502.05585}{\emph{Absolute algebra and
+Segal's $\Gamma$-rings}}, original \nolinkurl{F1_corr.tex}, formula
+\texttt{functsum} and Lemma \texttt{sssalg}. That source was previously
+read completely, lines 1--1336.
+The coefficient foundation is \emph{The Clankers}, \emph{Split Support
+Geometry}, Version 11, Definition \texttt{def:lattice-split} and its
+complete ideal and prime classification, in the
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{complete pinned original source}.
+The constructions below give the common diagram for the companion
+calculations ACF and ASL, with the required definitions and proofs
+included here.
+
+Let $L$ be a nontrivial bounded distributive lattice. It need not be
+finite or Boolean. For a nonzero commutative ring $R$ retain
+\begin{equation}\tag{FSC1}
+ \begin{gathered}
+ G_L(R)=\{(0,\lambda):\lambda\in L\}
+                  \cup\{(a,1_L):a\in R\},\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu),\\
+ z_\lambda=(0,\lambda),\quad\tau=z_{0_L},\quad e=z_{1_L},
+ \quad 1=(1_R,1_L),\quad q(a,\lambda)=a,\quad
+ \sigma(a,\lambda)=\lambda.
+ \end{gathered}
+\end{equation}
+Put $S=G_L(\mathbb Z)$, $X=\operatorname{Spec}S$,
+$Y=\operatorname{Spec}\mathbb Z$, and
+$A=\operatorname{Spec}_{\mathrm{lat}}L$. The additive semiring prime
+spectrum has points
+\begin{equation}\tag{FSC2}
+ P_J=\{z_\lambda:\lambda\in J\}\quad(J\in A),\qquad
+ Q_{\mathfrak p}=q^{-1}(\mathfrak p)\quad(\mathfrak p\in Y).
+\end{equation}
+For completeness, an ideal containing a top-supported element contains
+$e$: add its product by $(-1,1_L)$ to itself if its amplitude is nonzero.
+Then $ez_\lambda=z_\lambda$ puts the whole zero fibre in it, and its
+amplitudes form a ring ideal. All other ideals are exactly the proper
+lattice ideals in the zero fibre. For an amplitude ideal primality is
+ring primality; for a support ideal it is meet primality. This proves
+FSC2 directly. Their basic opens are
+\begin{equation}\tag{FSC3}
+ D_S(z_\lambda)=D_L(\lambda),\qquad
+ D_S((n,1_L))=A\cup i(D_{\mathbb Z}(n)),\qquad
+ A=D_S(e),\quad i(Y)=V_S(e).
+\end{equation}
+Here $i(\mathfrak p)=Q_{\mathfrak p}$ is the closed inclusion and
+$j:A\hookrightarrow X$ the open inclusion. Every open meeting $i(Y)$
+is uniquely $W_U=A\cup i(U)$ for a nonempty open $U\subseteq Y$;
+the other opens are exactly the opens $V\subseteq A$. This follows
+from FSC3 because every nonempty open of $Y$ contains its generic
+point and all support points are generizations of every arithmetic
+point. There is a continuous retraction
+\begin{equation}\tag{FSC4}
+ r(P_J)=r(Q_{(0)})=\eta,\qquad r(Q_{(p)})=(p),\qquad ri=\mathrm{id}.
+\end{equation}
+Indeed $r^{-1}D_{\mathbb Z}(n)=D_S((n,1_L))$ for $n\ne0$;
+$r^{-1}\varnothing=\varnothing$. These constitute the basis test.
+In particular $r^{-1}U=W_U$ for every nonempty open $U$.
+
+\subsection{The support sheaf, its direct image, and all their sections}
+For a lattice prime $J$ define
+\begin{equation}\tag{FSC5}
+ L_J=L[(L\setminus J)^{-1}],\qquad
+ [\lambda]_J=[\mu]_J\iff
+ \exists\nu\notin J:\lambda\wedge\nu=\mu\wedge\nu.
+\end{equation}
+Every invertible idempotent is the unit; hence this formula follows
+from the localization equality, and every fraction is represented by
+its numerator. It makes explicit the possible loss of a label in an
+individual support stalk.
+
+\begin{lemma}[Sections of the support sheaf]
+The restriction $\mathcal O_A=j^{-1}\mathcal O_X$ of the actual
+localization sheaf of $S$ satisfies
+\begin{equation}\tag{FSC6}
+ \mathcal O_A(D_L(\lambda))=\downarrow\lambda,\qquad
+ a|_{D_L(\mu)}=a\wedge\mu\quad(\mu\le\lambda),\qquad
+ (\mathcal O_A)_J=L_J.
+\end{equation}
+In particular $\Gamma(A,\mathcal O_A)=L$. For every open $V\subseteq A$
+its sections are exactly
+\begin{equation}\tag{FSC7}
+ \left\{(a_\lambda)_{D(\lambda)\subseteq V}:
+ a_\lambda\le\lambda,\quad
+ a_\lambda\wedge\mu=a_\mu\text{ whenever }\mu\le\lambda
+                         \text{ and }D(\lambda)\subseteq V\right\}.
+\end{equation}
+The two operations are coordinatewise join and meet.
+\end{lemma}
+\begin{proof}
+First $S[e^{-1}]=L$ because $e^2=e$ makes $e=1$ and
+$e(a,\lambda)=z_\lambda$. Then
+$L[\lambda^{-1}]=\downarrow\lambda$ by $a\mapsto a\wedge\lambda$,
+with unit $\lambda$. Indeed the equality of localized elements is
+exactly equality after meeting with $\lambda$.
+To verify the sheaf assertion, the prime-ideal separation theorem for
+bounded distributive lattices gives an injective map
+$\lambda\mapsto D_L(\lambda)$ preserving finite joins and meets, and
+these basic opens are compact. Here is the needed argument.
+If an ideal and filter are disjoint, an ideal maximal subject to
+avoiding the filter exists by Zorn's lemma and is prime: if it contains
+$a\wedge b$ but contains neither $a$ nor $b$, adjoining either meets
+the filter, and distributivity makes the meet of those two filter
+elements belong to the original ideal, a contradiction.
+Apply this with the ideal $\downarrow\mu$ and filter
+$\uparrow\lambda$ when $\lambda\nleq\mu$ to obtain separation.
+For compactness, a cover $D(\lambda)\subseteq\bigcup_iD(\mu_i)$
+without a finite subcover would leave the ideal generated by all
+$\mu_i$ disjoint from $\uparrow\lambda$. The same prime would
+contradict the cover.
+For a finite cover $\lambda=\bigvee_i\lambda_i$, sections
+$a_i\le\lambda_i$ agree on overlaps precisely when
+$a_i\wedge\lambda_j=a_j\wedge\lambda_i$. Their unique gluing is
+$\bigvee_i a_i$, by distributivity. Compactness reduces any cover of a
+basic open to this case. Thus FSC6 defines the localization sheaf on
+a basis and has the stalk FSC5. Restricting a section to every basis
+open gives FSC7; conversely those compatible values glue and are
+unique. This proves the formula for all opens, including $V=A$.
+\end{proof}
+
+Set $\mathcal D=j_*\mathcal O_A$. There is an actual unital restriction
+map $d:\mathcal O_X\to\mathcal D$. Its sections and stalks are
+\begin{equation}\tag{FSC8}
+ \begin{array}{c|cc}
+ &W_U=A\cup i(U)&V\subseteq A\\ \hline
+ \mathcal D&L&\mathcal O_A(V)\\
+ \mathcal O_X&G_L(\mathcal O_Y(U))&\mathcal O_A(V)
+ \end{array}
+ \qquad
+ \mathcal D_{Q_{\mathfrak p}}=L,\quad\mathcal D_{P_J}=L_J.
+\end{equation}
+On $W_U$, $d$ is $\sigma$; on $V$, it is the identity.
+To justify the remaining entry for $\mathcal O_X$, localizing at an
+arithmetic prime gives $G_L(\mathbb Z_{\mathfrak p})$, including
+$G_L(\mathbb Q)$ at $Q_{(0)}$: all denominators there are nonzero
+integer amplitudes with top support, so labels never change. A section
+over $W_U$ has one rational amplitude and one label at $Q_{(0)}$.
+Generization from each $Q_{(p)}$ injects
+$G_L(\mathbb Z_{(p)})\hookrightarrow G_L(\mathbb Q)$, forcing its
+amplitude to lie in $\mathcal O_Y(U)$ and its label to be the same.
+At all support points the section is determined by the germ at
+$Q_{(0)}$, and equals the localization of that label. Conversely the
+corresponding element of $G_L(\mathcal O_Y(U))$ gives these local
+fractions. This proves FSC8. Every neighbourhood of an arithmetic
+point contains all of $A$, so the direct-image stalk there is $L$;
+at a support point it is the ordinary support stalk. Restriction
+from $W_U$ to $V$ sends $(a,\lambda)$ to the section represented by
+$\lambda$, whose component on $D(\mu)\subseteq V$ is
+$\lambda\wedge\mu$.
+
+Write $\underline L_X$ for the constant sheaf: its sections are the
+locally constant maps into the discrete set $L$, with pointwise lattice
+operations. There is a canonical unital sheaf map
+\begin{equation}\tag{FSC9}
+ \ell:\underline L_X\longrightarrow\mathcal D,
+ \quad \ell_{Q_{\mathfrak p}}=\mathrm{id}_L,
+ \quad \ell_{P_J}(\lambda)=[\lambda]_J.
+\end{equation}
+On $W_U$ a locally constant map is constant: every point of $A$ is a
+generization of $Q_{(0)}$ and every other arithmetic point specializes
+from $Q_{(0)}$, whereas a locally constant map into a discrete space
+is constant along either relation. Thus its sections there are $L$.
+On $V\subseteq A$ send a locally constant label function to the
+section whose germ at $J$ is the localized label there; it is locally
+represented by a single label and therefore is a section of $\mathcal
+O_A$. This proves FSC9 on sections and under restrictions.
+
+\subsection{Tropical coefficients, labels, and Frobenius zero}
+For each rational prime $p$, put $H_p=\mathbb Z[1/p]$ and
+$K_p=H_{p,\max}=H_p\cup\{-\infty\}$ with operations maximum and
+ordinary addition. Its semiring zero is $\mathbf0=-\infty$, its
+semiring unit is $\mathbf1=0\in H_p$. Define
+\begin{equation}\tag{FSC10}
+ K_{p,L}=K_p\otimes_{\mathbb B}L,\quad
+ \kappa(\lambda)=\mathbf1\otimes\lambda,\quad
+ \rho\left(\bigoplus_i h_i\otimes\lambda_i\right)
+       =\bigvee_{h_i\ne-\infty}\lambda_i.
+\end{equation}
+The map $K_p\to\mathbb B$ sending every finite exponent to $1$ and
+$-\infty$ to $0$ is a semiring homomorphism. Tensoring it proves that
+$\rho$ is well defined and a homomorphism; the tensor relations prove
+the same for $\kappa$, and $\rho\kappa=\mathrm{id}$.
+Consequently $\kappa$ is injective without collapsing any label.
+Positive Frobenius multiplies every finite $h_i$ by its integer
+index $n$, while fixing $-\infty$. Exponent-zero Frobenius sends every
+finite exponent to $0$ and fixes $-\infty$, so
+\begin{equation}\tag{FSC11}
+ \operatorname{Fr}_0=\kappa\rho,\qquad
+ \rho\operatorname{Fr}_n=\rho\quad(n\ge0),\qquad
+ \operatorname{Fr}_n\kappa=\kappa.
+\end{equation}
+These are semiring maps: scaling preserves maximum and exponent
+addition, and the zero action preserves which coefficients are
+absorbing zero. The last assertions also follow directly from the
+tensor formulas.
+
+The source geometric morphism $\Theta:Y\to\widehat{\mathbb N_0^\times}$
+has $\Theta(\eta)=\{0\}$ and $\Theta(p)=H_p$.
+Let $\mathcal T_L=\Theta^*(\mathcal O^0\otimes_{\mathbb B}\underline L)$.
+The source Proposition \texttt{sheavesonspz0}, including the zero
+Frobenius convention in Remark \texttt{caseno}, gives
+\begin{equation}\tag{FSC12}
+ (\mathcal T_L)_\eta=L,\qquad(\mathcal T_L)_p=K_{p,L}.
+\end{equation}
+The tensor commutes with inverse images: its finite products,
+coproducts, and coequalizers imposing the semiring relations are
+preserved by those functors. More explicitly, for every nonempty open
+$U\subseteq Y$ the complete section description is
+\begin{equation}\tag{FSC13}
+ \begin{gathered}
+ \mathcal T_L(U)=\{(\lambda,(w_p)_{p\in U}):
+       \lambda\in L, w_p\in K_{p,L},\ \rho(w_p)=\lambda,\\
+       w_p=\kappa(\lambda)\text{ for all but finitely many primes }p\in U\}.
+ \end{gathered}
+\end{equation}
+Operations are componentwise and restrictions discard removed prime
+coordinates. To prove this rather than infer a sheaf from stalks,
+use the source description: an original coefficient section is either
+absorbing zero everywhere, or finite exponents with value $0$ outside
+a finite set of primes. Each local tensor expression therefore has a
+single generic label $\lambda$ and is $\kappa(\lambda)$ outside a
+finite set. Every open of $Y$ is quasi-compact, since a single nonempty
+member of a cover misses only finitely many points. A finite cover of
+local expressions gives precisely FSC13. Conversely, for each prime
+in its finite exceptional set, express $w_p$ as a finite tensor sum;
+extend each finite coefficient to the source section with that value
+at $p$ and exponent $0$ elsewhere. On the open excluding the other
+exceptional primes this realizes $w_p$ and is $\kappa(\lambda)$
+elsewhere. These sections agree on overlaps and glue uniquely. Zero
+coefficients can be omitted, including the all-zero case. This proves
+both directions and every stated restriction map.
+
+Set $\mathcal E=r^{-1}\mathcal T_L$. It has maps
+$\rho:\mathcal E\to\underline L_X$ and
+$\kappa:\underline L_X\to\mathcal E$ with $\rho\kappa=\mathrm{id}$.
+Its sections on the two types of open, and its stalks, are
+\begin{equation}\tag{FSC14}
+ \begin{gathered}
+ \mathcal E(W_U)=\mathcal T_L(U),\qquad
+ \mathcal E(V)=\operatorname{LC}(V,L)\quad(V\subseteq A),\\
+ \mathcal E_{Q_{(p)}}=K_{p,L},\quad
+ \mathcal E_{Q_{(0)}}=L,\quad\mathcal E_{P_J}=L.
+ \end{gathered}
+\end{equation}
+Here $\operatorname{LC}$ denotes locally constant maps. For the first
+identity the inverse-image adjunction gives a map in one direction
+and restriction along $i$ a left inverse. Sections with equal
+arithmetic restriction have equal germs at $Q_{(0)}$, hence at every
+support generization, so the left inverse is also injective. For the
+second, $r|_A$ factors through the point $\eta$; inverse image to that
+point is the stalk $L$, and pulling it back to $A$ is the constant
+sheaf. The stalk formula follows either way. Restriction from $W_U$
+to $V$ remembers the constant label $\lambda$ in FSC13. Finally put
+\begin{equation}\tag{FSC15}
+ t=\ell\rho:\mathcal E\longrightarrow\mathcal D.
+\end{equation}
+This is the promised unital tropical-to-support map: at arithmetic
+points it is $\rho$, at $P_J$ it is $L\to L_J$, and on all sections
+it is fixed by every Frobenius, including zero.
+
+
+\subsection{The actual fibre product and its constrained carrier}
+Form the following fibre product of sheaves of unital semirings:
+\begin{equation}\tag{FSC16}
+ \mathcal C=\mathcal O_X\mathbin{\times}_{\mathcal D}\mathcal E,
+ \qquad
+ \mathcal C(W)=\{(s,w):d(s)=t(w)\text{ in }\mathcal D(W)\}.
+\end{equation}
+All operations are componentwise. Compatible pairs glue uniquely in
+the two factor sheaves, and the equality in $\mathcal D$ can be
+checked locally, so FSC16 is already a sheaf. The projections are
+unital homomorphisms. For any other sheaf with maps to both factors
+whose composites to $\mathcal D$ agree, their pair is the unique
+map to FSC16. This proves the fibre-product universal property.
+
+Its sections on every open and its stalks are as follows:
+\begin{equation}\tag{FSC17}
+ \begin{gathered}
+ \mathcal C(W_U)=
+ \{(a,\lambda,(w_p)):\ a\in\mathcal O_Y(U),\
+            (\lambda,(w_p))\in\mathcal T_L(U),\
+            a\ne0\Rightarrow\lambda=1_L\},\\
+ \mathcal C(V)=\operatorname{LC}(V,L)\quad(V\subseteq A).
+ \end{gathered}
+\end{equation}
+In the second line a label function $f$ corresponds to the pair
+$(\ell f,f)$, not only to its localized value $\ell f$.
+Restrictions among the $W_U$ localize the amplitude and remove prime
+coordinates. Restriction to $V\subseteq A$ forgets the amplitude and
+prime coordinates and keeps the constant function $\lambda$.
+On the arithmetic finite stalk, abbreviate $R_p=\mathbb Z_{(p)}$.
+Then
+\begin{equation}\tag{FSC18}
+ \begin{gathered}
+ \mathcal C_{Q_{(p)}}
+  \simeq\{(a,w)\in R_p\times K_{p,L}:a\ne0\Rightarrow\rho(w)=1_L\},\\
+ \mathcal C_{Q_{(0)}}\simeq G_L(\mathbb Q),\qquad
+ \mathcal C_{P_J}\simeq L.
+ \end{gathered}
+\end{equation}
+The finite-stalk pair $(a,w)$ corresponds to
+$((a,\rho(w)),w)$ in the original fibre product. Its sum and product
+are $(a+b,w\oplus v)$ and $(ab,wv)$, with their exact original
+amplitudes and tropical coefficients. The support stalk $\lambda$
+corresponds to $([\lambda]_J,\lambda)$.
+To prove these assertions, substitute FSC8 and FSC14 into FSC16.
+For stalks, every finite set of section representatives can be put on
+one common neighbourhood, and an equality of their germs holds on
+a smaller common neighbourhood. Thus a stalk commutes with this finite
+fibre product. At a support prime the two maps to $L_J$ are the identity
+on $L_J$ and the localization $L\to L_J$, so their fibre product is
+$L$, by precisely the pair displayed above. At an arithmetic point
+the two maps are $\sigma$ and $\rho$, which give the first two lines.
+This proves all sections and stalks rather than identifying the three
+input sheaves.
+
+Write $\mathcal R=i_*\mathcal O_Y$. On $W_U$ it is
+$\mathcal O_Y(U)$ and on every $V\subseteq A$ it is the zero ring
+(the singleton ring with $0=1$). The amplitude of an actual local
+fraction gives a unital map $q:\mathcal O_X\to\mathcal R$.
+There is an injective unital comparison
+\begin{equation}\tag{FSC19}
+ \mathcal C\hookrightarrow\mathcal R\times\mathcal E,
+              \qquad (s,w)\longmapsto(q(s),w).
+\end{equation}
+At finite arithmetic stalks its image is exactly the constrained
+subset in FSC18; at the generic arithmetic stalk it is
+$G_L(\mathbb Q)\subset\mathbb Q\times L$; at support stalks it is
+all of $\{0\}\times L$. Injectivity follows directly from these
+stalk descriptions: on arithmetic stalks the amplitude and
+$\rho(w)$ recover $s$, while on support stalks $s$ is the localization
+of $w$. A sheaf map injective on stalks is injective on sections,
+since equality of germs gives local equality and then equality.
+The additional elements in the unrestricted finite-stalk ambient
+product are exactly
+\begin{equation}\tag{FSC20}
+ \{(a,w):a\ne0,\ \rho(w)\ne1_L\}.
+\end{equation}
+They are not present in $\mathcal C$. At the generic stalk the
+corresponding extra pairs are $a\ne0$ with support below $1_L$.
+Thus the correspondence never silently enlarges the original
+nonzero-amplitude support constraint.
+
+\subsection{Original coefficients, the tropical ideal, and their maps}
+Let $B_L$ be the coefficient sheaf on $Y$ with
+$B_L(U)=G_L(\mathcal O_Y(U))$ for nonempty $U$. A compatible cover has
+one support label because all nonempty intersections contain $\eta$;
+the ring amplitudes glue and retain top support when nonzero. This
+proves the sheaf assertion. Preserve the actual inverse image under
+the separate name
+\[
+ \mathcal P=r^{-1}B_L.
+\]
+Its sections on $W_U$ are $G_L(\mathcal O_Y(U))$, while its sections
+on $V\subseteq A$ are $\operatorname{LC}(V,G_L(\mathbb Q))$.
+Its arithmetic stalks are $G_L(R_p)$ and $G_L(\mathbb Q)$, and its
+stalk at \emph{every} support point is also $G_L(\mathbb Q)$.
+These follow from the inverse-image stalk formula and the factorization
+of $r|_A$ through $\eta$, whose $B_L$-stalk is $G_L(\mathbb Q)$.
+Thus this original pullback still retains rational amplitudes on the
+support open. It is not the fixed sheaf constructed next.
+
+Define the separate sheaf
+\[
+ \mathcal B=\mathcal O_X\mathbin{\times}_{\mathcal D}\underline L_X.
+\]
+Its sections on $W_U$ are $G_L(\mathcal O_Y(U))$, represented by
+$((a,\lambda),\lambda)$; its sections on $V\subseteq A$ are
+$\operatorname{LC}(V,L)$, represented by $(\ell f,f)$.
+Its stalks are $G_L(R_p)$, $G_L(\mathbb Q)$, and $L$ at support
+points. These formulas are direct substitutions from FSC8--FSC9,
+with the same sheaf and finite-stalk argument as for FSC16--FSC18.
+There is an exact sequence of comparison maps (no additive exactness
+terminology is imposed)
+\begin{equation}\tag{FSC33}
+ \mathcal P\xrightarrow{\alpha}\mathcal B
+                       \xrightarrow{\Phi}\mathcal O_X.
+\end{equation}
+Here $\Phi$ is the first projection. On arithmetic stalks both maps
+are the identity under the displayed identifications; at $P_J$ they
+are exactly
+\begin{equation}\tag{FSC34}
+ G_L(\mathbb Q)\xrightarrow{\sigma}L
+                   \longrightarrow L_J,\qquad
+ (a,\lambda)\longmapsto\lambda\longmapsto[\lambda]_J.
+\end{equation}
+To construct them on sections, let $\alpha$ be the identity on $W_U$
+and the coordinatewise support map on locally constant sections
+$V\to G_L(\mathbb Q)$. Restriction of an arithmetic-open section to
+$V$ is its constant rational-amplitude germ in $\mathcal P$, and
+its constant support label in $\mathcal B$; hence these formulas
+commute with that restriction as well as restrictions within each
+kind of open. Operations are preserved by $\sigma$. This proves
+$\alpha$ as an actual unital sheaf map and proves FSC34.
+Both maps are epimorphisms because all their stalk maps are surjective.
+The equality relation of $\alpha$ at support points is equality of
+support labels, with amplitudes arbitrary within the original
+constrained carrier; at arithmetic points it is equality of the whole
+element. The equality relation of $\Phi$ at support points is FSC5,
+and at arithmetic points again equality. Their composite is the
+previous full coefficient-to-localization map, with the support-only
+loss of amplitude occurring at the first arrow and lattice localization
+at the second. All three sheaves remain explicit.
+
+There is an injective unital map and a unital retraction
+\begin{equation}\tag{FSC21}
+ \begin{gathered}
+ \nu:\mathcal B\hookrightarrow\mathcal C,\qquad
+ (a,\lambda)\longmapsto(a,\kappa(\lambda)),\\
+ \beta:\mathcal C\longrightarrow\mathcal B,\qquad
+ (a,w)\longmapsto(a,\rho(w)),\qquad \beta\nu=\mathrm{id}.
+ \end{gathered}
+\end{equation}
+The displayed formulas apply at arithmetic stalks and to the
+corresponding prime coordinates of sections; at support points
+both maps are the identity of $L$. They respect every restriction
+formula already proved. Their operations follow because $\kappa$
+and $\rho$ are homomorphisms and $\rho\kappa=\mathrm{id}$.
+The composite $\mathcal B\to\mathcal C\to\mathcal O_X$ is the
+isomorphism at arithmetic stalks and the localization $L\to L_J$
+at support stalks. These are the exact places where the fixed
+coefficient comparison and the actual localization sheaf differ.
+
+Frobenius on the common object is
+\begin{equation}\tag{FSC22}
+ F_n(s,w)=(s,\operatorname{Fr}_n w)\quad(n\ge0),\qquad
+ F_0=\nu\beta,
+ \qquad \operatorname{Fix}(F_0)=\nu(\mathcal B).
+\end{equation}
+It is a sheaf endomorphism because $\rho\operatorname{Fr}_n=\rho$.
+Every amplitude is retained unchanged; no claim is made that ordinary
+ring powering is an additive endomorphism. The last two assertions
+follow from FSC11 and FSC21. They also recover the original constrained
+$G_L(R_p)$ exactly at every arithmetic stalk. As sheaves of semirings,
+$F_0$ is an actual idempotent with the indicated image, not an assumed
+identification of the spherical, tropical and arithmetic structures.
+
+There is a second exact map
+\begin{equation}\tag{FSC23}
+ \delta:\mathcal E\longrightarrow\mathcal C,\qquad
+ \delta(w)=(z_{\rho(w)},w)	ext{ at arithmetic stalks},\qquad
+ \delta(\lambda)=\lambda\text{ at support stalks}.
+\end{equation}
+On $W_U$ it sets the amplitude equal to zero and retains all tropical
+coordinates. On $V$ it is the identity on locally constant labels.
+These descriptions commute with restrictions and give an injective
+map preserving zero, addition, and multiplication. It is nonunital:
+its unit image has arithmetic amplitude zero. More precisely let
+$b=\delta(1_{\mathcal E})$, the global section whose pair in FSC16 is
+$(e,1_{\mathcal E})$. Then
+\begin{equation}\tag{FSC24}
+ b^2=b,\qquad
+ b\mathcal C=\delta(\mathcal E)
+          =\ker(\mathcal C\longrightarrow\mathcal R),\qquad
+ \delta:\mathcal E\xrightarrow{\sim}b\mathcal C.
+\end{equation}
+The last map is unital when the principal ideal is given its own
+identity $b$. Indeed multiplication by $b$ sends $(a,w)$ to $(0,w)$,
+which proves both equalities and the asserted identity on the ideal;
+at support points $b=1$ and the same formula holds in the zero-amplitude
+ambient description. All inverse maps are given by the tropical
+projection. There cannot be a unital sheaf map
+$\mathcal E\to\mathcal C$: addition is idempotent in $\mathcal E$,
+whereas $1_{\mathcal C}+1_{\mathcal C}\ne1_{\mathcal C}$ at the
+arithmetic generic stalk, since its amplitudes are $2$ and $1$ in
+$\mathbb Q$. Thus FSC23--FSC24 are the exact replacement for the
+invalid unital inclusion, while retaining the entire ideal.
+
+The amplitude map is the ring reflection of this common sheaf:
+\begin{equation}\tag{FSC25}
+ \mathcal C/\!\sim_{\delta\mathcal E}\ \simeq\mathcal R,
+ \qquad x\sim_{\delta\mathcal E}y
+ \iff \text{locally }x+u=y+v\text{ for }u,v\in\delta\mathcal E.
+\end{equation}
+It is surjective on sections of $W_U$, since $a$ has a lift
+$(a,\kappa(1_L))$, and on sections of support opens, whose target is
+one element. If two arithmetic-open sections $(a,w)$ and $(a,w')$
+have the same amplitude, then
+\[
+ (a,w)+\delta(w')=(a,w')+\delta(w)
+\]
+in the full pair presentation: supports join on both sides and the
+tropical sums agree. At support opens the whole semiring is the ideal.
+Conversely adding ideal sections does not change amplitude. This
+proves the exact congruence on all opens, hence its sheaf version.
+Any unital map to a sheaf of rings annihilates this ideal because
+its elements are additively idempotent; it therefore factors uniquely
+through FSC25. This proves the universal property, without any
+unsupported stable-spectrum consequence.
+
+\subsection{The spherical map into the entire common object}
+Let $\mathcal F_L=r^{-1}\Theta^{-1}\mathbf F_1[T]$, with
+$\mathcal F_\eta=\mathbf F_1$ and
+$\mathcal F_p=\mathbf F_1[T^{H_p^+}]$ as in FF Proposition
+\texttt{prop12}. On the source topos the pointed multiplicative map
+\begin{equation}\tag{FSC26}
+ \mathbf F_1[T]\longrightarrow H(\mathbb Z_{\max}\otimes_{\mathbb B}L),
+ \qquad T^n\longmapsto n\otimes1_L,\qquad
+ 0\longmapsto\mathbf0
+\end{equation}
+preserves the unit: $T^0$ goes to exponent $0$, the tropical unit,
+not to the absorbing $-\infty$. It preserves multiplication because
+$n+m$ is the tropical product, and it commutes with every source
+Frobenius including zero. To see its extension to spherical algebras
+explicitly, a monoid-algebra element in degree $k_+$ has a single
+monomial and one nonbasepoint coordinate. Put its image in that
+coordinate and the additive zero elsewhere. Pointed maps move or
+discard that coordinate, agreeing with the fibre-sum formula of $H$;
+products agree by the proved multiplicative formula. Conversely
+coordinate inclusions force this construction. Thus FSC26 is an
+actual spherical-algebra morphism. Inverse image gives
+\begin{equation}\tag{FSC27}
+ u:\mathcal F_L\longrightarrow H\mathcal E,
+ \qquad u_{Q_{(p)}}(T^h)=h\otimes1_L,
+ \quad u_{P_J}:\mathbf F_1\to HL\text{ the unit map}.
+\end{equation}
+The same unit formula holds at $Q_{(0)}$.
+
+There is also the augmentation
+$v:\mathcal F_L\to H\mathcal O_X$, with $T^h\mapsto1$ and the
+absorbing zero mapped to the target additive zero. It exists by
+pulling back the equivariant source augmentation $T^n\mapsto1$.
+It is unique: any such map is the unit map at $Q_{(0)}$, whose
+source is $\mathbf F_1$; the injection
+$G_L(R_p)\to G_L(\mathbb Q)$ then forces every monomial's image at
+$Q_{(p)}$ to be $1$. The source generization has $T^h\mapsto1$,
+because it commutes with $\operatorname{Fr}_0$, which is the identity
+on $\mathbf F_1$ and sends $T^h$ to $T^0$. At support primes the source
+is also $\mathbf F_1$, so the unit map is unique there. Equality on
+stalks proves equality of sheaf maps.
+
+The composites $Hd\circ v$ and $Ht\circ u$ are equal. On every
+finite stalk both send each monomial to $1_L$ and the absorbing zero
+to $0_L$; at support points both give the unit map to $HL_J$.
+The monoid-algebra coordinate argument makes this equality hold in
+every finite pointed degree. Since $H$ takes the semiring fibre product
+to the spherical fibre product degree by degree, there is a unique map
+\begin{equation}\tag{FSC28}
+ \begin{gathered}
+ \gamma:\mathcal F_L\longrightarrow H\mathcal C,\\
+ \gamma_{Q_{(p)}}(T^h)=(1,h\otimes1_L),\qquad
+ \gamma_{Q_{(p)}}(0)=(0,\mathbf0),\\
+ \gamma_{Q_{(0)}}(1)=(1,1_L),\quad
+ \gamma_{Q_{(0)}}(0)=(0,0_L),\qquad
+ \gamma_{P_J}:\mathbf F_1\to HL\text{ the unit map}.
+ \end{gathered}
+\end{equation}
+Here $(1,h\otimes1_L)$ denotes exactly the constrained pair of FSC18.
+This map is injective. At a finite stalk, distinct $h$ stay distinct:
+a lattice prime exists by the separation proof above, and its Boolean
+character gives an evaluation $K_{p,L}\to K_p$ taking
+$h\otimes1_L$ to $h$. The absorbing zero has a different arithmetic
+amplitude. At the generic and support stalks the two values are
+also distinct, since $L$ is nontrivial. In each finite pointed degree
+the coordinate description has at most one nonzero entry, preserving
+its coordinate and value. Thus it is injective in every degree and
+every stalk, hence as a sheaf map. This proves a faithful spherical
+comparison retaining positive exponents, even though its projection
+to the ordinary split structure sheaf is the forced augmentation.
+Finally $F_n\gamma=\gamma\operatorname{Fr}_n$ for all $n\ge0$ by
+FSC22 and the displayed monomial formulas; no ordinary amplitude
+Frobenius has been introduced.
+
+The complete diagram is
+\begin{equation}\tag{FSC29}
+\begin{CD}
+ \mathcal F_L @>{\gamma}>> H\mathcal C @>>> H\mathcal E\\
+ @V{v}VV @VVV @VV{Ht}V\\
+ H\mathcal O_X @= H\mathcal O_X @>{Hd}>> H\mathcal D.
+\end{CD}
+\end{equation}
+The right square is a fibre product, all arrows are actual unital
+spherical sheaf maps, and the upper-left map is injective. The ideal
+map $\delta$ of FSC23 is deliberately outside this diagram of unital
+maps; it becomes a unital isomorphism only onto the ideal with identity
+$b$ in FSC24. Exact proof locators for the topological base and bottom
+row are FSC2--FSC9; for the right-hand maps FSC10--FSC16; and for the
+spherical monomial maps FSC26--FSC28.
+
+
+\subsection{The precise obstruction to a global section and its replacement}
+The projection $\pi:\mathcal C\to\mathcal O_X$ is an epimorphism of
+sheaves, but for the full lattice its arithmetic section need not
+extend over the support open. Its exact stalk fibres are
+\begin{equation}\tag{FSC30}
+ \begin{gathered}
+ \pi^{-1}_{Q_{(p)}}(a,\lambda)
+       =\{w\in K_{p,L}:\rho(w)=\lambda\},\qquad
+ \pi_{Q_{(0)}}=\mathrm{id}_{G_L(\mathbb Q)},\\
+ \pi^{-1}_{P_J}([\mu]_J)
+       =\{\lambda\in L:\exists\nu\notin J,                          \lambda\wedge\nu=\mu\wedge\nu\}.
+ \end{gathered}
+\end{equation}
+The finite fibres are nonempty, containing $\kappa(\lambda)$;
+the support fibres are nonempty because localization is represented
+by a numerator. Thus it is surjective on stalks. To see directly that
+this implies the sheaf epimorphism assertion, any section of the target
+has a preimage germ at each point; choose local representative sections
+of the domain and shrink so their images equal the given target
+section. These local lifts prove local surjectivity, the epimorphism
+condition for sheaves of sets with algebraic operations.
+
+A unital sheaf section of $\pi$ exists if and only if $L$ is the
+two-element lattice. First suppose one exists. Compose it with $\beta$
+to obtain a section of $\Phi:\mathcal B\to\mathcal O_X$ from FSC21.
+At $Q_{(0)}$, $\Phi$ is the identity, so this section is forced to be
+the identity there. Compatibility with generization to $P_J$ forces
+its support-stalk component to satisfy
+\begin{equation}\tag{FSC31}
+ s_J([\lambda]_J)=\lambda\qquad\text{for every }\lambda\in L.
+\end{equation}
+Indeed apply the compatibility square to $z_\lambda$ at $Q_{(0)}$:
+in $\mathcal O_X$ it generizes to $[\lambda]_J$, whereas in
+$\mathcal B$ it generizes to the unlocalized label $\lambda$.
+If $0_L<\lambda<1_L$, prime-ideal separation supplies a prime $J$
+avoiding $\lambda$. In $L_J$, $[\lambda]_J=[1_L]_J$, which contradicts
+FSC31. Thus no intermediate element exists and $L=\{0_L,1_L\}$.
+Conversely for this two-element lattice its sole prime is $\{0_L\}$,
+and localization there is the identity. Therefore $\Phi$ is an
+isomorphism at every stalk, hence a sheaf isomorphism: local inverses
+exist and glue uniquely by injectivity. The map $\nu\Phi^{-1}$ then
+is a unital section of $\pi$. This proves both directions.
+
+The obstruction therefore defines the exact replacement rather than
+removing the support geometry: $\mathcal B$ is the coefficient sheaf
+which retains the unlocalized support labels, embeds by $\nu$ into
+$\mathcal C$, and maps onto the actual $\mathcal O_X$ by precisely
+FSC31's localization quotient. On the arithmetic closed stratum,
+\begin{equation}\tag{FSC32}
+ i^{-1}\mathcal C=B_L\mathbin{\times}_{\underline L_Y}\mathcal T_L,
+ \qquad B_L\hookrightarrow i^{-1}\mathcal C,
+ \quad (a,\lambda)\longmapsto(a,\kappa\lambda).
+\end{equation}
+To verify this, inverse image commutes with finite products and
+equalizers, or one may substitute the already proved sections and
+stalks and use the same finite-representative germ argument as in
+FSC18. Here $i^{-1}\mathcal O_X=B_L$, $i^{-1}\mathcal D=\underline L_Y$,
+and $i^{-1}\mathcal E=\mathcal T_L$. Thus the original constrained
+coefficient sheaf survives exactly, while its globally extendable
+replacement and the actual localization map remain visible.
+
+For the three-element chain $0<a<1$, the support primes are
+$J_0=\{0\}$ and $J_a=\{0,a\}$. At $J_0$, localization sends $a$ to
+$1$ and gives $L_{J_0}=\{0,1\}$; at $J_a$, only $1$ is inverted and
+$L_{J_a}=L$. Accordingly $\mathcal C$ has the three-element stalk
+$L$ at both support points, whereas $\mathcal O_X$ has respectively
+two and three elements. The fibre over $1\in L_{J_0}$ in FSC30 is
+exactly $\{a,1\}$. This proves the obstruction concretely without
+replacing the chain lattice by independent Boolean coordinates.
+At a finite arithmetic stalk, $w=\mathbf1\otimes a$ has
+$\rho(w)=a$. The pair $(1,w)$ therefore exists in the unrestricted
+ambient product but is excluded by FSC20, whereas $(0,w)$ exists in
+$\mathcal C$. The original three zero labels appear exactly as
+$(0,\kappa0),(0,\kappa a),(0,\kappa1)$ in its fixed coefficient
+subobject. These examples describe the map, its fibre, and the
+excluded amplitudes using the same original lattice throughout.

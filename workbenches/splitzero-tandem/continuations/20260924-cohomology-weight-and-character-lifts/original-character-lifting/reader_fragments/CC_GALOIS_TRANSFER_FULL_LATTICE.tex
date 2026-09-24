@@ -1,0 +1,642 @@
+% Full arbitrary-lattice lifts of the original CCM norm and Weil transfer.
+\section{Galois norm and Weil transfer with every support label retained}
+\label{sec:cc-galois-transfer-full-lattice}
+
+\paragraph{Human source and exact input.}
+Alain Connes, Caterina Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof and the
+geometry of the adeles class space}}, original author file
+\nolinkurl{Yuri70v2.tex}, lines 3514--3853, provide the original
+construction used here. Its source labels are
+\texttt{Normmap}, \texttt{AKGemb}, \texttt{explnorm},
+\texttt{CWGext}, \texttt{rulesW}, \texttt{transferhom},
+\texttt{taumap}, \texttt{leftrightact}, \texttt{tauequiv},
+\texttt{Xitau}, and \texttt{tauXiC1}.
+The author TeX SHA256 is
+\texttt{b1f694cb934dd4fe\allowbreak{}f829287f1a55dd8d\allowbreak{}e21c67a481e55245\allowbreak{}3c2f7e8fe0ae6fb5}.
+The class-field assertion used as an input is the surjectivity of
+the specified relative Weil-group transfer. CCM cite Andr\'e Weil,
+\emph{Sur la th\'eorie du corps de classes}, J. Math. Soc. Japan
+\textbf{3} (1951), 1--35, for that assertion. Their local norm
+references are to Weil's \emph{Basic Number Theory}.
+No independent rereading or new proof of those class-field theorems
+is claimed here. The carrier maps, their exact fibres, the typed
+group-transfer formula, and the lifted orbit maps below are proved.
+The carriers are the arbitrary-$L$ carriers PLP1--14; the local
+product is not substituted for the original common-label object.
+
+\subsection{The original field maps and the two different carriers}
+
+Let $E/K$ be a finite Galois extension of global fields, with
+$G=\operatorname{Gal}(E/K)$ and $n=[E:K]$. Denote its map of places
+by $\pi:\Sigma_E\to\Sigma_K$. For $w\mid v$ put
+$d_w=[E_w:K_v]$. Galois transitivity gives
+\begin{equation}\tag{GTL1}
+ \sum_{w\mid v}d_w=n,
+ \qquad G_w=\operatorname{Gal}(E_w/K_v),\qquad |G_w|=d_w.
+\end{equation}
+Use the original diagonal inclusion and local norm formula
+\begin{equation}\tag{GTL2}
+ \begin{aligned}
+ \iota:\mathbb A_K&\longrightarrow\mathbb A_E,
+                   &\iota(a)_w&=a_{\pi(w)},\\
+ N:\mathbb A_E&\longrightarrow\mathbb A_K,
+                   &(Nx)_v&=\prod_{w\mid v}N_{E_w/K_v}(x_w).
+ \end{aligned}
+\end{equation}
+The inclusions $K_v\to E_w$ in the first line are the original
+field inclusions. Integral local elements have integral norm,
+so the second line respects the restricted-product condition.
+The Galois action on adeles is
+$(\gamma x)_w=\gamma(x_{\gamma^{-1}w})$, with the indicated
+isomorphism of local fields. Its fixed subring is $\iota(\mathbb A_K)$.
+
+The local field norm is the determinant of multiplication on the
+$d_w$-dimensional $K_v$-vector space $E_w$. It is multiplicative,
+equals zero exactly at zero, and sends a scalar $a_v$ to $a_v^{d_w}$.
+Regrouping the full product over $G$ by the places above $v$ gives
+\begin{equation}\tag{GTL3}
+ \iota(Nx)=\prod_{\gamma\in G}\gamma x,
+ \qquad N\iota(a)=a^n.
+\end{equation}
+In this regrouping each place above $v$ occurs $d_w$ times,
+with its local automorphisms, and GTL1 supplies the exact exponent.
+
+Let $L$ be the original nontrivial bounded distributive lattice.
+For $F=K,E$ define the two specified semirings
+\begin{equation}\tag{GTL4}
+ \begin{gathered}
+ S_{F,c}=G_L(\mathbb A_F),\qquad
+ S_{F,\mathrm{loc}}=\prod_{v\in\Sigma_F}'G_L(F_v),\qquad
+ \Delta_F(a,\lambda)=((a_v,\lambda))_v,\\
+ G_L(R)=\{(0,\lambda):\lambda\in L\}\cup(R\times\{1_L\}),\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\quad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu).
+ \end{gathered}
+\end{equation}
+The finite restricted factors are $G_L(\mathcal O_v)$.
+Every zero label belongs to these factors, so the restricted
+condition is entirely the original amplitude condition. The
+map $\Delta_F$ is the injective unital semiring homomorphism
+of PLP3: its image consists of the tuples with one common label.
+At a nonzero adele that common label is forced to be top, including
+at any of its zero coordinates.
+
+The exact lifted inclusion and norm maps are
+\begin{equation}\tag{GTL5}
+ \begin{aligned}
+ \iota_c(a,\lambda)&=(\iota(a),\lambda),&
+ N_c(x,\lambda)&=(Nx,\lambda),\\
+ (\iota_{\rm loc}(a,\boldsymbol\mu))_w
+       &=(a_{\pi(w)},\mu_{\pi(w)}),&
+ (N_{\rm loc}(x,\boldsymbol\lambda))_v
+       &=\left(\prod_{w\mid v}N_{E_w/K_v}(x_w),
+                         \bigwedge_{w\mid v}\lambda_w\right).
+ \end{aligned}
+\end{equation}
+All meets here are finite, so no completeness of $L$ is assumed.
+A nonzero target norm at $v$ forces every $x_w$ above it to be
+nonzero and hence every input label to be top. This proves that
+$N_{\rm loc}$ lands in the stated constrained carrier. The same
+argument proves the common-label constraint for $N_c$.
+Both inclusions are injective unital semiring maps. Both norm
+maps preserve multiplication, the multiplicative unit, and the
+additive-zero element $\tau$; they are multiplicative monoid maps.
+
+On the local carrier the Galois action is
+\begin{equation}\tag{GTL6}
+ \gamma(x,\boldsymbol\lambda)_w
+   =\bigl(\gamma(x_{\gamma^{-1}w}),\lambda_{\gamma^{-1}w}\bigr).
+\end{equation}
+It is a semiring automorphism. On the common carrier it preserves
+the one label. The fixed local tuples have constant labels over
+each fibre of $\pi$ and fixed amplitudes, so they are exactly the
+image of $\iota_{\rm loc}$; the common fixed points are exactly
+the image of $\iota_c$. Finite idempotence of meet, including its
+$d_w$ repeated occurrences, now gives all the exact squares
+\begin{equation}\tag{GTL7}
+ \begin{gathered}
+ N_{\rm loc}\Delta_E=\Delta_KN_c,\qquad
+ \iota_{\rm loc}\Delta_K=\Delta_E\iota_c,\\
+ N_c\iota_c(a,\lambda)=(a^n,\lambda)=(a,\lambda)^n,\\
+ N_{\rm loc}\iota_{\rm loc}(a,\boldsymbol\mu)
+                         =(a^n,\boldsymbol\mu),\\
+ \iota_cN_c(X)=\prod_{\gamma\in G}\gamma X,\qquad
+ \iota_{\rm loc}N_{\rm loc}(X)=\prod_{\gamma\in G}\gamma X.
+ \end{gathered}
+\end{equation}
+Thus the norm/diagonal and inclusion/diagonal squares commute on
+the full original carriers, not merely on their amplitudes.
+
+\subsection{Exact zero-pattern fibres and the additive comparison}
+
+For a fixed adele $x\in\mathbb A_E$ let $Z(x)=\{w:x_w=0\}$.
+Field norm detects zero, so
+\begin{equation}\tag{GTL8}
+ Z(Nx)=\pi(Z(x)).
+\end{equation}
+The local amplitude fibre over $x$ is $L^{Z(x)}$.
+For each $v\in\pi(Z(x))$ set
+$A_v=Z(x)\cap\pi^{-1}(v)$, a nonempty finite set. The exact
+map of these amplitude fibres and its fibres at an output
+$\boldsymbol\mu\in L^{\pi(Z(x))}$ are
+\begin{equation}\tag{GTL9}
+ \begin{gathered}
+ L^{Z(x)}\longrightarrow L^{\pi(Z(x))},\qquad
+ (\lambda_w)_w\longmapsto
+                 (\bigwedge_{w\in A_v}\lambda_w)_v,\\
+ \prod_{v\in\pi(Z(x))}
+ \left\{(\lambda_w)_{w\in A_v}:
+                         \bigwedge_{w\in A_v}\lambda_w=\mu_v\right\}.
+ \end{gathered}
+\end{equation}
+Top labels at the nonzero coordinates have been inserted, not
+deleted from the carrier. This fibre map is surjective: select one
+zero place above each such $v$, put $\mu_v$ there and put top at
+the remaining zero places. This choice is only a set-theoretic
+section of the stated finite-fibre meet maps, not a new canonical
+Galois choice.
+
+For the common carrier, a fixed nonzero $x$ admits only its top
+label, even when $Nx=0$. Such an element maps to $e=(0,1_L)$
+when its entire norm adele vanishes. At the all-zero adele the
+map is $(0,\lambda)\mapsto(0,\lambda)$. Consequently the
+complete inverse fibre of $(0,\mu)$ for $\mu<1_L$ is the
+single point $(0,\mu)$; the fibre of $e$ is
+$\{(x,1_L):Nx=0\}$. For a nonzero target $y$, its norm fibre
+is $\{(x,1_L):Nx=y\}$. These are exact set fibres; no norm
+surjectivity on the original adeles has been assumed.
+
+The norm is not an additive map when $n>1$. If some fibre of
+places has at least two elements, put complementary zero-and-one
+amplitudes in its two nonempty parts and zero amplitudes at all
+other places. Each of the two norm adeles is zero, but the norm
+of their sum has value one at this base place. The failure also
+occurs on zero amplitudes with independent labels: at two places
+above one $v$, use label patterns $(1_L,0_L)$ and $(0_L,1_L)$,
+and use top labels at all other places above $v$. Their norm
+labels are both bottom, whereas the norm label of their sum is
+top. This argument works in every nontrivial $L$.
+
+If there is only one place above the selected $v$, its local
+degree is $n>1$. A separable field norm of degree $d>1$ on an
+infinite field is not additive. Indeed additivity would give
+$N(1+ta)=1+t^dN(a)$ for every scalar $t$; comparison with the
+determinant polynomial forces the coefficient
+$\operatorname{Tr}(a)$ of $t$ to vanish for every $a$.
+The trace of a finite Galois extension is not the zero map.
+Here is an elementary proof valid also when the characteristic
+divides $d$. Distinct field automorphisms are linearly independent:
+in a shortest nonzero relation $\sum_i c_i\sigma_i(x)=0$,
+evaluate at $yx$ and subtract $\sigma_1(y)$ times the relation;
+choose $y$ separating $\sigma_1$ and another automorphism.
+This gives a shorter nonzero relation, a contradiction.
+Applying this to the sum of all local automorphisms proves
+that trace is nonzero. Since the local base field is infinite,
+the polynomial comparison is legitimate, proving nonadditivity.
+
+There is nonetheless an exact full distributive relation,
+including every mixed term. For either carrier let $\iota$ and
+$N$ denote the corresponding maps of GTL5. Semiring
+distributivity gives
+\begin{equation}\tag{GTL10}
+ \iota N(X+Y)=\iota N(X)+\iota N(Y)
+  +\sum_{\varnothing\ne A\subsetneq G}
+       \left(\prod_{\gamma\in A}\gamma X\right)
+       \left(\prod_{\gamma\notin A}\gamma Y\right).
+\end{equation}
+The mixed sum is Galois-fixed because the action permutes its
+subsets, so it has an exact inverse image under $\iota$. This
+defines the full norm-additivity defect in the original target,
+with every mixed amplitude and label retained. Each subset term
+in the local carrier has at $w$ the label
+$\bigwedge_{\gamma\in A}\lambda_{\gamma^{-1}w}
+ \wedge\bigwedge_{\gamma\notin A}\mu_{\gamma^{-1}w}$;
+the sum joins these labels. Thus GTL10 retains the original
+finite distributivity calculation rather than imposing additivity.
+
+An actual additive receiving map is the trace, not the norm:
+\begin{equation}\tag{GTL11}
+ \begin{aligned}
+ T_c(x,\lambda)&=(\operatorname{Tr}_{E/K}x,\lambda),\\
+ (T_{\rm loc}(x,\boldsymbol\lambda))_v
+  &=\left(\sum_{w\mid v}\operatorname{Tr}_{E_w/K_v}(x_w),
+                              \bigvee_{w\mid v}\lambda_w\right).
+ \end{aligned}
+\end{equation}
+Here the adelic trace uses the displayed local sum. We first
+prove that both formulas land in their stated restricted carriers.
+At every nonarchimedean place where $x_w\in\mathcal O_w$, all
+its local Galois conjugates are integral. Their finite sum
+$\operatorname{Tr}_{E_w/K_v}(x_w)$ is therefore integral and
+belongs to $K_v$, hence belongs to $\mathcal O_v$. An adele has
+only finitely many nonintegral finite coordinates; their images
+under $\pi$ form a finite set. Outside that set every term of
+the finite sum over $w\mid v$ belongs to $\mathcal O_v$, so the
+output amplitude is an adele of $K$.
+If its $v$-coordinate is nonzero, at least one input $x_w$ over
+$v$ is nonzero. The constrained input carrier then forces
+$\lambda_w=1_L$, and consequently
+$\bigvee_{w\mid v}\lambda_w=1_L$ as required. If the output
+coordinate is zero, its displayed join is an allowed zero label,
+even when nonzero trace terms cancel. This proves landing for
+$T_{\rm loc}$. For $T_c$, a nonzero output adele implies a
+nonzero input adele and hence common label $1_L$; an output
+zero adele retains the original permitted common label. Thus
+the common carrier constraint is also preserved.
+These maps are additive and linear over the corresponding base carrier
+through $\iota$; finite lattice distributivity proves scalar
+compatibility for $T_{\rm loc}$. Their comparisons are
+$T_{\rm loc}\Delta_E=\Delta_KT_c$,
+$T\iota(a,\lambda)=(na,\lambda)$, and
+$\iota T(X)=\sum_{\gamma\in G}\gamma X$.
+They are not asserted to replace the multiplicative norm.
+The three pure label maps have the exact order adjunctions
+\begin{equation}\tag{GTL12}
+ J_\pi\dashv\pi^*\dashv M_\pi,
+ \qquad
+ J_\pi(\boldsymbol\lambda)_v=\bigvee_{w\mid v}\lambda_w,
+ \quad \pi^*(\boldsymbol\mu)_w=\mu_{\pi(w)},
+ \quad M_\pi(\boldsymbol\lambda)_v=\bigwedge_{w\mid v}\lambda_w.
+\end{equation}
+For example $\pi^*\mu\le\lambda$ means exactly that
+$\mu_v\le\lambda_w$ for every $w\mid v$, or equivalently
+$\mu\le M_\pi\lambda$; the join adjunction is the dual
+inequality. In particular $M_\pi\pi^*=J_\pi\pi^*$ is the
+identity. These are exact lattice maps even when norm is not
+an additive morphism.
+
+\subsection{Original local degrees, Haar modules and support localizations}
+
+At nonarchimedean places retain additive Haar measures of mass
+one on the rings of integers; at real and complex places use
+their usual real additive Haar measures. For $z\in E_w^\times$
+the multiplication map on the finite-dimensional $K_v$-vector
+space has determinant $N_{E_w/K_v}(z)$. A coordinate Haar
+measure differs from the selected local Haar measure by one
+constant, which cancels in the scaling ratio. Consequently
+\begin{equation}\tag{GTL13}
+ |N_{E_w/K_v}(z)|_v=|z|_w,
+ \qquad |a|_w=|a|_v^{d_w}\quad(a\in K_v^\times).
+\end{equation}
+These are the Haar-module absolute values: at a complex place
+$|z|_w$ is the square of the usual complex modulus. For finite
+places, multiplication by a uniformizer has module the inverse
+residue-field cardinality, as follows by the finite index of its
+image of the ring of integers. Thus GTL13 retains those finite
+Haar factors, rather than using an unweighted complex or finite norm.
+On ideles it gives the exact products
+\begin{equation}\tag{GTL14}
+ |N g|_K=\prod_v\prod_{w\mid v}|N_{E_w/K_v}(g_w)|_v
+       =\prod_w|g_w|_w=|g|_E,
+ \qquad |\iota c|_E=|c|_K^n.
+\end{equation}
+Only finitely many nonarchimedean factors differ from one.
+These equalities concern ideles, where the products are defined;
+no global absolute value is assigned here to an arbitrary adele.
+Nor is the nonlinear field norm assigned an additive Haar
+Jacobian by these multiplication-map identities.
+
+At the first support localization the common and local carriers
+become $L$ and $L^{\Sigma_F}$, as in PLP6. The common norm and
+inclusion are identity on $L$; the local norm and inclusion become
+$M_\pi$ and $\pi^*$ of GTL12. For a prime lattice ideal $J$ retain
+the actual uniform-denominator localization
+\begin{equation}\tag{GTL15}
+ \mathscr L_{F,J}=(L^{\Sigma_F})
+             [\operatorname{diag}(L\setminus J)^{-1}],\qquad
+ [\lambda]=[\mu]\ \Longleftrightarrow\quad
+ \exists\nu\notin J\ \forall v:\lambda_v\wedge\nu=\mu_v\wedge\nu.
+\end{equation}
+Finite meets over $w\mid v$ commute with this one uniform meet
+by $\nu$, so $M_\pi$ descends to
+$\mathscr L_{E,J}\to\mathscr L_{K,J}$. Pullback also descends,
+and the two maps still compose to the identity on
+$\mathscr L_{K,J}$. The join map descends by lattice
+distributivity. Coordinate localization to $\prod_v L_J$
+commutes with these finite-fibre operations, but that coordinate
+map is not silently declared injective; PLP7--9's infinite-product
+defect remains part of the comparison. Norm remains only a
+multiplicative map at this localization when its meet map is
+not join-preserving.
+
+\subsection{Class groups, the right cocycle, and the correctly typed transfer}
+
+Set $C_F=\mathbb A_F^\times/F^\times$. The inclusion of ideles
+induces an injective map $i_C:C_K\to C_E$. Indeed if a base idele
+becomes the principal idele of $a\in E^\times$, that principal
+idele is Galois-fixed; hence $\gamma(a)=a$ for every $\gamma$ and
+$a\in K^\times$. This proves injectivity without assuming an
+injection of unrelated class-group quotients.
+
+In fact $i_C$ identifies $C_K$ with $C_E^G$. Here is the exact
+algebraic descent argument. For a fixed class with representative
+$x\in\mathbb A_E^\times$, write
+$c_\gamma=\gamma(x)/x\in E^\times$.
+The cocycle law is
+$c_{\gamma\delta}=c_\gamma\gamma(c_\delta)$.
+Independence of the automorphisms, proved above, supplies an
+$a\in E$ such that
+$b=\sum_{\gamma\in G}c_\gamma^{-1}\gamma(a)\ne0$.
+The cocycle law gives $\delta(b)=c_\delta b$, so $x/b$ is fixed.
+Fixed ideles are exactly the diagonal base ideles; local fixed
+fields and the integral-unit condition prove this at every place.
+Thus the class is in $i_C(C_K)$. This is the multiplicative
+Hilbert--90 calculation, included here to make the exact map explicit.
+
+Let the relative Weil group be the original extension
+\begin{equation}\tag{GTL16}
+ 1\longrightarrow C_E\longrightarrow W_{E,K}
+             \longrightarrow G\longrightarrow1.
+\end{equation}
+Choose the source's section $s_\alpha$, with $s_1=1$, and keep
+the right-hand cocycle and conjugation convention
+\begin{equation}\tag{GTL17}
+ a_{\alpha,\beta}=s_{\alpha\beta}^{-1}s_\alpha s_\beta\in C_E,
+ \quad s_\alpha s_\beta=s_{\alpha\beta}a_{\alpha,\beta},
+ \quad s_\alpha g s_\alpha^{-1}=\alpha(g),
+ \quad x^\beta=\beta^{-1}(x).
+\end{equation}
+Associativity gives the full twisted cocycle law
+\begin{equation}\tag{GTL18}
+ a_{\alpha\beta,\gamma}(a_{\alpha,\beta})^\gamma
+       =a_{\alpha,\beta\gamma}a_{\beta,\gamma},
+ \qquad a_{1,\alpha}=a_{\alpha,1}=1.
+\end{equation}
+Indeed expand $(s_\alpha s_\beta)s_\gamma$ by moving its
+$a_{\alpha,\beta}$ to the right of $s_\gamma$; this gives
+$s_{\alpha\beta\gamma}a_{\alpha\beta,\gamma}
+ (a_{\alpha,\beta})^\gamma$. Expanding the other bracketing
+gives the other side. These are right-cocycle formulas; replacing
+them by an untwisted product would change the group.
+
+For precision define the ordinary finite-index group transfer
+$\operatorname{Ver}:W_{E,K}\to C_E$ using these representatives.
+For $w\in W_{E,K}$ write
+$w s_\beta=s_{\pi_w(\beta)}h_{w,\beta}$, $h_{w,\beta}\in C_E$,
+and put $\operatorname{Ver}(w)=\prod_\beta h_{w,\beta}$.
+Multiplying two such expressions gives
+$h_{wz,\beta}=h_{w,\pi_z(\beta)}h_{z,\beta}$, proving that
+Ver is a group homomorphism because $C_E$ is abelian and
+$\pi_z$ permutes the finite index set. Replacing representatives
+by $s_\beta b_\beta$ changes each factor to
+$b_{\pi_w(\beta)}^{-1}h_{w,\beta}b_\beta$; their product is
+unchanged. Conjugating both $w$ and the representative system
+therefore conjugates Ver's value. Since a homomorphism into an
+abelian group is invariant under conjugating its argument, its
+values are fixed under $G$. Thus Ver has image in $C_E^G$.
+
+The correctly typed transfer in the source is
+\begin{equation}\tag{GTL19}
+ t=i_C^{-1}\operatorname{Ver}:W_{E,K}\longrightarrow C_K,
+ \qquad
+ i_C(t(s_\alpha))=\prod_{\beta\in G}a_{\alpha,\beta},
+ \qquad t(g)=N(g)\quad(g\in C_E).
+\end{equation}
+The product of cocycle values in the middle expression is
+literally in $C_E$, which is why $i_C$ is retained. For the last
+equality, $g s_\beta=s_\beta\beta^{-1}(g)$ gives
+$\operatorname{Ver}(g)=\prod_\beta\beta^{-1}(g)=i_C(Ng)$;
+injectivity of $i_C$ then proves it. This also proves the
+compatibility in GTL19 rather than trying to deduce it from
+surjectivity alone. The deep class-field input, precisely as
+stated in the cited CCM \texttt{transferhom} passage, is that
+this $t$ is surjective. Denote $t_\alpha=t(s_\alpha)$. Its
+homomorphism law and GTL17 give
+\begin{equation}\tag{GTL20}
+ t_\alpha t_\beta=t_{\alpha\beta}N(a_{\alpha,\beta}).
+\end{equation}
+
+\subsection{The full twisted monoid and its transfer}
+
+For $F=K,E$ let
+$X_{F,c}=S_{F,c}/F^\times$ and
+$X_{F,\mathrm{loc}}=S_{F,\mathrm{loc}}/F^\times$,
+where each principal nonzero element acts with top label.
+These are orbit sets with well-defined multiplicative monoids:
+changing representatives by nonzero principal factors does not
+change a product orbit. No addition on these orbit sets is
+assumed. The maps $N$, $\iota$, and $\Delta$ descend because
+norm takes a principal element to its nonzero field norm and
+inclusion takes principal elements to principal elements.
+The descended inclusion is injective. For nonzero amplitudes,
+an equality $\iota(b)=a\iota(c)$ with $a\in E^\times$ forces
+$(\gamma(a)-a)\iota(c)=0$ for every $\gamma$. At one nonzero
+coordinate this forces $\gamma(a)=a$, since a nonzero global
+field element is nonzero in every completion. Thus $a\in K^\times$.
+At zero amplitudes labels are unchanged by every principal action,
+and injectivity follows directly from the label pullback.
+
+The full fixed-orbit descent is
+\begin{equation}\tag{GTL21a}
+ \iota_c(X_{K,c})=(X_{E,c})^G,
+ \qquad
+ \iota_{\rm loc}(X_{K,\mathrm{loc}})
+                         =(X_{E,\mathrm{loc}})^G.
+\end{equation}
+The inclusions already proved therefore identify the base orbit
+monoids with these fixed orbit monoids. Here fixedness is for
+the specified $G$ action on the full labelled orbit; it is not
+only fixedness of the amplitude or of its zero pattern.
+
+To prove GTL21a, the included base orbits are fixed by GTL6.
+Conversely, choose a representative $X$ of a fixed orbit in
+either $E$ carrier, and write $x$ for its amplitude adele.
+First suppose $x\ne0$. For each $\gamma\in G$ there is a
+$c_\gamma\in E^\times$ such that $\gamma X=c_\gamma X$.
+It is unique: an equality $c x=d x$ at a nonzero coordinate
+implies $c=d$, because $E$ embeds in that local field.
+Associating $\gamma\delta X$ in two ways consequently gives
+$c_{\gamma\delta}=c_\gamma\gamma(c_\delta)$.
+The explicit Hilbert--90 calculation preceding GTL16 applies
+to this cocycle, even though the adele $x$ need not be an idele.
+In detail, independence of the distinct automorphisms gives
+$a\in E$ with
+$b=\sum_{\gamma\in G}c_\gamma^{-1}\gamma(a)\ne0$.
+Since
+$\delta(c_\gamma^{-1})
+       =c_\delta c_{\delta\gamma}^{-1}$,
+reindexing this finite sum gives $\delta(b)=c_\delta b$.
+It follows that the representative $X/b$ is fixed by every
+$\delta$. Multiplication by the principal element $b^{-1}$
+preserves the adelic restricted condition and leaves every
+support label unchanged: a nonzero global element is a local
+unit at all but finitely many finite places and acts with top
+label.
+
+For completeness, the equality $\gamma X=c_\gamma X$ on the
+place-labelled carrier gives
+$\lambda_{\gamma^{-1}w}=\lambda_w$ at every place, including
+the zero coordinates. Galois transitivity therefore makes
+these labels constant on each fibre $w\mid v$. On the
+common-label carrier the single label was unchanged from the
+start. GTL6 now gives $X/b=\iota(Y)$ for a representative $Y$
+in the corresponding $K$ carrier: fixed amplitudes descend
+through the local fixed fields, and the descended labels obey
+the original constraint. This exhibits the required base orbit.
+
+If $x=0$, every principal nonzero element acts trivially on the
+entire zero-labelled representative. Thus fixedness of its
+orbit is actual fixedness of its labels. A common label descends
+unchanged; a place-labelled tuple descends because it is
+constant on each fibre of $\pi$. This covers all zero amplitudes
+and all lattice labels without an extra choice of a cocycle.
+Together with the preceding injectivity proof this establishes
+both equalities of multiplicative monoids in GTL21a. No addition
+or topological quotient identification is needed for this descent.
+
+Use either one of the two $E$ orbit monoids and call it $X$.
+The natural $C_E$ action is by top-supported idele multiplication;
+the $G$ action is the one already specified. Define
+\begin{equation}\tag{GTL21}
+ (\alpha,x)\star(\beta,y)
+       =(\alpha\beta,a_{\alpha,\beta}x^\beta y)
+                     \quad\text{on }G\times X.
+\end{equation}
+Its two bracketings have the respective second coordinates
+\[
+ a_{\alpha\beta,\gamma}(a_{\alpha,\beta})^\gamma
+         x^{\beta\gamma}y^\gamma z,
+ \qquad
+ a_{\alpha,\beta\gamma}a_{\beta,\gamma}
+         x^{\beta\gamma}y^\gamma z.
+\]
+Here $(x^\beta)^\gamma=x^{\beta\gamma}$ by the original inverse
+action convention. GTL18 proves associativity, and $(1,1)$ is
+the unit. The original Weil group identifies with the submonoid
+$G\times C_E$ via $(\alpha,g)\mapsto s_\alpha g$.
+
+The left and right actions of the original group on this monoid are
+therefore exactly
+\begin{equation}\tag{GTL22}
+ (s_\alpha g)(\beta,x)
+   =(\alpha\beta,a_{\alpha,\beta}g^\beta x),\qquad
+ (\alpha,x)(s_\beta g)
+   =(\alpha\beta,a_{\alpha,\beta}x^\beta g).
+\end{equation}
+They commute by the proved associativity. Common labels are
+retained by each group action. For local labels the left action
+leaves the $x$ labels unchanged, whereas the right action with
+$s_\beta g$ replaces the label at $w$ by the old label at
+$\beta w$, exactly as $x^\beta=\beta^{-1}x$ requires.
+
+Define the full supported transfer by
+\begin{equation}\tag{GTL23}
+ \mathcal T_c(\alpha,x)=t_\alpha N_c(x),\qquad
+ \mathcal T_{\rm loc}(\alpha,x)=t_\alpha N_{\rm loc}(x).
+\end{equation}
+The factors $t_\alpha$ act through their idele classes with top
+labels. These maps are well-defined and multiplicative for the
+twisted monoids GTL21. In fact, applying one to a product gives
+$t_{\alpha\beta}N(a_{\alpha,\beta})N(x^\beta)N(y)$;
+norm is Galois-invariant and GTL20 makes this
+$t_\alpha t_\beta N(x)N(y)$. All label products agree because
+finite fibre meets commute with the place permutation.
+Consequently
+\begin{equation}\tag{GTL24}
+ \mathcal T(wxz)=t(w)\mathcal T(x)t(z),\qquad
+ \mathcal T_{\rm loc}(\alpha,\Delta_E x)
+                          =\Delta_K\mathcal T_c(\alpha,x).
+\end{equation}
+This is the exact lifted equivariance and norm/diagonal square.
+For a fixed $\alpha$, the map $x\mapsto t_\alpha N(x)$ is not
+claimed to be a unital monoid homomorphism: its two product
+expressions differ by one factor $t_\alpha$. Multiplicativity
+in GTL23 refers to the full twisted monoid, not the untwisted
+direct product or an additive quotient.
+
+\subsection{Every one-zero-place label and the transferred classical orbits}
+
+Let $a^{(w)}\in\mathbb A_E$ have amplitude zero at $w$ and one
+at every other place. Its common-carrier lift has only top label.
+In the separately labelled carrier write $a^{(w)}_\lambda$ for
+the tuple with $(0,\lambda)$ at $w$ and $(1,1_L)$ elsewhere.
+The exact norms are
+\begin{equation}\tag{GTL25}
+ N_c(a^{(w)},1_L)=(a^{(\pi(w))},1_L),\qquad
+ N_{\rm loc}(a^{(w)}_\lambda)=a^{(\pi(w))}_\lambda.
+\end{equation}
+There is one zero local factor above $\pi(w)$; every other
+factor is the norm of one. Thus its label meet is exactly
+$\lambda$. The degree $d_w$ has not been replaced by a
+multiplicity of zero labels: its repeated meet equals $\lambda$
+by the idempotence of the original lattice operation.
+
+Define the common and local classical orbit sets respectively by
+\[
+ \Xi_{F,c}=\bigcup_{v\in\Sigma_F}C_F[a^{(v)}_{1_L}],
+ \qquad
+ \Xi_{F,\rm loc}=\bigcup_{v\in\Sigma_F,\lambda\in L}
+                                      C_F[a^{(v)}_\lambda].
+\]
+The common set embeds as the top-labelled part of the second.
+Every label is preserved by idele multiplication. Formula GTL25
+gives, for $g\in C_E$,
+\begin{equation}\tag{GTL26}
+ \mathcal T(\alpha,g a^{(w)}_\lambda)
+       =t(s_\alpha g)a^{(\pi(w))}_\lambda.
+\end{equation}
+Here the common case has its required value $\lambda=1_L$.
+For any $v$, choose a place $w\mid v$; for a target idele class
+$c\in C_K$, the cited transfer surjectivity supplies
+$s_\alpha g$ with $t(s_\alpha g)=c$. Hence
+\begin{equation}\tag{GTL27}
+ \mathcal T_c:G\times\Xi_{E,c}\twoheadrightarrow\Xi_{K,c},
+ \qquad
+ \mathcal T_{\rm loc}:G\times\Xi_{E,\rm loc}
+                                  \twoheadrightarrow\Xi_{K,\rm loc}.
+\end{equation}
+These are the exact supported lifts of the source's classical
+transfer surjection. They do not rely on surjectivity of the
+norm $C_E\to C_K$, which is a different map.
+
+The orbit fibres can also be specified without asserting an
+unproved covering degree. Let $H_w$ be the image of
+$E_w^\times$ in $C_E$ and $H_v$ the image of $K_v^\times$ in
+$C_K$. These embeddings are injective: a principal idele equal
+to one at a different place has principal field element one.
+The stabilizer of $[a^{(w)}_\lambda]$ is $H_w$, since a
+principal comparison forces its idele to equal that principal
+element at every nonzero coordinate. Thus its orbit is $C_E/H_w$,
+with the same statement over $K$. Since $N(H_w)\subset H_v$,
+the exact fibre over $[c a^{(v)}_\lambda]$ is the set
+\begin{equation}\tag{GTL28}
+ \coprod_{w\mid v}\ \coprod_{\alpha\in G}
+  \{gH_w:\ t_\alpha N(g)\in cH_v\},
+\end{equation}
+with label precisely $\lambda$. Different zero places and
+different labels cannot be identified by principal or idele
+multiplication. The formula is a set decomposition; it does
+not replace the original ambient orbit topology by a
+disjoint-union topology, or assert a local-homeomorphism property.
+
+Finally let $C_{F,1}=\ker(|\cdot|_F)$. GTL14 gives
+$N(C_{E,1})\subset C_{K,1}$. Right multiplication by $C_{E,1}$
+in GTL22 changes only the $x$ coordinate, and GTL24 therefore
+gives the descended surjections
+\begin{equation}\tag{GTL29}
+ G\times(\Xi_{E,c}/C_{E,1})\twoheadrightarrow
+                      \Xi_{K,c}/C_{K,1},\qquad
+ G\times(\Xi_{E,\rm loc}/C_{E,1})\twoheadrightarrow
+                      \Xi_{K,\rm loc}/C_{K,1}.
+\end{equation}
+Every label remains unchanged in these quotients. For a single
+zero-place local label at a support prime $J$, the equality
+criterion is exactly $[\lambda]_J=[\mu]_J$, as in PLP10;
+GTL25 transports that same criterion from $w$ to $\pi(w)$.
+The original common point instead restricts to top in $L_J$.
+These are consequences of the original arbitrary-lattice maps,
+not a replacement of the support spectrum by a single point.
+
+\paragraph{Precisely retained scope.}
+Inclusion and diagonal comparison are unital semiring maps;
+Galois actions are semiring automorphisms; norm is a unital
+multiplicative map with exact mixed-additivity defect GTL10;
+trace is the additive base-linear companion GTL11. On the orbit
+sets only their specified multiplicative structures are used.
+The full Weil cocycle and the typed class-group inclusion remain
+in GTL17--24. Classical transfer surjectivity is the cited human
+source input; the labelled fibres and surjections are its proved
+receiving maps. No additive field-norm assertion, new norm
+surjectivity, support-label Haar measure, or positivity theorem
+is inferred.

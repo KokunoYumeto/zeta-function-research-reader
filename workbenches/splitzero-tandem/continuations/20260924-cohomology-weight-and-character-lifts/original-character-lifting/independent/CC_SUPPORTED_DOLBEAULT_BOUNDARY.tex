@@ -1,0 +1,1175 @@
+% SDB: complete finite-normal-jet calculation for the original CC operators.
+\section{The supported distribution receiver for the original complex-lift operator}
+\label{sec:SDB-supported-dolbeault}
+
+\paragraph{Human source and exact scope.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1805.10501v1}{\emph{The Riemann--Roch strategy:
+Complex lift of the Scaling Site}}, version 1, Section 5.2, author-source
+Lemma \texttt{adelicomp1} and equation \texttt{actionpq}, define
+\begin{equation}\tag{SDB1}\label{eq:SDB-original}
+ \ell(a,b)(x,y)=(ax+b,ay),\qquad
+ D=\partial_x+i\partial_y.
+\end{equation}
+These are the original coordinates and the original operator; there is
+no factor $1/2$ in the source's definition of $D$.
+The original file \nolinkurl{thecurve_K.tex}, lines 1203--1224, supplies
+this definition and the quotient by $P(\mathbb Q)$. Section 6.6, the
+paragraph immediately preceding Proposition \texttt{comparescalcs}
+(source lines 2381--2418), also gives
+\begin{equation}\tag{SDB2}\label{eq:SDB-vectorfields}
+ X=y\partial_x,\qquad Y=y\partial_y,\qquad
+ D_y=X+iY=y\partial_x+iy\partial_y=yD.
+\end{equation}
+We construct and compute a particular distribution receiver for these
+operators on the open archimedean branch $x=0$, $y>0$.
+This construction is a new local calculation using the cited operators.
+Its cohomology is not asserted to be the cohomology of the whole adelic
+quotient, and no weight, purity, zeta-zero realization, or Riemann
+hypothesis statement follows from its definition.
+
+\subsection{The entire finite-normal-jet space and its distribution embedding}
+
+Put $I=(0,\infty)$ and $\Omega=\mathbb R\times I$.
+The notation $\mathcal D'(I)$ means complex distributions on $I$,
+acting complex-linearly on $C_c^\infty(I)$, and derivatives are defined
+by $g'(\psi)=-g(\psi')$. On $\Omega$, both partial derivatives use
+the same convention. All test functions have compact support inside
+the indicated open set; no extension across $y=0$ is part of these
+definitions.
+For $j\geq0$ and $g\in\mathcal D'(I)$ define
+\begin{equation}\tag{SDB3}\label{eq:SDB-tensor}
+ \left\langle\delta^{(j)}(x)\otimes g(y),\phi(x,y)\right\rangle
+ =(-1)^j\left\langle g,
+             \partial_x^j\phi(0,\cdot)\right\rangle,
+ \qquad\phi\in C_c^\infty(\Omega).
+\end{equation}
+Here $\delta^{(j)}$ is the $j$th derivative of the Dirac distribution
+at $x=0$; its order and its sign have not been absorbed into $g$.
+The continuous restriction-and-derivative map on test functions in
+\eqref{eq:SDB-tensor} proves that this expression is a distribution.
+It vanishes on every test function whose support misses $\{0\}\times I$.
+Define the algebraic direct sum
+\begin{equation}\tag{SDB4}\label{eq:SDB-J}
+ \mathcal J=
+ \bigoplus_{j\geq0}\delta^{(j)}(x)\otimes\mathcal D'(I),
+ \qquad
+ \mathcal J_{\leq N}=
+ \bigoplus_{j=0}^N\delta^{(j)}(x)\otimes\mathcal D'(I).
+\end{equation}
+Thus every individual element has a finite normal-jet expansion, while
+no common finite upper bound on $j$ is imposed on $\mathcal J$.
+
+\begin{proposition}[Exact embedding and normal-order description]
+\label{prop:SDB-embedding}
+Formula \eqref{eq:SDB-tensor} embeds the direct sum
+\eqref{eq:SDB-J} injectively in $\mathcal D'(\Omega)$.
+Every expansion in this sum is unique, and
+\begin{equation}\tag{SDB5}\label{eq:SDB-annihilator}
+ \mathcal J_{\leq N}
+ =\{u\in\mathcal D'(\Omega):x^{N+1}u=0\},\qquad
+ \mathcal J=\bigcup_{N\geq0}\ker(x^{N+1}).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Choose $\rho\in C_c^\infty(\mathbb R)$ equal to $1$ on a
+neighborhood of $0$. For $0\leq m\leq N$, insert
+$\phi(x,y)=\rho(x)x^m\psi(y)/m!$ in \eqref{eq:SDB-tensor}.
+Its $j$th $x$ derivative at $0$ equals $\psi$ for $j=m$ and equals
+$0$ for every $j\ne m$. Consequently
+\[
+ \left\langle\sum_{j=0}^N\delta^{(j)}\otimes g_j,
+       \rho(x)x^m\psi(y)/m!\right\rangle
+ =(-1)^m\langle g_m,\psi\rangle.
+\]
+If the sum is zero, each $g_m$ is zero. This proves uniqueness and
+injectivity without imposing any regularity on the distributions $g_m$.
+Direct differentiation of $x\phi$ gives
+\begin{equation}\tag{SDB6}\label{eq:SDB-xdelta}
+ x\delta=0,\qquad
+ x\delta^{(j)}=-j\delta^{(j-1)}\quad(j\geq1),
+\end{equation}
+so $x^{N+1}$ kills every term of $\mathcal J_{\leq N}$.
+
+Conversely, suppose $x^{N+1}u=0$. For an arbitrary test function
+$\phi\in C_c^\infty(\Omega)$, Taylor's formula at $x=0$ gives
+\[
+ \phi(x,y)=
+ \rho(x)\sum_{j=0}^N\frac{x^j}{j!}\partial_x^j\phi(0,y)
+       +x^{N+1}\psi_\phi(x,y),
+ \qquad \psi_\phi\in C_c^\infty(\Omega).
+\]
+Indeed, the difference on the right before division vanishes to order
+$N+1$ along $x=0$, so its quotient by $x^{N+1}$ is smooth there;
+away from $x=0$ division is smooth. Both the difference and its quotient
+have compact support in a fixed compact $x$ set and in the compact
+projection of $\operatorname{supp}\phi$ on $I$.
+Define
+\[
+ \langle g_j,\eta\rangle
+   =(-1)^j\langle u,\rho(x)x^j\eta(y)/j!\rangle
+       \quad(\eta\in C_c^\infty(I)).
+\]
+Each $g_j$ is a distribution by continuity of the displayed test-function
+map. Applying $u$ to the Taylor identity and using $x^{N+1}u=0$
+gives \eqref{eq:SDB-tensor} summed over $j=0,\ldots,N$.
+This proves \eqref{eq:SDB-annihilator}.
+\end{proof}
+
+The finiteness in \eqref{eq:SDB-J} must not be silently changed.
+There are distributions supported on $\{0\}\times I$ outside this
+space. For example,
+\begin{equation}\tag{SDB7}\label{eq:SDB-locallyfinite}
+ u_*=\sum_{n=1}^{\infty}\delta^{(n)}(x)\otimes\delta(y-n)
+ \quad\hbox{in }\mathcal D'(\Omega)
+\end{equation}
+is well-defined: a compact subset of $\Omega$ meets only finitely many
+of the sets $y=n$. For every $m\geq1$, its term at $y=n\geq m$
+has
+$x^m\delta^{(n)}=(-1)^m n!\delta^{(n-m)}/(n-m)!\ne0$.
+Testing in a small neighborhood of that one $y=n$ shows
+$x^m u_*\ne0$. Proposition \ref{prop:SDB-embedding} therefore proves
+$u_*\notin\mathcal J$. We compute exactly the space specified in
+\eqref{eq:SDB-J}, without identifying it with all distributions on the
+branch or with a completion of the jet direct sum.
+
+\subsection{The complete two-term complex, residue, and homotopy}
+
+Distributional differentiation in \eqref{eq:SDB-tensor} yields
+\begin{equation}\tag{SDB8}\label{eq:SDB-Daction}
+ D(\delta^{(j)}\otimes g)
+ =\delta^{(j+1)}\otimes g
+       +i\delta^{(j)}\otimes g'.
+\end{equation}
+For example, the $x$ derivative has value
+$-(-1)^j g(\partial_x^{j+1}\phi(0,\cdot))$, which is precisely
+the sign of $\delta^{(j+1)}\otimes g$; the $y$ derivative is
+$\delta^{(j)}\otimes g'$ by the defining sign of $g'$.
+In particular, $D$ maps $\mathcal J$ to itself and maps
+$\mathcal J_{\leq N}$ into $\mathcal J_{\leq N+1}$.
+The complex in question is
+\begin{equation}\tag{SDB9}\label{eq:SDB-complex}
+ C^\bullet:
+ 0\longrightarrow C^0=\mathcal J
+   \xrightarrow{\ D\ }C^1=\mathcal J\longrightarrow0.
+\end{equation}
+It is two-term: the arrow out of degree $1$ is the zero map.
+The statement that this is a complex does not mean $D^2=0$ as an
+operator $\mathcal J\to\mathcal J$. Indeed, with $1$ denoting the
+constant distribution on $I$, $D^2(\delta\otimes1)=
+\delta''\otimes1\ne0$.
+
+Define the following linear maps on their full indicated domains:
+\begin{align}
+ R:\mathcal J&\longrightarrow\mathcal D'(I),&
+ R\left(\sum_{j=0}^N\delta^{(j)}\otimes g_j\right)
+ &=\sum_{j=0}^N(-i)^j g_j^{(j)},
+ &&\tag{SDB10}\label{eq:SDB-residue}\\
+ E:\mathcal D'(I)&\longrightarrow\mathcal J,&
+ E(h)&=\delta\otimes h,
+ &&\tag{SDB11}\label{eq:SDB-section}\\
+ T:\mathcal J&\longrightarrow\mathcal J,&
+ T\left(\sum_{j=0}^N\delta^{(j)}\otimes g_j\right)
+ &=\sum_{j=1}^N\sum_{k=0}^{j-1}
+       (-i)^k\delta^{(j-1-k)}\otimes g_j^{(k)}.
+ &&\tag{SDB12}\label{eq:SDB-homotopy}
+\end{align}
+The empty sum is zero. Uniqueness of the normal-jet expansion makes
+all three definitions unambiguous; every sum is finite for its input.
+No convergence assumption or differentiability of $g_j$ beyond being
+a distribution is used.
+
+\begin{theorem}[Exact calculation and explicit splitting]
+\label{thm:SDB-exact}
+The maps above satisfy
+\begin{equation}\tag{SDB13}\label{eq:SDB-identities}
+ RD=0,\quad RE=\mathrm{id},\quad TE=0,\quad
+ DT=\mathrm{id}-ER,\quad TD=\mathrm{id}.
+\end{equation}
+Consequently
+\begin{equation}\tag{SDB14}\label{eq:SDB-shortexact}
+ 0\longrightarrow\mathcal J\xrightarrow{D}\mathcal J
+      \xrightarrow{R}\mathcal D'(I)\longrightarrow0
+\end{equation}
+is a split exact sequence of complex vector spaces, and
+\begin{equation}\tag{SDB15}\label{eq:SDB-cohomology}
+ H^0(C^\bullet)=0,\qquad
+ H^1(C^\bullet)=\mathcal J/D\mathcal J
+      \xrightarrow[{\ [u]\mapsto Ru\ }]{\ \cong\ }\mathcal D'(I),
+ \qquad h\longmapsto[E(h)]
+\end{equation}
+gives both directions of the last isomorphism.
+More precisely, the mutually inverse linear maps are
+\begin{equation}\tag{SDB16}\label{eq:SDB-splitting}
+ \begin{aligned}
+  \Phi:\mathcal J&\longrightarrow\mathcal D'(I)\oplus\mathcal J,
+       &\Phi(u)&=(Ru,Tu),\\
+  \Psi:\mathcal D'(I)\oplus\mathcal J&\longrightarrow\mathcal J,
+       &\Psi(h,k)&=E(h)+Dk.
+ \end{aligned}
+\end{equation}
+\end{theorem}
+\begin{proof}
+For $u=\sum_{j=0}^N\delta^{(j)}\otimes g_j$, formula
+\eqref{eq:SDB-Daction} gives
+\[
+ RD u=\sum_{j=0}^N
+      \bigl((-i)^{j+1}+i(-i)^j\bigr)g_j^{(j+1)}=0.
+\]
+The formulas $RE=\mathrm{id}$ and $TE=0$ follow directly from the
+$j=0$ terms. For $j\geq1$, direct application of $D$ to every
+summand of $T(\delta^{(j)}\otimes g)$ gives
+\[
+ \begin{aligned}
+ DT(\delta^{(j)}\otimes g)
+ &=\sum_{k=0}^{j-1}(-i)^k
+        \delta^{(j-k)}\otimes g^{(k)}
+    +\sum_{k=0}^{j-1}i(-i)^k
+        \delta^{(j-1-k)}\otimes g^{(k+1)}\\
+ &=\delta^{(j)}\otimes g
+       +i(-i)^{j-1}\delta\otimes g^{(j)}\\
+ &=\delta^{(j)}\otimes g
+       -\delta\otimes\bigl((-i)^j g^{(j)}\bigr).
+ \end{aligned}
+\]
+In the middle line, the coefficient of
+$\delta^{(j-r)}\otimes g^{(r)}$ for $1\leq r\leq j-1$
+is $(-i)^r+i(-i)^{r-1}=0$. For $j=0$, both $DT$ and
+$\mathrm{id}-ER$ vanish on $\delta\otimes g$. This proves
+$DT=\mathrm{id}-ER$ on every finite sum, with all signs explicit.
+
+It remains to prove injectivity and $TD=\mathrm{id}$, rather than
+infer them from a truncated calculation. If
+$u=\sum_{j=0}^N\delta^{(j)}\otimes g_j\ne0$ and $N$ is its largest
+nonzero index, the coefficient of $\delta^{(N+1)}$ in $Du$ is
+exactly $g_N$. Uniqueness in Proposition \ref{prop:SDB-embedding}
+therefore implies $Du\ne0$. Hence $D$ is injective. Now
+\[
+ D(TDu-u)=(\mathrm{id}-ER)Du-Du=-ERDu=0,
+\]
+so injectivity gives $TDu=u$. The identity
+$u=ERu+DTu$ shows that $\ker R=D\mathcal J$, and $RE=\mathrm{id}$
+proves surjectivity of $R$. These facts establish
+\eqref{eq:SDB-shortexact}--\eqref{eq:SDB-cohomology}.
+Finally,
+\[
+ \Phi\Psi(h,k)=(REh+RDk,TEh+TDk)=(h,k),\qquad
+ \Psi\Phi(u)=ERu+DTu=u,
+\]
+which proves the complete splitting.
+\end{proof}
+
+For orientation, the first three residue contributions are exactly
+\begin{equation}\tag{SDB17}\label{eq:SDB-firstjets}
+ R(\delta\otimes g_0+\delta'\otimes g_1+\delta''\otimes g_2)
+      =g_0-i g_1'-g_2'',\qquad
+ T(\delta'\otimes g_1+\delta''\otimes g_2)
+      =\delta\otimes g_1+\delta'\otimes g_2
+           -i\delta\otimes g_2'.
+\end{equation}
+Higher jets remain present and are governed by
+\eqref{eq:SDB-residue}--\eqref{eq:SDB-homotopy}.
+
+\subsection{Simultaneous left dilation, including both Jacobians}
+
+For $a>0$ let $F_a(x,y)=(ax,ay)$ on $\Omega$ and
+$f_a(y)=ay$ on $I$. We use scalar-distribution pullback, which agrees
+with composition for distributions represented by locally integrable
+functions. Its complete formulas are
+\begin{equation}\tag{SDB18}\label{eq:SDB-pullback}
+ \begin{aligned}
+ \langle P_a u,\phi\rangle
+   &=a^{-2}\langle u,\phi(\cdot/a,\cdot/a)\rangle,
+        &&P_a=F_a^*,\\
+ \langle Q_a g,\psi\rangle
+   &=a^{-1}\langle g,\psi(\cdot/a)\rangle,
+        &&Q_a=f_a^*.
+ \end{aligned}
+\end{equation}
+The positive determinant $a^2$ in two variables and the positive
+determinant $a$ in one variable account for these factors. In
+particular, these definitions do not treat distributions as densities
+with a different transformation law.
+For a locally integrable $u$, substitution $(s,t)=(ax,ay)$ in its
+integral pairing verifies $P_a u(x,y)=u(ax,ay)$; the same substitution
+in one variable gives $Q_a g(y)=g(ay)$ for functions $g$.
+
+\begin{proposition}[Full covariance]
+\label{prop:SDB-covariance}
+The pullbacks preserve the indicated distribution spaces, have
+$P_aP_b=P_{ab}$ and $Q_aQ_b=Q_{ab}$, and their inverses are
+$P_{1/a}$ and $Q_{1/a}$. Their exact actions on jets and derivatives are
+\begin{align}
+ P_a(\delta^{(j)}\otimes g)
+   &=a^{-j-1}\delta^{(j)}\otimes Q_a g,
+       &&\tag{SDB19}\label{eq:SDB-jetdilation}\\
+ (Q_a g)^{(k)}&=a^k Q_a(g^{(k)}),\qquad
+ DP_a=aP_aD.
+       &&\tag{SDB20}\label{eq:SDB-Ddilation}
+\end{align}
+The residue, section, and homotopy transform as
+\begin{equation}\tag{SDB21}\label{eq:SDB-RTEdilation}
+ RP_a=a^{-1}Q_aR,\qquad
+ P_aE=a^{-1}EQ_a,\qquad
+ TP_a=a^{-1}P_aT.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The group identities follow by two substitutions in
+\eqref{eq:SDB-pullback}, with determinants multiplied rather than
+discarded. For a jet, the two-variable formula gives
+\[
+ \begin{aligned}
+ \langle P_a(\delta^{(j)}\otimes g),\phi\rangle
+ &=a^{-2}(-1)^j
+   \left\langle g,
+      \partial_x^j[\phi(x/a,\cdot/a)]_{x=0}\right\rangle\\
+ &=a^{-j-2}(-1)^j
+     \langle g,(\partial_x^j\phi)(0,\cdot/a)\rangle\\
+ &=a^{-j-1}(-1)^j
+     \langle Q_a g,\partial_x^j\phi(0,\cdot)\rangle.
+ \end{aligned}
+\]
+This proves \eqref{eq:SDB-jetdilation}. Applying a distributional
+derivative to \eqref{eq:SDB-pullback} and differentiating the test
+function gives $\partial_xP_a=aP_a\partial_x$ and
+$\partial_yP_a=aP_a\partial_y$. The identical one-variable argument,
+iterated $k$ times, proves the first formula in
+\eqref{eq:SDB-Ddilation}; adding the two partial derivatives proves
+the second.
+
+For each jet,
+\[
+ RP_a(\delta^{(j)}\otimes g)
+ =a^{-j-1}(-i)^j\partial_y^j(Q_a g)
+ =a^{-1}Q_a\bigl((-i)^j g^{(j)}\bigr).
+\]
+The formula for $E$ is the case $j=0$ of
+\eqref{eq:SDB-jetdilation}. For $j\geq1$, the $k$th summand of
+$TP_a(\delta^{(j)}\otimes g)$ is
+\[
+ a^{-j-1+k}(-i)^k\delta^{(j-1-k)}\otimes Q_a(g^{(k)}).
+\]
+The corresponding summand of $P_aT(\delta^{(j)}\otimes g)$ has
+coefficient $a^{-(j-k)}(-i)^k$. Their ratio is $a^{-1}$.
+For $j=0$ both homotopy expressions vanish. Finiteness allows all
+these identities to be summed, proving \eqref{eq:SDB-RTEdilation}.
+\end{proof}
+
+There are two precise consequences, with different degree actions.
+First, $P_a(D\mathcal J)=D\mathcal J$, since
+$P_aD=a^{-1}DP_a$. Therefore raw pullback $[u]\mapsto[P_a u]$
+is a well-defined invertible action on the quotient
+$\mathcal J/D\mathcal J$. Under the residue isomorphism its action
+is exactly $a^{-1}Q_a$, including the factor $a^{-1}$.
+Second, the actual cochain action on \eqref{eq:SDB-complex} is
+\begin{equation}\tag{SDB22}\label{eq:SDB-degreeaction}
+ \rho_a^0=P_a,\qquad \rho_a^1=aP_a,
+ \qquad D\rho_a^0=\rho_a^1D.
+\end{equation}
+It is a representation of $\mathbb R_{>0}^{\times}$ in both degrees
+because $aP_a\,bP_b=abP_{ab}$. On $H^1$ this cochain action is
+exactly $Q_a$:
+$R\rho_a^1=Q_aR$, $\rho_a^1E=EQ_a$, and
+$T\rho_a^1=\rho_a^0T$.
+One may record the one-form degree using a formal constant symbol
+$\varepsilon$ and $d u=(Du)\varepsilon$, with
+$F_a^*\varepsilon=a\varepsilon$. This gives precisely
+\eqref{eq:SDB-degreeaction}; it does not change the original operator
+to $D/2$.
+The complete equivariant splitting is represented by
+\begin{equation}\tag{SDB23}\label{eq:SDB-equivdiagram}
+ \begin{array}{ccc}
+ \mathcal J&\xrightarrow{\quad(R,T)\quad}&
+                   \mathcal D'(I)\oplus\mathcal J\\
+ {\scriptstyle aP_a}\downarrow&&
+          \downarrow{\scriptstyle Q_a\oplus P_a}\\
+ \mathcal J&\xrightarrow{\quad(R,T)\quad}&
+                   \mathcal D'(I)\oplus\mathcal J,
+ \end{array}
+ \qquad (R,T)^{-1}(h,k)=Eh+Dk.
+\end{equation}
+
+These simultaneous dilations are the archimedean restrictions of the
+source's left action with $b=0$ when $a\in\mathbb Q_{>0}^{\times}$.
+The formulas above also define an archimedean action for every real
+$a>0$; they do not assert a multiplication of finite adeles by an
+arbitrary real number. Likewise, the left translation
+$(x,y)\mapsto(x+b,y)$ with $b\ne0$ does not preserve this receiver.
+Its scalar-distribution pullback sends $\delta(x)\otimes g(y)$
+to $\delta(x+b)\otimes g(y)$, supported at $x=-b$. For nonzero
+$g$, this distribution is nonzero and cannot belong to $\mathcal J$,
+whose distributions are supported at $x=0$. Thus restricting this
+particular complex to $x=0$ retains pure dilation but does not supply
+an invertible action of the full rational translation group on it.
+
+\subsection{Retaining the full vector-field operator \texorpdfstring{$X+iY=yD$}{X+iY=yD}}
+
+Multiplication by $y$ and by $y^{-1}$ is defined on every distribution
+on $I$ or $\Omega$: both functions are smooth on these open sets.
+Their products are the identity. They preserve $\mathcal J$ because
+they multiply each coefficient $g_j$ and leave $\delta^{(j)}(x)$
+unchanged. Denote these multiplication operators by $M_y$ and
+$M_{1/y}$, on the relevant domain. Retain
+\begin{equation}\tag{SDB24}\label{eq:SDB-ydefinitions}
+ D_y=M_yD,\qquad E_y=M_yE,\qquad
+ R_y=R M_{1/y},\qquad T_y=T M_{1/y}.
+\end{equation}
+In particular $E_yh=\delta\otimes(yh)$, not $\delta\otimes h$.
+There is no omission of the derivatives created by $1/y$: for
+$u=\sum_{j=0}^N\delta^{(j)}\otimes g_j$ the full formulas are
+\begin{align}
+ R_yu
+ &=\sum_{j=0}^N(-i)^j\partial_y^j(y^{-1}g_j)\notag\\
+ &=\sum_{j=0}^N\sum_{r=0}^j
+     (-i)^j\binom{j}{r}(-1)^r r!\,
+          y^{-r-1}g_j^{(j-r)},
+       &&\tag{SDB25}\label{eq:SDB-yresidue}\\
+ T_yu
+ &=\sum_{j=1}^N\sum_{k=0}^{j-1}\sum_{r=0}^k
+    (-i)^k\binom{k}{r}(-1)^r r!\,
+       \delta^{(j-1-k)}\otimes
+                 \bigl(y^{-r-1}g_j^{(k-r)}\bigr).
+       &&\tag{SDB26}\label{eq:SDB-yhomotopy}
+\end{align}
+For completeness, the distribution product rule follows from
+$(fg)'(\psi)=-g(f\psi')=g'(f\psi)+g(f'\psi)$, so
+$(fg)'=fg'+f'g$. Induction gives the displayed binomial terms, and
+$\partial_y^r(y^{-1})=(-1)^r r!y^{-r-1}$ gives their full
+coefficients. These operations occur on $I$; they neither introduce
+nor remove any distribution at the excluded endpoint $y=0$.
+
+\begin{theorem}[Exact receiver and covariance for $yD$]
+\label{thm:SDB-yexact}
+For the original vector-field operator in \eqref{eq:SDB-vectorfields},
+\begin{equation}\tag{SDB27}\label{eq:SDB-yidentities}
+ R_yD_y=0,\quad R_yE_y=\mathrm{id},\quad T_yE_y=0,\quad
+ D_yT_y=\mathrm{id}-E_yR_y,\quad T_yD_y=\mathrm{id}.
+\end{equation}
+Thus its two-term complex has $H^0=0$ and $H^1\cong\mathcal D'(I)$,
+with the complete decomposition
+\begin{equation}\tag{SDB28}\label{eq:SDB-ysplitting}
+ u=yE(R_yu)+D_y(T_yu),\qquad
+ u\longmapsto(R_yu,T_yu),\qquad
+ (h,k)\longmapsto yE(h)+D_yk.
+\end{equation}
+Here both cochain degrees carry the same raw pullback $P_a$, and
+\begin{equation}\tag{SDB29}\label{eq:SDB-ycovariance}
+ D_yP_a=P_aD_y,\quad R_yP_a=Q_aR_y,\quad
+ T_yP_a=P_aT_y,\quad E_yQ_a=P_aE_y.
+\end{equation}
+In particular its quotient action is exactly $Q_a$.
+\end{theorem}
+\begin{proof}
+All five identities in \eqref{eq:SDB-yidentities} follow by retaining
+the multiplication operators in their correct order. For example,
+\[
+ \begin{aligned}
+ D_yT_y
+ &=M_yDTM_{1/y}
+   =M_y(\mathrm{id}-ER)M_{1/y}
+   =\mathrm{id}-E_yR_y,\\
+ T_yD_y&=TM_{1/y}M_yD=TD=\mathrm{id},\\
+ R_yD_y&=RM_{1/y}M_yD=RD=0.
+ \end{aligned}
+\]
+The other two identities use $M_{1/y}M_y=\mathrm{id}$ in exactly
+the same positions. Multiplication by $y$ is invertible, so $D_y$
+is injective because $D$ is. The proof of the splitting and cohomology
+now follows verbatim from these explicit identities: a residue-zero
+$u$ equals $D_yT_yu$, and each $h$ is the residue of $E_yh$.
+
+Scalar pullback obeys $P_a(fu)=(f\circ F_a)P_au$ for every smooth
+$f$, as follows by applying \eqref{eq:SDB-pullback} to the test
+function pairing. In particular
+\begin{equation}\tag{SDB30}\label{eq:SDB-multiplicationcovariance}
+ P_aM_y=aM_yP_a,\qquad
+ M_{1/y}P_a=aP_aM_{1/y}.
+\end{equation}
+Using these and \eqref{eq:SDB-RTEdilation}, with all factors retained,
+gives
+\[
+ \begin{aligned}
+ D_yP_a&=M_y(aP_aD)=P_aM_yD=P_aD_y,\\
+ R_yP_a&=R(aP_aM_{1/y})=Q_aRM_{1/y}=Q_aR_y,\\
+ T_yP_a&=T(aP_aM_{1/y})=P_aTM_{1/y}=P_aT_y,\\
+ E_yQ_a&=M_y(EQ_a)=M_y(aP_aE)=P_aM_yE=P_aE_y.
+ \end{aligned}
+\]
+This proves \eqref{eq:SDB-ycovariance}.
+\end{proof}
+
+The exact comparison of the two complexes, including the full $y$
+factor, is the cochain isomorphism
+\begin{equation}\tag{SDB31}\label{eq:SDB-complexcomparison}
+ \begin{array}{ccccc}
+ \mathcal J&\xrightarrow{D}&\mathcal J&\xrightarrow{R}&\mathcal D'(I)\\
+ {\scriptstyle\mathrm{id}}\downarrow&&
+ {\scriptstyle M_y}\downarrow&&
+ {\scriptstyle\mathrm{id}}\downarrow\\
+ \mathcal J&\xrightarrow{D_y}&\mathcal J&\xrightarrow{R_y}&\mathcal D'(I).
+ \end{array}
+\end{equation}
+Indeed $D_y=M_yD$ and $R_yM_y=R$; the inverse in degree $1$ is
+$M_{1/y}$. It also preserves the respective dilation actions because
+$M_y(aP_a)=P_aM_y$. This exact comparison does not replace $D_y$
+by $D$ in the full formulas \eqref{eq:SDB-yresidue} and
+\eqref{eq:SDB-yhomotopy}.
+
+\subsection{Arbitrary external branch labels and the shared-label lattice lift}
+
+Two label constructions can be made precisely, and need not be
+identified. First let $B$ be any set of retained branch indices, for
+example the indices $\beta<\top$ of an original support lattice on
+a branch with $y>0$ and hence second coordinate label $\top$.
+Apply all the preceding operators component by component on
+\begin{equation}\tag{SDB32}\label{eq:SDB-branchsums}
+ \mathcal J_B=\bigoplus_{\beta\in B}\mathcal J,\qquad
+ \mathcal H_B=\bigoplus_{\beta\in B}\mathcal D'(I).
+\end{equation}
+Every element has finite branch support, and each component has finite
+normal-jet support. Each identity \eqref{eq:SDB-identities} and
+\eqref{eq:SDB-yidentities} holds component by component. The formulas
+preserve finite branch support, so their proofs give the same exact
+sequences, splittings, and dilation actions with $\mathcal J_B$ and
+$\mathcal H_B$. The same assertion holds for the Cartesian products
+over $B$ if those products are specified instead: the explicit maps
+are defined at every component, no sum over $B$ is taken, and no
+uniform jet-order bound is required. These assertions describe
+external labels and do not turn a family with infinite branch support
+into a distribution on an unspecified geometric union.
+
+Second, let $L$ be a bounded distributive lattice, with bottom
+$\bot$ and top $\top$, retaining all its elements. For a complex
+vector space $V$, set
+\begin{equation}\tag{SDB33}\label{eq:SDB-GL}
+ \begin{aligned}
+ G_L(V)&=(\{0\}\times L)\cup(V\times\{\top\}),\\
+ (v,\lambda)+(w,\mu)&=(v+w,\lambda\vee\mu),\\
+ (c,\alpha)(v,\lambda)&=(cv,\alpha\wedge\lambda),
+          \qquad(c,\alpha)\in G_L(\mathbb C),\\
+ \tau_V&=(0,\bot),\qquad e_V=(0,\top),\qquad
+ Z_L(V)=\{(0,\lambda):\lambda\in L\}.
+ \end{aligned}
+\end{equation}
+Here $Z_L(V)$ is the full carrier of zero amplitudes and is naturally
+identified with $L$. Closure follows directly: a coordinate with a
+label below $\top$ has zero amplitude. In the scalar distributive
+laws the amplitude identity is the corresponding vector-space law,
+and the label identities are
+$\alpha\wedge(\lambda\vee\mu)
+=(\alpha\wedge\lambda)\vee(\alpha\wedge\mu)$ and its symmetric
+version. Thus \eqref{eq:SDB-GL} is the usual semimodule structure
+for a bounded distributive $L$. The set maps and the splitting below
+also preserve the displayed operations for a bounded lattice without
+distributivity; a semimodule assertion for that wider class is not
+made. No finiteness assumption is made on $L$.
+
+Every complex-linear map $A:V\to W$ has the label-preserving lift
+\begin{equation}\tag{SDB34}\label{eq:SDB-linearlift}
+ \widehat A:G_L(V)\longrightarrow G_L(W),\qquad
+ \widehat A(v,\lambda)=(Av,\lambda).
+\end{equation}
+It is well-defined because $A0=0$, and it preserves addition and the
+scalar action by linearity and by retaining the same join or meet of
+the labels. Composition satisfies
+$\widehat A\widehat B=\widehat{AB}$ whenever $AB$ is defined.
+In particular, the lift of a zero linear map is
+\begin{equation}\tag{SDB35}\label{eq:SDB-supportedzero}
+ \widehat0(v,\lambda)=(0,\lambda).
+\end{equation}
+It is not the constant map with value $\tau_W$ when a label
+$\lambda\ne\bot$ exists. Specifically, $\widehat0(v,\top)=e_W$.
+
+\begin{proposition}[Shared-label splitting and exact zero carrier]
+\label{prop:SDB-latticesplitting}
+Define
+\begin{equation}\tag{SDB36}\label{eq:SDB-sharedlabel}
+ \mathcal P_L=
+ \{(h,k,\lambda):h\in\mathcal D'(I),\ k\in\mathcal J,
+       \lambda\in L,\ \lambda<\top\Rightarrow h=k=0\}.
+\end{equation}
+It has addition
+$(h,k,\lambda)+(h',k',\mu)=(h+h',k+k',\lambda\vee\mu)$
+and scalar action
+$(c,\alpha)(h,k,\lambda)=(ch,ck,\alpha\wedge\lambda)$.
+Then
+\begin{equation}\tag{SDB37}\label{eq:SDB-latticesplitting}
+ \begin{aligned}
+ G_L(\mathcal J)&\longrightarrow\mathcal P_L,
+       &(u,\lambda)&\longmapsto(Ru,Tu,\lambda),\\
+ \mathcal P_L&\longrightarrow G_L(\mathcal J),
+       &(h,k,\lambda)&\longmapsto(Eh+Dk,\lambda)
+ \end{aligned}
+\end{equation}
+are mutually inverse maps preserving addition, scalar action, and
+every label. Moreover,
+\begin{equation}\tag{SDB38}\label{eq:SDB-supportedkernels}
+ \begin{aligned}
+ \widehat D^{-1}(Z_L(\mathcal J))&=Z_L(\mathcal J),\\
+ \widehat R^{-1}(Z_L(\mathcal D'(I)))
+      &=\widehat D(G_L(\mathcal J)).
+ \end{aligned}
+\end{equation}
+The identical conclusions hold with $D,E,R,T$ replaced by
+$D_y,E_y,R_y,T_y$.
+\end{proposition}
+\begin{proof}
+When $\lambda<\top$, the domain element has $u=0$, hence both
+$Ru$ and $Tu$ vanish. In the inverse direction $h=k=0$ gives
+$Eh+Dk=0$. Thus both maps have the exact stated domains.
+Their two compositions are the identity by
+$RE=\mathrm{id}$, $RD=0$, $TE=0$, $TD=\mathrm{id}$, and
+$ER+DT=\mathrm{id}$ from Theorem \ref{thm:SDB-exact}; the label
+is unchanged in each composition. Linearity of every amplitude map
+and the displayed join and meet rules prove compatibility with
+addition and scalar action.
+
+For the first equality in \eqref{eq:SDB-supportedkernels},
+$\widehat D(u,\lambda)$ has zero amplitude exactly when $Du=0$,
+which by injectivity of $D$ is equivalent to $u=0$.
+For the second equality, if $Ru=0$, then $u=DTu$, and
+$(Tu,\lambda)\in G_L(\mathcal J)$ because a label below $\top$
+forces $u=0$ and therefore $Tu=0$. It follows that
+$(u,\lambda)=\widehat D(Tu,\lambda)$.
+Conversely $RD=0$ puts every point in the indicated image into the
+zero carrier under $\widehat R$.
+All arguments repeat with the identities
+\eqref{eq:SDB-yidentities}, proving the assertion for $D_y$.
+\end{proof}
+
+The shared-label object in \eqref{eq:SDB-sharedlabel} is exactly the
+image of
+\[
+ (h,k,\lambda)\longmapsto((h,\lambda),(k,\lambda))
+ \quad\hbox{in }G_L(\mathcal D'(I))\times G_L(\mathcal J).
+\]
+It consists of pairs with equal labels; it is not the full product
+with two independently chosen labels. For example, when $\bot\ne\top$,
+the pair $((0,\bot),(0,\top))$ belongs to the full product but
+cannot come from \eqref{eq:SDB-sharedlabel}. It would lose exactly
+the shared-label information to replace the target of
+\eqref{eq:SDB-latticesplitting} by that larger product.
+
+The distinction also fixes the meaning of the endpoint arrows.
+The zero vector space lifts to
+$G_L(\{0\})=\{(0,\lambda):\lambda\in L\}$, not to a singleton.
+The lift of the ordinary two-term complex is therefore a sequence
+\begin{equation}\tag{SDB39}\label{eq:SDB-liftedcomplex}
+ G_L(\{0\})\xrightarrow{\widehat{0\to\mathcal J}}
+ G_L(\mathcal J)\xrightarrow{\widehat D}G_L(\mathcal J)
+ \xrightarrow{\widehat{\mathcal J\to0}}G_L(\{0\}),
+\end{equation}
+where the first arrow sends $(0,\lambda)$ to $(0,\lambda)$ and
+the last sends $(u,\lambda)$ to $(0,\lambda)$.
+Successive composites are the label-preserving supported-zero maps.
+They are not the constant-$\tau$ maps. More generally, if linear
+maps satisfy $d^{n+1}d^n=0$, their lifts satisfy
+$\widehat d^{n+1}\widehat d^n(v,\lambda)=(0,\lambda)$;
+at $\lambda=\top$ this is $e$, with its label retained.
+These statements prove the exact lifted identities rather than
+assert an ordinary abelian cochain complex or ordinary acyclicity
+for \eqref{eq:SDB-liftedcomplex}.
+
+Finally, the amplitude map $q_V:G_L(V)\to V$,
+$q_V(v,\lambda)=v$, commutes with all the lifted linear maps but
+sends every $(0,\lambda)$ to the same vector $0$.
+Indeed, every additive map $f:G_L(V)\to A$ into an abelian group
+kills every zero label: since
+$(0,\lambda)+(0,\lambda)=(0,\lambda)$, cancellation in $A$
+gives $f(0,\lambda)=0$. Also
+$(v,\top)+(0,\top)=(v,\top)$ and
+$(v,\top)+(w,\top)=(v+w,\top)$, so
+$\bar f(v)=f(v,\top)$ is additive and
+$f=\bar f\,q_V$. This proves the precise universal loss of the
+zero labels in an additive-group receiver. Thus the ordinary
+cohomology in \eqref{eq:SDB-cohomology} is a rigorous amplitude
+calculation, and \eqref{eq:SDB-latticesplitting} is its exact
+label-preserving splitting; neither assertion treats an additive
+group as faithful to all the lattice labels.
+
+All dilation maps above are complex-linear and invertible, so they
+also lift by \eqref{eq:SDB-linearlift}. The identities
+\eqref{eq:SDB-degreeaction}, \eqref{eq:SDB-equivdiagram}, and
+\eqref{eq:SDB-ycovariance} continue to hold with the label unchanged.
+In particular the explicit shared-label splitting for $D_y$ is
+equivariant for $\widehat P_a$ on its source and for the shared-label
+action $(h,k,\lambda)\mapsto(Q_ah,P_ak,\lambda)$ on its target.
+This concludes the distribution and lattice calculation for the
+specified branch, retaining both original operators and every factor
+in their comparison.
+
+\subsection{The full character family and arithmetic Frobenius}
+
+The same original human source, Section 7.1, equations
+\texttt{holom}, \texttt{holombis}, and \texttt{holom1}, and
+Proposition \texttt{frobarith} (\nolinkurl{thecurve_K.tex},
+lines 2564--2601), introduces the full family
+\begin{equation}\tag{SDB40}\label{eq:SDB-CCfamily}
+ \mathcal L_\lambda=\lambda X+iY
+       =y(\lambda\partial_x+i\partial_y),\qquad
+ \mathcal L_\lambda\chi_\lambda(f)=0\quad(\lambda>0),
+ \qquad
+ \operatorname{Fr}^{a}_\mu=\theta_\mu R(\mu^{-1})\quad(\mu>0).
+\end{equation}
+Here the source's coefficient maps satisfy
+$\theta_\mu([r])=[r^\mu]$,
+$\chi_\lambda([r])=r^\lambda$, and
+$\chi_\lambda\theta_\mu=\chi_{\lambda\mu}$.
+The symbol $R(\mu^{-1})$ in \eqref{eq:SDB-CCfamily} is the
+source's right geometric action; it is distinct from the residue
+map $R$ of \eqref{eq:SDB-residue}.
+For scalar distributions its geometric part is the pullback
+\begin{equation}\tag{SDB41}\label{eq:SDB-Bpullback}
+ B_\mu=(x,y\mapsto x,y/\mu)^*,\qquad
+ \langle B_\mu u,\phi\rangle
+       =\mu\langle u,\phi(\cdot,\mu\,\cdot)\rangle.
+\end{equation}
+The map has determinant $1/\mu$, so its inverse Jacobian is
+exactly the displayed $\mu$. Therefore
+\begin{equation}\tag{SDB42}\label{eq:SDB-Bjet}
+ B_\mu(\delta^{(j)}\otimes g)
+       =\delta^{(j)}\otimes Q_{1/\mu}g.
+\end{equation}
+There is no normal $x$ scaling in this formula. The full
+arithmetic Frobenius on a character family $u_\lambda$ is
+\begin{equation}\tag{SDB43}\label{eq:SDB-frobeniusfamily}
+ (\mathfrak F_\mu u)_\lambda=B_\mu u_{\lambda\mu}.
+\end{equation}
+This retains both the right geometric action and the character
+parameter change from the cited formula.
+
+For each $\lambda>0$, define
+\begin{align}
+ D_\lambda&=\lambda\partial_x+i\partial_y,
+       &\mathcal L_\lambda&=M_yD_\lambda,
+       &&\tag{SDB44}\label{eq:SDB-lambdaD}\\
+ R_{y,\lambda}\!\left(\sum_{j=0}^N\delta^{(j)}\otimes g_j\right)
+   &=\sum_{j=0}^N\left(\frac{-i}{\lambda}\right)^j
+                     \partial_y^j(y^{-1}g_j),
+       &&&&\tag{SDB45}\label{eq:SDB-lambdaR}\\
+ T_{y,\lambda}\!\left(\sum_{j=0}^N\delta^{(j)}\otimes g_j\right)
+   &=\frac1\lambda\sum_{j=1}^N\sum_{k=0}^{j-1}
+       \left(\frac{-i}{\lambda}\right)^k
+       \delta^{(j-1-k)}\otimes\partial_y^k(y^{-1}g_j).
+       &&&&\tag{SDB46}\label{eq:SDB-lambdaT}
+\end{align}
+The section is still the full $E_yh=\delta\otimes(yh)$.
+For precision, the complete coefficient expansions in these formulas are
+\begin{align}
+ R_{y,\lambda}u
+ &=\sum_{j=0}^N\sum_{r=0}^j
+    \left(\frac{-i}{\lambda}\right)^j
+    \binom jr(-1)^r r!\,y^{-r-1}g_j^{(j-r)},
+       &&\tag{SDB47}\label{eq:SDB-lambdaRfull}\\
+ T_{y,\lambda}u
+ &=\frac1\lambda\sum_{j=1}^N\sum_{k=0}^{j-1}\sum_{r=0}^k
+    \left(\frac{-i}{\lambda}\right)^k
+    \binom kr(-1)^r r!\,
+       \delta^{(j-1-k)}\otimes
+          \bigl(y^{-r-1}g_j^{(k-r)}\bigr).
+       &&\tag{SDB48}\label{eq:SDB-lambdaTfull}
+\end{align}
+
+\begin{theorem}[Exact character-family residue and Frobenius comparison]
+\label{thm:SDB-frobenius}
+For every $\lambda>0$ one has
+\begin{equation}\tag{SDB49}\label{eq:SDB-lambdaidentities}
+ \begin{gathered}
+ R_{y,\lambda}\mathcal L_\lambda=0,\qquad
+ R_{y,\lambda}E_y=\mathrm{id},\qquad
+ T_{y,\lambda}E_y=0,\\
+ \mathcal L_\lambda T_{y,\lambda}
+       =\mathrm{id}-E_yR_{y,\lambda},\qquad
+ T_{y,\lambda}\mathcal L_\lambda=\mathrm{id}.
+ \end{gathered}
+\end{equation}
+In particular, $\mathcal L_\lambda$ is injective and
+$\mathcal J/\mathcal L_\lambda\mathcal J\cong\mathcal D'(I)$
+by the residue $R_{y,\lambda}$ with inverse $h\mapsto[E_yh]$.
+For every $\lambda,\mu>0$, the exact covariance identities are
+\begin{equation}\tag{SDB50}\label{eq:SDB-Frobeniuscovariance}
+ \begin{aligned}
+ \mathcal L_\lambda B_\mu&=B_\mu\mathcal L_{\lambda\mu},\\
+ R_{y,\lambda}B_\mu
+       &=\mu^{-1}Q_{1/\mu}R_{y,\lambda\mu},\\
+ T_{y,\lambda}B_\mu&=B_\mu T_{y,\lambda\mu},\\
+ B_\mu E_y&=E_y\bigl(\mu^{-1}Q_{1/\mu}\bigr).
+ \end{aligned}
+\end{equation}
+Thus the residue has exactly one further factor $\mu^{-1}$
+after the full scalar-distribution pullback $Q_{1/\mu}$ is written.
+\end{theorem}
+\begin{proof}
+First set $c_\lambda=-i/\lambda$ and temporarily retain the
+operators before multiplication by $y$:
+\[
+ R_\lambda\!\left(\sum_j\delta^{(j)}\otimes g_j\right)
+       =\sum_j c_\lambda^j g_j^{(j)},\qquad
+ T_\lambda(\delta^{(j)}\otimes g)
+       =\frac1\lambda\sum_{k=0}^{j-1}
+           c_\lambda^k\delta^{(j-1-k)}\otimes g^{(k)}.
+\]
+Since
+$D_\lambda(\delta^{(j)}\otimes g)
+=\lambda\delta^{(j+1)}\otimes g+i\delta^{(j)}\otimes g'$,
+one has
+\[
+ R_\lambda D_\lambda(\delta^{(j)}\otimes g)
+      =(\lambda c_\lambda^{j+1}+i c_\lambda^j)g^{(j+1)}=0.
+\]
+In $D_\lambda T_\lambda(\delta^{(j)}\otimes g)$, the first
+term is $\delta^{(j)}\otimes g$. Each internal term with derivative
+index $1\leq r\leq j-1$ has coefficient
+$c_\lambda^r+(i/\lambda)c_\lambda^{r-1}=0$.
+The last term is
+$(i/\lambda)c_\lambda^{j-1}\delta\otimes g^{(j)}
+=-c_\lambda^j\delta\otimes g^{(j)}$.
+Thus $D_\lambda T_\lambda=\mathrm{id}-ER_\lambda$ on every
+finite sum. Also $R_\lambda E=\mathrm{id}$ and $T_\lambda E=0$.
+The highest normal coefficient of $D_\lambda u$, for a nonzero
+$u$ of highest order $N$, is $\lambda g_N\ne0$. Hence
+$D_\lambda$ is injective. Applying it to
+$T_\lambda D_\lambda u-u$ now proves
+$T_\lambda D_\lambda=\mathrm{id}$, by the same displayed
+operator identity and $R_\lambda D_\lambda=0$.
+
+The maps in \eqref{eq:SDB-lambdaR}--\eqref{eq:SDB-lambdaT} are
+exactly $R_\lambda M_{1/y}$ and $T_\lambda M_{1/y}$.
+Multiplying the identities just proved by $M_y$ and $M_{1/y}$
+in their stated order therefore proves all five formulas
+\eqref{eq:SDB-lambdaidentities}; for instance
+\[
+ \mathcal L_\lambda T_{y,\lambda}
+ =M_yD_\lambda T_\lambda M_{1/y}
+ =\mathrm{id}-M_yER_\lambda M_{1/y}
+ =\mathrm{id}-E_yR_{y,\lambda}.
+\]
+This also proves the quotient assertion.
+
+Next put $b=1/\mu$. Formula \eqref{eq:SDB-Bpullback} gives
+\[
+ \partial_xB_\mu=B_\mu\partial_x,\qquad
+ \partial_yB_\mu=bB_\mu\partial_y,\qquad
+ B_\mu M_y=bM_yB_\mu.
+\]
+Consequently
+\[
+ \begin{aligned}
+ \mathcal L_\lambda B_\mu
+ &=M_y B_\mu(\lambda\partial_x+ib\partial_y)\\
+ &=bM_y B_\mu(\lambda\mu\partial_x+i\partial_y)
+ =B_\mu M_yD_{\lambda\mu}
+ =B_\mu\mathcal L_{\lambda\mu}.
+ \end{aligned}
+\]
+On one-variable distributions, the two rules needed for all the
+remaining factors are
+\begin{equation}\tag{SDB51}\label{eq:SDB-bidentities}
+ y^{-1}Q_b g=bQ_b(y^{-1}g),\qquad
+ \partial_y^j Q_b g=b^jQ_b(g^{(j)}).
+\end{equation}
+The first follows by multiplying the test function in the formula
+for $Q_b$; the second was proved in
+\eqref{eq:SDB-Ddilation}. Therefore each order-$j$ contribution to
+the residue of $B_\mu u$ is
+\[
+ \left(\frac{-i}{\lambda}\right)^j
+       \partial_y^j\bigl(y^{-1}Q_b g_j\bigr)
+ =b\left(\frac{-i}{\lambda\mu}\right)^j
+       Q_b\partial_y^j(y^{-1}g_j).
+\]
+Summing proves the second line of
+\eqref{eq:SDB-Frobeniuscovariance}, including $b=\mu^{-1}$.
+Similarly, each $(j,k)$ contribution to the homotopy of $B_\mu u$
+has the coefficient
+\[
+ \frac1\lambda\left(\frac{-i}{\lambda}\right)^k b^{k+1}
+       =\frac1{\lambda\mu}
+           \left(\frac{-i}{\lambda\mu}\right)^k.
+\]
+Together with \eqref{eq:SDB-Bjet}, this is exactly the corresponding
+summand of $B_\mu T_{y,\lambda\mu}u$.
+Finally, $Q_b(yh)=byQ_bh$ gives
+$B_\mu E_yh=\delta\otimes Q_b(yh)
+=b\delta\otimes(yQ_bh)=E_y(bQ_bh)$.
+This proves all four covariance identities.
+\end{proof}
+
+These are covariance identities for the entire family, not an
+invariance assertion for a fixed $\lambda$ under $B_\mu$.
+To make the receiver and all maps explicit, set
+\begin{equation}\tag{SDB52}\label{eq:SDB-familyspaces}
+ \mathcal C^0=\prod_{\lambda>0}\mathcal J,\qquad
+ \mathcal C^1=\prod_{\lambda>0}\mathcal J,\qquad
+ \mathcal H=\prod_{\lambda>0}\mathcal D'(I),
+\end{equation}
+where each component of an element of $\mathcal C^n$ has finite
+normal order but there is no uniform bound in $\lambda$.
+Define $\mathcal L$, $\mathcal R$, $\mathcal T$, and
+$\mathcal E$ componentwise by
+$\mathcal L_\lambda$, $R_{y,\lambda}$,
+$T_{y,\lambda}$, and $E_y$. Their explicit identities in
+\eqref{eq:SDB-lambdaidentities} prove
+\begin{equation}\tag{SDB53}\label{eq:SDB-familyexact}
+ 0\longrightarrow\mathcal C^0\xrightarrow{\mathcal L}
+       \mathcal C^1\xrightarrow{\mathcal R}\mathcal H
+       \longrightarrow0,
+ \qquad
+ \mathcal C^1\xrightarrow[\ u\mapsto(\mathcal Ru,\mathcal Tu)\ ]
+        {\ \cong\ }\mathcal H\oplus\mathcal C^0,
+ \qquad(h,k)\longmapsto\mathcal Eh+\mathcal Lk.
+\end{equation}
+No choice of preimages or convergence over the parameter set is
+needed: the preimages are the displayed componentwise formulas.
+
+On both cochain degrees use \eqref{eq:SDB-frobeniusfamily}, and
+on the receiver use
+\begin{equation}\tag{SDB54}\label{eq:SDB-familyreceiveraction}
+ (\mathfrak F_\mu^{H}h)_\lambda
+       =\mu^{-1}Q_{1/\mu}h_{\lambda\mu}.
+\end{equation}
+The four identities in \eqref{eq:SDB-Frobeniuscovariance} prove
+that every arrow and every splitting map in
+\eqref{eq:SDB-familyexact} is equivariant. Both actions are
+representations of $\mathbb R_{>0}^{\times}$: the two geometric
+pullbacks compose as $B_\mu B_\nu=B_{\mu\nu}$, the character
+index becomes $\lambda\mu\nu$, and the receiver factors multiply
+as $\mu^{-1}\nu^{-1}=(\mu\nu)^{-1}$ with
+$Q_{1/\mu}Q_{1/\nu}=Q_{1/(\mu\nu)}$.
+The inverse action is the one with parameter $1/\mu$.
+The two-term family complex consequently has $H^0=0$ and
+$H^1\cong\mathcal H$, with its action exactly
+\eqref{eq:SDB-familyreceiveraction}.
+For a smooth coefficient family the latter reads
+$h_\lambda(y)\mapsto\mu^{-1}h_{\lambda\mu}(y/\mu)$;
+for distributions the full pullback formula for $Q_{1/\mu}$
+in \eqref{eq:SDB-pullback} remains part of the statement.
+
+The simultaneous left action also persists for every $\lambda$:
+the proof of \eqref{eq:SDB-ycovariance}, retaining $\lambda$ in
+each term, gives
+$\mathcal L_\lambda P_a=P_a\mathcal L_\lambda$,
+$R_{y,\lambda}P_a=Q_aR_{y,\lambda}$, and
+$T_{y,\lambda}P_a=P_aT_{y,\lambda}$.
+For example, in its residue calculation the order-$j$ factors are
+$a^{-j-1}$ from the normal jet, $a$ from multiplication by $1/y$
+before pullback, and $a^j$ from the derivative, whose product is
+$1$. The maps $(x,y)\mapsto(ax,ay)$ and
+$(x,y)\mapsto(x,y/\mu)$ commute, and their full determinants
+multiply. Hence these simultaneous left actions commute with
+$\mathfrak F_\mu$; their receiver actions commute with
+$\mathfrak F_\mu^H$ because the $Q$ actions commute. This statement
+retains both the left geometric and right arithmetic actions rather
+than identifying them.
+
+\paragraph{Exact entry of algebraic $W$ coefficients and its scope.}
+The original source states its algebraic coefficient model as the
+complex group ring of $\mathbb R_{>0}^{\times}$ before considering
+completions. Write this algebraic model explicitly as
+$W_{\mathrm{alg}}=\mathbb C[\mathbb R_{>0}^{\times}]$.
+There is a character-evaluation map
+\begin{equation}\tag{SDB55}\label{eq:SDB-characterentry}
+ \begin{aligned}
+ \operatorname{ev}:W_{\mathrm{alg}}\otimes_\mathbb C\mathcal J
+       &\longrightarrow\prod_{\lambda>0}\mathcal J,\\
+ \sum_{r\in F}[r]\otimes u_r
+       &\longmapsto
+           \left(\sum_{r\in F}r^\lambda u_r\right)_{\lambda>0},
+       \qquad F\subset\mathbb R_{>0}^{\times}\text{ finite}.
+ \end{aligned}
+\end{equation}
+It is injective. To prove this, list the distinct elements of $F$
+as $r_1,\ldots,r_m$. If its output vanishes, evaluating at
+$\lambda=1,\ldots,m$ gives a linear system for
+$u_{r_1},\ldots,u_{r_m}$ with coefficient matrix
+$(r_k^n)_{1\leq n,k\leq m}$. Its determinant is
+\[
+ \left(\prod_{k=1}^m r_k\right)
+       \prod_{1\leq k<\ell\leq m}(r_\ell-r_k)\ne0.
+\]
+The inverse complex matrix acts on the vector space $\mathcal J^m$,
+so all $u_{r_k}$ vanish. This proves injectivity without presuming
+any topology on $W_{\mathrm{alg}}$.
+
+On these algebraic tensor coefficients the source's arithmetic action
+is exactly
+\begin{equation}\tag{SDB56}\label{eq:SDB-algebraicFrobenius}
+ \sum_{r\in F}[r]\otimes u_r
+       \longmapsto\sum_{r\in F}[r^\mu]\otimes B_\mu u_r.
+\end{equation}
+Evaluation at $\lambda$ gives
+$\sum_r r^{\mu\lambda}B_\mu u_r
+=B_\mu\sum_r r^{\lambda\mu}u_r$, which proves that
+\eqref{eq:SDB-characterentry} intertwines
+\eqref{eq:SDB-algebraicFrobenius} and
+\eqref{eq:SDB-frobeniusfamily}. Applying the residue then gives the
+explicit original-coefficient formula
+\begin{equation}\tag{SDB57}\label{eq:SDB-Wresidue}
+ \left(\mathcal R\operatorname{ev}
+     \sum_{r\in F}[r]\otimes
+       \sum_{j=0}^{N_r}\delta^{(j)}\otimes g_{r,j}\right)_\lambda
+ =\sum_{r\in F}\sum_{j=0}^{N_r}
+       r^\lambda\left(\frac{-i}{\lambda}\right)^j
+                    \partial_y^j(y^{-1}g_{r,j}).
+\end{equation}
+Every factor $r^\lambda$, $\lambda^{-j}$, $(-i)^j$, and $y^{-1}$,
+together with all its derivatives in \eqref{eq:SDB-lambdaRfull},
+is retained. Equations \eqref{eq:SDB-Frobeniuscovariance} and
+\eqref{eq:SDB-characterentry} prove that this exact receiver is
+equivariant for the source's algebraic arithmetic Frobenius.
+
+The product-family complex \eqref{eq:SDB-familyspaces} is the
+constructed distribution receiver. It includes arbitrary character
+families and therefore is not identified here with the source's
+$W$-valued function space, a completed $W$ module, or an adelic
+Dolbeault complex. The injection \eqref{eq:SDB-characterentry}
+proves the precise relation supplied for algebraic $W$ coefficients;
+it does not assert that every family in the product comes from those
+coefficients or that the differential preserves their image.
+One immediate consequence within this exact scope is that an
+algebraic tensor in \eqref{eq:SDB-characterentry} satisfying
+$\mathcal L_\lambda\operatorname{ev}(u)_\lambda=0$ for every
+$\lambda>0$ must be zero: injectivity of each
+$\mathcal L_\lambda$ first kills every character component, and
+injectivity of $\operatorname{ev}$ then kills $u$.
+This is a proved assertion about the supported distribution receiver,
+not a vanishing assertion about the holomorphic functions in the
+original whole complex lift.
+
+Finally, every linear map in the family sequence and every action
+above lifts by \eqref{eq:SDB-linearlift}. Applying
+$G_L$ to the full spaces $\mathcal C^0$, $\mathcal C^1$, and
+$\mathcal H$ gives the exact shared-label splitting
+\[
+ (u,\sigma)\longmapsto(\mathcal Ru,\mathcal Tu,\sigma),\qquad
+ (h,k,\sigma)\longmapsto(\mathcal Eh+\mathcal Lk,\sigma),
+\]
+with $\sigma<\top$ forcing both amplitudes to vanish.
+The arithmetic action is
+$(h,k,\sigma)\mapsto
+ (\mathfrak F_\mu^Hh,\mathfrak F_\mu k,\sigma)$.
+The identities already proved show equivariance and preserve every
+zero label. As in \eqref{eq:SDB-supportedzero}, composite zero
+differentials land at $(0,\sigma)$, and in particular at $e$ for
+$\sigma=\top$, rather than at a constant $\tau$.
+
+\subsection{A moving Teichm\"uller coefficient and its exact receiver}
+
+The source's own example demonstrates why the algebraic tensor
+model does not exhaust the kinds of coefficient-valued functions
+that occur in its discussion. Equations \texttt{holom2} and
+Proposition \texttt{functionq} in Section 7.1 give
+\begin{equation}\tag{SDB58}\label{eq:SDB-movingq}
+ q(x+iy)=[e^{-2\pi y}]e^{2\pi ix},\qquad
+ q_\lambda(x,y)=\chi_\lambda(q(x+iy))
+        =e^{-2\pi\lambda y}e^{2\pi ix}.
+\end{equation}
+The bracket basis element moves with $y$. These scalar evaluations
+are smooth functions on $\Omega$, so multiplication by each one is
+an unambiguous operation on distributions. They define the supported
+family
+\begin{equation}\tag{SDB59}\label{eq:SDB-supportedq}
+ v_\lambda=q_\lambda(x,y)(\delta(x)\otimes1(y))
+      =\delta(x)\otimes e^{-2\pi\lambda y}.
+\end{equation}
+Its arithmetic action and residue are exactly
+\begin{equation}\tag{SDB60}\label{eq:SDB-qreceiver}
+ \mathfrak F_\mu v=v,\qquad
+ (\mathcal Rv)_\lambda=y^{-1}e^{-2\pi\lambda y},\qquad
+ \mathfrak F_\mu^H(\mathcal Rv)=\mathcal Rv.
+\end{equation}
+To verify these assertions, the first pullback evaluates
+$e^{-2\pi(\lambda\mu)(y/\mu)}=e^{-2\pi\lambda y}$
+and leaves $\delta(x)$ unchanged. The residue is the $j=0$ term
+of \eqref{eq:SDB-lambdaR}. Its action is
+\[
+ \mu^{-1}\left((y/\mu)^{-1}
+           e^{-2\pi(\lambda\mu)(y/\mu)}\right)
+       =y^{-1}e^{-2\pi\lambda y},
+\]
+which proves the last identity with its full factor.
+Although $q_\lambda$ itself satisfies
+$\mathcal L_\lambda q_\lambda=0$, the supported distribution
+has
+\begin{equation}\tag{SDB61}\label{eq:SDB-qnoncycle}
+ \mathcal L_\lambda v_\lambda
+    =\lambda\delta'(x)\otimes
+                   \bigl(y e^{-2\pi\lambda y}\bigr)
+       -2\pi i\lambda\delta(x)\otimes
+                   \bigl(y e^{-2\pi\lambda y}\bigr)\ne0.
+\end{equation}
+The coefficient of $\delta'$ is nonzero and cannot cancel the
+$\delta$ coefficient by Proposition \ref{prop:SDB-embedding}.
+This proves exactly what happens to the original holomorphic
+example under its multiplication into the supported receiver.
+
+Moreover $v$ in \eqref{eq:SDB-supportedq} is not in the algebraic
+tensor image \eqref{eq:SDB-characterentry}. Suppose otherwise that
+$v_\lambda=\sum_{k=1}^m r_k^\lambda u_k$ with finitely many distinct
+$r_k>0$ and $u_k\in\mathcal J$. The invertible matrix used to prove
+\eqref{eq:SDB-characterentry} expresses each $u_k$ as a complex
+linear combination of $v_1,\ldots,v_m$. Hence
+$u_k=\delta\otimes a_k(y)$ with $a_k$ a smooth function, a finite
+linear combination of the functions $e^{-2\pi n y}$,
+$1\leq n\leq m$. The assumed identity of distributions then
+implies the identity of smooth functions
+\[
+ e^{-2\pi\lambda y}=\sum_{k=1}^m r_k^\lambda a_k(y)
+       \quad\hbox{for every }\lambda>0,\ y>0.
+\]
+Choose $y_0>0$ with $r_0=e^{-2\pi y_0}$ distinct from the finite
+set $\{r_1,\ldots,r_m\}$. Evaluating this identity at
+$\lambda=1,\ldots,m+1$ gives a homogeneous linear relation
+between the $m+1$ columns with bases $r_0,r_1,\ldots,r_m$,
+whose coefficient of the first column is $1$.
+The determinant is
+$\bigl(\prod_{k=0}^m r_k\bigr)
+ \prod_{0\leq k<\ell\leq m}(r_\ell-r_k)\ne0$,
+a contradiction. This proves the claimed nonmembership while
+retaining the explicit evaluation and residue maps.
+
+Define the following concrete evaluation-family space and its
+receiver, using precisely the algebraic tensor image and the
+moving-coefficient family just constructed:
+\begin{equation}\tag{SDB62}\label{eq:SDB-restrictedreceiver}
+ \begin{aligned}
+ U&=\operatorname{ev}(W_{\mathrm{alg}}\otimes\mathcal J)
+                  +\mathbb C v\subset\mathcal C^1,\\
+ V_U&=\{k\in\mathcal C^0:\mathcal Lk\in U\},\qquad
+ H_U=\mathcal R(U)\subset\mathcal H.
+ \end{aligned}
+\end{equation}
+The inclusion of the tensor image into $U$ is strict by the
+nonmembership proof above. Its arithmetic invariance is proved,
+rather than assumed: the tensor image is invariant by
+\eqref{eq:SDB-algebraicFrobenius}, and $v$ is fixed by
+\eqref{eq:SDB-qreceiver}. The exact sequence and its quotient map are
+\begin{equation}\tag{SDB63}\label{eq:SDB-restrictedexact}
+ 0\longrightarrow V_U\xrightarrow{\mathcal L}U
+       \xrightarrow{\mathcal R}H_U\longrightarrow0,
+\end{equation}
+\begin{equation}\tag{SDB64}\label{eq:SDB-restrictedkernel}
+ U\cap\ker\mathcal R
+     =U\cap\mathcal L(\mathcal C^0)=\mathcal L(V_U),\qquad
+ U/\mathcal L(V_U)\xrightarrow[{\ [u]\mapsto\mathcal Ru\ }]
+       {\ \cong\ }H_U.
+\end{equation}
+To prove exactness, injectivity of $\mathcal L$ is already established,
+and the last map is onto its defined image. If $u\in U$ and
+$\mathcal Ru=0$, then $u=\mathcal L\mathcal Tu$ by
+\eqref{eq:SDB-familyexact}, so $\mathcal Tu\in V_U$ and $u$
+is in the image of the first arrow. The converse is
+$\mathcal R\mathcal L=0$.
+For $k\in V_U$, equivariance gives
+$\mathcal L\mathfrak F_\mu k=\mathfrak F_\mu\mathcal Lk\in U$,
+proving stability of $V_U$. Similarly
+$\mathfrak F_\mu^H\mathcal Ru=\mathcal R\mathfrak F_\mu u$
+proves stability of $H_U$ and equivariance of every displayed arrow.
+Its specified moving-coefficient residue is the full family
+\eqref{eq:SDB-qreceiver}. No equality $V_U=U$ or
+$\mathcal E(H_U)\subset U$ is asserted.
+This concrete construction proves an exact connection to a moving
+coefficient in the human source without adding a completion hypothesis
+or identifying the product-family cohomology with the original
+$W$-valued cohomology.

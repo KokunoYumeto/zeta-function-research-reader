@@ -1,0 +1,539 @@
+% Independent mathematical derivation. Prefix HTP. Requires amsmath,amssymb,hyperref.
+\section{The exact product transported by the original heat group}
+\label{sec:heat-transported-product}
+
+\paragraph{Sources and scope.}
+The analytic domain and heat operator are the original HSL15--18
+in the complete included \nolinkurl{FULL_LATTICE_HEAT_OPERATOR.tex}.
+Lines 366--469 were read directly at source SHA--256
+\begin{center}\small
+\nolinkurl{42c1de0bb8991f460f51d8f84c31d271b01fa5f5b9e6a7f2e803a0ea6deb6841}.
+\end{center}
+The norm estimates needed below are proved here as well.
+The actual theta source is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}}, author file \nolinkurl{fmp-template.tex},
+SHA--256
+\begin{center}\small
+\nolinkurl{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\end{center}
+The prior actual reading is lines 1--155, including
+\texttt{phidef} and \texttt{htdef}; no whole-paper reading is
+claimed. The positive-kernel proof and all heat integrals are
+THS1--29, proved and read completely in the included
+\nolinkurl{THETA_HEAT_FULL_SUPPORT.tex}. Its current source
+SHA--256, including the later tail bounds THS30--31, is
+\begin{center}\small
+\nolinkurl{69507dcc5e192fad2023fff6e7fac1f435dbb2dd1809e6c68d1b5b1e712a9957}.
+\end{center}
+No threshold theorem or claim about the location of the theta
+family's zeros is a premise. This is the amplitude-ring
+calculation; the independent coefficient supports and their
+full lattice map remain the subject of the included supported
+heat construction, rather than being identified with one label.
+
+\subsection{The complete analytic domain and its exact norm bounds}
+
+For $h>0$, retain precisely the coefficient norms
+\begin{equation}\tag{HTP1}
+ \|f\|_h=\sum_{n\ge0}|a_n|\sqrt{n!}\,h^n,
+ \qquad f(z)=\sum_{n\ge0}a_nz^n,\qquad
+ \mathcal E=\{f:\|f\|_h<\infty\text{ for every }h>0\}.
+\end{equation}
+The positive integer $h$ give a countable defining family.
+A Cauchy sequence in every such norm has coordinate limits;
+completeness of weighted $\ell^1$ gives the same limit in each
+norm. Thus $\mathcal E$ is a complete Fr\'echet space.
+Every polynomial truncation converges in all the norms, since
+each omitted weighted tail is summable. The coefficient domain
+equals the entire-function domain
+\begin{equation}\tag{HTP2}
+\begin{gathered}
+ p_\alpha(f)=\sup_{z\in\mathbb C}|f(z)|e^{-\alpha|z|^2},\qquad
+ \mathcal E=\{f\text{ entire}:p_\alpha(f)<\infty\ (\alpha>0)\},\\
+ p_{1/(2h^2)}(f)\le\|f\|_h,\qquad
+ \|f\|_h\le\frac{p_\alpha(f)}{1-h\sqrt{2\mathrm e\alpha}}
+       \quad(h\sqrt{2\mathrm e\alpha}<1).
+\end{gathered}
+\end{equation}
+Here $\mathrm e$ denotes the ordinary exponential constant.
+For the first inequality, the square of
+$|z|^n/(h^n\sqrt{n!})$ is a term of
+$e^{|z|^2/h^2}$. Multiply the resulting bound by the weighted
+coefficients and sum. This proves entire convergence too.
+Conversely, Cauchy's coefficient inequality on radius
+$r=\sqrt{n/(2\alpha)}$, for $n\ge1$, and $n!\le n^n$ give
+$|a_n|\sqrt{n!}h^n\le
+p_\alpha(f)(h\sqrt{2\mathrm e\alpha})^n$.
+The degree-zero term is at most $p_\alpha(f)$; the geometric
+sum proves the second inequality and the stated equivalence.
+
+Ordinary multiplication is a continuous bilinear operation:
+\begin{equation}\tag{HTP3}
+                \|fg\|_h\le\|f\|_{\sqrt2h}\|g\|_{\sqrt2h}.
+\end{equation}
+Indeed, for coefficient indices $j,k\ge0$,
+$\sqrt{(j+k)!}\le\sqrt{j!k!}\,2^{(j+k)/2}$, since
+$\binom{j+k}{j}\le2^{j+k}$. Taking absolute values before
+the Cauchy-product sum yields HTP3 and its absolute convergence.
+For every integer $n\ge0$ and every $b>0$ one also has
+\begin{equation}\tag{HTP4}
+          \|D^nf\|_h\le\sqrt{n!}\,b^{-n}
+                                \|f\|_{\sqrt{h^2+b^2}},
+          \qquad D=\frac{d}{dz}.
+\end{equation}
+For $k\ge n$, the contribution of $a_k$ to the left side is
+$|a_k|\sqrt{k!}\sqrt{n!}\sqrt{\binom kn}h^{k-n}$.
+The single nonnegative binomial term gives
+$\binom kn h^{2(k-n)}b^{2n}\le(h^2+b^2)^k$.
+Its square root proves the bound after summation.
+Thus every derivative is a continuous operator on this exact
+domain, with its original factorials.
+
+The heat group is
+\begin{equation}\tag{HTP5}
+\begin{gathered}
+ T_tf=\sum_{m\ge0}\frac{(-t)^m}{m!}D^{2m}f,\qquad
+ (T_tf)_i=\sum_{m\ge0}\frac{(-t)^m(i+2m)!}{m!i!}a_{i+2m},\\
+ \sum_{m\ge0}\frac{|t|^m}{m!}\|D^{2m}f\|_h
+                       \le\|f\|_{h+\sqrt{2|t|}},\qquad t\in\mathbb C.
+\end{gathered}
+\end{equation}
+To prove the last inequality, put $k=i+2m$ in the nonnegative
+sum of coefficient norms. Its inner factor is
+\[
+ \sum_{m=0}^{\lfloor k/2\rfloor}
+ \frac{\sqrt{k!}}{m!\sqrt{(k-2m)!}}|t|^m h^{k-2m}.
+\]
+The numerical coefficient equals
+$\sqrt{\binom k{2m}}\sqrt{\binom{2m}m}$, at most
+$\binom k{2m}2^m$. The sum is bounded by the even part of
+$(h+\sqrt{2|t|})^k$, and therefore by that whole expression.
+Summing against $|a_k|\sqrt{k!}$ proves HTP5.
+Every heat sum is thus absolutely convergent in every defining
+norm, locally uniformly in $t$ by enlarging $|t|$.
+Moreover
+\begin{equation}\tag{HTP6}
+ T_tT_s=T_{t+s},\qquad T_t^{-1}=T_{-t},\qquad T_0=I,
+ \qquad \partial_tT_tf=-D^2T_tf.
+\end{equation}
+The absolute double sum is at most
+$\|f\|_{h+\sqrt{2|t|}+\sqrt{2|s|}}$ by two applications of
+HTP5. Regrouping by total derivative order is therefore
+permitted. Its finite binomial coefficients give $t+s$.
+The identity at zero and inverse follow. For differentiation,
+bound the series on a larger time disc by HTP5 and use the
+convergent power series in the complete normed coordinate
+spaces. This gives the displayed derivative in every norm.
+
+\subsection{A convergent product, with the exact derivative formula}
+
+For $a,b>0$ satisfying $ab>2|t|$, HTP3--4 prove
+\begin{equation}\tag{HTP7}
+ \sum_{n\ge0}\frac{(2|t|)^n}{n!}\|f^{(n)}g^{(n)}\|_h
+ \le\frac{\|f\|_{\sqrt{2h^2+a^2}}
+             \|g\|_{\sqrt{2h^2+b^2}}}{1-2|t|/(ab)}.
+\end{equation}
+Apply HTP4 with parameters $a,b$ at the norm $\sqrt2h$ to
+the two derivative factors in HTP3. The product contributes
+$n!(ab)^{-n}$, which cancels the $n!$ in the denominator.
+The remaining geometric series has the stated sum. Every
+factor and radius in HTP7 is therefore explicit. The bound
+is uniform on a compact time set after choosing $ab$ greater
+than twice its largest $|t|$. It proves absolute convergence
+in $\mathcal E$ of the derivative-product series.
+
+Define the transported product by the actual continuous heat
+automorphism of the vector space:
+\begin{equation}\tag{HTP8}
+\begin{gathered}
+ f\star_tg=T_t\bigl((T_{-t}f)(T_{-t}g)\bigr),\qquad
+ \mathcal E_t=(\mathcal E,\star_t),\\
+ \|f\star_tg\|_h\le\|f\|_{R_t(h)}\|g\|_{R_t(h)},\qquad
+ R_t(h)=\sqrt2\bigl(h+\sqrt{2|t|}\bigr)+\sqrt{2|t|}.
+\end{gathered}
+\end{equation}
+First apply HTP5 to the outer heat operator, then HTP3 at
+$h+\sqrt{2|t|}$, and then HTP5 to each inner operator.
+This proves the norm bound and bilinear continuity directly.
+
+For polynomials the product has a finite operator calculation.
+On a polynomial $f(z_1)g(z_2)$ put $D_i=\partial_{z_i}$ and
+let $\mu$ set $z_1=z_2=z$. Leibniz's rule gives
+$D\mu=\mu(D_1+D_2)$. Every differential exponential below
+terminates on this polynomial; the differential operators
+commute. Consequently
+\begin{equation}\tag{HTP9}
+ \begin{split}
+ T_t\bigl((T_{-t}f)(T_{-t}g)\bigr)
+ &=\mu e^{-t(D_1+D_2)^2}e^{t(D_1^2+D_2^2)}(f\otimes g)\\
+ &=\mu e^{-2tD_1D_2}(f\otimes g)
+   =\sum_{n\ge0}\frac{(-2t)^n}{n!}f^{(n)}g^{(n)}.
+ \end{split}
+\end{equation}
+Combining commuting finite exponentials follows by the finite
+binomial formula at each order, not by cancelling divergent
+series. Now approximate $f,g\in\mathcal E$ by their polynomial
+truncations in every norm. HTP8 makes the left side continuous
+in both arguments. HTP7 makes the sum on the right a continuous
+bilinear map: apply that bound to the difference in each
+argument, and note that a convergent sequence is bounded in
+each input norm. Thus the polynomial identity extends to
+\begin{equation}\tag{HTP10}
+ \boxed{\displaystyle
+ f\star_tg=\sum_{n=0}^{\infty}\frac{(-2t)^n}{n!}
+                                      f^{(n)}g^{(n)}.}
+\end{equation}
+This proof establishes the identity on the exact space, with
+absolute convergence, without a formal infinite cancellation.
+
+Even the expansion of all three heat operators and every
+Leibniz term is absolutely bounded. For $x=|t|$ and
+$R=\sqrt2(h+\sqrt{2x})+\sqrt{2x}$ one has
+\begin{equation}\tag{HTP11}
+ \sum_{a,b,c\ge0}\sum_{v=0}^{2a}
+ \frac{x^{a+b+c}}{a!b!c!}\binom{2a}{v}
+ \bigl\|f^{(2b+v)}g^{(2c+2a-v)}\bigr\|_h
+                         \le\|f\|_R\|g\|_R.
+\end{equation}
+Let $f^\#(z)=\sum|a_n|z^n$ and define $g^\#$ similarly.
+They belong to $\mathcal E$ with the same norms. Derivatives
+and products of these series have nonnegative coefficients;
+they dominate coefficientwise the absolute coefficients of
+the corresponding derivatives and products of $f,g$.
+With $S_x=T_{-x}$, the nonnegative coefficient expansion of
+$S_x((S_xf^\#)(S_xg^\#))$ has exactly the weights in HTP11,
+by Leibniz's rule. For any finite set of terms its coefficient
+sum is bounded by this entire nonnegative series. The norm of
+the latter is at most $\|f\|_R\|g\|_R$ by HTP8's proof
+using three positive heat sums. Monotone convergence in the
+nonnegative coefficient sums proves HTP11. Thus expansions
+or regroupings of this product, when desired, have a separate
+finite absolute majorant.
+
+The product is commutative and associative and has unit $1$:
+\begin{equation}\tag{HTP12}
+\begin{gathered}
+ T_{-t}(f\star_tg)=(T_{-t}f)(T_{-t}g),\qquad
+ (f\star_tg)\star_tk=f\star_t(g\star_tk),\qquad
+ f\star_t1=f,\\
+ T_t:(\mathcal E,\cdot)\overset{\sim}{\longrightarrow}
+       (\mathcal E,\star_t)
+ \quad\text{is a continuous unital algebra isomorphism.}
+\end{gathered}
+\end{equation}
+The first identity is HTP6 applied to the definition. Applying
+the injective map $T_{-t}$ to either parenthesization gives the
+same ordinary product of three functions; this proves
+associativity with no triple derivative-series rearrangement.
+Commutativity follows the same way. Since $T_t1=1$, the unit
+claim follows too. Bilinearity and both directions of continuity
+were already proved. The rings have the same vector-space
+zero and unit, while their products are the specified ones.
+
+\subsection{Characters, principal ideals and the exact finite jets}
+
+For $t\ne0$, ordinary evaluation at any point fails to be a
+character of this product. With $w$ denoting the coordinate
+function,
+\begin{equation}\tag{HTP13}
+             w\star_tw=w^2-2t,
+ \qquad \operatorname{ev}_z(w\star_tw)=z^2-2t
+                          \ne z^2=\operatorname{ev}_z(w)^2.
+\end{equation}
+Only $n=0,1$ contribute in HTP10; the factor $2t$ and its
+minus sign are therefore fixed.
+
+We first establish the division needed to characterize all
+complex-valued characters, without assuming their continuity.
+For every $f\in\mathcal E$ and $z\in\mathbb C$, the removable
+quotient belongs to the same space:
+\begin{equation}\tag{HTP14}
+ Q_zf(w)=\begin{cases}
+       (f(w)-f(z))/(w-z),&w\ne z,\\ f'(z),&w=z,
+       \end{cases}
+ \qquad Q_zf\in\mathcal E,
+ \qquad f-f(z)=(w-z)Q_zf.
+\end{equation}
+For $|w-z|\ge1$ its $p_\alpha$-weighted absolute value is at
+most $p_\alpha(f)+|f(z)|\le
+p_\alpha(f)(1+e^{\alpha|z|^2})$.
+For $|w-z|\le1$, use
+$Q_zf(w)=\int_0^1f'(z+s(w-z))\,ds$. Cauchy's derivative
+bound with radius $1$ at each point of this segment is at
+most $p_\alpha(f)e^{\alpha(|z|+2)^2}$.
+Multiplication by $e^{-\alpha|w|^2}\le1$ preserves that
+bound. This proves finite $p_\alpha(Q_zf)$ for every
+$\alpha>0$, hence HTP14 by HTP2. Repeated division proves
+the corresponding finite-order Taylor remainder statement.
+
+Every unital $\mathbb C$-algebra character on the ordinary
+ring $\mathcal E$ is evaluation. Indeed, for a character
+$\chi$ put $z=\chi(w)$. Applying $\chi$ to HTP14 gives
+$\chi(f)=f(z)$, because the factor $\chi(w-z)$ is zero.
+Conversely evaluation is visibly a unital character and is
+continuous by HTP2. HTP12 now gives the complete transported
+character formula
+\begin{equation}\tag{HTP15}
+ \chi_{t,z}(f)=(T_{-t}f)(z),\qquad z\in\mathbb C,
+ \qquad
+ \operatorname{Hom}_{\mathbb C\text{-alg},1}(\mathcal E_t,\mathbb C)
+                  =\{\chi_{t,z}:z\in\mathbb C\}.
+\end{equation}
+For a character on $\mathcal E_t$, compose with $T_t$ and
+apply the ordinary classification just proved. Distinct $z$
+give distinct characters because $T_{-t}w=w$. The formulas
+and HTP5/HTP2 show that every one is continuous. No statement
+about maximal ideals with other residue fields is needed.
+
+For any $F\in\mathcal E$, exact principal-ideal transport is
+\begin{equation}\tag{HTP16}
+\begin{gathered}
+ T_t(F\mathcal E)=(T_tF)\star_t\mathcal E,\\
+ \mathcal E/(F\mathcal E)\overset{\sim}{\longrightarrow}
+ \mathcal E_t/((T_tF)\star_t\mathcal E),\qquad
+ [g]\longmapsto[T_tg].
+\end{gathered}
+\end{equation}
+If $g=Fq$ then $T_tg=(T_tF)\star_t(T_tq)$ by HTP12.
+Conversely every element on the right has this form because
+$T_t$ is onto. Its inverse $T_{-t}$ proves the equality of
+ideals and the well-defined, injective and surjective quotient
+map, preserving both operations and both identities.
+This is an algebraic ideal equality; no closure of the ideal
+is substituted for it.
+
+For a point $z$ and integer $m\ge1$, write
+$\mathfrak m_z=(w-z)\mathcal E$ and
+$\mathfrak m_{t,z}=\ker\chi_{t,z}$. Then
+\begin{equation}\tag{HTP17}
+\begin{gathered}
+ \mathfrak m_{t,z}=T_t\mathfrak m_z=(w-z)\star_t\mathcal E,
+ \qquad (w-z)\star_tf=(w-z)f-2tf',\\
+ T_t((w-z)^m)=
+ \sum_{b=0}^{\lfloor m/2\rfloor}
+       \frac{(-t)^bm!}{b!(m-2b)!}(w-z)^{m-2b}
+       =(w-z)^{\star_t m},\\
+ \mathfrak m_{t,z}^{\star_t m}
+                 =T_t((w-z)^m\mathcal E).
+\end{gathered}
+\end{equation}
+The first identity follows from HTP14--16 and $T_t(w-z)=w-z$.
+The derivative formula has only two terms in HTP10.
+The polynomial formula is the finite heat series HTP5.
+The algebra isomorphism transports powers and products of
+ideals, proving the last two assertions with no formal
+interpretation of the displayed polynomial required.
+
+The exact jet map, including its inverse on representatives, is
+\begin{equation}\tag{HTP18}
+\begin{gathered}
+ J_{t,z,m}(f)=\sum_{k=0}^{m-1}
+       \frac{(D^kT_{-t}f)(z)}{k!}\epsilon^k
+           \in\mathbb C[\epsilon]/(\epsilon^m),\\
+ \ker J_{t,z,m}=\mathfrak m_{t,z}^{\star_t m},\qquad
+ \mathcal E_t/\mathfrak m_{t,z}^{\star_t m}
+                \overset{\sim}{\longrightarrow}
+                   \mathbb C[\epsilon]/(\epsilon^m),\\
+ \sum_{k<m}c_k\epsilon^k\longmapsto
+       \left[T_t\left(\sum_{k<m}c_k(w-z)^k\right)\right].
+\end{gathered}
+\end{equation}
+The ordinary Taylor map is multiplicative modulo
+$\epsilon^m$ by the finite Leibniz formula and preserves
+zero and unit. Its kernel consists precisely of functions
+divisible by $(w-z)^m$ in $\mathcal E$: apply HTP14
+successively to the zero Taylor remainders. Its image contains
+every polynomial of degree less than $m$ in $\epsilon$.
+Compose with the isomorphism $T_{-t}$ to prove all lines of
+HTP18. In particular the transported multiplicity of $T_tF$
+at $\chi_{t,z}$ is the original order of $F$ at $z$.
+This is an equality of the specified finite jets; it is not
+an equality with the ordinary Taylor jets of $T_tF$.
+
+\subsection{The actual theta family and its complete double integral}
+
+Keep the original source kernel, with no change in variables:
+\begin{equation}\tag{HTP19}
+\begin{gathered}
+ \Phi(u)=\sum_{n\ge1}
+       (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+ \quad u\ge0,\\
+ H_a(z)=\int_0^\infty e^{au^2}\Phi(u)\cos(zu)\,du,\qquad a\in\mathbb C,\\
+ 0<\pi(2\pi-3)e^{9u-\pi e^{4u}}
+       \le\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}},\\
+ C_\Phi=2\pi^2\frac{1+11c+11c^2+c^3}{(1-c)^5},\qquad c=e^{-3\pi}.
+\end{gathered}
+\end{equation}
+For completeness, every original summand is positive because
+its prefactor is $\pi n^2e^{5u}(2\pi n^2e^{4u}-3)$.
+The $n=1$ term gives the lower bound using
+$2\pi e^{4u}-3\ge(2\pi-3)e^{4u}$.
+For the upper bound discard the negative term in each
+prefactor and use $n^2-1\ge3(n-1)$ and $e^{4u}\ge1$.
+The remaining sum is
+$\sum_{n\ge1}n^4c^{n-1}=(1+11c+11c^2+c^3)/(1-c)^5$;
+four differentiations of the geometric series give this
+identity. This proves the entire stated bound directly.
+
+The full moment control, retaining all constants, is
+\begin{equation}\tag{HTP20}
+\begin{gathered}
+ I_p(A,B):=\int_0^\infty u^pe^{Au^2+Bu}\Phi(u)\,du
+ \le\mathcal M_p(A,B),\\
+ \mathcal M_p(A,B):=
+ \frac{C_\Phi}{2\pi}
+ \exp\left(\frac{3A^2}{32\pi}
+       +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right),
+ \quad A,B\ge0,\ p\ge0,\\
+ p_\alpha(H_a)\le I_0(\max(\operatorname{Re}a+1/(4\alpha),0),0),
+ \qquad H_a\in\mathcal E,\qquad T_rH_a=H_{a+r}.
+\end{gathered}
+\end{equation}
+The moment proof uses $u^p\le e^{pu}$ and splits the
+negative kernel exponent into quarters and a half. Namely,
+\[
+ Au^2-\frac\pi4e^{4u}\le\frac{3A^2}{32\pi},\qquad
+ (B+9+p)u-\frac\pi4e^{4u}\le\frac{(B+9+p)^2}{8\pi}.
+\]
+The first follows from $e^{4u}\ge(32/3)u^4$ and completing
+the square in $u^2$; the second follows from $e^{4u}\ge8u^2$
+and completing the square in $u$.
+The remaining integral is at most $e^{-\pi/2}/(2\pi)$,
+because $e^{4u}\ge1+4u$. This proves the first line.
+For the second, $|\cos(zu)|\le e^{|z|u}$ and
+$|z|u\le\alpha|z|^2+u^2/(4\alpha)$ prove the growth bound,
+so HTP2 gives $H_a\in\mathcal E$.
+Differentiating the cosine under the integral is justified
+at every order by $I_p$ on compact parameter sets. The sum
+of the absolute heat-integrands is bounded by
+$e^{(\operatorname{Re}a+|r|)u^2+|\operatorname{Im}z|u}\Phi(u)$,
+with its quadratic coefficient enlarged to zero if negative.
+It is integrable by the first line. Expanding $e^{ru^2}$
+therefore proves $T_rH_a=H_{a+r}$ with the original heat
+sign; equality of entire functions identifies the same
+elements of $\mathcal E$. No assertion concerning their
+zero locations occurs in this argument.
+
+For arbitrary complex $a,b,t,z$, the actual transported
+product is the following exact double integral:
+\begin{equation}\tag{HTP21}
+\boxed{\begin{aligned}
+ (H_a\star_tH_b)(z)
+  =\frac12\int_0^\infty\!\int_0^\infty
+       &\Phi(u)\Phi(v)e^{au^2+bv^2}\\[-2pt]
+       &\cdot\bigl[e^{2tuv}\cos(z(u+v))
+                    +e^{-2tuv}\cos(z(u-v))\bigr]\,du\,dv.
+\end{aligned}}
+\end{equation}
+All integrals, derivative sums and their exchanges converge
+in every norm of $\mathcal E$, as we now verify explicitly.
+For $x\ge0$,
+$\sum_{k\ge0}x^k/\sqrt{k!}\le\sqrt2e^{x^2}$:
+write each summand as
+$2^{-k/2}(\sqrt2x)^k/\sqrt{k!}$ and apply Cauchy--Schwarz.
+Thus both the sine and cosine of $uz$, for real $u$, have
+$h$-norm at most $\sqrt2e^{h^2u^2}$.
+Since a derivative of order $n$ changes only sine to cosine
+and supplies a factor $u^n$, HTP3 gives the majorant
+\begin{equation}\tag{HTP22}
+\begin{gathered}
+ A_h=\max(\operatorname{Re}a+2h^2+|t|,0),\quad
+ B_h=\max(\operatorname{Re}b+2h^2+|t|,0),\\
+ \int_0^\infty\!\int_0^\infty
+ \Phi(u)\Phi(v)e^{(\operatorname{Re}a)u^2+(\operatorname{Re}b)v^2}
+ \sum_{n\ge0}\frac{(2|t|)^n}{n!}
+ \bigl\|D^n\cos(uz)D^n\cos(vz)\bigr\|_h\,du\,dv\\
+ \hspace{20mm}\le2I_0(A_h,0)I_0(B_h,0)
+       \le2\mathcal M_0(A_h,0)\mathcal M_0(B_h,0)<\infty.
+\end{gathered}
+\end{equation}
+Indeed the norm of the derivative product is at most
+$2(uv)^ne^{2h^2(u^2+v^2)}$. Its weighted sum is
+$2e^{2|t|uv+2h^2(u^2+v^2)}$, and
+$2|t|uv\le|t|(u^2+v^2)$ separates the variables.
+For the integrals of the individual derivatives use the
+same bounds with the finite extra moments in HTP20.
+Nonnegative summation of the absolute coefficients now
+justifies integrating every derivative, multiplying the
+two integrals and interchanging the derivative series with
+the double integral in each $h$-norm. The resulting
+coefficient integrals give a member of every weighted
+$\ell^1$ space, hence the same member of $\mathcal E$.
+
+For the value of that sum, the even derivative orders give
+$\cos(zu)\cos(zv)\cosh(2tuv)$, and the odd orders give
+$-\sin(zu)\sin(zv)\sinh(2tuv)$. The elementary cosine sum
+and difference identities transform their sum into the
+bracket in HTP21 divided by $2$. This proves that formula
+with its signs. Alternatively its two cosine frequencies
+are eigenvectors of $T_t$ with respective multipliers
+$e^{t(u+v)^2}$ and $e^{t(u-v)^2}$; the already proved
+absolute bounds justify the same calculation. On compact
+sets of the complex parameters, HTP22 supplies one common
+bound by enlarging their real parts and moduli. Additional
+parameter derivatives contribute finite powers of $u,v$
+and are bounded by the corresponding $I_p$ products.
+
+The requested actual-time specialization and its transport
+relation are therefore
+\begin{equation}\tag{HTP23}
+\begin{gathered}
+ H_t\star_tH_s=T_t(H_0H_{s-t}),\qquad
+ H_t\star_tH_t=T_t(H_0^2),\\
+ (H_t\star_tH_s)(z)=\frac12\int_0^\infty\!\int_0^\infty
+ \Phi(u)\Phi(v)e^{tu^2+sv^2}
+   \bigl[e^{2tuv}\cos(z(u+v))+e^{-2tuv}\cos(z(u-v))\bigr]\,du\,dv.
+\end{gathered}
+\end{equation}
+Use HTP20 in the definition HTP8, or set $a=t,b=s$ in
+HTP21. For real $a,b,t$, the value of HTP21 at $z=0$ is
+strictly positive: its bracket is $2\cosh(2tuv)>0$ and
+the kernel factors are positive. That statement is about
+this value of the actual integral; it supplies no assertion
+that the entire function has no zeros at other points.
+
+Finally the character and divisor comparison for the actual
+family is exact:
+\begin{equation}\tag{HTP24}
+\begin{gathered}
+ \chi_{t,z}(H_a)=H_{a-t}(z),\qquad
+ \chi_{t,z}(H_t)=H_0(z),\qquad H_t(z)=\chi_{t,z}(H_{2t}),\\
+ T_t(H_0\mathcal E)=H_t\star_t\mathcal E,\qquad
+ \mathcal E/(H_0\mathcal E)
+     \simeq\mathcal E_t/(H_t\star_t\mathcal E),\\
+ J_{t,z,m}(H_t)=\sum_{k=0}^{m-1}\frac{H_0^{(k)}(z)}{k!}\epsilon^k,
+ \qquad
+ J_{t,z,m}(H_{2t})=\sum_{k=0}^{m-1}\frac{H_t^{(k)}(z)}{k!}\epsilon^k.
+\end{gathered}
+\end{equation}
+The first line is HTP15 and HTP20. Apply HTP16 with
+$F=H_0$ for the second, and HTP18 for the third.
+The first transported principal divisor thus has the
+original $H_0$ character zeros and original multiplicities.
+The ordinary analytic zeros and multiplicities of $H_t$
+are instead those of $H_{2t}$ tested by these transported
+characters and jets. This supplies the exact comparison
+between both objects; ordinary evaluation cannot be
+substituted for a transported character when $t\ne0$ by
+HTP13. None of these isomorphisms decides the zero-location
+question for $H_0$ or asserts a conclusion about RH.
+
+\begin{figure}[ht]
+\centering
+$\begin{array}{ccc}
+ (\mathcal E,\cdot)&\xrightarrow{\quad T_t\quad}&(\mathcal E,\star_t)\\[3pt]
+ {\scriptstyle\operatorname{ev}_z}\downarrow&&
+                       \downarrow{\scriptstyle\chi_{t,z}=\operatorname{ev}_zT_{-t}}\\[3pt]
+ \mathbb C&\xrightarrow{\quad\operatorname{id}\quad}&\mathbb C
+ \end{array}$
+\caption{The exact algebra and character comparison, HTP12--18.
+The top map sends $H_0$ to $H_t$, its principal ideal to the
+corresponding star ideal, and each finite jet to HTP18. Thus
+the right character evaluates $H_t$ as $H_0(z)$.
+The original analytic value $H_t(z)$ instead equals
+$\chi_{t,z}(H_{2t})$, HTP24. The diagram uses the actual
+Rodgers--Tao kernel HTP19 and the full proved heat action;
+it does not identify ordinary evaluation with the right
+character when $t\ne0$.}
+\end{figure}

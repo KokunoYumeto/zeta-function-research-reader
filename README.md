@@ -1,5 +1,15 @@
 # Split-Zero cohomology and the zeta-function research programme
 
+<!-- three-reader-edition-20260924 -->
+## Three-task cohomology edition
+
+The shared [edition guide](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts) brings together the geometric weight-control reconstruction, the positive-quotient and Gysin comparison, and original-character lifting. It explains the maps connecting these contributions to the wider Split-Zero cohomology and original-zeta programme, while retaining the earlier estimates, formalization, connected investigations and self-audit below.
+
+Three complete PDF readers are accompanied by their LaTeX, Markdown proofs, reproducible figures, [result/dependency index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/RESULTS.json) and [precise review record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md). The new calculations identify actual source, boundary, duality and quotient maps; they do not establish arithmetic purity or an RH proof. Human sources and the investigator's construction are credited in the edition.
+
+[Zenodo continuation collection](https://doi.org/10.5281/zenodo.22913061) · [Full base collection](https://doi.org/10.5281/zenodo.22678085)
+<!-- /three-reader-edition-20260924 -->
+
 [Research self-audit: the full two-week programme](workbenches/splitzero-tandem/research-self-audit/RESEARCH_SELF_AUDIT.md) — a joint report on mathematical results, failed routes, source use, corrections and research decisions, with evidence and complete editable sources.
 
 

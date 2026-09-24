@@ -1,0 +1,682 @@
+% Independent derivation. Prefix SHP. Requires amsmath, amssymb, hyperref.
+\section{The full support heat algebra and its exact global-function bridge}
+\label{sec:supported-heat-product}
+
+\paragraph{Sources and retained objects.}
+The underlying $G_L(R)$ is the existing full-lattice programme
+construction, retained under its foundation byline The Clankers in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split
+Support Geometry: Universal Zero Fibres, Arithmetic Curves, Frobenius
+and Perfect Quantization}, v11, Definition \texttt{def:lattice-split}}.
+Its supported-zero localization has the public proof
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorems \texttt{thm:rebuilt-full-support} and \texttt{thm:e-stalk}}.
+The present full support calculation uses HSL1--35 of
+\nolinkurl{FULL_LATTICE_HEAT_OPERATOR.tex} for the independently
+labelled heat operators, their analytic completion and their
+exact coefficient map. The analytic transported-product calculation
+is HTP3--10 of \nolinkurl{HEAT_TRANSPORTED_PRODUCT.tex}; its
+coefficients and convergence bound are stated at their use below.
+The HTP source actually read here is lines 1--256, including
+the complete proofs HTP1--12, at SHA--256
+\begin{center}\small
+\nolinkurl{b81c4489625eed9420eb202009be7b6185cc060bd83f942053b3088d80d91474}.
+\end{center}
+The actual theta specialization uses THS8--15 and THS18--23
+of \nolinkurl{THETA_HEAT_FULL_SUPPORT.tex}, whose human-source
+kernel is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}, arXiv:1801.05914v5}.
+No zero-location theorem is a premise of the following algebra.
+
+Let $L$ be the entire nontrivial bounded distributive lattice.
+Retain
+\[
+ S=G_L(\mathbb C),\qquad
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\quad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu).
+\]
+Thus $a\ne0$ forces $\lambda=1_L$,
+$\tau=(0,0_L)$ is the additive zero,
+$e=(0,1_L)$ is supported zero, and $(1,1_L)$ is the unit.
+The original Taylor coefficients are denoted $a_n$:
+\begin{equation}\tag{SHP1}
+ \mathcal E=\left\{f(z)=\sum_{n\ge0}a_nz^n:
+       \|f\|_h:=\sum_{n\ge0}|a_n|\sqrt{n!}\,h^n<\infty
+                                  \text{ for every }h>0\right\}.
+\end{equation}
+This is the complete entire-function space proved in HSL15--18;
+the coefficients themselves have not been changed.
+Multiplication of entire functions preserves it. In fact
+\begin{equation}\tag{SHP2}
+ \|fg\|_h\le\|f\|_{\sqrt2h}\|g\|_{\sqrt2h}.
+\end{equation}
+For coefficients $a_r,b_s$, use the absolutely convergent
+positive sum and
+$\sqrt{(r+s)!}\le2^{(r+s)/2}\sqrt{r!s!}$, which follows from
+$\binom{r+s}r\le2^{r+s}$. Summing proves (SHP2).
+Thus $\mathcal E$ is a commutative unital complex algebra with
+its original pointwise function product.
+
+\subsection{Parity-tail closure is an exact multiplicative nucleus}
+
+We first prove the support identity in a setting where every
+join written in the proof exists. Put
+$\widehat L=\operatorname{Idl}(L)$, with principal embedding
+$\jmath(\lambda)=\downarrow\lambda$, ideal intersection as
+meet, and ideal generation from unions as arbitrary join.
+Finite meets distribute over arbitrary joins: if
+$c\in I\cap\bigvee_\alpha J_\alpha$, write
+$c\le b_1\vee\cdots\vee b_r$ with each $b_k$ in an indicated
+$J_{\alpha_k}$, and then
+$c=\bigvee_k(c\wedge b_k)$ is in
+$\bigvee_\alpha(I\cap J_\alpha)$.
+This proves precisely the distributivity used below.
+
+For sequences $\nu,\mu$ in this complete lattice define
+\begin{equation}\tag{SHP3}
+ \begin{gathered}
+ (\nu*\mu)_n=\bigvee_{r+s=n}\nu_r\wedge\mu_s,\qquad
+ (P\nu)_i=\bigvee_{\substack{j\ge i\\j-i\text{ even}}}\nu_j,\\
+ \nu+\mu=(\nu_i\vee\mu_i)_{i\ge0},\qquad
+ \mathbf u=(1,0,0,\ldots).
+ \end{gathered}
+\end{equation}
+Here the symbols $1,0$ mean the top and bottom of the chosen
+lattice. Convolution is associative: both triple products at
+degree $n$ are the join of $\nu_r\wedge\mu_s\wedge\omega_k$
+over $r+s+k=n$. It has unit $\mathbf u$, is commutative,
+and distributes over the coordinate joins, by finite
+distributivity. The operator $P$ is extensive, idempotent
+and preserves arbitrary joins. Nested same-parity tails prove
+these assertions directly.
+
+The needed multiplicative identity is
+\begin{equation}\tag{SHP4}
+ (P\nu)*(P\mu)\le P(\nu*\mu),\qquad
+ P((P\nu)*(P\mu))=P(\nu*\mu).
+\end{equation}
+To prove the first inequality, distribute the row of its left
+side. A term at degree $n$ has indices
+$r+s=n$, $a\ge r$, $b\ge s$, with $a-r$ and $b-s$ even.
+The term is $\nu_a\wedge\mu_b$.
+Then $a+b\ge n$ and $a+b-n$ is even, so that term occurs
+in $P(\nu*\mu)_n$. This proves the first inequality after
+joining all terms. Applying $P$ gives one inequality in the
+second formula; the reverse follows from
+$\nu\le P\nu$ and $\mu\le P\mu$.
+Thus $P$ is a multiplicative nucleus in the explicit sense
+of a join-preserving closure satisfying (SHP4).
+
+For already closed sequences $\nu_i\ge\nu_{i+2}$ and
+$\mu_i\ge\mu_{i+2}$, its closed product is completely finite:
+\begin{equation}\tag{SHP5}
+ (\nu\mathbin{\circledast}\mu)_0
+       =(\nu_0\wedge\mu_0)\vee(\nu_1\wedge\mu_1),\qquad
+ (\nu\mathbin{\circledast}\mu)_n
+       =\bigvee_{r=0}^{n}\nu_r\wedge\mu_{n-r}
+                         \quad(n\ge1).
+\end{equation}
+It equals $P(\nu*\mu)$. Indeed, if $n\ge1$, every term of
+$(\nu*\mu)_{n+2}$ has indices $r+s=n+2$, and at least one
+of $r,s$ is at least $2$. Lowering that index by $2$
+weakly increases its label and supplies a term of
+$(\nu*\mu)_n$. Therefore $(\nu*\mu)_{n+2}\le(\nu*\mu)_n$
+for $n\ge1$. At $n=0$, the terms of degree $2$ with indices
+$(2,0)$ and $(0,2)$ are at most $\nu_0\wedge\mu_0$.
+The only remaining term is $\nu_1\wedge\mu_1$.
+Higher even degrees are already bounded by degree $2$.
+This proves (SHP5), including the one additional mixed-parity
+contribution at degree zero. The formulas lie in the
+original $L$ when the input labels do.
+
+Let $\mathcal F(L)$ be the set of all such parity flags in
+$L^{\mathbb N_0}$. Coordinate join, the zero flag and
+$\circledast$ make it a commutative unital idempotent
+semiring with unit $\mathbf u$.
+For associativity, view it in the complete ideal lattice and use
+\[
+ P\bigl(P(\nu*\mu)*\omega\bigr)
+ =P\bigl((\nu*\mu)*\omega\bigr)
+ =P\bigl(\nu*(\mu*\omega)\bigr)
+ =P\bigl(\nu*P(\mu*\omega)\bigr),
+\]
+where (SHP4) applies because $P\omega=\omega$ and $P\nu=\nu$.
+Commutativity follows in the same way.
+The unit follows from $P\mathbf u=\mathbf u$.
+Distributivity follows from join preservation of $P$ and
+distributivity of convolution. The principal embedding is
+injective, so these equations prove the claims in the
+original $L$ as well. No infinite join in $L$ has been assumed.
+
+\subsection{The original independent-coefficient algebra and its flag quotient}
+
+Let $\mathcal D_L$ consist of pairs $(f,\nu)$ with
+$f=\sum a_nz^n\in\mathcal E$, $\nu_n\in L$,
+$a_n\ne0\Rightarrow\nu_n=1_L$, and every inclusive parity-tail
+ideal principal:
+\begin{equation}\tag{SHP6}
+ \bigvee_{\substack{j\ge i\\j-i\text{ even}}}
+       \downarrow\nu_j=\downarrow s_i
+                    \qquad\text{for each }i.
+\end{equation}
+This is the exact original-lattice domain of HSL25.
+The generator $s_i$ is a finite join of labels from that
+tail, because it belongs to the generated ideal; conversely
+such a finite dominating join generates the tail ideal.
+Consequently $P\nu=(s_i)$ is well defined in $L$ and is a flag.
+The labels $\nu_i$ in $\mathcal D_L$ are otherwise independent.
+
+Addition and ordinary coefficient convolution make $\mathcal D_L$
+a commutative unital $S$-algebra.
+For closure under convolution, apply (SHP4) in $\widehat L$:
+the inclusive tail ideals of $\nu*\mu$ have the explicit
+principal generators
+\begin{equation}\tag{SHP7}
+ g_0=(s_0\wedge t_0)\vee(s_1\wedge t_1),\qquad
+ g_n=\bigvee_{r=0}^{n}s_r\wedge t_{n-r}\quad(n\ge1),
+\end{equation}
+where $(s_i)=P\nu$ and $(t_i)=P\mu$.
+This follows because the right side of (SHP4) is the
+closed product of those principal tails, calculated by
+(SHP5). It proves precisely the required principality.
+For addition, tail ideals join and are generated by
+$s_i\vee t_i$. Multiplication of all coefficient labels
+by a scalar label $\lambda$ gives tail generators
+$\lambda\wedge s_i$. The amplitudes stay in $\mathcal E$
+by (SHP2); if a product coefficient is nonzero, one of its
+finitely many contributing amplitude products is nonzero,
+forcing the corresponding support meet and hence the
+output label to be $1_L$. Addition and scalar multiplication
+satisfy the same carrier test. These arguments prove closure,
+and the algebra laws follow from the coefficient operations.
+
+Define the full flag algebra and its product by
+\begin{equation}\tag{SHP8}
+ \begin{gathered}
+ \mathcal A_L=\{(f,\nu):f=\sum a_nz^n\in\mathcal E,\
+        \nu\in\mathcal F(L),\
+                    a_n\ne0\Rightarrow\nu_n=1_L\},\\
+ \mathcal P:\mathcal D_L\longrightarrow\mathcal A_L,\quad
+              \mathcal P(f,\nu)=(f,P\nu),\\
+ (f,\nu)\circ(g,\mu)=(fg,\nu\circledast\mu).
+ \end{gathered}
+\end{equation}
+A flag has principal tail ideal generated by its first
+label in that tail, so $\mathcal A_L$ is exactly the image
+of $\mathcal P$ and is contained in $\mathcal D_L$.
+The formula for $\circ$ is exactly
+$\mathcal P((f,\nu)(g,\mu))$.
+Its carrier condition follows either from that construction
+or from the nonzero-term argument just used.
+
+The map $\mathcal P$ is an onto unital $S$-algebra homomorphism
+from ordinary coefficient convolution in $\mathcal D_L$
+to $\circ$ in $\mathcal A_L$.
+Addition and the unit are preserved directly.
+For multiplication its exact identity is
+\begin{equation}\tag{SHP9}
+ \mathcal P(vw)=\mathcal P(v)\circ\mathcal P(w),\qquad
+ v\sim w\Longleftrightarrow
+       f_v=f_w\ \text{and }P\nu^v=P\nu^w .
+\end{equation}
+This is (SHP4) with the amplitude product unchanged.
+Thus the displayed relation is a semiring congruence,
+and $\mathcal D_L/\!\sim$ is exactly $\mathcal A_L$.
+The algebra laws of $\circ$ follow either from the proved
+support semiring laws and the amplitude laws, or from this
+surjective homomorphism. The unit has amplitude $1$ and
+support $\mathbf u$; the zero has amplitude $0$ and the
+zero flag. The scalar $(a,\lambda)\in S$ embeds as its
+constant coefficient at degree $0$ and $\tau$ at all
+higher degrees. Formula (SHP5) proves this is unital and
+acts by the original scalar multiplication.
+
+For the original monomial vector $Z$ representing $z$,
+the exact product is
+\begin{equation}\tag{SHP10}
+ Z\circ Z:
+ \quad a_2=1,\ a_i=0\ (i\ne2),\qquad
+ \nu_0=\nu_2=1_L,\quad\nu_i=0_L\ (i\ne0,2).
+\end{equation}
+Its constant coefficient is the supported zero $e$,
+not the additive zero $\tau$.
+More generally $Z^{\circ n}=\mathcal P(z^n)$ has support
+$1_L$ exactly at $i\le n$ of the same parity as $n$.
+This follows from (SHP9) and the exact parity-tail of
+the single monomial label. It exhibits the mixed
+even/odd contribution explicitly rather than dropping
+it from multiplication.
+
+\subsection{The transported heat product with every label retained}
+
+On $\mathcal A_L$, HSL10 and HSL18 give the actual heat group
+\[
+ U_t(f,\nu)=(T_tf,\nu),\qquad
+ T_t=e^{-t\partial_z^2},\qquad U_t^{-1}=U_{-t}.
+\]
+The identity here is the restricted supported-zero heat
+operator $U_e$; it is the identity of this flag space.
+Both the algebra unit and every embedded scalar are fixed.
+Define the transported product
+\begin{equation}\tag{SHP11}
+ v\star_t w=
+ U_t\bigl(U_{-t}v\circ U_{-t}w\bigr)
+   =\bigl(T_t((T_{-t}f)(T_{-t}g)),\
+                         \nu\circledast\mu\bigr).
+\end{equation}
+This is well defined by (SHP2) and the heat bounds in HSL17.
+For example those estimates give the explicit bound
+\[
+ \|T_t((T_{-t}f)(T_{-t}g))\|_h
+ \le\|f\|_{c(h,t)}\|g\|_{c(h,t)},\qquad
+ c(h,t)=\sqrt2\bigl(h+\sqrt{2|t|}\bigr)+\sqrt{2|t|}.
+\]
+In particular the construction is on the complete analytic
+coefficient space, not on an assumed commuting degree
+truncation.
+
+The amplitude product is exactly the convergent Wick series
+\begin{equation}\tag{SHP12}
+ f\star_t^{\mathrm{amp}}g
+     =\sum_{n=0}^{\infty}
+          \frac{(-2t)^n}{n!}f^{(n)}g^{(n)} .
+\end{equation}
+The complete analytic proof is HTP7--10 of
+\nolinkurl{HEAT_TRANSPORTED_PRODUCT.tex}. Its literal bound,
+in the same original-coefficient seminorms, is
+\begin{equation}\tag{SHP13}
+ \sum_{n\ge0}\frac{(2|t|)^n}{n!}
+       \|f^{(n)}g^{(n)}\|_h
+ \le
+ \frac{\|f\|_{\sqrt{2h^2+a^2}}
+       \|g\|_{\sqrt{2h^2+b^2}}}
+      {1-2|t|/(ab)}
+        \qquad(a,b>0,\ ab>2|t|).
+\end{equation}
+For clarity, the finite-polynomial identity behind this
+formula retains the exact sign and factor $2$.
+On $f(x)g(y)$ write $A=\partial_x$ and $B=\partial_y$.
+Evaluation at $x=y=z$ turns $\partial_z$ into $A+B$.
+The commuting exponentials therefore combine as
+$e^{-t(A+B)^2}e^{tA^2}e^{tB^2}=e^{-2tAB}$;
+on polynomials all relevant series terminate.
+The bound (SHP13), density of polynomials and continuity
+of the transported product extend that identity to
+all of $\mathcal E$ with absolute convergence.
+No support label is obtained by discarding a zero
+amplitude term in this series: its support in the
+actual lifted algebra is exactly the product already
+proved in (SHP5) and (SHP11).
+
+The algebra $(\mathcal A_L,\star_t)$ is commutative,
+associative, distributive and unital with the same unit
+and embedded scalars as $(\mathcal A_L,\circ)$.
+These assertions follow by the invertible transport
+definition, using the algebra laws already proved
+for $\circ$ and the linearity of $U_t$.
+The exact time-changing algebra isomorphisms are
+\begin{equation}\tag{SHP14}
+ U_t:(\mathcal A_L,\circ)\xrightarrow{\;\sim\;}
+                (\mathcal A_L,\star_t),\qquad
+ U_s:(\mathcal A_L,\star_t)\xrightarrow{\;\sim\;}
+                (\mathcal A_L,\star_{t+s}).
+\end{equation}
+For the second identity, insert (SHP11) on both sides
+and use $U_{-(t+s)}U_s=U_{-t}$. These maps preserve
+every original coefficient label.
+
+\subsection{The full coefficient map is a faithful algebra morphism}
+
+Let $K$ be the tropical semifield with zero,
+$K_L=K\otimes_{\mathbb B}L$, and
+$\iota_L(\lambda)=1_K\otimes\lambda$.
+The semiring map $\rho_L=\beta_K\otimes\operatorname{id}_L$
+with $\beta_K(a)=1$ for $a\ne0_K$ and $\beta_K(0_K)=0$
+satisfies $\rho_L\iota_L=\operatorname{id}_L$.
+Here a tropical sum is zero exactly when both entries
+are zero, and a tropical product is zero exactly when
+a factor is zero; this proves that $\beta_K$ is a
+unital semiring homomorphism.
+
+For any commutative additively idempotent semiring $A$,
+define $\mathcal F(A)$ to be its parity-decreasing sequences
+for the natural order, with the product in (SHP5) written
+using addition and multiplication in $A$.
+It is a commutative unital semiring.
+One precise proof for possibly incomplete $A$ is to
+embed it into its ordered-ideal completion, whose joins
+and products are the ideals generated by unions and
+pairwise products. Multiplication in that completion
+distributes over arbitrary joins by the generator
+description. The index proof of (SHP4) uses only that
+distributivity and monotonicity, so applies there.
+For already decreasing sequences, the proof of (SHP5)
+uses only finite sums and monotonicity and returns
+entries in the original $A$. The principal-ideal
+embedding is injective, so the proved algebra laws
+descend to $\mathcal F(A)$.
+The unit is $(1_A,0_A,0_A,\ldots)$, not the constant
+sequence of units.
+
+Coordinatewise application of $\iota_L$ and $\rho_L$
+gives unital semiring maps
+\begin{equation}\tag{SHP15}
+ \mathcal F(L)\xrightarrow{\ \mathcal F(\iota_L)\ }
+ \mathcal F(K_L)\xrightarrow{\ \mathcal F(\rho_L)\ }
+ \mathcal F(L),\qquad
+ \mathcal F(\rho_L)\mathcal F(\iota_L)
+                          =\operatorname{id}.
+\end{equation}
+This follows immediately from the finite formula (SHP5);
+order preservation ensures that flags remain flags.
+It proves the full-lattice faithfulness of the support
+map, including all mixed terms in degree zero.
+
+The complete coefficient map is
+\begin{equation}\tag{SHP16}
+ \boldsymbol\Phi:\mathcal A_L
+     \longrightarrow\mathcal E\times\mathcal F(K_L),
+ \qquad(f,\nu)\longmapsto
+                  \bigl(f,(\iota_L(\nu_i))_{i\ge0}\bigr).
+\end{equation}
+It is an injective unital semiring homomorphism for
+$\circ$ and ordinary amplitude multiplication.
+Both coordinates preserve the operations by (SHP5)
+and (SHP15), and equality of their values determines
+$f$ and each $\nu_i$. Its image is exactly those
+$(f,w)$ for which every $w_i$ belongs to $\iota_L(L)$
+and $a_i\ne0$ implies $w_i=1_{K_L}$.
+This is the coefficientwise original map
+$(a_i,\nu_i)\mapsto(a_i,1_K\otimes\nu_i)$ with its
+two coordinates organized into the entire function
+and the complete support flag.
+For $\star_t$, the same map is a unital homomorphism
+to $(\mathcal E,\star_t^{\mathrm{amp}})
+\times\mathcal F(K_L)$.
+Its heat intertwiner is exactly
+$\boldsymbol\Phi U_s=(T_s,\operatorname{id})
+\boldsymbol\Phi$, with the products transported
+according to (SHP14).
+
+\subsection{Synchronization to the global function carrier is a localization}
+
+The independently labelled algebra is not identified
+with one globally labelled function. Its exact morphism
+to that object is
+\begin{equation}\tag{SHP17}
+ g:\mathcal A_L\longrightarrow G_L(\mathcal E),\qquad
+ g(f,\nu)=(f,\nu_0\vee\nu_1).
+\end{equation}
+This belongs to the stated carrier: if $f\ne0$, some
+$a_n\ne0$ forces $\nu_n=1_L$, and its parity flag
+forces $\nu_0=1_L$ or $\nu_1=1_L$.
+The map is unital and additive.
+For multiplication (SHP5) gives the exact identity
+\begin{equation}\tag{SHP18}
+ (\nu\circledast\mu)_0\vee(\nu\circledast\mu)_1
+   =(\nu_0\vee\nu_1)\wedge(\mu_0\vee\mu_1).
+\end{equation}
+Indeed the left side is the join of the four meets
+$\nu_i\wedge\mu_j$ for $i,j\in\{0,1\}$, which is
+the distributed right side. This proves the
+multiplicative assertion, not merely equality of
+underlying amplitudes.
+
+There is an explicit zero-preserving, additive and
+multiplicative section
+\begin{equation}\tag{SHP19}
+ j:G_L(\mathcal E)\longrightarrow\mathcal A_L,\qquad
+ j(f,\lambda)=(f,(\lambda,\lambda,\lambda,\ldots)),\qquad
+ gj=\operatorname{id}.
+\end{equation}
+If $f\ne0$ its label is top, so the carrier condition
+holds at every coefficient; if $f=0$ it imposes
+no restriction. The labels form a flag.
+Addition is immediate, and (SHP5) shows that the
+product of two constant flags is their constant meet.
+This proves the three preserved operations and the
+section identity.
+
+The section's unit is the following particular idempotent:
+\begin{equation}\tag{SHP20}
+ J=j(1,1_L)
+    =(1,(1_L,1_L,1_L,\ldots)),\qquad
+ J\circ J=J,\qquad J\circ v=jg(v).
+\end{equation}
+It is distinct from the unit of $\mathcal A_L$, whose
+support is $(1_L,0_L,0_L,\ldots)$.
+For the last identity the amplitude is still $f$.
+Its degree-zero support is $\nu_0\vee\nu_1$.
+For every $n\ge1$, the support is
+$\bigvee_{i=0}^{n}\nu_i=\nu_0\vee\nu_1$,
+because the flags decrease separately by parity.
+This proves the entire coefficient equality.
+Although $J$ has the constant polynomial amplitude $1$,
+its support has infinitely many nonzero labels.
+It belongs to the completed original-lattice flag
+domain and is not a finite-support coefficient vector.
+In particular $J$ is not a supported-zero element:
+its amplitude is the unit $1$.
+
+For a commutative semiring $A$ and idempotent $c$,
+$A[c^{-1}]\simeq cA$ with internal unit $c$.
+Indeed an invertible idempotent in a receiving semiring
+equals its unit, so every map inverting $c$ factors
+uniquely through $a\mapsto ca$; equality there is
+exactly $ca=cb$. Applying this proved universal
+property to (SHP20) yields
+\begin{equation}\tag{SHP21}
+ \mathcal A_L[J^{-1}]
+       \simeq J\mathcal A_L
+       \xrightarrow[\ g\ ]{\ \sim\ }G_L(\mathcal E),
+       \qquad g^{-1}=j.
+\end{equation}
+The map $j$ is unital into the corner whose unit is
+$J$, not into all of $\mathcal A_L$.
+The localization congruence and its complete fibres are
+\begin{equation}\tag{SHP22}
+ \begin{gathered}
+ (f,\nu)\sim_J(h,\mu)
+    \Longleftrightarrow f=h,\
+                  \nu_0\vee\nu_1=\mu_0\vee\mu_1,\\
+ g^{-1}(f,\lambda)=
+ \{(f,\nu):\nu_i\ge\nu_{i+2},\
+       \nu_0\vee\nu_1=\lambda,\
+       a_i\ne0\Rightarrow\nu_i=1_L\}.
+ \end{gathered}
+\end{equation}
+Necessity is the definition of $g$.
+Sufficiency and the complete equality congruence follow
+from $Jv=jg(v)$ and injectivity of $j$.
+Every displayed target has a preimage (SHP19).
+This specifies exactly the mixed-support information
+that synchronization loses while retaining the entire
+analytic amplitude.
+
+There is a different idempotent that performs amplitude
+erasure:
+\begin{equation}\tag{SHP23}
+ e_0=(0,(1_L,0_L,0_L,\ldots)),\qquad
+ e_0\circ(f,\nu)=(0,\nu),\qquad e_0^2=e_0.
+\end{equation}
+It is precisely the embedded constant scalar $e\in S$.
+The support equality follows from (SHP5), since the
+only nonzero label of $e_0$ is in degree zero.
+Thus
+\begin{equation}\tag{SHP24}
+ \begin{gathered}
+ \mathcal A_L[e_0^{-1}]\simeq\mathcal F(L),\qquad
+ \mathcal A_L[(e_0\circ J)^{-1}]\simeq L,\\
+ \begin{array}{ccc}
+ \mathcal A_L&\xrightarrow{\ g\ }&G_L(\mathcal E)\\
+ {\scriptstyle(f,\nu)\mapsto\nu}\big\downarrow
+ &&\big\downarrow{\scriptstyle(f,\lambda)\mapsto\lambda}\\
+ \mathcal F(L)&\xrightarrow{\ \nu\mapsto\nu_0\vee\nu_1\ }&L .
+ \end{array}
+ \end{gathered}
+\end{equation}
+The first isomorphism identifies the corner $e_0\mathcal A_L$
+with its full flag and its internal unit with $\mathbf u$.
+The product $e_0\circ J$ has amplitude zero and every
+coefficient label top. Its corner consists exactly of
+zero amplitudes with constant flags, which is $L$.
+All maps in the square are unital for their own
+displayed target identities and are multiplicative
+by (SHP18).
+The two routes agree at every element. Localizing
+successively at the two commuting idempotents gives
+the same corner as localizing at their product:
+making their product invertible makes both factors
+invertible, and the converse is immediate.
+This proves the complete commuting localization
+description, including the distinction between
+amplitude erasure and support synchronization.
+
+\subsection{The joint coefficient square and its exact localization}
+
+For any commutative idempotent semiring $A$ set
+$\epsilon_A:\mathcal F(A)\to A$ by
+$\epsilon_A(w)=w_0+w_1$.
+The proof of (SHP18), using addition and multiplication
+in $A$, proves that this is a unital semiring map.
+Its constant-flag section has internal unit
+$\mathbf J_A=(1_A,1_A,\ldots)$, and multiplication
+by $\mathbf J_A$ sends every flag to the constant
+flag of its $\epsilon_A$ value.
+The argument uses only the parity inequalities,
+so it applies to $A=K_L$.
+
+The full original coefficient map consequently has
+the exact commuting square
+\begin{equation}\tag{SHP25}
+ \begin{array}{ccc}
+ \mathcal A_L&
+    \xrightarrow{\ \boldsymbol\Phi\ }&
+       \mathcal E\times\mathcal F(K_L)\\
+ {\scriptstyle g}\big\downarrow
+ &&\big\downarrow{\scriptstyle
+                   \operatorname{id}_{\mathcal E}\times\epsilon_{K_L}}\\
+ G_L(\mathcal E)&
+    \xrightarrow{\ \Phi_{\mathcal E}\ }&
+       \mathcal E\times K_L,
+ \end{array}
+ \qquad
+ \Phi_{\mathcal E}(f,\lambda)=(f,1_K\otimes\lambda).
+\end{equation}
+Both composites give
+$(f,\iota_L(\nu_0\vee\nu_1))$.
+The right vertical map is localization at
+$\boldsymbol\Phi(J)=(1,\mathbf J_{K_L})$:
+its corner consists of all amplitudes together with
+a constant $K_L$-flag, with identity
+$(1,\mathbf J_{K_L})$.
+The left vertical map is localization at $J$ by
+(SHP21). Hence (SHP25) is also a pushout of
+unital semirings. Directly, a map from its top-right
+object agreeing with a map from the lower-left
+object must invert $\boldsymbol\Phi(J)$, and
+therefore factors uniquely through the corner
+just calculated. The converse is immediate.
+This proves the universal property and every
+connecting map of the square.
+
+For completely general ideal-labelled flags the same
+construction retains a precise completed joint map.
+Replace $L$ by $\widehat L$ and $K_L$ by
+$\mathfrak K_L=\operatorname{Idl}_{\mathrm{ord}}(K_L)$.
+The map on labels is the explicit HSL33 morphism
+\[
+ \iota^\#(I)=\{w\in K_L:
+                   \exists a\in I,\ w\le\iota_L(a)\}.
+\]
+It preserves arbitrary joins, products and the unit,
+and its retraction is the lower ideal generated by
+$\rho_L(w)$ for $w$ in the input ideal.
+The composition is the identity, because
+$\rho_L\iota_L=\operatorname{id}_L$ and both maps
+are monotone. Applying these maps to flags preserves
+(SHP5), so it gives the injective completed version
+of (SHP16) and the complete square (SHP25).
+For each original label $\lambda$ this map is
+$\downarrow\lambda\mapsto\downarrow\iota_L(\lambda)$.
+Thus the completed square restricts to the original
+one via explicit principal-ideal embeddings, with
+no identification of $L$ with a Boolean lattice.
+
+\subsection{Transported synchronization and the actual theta fibre}
+
+Let $\mathcal E_t$ denote the ring whose underlying
+vector space is $\mathcal E$ and whose multiplication
+is (SHP12). The unchanged set map $g$ is a unital
+semiring homomorphism
+$(\mathcal A_L,\star_t)\to G_L(\mathcal E_t)$.
+For a map into the ordinary-product global carrier,
+the exact morphism instead is
+\begin{equation}\tag{SHP26}
+ \begin{gathered}
+ \gamma_t:(\mathcal A_L,\star_t)\longrightarrow G_L(\mathcal E),
+       \qquad \gamma_t(f,\nu)
+              =(T_{-t}f,\nu_0\vee\nu_1),\\
+ j_t(f,\lambda)=(T_tf,(\lambda,\lambda,\ldots)),\qquad
+ \gamma_tj_t=\operatorname{id}.
+ \end{gathered}
+\end{equation}
+The amplitude assertion follows from the transport
+definition, which makes $T_{-t}:\mathcal E_t\to\mathcal E$
+a unital ring isomorphism. The support assertion is
+again (SHP18). Nonzero functions remain nonzero
+under $T_t$, so all displayed carriers are respected.
+
+The element $J$ is fixed by every heat map because
+$T_t1=1$ and labels are unchanged. It satisfies
+\begin{equation}\tag{SHP27}
+ J\star_t v=jg(v)=j_t\gamma_t(v),\qquad
+ (\mathcal A_L,\star_t)[J^{-1}]
+      \simeq G_L(\mathcal E_t)
+      \xrightarrow[\ T_{-t}\ ]{\ \sim\ }G_L(\mathcal E).
+\end{equation}
+For the first equality apply the transport definition
+to $J\circ U_{-t}v=jg(U_{-t}v)$ and then apply $U_t$.
+Its amplitude returns to $f$ and its label is constant
+$\nu_0\vee\nu_1$, proving the equality coefficient by
+coefficient. The same idempotent-corner argument
+therefore proves the localization statement.
+In particular changing the product without changing
+the amplitude map has not been silently treated
+as a map to the ordinary function ring.
+
+Finally consider the actual theta heat family $H_s$.
+THS9 proves that every even Taylor coefficient of
+$H_s$ is nonzero at each real $s$, while THS8 gives
+all odd coefficients equal to zero.
+Consequently the complete fibre of (SHP17) over
+$(H_s,1_L)$ at real time is
+\begin{equation}\tag{SHP28}
+ g^{-1}(H_s,1_L)=
+ \{(H_s,\nu):
+     \nu_{2j}=1_L\text{ for every }j,\quad
+     \nu_1\ge\nu_3\ge\nu_5\ge\cdots
+        \text{ is any flag in }L\}.
+\end{equation}
+Nonvanishing forces each even label to be top.
+The odd amplitudes impose no further carrier condition,
+and the flag requirement is exactly the displayed
+descending odd sequence. Conversely every such
+sequence is admissible and has global label top.
+This proves both inclusions and thus the full fibre.
+The cosine-series lift used in THS18 and HSL31
+selects the zero odd flag; it is one specified member
+of this complete mixed-support fibre.
+The globally constant-label section $j(H_s,1_L)$
+instead selects the top odd flag.
+Their amplitudes agree, their full support objects
+are distinct, and their exact connecting localization
+is (SHP21), not an unproved identification.
+
+All results above concern the constructed full support
+algebras, their heat products and their exact morphisms.
+They keep the actual analytic amplitude throughout
+the synchronization map and identify exactly where
+amplitude information is discarded by the different
+supported-zero localization in (SHP24).

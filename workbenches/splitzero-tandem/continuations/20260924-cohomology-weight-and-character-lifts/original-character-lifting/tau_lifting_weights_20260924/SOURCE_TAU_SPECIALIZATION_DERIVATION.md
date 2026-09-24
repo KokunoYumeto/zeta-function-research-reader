@@ -1,0 +1,431 @@
+# The current \(Z_1/\tau\) source: spectrum, specialization and the two arithmetic actions
+
+24 September 2026. Independent derivation from the current B1–B5, not from the older supported-zero semiring. The source is kept in the user's notation. Its arithmetic comes from the complete integer layer already supplied after the programme's global reconstruction. This document constructs the localization sheaf, the specialization by integer \(1\), its exact nonfaithful fibres, the universal additive receiver, and the morphisms relating scalar arithmetic, arithmetic power maps and the actual idèle action.
+
+## ST0. Corpus and prerequisites
+
+The controlling statements are the verbatim user definitions (private construction record; not included), U01–U18, and the [source operations and proofs](../foundations/user_definitions_20260924/SOURCE_OPERATIONS_AND_PROOFS.md), B1–B5 and P1–P5. They were read before the derivation. The current corpus and operation rules (private construction record; not included) and the full retained arguments about the whole counting history were also consulted in the verbatim record (private construction record; not included), especially lines 18538–18541, 19055–19083, 19169–19181, 19202–19242 and 19262 onward.
+
+These require that \(Z_0\) denotes absence, \(Z_1/\tau\) denotes primitive presence without \(Z_2\) parity, and \(Z_2\) denotes the retained parity data of nonzero integers. No source addition on \(\tau\) is used. No arithmetic coordinate, midpoint, distance or weight is assigned to \(\tau\). The complete already reconstructed integer layer is an input; no finite prime sample is substituted for the user's whole-history construction.
+
+A bounded duplication check was made in the current foundational and lifting files. The monoid laws and the distinction of the two identities are already P1–P5, and are cited rather than claimed as new. The localization sheaf and the complete action-category calculation below were not found in that bounded check. This is not a claim to have reread every historical file.
+
+Let \(S\) denote the carrier consisting of the supplied integers and the additional primitive \(\tau\). The only operations used initially are:
+\[
+ \tau s=s\tau=s,\qquad mn=\text{the original integer product},
+\tag{ST0.1}
+\]
+and the already supplied \(+\) and \(-\) on pairs of integers. Thus \(0\) is absorbing, integer \(1\) is an idempotent distinct from the global identity \(\tau\), and no integer is a unit for the global identity: a product with an integer is still an integer, not \(\tau\).
+
+## ST1. Multiplication by integer \(1\) is the exact arithmetic specialization
+
+Put \(M=(\mathbb Z,\cdot,1,0)\), the original integer multiplicative monoid. The maps
+\[
+ c:S\longrightarrow M,\quad c(s)=1\cdot s,
+ \qquad
+ j:M\longrightarrow S,\quad j(n)=n
+\tag{ST1.1}
+\]
+are explicit. Here \(c(\tau)=1\), \(c(n)=n\), \(cj=\mathrm{id}_M\), and
+\[
+ jc(s)=1s.
+\tag{ST1.2}
+\]
+The map \(c\) preserves multiplication: \(c(s)c(t)=(1s)(1t)=1st=c(st)\), using \(1^2=1\). It takes the source global identity to the target's identity and zero to zero. It also preserves every *defined* integer sum and difference, because its restriction to the integer layer is identity. The inclusion \(j\) preserves integer arithmetic and multiplication, but it is not a homomorphism of globally unital monoids: it sends the identity of \(M\) to integer \(1\), not to \(\tau\).
+
+The exact equivalence relation induced by \(c\) is
+\[
+ s\sim t\quad\Longleftrightarrow\quad
+ s=t\ \text{or}\ \{s,t\}=\{\tau,1\}.
+\tag{ST1.3}
+\]
+Every other fibre is a singleton. Thus the map is not presented as a faithful typed identification. The output \(1\) in \(c(\tau)=1\) comes from the already supplied input integer \(1\) in \(1\cdot\tau\); it is not parity generated from \(\tau\) alone. Source \(\tau\) still has no \(Z_2\) datum.
+
+This is precisely localization at the integer idempotent \(1\). Indeed if a unital monoid map \(f:S\to N\) makes \(f(1)\) invertible, then \(f(1)^2=f(1)\) and cancellation by its inverse give \(f(1)=1_N=f(\tau)\). Hence \(f\) factors uniquely through (ST1.3), giving \(S[1^{-1}]\cong M\). Conversely \(c(1)=1_M\) is invertible, establishing the universal property in both directions. No sum involving \(\tau\) has entered the proof.
+
+## ST2. The complete multiplicative prime spectrum
+
+A monoid ideal here means a subset containing \(0\), stable under multiplication by every source element. It is prime when proper and its complement is closed under multiplication. This definition uses no source addition.
+
+For each subset \(T\) of the ordinary rational primes, define
+\[
+ P_T=\{0\}\cup
+ \{n\in\mathbb Z\setminus\{0\}:\text{some }p\in T\text{ divides }n\}.
+\tag{ST2.1}
+\]
+There is one further prime
+\[
+ \mathfrak m=\mathbb Z\subset S.
+\tag{ST2.2}
+\]
+These are all the multiplicative prime ideals.
+
+**Proof.** The displayed \(P_T\) is an ideal because divisibility by a member of \(T\) survives multiplication, and it does not contain \(\tau\). If neither factor is zero or divisible by a member of \(T\), their product has the same property by unique prime factorization. This proves primality. The complement of \(\mathfrak m\) is \(\{\tau\}\), also multiplicatively closed.
+
+Conversely let \(P\) be prime. It cannot contain \(\tau\), since multiplying \(\tau\) by every \(s\) would give \(P=S\). If it contains integer \(1\), its ideal property gives all integers, hence \(P=\mathfrak m\). Otherwise \(-1\notin P\), since \((-1)^2=1\). For every nonzero integer \(n\), factor \(n\) into its sign and finitely many ordinary primes. If \(n\in P\), repeated primality forces one of those primes into \(P\); the sign cannot be responsible. If a prime factor is in \(P\), the ideal property gives \(n\in P\). Taking \(T=\{p:p\in P\}\) proves \(P=P_T\). ∎
+
+The specialization order is
+\[
+ P_T\subseteq P_U\quad\Longleftrightarrow\quad T\subseteq U,
+ \qquad P_T\subsetneq\mathfrak m.
+\tag{ST2.3}
+\]
+In particular the complete multiplicative spectrum is larger than ordinary ring \(\operatorname{Spec}\mathbb Z\); that difference has been calculated rather than suppressed.
+
+Primitive \(\tau\) is the unit element of this source, not itself a prime ideal. The extra point just constructed is the ideal \(\mathfrak m=\mathbb Z\). Its later residue description does not identify it with a differently constructed privileged generic or support point \(\eta\) in the user's full geometry. This spectrum is the explicitly specified multiplicative-spectrum functor applied to B1–B5; any identification with that additional geometry must retain its separate map.
+
+Now retain the supplied integer addition too, by requiring that a prime ideal be closed under every defined sum of its integer members. The proper \(P_T\) satisfying this condition are exactly \(P_\varnothing=\{0\}\) and \(P_{\{p\}}=p\mathbb Z\); \(\mathfrak m\) also satisfies it. To prove this, if \(T\) contains distinct primes \(p,q\), integer Bézout gives integers \(a,b\) with \(ap+bq=1\). Both summands belong to \(P_T\), so additive closure would give \(1\in P_T\), impossible. Conversely \(\{0\}\), \(p\mathbb Z\), and \(\mathbb Z\) are closed under the stated integer sums and products. No addition on \(\tau\) was needed. Denote this arithmetic-compatible subspace by
+\[
+ X_{\rm ar}=\{P_\varnothing\}\cup\{p\mathbb Z:p\text{ prime}\}
+ \cup\{\mathfrak m\}.
+\tag{ST2.4}
+\]
+
+## ST3. Localizations, their kernels, and the structure sheaf
+
+On the full spectrum \(X\), use the basic opens \(D(s)=\{P:s\notin P\}\). Directly from ST2,
+\[
+ D(\tau)=X,\quad D(0)=\varnothing,\quad
+ D(1)=X\setminus\{\mathfrak m\},
+\]
+\[
+ D(n)=\{P_T:T\cap\{p:p\mid n\}=\varnothing\}
+ \quad(n\in\mathbb Z\setminus\{0\}).
+\tag{ST3.1}
+\]
+The only open neighbourhood of \(\mathfrak m\) is \(X\): a basic open containing it must be \(D(\tau)\).
+
+For a multiplicative set \(U\subset S\), localization consists of fractions \((s,u)\), with
+\[
+ (s,u)\sim(t,v)
+ \quad\Longleftrightarrow\quad
+ \text{there is }w\in U\text{ such that }wvs=wut.
+\tag{ST3.2}
+\]
+This is an equivalence relation: transitivity follows by multiplying the two witnessing equations by the remaining denominators; reflexivity and symmetry are immediate. Multiplication of fractions is well-defined by multiplying the witnessing equations. Its universal map sends every \(u\in U\) to a unit, and any map doing so factors uniquely by \(s/u\mapsto f(s)f(u)^{-1}\). This constructs the localization rather than assuming cancellation in \(S\).
+
+At \(\mathfrak m\), the denominator set is \(\{\tau\}\), so the stalk is exactly
+\[
+ S_{\mathfrak m}=S.
+\tag{ST3.3}
+\]
+At \(P_T\), integer \(1\) is inverted, and
+\[
+ S_{P_T}\cong
+ \left\{\frac ab\in\mathbb Q:
+ a\in\mathbb Z,\ b\in\mathbb Z\setminus\{0\},
+ \ p\nmid b\ \text{for every }p\in T\right\}
+\tag{ST3.4}
+\]
+as multiplicative monoids with zero. A fraction from \(S\) is sent to \(c(s)/c(u)\). The relations ST3.2 imply equality of these rational numbers. Conversely equality of the rational numbers supplies the same localization equality after multiplying by the allowed integer \(1\), which identifies only \(\tau\) and integer \(1\). Thus this map is an isomorphism with the displayed fraction monoid.
+
+The map \(S\to S_{P_T}\) has the exact fibre \(\{\tau,1\}\) over its identity and is injective on the integer part. In particular no claim of a faithful source localization is made. For \(T=\varnothing\) the stalk is the multiplicative monoid of \(\mathbb Q\); for \(T=\{p\}\) it is the multiplicative monoid of \(\mathbb Z_{(p)}\); for arbitrary \(T\) it is the displayed semilocal integer localization. All its integer operations are receiver operations inherited from those fractions, not source operations on \(\tau\).
+
+Define the sheaf \(\mathcal O_S\) by functions on an open \(U\) taking values in the indicated stalks and locally represented by a fraction \(s/u\) with \(u\) absent from every prime in that neighbourhood. Matching functions glue uniquely, and the local fraction property survives gluing; hence this is a sheaf. Its stalks are the localizations just constructed, because equality of germs is witnessed by ST3.2 after restricting to a suitable denominator open.
+
+Its global sections are exactly \(S\). A local representation around \(\mathfrak m\) must hold on the whole of \(X\), and its denominator there can only be \(\tau\); hence every global section comes from a unique \(s\in S\), with uniqueness checked in the stalk \(S_{\mathfrak m}=S\).
+
+For nonzero integer \(n\),
+\[
+ \Gamma(D(n),\mathcal O_S)=S[n^{-1}]
+ \cong(\mathbb Z[1/n],\cdot).
+\tag{ST3.5}
+\]
+Here is a direct proof of the section assertion. The prime \(P_T\), where \(T\) consists of all primes not dividing \(n\), is contained in \(D(n)\). Every relative basic neighbourhood of it in \(D(n)\) equals \(D(n)\): any allowed denominator can have prime factors only among those dividing \(n\). Such denominators are invertible in \(\mathbb Z[1/n]\), since each \(p\mid n\) has inverse \((n/p)/n\). A local representation at this point therefore represents the section on all of \(D(n)\), with exactly the displayed denominators. Uniqueness follows in the rational stalk.
+
+Restriction to \(X_{\rm ar}\) has the same stalks at its retained points. Its open \(D(1)\cap X_{\rm ar}\) is ordinary \(\operatorname{Spec}\mathbb Z\), with the ordinary arithmetic structure sheaf when the already defined integer additions are retained. The extra closed point has stalk \(S\), and the specialization-induced maps from that stalk to the integer stalks are precisely ST3.4. No ring addition at the extra point is invented.
+
+The residue *pointed monoid* at the closed point is
+\[
+ S/\mathfrak m=\{0,\tau\},
+\tag{ST3.6}
+\]
+where all integers are collapsed to its absorbing element and \(\tau\) remains its identity. This quotient only preserves multiplication. It is not an equality of source \(\tau\) with a scalar, nor a Boolean addition law. A residue ring at an ordinary arithmetic point additionally uses the existing integer additive congruence; the two types of residue must not be interchanged.
+
+## ST4. The source specialization on actions, before linearization
+
+An action of \(S\) on a set \(X\) means maps \(A_s:X\to X\) with \(A_\tau=\mathrm{id}\) and \(A_sA_t=A_{st}\). No vector space or parity on \(X\) is presumed. Put
+\[
+ E=A_1,\qquad O=A_0.
+\]
+Then
+\[
+ E^2=E,\quad O^2=O,\quad EO=OE=O,\qquad
+ A_nE=EA_n=A_n\quad(n\in\mathbb Z).
+\tag{ST4.1}
+\]
+All follow by applying the source multiplication law. Thus \(Y=EX\) is an invariant retract:
+\[
+ X\xrightarrow{E}Y\xrightarrow{\iota}X,\qquad
+ E\iota=\mathrm{id}_Y.
+\tag{ST4.2}
+\]
+On \(Y\), integer \(1\) acts as identity, and the source action factors through the localization \(c:S\to M\). For every \(s\in S\),
+\[
+ E A_s=A_{c(s)}E.
+\tag{ST4.3}
+\]
+Every equivariant map from \(X\) to an action in which integer \(1\) is identity factors uniquely through \(E\): it sends \(x\) and \(Ex\) to the same point. Conversely the induced map on \(Y\) is equivariant. Consequently \(Y\) is the exact localization of the action, with equivalence relation
+\[
+ x\sim y\quad\Longleftrightarrow\quad Ex=Ey.
+\tag{ST4.4}
+\]
+This records its entire possible nonfaithfulness.
+
+There is a full reconstruction of the action. Above each \(y\in Y\), retain the fibre \(X_y=E^{-1}(y)\), with its distinguished element \(\iota(y)\). Every integer sends any \(x\in X_y\) to \(\iota(A_n y)\), while \(\tau\) fixes \(x\). These formulas reconstruct the action and prove the product law, since \(A_mA_nx=\iota(A_{mn}y)\). Thus the specialization does not merely discard an unknown difference: its exact retained data are the integer action on \(Y\) and the specified fibres with their marked sections.
+
+The zero action need not be constant on an unpointed action. The image \(OX\) consists of points fixed by every \(A_s\), and every fibre of \(O\) is preserved by the action. On each such fibre the zero action is constant at its distinguished fixed point. This observation will retain independently labelled zero amplitudes in ST9. If a pointed action is specified with \(A_0\) the constant basepoint, its quotient \(X/Y\), collapsing the invariant image \(Y\), carries the residue action \(S/\mathfrak m\): every integer sends it to the basepoint and \(\tau\) acts identically.
+
+In particular an integer \(n\) can act invertibly on all of \(X\) only when \(E=\mathrm{id}\), since \(A_nE=A_n\) and cancellation by the inverse gives that identity. This is an exact fact about this same action, not a claim that another geometric Frobenius action cannot exist.
+
+## ST5. Linear actions and the additional requirement of integer additivity
+
+First consider a complex vector space \(V\) with a multiplicative \(S\)-action by linear maps, with \(A_0=0\). The existing additive receiver makes the idempotent splitting explicit:
+\[
+ V=V_+\oplus V_-,\qquad
+ V_+=EV,\quad V_-=\ker E.
+\tag{ST5.1}
+\]
+Indeed \(v=Ev+(v-Ev)\), the second summand is killed by \(E\), and the intersection is zero. These are vector-space operations in the receiver, not subtraction from primitive \(\tau\). Every integer acts by
+\[
+ A_n=\begin{pmatrix}B_n&0\\0&0\end{pmatrix},\qquad
+ B_1=\mathrm{id}_{V_+},\quad B_mB_n=B_{mn},
+\tag{ST5.2}
+\]
+while \(A_\tau=\mathrm{id}_{V_+}\oplus\mathrm{id}_{V_-}\). This follows from \(A_nE=EA_n=A_n\). Conversely every such multiplicative integer action \(B_n\) gives an \(S\)-action by these formulas. The residue boundary is exactly \(V_-\), and the arithmetic specialization is \(E:V\to V_+\), with its canonical inclusion.
+
+Now retain B4 as an operation-preservation requirement too:
+\[
+ A_{m+n}=A_m+A_n\qquad(m,n\in\mathbb Z).
+\tag{ST5.3}
+\]
+Induction starting at \(A_1=E\), then \(A_{-n}=-A_n\), proves the much stronger exact classification
+\[
+ \boxed{A_n=nE\quad(n\in\mathbb Z).}
+\tag{ST5.4}
+\]
+Conversely this formula preserves every defined integer addition, subtraction and product, as well as the supplied mixed multiplication with \(\tau\). Thus arbitrary multiplicative prime matrices are **not** representations preserving B4 in ordinary endomorphism addition.
+
+There is an explicit universal receiver justifying this construction. Form the unital ring \(U_S\) from formal symbols \([s]\), \(s\in S\), with
+\[
+ [0]=0,\quad[\tau]=1_{U_S},\quad[s][t]=[st],\quad
+ [m]+[n]=[m+n]\ (m,n\in\mathbb Z).
+\tag{ST5.5}
+\]
+It is constructed as the quotient of the free unital associative ring by precisely these relations. The bracket is a receiving map, not equality of the source element and the receiving symbol. No source addition involving \(\tau\) is pulled back from this ring.
+
+With \(\epsilon=[1]\), the relations imply \([n]=n\epsilon\) and \(\epsilon^2=\epsilon\), while \([\tau]\) remains the formal global unit. The maps
+\[
+ U_S\longleftrightarrow\mathbb Z[\epsilon]/(\epsilon^2-\epsilon)
+\tag{ST5.6}
+\]
+sending these named generators to each other are inverse: each respects all defining relations, and each composite fixes the generators. This proves the isomorphism and the universal property. A map preserving all defined source operations into a unital ring factors uniquely through the displayed quotient by its values on the generators.
+
+The source comparison remains injective. Distinct integer symbols have distinct values because evaluation at \(\epsilon=1\) recovers their original integers. The formal global unit differs from every \(n\epsilon\) because evaluation at \(\epsilon=0\) sends the former to one and the latter to zero. This proof does not assign either evaluation, or its parity, to primitive \(\tau\); they are explicit tests of equality in the receiving ring. In particular the new ambient expression \([\tau]+[\tau]\) is not used to define \(\tau+\tau\) in the source.
+
+The additive decomposition in the receiver is
+\[
+ U_S=\epsilon U_S\oplus(1_{U_S}-\epsilon)U_S.
+\tag{ST5.7}
+\]
+Each factor is a copy of \(\mathbb Z\), their mixed products vanish, and the second is annihilated by every integer symbol \(n\epsilon\). Tensoring this expressly constructed receiver with \(\mathbb C\) gives the classification ST5.4. It never identifies source \(\tau\) with the scalar identity of the integer layer.
+
+## ST6. The actual lifting map and independent Frobenius
+
+The source specialization in any B4-preserving complex receiver is the exact sequence
+\[
+ 0\longrightarrow V_-\longrightarrow V
+ \xrightarrow{E}V_+\longrightarrow0,
+\tag{ST6.1}
+\]
+with canonical section the inclusion \(i:V_+\to V\). Its extension class is zero by the displayed decomposition; no purity assumption is needed.
+
+If a further invertible family \(F_a\) commutes with the source action, it commutes with \(E\), hence preserves \(V_+\) and \(V_-\). In the decomposition,
+\[
+ F_a=F_a^+\oplus F_a^-.
+\tag{ST6.2}
+\]
+The section and retraction in ST6.1 are then equivariant for the entire family. Thus every connecting map produced by this actual source specialization is zero: lift a cocycle through \(i\), whose equivariance makes its coboundary the lift of the original coboundary.
+
+The cross-extension vanishing holds in every degree in the category retaining both source and commuting \(F\)-actions. On \(V_+\), the central operator \(\epsilon\) acts as identity; on \(V_-\), it acts as zero. The action of a central operator on Ext through its two variables agrees, as follows by applying it to a free resolution and commuting it through module-linear cochains. Therefore every \(\operatorname{Ext}^r(V_+,V_-)\) and \(\operatorname{Ext}^r(V_-,V_+)\) is simultaneously killed by \(\epsilon\) and by \(1-\epsilon\), so is zero. In degree zero this is simply \(h=hE=Eh=0\) for a cross-map. This is idempotent separation proved from the source laws, not an assumed numerical weight separation.
+
+The numerical weights of the independent \(F\)-action have not been prescribed by this proof. Every pair of \(F\)-representations gives such a source-equivariant receiver: use their direct sum and define integer \(n\) to act as \(n\mathrm{id}\oplus0\), and \(\tau\) to act as the identity operator. Conversely ST5–ST6 recover that pair from every such receiver. This is an equivalence of the explicitly specified receiving categories, not a counterexample claimed against the user's full geometry.
+
+The *same* integer multiplication action has zero prime operator on \(V_-\), by ST5.4. Zero is not an invertible Frobenius eigenvalue and has no finite numerical Deligne weight. The independent \(F_p^-\) can nevertheless be invertible. The exact relation is the commuting pair of actions just constructed, not an assertion that they are unrelated.
+
+For the actual retained programme take
+\[
+ V=Q\oplus\mathcal B_{\rm pr},
+\quad
+ A_n=n\mathrm{id}_Q\oplus0,\quad A_\tau=\mathrm{id}_V,
+\]
+\[
+ F_b=W_b^Q\oplus
+ \left(\mathrm{id}_{W_{\rm pr}}\otimes
+ \begin{pmatrix}1&0\\0&b\end{pmatrix}\right).
+\tag{ST6.3}
+\]
+Here \(Q\), \(W_b^Q\), and the actual adelic endpoint action are those constructed with their original factors in [ACTUAL_ADELIC_COMPLEX_INDEPENDENT.md](ACTUAL_ADELIC_COMPLEX_INDEPENDENT.md), AC1–AC7. Every commutation and product law in ST6.3 follows from scalar multiplication and the already proved \(W_a^QW_b^Q=W_{ab}^Q\). The full source laws, including integer addition, hold on \(V\); the endpoint's independent \(F_p\)-weights remain exactly 0 and 2. The actual Mellin jets \(Q\to A_\rho\) are \(F\)-equivariant, while \(A_n\) acts on their arithmetic receiving vectors as the scalar \(n\). This exhibits a concrete comparison retaining the two actions and both endpoints. It does not claim that this direct-sum receiver has already been identified with a geometric specialization sheaf.
+
+## ST7. Arithmetic power maps preserve addition in an exact different operation
+
+The source integer operations also act on every abelian group \(H\), written multiplicatively, by the arithmetic power maps
+\[
+ [n](h)=h^n,\qquad n\in\mathbb Z.
+\tag{ST7.1}
+\]
+Their composition obeys \([m][n]=[mn]\). Their sum as group endomorphisms is the pointwise group product, and
+\[
+ ([m]+[n])(h)=h^mh^n=h^{m+n}=[m+n](h).
+\tag{ST7.2}
+\]
+Thus the integer addition is preserved exactly in the abelian-group endomorphism ring. Its zero map is \(h\mapsto1_H\). The global \(\tau\)-action is the identity map on \(H\), and so this action factors through \(c:S\to M\); its lost source fibre remains exactly the \(\tau,1\) distinction.
+
+The passage to functions has an equally exact formula. On the algebraic torus take the coordinate Hopf algebra
+\[
+ B=\mathbb C[z,z^{-1}],\quad
+ \Delta(z)=z\otimes z,\quad \varepsilon(z)=1.
+\]
+Define \(\Phi_n(z)=z^n\), extended to an algebra homomorphism. For all integer \(m,n\),
+\[
+ \Phi_m\Phi_n=\Phi_{mn},\qquad
+ \boxed{\Phi_{m+n}=\mu(\Phi_m\otimes\Phi_n)\Delta.}
+\tag{ST7.3}
+\]
+Both equations are checked on every monomial \(z^r\): the first gives \(z^{rmn}\), the second \(z^{rm}z^{rn}=z^{r(m+n)}\). Linearity proves them on all Laurent polynomials. In particular \(\Phi_0=\mathrm{unit}\circ\varepsilon\), not the zero linear operator. The operation on the right of ST7.3 is the explicit convolution induced by group multiplication. It is not ordinary sum of linear operators: already on \(z\), \(\Phi_{m+n}(z)=z^{m+n}\) whereas \((\Phi_m+\Phi_n)(z)=z^m+z^n\).
+
+This is the exact morphism explaining what happened to source addition under geometric pullback. It was transported to the Hopf-convolution operation; it was not retained as matrix addition. No argument may therefore impose ST5.3 on these pullbacks merely because both constructions carry an index \(n\).
+
+For the retained arithmetic cyclic quotient \(W\), the comparison \(W\simeq\mathbb Z\) after its full reconstruction gives
+\[
+ \nu([n])=|W/[n]W|=|n|\quad(n\ne0).
+\tag{ST7.4}
+\]
+The equality follows from the exact residue classes of the reconstructed cyclic group. It retains the whole-group input and does not derive a unit from a finite pair of already labelled numbers. For nonzero \(m,n\), the subgroup indices give
+\[
+ \nu([mn])=\nu([m])\nu([n]).
+\tag{ST7.5}
+\]
+There is no finite value assigned by this formula at \(n=0\), because \(W/[0]W=W\) is infinite. The positive norm loses the sign and records the size of the arithmetic cokernel; its domain and its lost information are explicit.
+
+The actual spectral action is the composite of this multiplicative norm map with the already constructed positive idèle representation:
+\[
+ [n]\longmapsto |n|\longmapsto W_{|n|}^Q,\qquad n\ne0.
+\tag{ST7.6}
+\]
+On the original Mellin-jet quotient it is
+\[
+ |n|^\rho\exp((\log|n|)T).
+\tag{ST7.7}
+\]
+These are complete formulas, not scalar replacements: the full nilpotent and the original factor in \(W_bk(y)=b^{1/2}k(y/b)\) remain. They preserve multiplicative composition but do not purport to preserve source integer addition as ordinary operator addition. The exact defect, for positive \(m,n\), is
+\[
+ (m+n)^\rho e^{(\log(m+n))T}
+ -m^\rho e^{(\log m)T}
+ -n^\rho e^{(\log n)T}.
+\tag{ST7.8}
+\]
+This is a receiving comparison of defined operators, not a sum or a coordinate involving primitive \(\tau\).
+
+If one additionally demanded ordinary source additivity for these *same* operators, ST5.4 would force \(W_p=p\,\mathrm{id}\) on the arithmetic part. On a nonzero primary block, its eigenvalue condition would give \(p^\rho=p\) for both \(p=2,3\). Their logarithms force \(\rho=1\): the real part follows from absolute values, and a nonzero imaginary part would imply a rational relation between \(\log2\) and \(\log3\), contrary to unique prime factorization. The exponential's positive nilpotent part would also have to vanish, because \(e^{(\log p)T}-I=Tg(T)\) with \(g(0)=\log p\ne0\). This tests precisely the extra demand, and not the user's source: ST7.3 and ST7.6 explicitly show why the geometric and spectral functors do not impose that demand.
+
+### ST7a. The exact tensor comparison needed for amplification
+
+Let \(V\) be a B4-preserving receiver, so its integer scalar action is \(A_n=nE\). On \(V^{\otimes k}\), diagonal tensoring of these multiplicative operators gives
+\[
+ A_n^{\otimes k}=n^k E^{\otimes k}.
+\tag{ST7a.1}
+\]
+This is multiplicative in \(n\), but its complete additive defect is
+\[
+ A_{m+n}^{\otimes k}-A_m^{\otimes k}-A_n^{\otimes k}
+ =\bigl((m+n)^k-m^k-n^k\bigr)E^{\otimes k}.
+\tag{ST7a.2}
+\]
+For \(k\ge2\), \(m=n=1\), and nonzero \(EV\), this is
+\((2^k-2)E^{\otimes k}\ne0\): a tensor of nonzero arithmetic vectors is nonzero over the field \(\mathbb C\). Thus this diagonal multiplicative action is not the integer-additive scalar action on the tensor receiver.
+
+The latter action is instead
+\[
+ \widetilde A_n=nE^{\otimes k},\qquad
+ \widetilde A_\tau=\mathrm{id}_{V^{\otimes k}},
+\tag{ST7a.3}
+\]
+which preserves all B1–B5 by the same idempotent proof. If the geometric \(F_p\) commutes with \(E\), its tensor action \(F_p^{\otimes k}\) commutes with \(E^{\otimes k}\), so ST7a.3 and the geometric tensor action coexist in one receiver. The exact difference between the two candidate integer-labelled operators is
+\[
+ A_n^{\otimes k}-\widetilde A_n
+ =(n^k-n)E^{\otimes k}.
+\tag{ST7a.4}
+\]
+On the actual spectral primary tuple, the geometric tensor action remains the full
+\[
+ p^{\rho_1+\cdots+\rho_k}
+ \exp\!\left((\log p)(T_1+\cdots+T_k)\right).
+\tag{ST7a.5}
+\]
+Nothing in this calculation replaces it by \(p\mathrm{id}\) or by \(p^k\mathrm{id}\). This proves exactly how the source scalar arithmetic and Deligne's geometric tensor amplification can be retained together, and exactly which interchange would fail.
+
+## ST8. Relation to Connes–Consani and Deligne, with the actual comparison retained
+
+Alain Connes and Caterina Consani expressly distinguish arithmetic Frobenius on the function-field Jacobian from the idèle-class **translation** action in their number-field construction. This is in their original author source [On the Jacobian of \(\overline{\operatorname{Spec}\mathbb Z}\)](https://arxiv.org/abs/2602.15941v1), local [Jacobian.tex](https://arxiv.org/abs/2602.15941v1), lines 2501–2550, read for this calculation. Their displayed operator is \(\vartheta(u)\xi(x)=\xi(u^{-1}x)\). Their local trace calculation and the endpoint terms are not statements that a source scalar \(p\) acts by an arithmetic-linear operator \(p\,\mathrm{id}\).
+
+ST7 supplies an exact elementary comparison at the level of arithmetic power maps, pullback and finite-index norm. ST6.3 supplies a concrete simultaneous action on the actual retained \(Q\) and prime boundary. Together these prevent the integer scalar action, the geometric power-map pullback, and the idèle translation from being conflated while proving their connecting maps.
+
+Pierre Deligne's lifting proof in [La conjecture de Weil. II](https://www.numdam.org/item/PMIHES_1980__52__137_0/), §3.6.1–§3.6.3, uses geometric Frobenius with separated weights on the lifted classes and support group. The source specialization ST6.1 has a stronger immediate splitting at the **source-idempotent** level, proved from \(1^2=1\), and every commuting Frobenius preserves it. However ST6.2 shows that this alone does not determine the numerical weights of either component. The required numerical comparison must use the actual independent geometric action, as in the explicit diagram ST6.3, and its cohomology rather than identify it with integer multiplication.
+
+This conclusion has not stopped at nonidentity: the full localization map, action-category retract, universal B4-preserving receiver, Hopf-convolution formula, norm map, actual \(Q\)-plus-boundary action, and their kernels have all been constructed. No arbitrary spectral parameter has been offered as a counterexample to the user's complete geometry.
+
+## ST9. Support labels, zero action and the specialization kernel
+
+For the original arbitrary bounded distributive lattice \(L\), let
+\[
+ G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\})
+\]
+be the named receiving carrier. Every constructed linear operator \(A_s\) has the common-label lift
+\[
+ \widetilde A_s(v,\lambda)=(A_s v,\lambda).
+\tag{ST9.1}
+\]
+This defines a multiplicative \(S\)-action because the composition identities hold on amplitudes and the label never changes. It does not require identifying any zero label with primitive \(\tau\).
+
+The exact lifted zero action is
+\[
+ \widetilde A_0(v,\lambda)=(0,\lambda).
+\tag{ST9.2}
+\]
+It is not a constant map to the bottom label. This is precisely the unpointed action case of ST4: its fixed zero-label set is the complete copy of \(L\), and each label fibre has its own fixed zero amplitude. Within that fibre, integer addition of the lifted operators is preserved, since
+\[
+ (A_m v,\lambda)\oplus(A_n v,\lambda)
+ =(A_{m+n}v,\lambda\vee\lambda)
+ =(A_{m+n}v,\lambda).
+\tag{ST9.3}
+\]
+Here \(\oplus\) is the receiving addition with join, not source addition on \(\tau\). Its zero in this family of fibre-preserving operators is ST9.2; it is not the global constant-bottom operator.
+
+The source specialization lifts exactly to
+\[
+ G_L(V)\xrightarrow{G_L(E)}G_L(V_+)
+ \xrightarrow{G_L(i)}G_L(V),\qquad
+ G_L(E)G_L(i)=\mathrm{id}.
+\tag{ST9.4}
+\]
+Its complete equivalence relation is
+\[
+ (v,\lambda)\sim(w,\mu)
+ \quad\Longleftrightarrow\quad
+ \lambda=\mu\ \text{and }E(v)=E(w).
+\tag{ST9.5}
+\]
+Thus the quotient by the amplitude boundary is \(G_L(V_+)\), and every support label survives. The inverse image of all zero amplitudes is \(G_L(V_-)\), while the inverse image of the single bottom-labelled zero need not be that full amplitude kernel. These are different receiving questions, and the formula answers each without erasing a label.
+
+If \(F_a\) commutes with the source action, its lift commutes with ST9.4 and the section remains exact. A vanishing connecting amplitude returns \((0,\lambda)\). Independent labels on independent blocks are additional coordinates and may be retained block by block; \(G_L(V_+\oplus V_-)\) with one common label is not silently identified with \(G_L(V_+)\times G_L(V_-)\).
+
+## ST10. Exact output
+
+Starting only with current B1–B5, the arithmetic specialization is multiplication by the already supplied integer \(1\), with localization fibre \(\{\tau,1\}\) and no source parity assignment. The full multiplicative prime spectrum, its integer-addition-compatible part, localizations, sheaf and residue at the extra closed point are computed in ST2–ST3.
+
+The source action specializes by its central idempotent \(E\). Its entire lost data are the fibres in ST4, or the exact complementary boundary in the constructed additive receiver. The lifting sequence splits, including every commuting Frobenius action and all support labels. This is a positive source-derived lifting result.
+
+Preserving B4 is decisive: additive receivers have integer action \(nE\). Arithmetic power-map pullbacks instead preserve addition through the exact Hopf-convolution formula, and the original spectral dilation comes through the explicitly displayed finite-index norm. All comparisons retain the lost sign, the undefined zero norm, the localization fibre and the full spectral nilpotent.
+
+No calculation here replaces the current source by the older \(G_L(\mathbb Z)\), derives arithmetic before the user's completed reconstruction, or claims that this split source-idempotent boundary is already Deligne's geometric support group. Its proved relation to the actual \(Q\), endpoint actions and support labels is ST6.3 and ST9. The numerical purity claim remains distinct from the lifting result and has not been assumed.

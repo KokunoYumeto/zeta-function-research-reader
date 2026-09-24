@@ -1,0 +1,852 @@
+% Complete independently derived fragment.  Requires amsmath, amssymb,
+% amsthm, amscd, hyperref, and theorem/proposition/lemma environments.
+% Tags HG1--HG41 and HG21a--HG21c are reserved for this fragment.
+\section{The full Split-Zero coefficient object as a Connes--Consani
+\texorpdfstring{$\Gamma$}{Gamma}-algebra}
+
+The construction used here is Alain Connes and Caterina Consani,
+\emph{Absolute algebra and Segal's $\Gamma$-rings: au dessous de
+$\overline{\operatorname{Spec}\mathbb Z}$}.
+
+The original author source is
+\nolinkurl{F1_corr.tex}, associated with
+\href{https://arxiv.org/abs/1502.05585v2}{arXiv:1502.05585v2}.
+The whole source, including its bibliography and final empty lines,
+was read: lines 1--1336.  The read file has SHA-256
+\begin{center}\small\texttt{3b1319ec1df4ed6e2412ace960c2813b683a}\\
+\texttt{36c88509234c9abd0a39f98e8913}.\end{center}
+The local source has duplicate labels \texttt{sssalg1}; below the
+line numbers distinguish the full-faithfulness proposition (line 536)
+from the Boolean-semiring lemma (line 575).  The formula
+\texttt{functsum}, lines 433--442, and Lemma \texttt{sssalg},
+lines 519--533, specify the actual functor and multiplication.
+Proposition \texttt{sssalg2}, lines 905--932, specifies the norm
+construction.  The conclusions below are direct calculations with
+those formulas, not an identification of every spherical algebra with
+a semiring.
+
+Let $R$ be a nonzero commutative ring with identity and let $L$ be a
+bounded distributive lattice.  Write its bottom and top as $0_L,1_L$.
+Keep the entire coefficient object
+\begin{equation}\tag{HG1}
+ \begin{gathered}
+ G=G_L(R)=\{(0,\lambda):\lambda\in L\}
+       \cup\{(r,1_L):r\in R\},\\
+ (r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),\qquad
+ (r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu),\\
+ \tau=(0,0_L),\quad e=(0,1_L),\quad
+ \widehat r=(r,1_L),\quad z_\lambda=(0,\lambda).
+ \end{gathered}
+\end{equation}
+Thus $\widehat0=e$.  No occurrence of $e$ in this fragment is
+silently replaced by $\tau$.  The semiring identity is $\widehat1$.
+The formulas close on the stated carrier, and associativity and
+distributivity follow coordinate by coordinate from the ring and
+lattice laws.  Regard $L$ itself as the semiring with addition $\vee$
+and multiplication $\wedge$.
+
+\subsection{Every finite pointed set, every fold, and multiplication}
+
+For a finite pointed set $X$ let $X^\circ=X\setminus\{*\}$.
+The base point of $HG(X)$ is the tuple constantly equal to $\tau$.
+For $X=0_+$ it is the unique empty tuple.  The exact formula is
+\begin{equation}\tag{HG2}
+ HG(X)=\left\{((r_x,\lambda_x))_{x\in X^\circ}:
+       r_x\ne0\Longrightarrow\lambda_x=1_L\right\}.
+\end{equation}
+For a pointed map $f:X\to Y$ set
+\begin{equation}\tag{HG3}
+ (HG(f)(r,\lambda))_y=
+ \left(\sum_{x\in X^\circ:f(x)=y}r_x,
+       \bigvee_{x\in X^\circ:f(x)=y}\lambda_x\right),
+ \qquad y\in Y^\circ.
+\end{equation}
+An empty sum is $0_R$ and an empty join is $0_L$.  Coordinates sent
+to the base point of $Y$ are discarded, rather than added to a
+retained coordinate.
+
+\begin{theorem}\label{HG:functor}
+Equations (HG2)--(HG3), together with
+\begin{equation}\tag{HG4}
+ \mu_{X,Y}((r,\lambda),(s,\mu))_{(x,y)}
+          =(r_xs_y,\lambda_x\wedge\mu_y),
+ \quad (x,y)\in X^\circ\times Y^\circ,
+\end{equation}
+define the Connes--Consani commutative $\mathbb S$-algebra $HG$.
+Its unit $\mathbb S(X)=X\to HG(X)$ sends $x\ne *$ to the
+tuple with $\widehat1$ at $x$ and $\tau$ elsewhere, and sends
+$*$ to the all-$\tau$ tuple.
+\end{theorem}
+\begin{proof}
+If a sum in (HG3) is nonzero, at least one summand is nonzero,
+so its support is $1_L$ and the output join is $1_L$.  Thus the
+output satisfies (HG2), even when other terms cancel.  Identity
+maps act identically.  For $g:Y\to Z$ and $z\ne *$, the fibres
+$f^{-1}(y)$ for $g(y)=z$ partition $(gf)^{-1}(z)$; no point
+discarded by $f$ can reappear, since $g(*)=*$.  Associativity
+of finite sums and joins now gives $HG(g)HG(f)=HG(gf)$.
+
+Formula (HG4) lands in (HG2) because a nonzero product requires
+both amplitudes to be nonzero.  An all-$\tau$ input produces an
+all-$\tau$ output, so this map factors through the smash product
+of pointed sets.  Naturality in $f:X\to X'$ and $g:Y\to Y'$
+is the equality, at $(x',y')$, between the sum over
+$f^{-1}(x')\times g^{-1}(y')$ of the products and the product
+of the two fibre sums.  The amplitude equality is ring
+distributivity; the support equality is
+\[
+ \bigvee_{x,y}(\lambda_x\wedge\mu_y)
+       =\left(\bigvee_x\lambda_x\right)
+          \wedge\left(\bigvee_y\mu_y\right).
+\]
+This natural bifunctor map is precisely the multiplication map
+for the Day smash product, by the source's definition preceding
+\texttt{colim}, lines 445--464.  The two triple products agree
+coordinatewise, as do the switched products.  The unit rule is
+natural because each unit tuple has at most one non-$\tau$
+coordinate; the product with that tuple has its original value
+on its single selected coordinate and $\tau$ elsewhere.  This
+proves all claimed algebra axioms directly.
+\end{proof}
+
+\subsection{Amplitude and lattice support form one exact object}
+
+Define $q:G\to R$ and $p:G\to L$ by
+\begin{equation}\tag{HG5}
+ q(r,\lambda)=r,\qquad p(r,\lambda)=\lambda.
+\end{equation}
+Both maps preserve zero, identity, addition and multiplication.
+Consequently $Hq:HG\to HR$ and $Hp:HG\to HL$ are morphisms
+of $\mathbb S$-algebras, not merely maps on level $1$.
+
+\begin{theorem}\label{HG:joint}
+The joint map
+\begin{equation}\tag{HG6}
+ (Hq,Hp):HG\hookrightarrow HR\times HL
+\end{equation}
+is injective at every finite pointed set.  Its image is exactly
+\begin{equation}\tag{HG7}
+ \{(r,\lambda)\in R^{X^\circ}\times L^{X^\circ}:
+             r_x\ne0\Longrightarrow\lambda_x=1_L\}.
+\end{equation}
+For fixed amplitude $r$ and fixed support $\lambda$, respectively,
+the fibres are
+\begin{equation}\tag{HG8}
+ \begin{aligned}
+ (Hq)_X^{-1}(r)&\cong\prod_{x:r_x=0}L,\\
+ (Hp)_X^{-1}(\lambda)&\cong
+                     \prod_{x:\lambda_x=1_L}R.
+ \end{aligned}
+\end{equation}
+All omitted support coordinates in the first line are $1_L$;
+all omitted amplitude coordinates in the second line are $0_R$.
+These descriptions also cover $0_L=1_L$, when $G_L(R)=R$.
+\end{theorem}
+\begin{proof}
+A coefficient is exactly its amplitude and support pair, proving
+injectivity and the image claim.  The naturality of the two
+projections follows from (HG3): the first takes fibre sums and
+the second takes fibre joins, which are the defining actions of
+$HR$ and $HL$.  Equation (HG4) proves multiplication compatibility
+and the unit tuples give unit compatibility.  At each zero
+amplitude coordinate every support is allowed; at each nonzero
+amplitude coordinate only top is allowed.  Conversely, at a
+support different from top the amplitude must be zero, and at
+top every amplitude is allowed.  Independence of the coordinates
+proves (HG8).
+\end{proof}
+
+The pointwise inverse image of zero under $Hq$ is the embedded
+full lattice object
+\begin{equation}\tag{HG9}
+ \iota:HL\longrightarrow HG,\quad
+       (\lambda_x)_x\longmapsto(z_{\lambda_x})_x,
+ \qquad Hp\circ\iota=\operatorname{id}_{HL}.
+\end{equation}
+This is a natural injective map of $\Gamma$-sets and preserves
+products, but when $R\ne0$ it is not a unital map of
+$\mathbb S$-algebras: its unit is sent to $e$ rather than
+$\widehat1$.  Its image is an ideal for (HG4), with the explicit
+action
+\begin{equation}\tag{HG10}
+ (r_x,\lambda_x)z_{\mu_y}=z_{\lambda_x\wedge\mu_y}.
+\end{equation}
+The map $Hp$ has only the base point in its zero fibre when
+$0_L\ne1_L$, yet it is not injective: $e$ and $\widehat1$ have
+the same support.  No argument appropriate only to abelian-group
+exact sequences can erase these fibres.
+
+\begin{proposition}\label{HG:fibretransport}
+Fix $r\in HR(X)$ and $f:X\to Y$.  Write $r'=HR(f)r$ and
+$I_y=\{x\in X^\circ:f(x)=y\}$.  The image of the entire
+fibre $(Hq)_X^{-1}(r)$ in $(Hq)_Y^{-1}(r')$ consists exactly
+of the following support choices, independently at each $y$:
+\begin{equation}\tag{HG11}
+ \lambda'_y\in
+ \begin{cases}
+ \{0_L\},& I_y=\varnothing,\\
+ \{1_L\},&\text{some }x\in I_y\text{ has }r_x\ne0,\\
+ L,&I_y\ne\varnothing\text{ and all }r_x=0\text{ on }I_y.
+ \end{cases}
+\end{equation}
+In particular nontrivial cancellation in a fold produces $e$,
+not $\tau$, while a fold of labelled zeros produces their exact
+lattice join.
+\end{proposition}
+\begin{proof}
+The first case is the empty-join convention.  In the second case
+at least one input support is top, so the output support is top
+regardless of whether $r'_y$ vanishes.  In the third case all
+input supports are unrestricted.  Every $\lambda\in L$ occurs
+as the join by assigning it to any one input coordinate and
+assigning bottom to the others.  Distinct $I_y$ are disjoint,
+so all these choices can be made independently.  The last
+assertions are exactly (HG3).
+\end{proof}
+
+\subsection{The failed section and its complete correction object}
+
+There is always the pointed set section
+\begin{equation}\tag{HG12}
+ b:R\to G,\qquad b(0)=\tau,\quad b(r)=\widehat r\ (r\ne0),
+ \qquad q\circ b=\operatorname{id}_R.
+\end{equation}
+Let $b_X:R^{X^\circ}\to G^{X^\circ}$ apply this formula
+coordinatewise.  This is a family of pointed maps, not yet a
+natural transformation.
+
+\begin{theorem}\label{HG:nosection}
+Assume $0_L\ne1_L$.  Every natural transformation of
+$\Gamma$-sets $HR\to HG$ is the constant base-point map.
+In particular (HG12) does not lift to a $\Gamma$-map, and
+$Hq$ has no $\Gamma$-section.  The pointed section $b$ is
+multiplicative precisely when $R$ has no nonzero zero divisors.
+\end{theorem}
+\begin{proof}
+Let $\eta:HR\to HG$ be natural and write $u=\eta_{1_+}$.
+For each $x\in X^\circ$, the pointed projection
+$p_x:X\to1_+$ takes $x$ to $1$ and every other point to $0$.
+Naturality forces $(\eta_X(r))_x=u(r_x)$.  Apply this first to
+$X=2_+$ and then to its fold $1,2\mapsto1$.  One obtains
+$u(a+b)=u(a)+u(b)$, with $u(0)=\tau$.  This is the same
+recovery of addition used by Connes--Consani in (\texttt{addition})
+and the proof at lines 536--558, here proved for a $\Gamma$-map
+without assuming it preserves multiplication.
+
+If $v+w=\tau$ in $G$, their supports satisfy
+$p(v)\vee p(w)=0_L$, so both supports are bottom.  Since
+$0_L\ne1_L$, the carrier (HG1) then forces $v=w=\tau$.
+Thus $\tau$ is the only additively invertible element of $G$.
+For every $r\in R$ the equality $u(r)+u(-r)=u(0)=\tau$
+forces $u(r)=\tau$.  The coordinate projections now force
+every $\eta_X$ to be constant.
+
+For multiplicativity of $b$, if either input vanishes the
+identity follows from absorption by $\tau$.  If both are
+nonzero and their product is nonzero, both sides equal the
+top-supported product.  If $r,s\ne0$ but $rs=0$, the left
+side $b(r)b(s)$ is $e$ and the right side $b(rs)$ is $\tau$.
+This proves exactly the asserted criterion.
+\end{proof}
+
+For the obstruction formulas (HG13)--(HG16), take $0_L\ne1_L$.
+When $L$ has one element, $G_L(R)=R$, $b$ is the identity,
+and each correction is the unique zero element of $HL$.
+To calculate the obstruction at every arity, use the two-element
+subset $\{0_L,1_L\}$ inside $L$.  For $a\in R^{X^\circ}$
+put $\nu(a)_x=1_L$ when $a_x\ne0$ and $0_L$ otherwise.
+For a pointed map $f:X\to Y$ define
+\begin{equation}\tag{HG13}
+ \begin{aligned}
+ C_f(a)_y=1_L\quad\Longleftrightarrow\quad
+ &\sum_{x:f(x)=y}a_x=0\ \text{and}\\
+ &\text{some }x\in X^\circ\text{ with }f(x)=y\text{ has }a_x\ne0.
+ \end{aligned}
+\end{equation}
+otherwise put $C_f(a)_y=0_L$.  This defines an actual element of
+$HL(Y)$, including empty fibres and discarded coordinates.
+The exact failure-of-naturality equation is
+\begin{equation}\tag{HG14}
+ HG(f)b_X(a)=b_Y(HR(f)a)+\iota_Y(C_f(a)).
+\end{equation}
+Indeed both amplitudes are the fibre sum.  If that sum is nonzero,
+both supports are top.  If it is zero, the left support is top
+exactly when at least one input amplitude is nonzero, which is
+precisely (HG13).  In particular, for $a\ne0$ the binary fold
+of $(b(a),b(-a))$ is $e$ and its correction is $z_{1_L}$.
+
+\begin{figure}[ht]
+\centering
+\[
+\begin{aligned}
+ (a,-a)&\xrightarrow{\ b_{2_+}\ }
+      (\widehat a,\widehat{-a})
+      \xrightarrow{\ HG(\mathrm{fold})\ }e=(0,1_L),\\[4pt]
+ (a,-a)&\xrightarrow{\ HR(\mathrm{fold})\ }0
+      \xrightarrow{\ b_{1_+}\ }\tau=(0,0_L).
+\end{aligned}
+\]
+\caption{The two exact paths compared by naturality, for any
+$a\ne0$ and $0_L\ne1_L$.  Their endpoints are different.
+Equation (HG14) supplies their full correction inside the
+embedded $HL$, and (HG15) computes its behavior under further
+folds.  The fold operation is Connes--Consani's
+\texttt{functsum}, source lines 433--442.  This is a diagram
+of the calculated noncommutation, not a commuting square.}
+\end{figure}
+
+The correction itself has an exact composition rule.  Put
+$Z(a)_x=1_L$ when $a_x=0$, and bottom otherwise.  For
+$g:Y\to Z$ one has
+\begin{equation}\tag{HG15}
+ C_{gf}(a)=C_g(HR(f)a)\ \vee\
+ \bigl(Z(HR(gf)a)\wedge HL(g)(C_f(a))\bigr),
+\end{equation}
+where meet and join are coordinatewise.  To prove it, a final
+coordinate with nonzero amplitude has zero on both sides.  At
+a final coordinate with zero amplitude, an original nonzero
+summand is either in an intermediate fibre whose amplitude is
+nonzero, or in an intermediate fibre that cancelled to zero.
+The first event is exactly the first term on the right, and
+the second is exactly its second term.  This includes their
+possible simultaneous occurrence and proves (HG15).
+
+There is also a complete multiplication correction for general
+rings with zero divisors:
+\begin{equation}\tag{HG16}
+ \begin{gathered}
+ D(a,b)_{x,y}=1_L\quad\Longleftrightarrow\quad
+ a_x\ne0,\ b_y\ne0,\ a_xb_y=0,\\
+ \mu(b_X(a),b_Y(b))=
+ b_{X\wedge Y}((a_xb_y)_{x,y})+\iota_{X\wedge Y}(D(a,b)),
+ \end{gathered}
+\end{equation}
+with $D=0_L$ at all other coordinates.  At a nonzero product
+both sides have top support; at a zero product only the case
+where both factors were nonzero contributes $e$.  This proves
+the formula without a domain assumption.
+
+\subsection{The exact spherical replacement and universal ring image}
+
+Let $M(R)$ be the multiplicative monoid of $R$, pointed by its
+ring zero.  The source's spherical monoid algebra is
+$\mathbb S M(R)(X)=M(R)\wedge X$; see
+\texttt{mono2sss} and \texttt{monomono}, lines 489--511.
+The pointed family
+\begin{equation}\tag{HG17}
+ \widetilde b_X:M(R)\wedge X\to HG(X),\qquad
+ (r,x)\longmapsto\bigl[\text{$b(r)$ at $x$, $\tau$ elsewhere}\bigr]
+\end{equation}
+is a $\Gamma$-map for every $R$: an ordinary pointed map either
+retains the single selected coordinate, carrying its value with
+it, or discards it entirely.  Its compatibility with the
+multiplication of spherical algebras is equivalent to
+$b(rs)=b(r)b(s)$ at level $1$, hence holds exactly under the
+criterion in Theorem~\ref{HG:nosection}.  It is a unital
+$\mathbb S$-algebra map for a domain.  When $0_L\ne1_L$
+it is not such a map for a ring with nonzero zero divisors;
+when $L$ has one element it is the source's usual map
+$\mathbb S M(R)\to HR$ for every ring.
+
+For every ring, including rings with zero divisors, the required
+multiplicative replacement retains the two zero states.  Let
+\begin{equation}\tag{HG18}
+ M^+(R)=R\sqcup\{\perp\},\qquad
+ \perp m=m\perp=\perp,
+\end{equation}
+with the original ring product on $R$, identity $1_R$, and
+distinguished pointed zero $\perp$.  The original element
+$0_R\in R$ is not $\perp$.  Define
+\begin{equation}\tag{HG19}
+ c:M^+(R)\to G,\quad c(\perp)=\tau,\quad c(r)=\widehat r,
+ \qquad d:M^+(R)\to M(R),\quad d(\perp)=0,\quad d(r)=r.
+\end{equation}
+Both are pointed unital multiplicative maps, including products
+of two nonzero zero divisors, because such a product lands at
+the original $0_R$ and hence at $e$ under $c$.
+The source adjunction gives the actual commuting diagram
+\begin{equation}\tag{HG20}
+ \begin{CD}
+ \mathbb S M^+(R) @>{\widetilde c}>> HG\\
+ @V{\mathbb S d}VV @VV{Hq}V\\
+ \mathbb S M(R) @>{\rho_R}>> HR .
+ \end{CD}
+\end{equation}
+Here $\rho_R$ inserts one ring coefficient into its selected
+coordinate, and $\widetilde c$ does the same with $c$.  Their
+naturality follows from the single-coordinate argument just
+given; their multiplicativity and units follow from (HG19),
+so (HG20) is proved coordinatewise.  This is a precise
+multiplicative replacement, with its correction state visible.
+
+Amplitude also has a universal characterization.  For any ring
+$A$, every unital semiring homomorphism $u:G\to A$ factors
+uniquely through $q:G\to R$.  Indeed every $z_\lambda$ is
+additively idempotent, so $u(z_\lambda)=0$ in the additive
+group of $A$.  Therefore $v(r)=u(\widehat r)$ satisfies
+$v(0)=0$, $v(1)=1$, and preserves sums and products by (HG1),
+giving a ring map $v:R\to A$ with $u=vq$.  More generally this
+same proof, omitting multiplication, shows that $q$ is the
+universal map from the additive monoid of $G$ into an abelian
+group.  Thus
+\begin{equation}\tag{HG21}
+ G^{\rm gp}_{\rm additive}\cong(R,+),\qquad
+ \operatorname{Hom}_{\rm semiring}(G,A)
+       \cong\operatorname{Hom}_{\rm ring}(R,A).
+\end{equation}
+This explains exactly which coefficient information a ring-valued
+realization forgets: the full ideal (HG9).  It does not provide
+a $\Gamma$-section in the reverse direction.
+
+\begin{proposition}\label{HG:completion}
+Degreewise additive Grothendieck group completion gives the exact
+natural isomorphism
+\begin{equation}\tag{HG21a}
+ (HG(X))^{\rm gp}\ \xrightarrow{\ \cong\ }\ HR(X),
+ \qquad [(r,\lambda)]\longmapsto r.
+\end{equation}
+It preserves all pointed-set maps and the bilinear multiplication
+after group completion.  The additive congruence that effects this
+quotient is exactly
+\begin{equation}\tag{HG21b}
+ (r,\lambda)\sim(s,\mu)
+ \quad\Longleftrightarrow\quad r=s
+ \quad\Longleftrightarrow\quad
+ (r,\lambda)+(e)_{x\in X^\circ}
+  =(s,\mu)+(e)_{x\in X^\circ}.
+\end{equation}
+Thus group completion identifies all support choices over each
+fixed amplitude tuple and makes no further identifications.
+\end{proposition}
+\begin{proof}
+For a single coordinate, additive idempotence gives
+$[z_\lambda]=[z_\lambda]+[z_\lambda]$, hence
+$[z_\lambda]=0$ in a group.  The identity
+$\widehat r+\widehat{-r}=e$ gives
+$[\widehat{-r}]=-[\widehat r]$.  The map
+$r\mapsto[\widehat r]$ is additive, because the sum of any
+two top-supported coefficients is the top-supported coefficient
+of their ring sum, including cancellation.  Its value at zero
+is $[e]=0$.  It is inverse to the map induced by $q$.
+For finitely many coordinates, every tuple is the sum of its
+one-coordinate insertions; the same argument therefore gives
+the inverse $r\mapsto\sum_x[\widehat{r_x}\text{ at }x,
+\tau\text{ elsewhere}]$ and proves (HG21a) with its universal
+property.  More explicitly, any additive map from $G^{X^\circ}$
+to an abelian group kills every tuple of labelled zeros and is
+determined uniquely by these coordinate classes, so factors
+uniquely through $q^{X^\circ}$.
+
+Adding $e$ at a coordinate replaces its support by $1_L$
+without changing its amplitude.  This proves (HG21b).
+Conversely the congruence must identify all labelled zeros
+because their classes vanish; its remaining quotient is
+already the group $R^{X^\circ}$ by the displayed inverse,
+so no larger congruence is present.
+
+Applying a pointed-set map to a tuple class replaces the
+amplitude at $y$ by $\sum_{f(x)=y}r_x$ by (HG3), which is
+exactly $HR(f)$.  The isomorphism is therefore natural on
+the entire category of finite pointed sets, not only on
+projections.  The product on the additive completions is
+determined by its values on coefficient classes, where (HG4)
+becomes $r_xs_y$; its bilinear extension is precisely the
+usual product of $HR$.  This proves the asserted compatibility.
+\end{proof}
+
+The conclusion is the following pair of proved maps, with the
+operation on the right explicitly stated:
+\begin{equation}\tag{HG21c}
+ HL\ \xrightarrow{\ \iota\ }\ HG_L(R)
+ \ \xrightarrow{\ Hq\ }\ HR
+       \cong \bigl(HG_L(R)\bigr)^{\rm gp}_{\rm degreewise}.
+\end{equation}
+It is not a claim that an arbitrary stable realization of
+$HG_L(R)$ is equivalent to the Eilenberg--Mac Lane spectrum
+of $R$.  It is also not an unmentioned group completion of
+the bounded objects introduced next: those bounds need not
+be closed under coordinatewise addition.
+
+\subsection{The original seminorm constraint retains the full support ideal}
+
+Give $R$ a submultiplicative seminorm with the exact axioms in
+Connes--Consani (\texttt{subverti1}), source lines 895--903:
+$|0|=0$, $|1|=1$, $|r+s|\le |r|+|s|$, and
+$|rs|\le |r||s|$.  Define
+\begin{equation}\tag{HG22}
+ |(r,\lambda)|_G=|r|.
+\end{equation}
+This is a submultiplicative seminorm on $G$, as each required
+inequality reduces to its amplitude counterpart.  For $c>0$
+define the closed and strict functors
+\begin{equation}\tag{HG23}
+ \begin{aligned}
+ B_c^L(X)&=\{(r,\lambda)\in HG(X):\sum_{x\in X^\circ}|r_x|\le c\},\\
+ B_{<c}^L(X)&=\{(r,\lambda)\in HG(X):\sum_{x\in X^\circ}|r_x|<c\}.
+ \end{aligned}
+\end{equation}
+\begin{theorem}\label{HG:bound}
+$B_1^L$ is a unital $\mathbb S$-subalgebra of $HG$.
+Both functors in (HG23) are modules over $B_1^L$ and the
+multiplication maps restrict to
+\begin{equation}\tag{HG24}
+ B_c^L\wedge B_d^L\to B_{cd}^L,
+ \qquad B_{<c}^L\wedge B_d^L\to B_{<cd}^L
+ \quad(c,d>0).
+\end{equation}
+Under amplitude the fibres are still exactly (HG8), for every
+amplitude tuple obeying its bound.  Under support the fibre at
+$\lambda$ is exactly
+\begin{equation}\tag{HG25}
+ \{(r_x)_{x:\lambda_x=1_L}:
+       \sum_{x:\lambda_x=1_L}|r_x|\le c\},
+\end{equation}
+with the corresponding strict inequality for $B_{<c}^L$.
+The entire $HL$ embeds into every one of these functors, and
+is precisely the zero-amplitude fibre.  In particular every
+support label has zero seminorm cost.
+\end{theorem}
+\begin{proof}
+The fibre-sum inequality in the source becomes, with all supports
+retained,
+\begin{equation}\tag{HG26}
+ \sum_{y\in Y^\circ}\left|\sum_{x:f(x)=y}r_x\right|
+ \le\sum_{x:f(x)\ne *}|r_x|
+ \le\sum_{x\in X^\circ}|r_x|.
+\end{equation}
+Thus (HG3) preserves both bounds.  The exact support joins
+remain those of (HG3), since no inequality has changed any
+coefficient.  Likewise
+\begin{equation}\tag{HG27}
+ \sum_{x,y}|r_xs_y|\le
+         \left(\sum_x|r_x|\right)\left(\sum_y|s_y|\right)
+\end{equation}
+proves (HG24), including the strict case since $d>0$.
+Unit tuples have seminorm sum $1$, so are in $B_1^L$.
+The module identities are the restrictions of the already
+proved algebra identities.  Since (HG23) depends only on
+amplitude, it removes none of the support choices over any
+allowed tuple.  Substituting the support fibre from (HG8)
+gives (HG25).  Zero tuples have total seminorm zero, so all
+of $HL$ remains in every positive closed or strict bound.
+\end{proof}
+
+Let $N=\{r\in R:|r|=0\}$.  The triangle and product
+inequalities make $N$ an ideal: closure under additive
+inverses follows from $|-r|\le|-1||r|=0$.  At the closed
+zero bound the exact object is
+\begin{equation}\tag{HG28}
+ B_0^L(X)=\{(r,\lambda)\in HG(X):r_x\in N\text{ for all }x\}.
+\end{equation}
+It equals $HL$ precisely when $N=\{0\}$.  This distinction
+prevents a degenerate seminorm from silently erasing nonzero
+amplitudes.  The strict unit ball is not unital, because the
+unit tuple has seminorm sum exactly $1$; it still retains
+every element of $HL$.
+
+\begin{theorem}\label{HG:boundedsection}
+Assume $0_L\ne1_L$ and let $B_c(R)$ denote the source's
+classical amplitude functor with the same bound $c>0$.
+A $\Gamma$-section of $q:B_c^L\to B_c(R)$ exists exactly
+when
+\begin{equation}\tag{HG34}
+ |r|+|-r|>c\qquad\text{for every nonzero }r\in R.
+\end{equation}
+When it exists it is unique and is the coordinatewise map
+$b_X$.  For strict balls $B_{<c}$ the exact criterion is
+$|r|+|-r|\ge c$ for all nonzero $r$.  At $c=1$, an existing
+$\Gamma$-section is a unital $\mathbb S$-algebra section
+exactly when, in addition,
+\begin{equation}\tag{HG35}
+ r,s\ne0,\quad |r|\le1,\quad |s|\le1
+             \quad\Longrightarrow\quad rs\ne0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Projection to any coordinate is a map of the bounded functors,
+because discarding terms cannot increase the sum of seminorms.
+Thus any section is determined coordinatewise by its value
+at $1_+$.  A nonzero amplitude has only one preimage in $G$,
+and pointedness forces the zero amplitude to go to $\tau$.
+Therefore $b_X$ is the only possible section.
+
+If $r\ne0$ and $|r|+|-r|\le c$, the tuple $(r,-r)$ is
+admissible; its two paths in the figure following (HG14) have
+endpoints $e$ and $\tau$.  Naturality fails.  Conversely,
+suppose (HG34).  A nonzero correction $C_f(a)_y$ for an
+admissible tuple would give a zero-sum fibre with some nonzero
+summand $a_i$.  In the ring,
+$-a_i=\sum_{x\in I_y\setminus\{i\}}a_x$.  The triangle
+inequality gives
+\[
+ |a_i|+|-a_i|\le\sum_{x\in I_y}|a_x|
+        \le\sum_{x\in X^\circ}|a_x|\le c,
+\]
+contrary to (HG34).  Hence every correction vanishes and
+(HG14) proves naturality.  The strict case has the same
+proof with the final strict inequality; its failed pair
+condition is correspondingly $|r|+|-r|<c$.
+
+Unit preservation holds for the coordinatewise $b$, and
+(HG16) shows that multiplication is preserved if (HG35)
+holds, because all individual amplitudes in a unit-ball
+tuple have seminorm at most $1$.  If (HG35) fails, place
+the two nonzero zero divisors at level $1$.  Each is allowed
+by the unit bound and their product produces $e$ instead
+of $\tau$, proving failure of multiplication.  This proves
+both directions of the criterion.
+\end{proof}
+
+\subsection{The sheaf calculation on the source's compactified base}
+
+The indexing space here is the source's
+$X=\overline{\operatorname{Spec}\mathbb Z}$.  Its topology is
+defined in \texttt{sectstructsh}, lines 938--946.  This section
+constructs a coefficient sheaf on that specified space; no
+identification with a prime spectrum of $G_L(\mathbb Z)$ is used.
+For a nonempty open $U$ put
+\begin{equation}\tag{HG29}
+ R_U=\{r\in\mathbb Q:v_p(r)\ge0\text{ for every finite prime }p\in U\}.
+\end{equation}
+Define a sheaf candidate, with empty-open value the one-point
+algebra, by
+\begin{equation}\tag{HG30}
+ \mathcal A_L(U)(K)=
+ \begin{cases}
+ HG_L(R_U)(K),&\infty\notin U,\\
+ \{(r,\lambda)\in HG_L(R_U)(K):\sum_{k\in K^\circ}|r_k|\le1\},
+       &\infty\in U.
+ \end{cases}
+\end{equation}
+The absolute value is the usual one on $\mathbb Q$.  The restriction
+map for nonempty $V\subset U$ includes $R_U$ into $R_V$ and
+retains each support coordinate unchanged.
+
+\begin{theorem}\label{HG:sheaf}
+Equation (HG30) is a sheaf of unital $\mathbb S$-algebras, with
+amplitude morphism to the exact Connes--Consani sheaf
+$\mathcal O_X$ of (\texttt{subsalg}) and Proposition
+\texttt{propspecz}, lines 944--977.  Its amplitude-zero sheaf
+is the constant $HL$ on nonempty opens, including opens
+containing $\infty$.  Its stalks are
+\begin{equation}\tag{HG31}
+ \begin{aligned}
+ (\mathcal A_L)_\eta&=HG_L(\mathbb Q),\\
+ (\mathcal A_L)_p&=HG_L(\mathbb Z_{(p)})\quad(p\text{ finite}),\\
+ (\mathcal A_L)_\infty&=B_1^L(\mathbb Q).
+ \end{aligned}
+\end{equation}
+All these identities retain the full lattice $L$.
+\end{theorem}
+\begin{proof}
+Every value in (HG30) is a unital algebra by
+Theorem~\ref{HG:functor} or Theorem~\ref{HG:bound}; the restrictions
+are the stated algebra inclusions.  Every pair of nonempty
+opens intersects in the generic point.  Thus compatible local
+sections over a cover have literally the same rational
+amplitudes and the same support coordinates in the ambient
+$HG_L(\mathbb Q)(K)$.  An amplitude integral at all primes
+in each covering open is integral at every prime of their
+union.  If the union contains $\infty$, one covering open
+does too, and imposes the norm bound on that common tuple.
+The common tuple therefore belongs to (HG30) on the union,
+and is its unique gluing.  This proves the sheaf condition at
+every $K$, with multiplication and units already compatible.
+Amplitude removes precisely the support coordinates and gives
+the source sheaf formulas.  Its zero fibre is $HL$ on every
+nonempty open, with identity restriction maps.
+
+At the generic point one can take opens excluding $\infty$
+and any finite set of denominator primes, so every rational
+tuple occurs.  At a finite prime $p$ the same procedure allows
+all denominator primes other than $p$ and excludes $\infty$,
+giving exactly $\mathbb Z_{(p)}$.  At $\infty$ every open
+retains the norm bound, but any finite collection of rational
+denominators is allowed after removing its finite prime
+divisors.  Hence the union of these bounded sets is exactly
+$B_1^L(\mathbb Q)(K)$ at each $K$.  The restrictions never
+change supports, so the stalk descriptions include all of $L$.
+\end{proof}
+
+The global sections at a finite pointed set $k_+$ are especially
+explicit.  Since $R_X=\mathbb Z$, the inequality
+$\sum_{i=1}^k|r_i|\le1$ allows either the zero amplitude
+tuple or a single coordinate with value $+1$ or $-1$.
+Consequently
+\begin{equation}\tag{HG32}
+ \mathcal A_L(X)(k_+)=
+ L^k\ \sqcup\
+ \coprod_{i=1}^k\coprod_{\varepsilon\in\{+1,-1\}}
+       \bigl\{r_i=\varepsilon,\ \lambda_i=1_L,\
+              r_j=0,\ \lambda_j\in L\ (j\ne i)\bigr\}.
+\end{equation}
+These are disjoint subsets; the first is the entire
+zero-amplitude fibre, whose own pointed zero is the all-bottom
+tuple.  If $L$ is finite of cardinality $N$, then for $k\ge1$
+\begin{equation}\tag{HG33}
+ |\mathcal A_L(X)(k_+)|=N^k+2kN^{k-1}.
+\end{equation}
+For $k=0$ there is one section.  At level $1$, the global
+sections are all $z_\lambda$ together with $\widehat1$ and
+$\widehat{-1}$, so their number is $N+2$ when $L$ is finite.
+This is a direct application of the original unit bound, with
+no added positivity assumption.
+
+\begin{proposition}\label{HG:globalstalkdefect}
+For $0_L\ne1_L$, the global-sections amplitude map
+\begin{equation}\tag{HG36}
+ \mathcal A_L(X)\longrightarrow\mathcal O_X(X)
+\end{equation}
+has a unique unital $\mathbb S$-algebra section, given by
+$b$ in every coordinate.  Nevertheless the sheaf amplitude
+map $\mathcal A_L\to\mathcal O_X$ has no section even as
+a sheaf of $\Gamma$-sets.  Already on the single open
+$U=X\setminus\{2\}$ there is no $\Gamma$-section.  There
+is likewise no $\Gamma$-section at the infinity stalk.
+\end{proposition}
+\begin{proof}
+For a nonzero integer $r$, $|r|+|-r|=2|r|\ge2>1$,
+and $\mathbb Z$ has no nonzero zero divisors.  Theorems
+\ref{HG:bound} and~\ref{HG:boundedsection} therefore prove
+the unique algebra section on global sections.  Its image
+has all unused coordinates equal to $\tau$, leaving the
+other labelled-zero points outside this chosen section.
+
+On $U=X\setminus\{2\}$ the coefficient ring is
+$\mathbb Z[1/2]$ and the archimedean bound is still exactly
+$1$.  Thus $(1/2,-1/2)$ is an allowed tuple and
+\begin{equation}\tag{HG37}
+ HG(\mathrm{fold})(\widehat{1/2},\widehat{-1/2})=e,
+ \qquad b(HR(\mathrm{fold})(1/2,-1/2))=\tau.
+\end{equation}
+Pointedness and the coordinate projections force any
+putative section to use those two lifts, so there is no
+alternative choice that could repair this failure.  A
+section of sheaves would evaluate to a section on $U$,
+which is impossible.  The same allowed tuple in
+$B_1(\mathbb Q)$, the source infinity stalk from (HG31),
+proves its asserted failure directly.
+\end{proof}
+
+For an arbitrary bound $c>0$, the same proof replaces (HG32)
+by all integer vectors satisfying $\sum_i|r_i|\le c$, each
+with fibre $L^{\{i:r_i=0\}}$.  For $0<c<1$ the entire global
+bounded object is exactly $HL$; at the strict bound $c=1$ it
+is again exactly $HL$.  At a rational or complex archimedean
+coefficient ring, a pair $r,-r$ with $r\ne0$ and $2|r|\le1$
+is allowed by the unit ball.  Folding its two top-supported
+coordinates gives $e$, whereas folding the zero tuple gives
+$\tau$.  Thus cancellation-labelled zero survives the actual
+archimedean restriction at precisely the original norm bound.
+
+The complete retained object is therefore (HG7) with (HG3),
+(HG4), and (HG23), and its nontrivial zero-amplitude ideal is
+(HG9)--(HG10).  The original seminorm does not force that ideal
+to vanish.  Ring-valued realization removes it by (HG21),
+while the $\Gamma$-algebra and every positive archimedean bound
+retain it explicitly.
+
+\subsection{Exact comparison with the later all-subset Riemann--Roch module}
+
+The following second source uses a different, explicitly stated
+module: Alain Connes and Caterina Consani,
+\emph{Riemann--Roch for the ring $\mathbb Z$},
+\href{https://arxiv.org/abs/2306.00456}{arXiv:2306.00456},
+original \nolinkurl{RRZ.tex}, equation \texttt{normdefn},
+Lemma \texttt{xlem}, and equation \texttt{xdefn}, source
+lines 185--208.  That source records the older sum-of-absolute-values
+bound and then defines the new module by all subset sums.
+These definitions give an exact inclusion without identifying
+the two modules or changing either original bound.
+
+For an integer $m\ge0$ set
+\begin{equation}\tag{HG38}
+ \begin{aligned}
+ E_{L,m}(k_+)=\{((a_i,\lambda_i))\in HG_L(\mathbb Z)(k_+):
+     &-m\le\sum_{i\in I}a_i\le m\\
+     &\text{for every }I\subseteq\{1,\ldots,k\}\}.
+ \end{aligned}
+\end{equation}
+This is the same complete support lift as (SRR2) in the
+accompanying programme calculation, here defined in full so
+that the comparison needs none of its dimension claims.
+An output subset under a pointed map has as preimage a subset
+of input coordinates, so (HG3) preserves (HG38).  Thus it
+is a $\Gamma$-subfunctor.  Its amplitude version is denoted
+$E_m$.
+
+\begin{proposition}\label{HG:twobounds}
+For $P(a)=\sum_{a_i>0}a_i$ and
+$N(a)=\sum_{a_i<0}(-a_i)$, the two exact bounds are
+\begin{equation}\tag{HG39}
+ \begin{aligned}
+ (a,\lambda)\in B_m^L(\mathbb Z)(k_+)
+       &\ \Longleftrightarrow\ P(a)+N(a)\le m,\\
+ (a,\lambda)\in E_{L,m}(k_+)
+       &\ \Longleftrightarrow\ P(a)\le m\text{ and }N(a)\le m.
+ \end{aligned}
+\end{equation}
+There are natural inclusions preserving every amplitude and
+support coordinate:
+\begin{equation}\tag{HG40}
+ B_m^L(\mathbb Z)\ \lhook\joinrel\longrightarrow\ E_{L,m}
+       \ \lhook\joinrel\longrightarrow\ B_{2m}^L(\mathbb Z).
+\end{equation}
+For $m\ge1$ both inclusions are strict; for $m=0$ all three
+objects are exactly $HL$.  The amplitude diagrams for these
+inclusions commute, and their zero-amplitude fibres are
+identically $HL$, with no quotient of the lattice labels.
+\end{proposition}
+\begin{proof}
+The first equivalence is the identity
+$\sum_i|a_i|=P(a)+N(a)$.  Every subset sum is between
+$-N(a)$ and $P(a)$, and these endpoints are attained by
+taking all negative or all positive coordinates respectively.
+This proves the second equivalence, including empty subsets,
+and is the calculation in the source's subsequent
+\texttt{xdefnr}.  The numerical implications
+$P+N\le m\Rightarrow(P\le m,N\le m)\Rightarrow P+N\le2m$
+prove (HG40).  All three use exactly the same support
+constraint (HG2) and the same pushforward (HG3), proving
+naturality and compatibility with amplitude.
+
+The tuple $(\widehat m,\widehat{-m})$ belongs to $E_{L,m}$
+but has absolute-value sum $2m>m$, so is outside the first
+ball.  The one-coordinate tuple $\widehat{2m}$ belongs to
+the second ball but its singleton subset sum exceeds $m$,
+so is outside $E_{L,m}$.  At $m=0$, each individual
+coordinate is a subset sum, hence every amplitude is zero;
+all support tuples remain, giving $HL$.  The same observation
+proves the assertion about zero-amplitude fibres for every
+$m$.
+\end{proof}
+
+\begin{proposition}\label{HG:rrsectiondefect}
+For $0_L\ne1_L$ and every $m\ge1$, the map
+$E_{L,m}\to E_m$ has no $\Gamma$-section.  In particular,
+the unique global $\Gamma$-algebra section on the older
+$B_1(\mathbb Z)$ from (HG36) does not extend to the later
+$E_1$ module, even though their level-$1$ point sets agree.
+\end{proposition}
+\begin{proof}
+Pointed coordinate projections are available in the all-subset
+module.  Therefore any section must send zero to $\tau$
+and every nonzero coordinate $a$ to its unique lift
+$\widehat a$, exactly as in the proof of
+Theorem~\ref{HG:boundedsection}.  For every $m\ge1$, the
+tuple $(1,-1)$ belongs to $E_m(2_+)$: its subset sums are
+$0,1,-1,0$, all in $[-m,m]$.  The required naturality
+equation would be
+\begin{equation}\tag{HG41}
+ e=HG(\mathrm{fold})(\widehat1,\widehat{-1})
+       =b(E_m(\mathrm{fold})(1,-1))=b(0)=\tau,
+\end{equation}
+which is false for $0_L\ne1_L$.  At $m=1$ the tuple
+$(1,-1)$ is exactly an additional tuple supplied by the
+first strict inclusion in (HG40); it was disallowed by
+the older absolute-value sum bound.  At level $1$ both
+bounds require only $|a|\le1$, so their point sets do
+agree there.  The failure therefore occurs in their
+actual higher-level fold structures, as calculated, and
+does not change any coordinate or bound.
+\end{proof}

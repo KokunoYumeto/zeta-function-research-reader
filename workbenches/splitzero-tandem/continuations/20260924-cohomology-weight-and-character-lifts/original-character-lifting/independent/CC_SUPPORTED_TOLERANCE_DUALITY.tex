@@ -1,0 +1,700 @@
+% Independent derivation, 2026-09-23. CTD1--30.
+\section{The full supported tolerant-circle Hom and its signed divisor receiver}
+\label{sec:supported-tolerance-duality}
+
+\paragraph{Sources and scope.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/2205.01391v2}{\emph{Riemann--Roch for
+$\overline{\operatorname{Spec}\mathbb Z}$}}, original author source
+\nolinkurl{RR-J-final.tex}, define their signed bounded sections in
+Proposition \texttt{setup1}, equation \texttt{kerpsi}; the internal Hom
+in Appendix A, Lemma \texttt{catcat}, equation \texttt{catcat1};
+the total-distance relations in Proposition \texttt{defnA}, equation
+\texttt{inequdef}; and their duality in Proposition \texttt{pontrj}
+and Theorem \texttt{serredual}. Appendix B, Proposition
+\texttt{proppi0}, defines the actual Dold--Kan-derived kernel and
+tolerant cokernel. The complete original source and its version-specific
+SHA-256 are retained in the source-use ledger.
+We read the original section on cohomology, the complete section
+\texttt{sec5}, and Appendices A and B for this calculation.
+
+The later Connes--Consani paper
+\href{https://arxiv.org/abs/2306.00456v1}{\emph{Riemann--Roch for the
+ring $\mathbb Z$}}, original \nolinkurl{RRZ.tex}, equations
+\texttt{xdefn} and \texttt{xdefnr}, uses an all-subset bound.
+Its preceding equation \texttt{normdefn} states the distinct signed
+bound. We prove the exact comparison of these two bounds below.
+The full support carrier is the one of The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}
+{\emph{Split Support Geometry}, version 11,
+Definition \texttt{def:lattice-split}}.
+
+The objects calculated here are explicitly specified tolerant
+$\Gamma$-objects and their internal Homs. We do not redefine the
+authors' $H^1(D)$ by declaring one of these objects to be its
+Dold--Kan lift. Neither the divisor $H^1$ nor its lift is identified
+with an arithmetic spectral $H^1$.
+
+\subsection{The original divisor and its supported tolerant circle}
+
+Let $L$ be a bounded distributive lattice with $0_L\ne1_L$.
+Retain
+\begin{equation}\tag{CTD1}
+\begin{gathered}
+D=\sum_p d_p[p]+d_\infty[\infty],\qquad
+N=\prod_p p^{-d_p}>0,\qquad a=e^{d_\infty}>0,\\
+I(D)=N\mathbb Z,\qquad
+\mathcal O(D)_f=\prod_p p^{-d_p}\mathbb Z_p
+=N\widehat{\mathbb Z},\\
+A_N=\mathbb R/N\mathbb Z,\qquad
+d_N(\bar x,\bar z)=\min_{n\in\mathbb Z}|x-z-Nn|.
+\end{gathered}
+\end{equation}
+The equality $I(D)=N\mathbb Z$ follows by applying the valuation
+inequalities to $q/N$. The finite product retains every divisor
+coefficient; $N$ need not be an integer.
+
+For an abelian group $A$ define the commutative monoid
+\begin{equation}\tag{CTD2}
+G_L(A)=\{(0,\lambda):\lambda\in L\}\cup(A\times\{1_L\}),\quad
+(x,\lambda)+(z,\nu)=(x+z,\lambda\vee\nu),\quad
+\tau=(0,0_L),\quad e=(0,1_L).
+\end{equation}
+It is a semimodule over the semiring $S=G_L(\mathbb Z)$ by
+$(n,\kappa)(x,\lambda)=(nx,\kappa\wedge\lambda)$.
+The carrier condition is preserved: a nonzero product amplitude
+forces both relevant labels to be top. Distributivity of joins
+and meets proves both distributive laws of this scalar action.
+
+For a commutative monoid $M$, write $HM(r_+)=M^r$.
+A pointed map acts by adding along each nonbasepoint fibre; the
+empty fibre has value $\tau$. This defines the Eilenberg--MacLane
+$\Gamma$-object of the monoid. Define the tolerant object
+\begin{equation}\tag{CTD3}
+\mathcal T^{L,\mathrm{amp}}_{N,a}(r_+)=G_L(A_N)^r,\qquad
+(X,Z)\in\mathcal R^{N,a,\mathrm{amp}}_r
+\ \Longleftrightarrow\
+\sum_{j=1}^r d_N(x_j,z_j)\le a,
+\end{equation}
+where $x_j,z_j$ are the amplitudes, and all support labels remain
+in $X,Z$. The basepoint is the all-$\tau$ tuple.
+The relation is reflexive and symmetric. The triangle inequality
+gives
+\[
+\sum_i d_N\!\left(\sum_{f(j)=i}x_j,\sum_{f(j)=i}z_j\right)
+\le\sum_jd_N(x_j,z_j),
+\]
+so every $\Gamma$ structure map preserves the relation. Thus
+(CTD3) is an object of the original category $\Gamma\mathcal T_*$.
+Its support-sensitive carrier has a tolerance pulled back from
+amplitudes; in particular it relates $\tau$ to $e$.
+The label-exact object has the same carrier and the smaller relation
+\[
+(X,Z)\in\mathcal R^{N,a,\mathrm{eq}}_r
+\quad\Longleftrightarrow\quad
+(X,Z)\in\mathcal R^{N,a,\mathrm{amp}}_r
+\quad\hbox{and}\quad \lambda_j=\nu_j\quad(1\le j\le r),
+\]
+where $\lambda_j,\nu_j$ are the respective labels.
+It too is a tolerant $\Gamma$-object: reflexivity and symmetry
+hold, and a fold of coordinatewise equal labels produces equal
+joins. Denote it by $\mathcal T^{L,\mathrm{eq}}_{N,a}$.
+Throughout the principal calculation below,
+$\mathcal T^L_{N,a}$ without a superscript means this
+\emph{label-exact} object. Both versions and all four directions
+of internal-Hom comparison are retained in (CTD27)--(CTD28).
+
+Use the exact original internal-Hom convention
+\begin{equation}\tag{CTD4}
+\mathfrak H_D(k_+)
+=\operatorname{Hom}_{\Gamma\mathcal T_*}
+ \bigl(\mathcal T^L_{N,a},
+       \mathcal T^L_{1,1/4}(k_+\wedge-)\bigr).
+\end{equation}
+Its basepoint is the constant all-$\tau$ map. A pointed map
+$k_+\to\ell_+$ acts by postcomposition with the corresponding
+target fold. We will also calculate the subfunctor
+$\mathfrak H_D^S$ whose underlying monoid maps are $S$-linear.
+This is an explicitly imposed restriction on morphisms, not a
+change to the original category in (CTD4). In particular, fixed
+tolerance bounds are not asserted to be preserved by multiplication
+by every integer in $S$.
+
+\subsection{All natural maps and the additional support maps}
+
+A natural map $HM\to HN(k_+\wedge-)$ is exactly a $k$-tuple of
+pointed additive monoid maps $M\to N$. Indeed, naturality for the
+coordinate projections forces the map at level $r_+$ to apply its
+level-one maps to each of the $r$ input coordinates. Naturality
+for the two-input fold then forces additivity, and pointedness
+forces preservation of zero. Conversely these properties commute
+with every finite fibre sum, hence give a natural map.
+
+Let
+\[
+J_0(L)=\{\theta:L\to L:\theta(0_L)=0_L,\
+ \theta(\lambda\vee\nu)=\theta(\lambda)\vee\theta(\nu)\},
+\qquad
+J_{01}(L)=\{\theta\in J_0(L):\theta(1_L)=1_L\}.
+\]
+These are definitions of sets of maps; $J_0(L)$ here does not
+denote the join-irreducible elements of $L$.
+
+Every pointed additive monoid map $F:G_L(A)\to G_L(B)$ has
+exactly the form
+\begin{equation}\tag{CTD5}
+F_{\chi,\theta}(x,\lambda)
+  =(\chi(x),\theta(\lambda)),\qquad
+\chi\in\operatorname{Hom}_{\mathbb Z}(A,B),\quad
+\theta\in J_0(L),\quad
+\chi\ne0\Longrightarrow\theta(1_L)=1_L.
+\end{equation}
+Here is a proof, including the support constraint. The additive
+idempotents of $G_L(B)$ are exactly $(0,\mu)$, because $b+b=b$
+in the group $B$ implies $b=0$. Thus $F(0,\lambda)=(0,\theta(\lambda))$
+with $\theta$ preserving joins and bottom. Set $\mu=\theta(1_L)$.
+For $\widehat x=(x,1_L)$, the identities
+$\widehat x+e=\widehat x$ and $\widehat x+\widehat{-x}=e$
+force the label of $F(\widehat x)$ to be both above and below
+$\mu$, hence equal to $\mu$. Write its amplitude as $\chi(x)$.
+The group law among the $\widehat x$ proves additivity of $\chi$.
+If $\chi(x)\ne0$ for some $x$, the target carrier forces $\mu=1_L$.
+This proves necessity and uniqueness. Conversely (CTD5) is
+well-defined, preserves bottom, and preserves addition by the
+stated properties of $\chi$ and $\theta$.
+
+The $S$-linear maps among (CTD5) are exactly
+\begin{equation}\tag{CTD6}
+F_{\chi,\mu}(x,\lambda)
+=(\chi(x),\lambda\wedge\mu),\qquad
+\mu\in L,\qquad \chi\ne0\Longrightarrow\mu=1_L.
+\end{equation}
+In fact scalar linearity applied to $(0,\lambda)e$ gives
+$\theta(\lambda)=\lambda\wedge\theta(1_L)$. Conversely the meet
+formula is additive by distributivity of $L$, and
+\[
+F_{\chi,\mu}((n,\kappa)(x,\lambda))
+=(n\chi(x),\kappa\wedge\lambda\wedge\mu)
+=(n,\kappa)F_{\chi,\mu}(x,\lambda).
+\]
+It also preserves $\tau$. Consequently the underlying, unbounded
+semimodule Hom is exactly
+\[
+\operatorname{Hom}_S(G_L(A),G_L(B))
+ \cong G_L(\operatorname{Hom}_{\mathbb Z}(A,B)).
+\]
+A $k$-tuple of such maps has $k$ independent labels $\mu_i$.
+It must not be replaced by $G_L(\operatorname{Hom}(A,B)^k)$,
+which has a single common label.
+
+At the unbounded level, pointwise addition and scalar action give
+\begin{equation}\tag{CTD7}
+F_{\chi,\mu}+F_{\psi,\nu}=F_{\chi+\psi,\mu\vee\nu},
+\qquad
+(n,\kappa)F_{\chi,\mu}=F_{n\chi,\kappa\wedge\mu}.
+\end{equation}
+In particular a nonzero amplitude map and its negative add to
+$F_{0,1_L}$, not to the zero map $F_{0,0_L}$.
+
+\subsection{The all-level tolerance excludes discontinuous characters}
+
+For maps (CTD5) from $G_L(A_N)$ to $G_L(\mathbb R/\mathbb Z)$,
+equal input labels give equal output labels for every support
+map $\theta_i$. The numerical part of the tolerance is the
+amplitude distance. The
+necessary and sufficient condition on a $k$-tuple $(\chi_i)$ is
+\begin{equation}\tag{CTD8}
+\sum_{j=1}^r d_N(x_j,0)\le a
+\quad\Longrightarrow\quad
+\sum_{j=1}^r\sum_{i=1}^k d_1(\chi_i(x_j),0)\le\frac14
+\quad\text{for every }r\ge1.
+\end{equation}
+Necessity follows by taking the comparison tuple to have zero
+amplitudes and exactly the same coordinate labels as the input;
+all these zero-amplitude labelled coordinates are admissible.
+Conversely use additivity on amplitude differences in any pair;
+equal input labels already give equal output labels.
+This proves sufficiency at all levels, with every support retained.
+
+No continuity is assumed. Repeat the same $x$ in $m$ input
+coordinates. Formula (CTD8) gives
+\begin{equation}\tag{CTD9}
+d_N(x,0)\le a/m
+\quad\Longrightarrow\quad
+\sum_{i=1}^k d_1(\chi_i(x),0)\le\frac1{4m}.
+\end{equation}
+For each positive $\epsilon$, choose $m$ with $1/(4m)<\epsilon$.
+Then $d_N(x,0)\le a/m$ forces the distance of each $\chi_i(x)$
+from zero to be less than $\epsilon$. Thus each additive map is
+continuous at zero and, by translation, uniformly continuous.
+This eliminates all discontinuous additive maps by the actual
+all-level tolerance, not by an additional hypothesis.
+
+For completeness, every continuous additive
+$\chi:A_N\to\mathbb R/\mathbb Z$ is uniquely
+\begin{equation}\tag{CTD10}
+\chi_t(\bar x)=tx\bmod\mathbb Z,\qquad t\in N^{-1}\mathbb Z.
+\end{equation}
+To prove this, compose with $\mathbb R\to A_N$ and call the
+result $\varphi$. On a sufficiently small interval about zero,
+continuity gives a unique continuous real lift $g$ with values
+in $(-1/8,1/8)$. Whenever $x,y,x+y$ lie in that interval,
+$g(x+y)-g(x)-g(y)$ is an integer of absolute value less than
+$3/8$, hence is zero. Extend $g$ to $\mathbb R$ by
+$G(x)=2^m g(2^{-m}x)$ for sufficiently large $m$.
+Local additivity proves independence of $m$ and global
+additivity. The extension agrees with $g$ near zero and is
+continuous there; hence $G(x)=tx$, as follows first for rational
+$x$ and then for real $x$ by continuity. Addition in the circle
+gives $\varphi(x)=tx\bmod\mathbb Z$ at every $x$.
+Since $\varphi(N)=0$, $tN\in\mathbb Z$.
+Uniqueness follows because $(t-t')x$ cannot be integer for every
+sufficiently small real $x$ unless $t=t'$.
+
+The exact coefficient bound is
+\begin{equation}\tag{CTD11}
+\text{(CTD8)}
+\quad\Longleftrightarrow\quad
+t_i\in N^{-1}\mathbb Z\ (1\le i\le k),
+\qquad a\sum_{i=1}^k|t_i|\le\frac14.
+\end{equation}
+For sufficiency choose a closest representative $x-Nn$ in
+$[-N/2,N/2]$. Since $t_iNn$ is integer,
+\[
+d_1(t_ix,0)\le |t_i|\,d_N(\bar x,0).
+\]
+Summing this inequality proves (CTD8).
+For necessity choose an integer $m$ so large that
+$a/m<N/2$ and $|t_i|a/m<1/2$ for every $i$. Repeat
+$\bar x=\overline{a/m}$ exactly $m$ times. Its total source
+distance is exactly $a$, and no target term wraps around the
+circle. Consequently (CTD8) is precisely
+$m\sum_i|t_i|a/m\le1/4$. This proves the displayed bound,
+including its boundary equality.
+
+\subsection{The entire internal Hom and its canonical linear retract}
+
+The preceding proofs determine (CTD4) completely:
+\begin{equation}\tag{CTD12}
+\begin{split}
+\mathfrak H_D(k_+)=\{((t_i,\theta_i))_{i=1}^k:\;&
+ t_i\in N^{-1}\mathbb Z,\quad
+ a\sum_i|t_i|\le1/4,\quad \theta_i\in J_0(L),\\
+ &t_i\ne0\Longrightarrow\theta_i\in J_{01}(L)\}.
+\end{split}
+\end{equation}
+The actual natural transformation represented by this tuple acts
+at level $r_+$ by
+\[
+((x_j,\lambda_j))_{j=1}^r
+\longmapsto
+((t_i x_j\bmod\mathbb Z,\theta_i(\lambda_j)))_
+ {1\le i\le k,\ 1\le j\le r}.
+\]
+A pointed map $\alpha:k_+\to\ell_+$ acts by
+\begin{equation}\tag{CTD13}
+(t_i,\theta_i)_i\longmapsto
+\left(\sum_{\alpha(i)=h}t_i,\
+      \bigvee_{\alpha(i)=h}\theta_i\right)_{h=1}^{\ell},
+\end{equation}
+where the join of maps is pointwise and an empty join is the
+constant-bottom map. It preserves (CTD12), since the triangle
+inequality preserves the coefficient bound, a pointwise join of
+join-preserving maps preserves joins, and a nonzero resulting
+coefficient has some nonzero input coefficient and therefore
+top output at $1_L$. Formula (CTD13) also follows directly by
+folding the displayed natural transformation.
+
+Its linear subfunctor is exactly
+\begin{equation}\tag{CTD14}
+\mathfrak H_D^S(k_+)=
+\{((t_i,\mu_i))_{i=1}^k:
+t_i\in N^{-1}\mathbb Z,\ a\sum_i|t_i|\le1/4,\
+\mu_i\in L,\ t_i\ne0\Rightarrow\mu_i=1_L\}.
+\end{equation}
+The maps
+\begin{equation}\tag{CTD15}
+\begin{gathered}
+\iota_D:\mathfrak H_D^S\longrightarrow\mathfrak H_D,\qquad
+(t_i,\mu_i)\longmapsto(t_i,[\lambda\mapsto\lambda\wedge\mu_i]),\\
+\rho_D:\mathfrak H_D\longrightarrow\mathfrak H_D^S,\qquad
+(t_i,\theta_i)\longmapsto(t_i,\theta_i(1_L)),\qquad
+\rho_D\iota_D=\mathrm{id}
+\end{gathered}
+\end{equation}
+are pointed natural transformations. For the section, naturality
+uses $\lambda\wedge(\bigvee_i\mu_i)
+=\bigvee_i(\lambda\wedge\mu_i)$; for the retraction it uses
+$(\bigvee_i\theta_i)(1_L)=\bigvee_i\theta_i(1_L)$.
+The fibre of $\rho_D$ over a tuple $(t_i,\mu_i)$ is exactly
+\[
+\prod_{i=1}^k\{\theta\in J_0(L):\theta(1_L)=\mu_i\}.
+\]
+All these fibres are retained in (CTD12). The pointed kernel
+of $\rho_D$ is a singleton: if $\theta(1_L)=0_L$, monotonicity
+forces $\theta$ to be the constant-bottom map. This does not
+make $\rho_D$ injective.
+
+For example take $L=\{0_L<u<1_L\}$. The map
+$\theta(0_L)=0_L$, $\theta(u)=0_L$, $\theta(1_L)=1_L$
+preserves joins and bottom, but differs from the identity
+meet map with $\mu=1_L$. Already the zero character with this
+$\theta$ and the zero character with the identity map are
+distinct elements of $\mathfrak H_D(1_+)$ having the same
+image under $\rho_D$, for every $D$.
+Thus the proposed full supported coefficient carrier is a
+canonical retract, not the entire original-category Hom in
+general. For the two-element lattice all members of $J_0(L)$
+are either the bottom map or the identity, so $\rho_D$ is an
+isomorphism in that particular case.
+
+\subsection{The canonical divisor and the exact signed section map}
+
+Keep the source's actual divisor $K=-2[2]$. Then
+\begin{equation}\tag{CTD16}
+\begin{gathered}
+I(K)=4\mathbb Z,\qquad e^{K_\infty}=1,\qquad
+\mathcal T_K^L=\mathcal T^L_{4,1},\\
+\mathcal T^L_{4,1}\xrightarrow{\ \cong\ }\mathcal T^L_{1,1/4},
+\qquad (z\bmod4\mathbb Z,\lambda)
+\longmapsto(z/4\bmod\mathbb Z,\lambda),\\
+I(K-D)=\frac4N\mathbb Z,\qquad
+e^{(K-D)_\infty}=a^{-1}.
+\end{gathered}
+\end{equation}
+The circle map and its inverse multiplication by $4$ preserve
+every label. The distance identity $d_1(z/4,w/4)=d_4(z,w)/4$
+proves preservation of the displayed tolerances at every level.
+
+Define the supported signed section module by its full levels:
+\begin{equation}\tag{CTD17}
+\mathcal H^{0,\pm}_L(K-D)(k_+)
+=\{((q_i,\mu_i))_{i=1}^k:
+q_i\in(4/N)\mathbb Z,\ q_i\ne0\Rightarrow\mu_i=1_L,\
+\sum_i|q_i|\le1/a\}.
+\end{equation}
+Its folds sum amplitudes and join labels. The triangle inequality
+proves that each fold preserves the bound. This is the
+support lift of the signed section module of the 2022 source,
+with its full original ideal and real bound.
+
+The exact pointed natural isomorphism is
+\begin{equation}\tag{CTD18}
+\mathfrak H_D^S\xrightarrow{\ \cong\ }\mathcal H^{0,\pm}_L(K-D),
+\qquad ((t_i,\mu_i))\longmapsto((4t_i,\mu_i)),
+\qquad q_i\longmapsto t_i=q_i/4.
+\end{equation}
+The ideal and the bound follow respectively from
+$t_i\in N^{-1}\mathbb Z$ and
+$a\sum_i|t_i|\le1/4$. All folds commute with multiplication by
+$4$, and all labels are unchanged. Combining (CTD15) and
+(CTD18) therefore gives an explicit retract of the complete
+internal Hom onto the signed supported section module.
+
+The underlying evaluation before the circle comparison is
+\begin{equation}\tag{CTD19}
+((q,\mu),(x\bmod N\mathbb Z,\lambda))
+\longmapsto(qx\bmod4\mathbb Z,\mu\wedge\lambda).
+\end{equation}
+It is well-defined because $qN\in4\mathbb Z$.
+For a $k$-tuple of coefficients and an $r$-tuple of inputs,
+its $(i,j)$ entry is the same expression with $q_i,x_j$.
+The bound $\sum_i|q_i|\le1/a$ implies
+\[
+\sum_{i,j}d_4(q_ix_j,q_iz_j)
+\le\left(\sum_i|q_i|\right)\sum_jd_N(x_j,z_j)\le1.
+\]
+Thus evaluation gives the actual required tolerant morphism into
+$\mathcal T_K^L(k_+\wedge-)$, with the original factor $4$
+and all support meets present.
+
+For principal covariance retain
+$\operatorname{div}(c)=\sum_pv_p(c)[p]-\log|c|[\infty]$.
+For $D'=D+\operatorname{div}(c)$ one has
+$N'=N/|c|$ and $a'=a/|c|$. The exact isomorphism
+$\mathcal T_D^L\to\mathcal T_{D'}^L$ is
+$(x,\lambda)\mapsto(x/c,\lambda)$.
+Its inverse induces on internal Homs, and on their signed
+receivers, the maps
+\begin{equation}\tag{CTD20}
+(t_i,\theta_i)\longmapsto(ct_i,\theta_i),\qquad
+(q_i,\mu_i)\longmapsto(cq_i,\mu_i).
+\end{equation}
+Indeed $a'\sum|ct_i|=a\sum|t_i|$, and
+$I(K-D')=(4|c|/N)\mathbb Z=c(4/N)\mathbb Z$.
+All inverse formulas divide by $c$; all support labels remain.
+Negative $c$ reverses the amplitude signs and leaves the absolute
+bounds and support joins unchanged.
+
+\subsection{The strongest direct comparison with the all-subset module}
+
+Write $c_D=1/a$ and $M_D=4/N$, retaining these exact values.
+Let $\mathcal U_L(M_D,c_D)$ be the RDT all-subset module with
+amplitudes in $M_D\mathbb Z$ and every subset sum in
+$[-c_D,c_D]$. Let $\mathcal S_L(M_D,c_D)$ denote the signed
+module (CTD17). For a tuple $q$, put
+\[
+P(q)=\sum_{q_i>0}q_i,\qquad
+Q(q)=\sum_{q_i<0}|q_i|.
+\]
+The original conditions, with every sign retained, are
+\begin{equation}\tag{CTD21}
+\begin{array}{ll}
+q\in\mathcal S_L(M_D,c_D)&\Longleftrightarrow\
+P(q)+Q(q)\le c_D,\\
+q\in\mathcal U_L(M_D,c_D)&\Longleftrightarrow\
+P(q)\le c_D\ \hbox{and}\ Q(q)\le c_D.
+\end{array}
+\end{equation}
+All support conditions in both lines are identical. The identity
+on amplitudes and labels gives the exact natural inclusions
+\begin{equation}\tag{CTD22}
+\mathcal H^{0,\pm}_L(K-D)
+=\mathcal S_L(M_D,c_D)
+\ \lhook\joinrel\longrightarrow\
+\mathcal H^0_L(K-D)=\mathcal U_L(M_D,c_D)
+\ \lhook\joinrel\longrightarrow\
+\mathcal S_L(M_D,2c_D).
+\end{equation}
+The second inclusion follows from $P+Q\le2c_D$.
+These are actual componentwise maps, commuting with all folds.
+
+They agree at level $1_+$, but the first inclusion is strict
+at level $2_+$ whenever $m=\lfloor c_D/M_D\rfloor\ge1$:
+take $q=mM_D$ and the full supported tuple
+$((q,1_L),(-q,1_L))$. It is admitted by the all-subset condition,
+but $2mM_D>c_D$ because $c_D<(m+1)M_D\le2mM_D$.
+It therefore fails the signed condition. If $m=0$, both modules
+are precisely $H(L,\vee,0_L)$ in all levels.
+
+There is no natural transformation from the middle module in
+(CTD22) to the first whose level-one map is the identity when
+$m\ge1$. Projection naturality would force its value at the
+displayed two-coordinate tuple to have those same coordinates,
+which are not an element of the required signed target.
+This proves the exact limitation; it does not erase the
+inclusions or the full retained objects.
+
+The exact excess object is the pointed $\Gamma$-cofiber
+\begin{equation}\tag{CTD23}
+\mathcal Q_{D,L}(k_+)
+=\mathcal U_L(M_D,c_D)(k_+)/
+       \mathcal S_L(M_D,c_D)(k_+).
+\end{equation}
+Here the indicated subset is collapsed to one basepoint.
+The remaining elements are precisely the full labelled tuples
+with $P,Q\le c_D$ and $P+Q>c_D$.
+Folds are the original folds, followed by this stated collapse;
+well-definedness follows because the signed object is a
+subfunctor. This is a pointed-set cofiber, not a claimed
+abelian quotient or a faithful replacement for the two original
+modules. Equations (CTD12), (CTD15), (CTD18), and (CTD22)
+retain every source and comparison in the duality calculation.
+
+\subsection{Pullback along the actual adelic quotient}
+
+The source's Proposition \texttt{thedimh1} uses the adelic
+quotient with finite subgroup $\mathcal O(D)_f$, not just an
+unqualified real coordinate projection. Explicitly, for
+$x=(x_\infty,x_f)\in\mathbb A$, choose $r\in\mathbb Q$ such that
+$x_f-r\in\mathcal O(D)_f$ and set
+\begin{equation}\tag{CTD24}
+\pi_D(x)=x_\infty-r\bmod N\mathbb Z.
+\end{equation}
+Such an $r$ exists by the following complete finite calculation.
+Choose a positive integer $M$ with $M x_f/N\in\widehat{\mathbb Z}$.
+For each prime dividing $M$, prescribe the residue of an integer
+$j$ to be that of $M x_p/N$ modulo $p^{v_p(M)}$.
+The Chinese remainder theorem supplies $j$. At primes not
+dividing $M$, both $M x_p/N$ and $j$ are integral and $M$ is a
+unit. Hence $M x_f/N-j\in M\widehat{\mathbb Z}$ at every prime.
+Take $r=Nj/M\in\mathbb Q$; then
+$x_f-r\in N\widehat{\mathbb Z}$, as required. Two choices differ by
+$\mathbb Q\cap N\widehat{\mathbb Z}=N\mathbb Z$, so the
+formula is independent of the choice. Choosing sums of the
+rational representatives proves additivity. It is surjective
+by restricting to adeles $(t,0)$, and
+\[
+\ker\pi_D=\mathbb Q+
+ \bigl(\{0\}\times\mathcal O(D)_f\bigr).
+\]
+Both containments follow directly from (CTD24).
+
+Give $H(G_L(\mathbb A))$ the relation
+$\sum_jd_N(\pi_Dx_j,\pi_Dz_j)\le a$ together with
+equality of the two labels in each coordinate,
+and denote the resulting explicit tolerant object by
+$\widetilde{\mathcal T}_D^L$. Then precomposition with the
+label-preserving $G_L(\pi_D)$ gives exact natural isomorphisms
+\begin{equation}\tag{CTD25}
+\begin{gathered}
+\operatorname{Hom}_{\Gamma\mathcal T_*}
+(\widetilde{\mathcal T}_D^L,\mathcal T^L_{1,1/4}(k_+\wedge-))
+\cong\mathfrak H_D(k_+),\\
+\operatorname{Hom}^{S}_{\Gamma\mathcal T_*}
+(\widetilde{\mathcal T}_D^L,\mathcal T^L_{1,1/4}(k_+\wedge-))
+\cong\mathfrak H_D^S(k_+).
+\end{gathered}
+\end{equation}
+For the proof apply (CTD5) to each component.
+If $x\in\ker\pi_D$, compare repeated inputs $(x,1_L)$ with
+the same number of coordinates $(0,1_L)$. They have equal
+labels and zero source distance. Preservation of the target tolerance
+forces $m\,d_1(\chi_i(x),0)\le1/4$ for every $m$, hence
+$\chi_i(x)=0$. Thus each amplitude homomorphism factors uniquely
+through $\pi_D$. All support maps $\theta_i$ are unchanged.
+Surjectivity of $\pi_D$ shows that the factored maps satisfy
+exactly the circle tolerance. Conversely composition with
+$\pi_D$ preserves it by definition. This proves both
+isomorphisms and compatibility with every internal-Hom fold.
+
+This pullback has an exact receiving map from the native supported
+adelic construction: (ASC7) and (ASC17)--(ASC18) identify its relation
+with the maximal symmetric subrelation of the degree-zero directed
+relation of $X(D)$. Thus (CTD25) applies to that calculated symmetric
+part, with its original vertex carrier and all its fibres. It is not
+an identification of the directed relation with a symmetric relation,
+nor a claim that (ASC8)'s pointed spherical set is the signed section
+module. The actual signed sections are the retract of the complete
+relative zero-section object in (ASC9)--(ASC13).
+
+The assertion is a proof about the explicitly defined pullback
+object. In particular the functor $G_L$ does not preserve
+pointed kernels of group maps. For an additive map $f:A\to B$,
+\begin{equation}\tag{CTD26}
+G_L(f)(x,\lambda)=(f(x),\lambda),\qquad
+G_L(f)^{-1}(\tau_B)=\{\tau_A\},\qquad
+(\mathrm{amplitude}\circ G_L(f))^{-1}(0)=G_L(\ker f).
+\end{equation}
+The first kernel statement follows because an output equal to
+$\tau_B$ requires $\lambda=0_L$, hence $x=0$ by the carrier
+condition. The amplitude-zero fibre follows by requiring only
+$f(x)=0$. This exact difference prevents an unproved transfer
+of the original Dold--Kan kernel through $G_L$.
+The original source's $H^1(D)$ and its amplitude comparison are
+retained; the support lift calculated here has been specified
+and its actual maps proved, without identifying it with an
+unconstructed spectral cohomology.
+
+\subsection{Both tolerances and all four directions of comparison}
+
+The identity on the full carrier induces a natural morphism
+\begin{equation}\tag{CTD27}
+j_{N,a}:\mathcal T^{L,\mathrm{eq}}_{N,a}
+\longrightarrow\mathcal T^{L,\mathrm{amp}}_{N,a}.
+\end{equation}
+It retains every element and label, and preserves relations
+because the label-exact relation is contained in the
+amplitude relation. The reverse identity is not a tolerant
+morphism for a nontrivial lattice: $\tau$ and $e$ are related
+in the amplitude object and are not related in the label-exact
+one. The map (CTD27) forgets a condition on pairs; it does
+not identify those two points.
+
+For superscripts $\alpha,\beta\in\{\mathrm{eq},\mathrm{amp}\}$,
+write $\mathfrak H_D^{\alpha\to\beta}$ for the internal Hom
+from $\mathcal T^{L,\alpha}_{N,a}$ to
+$\mathcal T^{L,\beta}_{1,1/4}$. Then the exact classifications,
+as pointed $\Gamma$-objects, are
+\begin{equation}\tag{CTD28}
+\begin{gathered}
+\mathfrak H_D^{\mathrm{eq}\to\mathrm{eq}}
+\ \cong\
+\mathfrak H_D^{\mathrm{amp}\to\mathrm{amp}}
+\ \cong\
+\mathfrak H_D^{\mathrm{eq}\to\mathrm{amp}}
+\ =\ \hbox{the object in (CTD12)},\\
+\mathfrak H_D^{\mathrm{amp}\to\mathrm{eq}}=\{*\}.
+\end{gathered}
+\end{equation}
+The same statement holds for the $S$-linear subfunctors, with
+(CTD14) as the common nontrivial object.
+Here the displayed isomorphisms keep the actual natural
+transformations, their characters, and all their support maps.
+They are not isomorphisms between the original tolerant
+source objects themselves.
+
+To prove the first three classifications, a morphism in any
+of those directions is still of the form (CTD5) by
+$\Gamma$-naturality. In each case the repeated top-labelled
+inputs and top-labelled zero comparisons used in
+(CTD8)--(CTD11) are related in the source, so they force the
+same continuity and exact coefficient bound. Conversely
+that coefficient bound preserves the amplitude part of the
+relation. If the target relation is label-exact in one of
+these three cases, the source relation is also label-exact,
+and applying $\theta_i$ to equal labels gives equal labels.
+This proves necessity and sufficiency. Precomposing or
+postcomposing with (CTD27) realizes the displayed
+isomorphisms on actual maps.
+
+For the remaining direction, every pair
+$((0,\lambda),\tau)$ is related in the source amplitude
+tolerance. A morphism into the label-exact target must
+therefore satisfy $\theta_i(\lambda)=\theta_i(0_L)=0_L$
+for every $\lambda$ and every output coordinate $i$.
+Thus every $\theta_i$ is the bottom map. Since
+$\theta_i(1_L)=0_L\ne1_L$, (CTD5) forces $\chi_i=0$.
+The only possible natural transformation is the constant
+all-$\tau$ transformation, which is indeed a morphism.
+This proves the final assertion at every level.
+
+Replacing the label-exact adelic relation in (CTD25) by its
+amplitude version gives the corresponding same-tolerance
+pullback isomorphism, by the identical repeated-input proof.
+The mixed direction with amplitude source and label-exact
+target remains the one-point object. Consequently there is
+no silent exchange of support tolerances in the duality
+diagram: the label-exact calculation has its complete
+nontrivial character and support receiver, the amplitude
+calculation has the same internal-Hom parameters when used
+on both sides, and switching only the target to label-exact
+destroys all nonzero maps.
+
+\subsection{Every finite-support cardinality and the zero-character range}
+
+For finite $L$, set
+$j_0=\#J_0(L)$, $j_{01}=\#J_{01}(L)$, and
+$m=\lfloor N/(4a)\rfloor$. Then the complete level counts are
+\begin{equation}\tag{CTD29}
+\begin{gathered}
+\#\mathfrak H_D(k_+)
+=\sum_{r=0}^{k}\binom{k}{r}2^r\binom{m}{r}
+       j_{01}^{\,r}j_0^{\,k-r},\\
+\#\mathfrak H_D^S(k_+)
+=\sum_{r=0}^{k}\binom{k}{r}2^r\binom{m}{r}|L|^{\,k-r}.
+\end{gathered}
+\end{equation}
+Use $\binom m0=1$ and $\binom mr=0$ for $r>m$.
+Indeed write each character coefficient as $t_i=n_i/N$,
+retaining the original $N$. The exact bound (CTD11) is
+$\sum_i|n_i|\le N/(4a)$, hence $\sum_i|n_i|\le m$.
+Choose its $r$ nonzero positions, their $2^r$ signs, and their
+ordered positive magnitudes with total at most $m$.
+The latter have number $\binom mr$: their successive partial
+sums form an increasing $r$-element subset of
+$\{1,\ldots,m\}$, with inverse successive differences.
+Each nonzero coefficient allows exactly $j_{01}$ support
+maps in the full Hom, and each zero coefficient allows
+exactly $j_0$. In the linear subfunctor the respective numbers
+are one and $|L|$. This proves both formulas, including
+the single empty tuple when $k=0$.
+
+Without any finiteness hypothesis on $L$, if $a>N/4$ then
+$m=0$ and the exact entire $\Gamma$-objects are
+\begin{equation}\tag{CTD30}
+\mathfrak H_D=H(J_0(L),\vee,0),\qquad
+\mathfrak H_D^S=H(L,\vee,0_L)\qquad(a>N/4).
+\end{equation}
+The join of maps in the first expression is pointwise and
+its zero is the constant-bottom map. All character
+coefficients vanish by (CTD11), but their support maps do
+not disappear. For example the map with zero character
+and $\theta=\mathrm{id}_L$ sends every top-supported input
+to $e$ and every $(0,\lambda)$ to itself. It differs from
+the constant-$\tau$ map and satisfies the stated tolerances.
+Equation (CTD30) follows also directly from the fold formula
+(CTD13); the linear retract is exactly evaluation at $1_L$
+and its meet-map section. Thus absence of nonzero amplitude
+characters leaves the entire calculated support receiver.
+

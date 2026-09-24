@@ -1,0 +1,595 @@
+% Independent derivation. Prefix ZIL. Requires amsmath, amssymb, hyperref.
+\section{Supported-zero inversion, the full lattice, and retained amplitudes}
+\label{sec:zero-inversion-full-lattice-review}
+
+\paragraph{Sources and the claim being tested.}
+The user-supplied source \nolinkurl{globalization_note.tex},
+\emph{A Note on the Globalization Semiring $G(\mathbb Z)$}, has an empty
+author field and the date March 2026. Its entire source was read for
+this calculation. The exact source has SHA--256
+\begin{center}\small
+\nolinkurl{ce06ac01c32e0452fe36121ac0f90e4eff8fad469b1cda7a6cf2d73116077a02}.
+\end{center}
+The relevant source locators are:
+\begin{itemize}
+\item Proposition \texttt{prop:units-irr}, lines 282--300,
+and Corollary \texttt{cor:zeta}, lines 406--430;
+\item Theorem \texttt{thm:localization-away-from-zero}, lines 436--480;
+\item Theorem \texttt{thm:frac-collapse}, lines 482--534;
+\item the definition at lines 817--825, followed by Theorem
+\texttt{thm:class-semigroup} and its proof at lines 827--871.
+\end{itemize}
+The source's bibliography names Golan, Deitmar, Lorscheid and Neukirch;
+those bibliography entries are not represented here as author sources
+independently read during this calculation. The note's empty author
+field does not authorize assigning it a human author.
+
+The full-lattice carrier and its supported-zero localization are
+existing programme results. Their public proof is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorems \texttt{thm:rebuilt-full-support} and \texttt{thm:e-stalk},
+equation \texttt{eq:e-element-localization}}.
+The earlier foundation is retained under its byline The Clankers in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split
+Support Geometry: Universal Zero Fibres, Arithmetic Curves, Frobenius
+and Perfect Quantization}, v11, Definition \texttt{def:lattice-split}}.
+The user's attribution of the earlier scalar supported-zero prime
+observation to Gemini Pro 2.5 is retained as user-reported provenance;
+this calculation does not claim that observation as new.
+
+The precise characteristic-one comparison being used is ASL1--22 of
+the complete included arithmetic-site lattice-map proof, read in full
+through ASL22. Its source is
+\begin{center}\small
+\nolinkurl{ARITHMETIC_SITE_LATTICE_MAP.tex},\\
+SHA--256
+\nolinkurl{a03b6c40ba06653fe3a481592170d1c4c43ff16d1b4af53959b3e0ab1fe0b492}.
+\end{center}
+ASL identifies its human framework source as Alain Connes and Caterina
+Consani, \href{https://arxiv.org/abs/1502.05580}{\emph{Geometry of the
+Arithmetic Site}}; the following proofs use the displayed ASL
+constructions and give the required algebra independently. They do
+not claim a new reading of that entire human paper.
+
+The statement to be tested is the user-supplied wording
+``zero is inmvertable this means rh is wrong''. We calculate exactly
+which element is inverted, what its inverse is, which identities and
+prime points result, and what information survives in the actual
+joint coefficient map. No analytic zero is silently identified with
+the semiring's absorbing zero.
+
+\subsection{The original two zeros and a general idempotent localization}
+
+Let $R$ be a nonzero commutative unital ring and $L$ a nontrivial
+bounded distributive lattice. Its semiring operations are join and
+meet. Retain the complete carrier
+\begin{equation}\tag{ZIL1}
+\begin{gathered}
+ S=G_L(R)=\{(0_R,\lambda):\lambda\in L\}
+                 \cup\{(r,1_L):r\in R\},\\
+ (r,\lambda)+(s,\nu)=(r+s,\lambda\vee\nu),\qquad
+ (r,\lambda)(s,\nu)=(rs,\lambda\wedge\nu),\\
+ z_\lambda=(0_R,\lambda),\quad
+ \tau=z_{0_L}=0_S,\quad e=z_{1_L},\quad
+ 1_S=(1_R,1_L),\\
+ q:S\longrightarrow R,\quad q(r,\lambda)=r,\qquad
+ \sigma:S\longrightarrow L,\quad\sigma(r,\lambda)=\lambda.
+\end{gathered}
+\end{equation}
+The source operations preserve the displayed carrier. For addition,
+if $r+s\ne0$ then at least one of $r,s$ is nonzero, so the joined
+label is $1_L$. For multiplication, $rs\ne0$ forces both labels to
+be $1_L$. The semiring laws and the two homomorphisms follow from
+the ring laws and distributivity in $L$.
+
+The units in this original semiring are exactly
+\begin{equation}\tag{ZIL2}
+ S^\times=\{(u,1_L):u\in R^\times\},\qquad
+ e^2=e,\quad e\ne1_S,\quad e\notin S^\times.
+\end{equation}
+Indeed a product equal to $(1_R,1_L)$ has ring product $1_R$ and
+label meet $1_L$, which forces both labels to equal $1_L$.
+Conversely the ordinary ring inverse gives an inverse in $S$.
+The inequalities in (ZIL2) use $0_R\ne1_R$.
+In particular the note's integer $0$ is $e$, whereas its new symbol
+$\tau$ is $0_S$. The Boolean subset $\{\tau,e\}$ has internal
+multiplicative identity $e$; its inclusion into $S$ is not a
+unit-preserving semiring map.
+
+Here is the localization calculation without any cancellativity
+assumption. Let $A$ be a commutative unital semiring and let
+$c\in A$ satisfy $c^2=c$. The set $cA$ is a semiring with inherited
+operations, zero $0_A$ and \emph{internal identity $c$}. Then
+\begin{equation}\tag{ZIL3}
+ A[c^{-1}]\simeq cA,\qquad a\longmapsto ca,
+ \qquad [a,c^n]\longmapsto ca\quad(n\ge0).
+\end{equation}
+To prove this, multiplication by $c$ preserves addition and
+multiplication because $c^2=c$, and sends $1_A$ to the internal
+unit $c$. Its image of the denominator $c$ is that unit. Conversely,
+if $f:A\to B$ is a zero- and unit-preserving homomorphism and
+$f(c)$ is invertible, the equality $f(c)^2=f(c)$ gives $f(c)=1_B$.
+The formula $g(ca)=f(a)$ is well defined: $ca=cb$ implies
+$f(a)=f(ca)=f(cb)=f(b)$. It preserves both operations, zero and
+the internal unit, and is forced by $f$. This proves the universal
+property and the fraction formula. In particular the complete
+equality relation of the localization is
+$a\sim b\Longleftrightarrow ca=cb$.
+
+Apply (ZIL3) to every labelled zero, without discarding any label:
+\begin{equation}\tag{ZIL4}
+\begin{gathered}
+ S[z_\mu^{-1}]\simeq\downarrow\mu
+     :=\{\nu\in L:\nu\le\mu\},\qquad
+ 1_{\downarrow\mu}=\mu,\quad0_{\downarrow\mu}=0_L,\\
+ \ell_\mu:S\longrightarrow\downarrow\mu,
+       \qquad\ell_\mu(r,\lambda)=\lambda\wedge\mu,\\
+ (r,\lambda)\sim_\mu(s,\nu)
+       \quad\Longleftrightarrow\quad
+       \lambda\wedge\mu=\nu\wedge\mu.
+\end{gathered}
+\end{equation}
+Indeed $z_\mu(r,\lambda)=z_{\mu\wedge\lambda}$, and every
+$z_\nu$ with $\nu\le\mu$ occurs by choosing $(r,\lambda)=z_\nu$.
+This identifies the entire corner semiring $z_\mu S$, its operations
+and its internal identity. In particular
+\begin{equation}\tag{ZIL5}
+ S[e^{-1}]\simeq L,\quad [e,1]^{-1}=[e,1]=[1_S,1]=1_L,
+ \qquad S[\tau^{-1}]\simeq\{0=1\}.
+\end{equation}
+Thus $e$ really is invertible in this localization, and its inverse
+is exactly its own image, equal to the localized identity.
+In the first localization $\tau$ is still $0_L\ne1_L$; it has
+not become invertible. In the second localization the actual
+absorbing zero is inverted and the entire semiring is trivial.
+These are different operations.
+
+The complete fibres, including amplitude loss, are
+\begin{equation}\tag{ZIL6}
+\begin{split}
+ \ell_\mu^{-1}(\eta)
+   ={}&\{z_\lambda:\lambda\wedge\mu=\eta\}\\
+      &{}\cup
+       \begin{cases}
+        \{(r,1_L):r\in R\setminus\{0_R\}\},&\eta=\mu,\\
+        \varnothing,&\eta\ne\mu,
+       \end{cases}
+       \qquad(\eta\le\mu),\\
+ \sigma^{-1}(\lambda)
+   ={}&\begin{cases}
+       \{z_\lambda\},&\lambda\ne1_L,\\
+       R\times\{1_L\},&\lambda=1_L.
+      \end{cases}
+\end{split}
+\end{equation}
+These follow by enumerating the two parts of the carrier in (ZIL1).
+Thus supported-zero inversion loses every amplitude distinction in
+the top fibre and preserves all original lattice labels. Inverting
+a smaller label further identifies exactly the labels having the
+same meet with it. Formula (ZIL6) also includes $\mu=0_L$.
+
+For the full multiplicative set
+$D_R=\{(r,1_L):r\in R\}$, including $e$ but excluding $\tau$,
+one has
+\begin{equation}\tag{ZIL7}
+ D_R^{-1}S\simeq L,\qquad
+ [(r,\lambda),(a,1_L)]\longmapsto\lambda.
+\end{equation}
+After $e$ is inverted, every member of $D_R$ already equals the
+unit, by (ZIL4) with $\mu=1_L$. Conversely any map inverting
+$D_R$ inverts $e$. The two universal properties give (ZIL7).
+For $R=\mathbb Z$ and $L=\mathbb B$, this is exactly the note's
+Theorem \texttt{thm:frac-collapse}; that theorem is correct.
+Its symbol $\operatorname{Frac}(S)$ denotes this specific semiring
+localization, not a field of fractions of the ring $\mathbb Z$.
+
+In contrast, if $M\subset\mathbb Z\setminus\{0\}$ is a
+multiplicative set containing $1$, then
+\begin{equation}\tag{ZIL8}
+ \{(m,1_L):m\in M\}^{-1}G_L(\mathbb Z)
+       \simeq G_L(\mathbb Z_M),\qquad
+ [(r,\lambda),(m,1_L)]\longmapsto(r/m,\lambda).
+\end{equation}
+Fraction equality on the left requires a $t\in M$ such that
+$t m' r=t m r'$ and $\lambda=\lambda'$; multiplication by
+top-labelled denominators never changes a label. These conditions
+are exactly equality of the ring fractions and their labels.
+This proves injectivity. Every top-labelled fraction and every
+zero label in the right side is attained, proving surjectivity.
+The formulas for fraction addition and multiplication agree with
+(ZIL1), so the displayed bijection is an isomorphism. This proves
+the full-lattice extension of the note's other localization theorem.
+
+\subsection{The prime spectrum before and after this localization}
+
+All primes of $S$ are the following two kinds:
+\begin{equation}\tag{ZIL9}
+\begin{gathered}
+ P_J=\{z_\lambda:\lambda\in J\}
+       \quad(J\in\operatorname{SpecLat}L),\\
+ Q_{\mathfrak p}=\{z_\lambda:\lambda\in L\}
+       \cup\{(r,1_L):r\in\mathfrak p\}
+       \quad(\mathfrak p\in\operatorname{Spec}R),\\
+ P_J\subsetneq Q_{\mathfrak p},\qquad
+ D_S(z_\mu)=\{P_J:\mu\notin J\},\qquad
+ V_S(e)=\{Q_{\mathfrak p}:\mathfrak p\in\operatorname{Spec}R\}.
+\end{gathered}
+\end{equation}
+Here a lattice prime ideal is downward closed, closed under joins,
+contains $0_L$, excludes $1_L$, and is prime for meets.
+For completeness, a prime ideal of $S$ excluding $e$ contains no
+top-labelled element: multiplication of any such element by $e$
+is $e$. Its remaining labels form a proper lattice ideal, and
+the primality test is exactly meet-primality. A prime containing
+$e$ contains every $z_\lambda$, since $e z_\lambda=z_\lambda$.
+Its top-labelled amplitudes form a ring ideal (additive negatives
+are obtained by multiplying by $(-1_R,1_L)$); the prime condition
+is ring primality. These arguments prove exhaustion and both
+converses. Every $P_J$ is contained in every $Q_{\mathfrak p}$,
+strictly because $e$ is in the latter and not the former.
+Membership of $z_\mu$ now proves the last two formulas.
+
+The spectrum of (ZIL4) identifies exactly with this supported open:
+\begin{equation}\tag{ZIL10}
+ \operatorname{Spec}(\downarrow\mu)
+   \simeq\{J\in\operatorname{SpecLat}L:\mu\notin J\}
+   \simeq D_S(z_\mu).
+\end{equation}
+Explicitly $J$ maps to $J\cap\downarrow\mu$. Conversely a prime
+$H$ of $\downarrow\mu$ maps to
+$\{\lambda:\lambda\wedge\mu\in H\}$.
+These are lattice ideals and prime by meet and join preservation.
+If $\mu\notin J$, primality gives
+$\lambda\wedge\mu\in J\Longleftrightarrow\lambda\in J$,
+so the maps are inverse. Basic opens correspond under the same
+formula, proving the topological assertion.
+Every arithmetic prime disappears under this localization because
+every $Q_{\mathfrak p}$ contains $z_\mu$. This includes $\mu=1_L$;
+it does not assert that these primes were absent from the original
+geometry. For $L=\mathbb B$, $R=\mathbb Z$, the original strict
+chain remains $\{\tau\}\subsetneq\{\tau,e\}\subsetneq Q_{(p)}$.
+
+\subsection{The actual ASL coefficient map and its localization square}
+
+Let $K$ be the tropical semifield with zero used in ASL18--22, and set
+$K_L=K\otimes_{\mathbb B}L$. The zero and unit of $K$ are written
+$\mathbf0_K,\mathbf1_K$. The nonzero indicator
+$\beta_K:K\to\mathbb B$ is a semiring homomorphism: a maximum is
+zero exactly when both inputs are zero, and a product is zero
+exactly when a factor is zero. Consequently
+\begin{equation}\tag{ZIL11}
+\begin{gathered}
+ \iota_L:L\longrightarrow K_L,\quad
+       \iota_L(\lambda)=\mathbf1_K\otimes\lambda,\\
+ \rho_L:K_L\longrightarrow L,\quad
+ \rho_L\left(\sum_i a_i\otimes\lambda_i\right)
+       =\bigvee_{i:a_i\ne\mathbf0_K}\lambda_i,\qquad
+ \rho_L\iota_L=\operatorname{id}_L.
+\end{gathered}
+\end{equation}
+The second map is $\beta_K\otimes\operatorname{id}_L$ followed
+by the canonical isomorphism $\mathbb B\otimes_{\mathbb B}L=L$;
+this proves independence from every tensor presentation. It also
+proves the displayed formula and the retraction identity.
+In particular $\iota_L$ is injective for arbitrary $L$, without
+selecting a single Boolean character or replacing $L$ by one.
+
+Retain the actual original-amplitude map
+\begin{equation}\tag{ZIL12}
+ \Phi_R:S\longrightarrow P_R:=R\times K_L,\qquad
+       \Phi_R(r,\lambda)=(r,\iota_L(\lambda)).
+\end{equation}
+Both coordinates preserve the semiring operations, zero and unit.
+If two images coincide their ring coordinates agree, and (ZIL11)
+gives equality of their lattice coordinates. Thus $\Phi_R$ is
+injective. Its image consists exactly of
+$(r,\iota_L(\lambda))$ with $r\ne0_R$ implying $\lambda=1_L$.
+The source's complete information is retained by this map.
+
+For each $\mu\in L$, write
+$d_\mu=\iota_L(\mu)$ and $u_\mu=(0_R,d_\mu)=\Phi_R(z_\mu)$.
+The corresponding localization of the \emph{full product} is
+\begin{equation}\tag{ZIL13}
+ \begin{gathered}
+ P_R[u_\mu^{-1}]\simeq d_\mu K_L,
+       \qquad(r,w)\longmapsto d_\mu w,\\
+ 1_{d_\mu K_L}=d_\mu,\qquad
+ P_R[\Phi_R(e)^{-1}]\simeq K_L,\quad(r,w)\longmapsto w.
+ \end{gathered}
+\end{equation}
+Indeed $u_\mu^2=u_\mu$, and its corner in $P_R$ is
+$\{(0_R,d_\mu w):w\in K_L\}$. Apply (ZIL3) and identify this
+corner with its second coordinate. In particular the localization
+of the product is not the zero ring when $\mu\ne0_L$; it is a
+semiring whose entire ring factor has been erased.
+
+Here is the exact square, including every label and both new units:
+\begin{equation}\tag{ZIL14}
+\begin{array}{ccc}
+G_L(R)&\xrightarrow{\quad\Phi_R\quad}&R\times K_L\\[2pt]
+{\scriptstyle(r,\lambda)\mapsto\lambda\wedge\mu}\big\downarrow
+&&\big\downarrow{\scriptstyle(r,w)\mapsto d_\mu w}\\[2pt]
+\downarrow\mu&\xrightarrow{\quad\eta\mapsto\iota_L(\eta)\quad}
+   &d_\mu K_L .
+\end{array}
+\qquad
+1_{\downarrow\mu}=\mu,quad1_{d_\mu K_L}=d_\mu.
+\end{equation}
+Both composites send $(r,\lambda)$ to
+$\iota_L(\lambda\wedge\mu)$, because $\iota_L$ preserves meet.
+The lower arrow takes values in the displayed corner since
+$\eta\le\mu$ implies $d_\mu\iota_L(\eta)=\iota_L(\eta)$.
+It preserves the new unit as well as zero and both operations.
+Its retraction is the restriction of $\rho_L$, whose values lie in
+$\downarrow\mu$ because
+$\rho_L(d_\mu w)=\mu\wedge\rho_L(w)$.
+
+The square is a pushout of unital semirings:
+\begin{equation}\tag{ZIL15}
+ (R\times K_L)\otimes_S S[z_\mu^{-1}]
+       \simeq (R\times K_L)[u_\mu^{-1}]
+       \simeq d_\mu K_L.
+\end{equation}
+To prove the asserted universal property directly, a map
+$f:R\times K_L\to A$ agreeing on $S$ with a map from
+$S[z_\mu^{-1}]$ sends $u_\mu$ to an invertible element.
+By (ZIL3) it factors uniquely through $d_\mu K_L$.
+Conversely any such factor gives the two agreeing maps in the
+square. These constructions are inverse, proving (ZIL15).
+This statement remains valid for $\mu=0_L$, when every receiving
+semiring in this universal property is trivial.
+
+At $\mu=1_L$, the complete relations erased by the two vertical
+maps are respectively
+\begin{equation}\tag{ZIL16}
+ \begin{split}
+ (r,\lambda)\sim_e(s,\nu)&\Longleftrightarrow\lambda=\nu,\\
+ (r,w)\sim_{\Phi_R(e)}(s,v)&\Longleftrightarrow w=v.
+ \end{split}
+\end{equation}
+The first relation is exactly the congruence generated by
+$e\sim1_S$: in that congruence
+$x=1_Sx\sim ex=z_{\sigma(x)}$, whereas $\sigma$ itself respects
+$e\sim1_S$ and distinguishes every label. The second follows
+in the same way from (ZIL3). Thus no amplitude dependence can
+be recovered from either localized value alone.
+
+Under the standing assumptions, the square at $\mu=1_L$ is not
+a pullback. Its actual
+pullback has the explicit form
+\begin{equation}\tag{ZIL17}
+ (R\times K_L)\times_{K_L}L\simeq R\times L,
+ \quad((r,\iota_L(\lambda)),\lambda)\longleftrightarrow(r,\lambda).
+\end{equation}
+The original $S$ is precisely the subsemiring of this pullback
+cut out by $r\ne0_R\Rightarrow\lambda=1_L$.
+For example $(1_R,0_L)$ belongs to the pullback and not to $S$.
+The formula for the pullback follows from equality of the second
+coordinate with $\iota_L(\lambda)$, and its operations are
+coordinatewise, proving the asserted isomorphism.
+
+There is, however, a larger explicitly constructed subsemiring on
+which the faithful map has a retraction:
+\begin{equation}\tag{ZIL18}
+ \begin{gathered}
+ T_R=\{(r,w)\in R\times K_L:
+             r\ne0_R\Longrightarrow\rho_L(w)=1_L\},\\
+ \Psi_R:T_R\longrightarrow S,\quad
+       \Psi_R(r,w)=(r,\rho_L(w)),\qquad
+ \Psi_R\Phi_R=\operatorname{id}_S.
+ \end{gathered}
+\end{equation}
+For closure under addition, a nonzero sum $r+s$ has at least
+one nonzero summand, whose second-coordinate support is $1_L$;
+the joined support is then $1_L$. A nonzero product $rs$ has
+both factors nonzero, whose supports have meet $1_L$.
+Zero and unit belong to $T_R$. Thus it is a subsemiring.
+The map $\operatorname{id}_R\times\rho_L$ is a semiring
+homomorphism on the entire product; its values lie in $S$
+exactly on $T_R$, proving both the restriction and its maximal
+domain for this formula. Formula (ZIL11) proves the retraction.
+The localization of $T_R$ at $u_\mu$ is again $d_\mu K_L$,
+because $T_R$ contains every $(0_R,w)$ and its $u_\mu$-corner
+is exactly $\{0_R\}\times d_\mu K_L$.
+After localization, $\Psi_R$ is the restricted $\rho_L$ in
+(ZIL14). This gives exact compatible retractions before and
+after localization on the stated domains.
+
+No retraction $R\times K_L\to S$ of $\Phi_R$ exists on the
+entire product. Suppose $F$ were one. Put $a=(1_R,\mathbf0_{K_L})$
+and $b=(0_R,\mathbf1_{K_L})=\Phi_R(e)$. Then $ab=0$,
+$a+b=1$, and $F(b)=e$. In $S$, the equality $ex=\tau$ forces
+$x=\tau$ by (ZIL1). Hence $F(a)e=\tau$ forces $F(a)=\tau$,
+and $1_S=F(a+b)=\tau+e=e$, contradicting (ZIL2).
+This proves the exact obstruction and identifies the concrete
+domain (ZIL18) on which the retraction does exist.
+
+The ordinary ring-coordinate square has a different lower target:
+\begin{equation}\tag{ZIL19}
+\begin{array}{ccc}
+ S&\xrightarrow{q}&R\\
+ \big\downarrow&&\big\downarrow\\
+ S[e^{-1}]\simeq L&\longrightarrow&R[0_R^{-1}]=\{0=1\}.
+\end{array}
+\end{equation}
+Indeed $q(e)=0_R$, whose inverse forces $1_R=0_R$.
+No map from $L$ to a nonzero ring can be a unital semiring
+homomorphism: the equality $1_L+1_L=1_L$ would give $1+1=1$,
+hence $1=0$, in the target ring. On the original $S$, however,
+the combined map $(q,\sigma):S\hookrightarrow R\times L$
+is injective. Equivalently the intersection of their equality
+congruences is the diagonal. Thus keeping the unlocalized ring
+coordinate alongside the full support coordinate recovers the
+original element uniquely, whereas factoring that coordinate
+through supported-zero inversion is impossible in a nonzero ring.
+
+\subsection{Analytic zero locations and an exact non-detection test}
+
+Let $\Omega$ be any set and $f:\Omega\to\mathbb C$ any function.
+Form its \emph{top-labelled family} in $G_L(\mathbb C)$,
+without asserting that the map $\mathbb C\to G_L(\mathbb C)$
+preserves additive zero. Direct substitution gives
+\begin{equation}\tag{ZIL20}
+ \begin{gathered}
+ \widehat f(z)=(f(z),1_L),\qquad
+ \{z:f(z)=0\}=\widehat f^{-1}(\{e\}),\\
+ \ell_\mu(\widehat f(z))=\mu\quad\hbox{for every }z,\qquad
+ \Phi_{\mathbb C}(\widehat f(z))=(f(z),\mathbf1_{K_L}),\\
+ d_\mu\,\operatorname{pr}_2\Phi_{\mathbb C}(\widehat f(z))
+       =d_\mu\quad\hbox{for every }z.
+ \end{gathered}
+\end{equation}
+Thus the right vertical map in (ZIL14) sends
+$(f(z),\mathbf1_{K_L})$ to $d_\mu$ for every $z$;
+at $\mu=1_L$ this is the constant unit $\mathbf1_{K_L}$.
+The original family never takes the value $\tau$.
+Its zero-amplitude locus is the inverse image of $e$, which
+localization identifies with the unit. The ring projection of
+the unlocalized joint family still recovers $f$ exactly.
+These formulas apply to $\zeta$ on any domain avoiding its pole,
+to $\xi$, or to a specified $H_t$ wherever they are defined.
+No analytic theorem is needed for the calculation: it is valid
+for every function and therefore does not distinguish their
+different possible zero configurations.
+
+The following finite calculation further determines exactly what
+inversion alone can detect even when the backward heat equation
+and a nonnegative real-root threshold are also retained. It is
+a test of those stated pieces of data, not a replacement for the
+zeta heat kernel. For $c\in\{0,1\}$ set
+\begin{equation}\tag{ZIL21}
+ P_t^{(c)}(z)=z^2+c-2t,\qquad
+ \partial_tP_t^{(c)}=-2=-\partial_z^2P_t^{(c)},\qquad
+ \{\hbox{all roots real}\}\Longleftrightarrow t\ge c/2.
+\end{equation}
+The differential identity is obtained by differentiating the
+displayed polynomial. Its roots solve $z^2=2t-c$; for real $t$
+they are both real, allowing the double root $0$, exactly when
+$2t-c\ge0$. Thus the two thresholds are $0$ and $1/2$,
+both nonnegative. At $t=0$ the first polynomial has all roots
+real and the second has the nonreal roots $\pm i$.
+Nevertheless every top-labelled family in (ZIL21) has the same
+localized value in (ZIL20), for every $t,z,c$.
+Consequently that localized value, the displayed heat equation,
+and nonnegativity of the threshold do not together determine
+whether the threshold is $0$ or strictly positive. This is a
+counterexample to detection by those data only. It says nothing
+contrary to any additional theorem about the actual $H_t$.
+
+\subsection{Arithmetic ideal norms and the note's scaling error}
+
+For $R=\mathbb Z$, retain the arithmetic ideals
+$Q_{(n)}=\{z_\lambda:\lambda\in L\}
+\cup\{(r,1_L):r\in n\mathbb Z\}$, for $n\ge1$.
+The exact quotient homomorphism and its chosen norm are
+\begin{equation}\tag{ZIL22}
+ \pi_n:S\longrightarrow\mathbb Z/n\mathbb Z,\quad
+       \pi_n(r,\lambda)=r\bmod n,\qquad
+ \pi_n^{-1}(0)=Q_{(n)},\quad N(Q_{(n)})=n.
+\end{equation}
+The map is the ring projection followed by reduction modulo $n$,
+so it is surjective and the displayed kernel is exact. The norm
+here refers to this specific quotient congruence; an ideal alone
+must not silently be substituted for a congruence.
+For $\operatorname{Re}s>1$, this arithmetic family therefore gives
+$\sum_{n\ge1}N(Q_{(n)})^{-s}=\sum_{n\ge1}n^{-s}$.
+This proves the retained equality with the Dirichlet-series
+definition of $\zeta(s)$ on that domain; no continuation or
+zero-location conclusion follows from the equality alone.
+
+Every ideal in (ZIL22) contains $e$ and hence $z_\mu$.
+Its extension under $\ell_\mu$ is the entire $\downarrow\mu$,
+because the image contains the new unit $\mu$.
+Already $Q_{(2)}$ and $Q_{(3)}$ have different norms and identical
+extended ideals. Thus there is no function of the extended ideal
+alone recovering the original norm on this family. This is an
+exact loss of arithmetic information in the localization, not
+an assertion that the original prime or zeta data was unaffected.
+
+The note contains a directly related false statement in its
+class-semigroup definition. Write $A=\mathcal O_F$ for a number
+field $F$, and $S_A=A\sqcup\{\tau\}=G_{\mathbb B}(A)$.
+This notation avoids confusing the number field with the tropical
+coefficient semifield $K$. With the source's own convention,
+a nonzero semiring ideal means an ideal $I\ne\{\tau\}$.
+Every such ideal is $I_J=J\cup\{\tau\}$ for an ideal
+$J\subset A$, including $J=(0)$: multiplying any integer
+member by the supported zero produces $e$, and the remaining
+ideal rules give precisely the ordinary ring ideal. The note
+defines
+\begin{equation}\tag{ZIL23}
+ I\sim J\quad\Longleftrightarrow\quad
+ \exists a,b\in S_A\setminus\{\tau\}:aI=bJ.
+\end{equation}
+This allowed scalar set is $A$, which includes the supported
+zero $e=0_A$. For every $I\ne\{\tau\}$,
+\begin{equation}\tag{ZIL24}
+ eI=\{\tau,e\},\qquad
+ \{\hbox{nonzero ideals of }S_A\}/\!\sim
+       \;=\;\{\hbox{one class}\}.
+\end{equation}
+Indeed $e\tau=\tau$, every ordinary member of $I$ is sent
+to $e$, and a nonzero ideal has such a member. Taking $a=b=e$
+in (ZIL23) then relates every pair. In particular the sentence
+claiming these scalars are ``exactly the nonzero algebraic
+integers'' is false. The note's subsequent injectivity proof
+silently changes the scalar domain to $A\setminus\{0_A\}$,
+and its surjectivity proof silently discards the allowed
+nonzero semiring ideal $\{\tau,e\}=I_{(0)}$.
+
+There is a precise corrected correspondence, with both restrictions
+stated explicitly. Use only $I_J$ with $J\ne(0)$ and use only
+scalars $a,b\in A\setminus\{0_A\}$. Then
+\begin{equation}\tag{ZIL25}
+ \begin{gathered}
+ J\longleftrightarrow I_J=J\cup\{\tau\},\qquad
+ I_{J_1}I_{J_2}=I_{J_1J_2},\\
+ aI_{J_1}=bI_{J_2}\quad\Longleftrightarrow\quad
+ aJ_1=bJ_2\qquad(a,b\ne0_A).
+ \end{gathered}
+\end{equation}
+For the product identity, the ideal product consists of finite
+sums of products. Terms involving $\tau$ contribute $\tau$;
+the other products and sums give exactly the ordinary ideal
+product, including its integer zero $e$. The scaling equivalence
+is proved by intersecting with $A$ in one direction, and adjoining
+$\tau$ in the other. These calculations give an exact isomorphism
+with the usual nonzero integral-ideal class monoid defined by
+nonzero scalar equivalence. Equivalence to fractional scaling is
+also exact: $aJ_1=bJ_2$ means $J_2=(a/b)J_1$, and any element
+of $F^\times$ has such a representation because $F$ is the
+fraction field of $A$. Every nonzero fractional ideal has an integral
+representative after multiplying by a common nonzero denominator.
+Thus this restricted quotient is the usual ideal-class quotient
+of fractional ideals by $F^\times$; in the Dedekind-domain setting
+of the note it is the ordinary ideal class group.
+
+If only the scalar restriction is repaired but $I_{(0)}$ is
+retained, its class is an extra absorbing class. Nonzero scalars
+cannot take a nonzero ideal of the domain $A$ to $(0)$, so this
+class is distinct from all classes in (ZIL25); its product with
+each of them is itself. Thus both source-domain corrections are
+necessary for the claimed class-group statement, and the actual
+definition as printed instead has the collapse (ZIL24).
+
+\paragraph{Exact consequence for the proposed RH inference.}
+The checked zero-inversion theorem says that the supported-zero
+idempotent becomes the \emph{unit of a localized semiring}; it
+does not give an inverse of $0_{\mathbb C}$ in the analytic
+amplitude field. The complete map to the localized object is
+(ZIL4), and its entire lost relation is (ZIL6). The coefficient
+comparison retains the amplitudes before localization by (ZIL12)
+and has the explicit connecting maps and retraction domain
+(ZIL14)--(ZIL19). For an analytic family the exact zero locus
+is retained on that unlocalized amplitude coordinate and is
+erased by the localization, as (ZIL20) proves. The prime and
+ideal-norm calculations (ZIL9)--(ZIL10), (ZIL22) identify precisely
+which arithmetic information has been removed. These established
+facts supply neither an off-critical zero nor a zero-location
+contradiction for the actual zeta function. Formula (ZIL21)
+refutes the narrower attempted inference from inversion, the
+backward heat equation and threshold nonnegativity alone.
+The calculation therefore constructs the exact resulting object
+and its connection to the original one, without treating the
+localization theorem or the note's erroneous scaling relation
+as a disproof of RH.

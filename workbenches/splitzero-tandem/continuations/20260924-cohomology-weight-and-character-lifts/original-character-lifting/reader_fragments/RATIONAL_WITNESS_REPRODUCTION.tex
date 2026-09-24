@@ -1,0 +1,430 @@
+\section{Independent reproduction of the actual full-root witness}
+\label{sec:arb-witness}
+
+The incoming session supplied \path{non_eulerian_modular_heat_attempt.md}
+and \path{rational_witness.json}. The session, not this reconstruction,
+selected the nineteen rational coefficients. Its report Sections 3--8
+give the full-root trace, moment recurrence, conditioning map, transport
+and analytic quadrature bounds. No individual human author is named in
+these supplied files. The original arithmetic heat kernel and its scale
+are due to the cited treatment by Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{original author TeX, equations
+\texttt{phidef}, \texttt{htdef} and \texttt{hoz}}. The negative-time
+phenomenon is not claimed as a new discovery.
+
+The supplied report refers to a \path{reproduce.py} which was not among
+the received files. We therefore wrote and executed a separate
+implementation, \path{modular_heat_intake/reproduce_with_arb.py},
+using Fredrik Johansson's Arb interval arithmetic through python-flint.
+It evaluates the original theta integral without a zeta evaluator or a
+zero table. The validated Legendre root and quadrature-weight operation
+is documented in the
+\href{https://flintlib.org/doc/arb_hypgeom.html#c.arb_hypgeom_legendre_p_ui_root}{FLINT
+reference, \texttt{arb\_hypgeom\_legendre\_p\_ui\_root}}.
+The proof below gives the remaining analytic bounds rather than treating
+agreement of decimal values as certification.
+
+\subsection{The unchanged test and quadratic form}
+Retain the physical heat parameter $t$, original coordinate $Z$, and
+\begin{equation}\tag{RWR1}
+ H_t(Z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)du,
+ \quad \Phi(u)=\sum_{j\ge1}(2\pi^2j^4e^{9u}-3\pi j^2e^{5u})
+                         e^{-\pi j^2e^{4u}}.
+\end{equation}
+Let $M_n(t)=\int_0^\infty u^{2n}e^{tu^2}\Phi(u)du$ and
+$a_n(t)=(-1)^nM_n(t)/(2n)!$. Positivity of each theta summand proves
+$M_0(t)>0$. In the Taylor disk at zero put
+\begin{equation}\tag{RWR2}
+ \frac{H_t'(Z)}{H_t(Z)}=-\sum_{n\ge1}S_n(t)Z^{2n-1},
+ \qquad
+ S_n=\frac{-2n a_n-\sum_{j=1}^{n-1}a_jS_{n-j}}{M_0}.
+\end{equation}
+The coefficient identity follows by multiplying the two convergent
+Taylor series. The full-root product in the accompanying proof identifies
+$S_n=\sum_\zeta m_\zeta\zeta^{-2n}$, including both sign partners
+and every multiplicity. No finite zero sample is used to compute $S_n$.
+
+Write $D_{ii}=1000^i$, $i=0,\ldots,31$, and retain both matrices
+\begin{equation}\tag{RWR3}
+ K_d(t)=(S_{i+j+1}(t))_{0\le i,j<d},\qquad
+ \widehat K_{32}=D K_{32}D.
+\end{equation}
+The congruence is the explicit invertible coefficient map $c=Db$.
+It changes no quadratic value or inertia. The incoming nineteen integers
+$N_i$ are retained verbatim in the supplied JSON, whose SHA256 is
+\begin{center}\small\ttfamily
+\nolinkurl{85314e9fb3115647b7f03a5e00f1b5512c4b23c9280a753f3cf2cababdfed4ac}.
+\end{center}
+They define the one fixed rational test, without fitting it again,
+\begin{equation}\tag{RWR4}
+ c_i=\frac{1000^iN_i}{10^{120}},\qquad
+ f_*(Z)=\sum_{i=0}^{18}c_iZ^{-2i-1},\qquad
+ Q_*(t)=c^T K_{19}(t)c.
+\end{equation}
+The integer array is part of this standalone source package. In
+particular $N_{18}=10^{120}$ and $c_{18}=10^{54}$; these large original
+coefficients have not been divided by a norm or omitted.
+
+\subsection{All remainders in the moment calculation}
+The independent computation uses $1280$ binary working bits, $160$
+Gauss--Legendre nodes in each of $24$ panels of $[0,3]$, and the first
+$16$ theta summands. It computes moments $0\le n\le65$.
+For each exact panel center $c=(2j+1)/16$, $j=0,\ldots,23$, put
+\[
+ \begin{gathered}h=1/16,\quad A=17/128,\quad B=15/128,\\
+ x_-=c-A,\quad x_+=c+A,\quad R^2=x_+^2+B^2,
+ \quad\kappa=1-(4B)^2/2>0.\end{gathered}
+\]
+The ellipse of parameter $4$ around the panel has semiaxes $A,B$.
+On and inside it, $\cos(4\Im z)\ge\kappa$ and $|z|^2\le R^2$;
+the latter follows since $c>0$ gives $|c-A|\le c+A$.
+Using $3<\pi<4$ and $j^2\ge1$, the absolute value of the truncated
+theta sum is at most
+\begin{equation}\tag{RWR5}
+ P_c=\left(32e^{9x_+}\sum_{j=1}^{16}j^4+
+              12e^{5x_+}\sum_{j=1}^{16}j^2\right)
+             e^{-3e^{4x_-}\kappa}.
+\end{equation}
+Indeed $\Re(\pi j^2e^{4z})\ge3e^{4x_-}\kappa$ and the
+absolute value of each of the two prefactor terms is bounded separately.
+The additional factor for real $t$ is at most
+$T_c(t)=e^{t x_+^2}$ for $t\ge0$, and $e^{|t|B^2}$ for $t<0$.
+The integrand's ellipse supremum is thus at most $P_cT_c R^{2n}$.
+
+For completeness, write an analytic function on a Bernstein ellipse
+as a Chebyshev series. Pullback by $(w+w^{-1})/2$ and the Cauchy
+coefficient estimate bound the degree-$j$ coefficient by $2M4^{-j}$.
+The remainder after degree $2N-1$ on $[-1,1]$ is bounded by
+$2M4^{-(2N-1)}/3$. Gauss--Legendre quadrature is exact on that
+polynomial; both the integral and the sum of positive quadrature
+weights have mass $\ell=1/8$ on the physical panel. Therefore
+\begin{equation}\tag{RWR6}
+ |\text{panel integral}-\text{panel quadrature}|
+ \le\frac{4\ell}{3}P_cT_c(t)R^{2n}4^{-(2N-1)},\qquad N=160.
+\end{equation}
+The software's prefactor $1/6$ is exactly $4\ell/3$.
+The node intervals enclose all distinct roots of $P_{160}$ and the
+positive weights enclose their exact Gauss weights. The implementation
+also checks ordering, containment in $(-1,1)$, positivity and total mass.
+
+Every omitted theta summand is positive on the original real domain.
+On $[0,3]$,
+$\Phi_{>16}(u)\le32e^{27}\sum_{j\ge17}j^4e^{-3j^2}$.
+The ratio of successive terms is at most $16e^{-105}<1/2$.
+Multiplying the geometric bound by the interval length, $u^{2n}\le3^{2n}$,
+and $e^{tu^2}\le e^{9\max(t,0)}$ proves
+\begin{equation}\tag{RWR7}
+ \int_0^3u^{2n}e^{tu^2}\Phi_{>16}(u)du
+ \le192\,17^4\,3^{2n}e^{27+9\max(t,0)-867}.
+\end{equation}
+For $u\ge3$, discard the negative part of each summand and apply the
+same ratio argument, now from $j=1$, to obtain
+$\Phi(u)\le64e^{9u}e^{-3e^{4u}}$.
+For $n\le65$, $t\le1/5$ and $u\ge3$,
+\[
+ 2n\log u+\max(t,0)u^2+9u
+ \le139u+u^2/5\le47u^2\le e^{4u}.
+\]
+The last inequality follows by monotonicity of $e^{4u}/u^2$ on that
+interval and $e^{12}>1000>423$. Convexity also gives
+$e^{4u}\ge1000(1+4(u-3))$. Hence
+\begin{equation}\tag{RWR8}
+ \int_3^\infty u^{2n}e^{tu^2}\Phi(u)du
+ \le64e^{-2000}\int_3^\infty e^{-8000(u-3)}du
+ <e^{-2000}.
+\end{equation}
+The moment ball is enlarged symmetrically by the sum of (RWR6)--(RWR8).
+Symmetric enlargement is conservative even for the positive omitted
+tails. Thus it encloses the entire original integral.
+
+Interval evaluation of (RWR2) is legitimate because the computed
+$M_0$ interval is positive. In $\widehat K=L\mathcal P L^T$, the
+ordinary recursive LDL equations give intervals for each successive
+pivot and multiplier. No pivot enclosing zero is accepted. Induction
+on the recursive equations proves enclosure of the exact factorization,
+so the signs of all $32$ pivots determine the exact inertia by the
+invertible triangular change of coordinates. The same moment balls
+evaluate (RWR4) with its exact rational coefficients.
+
+\subsection{Reproduced values and the actual transport boundary}
+The executed receipts enclose
+\begin{equation}\tag{RWR9}\begin{gathered}
+ -2.384065\,10^{-46}<Q_*(-2)<-2.384063\,10^{-46},\\
+ 0.00081442298606666<Q_*(0)<0.00081442298606668.\end{gathered}
+\end{equation}
+Both intervals also overlap the much narrower binary intervals in the
+incoming JSON. Agreement alone is not the proof: (RWR5)--(RWR8), the
+recurrences and directed interval arithmetic establish these enclosures.
+The complete matrix inertias, written (positive, negative, zero), are
+\begin{equation}\tag{RWR10}
+\begin{array}{c|cccc}
+ t&-2&-3/2&-5/4&0\\\hline
+ \operatorname{In}K_{32}(t)&(30,2,0)&(31,1,0)&(32,0,0)&(32,0,0).
+\end{array}
+\end{equation}
+These are full-root matrix values, not zeros counted up to a height.
+
+The heat equation yields the exact production law
+\begin{equation}\tag{RWR11}
+ S_n'=2n\left[\sum_{a=1}^n S_aS_{n+1-a}-(2n+1)S_{n+1}\right].
+\end{equation}
+To verify it directly, put $R=H'/H$. Then
+$\partial_t\log H=-(R'+R^2)$. Substitute the series in (RWR2),
+differentiate in $Z$ and compare degree $2n-1$. This derivation uses
+the positive unit $H_t(0)$ and divides by no root gap.
+For $n=1$ it gives
+$S_1'=(M_2M_0-M_1^2)/M_0^2>0$, because $u^2$ is not constant
+on the strictly positive original theta measure.
+
+Define the actual number
+\begin{equation}\tag{RWR12}
+ t_*=\inf\{t\in[-3/2,-5/4]:K_{32}(t)\succeq0\}.
+\end{equation}
+All entries are real analytic: the integral is jointly analytic on
+bounded complex-time sets and $M_0(t)>0$ for real $t$.
+Closedness of the positive-semidefinite cone, continuity, and (RWR10)
+give $-3/2<t_*<-5/4$, $K_{32}(t_*)\succeq0$ and
+$\det K_{32}(t_*)=0$. The strict inequalities follow from the open
+neighborhoods of the two strictly certified endpoint signatures.
+Positive definiteness at $t_*$ would contradict its infimum property.
+The determinant is not identically zero and is analytic, so its zeros
+are isolated. There is therefore a nonsingular interval immediately to
+the left of $t_*$. On that interval the actual connection
+\begin{equation}\tag{RWR13}
+ \mathcal A=-\tfrac12K_{32}^{-1}K_{32}',\qquad
+ U'(t,a)=\mathcal A(t)U(t,a),\qquad U(a,a)=I
+\end{equation}
+satisfies $U(t,a)^TK_{32}(t)U(t,a)=K_{32}(a)$ by direct
+differentiation. Linear ODE existence gives the invertible fundamental
+matrix on this interval. No assertion of modular unitarity is made.
+
+Every moment increases with $t$. Put $m_*=M_0(-3/2)$,
+$B_n=M_n(-5/4)/(2n)!$ and
+\begin{equation}\tag{RWR14}
+ E_n=\frac{2nB_n+\sum_{j=1}^{n-1}B_jE_{n-j}}{m_*},\qquad
+ F_n=2n\left[\sum_{a=1}^n E_aE_{n+1-a}+(2n+1)E_{n+1}\right].
+\end{equation}
+Induction in (RWR2) proves $|S_n(t)|\le E_n$ on the whole interval;
+(RWR11) then gives $|S_n'|\le F_n$. For the symmetric matrix, its
+operator norm is bounded by the maximal absolute row sum, hence by
+$32\max_{1\le n\le63}F_n$. The separate executed
+\path{check_transport_bound.py} uses the lower ball endpoint of
+$m_*$ and upper endpoints of the $B_n$, obtaining
+\begin{equation}\tag{RWR15}
+ \sup_{[-3/2,-5/4]}\|K_{32}'(t)\|_2
+ <0.031792245049<4/125.
+\end{equation}
+This is in the original $c$ coordinates, without $D$.
+For $c(t)=U(t,a)c_a$ with retained value
+$c_a^TK_{32}(a)c_a=-\eta<0$, positivity at $t_*$ gives
+\[
+ \eta\le c(t)^T[K_{32}(t_*)-K_{32}(t)]c(t)
+ \le(4/125)(t_*-t)\|c(t)\|_2^2.
+\]
+Thus the exact obstruction determines the escape space:
+\begin{equation}\tag{RWR16}
+ \|c(t)\|_2\ge\sqrt{\frac{125\eta}{4(t_*-t)}}\longrightarrow\infty.
+\end{equation}
+The boundary here is the degeneracy of the specified complete test
+form. It has not been identified with a collision of $H_t$ zeros.
+
+The complete support lift sends $(c,\lambda)$ to $(U(t,a)c,\lambda)$
+and commutes with $\Phi$ because $U(t,a)$ is an explicitly defined
+linear map. Its form value retains amplitude $-\eta$ and its original
+label; its norm estimate is an assertion about that same arithmetic
+coordinate. Passing to a local identity at supported zero does not
+produce a finite coefficient limit that violates (RWR16).
+
+The receipts are \path{ARB_REPRODUCTION_m2_0.json},
+\path{ARB_REPRODUCTION_m1.5_m1.25.json} and
+\path{ARB_TRANSPORT_DERIVATIVE_BOUND.json}, with the executed
+script hashes, complete moment and pivot enclosures, and exact input hash.
+The proof that the union of all finite Laurent spaces detects every
+off-real zero is given separately in this reader. Positivity of this
+particular $32$-dimensional space establishes no uniform sign in all
+higher dimensions.
+
+\subsection{A completed extension to dimension sixty-four}
+The incoming report's attempted dimension-$64$ calculation had timed out.
+The independent implementation also completes this larger calculation.
+It retains physical time $t=0$, the same $S_n$ and the same exact
+coefficient congruence $D_{ii}=1000^i$, now for $0\le i<64$.
+The new executable \path{extend_degree64_with_arb.py} uses $2560$
+working bits, $320$ nodes per panel, $24$ theta summands and moments
+through $129$.
+
+Here are all changes to the proved error estimates. In (RWR5) the two
+finite sums run to $24$; in (RWR6) $N=320$. The omitted theta sum
+starts at $25$, so (RWR7) becomes
+\[
+ 192\,25^4\,3^{2n}e^{27-1875}.
+\]
+For the spatial tail, $n\le129$ and $t=0$ give
+$2n\log u+9u\le267u\le89u^2\le e^{4u}$ on $u\ge3$.
+The last inequality follows from the same monotonicity and
+$e^{12}>1000>801$. Thus (RWR8) remains valid without changing its
+constant. These are bounds for the original moments, not a
+replacement kernel or an omitted high-degree contribution.
+All $64$ interval pivots exclude zero and are positive. Therefore
+\begin{equation}\tag{RWR17}
+ K_{64}(0)\succ0,\qquad
+ 1.21406452042511\,10^{-226}
+ <\widehat p_{64}<1.21406452042513\,10^{-226},
+\end{equation}
+where $\widehat p_{64}$ is the last pivot in the specified conditioned
+matrix, not an eigenvalue. The full result, all moments and all pivots
+are retained in \path{ARB_DEGREE64_AT_ZERO.json}. The executed
+calculation took approximately five seconds on this machine; the
+interval inequalities, rather than that timing, establish its result.
+Consequently no nonzero Laurent test
+$\sum_{i=0}^{63}c_iZ^{-2i-1}$ is a negative witness at time zero.
+The arbitrary-degree construction (ALM12)--(ALM24) retains every
+higher space and gives the exact quantifier still required for an
+all-zero conclusion.
+
+\subsection{The single residual object after the certified positive block}
+All the following entries are evaluated at the original arithmetic time
+$t=0$. Define $A=K_{64}(0)$ and, for every integer $i\ge64$,
+\begin{equation}\tag{RWR18}
+ v_i=(S_{i+a+1}(0))_{a=0}^{63},\qquad
+ \mathscr S_{ij}=S_{i+j+1}(0)-v_i^TA^{-1}v_j\quad(i,j\ge64).
+\end{equation}
+Every $S_n(0)$ is the fixed theta integral recurrence (RWR1)--(RWR2).
+The inverse exists by (RWR17) and can equivalently be written
+$\operatorname{adj}(A)/\det A$; none of these entries is a free
+parameter. The complete remaining space and form are
+\begin{equation}\tag{RWR19}
+ \mathscr V=\bigoplus_{i=64}^{\infty}\mathbb C\,e_i,
+ \qquad \mathscr Q(b,c)=\sum_{i,j\ge64}\overline{b_i}\mathscr S_{ij}c_j.
+\end{equation}
+The direct sum means finite support; every displayed value is therefore
+a finite sum of fixed, completely defined real numbers. There is no
+cutoff on the indices admitted to $\mathscr V$.
+
+Its exact map into the original rational-function test space is
+\begin{equation}\tag{RWR20}
+ Jb=\sum_{i\ge64}b_i\Psi_i(Z),\qquad
+ \Psi_i(Z)=Z^{-2i-1}
+       -\sum_{a=0}^{63}(A^{-1}v_i)_a Z^{-2a-1}.
+\end{equation}
+The coefficient of $Z^{-2i-1}$, $i\ge64$, in $Jb$ is $b_i$;
+thus $J$ is injective. Let $E(a)=\sum_{j<64}a_jZ^{-2j-1}$.
+By (ALM9), the full trace pairing gives exactly
+\begin{equation}\tag{RWR21}
+ \mathcal T_0(Ea,Jb)=0,\qquad
+ \mathcal T_0(Jb,Jc)=\mathscr Q(b,c).
+\end{equation}
+For the first equality each column is $v_i-AA^{-1}v_i=0$.
+Expanding both arguments in the second equality gives
+$S_{i+j+1}-v_i^TA^{-1}v_j-v_i^TA^{-1}v_j+
+v_i^TA^{-1}AA^{-1}v_j$, which is (RWR18).
+
+For any original finite coefficient vector, split it at $64$ as
+$(a,b)$ and put $Vb=\sum_{i\ge64}v_i b_i$. Its exact decomposition is
+\begin{equation}\tag{RWR22}
+ E(a)+\sum_{i\ge64}b_iZ^{-2i-1}
+       =E(a+A^{-1}Vb)+Jb,
+ \quad
+ Q_0(a,b)=(a+A^{-1}Vb)^*A(a+A^{-1}Vb)+\mathscr Q(b,b).
+\end{equation}
+The map $F(\alpha,b)=E\alpha+Jb$ is a proved linear isomorphism
+from $\mathbb C^{64}\oplus\mathscr V$ onto the original union of
+Laurent test spaces. Reading the original low and high coefficients
+$(a,b)$ gives its inverse $F^{-1}(a,b)=(a+A^{-1}Vb,b)$.
+Equivalently the coefficient change $C(a,b)=(a+A^{-1}Vb,b)$ has
+inverse $C^{-1}(\alpha,b)=(\alpha-A^{-1}Vb,b)$.
+It retains the original quadratic value and all coefficients through
+that explicit inverse. It is not an assertion that arbitrary free
+split matrices are globally invertible.
+
+The exact counterfactual receiver is now the one negative cone
+\begin{equation}\tag{RWR23}
+ \mathscr N=\{b\in\bigoplus_{i\ge64}\mathbb Q e_i:
+                         \mathscr Q(b,b)<0\}.
+\end{equation}
+It is empty exactly when all original nontrivial zeta zeros lie on
+their critical line. Here is the full proof of both directions.
+If all zeros are on the line, (ALM24) and (RWR21) give
+$\mathscr Q(b,b)\ge0$ for every $b$, so $\mathscr N$ is empty.
+Conversely any off-line zero gives a finite rational negative vector
+$(a,b)$ by (ALM12)--(ALM23). Its $b$ is rational, is nonzero because
+$A\succ0$, and (RWR22) implies
+$\mathscr Q(b,b)\le Q_0(a,b)<0$. Thus it belongs to $\mathscr N$.
+Finally, a member of $\mathscr N$ maps under $J$ to a negative
+original full-root test by (RWR21), which contradicts all roots being
+real by (ALM8). The possibly nonrational low coefficients in $Jb$
+cause no loss: the strict finite-dimensional inequality persists under
+rational coefficient approximation, as quantified in (ALM21)--(ALM23).
+
+All maps in (RWR20)--(RWR22) are fixed complex-linear maps. Their lifts
+$(x,\lambda)\mapsto(Ax,\lambda)$ commute with the original full
+$\Phi$ by (ALM29)--(ALM31). The residual pairing has the exact lift
+\begin{equation}\tag{RWR24}
+ \mathscr Q^L((b,\lambda),(c,\mu))=
+          (\mathscr Q(b,c),\lambda\wedge\mu).
+\end{equation}
+If the amplitude is nonzero then both labels are top, so this lies
+in $G_L(\mathbb C)$; the zero-amplitude cases keep their actual meet.
+Lattice distributivity and the already proved sesquilinearity prove
+the full lifted pairing identities. Consequently the complete remaining
+object is $(G_L(\mathscr V),\mathscr Q^L,J^\uparrow,\Phi)$ with the
+specified negative rational cone. Every entry is fixed by the original
+theta kernel and every higher degree remains present. The certificate
+has evaluated its eliminated block; it has not evaluated the sign of
+the whole residual object.
+The lifted decomposition uses $G_L(\mathbb C^{64}\oplus\mathscr V)$
+with its retained common label. No identification with a product of
+separately labelled carriers is asserted.
+
+\subsection{The zero-value edge in that same residual space}
+Let $\mathscr R=\{Z^{-1}p(Z^{-2}):p\in\mathbb C[X]\}$ and
+$\mathscr U=E\mathbb C^{64}$. Define the exact linear observations
+$r(f)_a=\mathcal T_0(Ee_a,f)$, $0\le a<64$. Then
+\begin{equation}\tag{RWR25}
+ \Pi f=f-EA^{-1}r(f),\qquad
+ \Pi^2=\Pi,\quad\ker\Pi=\mathscr U,\quad
+ \operatorname{im}\Pi=\mathscr U^\perp=J\mathscr V.
+\end{equation}
+Indeed $r(Ea)=Aa$, so $r(\Pi f)=0$ and $\Pi$ is the identity
+on that kernel; its kernel is exactly $\mathscr U$. Formula (RWR22)
+shows that every vector in the orthogonal complement has low coefficients
+$-A^{-1}Vb$, hence belongs to $J\mathscr V$.
+
+The complete pairing on $\mathscr R$ has zero algebraic radical,
+without an RH assumption. To prove this, take a nonzero polynomial $p$
+and choose a reciprocal node $\lambda_0$ with
+$p(\bar\lambda_0)\ne0$. Such a node exists because the set of
+nodes is infinite and a nonzero polynomial has finitely many zeros.
+Use the complete finite set $S$, Lagrange polynomial $L_0$, bound $B$
+and $r<|\lambda_0|$ of (ALM12), and put
+$q_N(X)=(X/\lambda_0)^NL_0(X)$. The full mixed trace has target
+term $M_{\lambda_0}\lambda_0\overline{p(\bar\lambda_0)}\ne0$,
+all other terms in $S$ vanish, and the entire remaining tail is bounded by
+\begin{equation}\tag{RWR26}
+ V\|p\|_R B\left(\frac r{|\lambda_0|}\right)^N\longrightarrow0.
+\end{equation}
+This is (ALM3) and the pointwise coefficient bound, with no root omitted.
+For some finite $N$ the mixed pairing is therefore nonzero.
+Since $\mathscr R=\mathscr U\oplus\mathscr U^\perp$ and the first
+summand has the nondegenerate matrix $A$, a vector in the radical of
+the orthogonal complement would be in the radical of the whole space.
+Thus the residual form $\mathscr Q$ also has zero radical.
+
+This resolves its exact zero-value edge. If $b\ne0$ and
+$\mathscr Q(b,b)=0$, choose $c$ with $\beta=\mathscr Q(b,c)\ne0$.
+For every
+$0<\varepsilon<2|\beta|/(|\mathscr Q(c,c)|+1)$,
+\begin{equation}\tag{RWR27}
+ \mathscr Q\left(b-\varepsilon\frac{\bar\beta}{|\beta|}c,
+                 b-\varepsilon\frac{\bar\beta}{|\beta|}c\right)
+ =-2\varepsilon|\beta|+\varepsilon^2\mathscr Q(c,c)<0.
+\end{equation}
+All vectors involved have finite support. Since the matrix is real
+symmetric, at least one of the real and imaginary parts of a complex
+negative vector is negative. Rational approximation on that finite
+support then supplies a member of $\mathscr N$, with strict sign
+preserved by continuity (or the bound (ALM21) after the exact map $J$).
+Therefore any nonzero isotropic residual vector already produces a
+negative witness; it is not an undetected neutral case. The projection,
+inclusion and mixed trace in this argument have the same exact full
+lattice lifts as (RWR24).

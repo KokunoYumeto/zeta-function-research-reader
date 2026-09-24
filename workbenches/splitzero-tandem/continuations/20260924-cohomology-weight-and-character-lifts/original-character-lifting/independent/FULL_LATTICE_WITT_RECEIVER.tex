@@ -1,0 +1,750 @@
+% Independent mathematical derivation. Prefix FLW.
+% Source attribution and scope are part of the proof, not optional metadata.
+\section{The full-lattice projective Verschiebung and its retained cycle object}
+\label{sec:full-lattice-witt-receiver}
+
+Alain Connes and Caterina Consani define the Verschiebung of an
+endomorphism by cyclically moving its summands, with the original
+endomorphism at the returning corner, in
+\href{https://arxiv.org/abs/2004.08879v1}{\emph{Segal's Gamma rings
+and universal arithmetic}}, original author source
+\nolinkurl{Froblifts.tex}, lines 454--681, especially
+\texttt{defninv}, \texttt{w0s}, \texttt{rabi9}, \texttt{rabi10},
+\texttt{rhoinf}, and \texttt{lognewton}.
+Their construction uses finite pointed sets and their associated
+$\mathbb S$-modules. The construction below is instead carried out
+on explicit finitely generated projective semimodules over the
+programme's full $G_L(\mathbb C)$. We prove its coefficient maps,
+the intrinsic trace, and the actual Frobenius/Verschiebung relations;
+we then construct an exact receiving map to the authors' pointed
+cycle object. Neither scalar group completion nor a single lattice
+trace is assumed to retain all projective support.
+The cited source expressly credits Gert Almkvist for the original
+endomorphism invariant and Michael Atiyah for the $\lambda$-ring
+framework used with Adams operations. Those earlier papers are
+human precedents cited through this source; no fresh reading of
+their complete proofs is claimed here.
+
+The original complex companion, its full metric, and its signed
+odd receiver are TPT1--TPT28 and TOB6--TOB29 of the present reader.
+The full carrier and its coordinate-mask correspondence are
+OLR16--OLR17. Their predecessor source is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.tex}{033,
+SBT1--SBT23}. The earlier supported-zero prime construction retains
+its original provenance; it is not a discovery of this section.
+
+\subsection{The full coefficient semiring and projective carriers}
+
+Let $L$ be a bounded distributive lattice, with $0_L\ne1_L$, and put
+\[
+\begin{gathered}
+ S=G_L(\mathbb C)
+   =\{(c,1_L):c\in\mathbb C\}\cup\{z_\lambda=(0,\lambda):\lambda\in L\},\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\\
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu),\qquad
+ \tau=z_{0_L},\quad e=z_{1_L},\quad1_S=(1,1_L).
+\end{gathered}
+\tag{FLW1}
+\]
+The two coefficient maps
+\[
+ \rho:S\longrightarrow\mathbb C,\quad(c,\lambda)\longmapsto c,
+ \qquad
+ s:S\longrightarrow L,\quad(c,\lambda)\longmapsto\lambda
+ \tag{FLW2}
+\]
+are unital semiring homomorphisms, by their displayed component
+laws. They are jointly injective. Their joint image consists exactly
+of the pairs with $c\ne0\Rightarrow\lambda=1_L$.
+In particular $\rho(\tau)=\rho(e)=0$, whereas
+$s(\tau)=0_L$ and $s(e)=1_L$.
+
+For a positive integer $r$, let $J_r$ be the all-$1_L$ support
+matrix and let
+\[
+ \mathsf P_r=(I_r,J_r)\in M_r(S),\qquad
+ P_r=\operatorname{im}\mathsf P_r
+ =\{(v,\lambda):v\in\mathbb C^r,\ 
+                       v\ne0\Rightarrow\lambda=1_L\}.
+ \tag{FLW3}
+\]
+Here a matrix pair records its amplitude and support, with every
+nonzero amplitude entry forcing support $1_L$; matrix multiplication
+uses ordinary complex multiplication in amplitude and join-of-meets
+in support. On a free vector $(v,\mu_1,\ldots,\mu_r)$,
+$\mathsf P_r$ leaves $v$ unchanged and sets every support coordinate
+to $\bigvee_j\mu_j$. Thus $\mathsf P_r^2=\mathsf P_r$ and its
+image is exactly FLW3. This proves that $P_r$ is projective, with
+the indicated splitting of the free module $S^r$.
+For any complex $b$-by-$a$ matrix $T$, the matrix
+$(T,J_{b,a})$ on the retracts gives
+\[
+ T^\uparrow:P_a\longrightarrow P_b,
+       \qquad(v,\lambda)\longmapsto(Tv,\lambda).
+ \tag{FLW4}
+\]
+It is $S$-linear by FLW1, including cancellation of amplitudes.
+Composition and addition preserve this lift, and an invertible
+square $T$ gives an automorphism with inverse $(T^{-1})^\uparrow$.
+The lift of the complex zero map is $(v,\lambda)\mapsto(0,\lambda)$,
+which is not the constant-$\tau$ map.
+
+The source dimension throughout is $q=(k+1)^2>0$. The actual cyclic
+carrier with $d$ slots is the direct sum of $d$ such projectives:
+\[
+ P_{q,d}=P_q^{\oplus d}=\operatorname{im}
+        \operatorname{diag}(\mathsf P_q,\ldots,\mathsf P_q).
+ \tag{FLW5}
+\]
+An element has independent slot supports
+$((v_0,\lambda_0),\ldots,(v_{d-1},\lambda_{d-1}))$, with
+$v_j\ne0\Rightarrow\lambda_j=1_L$.
+For the original free coordinate masks the complete fibre is
+\[
+ \{(\mu_{j,i}):\bigvee_{i=1}^q\mu_{j,i}=\lambda_j
+                 \text{ for each }j,
+             \ (v_j)_i\ne0\Rightarrow\mu_{j,i}=1_L\}.
+ \tag{FLW6}
+\]
+This follows by applying FLW3 separately to every slot. The tensor
+of two such synchronized projectives is also explicit:
+$P_a\otimes_S P_b=\operatorname{im}(\mathsf P_a\otimes\mathsf P_b)$
+under the standard free-coordinate identification, and the matrix
+there is $(I_{ab},J_{ab})$. Hence it is $P_{ab}$.
+This assertion follows directly by tensoring the two splitting maps:
+their retraction composite is the identity and their opposite
+composite is the displayed Kronecker idempotent.
+
+\subsection{Intrinsic trace, including both zeros}
+
+For any finitely generated projective $S$-semimodule $P$, choose
+a splitting $i:P\to S^a$, $r:S^a\to P$, $ri=I_P$.
+For $T:P\to P$ define
+\[
+ \operatorname{Tr}_P(T)=\operatorname{tr}_{S^a}(iTr)
+                     =\sum_{j=1}^a(iTr)_{jj}\in S.
+ \tag{FLW7}
+\]
+This is independent of the chosen splitting. Indeed for a second
+splitting $i',r'$ through $S^b$, put $U=iTr'$ and $V=i'r$.
+Then $UV=iTr$ and $VU=i'Tr'$. For rectangular matrices over a
+commutative semiring,
+$\operatorname{tr}(UV)=\sum_{j,l}U_{jl}V_{lj}
+=\sum_{l,j}V_{lj}U_{jl}=\operatorname{tr}(VU)$.
+This proves independence without subtraction or a chosen basis of
+the projective. The same proof gives cyclicity for maps between two
+projectives, invariance under isomorphism, additivity on direct sums,
+and multiplicativity on tensor products, the last by the diagonal
+entries of a Kronecker product.
+
+For the chosen projective lift FLW4, every diagonal support is top,
+so its intrinsic trace is exactly
+\[
+ \operatorname{Tr}_{P_q}(T^\uparrow)
+       =(\operatorname{tr}_{\mathbb C}T,1_L).
+ \tag{FLW8}
+\]
+In particular the supported zero map has trace $e$ and the actual
+zero endomorphism has trace $\tau$. These are distinct even when the
+complex trace is zero. More generally, applying $\rho$ or $s$ to
+the splitting matrices gives the corresponding split projective
+over $\mathbb C$ or $L$, and
+\[
+ \rho(\operatorname{Tr}_P T)
+       =\operatorname{Tr}_{P\otimes_S\mathbb C}T_\rho,
+ \qquad
+ s(\operatorname{Tr}_P T)
+       =\operatorname{Tr}_{P\otimes_S L}T_s.
+ \tag{FLW9}
+\]
+One may define each base change here as the image of the coefficient
+image of its splitting idempotent; the split maps prove the stated
+tensor descriptions. FLW9 then follows by applying the coefficient
+homomorphism to each finite diagonal sum. In particular
+$P_q\otimes_S\mathbb C=\mathbb C^q$ and
+$P_q\otimes_S L=\operatorname{im}J_q\cong L$, the latter by
+evaluation at any coordinate of the constant support vector.
+
+\subsection{The actual signed cyclic operator and every integer power}
+
+Keep every original parameter and metric:
+\[
+\begin{gathered}
+ k\ge17,\quad k\equiv1\pmod4,\quad\delta,\gamma>0,
+ \quad q=(k+1)^2,\quad q-1\le N\le2q,\\
+ E=\mathbb C[y]/\prod_{a,b=0}^k
+      (y-(2b-k)\gamma+i(2a-k)\delta),\quad M[v]=[yv],\\
+ F_p=\exp(i(\log p)M),\quad\widetilde F_p=p^{k/2}F_p,
+ \quad\langle v,w\rangle_N=v^*G_Nw,\\
+ \omega_{ab}=p^{(2a-k)\delta}
+                 \exp(i(2b-k)\gamma\log p).
+\end{gathered}
+\tag{FLW10}
+\]
+For every positive odd $d$ retain
+$\chi=\chi_d=(-1)^{(d-1)/2}$, $A=\chi F_p^\chi$.
+On the carrier FLW5 define the literal Verschiebung
+\[
+ \mathcal C_d(A)((v_j,\lambda_j)_{j=0}^{d-1})
+ =((Av_{d-1},\lambda_{d-1}),
+                       (v_0,\lambda_0),\ldots,(v_{d-2},\lambda_{d-2})).
+ \tag{FLW11}
+\]
+The ambient block matrix has $A^\uparrow$ in its corner,
+$I^\uparrow$ on its cyclic forward edges, and the actual
+all-$\tau$ zero matrix in all other blocks. Thus its support is
+$P_d\otimes J_q$, where $P_d$ is the cyclic permutation support
+matrix; it is not the all-top $dq$-by-$dq$ matrix.
+Its inverse reverses the cyclic steps and uses $(A^{-1})^\uparrow$
+at the reversed corner. Consequently it is an automorphism of
+$P_{q,d}$, whose identity is the block idempotent in FLW5.
+
+For every integer $n$ and every input slot $j\in\{0,\ldots,d-1\}$,
+write $j+n=dw+r$, $0\le r<d$, using Euclidean division even for
+negative $n$. The power map has exactly the following one block
+in that input column:
+\[
+ \mathcal C_d(A)^n\iota_j=\iota_r(A^w)^\uparrow,
+ \qquad r=j+n\bmod d,\quad w=\left\lfloor\frac{j+n}{d}\right\rfloor.
+ \tag{FLW12}
+\]
+Following one forward step increments the slot and adds one to the
+exponent only at a wrap. This proves FLW12 for $n\ge0$ by induction.
+The stated inverse proves the backward step and hence all $n<0$.
+Its support matrix is $P_d^n\otimes J_q$ at every integer $n$,
+including $n=0$, which gives the projective identity in FLW5.
+The exact intrinsic power traces are therefore
+\[
+ \boxed{\operatorname{Tr}_{P_{q,d}}\mathcal C_d(A)^n
+ =\begin{cases}
+ \tau,&d\nmid n,\\
+ \left(d\chi^m\displaystyle\sum_{a,b=0}^k
+                   \omega_{ab}^{\chi m},1_L\right),&n=dm.
+ \end{cases}}
+ \tag{FLW13}
+\]
+At a nonreturn time, every diagonal block is the actual zero block,
+so the result is $\tau$. At a return time $n=dm$, every diagonal
+block is $(A^m)^\uparrow$; FLW8 and the ordinary eigenvalue trace
+give the second line. For $n=0$ it is $(dq,1_L)$.
+For cancellation of its complex power sum it is $e$, not $\tau$.
+No metric is involved in this intrinsic trace; in particular none
+of the nonorthogonal Lagrange vectors is silently made orthogonal.
+
+Let $P_{ab}$ be the actual original Lagrange projector and lift
+its block diagonal as $\mathcal P_{ab}$ on $P_{q,d}$. The labelled
+and mass-weighted identities are
+\[
+\begin{split}
+ \operatorname{Tr}(\mathcal P_{ab}\mathcal C_d(A)^n)
+ &=\begin{cases}\tau,&d\nmid n,\\
+       (d\chi^m\omega_{ab}^{\chi m},1_L),&n=dm,
+    \end{cases}\\
+ \operatorname{Tr}(\mathcal P_{ab}(p^{k/2},1_L)^n\mathcal C_d(A)^n)
+ &=(p^{kn/2},1_L)
+              \operatorname{Tr}(\mathcal P_{ab}\mathcal C_d(A)^n).
+\end{split}
+\tag{FLW14}
+\]
+These follow from $P_{ab}A^m=\chi^m\omega_{ab}^{\chi m}P_{ab}$
+and $\operatorname{tr}P_{ab}=1$. The projectors are retained as
+specific maps: for distinct labels their supported product is the
+lift of the complex zero map on each slot, not the actual zero
+endomorphism. Thus their complex direct-sum decomposition has not
+been incorrectly declared an orthogonal projective decomposition
+over $S$.
+
+The two full coefficient images of FLW13, as formal ghost series
+at positive times, are
+\[
+\begin{split}
+ \mathfrak g_d(t)&=\sum_{n\ge1}
+                  \operatorname{Tr}(\mathcal C_d(A)^n)t^n\in S[[t]],\\
+ \rho(\mathfrak g_d(t))
+     &=d\sum_{m\ge1}\chi^m
+                       \Big(\sum_{a,b}\omega_{ab}^{\chi m}\Big)t^{dm},\\
+ s(\mathfrak g_d(t))&=\sum_{m\ge1}1_L t^{dm}\in L[[t]].
+\end{split}
+\tag{FLW15}
+\]
+All absent coefficients of the first and last series are their
+respective additive zeros. The mass-weighted series inserts the
+literal $p^{kdm/2}$ into the second line and leaves the third line
+unchanged. These are formal series, so no analytic convergence is
+being substituted for a finite coefficient calculation. The support
+trace records divisibility of the return time but not its integer
+multiplicity $d$; addition in $L$ is idempotent. The stronger
+cyclic-support object is retained below.
+
+\subsection{The unchanged metric, including support left by cancellation}
+
+The full block pairing of two vectors in FLW5 is
+\[
+ \mathfrak h(v,w)=
+   \left(\sum_{j=0}^{d-1}v_j^*G_Nw_j,
+                     \bigvee_{j=0}^{d-1}(\lambda_j\wedge\mu_j)\right).
+ \tag{FLW16}
+\]
+It takes values in $S$: a nonzero summand in its complex coordinate
+requires both involved supports to be top. It is the sum of the
+original supported Hermitian pairings, with the involution conjugating
+amplitude and fixing support. Under FLW11 the supports are merely
+permuted, so the exact signed difference formed using $(-1,1_L)$ is
+\[
+\begin{split}
+ &\mathfrak h(\mathcal C_d(A)v,\mathcal C_d(A)w)
+                  +(-1,1_L)\mathfrak h(v,w)\\
+ &\qquad=
+ \left(v_{d-1}^*(A^*G_NA-G_N)w_{d-1},
+                     \bigvee_j(\lambda_j\wedge\mu_j)\right).
+\end{split}
+\tag{FLW17}
+\]
+The complex cancellation is the original TOB13 identity. Its support
+does not cancel: the zero-amplitude contributions from the other
+slots still supply the displayed join. Replacing that join by only
+$\lambda_{d-1}\wedge\mu_{d-1}$ would be a false semiring equality.
+For the mass-weighted operator the complex defect against $p^k$
+times the original pairing is $p^k$ times the same displayed
+amplitude, while its support remains this same join. All phases
+and all entries of $G_N$ in $A^*G_NA$ are unchanged.
+
+\subsection{Exact Frobenius and Verschiebung maps on the projectives}
+
+For an automorphism $T$ of a projective $P$ define
+$F_n(P,T)=(P,T^n)$ for $n\ge1$, and let $V_d(P,T)$ be its cyclic
+construction on $P^{\oplus d}$ with corner $T$. We use actual zero
+off-block maps in this definition. These definitions apply in
+particular to FLW11 with $P=P_q$ and $T=A^\uparrow$.
+The equalities $F_mF_n=F_{mn}$ follow by powers.
+The isomorphism $V_mV_n(P,T)\cong V_{mn}(P,T)$ sends the outer
+slot $i$ and inner slot $j$ to $i+mj$. One outer wrap advances the
+inner slot and the final wrap uses $T$, so the permutation proves
+the identity on every coordinate. It preserves the unchanged direct
+sum metric and all independent slot supports.
+
+For the full mixed relation let $g=\gcd(d,n)$, $l=d/g$, and
+$a=n/g$. There is an explicit isomorphism
+\[
+ F_nV_d(P,T)\cong
+        \bigoplus_{t=0}^{g-1}V_l(P,T^a).
+ \tag{FLW18}
+\]
+For $P=P_q$ and $T=A^\uparrow$, its map from the right to the left
+sends the slot $j$ of the $t$th summand to the original slot
+$r_{t,j}=t+jn\bmod d$, with block map $(A^{w_{t,j}})^\uparrow$,
+where $w_{t,j}=\lfloor(t+jn)/d\rfloor$ and $0\le j<l$.
+The pairs $(t,j)$ enumerate every slot exactly once: the congruence
+classes modulo $g$ are the disjoint orbits, each of length $l$.
+The coordinate action FLW12 adds exponent
+$w_{t,j+1}-w_{t,j}$ at each step. All intermediate steps therefore
+intertwine, and $w_{t,l}=a$, $r_{t,l}=t$ proves the returning corner
+$A^a$. Invertibility of $A$ proves invertibility of this map.
+For a general invertible $T$ use its powers in the same formula.
+In particular $F_dV_d(P,T)=(P,T)^{\oplus d}$ and, when $(d,n)=1$,
+$F_nV_d(P,T)\cong V_dF_n(P,T)$.
+
+The amplitude comparison is not asserted to be an isometry for
+$G_N$ when powers of $A$ occur. Its exact pulled-back form is
+\[
+ \sum_{t=0}^{g-1}\sum_{j=0}^{l-1}
+   x_{t,j}^*(A^{w_{t,j}})^*G_N A^{w_{t,j}}y_{t,j}.
+ \tag{FLW19}
+\]
+Its support pairing is the unchanged corresponding join, because
+each block map preserves its support. Thus the algebraic relation
+has its complete metric comparison and does not remove a weight
+defect by changing metrics.
+
+For automorphisms $X$ of $P$ and $Y$ of $Q$, with product defined by
+tensoring, the projection formula is the concrete isomorphism
+\[
+ V_n(P\otimes Q,X^n\otimes Y)
+                 \cong(P,X)\otimes V_n(Q,Y).
+ \tag{FLW20}
+\]
+From left to right use $X^j\otimes I$ in slot $j$. On the right
+each nonreturning step uses $X\otimes I$ and the return uses
+$X\otimes Y$; at the last step their product is $X^n\otimes Y$.
+This checks the intertwining and gives its inverse $X^{-j}\otimes I$.
+Likewise
+\[
+ V_n(P,X)\otimes V_n(Q,Y)
+                 \cong\bigoplus_{t=0}^{n-1}V_n(P\otimes Q,X\otimes Y).
+ \tag{FLW21}
+\]
+On the $t$th summand send slot $j$ to the pair
+$(j,t+j\bmod n)$, using block map
+$I\otimes Y^{\lfloor(t+j)/n\rfloor}$.
+The simultaneous cycle steps preserve $t$; when either coordinate
+wraps, its $X$ or $Y$ is exactly supplied by this formula, and the
+full return uses $X\otimes Y$. The orbits partition all $n^2$
+slots and all block maps are invertible, proving FLW21.
+For $P=P_a$, $Q=P_b$ with their retained complex metrics
+$G_P,G_Q$, the exact metric comparisons are respectively
+$(X^j)^*G_PX^j\otimes G_Q$ and
+$G_P\otimes (Y^{\lfloor(t+j)/n\rfloor})^*G_Q
+                         Y^{\lfloor(t+j)/n\rfloor}$.
+The support maps are permutations of the actual slot labels,
+with the indicated tensor meet within each slot. No cancellation
+of support or unproved unitary conjugacy is used.
+
+The trace ghosts obey these isomorphisms in $S$, by FLW7. For example
+FLW18 says that the $r$th trace of its left side is the sum of $g$
+copies of the $r$th trace of $V_l(P,T^a)$.
+For FLW11 the support condition on both sides is
+$d\mid nr$, equivalently $l\mid r$; at return the complex
+multiplicity is $gl=d$. Thus the integer multiplier survives in
+amplitude while the support join still has only the values $0_L,1_L$.
+
+The same formulas can be used without discarding the original mass.
+For any supported nonzero scalar $\eta$, the diagonal gauge
+$\operatorname{diag}(I,\eta I,\ldots,\eta^{d-1}I)$ gives
+\[
+ \eta\mathcal C_d(A)\cong\mathcal C_d(\eta^d A).
+ \tag{FLW22}
+\]
+Indeed a forward step introduces one $\eta$ and the full return
+introduces $\eta^d$. For $\eta=p^{k/2}$ this is precisely the
+corner $p^{kd/2}A$, not $p^{k/2}A$. The gauge is not declared
+unitary: its pulled-back block metric has the factors
+$p^{kj}G_N$. Its power trace is exactly $p^{kn/2}$ times FLW13.
+
+The signed odd family has an additional exact composition statement;
+it must not be confused with Verschiebung at one fixed corner.
+For an invertible original $F$ put
+$\mathcal W_d(F)=V_d(\chi_d F^{\chi_d})$ for odd $d$.
+For odd $c,d$ there is an explicit full-support isomorphism
+\[
+ \mathcal W_c(\mathcal W_d(F))\cong\mathcal W_{cd}(F).
+ \tag{FLW36}
+\]
+Here the formula means an operator construction on the corresponding
+direct sums of projectives; each newly introduced slot remains
+independent. If $\chi_c=1$, flatten the two cyclic sums as before,
+using $\chi_{cd}=\chi_d$.
+If $\chi_c=-1$, write $A=\chi_dF^{\chi_d}$ and first compare
+$-\mathcal C_d(A)^{-1}$ with $\mathcal C_d(-A^{-1})$.
+The intertwiner from the latter to the former sends slot $j$ to
+$-j\bmod d$ with block
+$(-1)^j(A^{\lfloor-j/d\rfloor})^\uparrow$.
+FLW12 with step $-1$ proves the inverse-cycle part. The successive
+signs supply a factor $-1$ at each step, including the return since
+$d$ is odd. Thus the map and its inverse are proved directly.
+Its returning corner is
+$-A^{-1}=-\chi_dF^{-\chi_d}=\chi_{cd}F^{\chi_{cd}}$.
+Apply this same intertwiner in each of the $c$ outer slots and
+then flatten the cycles; the result is FLW36.
+In this inverse case its metric contains $G_N$ in slot zero and
+$(A^{-1})^*G_NA^{-1}$ in each other slot, followed by the stated
+permutation; the signs have absolute value one. It is not silently
+made an isometry.
+
+For general positive $n$, the exact Frobenius result for the signed
+family is instead
+\[
+ F_n\mathcal W_d(F)
+ \cong\bigoplus_{t=0}^{g-1}
+ V_{d/g}(\chi_d^{n/g}F^{\chi_d n/g}),\qquad g=\gcd(d,n).
+ \tag{FLW37}
+\]
+This is FLW18 with its literal corner substituted. For $(d,n)=1$
+and odd $n$ it agrees with $\mathcal W_d(F^n)$.
+For coprime even $n$ and $\chi_d=-1$, its corner is $F^{-n}$ whereas
+the latter proposed replacement has corner $-F^{-n}$.
+Their exact amplitude difference at that corner is $2F^{-n}$,
+an invertible map, and both have the same cyclic support.
+On the identified $d$ slots the signed difference of the two
+endomorphisms has this last-to-first amplitude, while every
+cyclic edge still retains its supported-zero support when its
+other amplitudes cancel. Thus FLW37, rather than an unqualified
+commutation assertion for the signed family, records the full
+parity defect.
+
+\subsection{Global synchronization and its exact defect object}
+
+The single synchronized carrier of amplitude dimension $dq$ is
+$P_{dq}$, whose free idempotent has all-top support in all $dq$
+coordinates. It is not FLW5. The exact comparison consists of
+\[
+\begin{split}
+ j:P_{dq}\longrightarrow P_{q,d},\quad
+           (v,\lambda)&\longmapsto((v_0,\lambda),\ldots,(v_{d-1},\lambda)),\\
+ r:P_{q,d}\longrightarrow P_{dq},\quad
+           ((v_j,\lambda_j)_j)&\longmapsto
+                         ((v_j)_j,\bigvee_j\lambda_j),\qquad rj=I.
+\end{split}
+\tag{FLW23}
+\]
+Substitution in FLW1 proves $S$-linearity. Their other composite
+$jr$ synchronizes all slot labels to their join; it generally is
+not the identity. The complete fibre over $(v,\lambda)$ is
+\[
+ \{(\lambda_j):\bigvee_j\lambda_j=\lambda,
+                       \ v_j\ne0\Rightarrow\lambda_j=1_L\}.
+ \tag{FLW24}
+\]
+Every vector amplitude is retained, and the exact identifications
+among labels are displayed rather than removed silently.
+The complex $C_d(A)$ has a lift $C_d(A)^\uparrow$ on $P_{dq}$,
+with all-top support in every block. Because FLW11 permutes the
+independent labels, the maps $j,r$ intertwine these two operators.
+Its intrinsic trace is, at every integer $n$,
+\[
+ \operatorname{Tr}_{P_{dq}}((C_d(A)^n)^\uparrow)
+                   =(\operatorname{tr}_{\mathbb C}C_d(A)^n,1_L).
+ \tag{FLW25}
+\]
+At $d\nmid n$ FLW25 is $e$ whereas FLW13 is $\tau$.
+For $d\mid n$ they agree exactly. Thus replacing independent cyclic
+slots by the globally synchronized lift loses a proved part of the
+semiring trace even though the entire original complex operator
+and all its metric entries are the same.
+
+This difference defines an actual comparison object: the split
+surjection $r$, its section $j$, its idempotent $jr$, the full
+fibres FLW24, and the two intertwined automorphisms.
+For $d>1$ its label relation is nontrivial. For example choose any
+slot and place support $1_L$ only there, with every amplitude zero;
+all these distinct vectors map to $(0,1_L)$.
+There is no assertion that an additive difference of semimodules
+or a direct-sum complement of $j$ exists.
+
+\subsection{What group completion kills, and what it does not kill}
+
+The additive group completion of the coefficient semiring $S$ is
+exactly $\mathbb C$. Indeed $z_\lambda+z_\lambda=z_\lambda$ forces
+every $[z_\lambda]$ to be zero in the group. Every other element
+has the form $(c,1_L)$, and
+$(a,1_L)+(b,1_L)=(a+b,1_L)$.
+The class of $(0,1_L)$ is zero, so these classes define the inverse
+of the homomorphism induced by $\rho$ to the additive group
+$\mathbb C$. Multiplication is compatible by FLW1. In particular
+\[
+ S^{\rm gp}\cong\mathbb C,\qquad [e]=[\tau]=0.
+ \tag{FLW26}
+\]
+This proves a statement about scalar coefficients, not a vanishing
+theorem for projective objects or their endomorphisms.
+
+Here is a direct invariant detecting the distinction. Choose a
+bounded lattice homomorphism $\beta:L\to\mathbb B=\{0,1\}$.
+Such a homomorphism exists for a nontrivial bounded distributive
+lattice: choose a maximal proper ideal by Zorn's lemma. It is prime,
+because if $x,y$ are outside it, maximality gives $i\vee x=1$
+and $j\vee y=1$ for ideal elements $i,j$; if $x\wedge y$ were in
+the ideal, distributing these equalities would put $1$ in it.
+The complementary indicator is the required bounded homomorphism.
+This chosen probe does not replace $L$ in FLW1--FLW25.
+
+Base change along $\beta s:S\to\mathbb B$ gives
+\[
+ (P_{q,d},\mathcal C_d(A))_{\mathbb B}
+       =(\mathbb B^d,\text{cyclic permutation of the }d\text{ coordinates}),
+ \qquad
+ (P_{dq},C_d(A)^\uparrow)_{\mathbb B}=(\mathbb B,I).
+ \tag{FLW27}
+\]
+Every returning block of $A^\uparrow$ has support all top, so it
+acts as the identity on the single synchronized Boolean coordinate;
+its nonzero amplitude, sign, and phase do not alter this map.
+For the actual source, both objects are automorphisms, so their
+stable images are their full underlying finite sets.
+
+For any endomorphism $T$ of a finitely generated projective
+$S$-semimodule $P$, its Boolean base change $P_{\mathbb B}$ is
+finite: it is an image of $\mathbb B^a$ for a finite $a$.
+Let $T_{\mathbb B}^{\infty}(P_{\mathbb B})$ be the eventual image
+of its descending finite image sequence and define
+\[
+ b(P,T)=\log_2\big|T_{\mathbb B}^{\infty}(P_{\mathbb B})\big|.
+ \tag{FLW28}
+\]
+It is invariant under isomorphism and additive on direct sums,
+because direct sums of finite semimodules are their Cartesian
+products and iteration acts componentwise. Null endomorphisms
+have singleton eventual image and value zero. Thus FLW28 defines
+a group homomorphism from the group generated by projective
+endomorphism isomorphism classes with the direct-sum relations,
+even after quotienting by all null-endomorphism classes. It also
+respects the image-stabilization relation whenever that image is
+a projective in this category. Write its factorization as
+$T=ba$, with $a:P\to T(P)$ and $b:T(P)\to P$; the restricted
+endomorphism on $T(P)$ is $ab$. After base change the same two
+factorizations hold, even without assuming that the changed $b$
+is injective. For two maps $a,b$ between finite sets, $a$ takes
+the eventual image of $ba$ to that of $ab$ and intertwines their
+permutations there. It is injective on that image because
+$ax=ay$ implies $(ba)x=(ba)y$ and $ba$ is bijective there;
+the same reasoning makes $b$ injective on the other eventual
+image. The two finite eventual images therefore have equal
+cardinality, proving the claimed relation.
+For the two objects in FLW27 the values are respectively $d$ and $1$.
+Their difference therefore has nonzero invariant $d-1$ for $d>1$.
+No relation from a different, unspecified exact category is assumed.
+
+Even a projective having zero complex amplitude can survive this
+group. Namely $eS=\operatorname{im}(e:S\to S)$ is projective
+because $e^2=e$. Its amplitude base change is zero, its full support
+module is $L$, and its Boolean base change is $\mathbb B$.
+Consequently
+\[
+ \operatorname{Tr}_{eS}(I)=e,\qquad
+ [e]=0\text{ in }S^{\rm gp},\qquad b(eS,I)=1.
+ \tag{FLW29}
+\]
+These explicit maps prove that scalar group completion kills its
+trace coefficient while the projective endomorphism class remains
+nonzero in the stated additive quotient.
+
+\subsection{The exact pointed-cycle receiver and corrected multiplicities}
+
+The support module before choosing $\beta$ is $L^d$ with the literal
+cyclic permutation of its slots. After the probe it is $\mathbb B^d$,
+whose nonzero join-irreducible elements are precisely the $d$ unit
+coordinate vectors: a subset with at least two elements is a join
+of two proper subsets, whereas a singleton has no such expression.
+An automorphism preserves this property and therefore permutes the
+same $d$ elements. Adding a fixed base point gives the finite pointed
+cycle $C(d)$ in the notation of Connes--Consani.
+For free Boolean modules, this operation respects direct sums and
+tensor products: singleton coordinates of $\mathbb B^{a+b}$ are
+the disjoint union of those of its factors, and the free tensor
+$\mathbb B^a\otimes\mathbb B^b=\mathbb B^{ab}$ has coordinate
+pairs. These identifications intertwine the permutations.
+Thus it gives an exact additive and multiplicative comparison on
+the subcategory of the support cycles constructed here.
+
+The original pointed-cycle ghost and the scalar lattice trace now
+have their precise relation:
+\[
+ \operatorname{gh}_n C(d)=d\,\mathbf1_{d\mid n},\qquad
+ \operatorname{tr}_{L}(P_d^n)=
+       \begin{cases}1_L,&d\mid n,\\0_L,&d\nmid n.
+       \end{cases}
+ \tag{FLW30}
+\]
+The first counts the $d$ fixed nonbasepoint slots; the second is
+the join of their diagonal indicators. It is obtained from the
+nonnegative integer ghost by the homomorphism
+$\mathbb N\to L$ sending zero to $0_L$ and every positive integer
+to $1_L$. The actual cycle object retains the multiplicity that
+this homomorphism loses. For comparison the full fixed set of
+$P_d^n$ on $\mathbb B^d$ has cardinality
+$2^{\gcd(d,n)}$: a fixed subset is a union of the
+$\gcd(d,n)$ permutation orbits. Thus counting all subset states
+would give a different invariant from the pointed atom trace;
+the explicit atom map specifies the source invariant being used.
+
+The root-of-unity receiver of the authors' theorem is exactly
+\[
+ \Theta_d=\sum_{d\alpha=0}[\alpha]\in\mathbb Z[\mathbb Q/\mathbb Z],
+ \qquad
+ \widehat\Theta_d(n)=\sum_{j=0}^{d-1}e^{2\pi i nj/d}
+                   =d\mathbf1_{d\mid n}.
+ \tag{FLW31}
+\]
+The finite geometric sum proves the equality. Hence the full-support
+comparison defect FLW23 has pointed-cycle image
+$\Theta_d-\Theta_1$, with ghost $d\mathbf1_{d\mid n}-1$.
+It is nonzero for $d>1$, for example at $n=1$.
+This proves its connection with the authors' universal invariant
+without asserting that the original semiring scalar trace itself
+is that group-ring invariant.
+
+There are two source formulas that require explicit correction in
+the cited original version. If $m(k)$ denotes the number of cycles
+of length $k$, direct counting gives
+\[
+ g_n=\sum_{k\mid n}k\,m(k),\qquad
+ m(k)=\frac1k\sum_{d\mid k}\mu(k/d)g_d.
+ \tag{FLW32}
+\]
+For the inverse formula, substitute the first sum. The coefficient
+of $j\,m(j)$ is $\sum_{j\mid d\mid k}\mu(k/d)$, which equals one
+when $j=k$ and zero otherwise. This divisor identity follows by
+expanding $\prod_{p\mid(k/j)}(1-1)$, with value one for $k/j=1$.
+The source at lines 510--512 omits both the cycle length in its
+preceding count and the factor $1/k$ in its inverse. A single
+two-cycle has $g_1=0,g_2=2$ and $m(2)=1$, which checks the factor
+directly. The primitive-root formula at line 516 has a mismatched
+dummy index; its correctly indexed form is
+$\sum_{d\mid n}\mu(n/d)\Theta_d$, following from partitioning
+roots by exact order. These corrections do not alter the cycle
+invariant FLW31.
+
+Even the corrected signed M\"obius coefficient over the full
+semiring has a retained supported-zero tail. For the operator
+$\mathcal C_d(I)$ on $P_{q,d}$, let $t_n$ denote its FLW13 trace,
+and form, for $k\ge1$, the literal finite sum
+\[
+ M_k^S=(1/k,1_L)\sum_{\substack{l\mid k\\\mu(k/l)\ne0}}
+                  (\mu(k/l),1_L)t_l
+ =\begin{cases}
+ \tau,&d\nmid k,\\
+ (q,1_L),&k=d,\\
+ e,&d\mid k,\ k\ne d.
+ \end{cases}
+ \tag{FLW33}
+\]
+Its amplitude is FLW32 for $q$ complex copies of the $d$-cycle.
+If $d\mid k$, the summand $l=k$ with M\"obius value one has
+top support; the support join therefore remains top even when all
+complex terms cancel. If $d\nmid k$, none of its divisors returns
+and every summand is $\tau$. This proves all cases of FLW33 and
+exhibits precisely why subtraction after scalar group completion
+loses more information than the original semiring calculation.
+
+\subsection{Adams operations and the actual domain of Newton recovery}
+
+For the original amplitude corner $A=\chi F_p^\chi$, retain its
+labelled eigenvalues $\alpha_{ab}=\chi\omega_{ab}^\chi$ and set
+$\lambda_A(t)=\det(I+tA)=\prod_{a,b}(1+\alpha_{ab}t)$.
+Direct formal differentiation of this finite product proves
+\[
+ t\lambda_A'(t)/\lambda_A(t)
+   =\sum_{n\ge1}(-1)^{n-1}\operatorname{tr}(A^n)t^n,
+ \qquad
+ j e_j=\sum_{n=1}^j(-1)^{n-1}e_{j-n}\operatorname{tr}(A^n),
+ \tag{FLW34}
+\]
+where $\lambda_A(t)=\sum_{j=0}^q e_jt^j$ and $e_0=1$.
+For the first identity expand
+\[
+\frac{\alpha t}{1+\alpha t}=\sum_{n\ge1}(-1)^{n-1}\alpha^nt^n;
+\]
+for the second multiply by $\lambda_A(t)$ and compare coefficients.
+The sign at \texttt{lognewton}, source lines 644--647, is printed
+as $(-1)^n$; the coefficient of $t$ already requires the displayed
+$(-1)^{n-1}$. This agrees with the source's preceding explicit
+$\psi_1=\lambda_1$ and $\psi_2=\lambda_1^2-2\lambda_2$.
+
+For the cyclic amplitude receiver,
+\[
+ \det(I-tC_d(A))=\det(I-t^dA)
+            =\prod_{a,b}(1-\chi\omega_{ab}^{\chi}t^d),
+ \qquad
+ \operatorname{tr}(A^m)=d^{-1}\rho
+                       (\operatorname{Tr}\mathcal C_d(A)^{dm}).
+ \tag{FLW35}
+\]
+The determinant follows by restricting to each original Lagrange
+label, whose cyclic matrix has polynomial $z^d-\alpha_{ab}$.
+Those labelled invariant complex subspaces sum to the full amplitude
+space, so all multiplicities are retained. The second equality is
+FLW13. FLW34 then recovers every coefficient of the original
+$\det(I-tA)$ from its first $q$ returning traces. For the weighted
+receiver the factor is $\chi p^{kd/2}\omega_{ab}^\chi$ and the
+returning traces include $p^{kdm/2}$ exactly as in FLW14--FLW15.
+
+FLW34--FLW35 are statements in the complex amplitude ring or its
+formal series ring. They are not assumed determinant or exterior
+power identities for the full semiring projectives. Over $S$,
+$(1,1_L)+(-1,1_L)=e\ne\tau$; an alternating complex cancellation
+does not give the semiring additive zero. The full coefficient
+object retained in parallel is FLW15 together with its projective
+slot action FLW11 and the comparison FLW23--FLW24. Its exact images
+under both coefficient maps and the surviving cycle invariant have
+all been proved above. In particular neither the Newton amplitude
+recovery nor scalar group completion deletes the constructed
+projective support defect.

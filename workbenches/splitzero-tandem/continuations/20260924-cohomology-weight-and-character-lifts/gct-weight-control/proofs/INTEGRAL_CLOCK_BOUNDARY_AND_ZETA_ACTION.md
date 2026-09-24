@@ -1,0 +1,337 @@
+# Integral clock operators and their exact boundary quotient
+
+24 September 2026. Proof labels CB1–CB10. This is a calculation on the completed winding data and its function spaces. The support remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). No addition, coordinate, distance, or vector is assigned to that support. The integer coefficient ring, winding coordinates, integral transfers, and source projections below are different explicitly typed objects.
+
+The starting clock construction is P13–P14 in `../stacked_zero_intake_20260924/deligne_visual/PRIME_CLOCKS_ORCHARD_AND_SPECTRUM.md`. The integral receiving algebra is FT1–FT5 in `INTEGRAL_FROBENIUS_TRANSFER_ALGEBRA.md`. The original-zeta receiving space and all its multiplicities are RZ1–RZ12 in `ORIGINAL_ZETA_RESOLVENT_AND_PROJECTORS.md`. These complete proofs accompany the cumulative reader. The Connes–Consani source geometry and its exact original-author source locators are retained in CG0–CG8; the operator algebra proved here is a programme derivation, not attributed to their paper.
+
+## CB1. The completed clock and its integral functions
+
+Retain the full winding completion
+\[
+ K=\varprojlim_{M\mid M'}\mathbb Z/M\mathbb Z
+   =\prod_{p\ \mathrm{prime}}\mathbb Z_p.
+\tag{CB1.1}
+\]
+The equality is the Chinese-remainder map: a compatible residue family restricts to every prime-power family; conversely its prime-power components determine the residue at each \(M=\prod p^{v_p(M)}\), uniquely and compatibly. All primes, including two, occur. Multiplication by a positive integer \(n\) is injective, and its image \(nK\) has index \(n\). Componentwise injectivity follows from injectivity in each \(\mathbb Z_p\); the image consists of components divisible by \(p^{v_p(n)}\), so its quotient is the product of the corresponding finite prime-power quotients, of total cardinality \(n\). The inverse \(x/n\) is defined only for \(x\in nK\).
+
+Let
+\[
+ \mathscr A_{\mathbb Z}=C_{\mathrm{loc}}(K,\mathbb Z)
+  =\bigcup_{M\geq1}\{f\text{ factoring through }\mathbb Z/M\mathbb Z\}.
+\tag{CB1.2}
+\]
+The displayed union means the directed union under divisibility, with its exact pullback maps. A locally constant function on compact \(K\) has a finite clopen partition, refined by one residue partition, which proves the second description. Retain the measure from P14 with arbitrary total mass
+\[
+ \mu(K)=h>0,\qquad \mu(a+MK)=h/M.
+\tag{CB1.3}
+\]
+Set \(H=L^2(K,\mu)\), with the inner product conjugate-linear in the first argument. The integral functions embed into \(H\). Their complex linear span is dense: indicator functions of residue cylinders generate the Borel sigma algebra, and their finite linear combinations are dense in \(L^2\) for this finite measure. Equivalently, successive finite-residue conditional expectations approximate every \(L^2\) function. No value of \(h\) is set to one.
+
+## CB2. Every degree and image projection is retained
+
+Define integral endomorphisms of \(\mathscr A_{\mathbb Z}\) by
+\[
+ (U_nf)(x)=f(nx),\qquad
+ (D_nf)(x)=
+ \begin{cases}n f(x/n),&x\in nK,\\0,&x\notin nK.
+ \end{cases}
+\tag{CB2.1}
+\]
+The factor \(n\) is part of the transfer. It is not omitted. Factoring through residue sets proves that these maps preserve locally constant integer-valued functions. Let \(P_n\) denote multiplication by \(\mathbf1_{nK}\).
+
+The residue masses give, first on cylinder functions and then on nonnegative measurable functions,
+\[
+ \int_K F(nx)\,d\mu(x)=n\int_{nK}F(y)\,d\mu(y).
+\tag{CB2.2}
+\]
+For example the pushforward of \(\mu\) by \(x\mapsto nx\) and the measure \(n\mu|_{nK}\) have the same mass on each cylinder in \(nK\), and therefore agree on the generated Borel sigma algebra. This proves
+\[
+ \|U_nf\|^2=n\int_{nK}|f|^2d\mu,\qquad
+ \|D_nf\|^2=n\|f\|^2,
+\tag{CB2.3}
+\]
+\[
+ \langle U_nf,g\rangle
+ =n\int_{nK}\overline{f(y)}g(y/n)\,d\mu(y)
+ =\langle f,D_ng\rangle.
+\tag{CB2.4}
+\]
+Thus both operators extend to \(H\), with
+\[
+ U_n^*=D_n,\quad D_n^*=U_n,\quad
+ \|U_n\|=\|D_n\|=\sqrt n,
+\tag{CB2.5}
+\]
+\[
+ U_nD_n=nI,\qquad D_nU_n=nP_n.
+\tag{CB2.6}
+\]
+For the norm of \(U_n\), equality in CB2.3 follows on \(f=\mathbf1_{nK}\), whose squared norm is \(h/n\). The formulas for the products follow pointwise, retaining the zero value outside the image.
+
+All compositions obey
+\[
+ U_mU_n=U_{mn},\qquad D_mD_n=D_{mn},
+\tag{CB2.7}
+\]
+\[
+ U_mD_n=dD_{n/d}U_{m/d},\qquad d=\gcd(m,n).
+\tag{CB2.8}
+\]
+To verify the mixed formula, write \(m=dm'\), \(n=dn'\) with \(\gcd(m',n')=1\). Componentwise divisibility proves \(mx\in nK\) precisely when \(x\in n'K\). On that image both sides take the value \(n f(m'x/n')\), and off it both vanish. In particular distinct-prime \(U\)'s and \(D\)'s commute, while the two same-prime orders in CB2.6 generally differ.
+
+## CB3. The complete integral presentation
+
+Let \(\mathscr B\) be the unital subring of \(\operatorname{End}_{\mathbb Z}(\mathscr A_{\mathbb Z})\) generated by all \(U_p,D_p\) for primes \(p\). Its presentation over \(\mathbb Z\) has relations
+\[
+ U_pD_p=pI,
+\tag{CB3.1}
+\]
+\[
+ U_pU_q=U_qU_p,\quad D_pD_q=D_qD_p,\quad
+ U_pD_q=D_qU_p\quad(p\ne q).
+\tag{CB3.2}
+\]
+There are no further relations. In particular one does not insert \(D_pU_p=pI\).
+
+Here is a faithful ordered-word proof. Commuting distinct-prime letters and replacing each adjacent \(U_pD_p\) by \(pI\) expresses every word as an integer combination of
+\[
+ D^aU^b=\prod_p D_p^{a_p}\prod_p U_p^{b_p},
+ \qquad a_p,b_p\geq0,
+\tag{CB3.3}
+\]
+where both exponent families have finite support. Each replacement retains its integer factor. To prove independence, it is enough to consider a finite set \(S\) of primes containing all the letters in a proposed finite relation.
+
+For \(x\in K\) whose \(p\)-component is nonzero for every \(p\in S\), put \(j_p=v_p(x_p)\in\mathbb N_0\). On a function depending only on these valuations,
+\[
+ (D^aU^bf)(j)=
+ \left(\prod_{p\in S}p^{a_p}\right)
+ \mathbf1_{\{j_p\geq a_p\ \forall p\in S\}}
+ f(j-a+b).
+\tag{CB3.4}
+\]
+This is repeated substitution into CB2.1. The divisibility condition guarantees that every argument \(j_p-a_p+b_p\) is nonnegative. The test function which is one exactly when the valuations have prescribed finite values \(t_p\) is an integral locally constant function: it is the indicator of the product of the clopen shells \(p^{t_p}\mathbb Z_p\setminus p^{t_p+1}\mathbb Z_p\).
+
+Suppose \(\sum_{a,b}z_{a,b}D^aU^b=0\) as an operator, with integer coefficients and finite support. Fix a displacement \(k=b-a\) and a valuation vector \(j\) with \(j_p\geq\max(0,-k_p)\). At an input point of valuations \(j\), test with the shell function of valuations \(j+k\). Different displacement vectors give different arguments in CB3.4, so only this \(k\) survives. We obtain
+\[
+ \sum_{a\leq j}z_{a,a+k}\prod_{p\in S}p^{a_p}=0.
+\tag{CB3.5}
+\]
+Coefficients with a negative entry in \(a+k\) are absent. Extend the cumulative sum by zero below its lower thresholds. Taking a successive backward difference in every coordinate at \(j=a\) gives
+\[
+ z_{a,a+k}\prod_{p\in S}p^{a_p}=0.
+\tag{CB3.6}
+\]
+The nonzero integer product can be cancelled in \(\mathbb Z\), giving \(z_{a,a+k}=0\). This holds for every displacement and exponent family, proving independence. The presented algebra maps onto the operator algebra by CB2, and this spanning-and-independence argument proves injectivity. It proves the presentation integrally; no division by a prime was used in the algebra.
+
+Since the integral functions inject into \(H\), the same representation of \(\mathscr B\) on \(H\) is faithful. Indeed a nonzero locally constant function is nonzero on a cylinder of positive measure. The involution from Hilbert adjoints is the algebraic anti-involution exchanging \(U_p,D_p\) and fixing integer scalars. The defining relations are preserved, as is also verified by the faithful operator representation.
+
+## CB4. The boundary element and the integral commutative quotient
+
+For every prime set
+\[
+ e_p=pI-D_pU_p=p(I-P_p)\in\mathscr B.
+\tag{CB4.1}
+\]
+It is a nonzero, self-adjoint element: its support is \(K\setminus pK\), of measure \(h(1-1/p)>0\). Its exact relations include
+\[
+ e_p^2=p e_p,\qquad U_pe_p=0,\qquad e_pD_p=0.
+\tag{CB4.2}
+\]
+These follow by substituting \(U_pD_p=pI\), or by using the image projection. In particular \(e_p\) is not described as an idempotent; its prime factor remains present.
+
+Let \(\mathscr J\) be the two-sided ideal of \(\mathscr B\) generated by every \(e_p\). It is preserved by the involution. There is an exact surjective homomorphism of integral rings with involution
+\[
+ \pi:\mathscr B\longrightarrow\mathcal C,
+ \qquad \pi(U_p)=F_p,\quad\pi(D_p)=V_p,
+\tag{CB4.3}
+\]
+whose kernel is exactly \(\mathscr J\), and hence
+\[
+ \boxed{\mathscr B/\mathscr J\cong\mathcal C.}
+\tag{CB4.4}
+\]
+To prove this without suppressing another relation, CB3 and FT2 show that the stated images satisfy all the relations of \(\mathscr B\). In \(\mathcal C\), both \(F_pV_p\) and \(V_pF_p\) are \(pI\), so every \(e_p\) maps to zero. The quotient by these elements imposes precisely \(D_pU_p=pI\) in addition to CB3.1. It therefore makes each same-prime pair commute. Distinct-prime pairs already commute. The resulting presentation is
+\[
+ \mathbb Z[X_p,Y_p:p\text{ prime}]/(X_pY_p-p:p\text{ prime}),
+\tag{CB4.5}
+\]
+which FT2 proves injectively represents \(\mathcal C\). The maps in both directions send corresponding generators to one another, so are inverse. This proves the kernel statement as well as surjectivity.
+
+For a single prime \(p\), let \(\mathscr J_p=(e_p)\). The quotient by \(\mathscr J_p\) imposes only this prime's extra relation; it must not be confused with the all-prime quotient in CB4.4. Both quotients are nonzero because they map onto the nonzero ring \(\mathcal C\).
+
+## CB5. Exact map to the actual original-zeta action
+
+Retain the receiving space \(\mathcal Q=\mathcal E/\mathcal I\) of RZ, where \(\mathcal E\) is the entire vertical-strip Schwartz space and \(\mathcal I\) is its ideal of all actual nontrivial-zero jets of the original \(\zeta\). Here \(\mathcal E\) is the space denoted \(\mathcal B\) in RZ; the changed letter in this note avoids confusing it with the integral operator ring \(\mathscr B\). Explicitly,
+\[
+ \sup_{|\operatorname{Re}s|\leq A}(1+|\operatorname{Im}s|)^M|F(s)|<\infty
+ \quad(A,M\geq0),
+\tag{CB5.1}
+\]
+\[
+ \mathcal I=\{F:F^{(j)}(\rho)=0\text{ for every actual nontrivial zero }\rho,
+                    \ 0\leq j<m_\rho\}.
+\tag{CB5.2}
+\]
+The full source comparison, including the endpoint and trivial-zero terms, retains
+\[
+ F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\tag{CB5.3}
+\]
+RZ and CD retain its exceptional values and derivatives; the original zeta function is not replaced by this multiplier. Multiplication \(T_r[F]=[r^sF]\) is a continuous endomorphism of \(\mathcal Q\) for each positive rational \(r\), as proved with all strip seminorms in FT5.
+
+Compose the two proved maps to obtain
+\[
+ \Theta=\Psi\circ\pi:\mathscr B\longrightarrow
+       \operatorname{End}_{\mathrm{cont}}(\mathcal Q),
+\qquad
+ \Theta(U_n)=T_n,\quad\Theta(D_n)=nT_{1/n}.
+\tag{CB5.4}
+\]
+This is a unital homomorphism defined on the entire integral clock ring. Its exact source discrepancy is
+\[
+ U_pD_p=pI,\quad D_pU_p=pP_p\quad\text{on }H,
+\tag{CB5.5}
+\]
+\[
+ \Theta(U_p)\Theta(D_p)=\Theta(D_p)\Theta(U_p)=pI
+       \quad\text{on }\mathcal Q,
+ \qquad\Theta(e_p)=0.
+\tag{CB5.6}
+\]
+Thus the original-zeta action factors through the exact integral boundary quotient. This factorization does not assert that its kernel on \(\mathscr B\) is only \(\mathscr J\); the kernel of \(\Psi\) is not being assumed trivial.
+
+On an actual zero block of multiplicity \(m=m_\rho\), the entire formula is
+\[
+ \Theta(U_n)=n^\rho\sum_{j=0}^{m-1}\frac{(\log n)^j}{j!}N_\rho^j,
+ \qquad
+ \Theta(D_n)=n^{1-\rho}\sum_{j=0}^{m-1}\frac{(-\log n)^j}{j!}N_\rho^j,
+\tag{CB5.7}
+\]
+where \(N_\rho^m=0\) and \(N_\rho^{m-1}\ne0\). All jet terms and the original degree factors survive. The source-derived Weil form obeys
+\[
+ W(\Theta(B)x,y)=W(x,\Theta(B^*)y)\quad(B\in\mathscr B),
+\tag{CB5.8}
+\]
+by FT5 and CB4. This is an adjoint identity for that form, whose radical and sign are calculated in RZ; it is not a transfer of the Hilbert inner product of \(H\).
+
+## CB6. The boundary ideal exhausts the original Hilbert space
+
+Fix a single prime \(p\) and a nonnegative integer \(a\). Direct substitution gives
+\[
+ D_p^a e_p U_p^a
+  =p^{a+1}\,\mathbf1_{p^aK\setminus p^{a+1}K}
+\tag{CB6.1}
+\]
+as a multiplication operator on \(H\). For a full verification, the leftmost \(D_p^a\) vanishes unless \(x\in p^aK\), where it contributes \(p^a\) and evaluates at \(x/p^a\). The middle \(e_p\) contributes \(p\) precisely when this argument is outside \(pK\). The rightmost \(U_p^a\) then evaluates the original function at \(x\). This gives the stated shell and scalar.
+
+Let \(E_a\) be multiplication by that shell indicator. The range of \(E_a\) is contained in the linear span \(\mathscr J_pH\): for \(f\in H\),
+\[
+ E_af=(D_p^ae_pU_p^a)\bigl(p^{-(a+1)}f\bigr).
+\tag{CB6.2}
+\]
+The scalar in this formula multiplies a vector in the complex Hilbert space. It does not assert that \(p^{-1}\) belongs to the integral operator algebra. In particular no integral coefficient has been discarded.
+
+The finite sum \(\sum_{a=0}^A E_a\) is multiplication by \(\mathbf1_{K\setminus p^{A+1}K}\). The decreasing intersection \(\bigcap_{A\geq0}p^{A+1}K\) is the set whose \(p\)-adic coordinate is zero, and has measure
+\[
+ \lim_{A\to\infty}h/p^{A+1}=0.
+\tag{CB6.3}
+\]
+Therefore for every \(f\in H\), dominated convergence gives
+\[
+ \left\|f-\sum_{a=0}^A E_af\right\|^2
+   =\int_{p^{A+1}K}|f|^2\,d\mu\longrightarrow0.
+\tag{CB6.4}
+\]
+Each finite sum belongs to \(\mathscr J_pH\). Consequently
+\[
+ \boxed{\overline{\mathscr J_pH}=H,
+ \qquad\overline{\mathscr JH}=H.}
+\tag{CB6.5}
+\]
+It follows that the Hilbert quotient \(H/\overline{\mathscr JH}\) is zero, although the integral algebra quotient \(\mathscr B/\mathscr J=\mathcal C\) is nonzero. These are statements about different specified quotients, related by the proved action and ideal. They do not describe the source ideal \(\mathcal I\) in CB5 as a Hilbert ideal, and do not substitute a Hilbert completion for its original locally convex topology.
+
+## CB7. No continuous intertwiner can carry this Hilbert action to the boundary action
+
+There is a precise consequence for receiving maps. Let \(Y\) be a Hausdorff topological vector space with a representation of \(\mathcal C\), and let \(L:H\to Y\) be a continuous linear map intertwining the \(\mathscr B\) action with its action through \(\pi\). For every \(B\in\mathscr J\) and \(f\in H\),
+\[
+ L(Bf)=\pi(B)L(f)=0.
+\tag{CB7.1}
+\]
+Here \(\pi(B)\) denotes its represented action on \(Y\), which is zero. Hence \(\mathscr JH\subseteq\ker L\). A continuous map into a Hausdorff space has closed kernel, so CB6 gives \(\ker L=H\), and \(L=0\).
+
+In particular the actual \(\mathcal Q\) is Hausdorff: all jet evaluations are continuous in the strip topology by Cauchy's formula on compact discs, so their simultaneous kernel \(\mathcal I\) is closed. Applying the preceding argument to its actual action in CB5 proves that there is no nonzero continuous intertwiner from this particular Hilbert clock representation to \(\mathcal Q\). The proof does not exclude a map from a different topology, a distribution space, a correspondence, or another cohomological receiver. The nonzero algebra homomorphism to \(\mathcal C\) in CB4 already supplies a precise connecting object, despite this continuous-map obstruction.
+
+## CB8. Relation to the retained signed source
+
+The source completion before forgetting any finite label is
+\[
+ \widehat G=K\times C_4,
+ \qquad d\widehat\mu=\frac14\sum_{k\in C_4}d\mu,
+\tag{CB8.1}
+\]
+with total mass \(h\), as in P13–P14. Pullback along the winding projection \(\operatorname{pr}:\widehat G\to K\) is isometric: the four branch contributions, each with coefficient \(1/4\), sum to the original squared norm. Applying \(U_n,D_n\) in the winding coordinate and the identity in the \(C_4\) coordinate defines the tensor action on the full function space and retains every branch. CB3's action remains faithful and CB6's shell proof applies separately in every branch, so the same density conclusion holds there.
+
+This tensor action is an explicitly specified lift of the winding action. It is not asserted to be the native signed mirror-commuting source map for every \(n\). The original signed odd-degree maps of P14.6, with their \(C_4\) twists, retain their stated formulas and intertwining maps under \(\operatorname{pr}\). In particular this note does not supply a previously absent native even-degree lift commuting with the source mirror. The degree-two winding operator is nevertheless present throughout CB1–CB7. Neither the finite labels nor that limitation is omitted.
+
+## CB9. What passes through the map
+
+The exact chain now has all its maps:
+\[
+ \mathscr B\ \twoheadrightarrow\ \mathscr B/\mathscr J
+ \ \xrightarrow{\ \cong\ }\ \mathcal C
+ \ \xrightarrow{\ \Psi\ }\ \operatorname{End}_{\mathrm{cont}}(\mathcal Q).
+\tag{CB9.1}
+\]
+The integral generators, involution, prime factors and complete original-zeta jet action pass through this chain. Its first arrow has kernel exactly the two-sided ideal generated by all \(e_p=p(I-P_p)\), with every image projection and scalar exhibited. The positive inner product on the original \(H\) cannot be obtained on the boundary by taking its Hilbert quotient, since that quotient is zero by CB6. This identifies the exact failure of that proposed sign-transfer construction; it is not an impossibility theorem for purity or for the programme.
+
+FT6–FT8 construct a different, nonzero positive geometric representation of the same integral algebra. Its existence and the original-zeta representation are both retained. Thus the boundary quotient is not being declared incapable of positive representations. The remaining distinction is between a proved positive receiver and the actual original-zeta receiver, whose connecting maps must retain their stated domains and topologies. No zero location, new prime, or missing detection is inferred from the quotient calculation.
+
+## CB10. The locally constant boundary survives and is computed exactly
+
+The preceding Hilbert quotient is not the algebraic quotient of the original locally constant domain. Put
+\[
+ E=C_{\mathrm{loc}}(K,\mathbb C)=\mathscr A_{\mathbb Z}\otimes_{\mathbb Z}\mathbb C.
+\tag{CB10.1}
+\]
+Here \(\mathscr J E\) means the complex linear span of all \(Bf\) with \(B\in\mathscr J\), \(f\in E\). Let \(0_K\) be the zero winding element of the profinite group \(K\). It is not the parityless supporting point \(\tau\). Evaluation at this clock element satisfies
+\[
+ \operatorname{ev}_{0_K}(U_nf)=f(0_K),\qquad
+ \operatorname{ev}_{0_K}(D_nf)=n f(0_K).
+\tag{CB10.2}
+\]
+Consequently evaluation intertwines the whole algebra with the character
+\[
+ \chi_0(U_n)=1,\quad\chi_0(D_n)=n,
+ \quad\chi_0(e_p)=0,
+\tag{CB10.3}
+\]
+so \(\mathscr J E\subseteq\ker\operatorname{ev}_{0_K}\).
+
+For the reverse inclusion, take \(f\in E\) with \(f(0_K)=0\). It factors through some modulus \(M\), so vanishes on \(MK\). If \(M=1\), it is zero. Otherwise order the finitely many primes dividing \(M\) as \(p_1,\ldots,p_t\), and put \(r_i=v_{p_i}(M)>0\). The sets
+\[
+ C_{i,a}=\{x:v_{p_i}(x)=a,\ v_{p_j}(x)\geq r_j
+                              \text{ for }j<i\},
+ \quad 1\leq i\leq t,\ 0\leq a<r_i,
+\tag{CB10.4}
+\]
+are disjoint clopen sets partitioning \(K\setminus MK\). Each \(f_{i,a}=\mathbf1_{C_{i,a}}f\) is in \(E\), supported on the \(p_i\)-shell of valuation \(a\). Formula CB6.1 therefore gives
+\[
+ f_{i,a}=(D_{p_i}^{a}e_{p_i}U_{p_i}^{a})
+                \bigl(p_i^{-(a+1)} f_{i,a}\bigr)\in\mathscr J E.
+\tag{CB10.5}
+\]
+The finite sum of these functions is \(f\), proving the reverse inclusion. Evaluation is onto, since constant functions realize every complex value. Hence the entire sequence is exact:
+\[
+ 0\longrightarrow\mathscr J E\longrightarrow E
+ \xrightarrow{\operatorname{ev}_{0_K}}\mathbb C\longrightarrow0,
+ \qquad E/\mathscr J E\cong\mathbb C.
+\tag{CB10.6}
+\]
+The receiving \(\mathcal C\)-character is \(F_n\mapsto1\), \(V_n\mapsto n\). Its degree factor remains \(n\). For \(n>1\) it is not a representation respecting the involution for a positive Hermitian inner product on this line: the adjoint of the scalar one is one, not \(n\). Thus this nonzero boundary quotient is not presented as a pure-weight receiver.
+
+In the locally convex direct-limit topology of the finite residue function spaces, evaluation is continuous because its restriction to each finite-dimensional stage is continuous. Constants supply a continuous section, so CB10.6 identifies the topological quotient with \(\mathbb C\) too. The operators are continuous in this topology: if \(E_M\) is the stage of functions modulo \(M\), then \(U_nE_M\subseteq E_M\) and \(D_nE_M\subseteq E_{nM}\), and these are linear maps between finite-dimensional stages. Evaluation is not continuous for the inherited \(L^2\) norm: the functions \(f_A=\mathbf1_{p^A K}\) have
+\[
+ f_A(0_K)=1,\qquad \|f_A\|^2=h/p^A\longrightarrow0.
+\tag{CB10.7}
+\]
+This exhibits the exact topological loss that CB6 detects. The calculation uses scalar division on the complex function space in CB10.5; it does not identify the integral module quotient \(\mathscr A_{\mathbb Z}/\mathscr J\mathscr A_{\mathbb Z}\) with \(\mathbb Z\), nor discard any torsion in that different quotient.

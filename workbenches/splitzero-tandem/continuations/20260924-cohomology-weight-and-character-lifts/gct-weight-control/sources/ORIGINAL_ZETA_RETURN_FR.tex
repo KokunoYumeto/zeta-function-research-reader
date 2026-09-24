@@ -1,0 +1,330 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{tikz-cd}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,hypertexnames=false]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\M}{\mathcal M}\newcommand{\Sch}{\mathcal S}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Original zeta, the theta source, and a faithful prime-boundary receiver}
+\author{Split-Zero research programme: explicit reconstruction}
+\date{23 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+We keep the original Riemann zeta function in the calculation, rather than replacing it by a completion. The integer-dilation operator has Mellin multiplier $\zeta(s)$ itself. Its Gaussian input, both endpoint terms, and the differential operator producing the programme's theta seed are calculated with an exact return. The original adelic theta receiver has a separate, explicitly computed kernel: two boundary classes for every rational prime. We retain these as a second component and prove an inverse for the augmented receiver. Finally the full completion multiplier gives a heat equation with explicit drift and potential, a weighted metric comparison, and a contour-divisor correction. These calculations repair specified comparisons; they are not an RH proof, a disproof, or a reconstruction of every earlier dependent estimate.
+\end{abstract}
+
+\section{The original operator and every Mellin factor}
+The source here is Ralf Meyer's Zeta operator, with its original function spaces, Poisson formula and Mellin action \cite{Meyer}. We use the programme's factor two explicitly, not silently in the definition of the Mellin transform. Set
+\begin{align}
+ H&=\Sch(\R)^{\rm even},&
+ Zf(x)&=\sum_{n\geq1}f(nx),& \Theta f(x)&=2\sum_{n\geq1}f(nx),\tag{FR1}\\
+ \M f(s)&=\int_0^\infty f(x)x^{s-1}\,dx,&
+ \widehat f(t)&=\int_\R f(x)e^{-2\pi ixt}\,dx,&D&=-x\partial_x.\tag{FR2}
+\end{align}
+For $f\in H$ and $\Re s>1$, absolute integration gives
+\begin{equation}
+ \M(Zf)(s)=\zeta(s)\M f(s),\qquad
+ \M(\Theta f)(s)=2\zeta(s)\M f(s).
+ \tag{FR3}
+\end{equation}
+Indeed $\int_0^\infty|f(nx)|x^{\sigma-1}dx=n^{-\sigma}\int_0^\infty|f(u)|u^{\sigma-1}du$; the integral is finite for $\sigma>1$ and the sum is finite. Substitution $u=nx$ then proves the formula term by term. Thus $Z$, before choosing any test function, represents the original $\zeta$, not its completion.
+
+\begin{proposition}[The exact source inverse]
+For every $f\in H$ and $x>0$,
+\begin{equation}
+ f(x)=\frac12\sum_{n\geq1}\mu(n)\Theta f(nx),
+ \tag{FR4}
+\end{equation}
+where $\mu$ is the integer M\"obius function. Consequently $\Theta:H\to\Theta H$ is injective. The codomain here is its actual image, not all smooth functions.
+\end{proposition}
+\begin{proof}
+For any fixed $x>0$ and any $B>2$, a Schwartz bound gives
+$\sum_{m,n\geq1}|f(mnx)|\leq C_Bx^{-B}\sum_{m,n\geq1}(mn)^{-B}<\infty$.
+Regrouping the double sum produces $\sum_{r\geq1}f(rx)\sum_{n\mid r}\mu(n)$.
+The inner sum is one for $r=1$, and for $r>1$ is the product $\prod_{p\mid r}(1-1)=0$.
+This proves (FR4). Continuity supplies $f(0)$ and evenness supplies the negative half-line. The argument neither divides by $\zeta$ at a zero nor assumes RH. Meyer's stronger topological inverse on weighted multiplicative Schwartz spaces is credited in \cite[\texttt{pro:Z\_invertible}]{Meyer}; the image inverse used here has just been proved.
+\end{proof}
+
+Write $m_0(f)=f(0)$, $m_1(f)=\int_\R f(x)dx$ and
+$H_0=\ker(m_0,m_1)\subset H$. The full Poisson relation is
+\begin{equation}
+ \Theta f(x)=x^{-1}\Theta\widehat f(1/x)+\frac{m_1(f)}x-m_0(f).
+ \tag{FR5}
+\end{equation}
+To see the constants, periodize $t\mapsto f(xt)$ on $\R/\Z$. Its Fourier coefficients are $x^{-1}\widehat f(n/x)$. Evaluate its absolutely convergent Fourier series at zero, and separate the zero indices on both sides. Evenness gives the two factors in $\Theta$. All differentiated series converge by Schwartz estimates. The term $x^{-1}\Theta\widehat f(1/x)$ vanishes faster than every power at zero, together with its Euler derivatives. Thus both endpoint coefficients in (FR5) remain visible. For $f\in H_0$ the two coefficients are zero because of the two specified source equations, not by omission.
+
+\section{The actual Gaussian and the exact theta return}
+Retain the original functions
+\begin{align}
+ G(x)&=e^{-\pi x^2},& \theta_0(x)&=\Theta G(x)=2\sum_{n\geq1}e^{-\pi n^2x^2},\tag{FR6}\\
+ k_0(x)&=D(D-1)G(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\tag{FR7}\\
+ F_0(x)&=\Theta k_0(x)=D(D-1)\theta_0(x)\notag\\
+ &=2\sum_{n\geq1}(4\pi^2n^4x^4-6\pi n^2x^2)e^{-\pi n^2x^2}.\tag{FR8}
+\end{align}
+Differentiating $G$ twice proves (FR7), and locally uniform convergence of each differentiated theta series proves (FR8). The operator commutes with every dilation. Euler's Gamma integral with $u=\pi x^2$ yields
+\begin{align}
+ \M G(s)&=\tfrac12\pi^{-s/2}\Gamma(s/2)&& (\Re s>0),\tag{FR9}\\
+ \M\theta_0(s)&=\pi^{-s/2}\Gamma(s/2)\zeta(s)&& (\Re s>1),\tag{FR10}\\
+ \M F_0(s)&=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)&& (s\in\C).
+ \tag{FR11}
+\end{align}
+For (FR11), first integrate by parts twice at $\Re s>1$, keeping $D=-x\partial_x$, to obtain the factors $s$ and $s-1$. By (FR5) for $G=\widehat G$,
+$\theta_0=x^{-1}-1+x^{-1}\theta_0(1/x)$. The operator
+\begin{equation}
+ D(D-1)=x^2\partial_x^2+2x\partial_x=(x^2\partial_x)'
+ \tag{FR12}
+\end{equation}
+annihilates exactly $1$ and $x^{-1}$ among its local homogeneous solutions. Consequently $F_0$ is rapidly decreasing at both multiplicative ends. Its Mellin integral is entire. This proves (FR11) everywhere by meromorphic continuation. The product in (FR11) is retained as a product with $\zeta$ in every receiving formula below.
+
+\begin{theorem}[Return with its domain and endpoint coefficients]
+The operator $D(D-1)$ is a bijection $H\to H_0$ and a bijection $\Theta H\to\Theta H_0$. On the second image its inverse is
+\begin{equation}
+ (IF)(x)=\frac1x\int_x^\infty F(u)\,du-\int_x^\infty\frac{F(u)}u\,du.
+ \tag{FR13}
+\end{equation}
+For $f\in H$, it satisfies $I\Theta D(D-1)f=\Theta f$. Moreover
+\begin{equation}
+ \int_0^\infty\Theta D(D-1)f(x)\,dx=m_1(f),\qquad
+ \int_0^\infty\Theta D(D-1)f(x)\frac{dx}{x}=m_0(f).
+ \tag{FR14}
+\end{equation}
+In particular $IF_0=\theta_0$ and both displayed integrals of $F_0$ equal one.
+\end{theorem}
+\begin{proof}
+Write $L=x\partial_x$. For $v\in H_0$ define, for $x>0$,
+$u(x)=-\int_x^\infty v(t)dt/t$ and $f(x)=-x^{-1}\int_x^\infty u(t)dt$.
+Because $v$ is smooth even and $v(0)=0$, $u$ extends to a smooth even Schwartz function. Integration by parts gives $\int_0^\infty u=-\int_0^\infty v=0$. Thus $f=x^{-1}\int_0^xu(t)dt$ near zero, with a smooth even extension; the tail form proves rapid decrease at infinity. Direct differentiation gives $Lu=v$, $(1+L)f=u$, so $D(D-1)f=L(1+L)f=v$. Conversely $D(D-1)$ takes $H$ into $H_0$ by evaluation at zero and integration of (FR12). Its homogeneous solutions on $x>0$ are $A+B/x$, neither a nonzero Schwartz solution. This proves the first bijection (the real Laplacian context is credited to \cite{CC}). Commutation with $\Theta$ and (FR4) proves the second.
+
+For a twice differentiable $\theta$ in $\Theta H$, integrate $(x^2\theta')'=F$ from infinity, where $x^2\theta'$ tends to zero. A second integration using $\theta(\infty)=0$ gives
+$\theta(x)=\int_x^\infty t^{-2}\int_t^\infty F(u)du\,dt$, which is (FR13). The rapid decrease at infinity is essential: merely tending to zero would still admit $B/x$. For $\theta=\Theta f$, (FR5) gives $x^2\theta'\to-m_1(f)$ and $x\theta'+\theta\to-m_0(f)$ at zero. Integrating $(x^2\theta')'$ and $(x\theta'+\theta)'=F/x$ proves both equations (FR14).
+\end{proof}
+
+The return (FR13) has codomain $\Theta H$, not $\Theta H_0$. In particular $G$ has moments $(1,1)$, whereas $k_0$ has moments $(0,0)$. Treating the Gaussian as already lying in the moment-zero source would change the source. The return enlarges the specified image and restores both endpoint coefficients explicitly.
+
+\section{The absolute base and the actual missing prime classes}
+The programme's absolute-base source has $S=G(\Z)=\Z\sqcup\{\tau\}$, with supported integer zero $e=0_\Z$, and the pointed-monoid arrow $\{0,1\}\to(S,\cdot)$ sends $0\mapsto\tau$, $1\mapsto1$. Its supported inclusion sends the integer zero to $e$, and its ring projection sends $e$ and $\tau$ to the same integer zero. The recorded base construction (AZ1--6) does not specify a Gaussian. We preserve that source, its whole spectrum and its labels \cite{AZ}. The theta calculation above is a chosen analytic receiver of additional data, not a definition of the entire absolute base.
+
+Here is the complete algebra needed to retain the previously calculated prime-boundary kernel \cite{PM}. Put
+\begin{equation}
+ \Gamma_+=\Q_{>0}^{\times},\quad R=\C[\Gamma_+],\quad
+ I=\ker(\operatorname{aug}:R\to\C),\quad
+ \mathcal B=\bigoplus_p\C\ell_p\otimes\C^2.
+ \tag{FR15}
+\end{equation}
+The tensor sums are finite. In the even spherical adelic source the exact coordinates are
+\begin{equation}
+ t_a\otimes h\longmapsto\alpha_a s(h),\qquad
+ s(h)=\Big(\bigotimes_p1_{\Z_p}\Big)\otimes h,\qquad
+ (\alpha_a f)(x)=f(a^{-1}x).
+ \tag{FR16}
+\end{equation}
+In finite-place coordinates this is $\eta_a\otimes h(x/a)$ with
+$\eta_a=\bigotimes_p1_{p^{v_p(a)}\Z_p}$. The product formula
+$a\prod_p p^{-v_p(a)}=1$ keeps both moments unchanged. The moment-zero module and its algebraic rational-scaling quotient are
+\begin{equation}
+ M_0=\ker(\operatorname{aug}\otimes m:R\otimes H\to\C^2),
+ \qquad Q_0=M_0/IM_0,\qquad m=(m_0,m_1).
+ \tag{FR17}
+\end{equation}
+This is the even component of $(M_0)_\Gamma$ in (PM4); the $-1$ relation kills precisely the odd functions. No Hilbert quotient is used in (FR17).
+For completeness, these coordinates cover the full spherical source: at a finite prime a compactly supported locally constant $\Z_p^\times$-invariant function is a finite sum of $1_{p^k\Z_p}$. Its coefficient at $k$ is its value on valuation $k$ minus its value on valuation $k-1$. Taking the restricted tensor product gives exactly the basis $\eta_a$. Under the specified finite Haar measures its integral is $\prod_pp^{-v_p(a)}=a^{-1}$. The real inverse coordinate is $h_a(x)=f_a(ax)$, so the finite and real factors cancel under simultaneous rational dilation. The $-1$ relation acts by $-2$ on odd functions and by zero on even functions, proving the stated even quotient.
+
+For $c=[\sum_a t_a\otimes h_a]\in Q_0$ set
+\begin{align}
+ \Phi c&=\sum_a h_a\in H_0,&
+ \beta(c)&=\sum_p\ell_p\otimes\sum_a v_p(a)m(h_a)\in\mathcal B,\tag{FR18}\\
+ j(h)&=[1\otimes h],&
+ b(\ell_p\otimes u)&=[(t_p-1)\otimes h_u],\quad m(h_u)=u.
+ \tag{FR19}
+\end{align}
+The last expression is independent of the lift $h_u$: two lifts differ in $H_0$ and their difference after $t_p-1$ is in $IM_0$. A lift exists because
+$h_0=(1-2\pi x^2)e^{-\pi x^2}$ and $h_1=2\pi x^2e^{-\pi x^2}$ have moments $(1,0)$ and $(0,1)$.
+For an original finite-place representative $\sum_a\eta_a\otimes f_a$, the corresponding $h_a(x)=f_a(ax)$ has
+\begin{equation}
+ m(h_a)=\left(f_a(0),\ a^{-1}\int_\R f_a(x)dx\right).
+ \tag{FR20}
+\end{equation}
+Thus the $a^{-1}$ and the actual prime valuations are retained in $\beta$.
+
+\begin{theorem}[Faithful receiver with a coordinate inverse]
+Let $Y=\{x^{1/2}\Theta h(x):h\in H_0\}$. The original periodization is
+\begin{equation}
+ \mathcal E(c)(x)=x^{1/2}\Theta\Phi c(x).
+ \tag{FR21}
+\end{equation}
+It has kernel $b(\mathcal B)$. The augmented receiver
+\begin{equation}
+ \widetilde{\mathcal E}:Q_0\longrightarrow Y\oplus\mathcal B,
+ \qquad c\longmapsto(\mathcal E(c),\beta(c))
+ \tag{FR22}
+\end{equation}
+is a vector-space isomorphism, with inverse
+\begin{equation}
+ (g,v)\longmapsto j(h_g)+b(v),\qquad
+ h_g(x)=\frac{1}{2\sqrt{x}}\sum_{n\geq1}\mu(n)n^{-1/2}g(nx).
+ \tag{FR23}
+\end{equation}
+The series is asserted on the actual image $Y$; its reconstructed function extends evenly and smoothly to zero and has both moments zero.
+\end{theorem}
+\begin{proof}
+The moment lifts split $H=H_0\oplus\C^2$, and hence
+$M_0=(R\otimes H_0)\oplus(I\otimes\C^2)$. Quotienting by $IM_0$ gives
+$Q_0=H_0\oplus(I/I^2)\otimes\C^2$.
+The map $I/I^2\to\bigoplus_p\C\ell_p$ sends $t_a-1$ to $\sum_pv_p(a)\ell_p$.
+The identity $t_{ab}-1=(t_a-1)+(t_b-1)+(t_a-1)(t_b-1)$ and the formula for $a=p^{-1}$ prove that the $t_p-1$ span. The derivations $\partial_p(t_a)=v_p(a)$ vanish on $I^2$ and separate these elements, proving their independence. Thus (FR18)--(FR19) give the exact, not merely selected, coordinates of this direct sum. One can also check the invariance of $\beta$ directly: multiplication by $t_r$ changes its $p$ coefficient by $v_p(r)\sum_a m(h_a)=0$.
+
+On $s(h)$, the finite adelic conditions in Connes's periodization force the rational index to be a nonzero integer. Its positive and negative terms give $\Theta h$, and its original archimedean factor is $x^{1/2}$ \cite[Section III, (6)--(19)]{Connes}. Rational reindexing proves (FR21) for every summand. Formula (FR4) proves injectivity on $j(H_0)$ and gives exactly (FR23), including $n^{-1/2}$. On $b(\mathcal B)$, $\Phi=0$, $\beta=I$. On $j(H_0)$, $\Phi=I$, $\beta=0$. These four equalities prove both compositions of (FR22)--(FR23) are identities.
+\end{proof}
+
+For the actual Gaussian-derived source, $c_0=j(k_0)$ is admitted, whereas $j(G)$ is not admitted in $Q_0$. Its faithful image is
+\begin{equation}
+ \widetilde{\mathcal E}(c_0)=(x^{1/2}F_0,0).
+ \tag{FR24}
+\end{equation}
+This zero boundary component is a property of this source vector, not permission to remove $\mathcal B$ from the whole source. Each nonzero $b(\ell_p\otimes u)$ instead has image $(0,\ell_p\otimes u)$, so is not collapsed to absence. No fixed coordinates on a further marked quotient are claimed to descend unless its defining relations preserve them.
+
+For clarity, the data-preserving lift on an already specified support carrier is explicit. If $\mathscr C$ consists of admitted pairs $(c,\lambda)$, retain the image carrier
+$\widetilde{\mathscr C}=\{(\widetilde{\mathcal E}c,\lambda):(c,\lambda)\in\mathscr C\}$.
+The maps $(c,\lambda)\mapsto(\widetilde{\mathcal E}c,\lambda)$ and
+$(v,\lambda)\mapsto(\widetilde{\mathcal E}^{-1}v,\lambda)$ are inverse by (FR23). The same construction sends an absent bottom element to the absent bottom element. Thus $(0,\lambda)$ with nonempty support remains a supported zero $e$, not absence $\tau$. This is an exact map of the recorded carriers; it does not assert that an arbitrary fixed matrix-support quotient inherits a semiring or cochain isomorphism without its own defined operations. The actual independent prime labels in this calculation are already the $\ell_p$ in (FR18).
+
+The original weighted periodization seminorm is
+\begin{equation}
+ \|c\|_\delta^2=\int_0^\infty|\mathcal E(c)(x)|^2
+ (1+\log^2x)^{\delta/2}\frac{dx}{x},\qquad\delta>1.
+ \tag{FR25}
+\end{equation}
+Here the idele-class Haar measure is exactly Connes's measure in Section III (14); its compact-unit mass is one and its modulus coordinate is $dx/x$. These constants are the source's specified ones, not a newly selected metric. With a retained compact-unit Haar mass $c_K$ instead, the spherical integral in (FR25) has the additional factor $c_K$, and every squared norm carries that same factor.
+Its kernel is $b(\mathcal B)$. The faithful vector-space receiver (FR22) does not make this seminorm positive definite on that kernel; no new metric on $\mathcal B$ has been chosen. All later Hilbert or positivity uses must keep this exact kernel in their receiving map.
+Indeed (FR5) for $h\in H_0$ gives rapid decrease of $x^{1/2}\Theta h(x)$ at both multiplicative ends, so the integral is finite. Its positive weight and continuity imply that it vanishes exactly when $\mathcal E(c)$ is identically zero; (FR4) and (FR18)--(FR23) then give exactly $b(\mathcal B)$. The boundary coordinate cannot descend through this seminorm's Hausdorff quotient: for $u\ne0$, the class $b(\ell_p\otimes u)$ has seminorm zero but has boundary coordinate $\ell_p\otimes u\ne0$. The actual Hilbert receiving map factors through $Q_0/b(\mathcal B)\simeq Y$ and then the closure of $Y$ in the weighted space of (FR25). Retaining the faithful pair and retaining the original seminorm therefore requires recording both maps, not deleting the boundary component.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ Q_0\arrow[r,"{(\Phi,\beta)}","\sim"']\arrow[d,"\mathcal E"']
+ &H_0\oplus\mathcal B\arrow[d,"{(h,v)\mapsto(x^{1/2}\Theta h,v)}","\sim"']\\
+ Y &Y\oplus\mathcal B\arrow[l,"\operatorname{pr}_1"]
+\end{tikzcd}
+\caption{The actual map that loses the prime-boundary classes is the bottom projection. The two isomorphisms retain them and have the inverse (FR23). Each $\ell_p$ carries both original moments. No Gaussian is selected in this diagram. Periodization source: Connes \cite{Connes}; source exact sequence: (PM4)--(PM15), rederived in (FR15)--(FR23).}
+\end{figure}
+
+\section{Full multiplier, exceptional modules, and contour correction}
+For every formula below the retained multiplier is
+\begin{equation}
+ A(s)=s(s-1)\pi^{-s/2}\Gamma(s/2),\qquad
+ E(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\qquad
+ \xi(s)=E(s)\zeta(s).
+ \tag{FR26}
+\end{equation}
+The entire function in (FR11) is $A\zeta=2\xi$, not $\zeta$ itself. DLMF records the classical definition and reflection formula \cite{DLMFZ}; its validity does not authorize suppressing its factors in this programme.
+
+Gamma has no zeros and has residue $(-1)^m/m!$ at $-m$ \cite{DLMFG}. At zero its pole cancels the single factor $s$ within $E$, giving $E(0)=-1$. At one $E/(s-1)$ takes value $1/2$. At $s_0=-2m$, $m\geq1$, the residue of $E$ is
+\begin{equation}
+ R_m=(-1)^m\frac{2m(2m+1)\pi^m}{m!}.
+ \tag{FR27}
+\end{equation}
+This follows by multiplying the Gamma residue by two (the variable is $s/2$) and by $\tfrac12(-2m)(-2m-1)\pi^m$. Thus
+\begin{equation}
+ \operatorname{div}E=[1]-\sum_{m\geq1}[-2m],\qquad
+ \operatorname{div}\zeta=\operatorname{div}\xi-[1]+\sum_{m\geq1}[-2m].
+ \tag{FR28}
+\end{equation}
+These are locally finite divisors. Multiplication by $E$ is globally invertible on meromorphic functions, with inverse multiplication by its meromorphic reciprocal. It is not an automorphism of the holomorphic local ring at its zeros or poles. Stating only ``globally not invertible'' would therefore be incorrect.
+
+Here is the exact local replacement for that statement. At any point take $h=s-s_0$, $\mathcal O=\C\{h\}$ and write $E=h^e b(h)$ with $b(0)\ne0$. For every integer $d$ and every $N\geq1$,
+\begin{equation}
+ h^d\mathcal O/h^{d+N}\mathcal O
+ \xrightarrow[\ \sim\ ]{\ \times E\ }
+ h^{d+e}\mathcal O/h^{d+e+N}\mathcal O,
+ \qquad [v]\longmapsto[h^ebv],
+ \tag{FR29}
+\end{equation}
+has inverse multiplication by $h^{-e}/b$. Both maps take exactly the displayed submodules into each other, proving well-definedness and both inverse identities. In coefficient coordinates the map is the triangular convolution
+$a_j\mapsto\sum_{i=0}^jb_i a_{j-i}$, with diagonal $b_0\ne0$; its inverse is the recursion
+$a_j=(c_j-\sum_{i=1}^jb_i a_{j-i})/b_0$.
+At $-2m$ the map $h\mathcal O/h^{N+1}\mathcal O\to\mathcal O/h^N\mathcal O$ thus retains the complete $N$-jet of the zero-bearing germ after its valuation is recorded. It does not discard the first-order coefficient. At one the corresponding map is $h^{-1}\mathcal O/h^{N-1}\mathcal O\to\mathcal O/h^N\mathcal O$. At zero $e=0$, so it is an ordinary local unit map. This proof applies to negative as well as positive $d$.
+
+On a positively oriented compact contour $C$ avoiding all zeros and poles, the exact log-derivative and contour formula are
+\begin{align}
+ \frac{\xi'}\xi&=\frac{\zeta'}\zeta+\frac1s+\frac1{s-1}
+ -\frac12\log\pi+\frac12\psi(s/2),\tag{FR30}\\
+ \frac1{2\pi i}\int_C\frac{\zeta'}\zeta\,ds
+ &=\frac1{2\pi i}\int_C\frac{\xi'}\xi\,ds
+ -\operatorname{wind}_C(1)+\sum_{m\geq1}\operatorname{wind}_C(-2m).
+ \tag{FR31}
+\end{align}
+Only finitely many winding numbers are nonzero. This follows by applying the argument principle separately to the full factor $E$ in (FR26). For a holomorphic test $f$ on the interior the same residue computation weights the corrections by $f(1)$ and $f(-2m)$. This is the specified contour trace correction; it is not a regularization of an infinite determinant.
+
+\section{Original-zeta heat transport and the metric actually used}
+The complete original-kernel construction can be made directly from (FR8):
+\begin{align}
+ U_t(s)&=\int_0^\infty e^{(t/4)(\log x)^2}F_0(x)x^{s-1}\,dx,\tag{FR36}\\
+ H_t(z)&=\frac1{16}\int_0^\infty e^{(t/4)(\log x)^2}F_0(x)x^{-1/2+iz/2}\,dx.
+ \tag{FR37}
+\end{align}
+Both are jointly entire in the two complex variables. For a compact parameter set, every differentiated integrand at infinity is bounded by a constant times $x^B(1+|\log x|)^B e^{B(\log x)^2-\pi x^2}$ for some finite $B$; this is integrable. At zero use $F_0(x)=x^{-1}F_0(1/x)$, proved by (FR5), (FR12), and $D\mathcal J=\mathcal J(1-D)$ for $\mathcal Jf(x)=x^{-1}f(1/x)$. Substitution $x\mapsto1/x$ gives the same bound. Differentiation under the integral now proves
+$\partial_tU_t=\tfrac14\partial_s^2U_t$ and $\partial_tH_t=-\partial_z^2H_t$, with
+$16H_t(-2i(s-1/2))=U_t(s)$ and $U_0(s)=A(s)\zeta(s)$.
+These formulas fix the heat convention without omitting its factor $16$, coordinate $-2i(s-1/2)$ or factor $1/4$. Keep the original $s$ and define the returned family by the full formula
+\begin{equation}
+ z_t(s)=\frac{16H_t(-2i(s-1/2))}{s(s-1)\pi^{-s/2}\Gamma(s/2)},\qquad z_0(s)=\zeta(s).
+ \tag{FR32}
+\end{equation}
+Here $z_t$ denotes a returned meromorphic family, not a newly asserted Euler product at $t\ne0$. The identity for a differentiable heat family gives the following exact equation wherever its derivatives exist, then meromorphically at the exceptional points:
+\begin{align}
+ \partial_t z_t={}&\frac14\bigg[\partial_s^2 z_t
+ +2\left(\frac1s+\frac1{s-1}-\frac12\log\pi+\frac12\psi(s/2)\right)\partial_s z_t\notag\\
+ &+\bigg\{-\frac1{s^2}-\frac1{(s-1)^2}+\frac14\psi'(s/2)
+ +\left(\frac1s+\frac1{s-1}-\frac12\log\pi+\frac12\psi(s/2)\right)^2\bigg\}z_t\bigg].
+ \tag{FR33}
+\end{align}
+The equation is not the free heat equation for $\zeta$. Indeed $\partial_s^2(16H_t(-2i(s-1/2)))=-4(16\partial_z^2H_t)$, which gives the factor $1/4$. Apply the product rule twice to $A(s)z_t(s)$ and divide by the full $A$. Differentiating $A'/A$ gives every term in (FR33). This proves the identity, without a claim that all meromorphic initial data lie in the domain of this heat evolution. The actual domain here is the returned source family (FR32), (FR36). Its exceptional germs are governed by (FR29); poles in displayed coefficients cannot be removed before that product rule is applied.
+
+The exceptional values are actual, rather than possible, for this real-time family. For $x\geq1$ every summand of $F_0$ is positive, because its polynomial factor is $2\pi n^2x^2(2\pi n^2x^2-3)>0$. The same reflection gives $F_0(x)>0$ also for $x<1$. Hence $U_t(r)>0$ for all real $t,r$. With $R_m$ from (FR27), the full returned function satisfies
+\begin{equation}
+ \operatorname{Res}_{s=1}z_t(s)=U_t(1),\quad
+ z_t(0)=-\tfrac12U_t(0),\quad
+ z_t(-2m)=0,\quad z_t'(-2m)=\frac{U_t(-2m)}{2R_m}\ne0
+ \quad(t\in\R).
+ \tag{FR38}
+\end{equation}
+These follow by inserting the exact local factors of $A=2E$ into (FR32). Reflection of (FR36) gives $U_t(s)=U_t(1-s)$, so the residue is $-2z_t(0)$. At $t=0$ the residue is exactly one. At other times it has not been set to one. In particular the original trivial zeros and pole are present in this returned family; the calculation neither deletes them nor declares them to be nontrivial RH zeros.
+
+For the original packet polynomial $h$ with all selected multiplicities retained, the source measure formerly written using $g=2\xi$ is exactly
+\begin{equation}
+ w_h(t)=\frac1{2\pi}\left|\frac{(1/2+it)(-1/2+it)
+ \pi^{-(1/2+it)/2}\Gamma((1/2+it)/2)\zeta(1/2+it)}{h(1/2+it)}\right|^2.
+ \tag{FR34}
+\end{equation}
+At a removable packet point its value is the limit of this full expression. The total mass $\int_\R w_h(t)dt$ remains unchanged, as does the actual convolution $w_h^{*k}$. For every admitted measurable test $P$,
+\begin{equation}
+ \int_\R\left|P(1/2+it)\frac{A(1/2+it)\zeta(1/2+it)}{h(1/2+it)}\right|^2\frac{dt}{2\pi}
+ =\int_\R|P(1/2+it)|^2|A(1/2+it)|^2
+ \left|\frac{\zeta(1/2+it)}{h(1/2+it)}\right|^2\frac{dt}{2\pi}.
+ \tag{FR35}
+\end{equation}
+This equality is a pointwise multiplication followed by integration, with the domains being precisely the tests for which these equal nonnegative integrals are finite. It is not an isometry for an unchanged unweighted $\zeta$ norm. Consequently an old bound cannot be transferred by dropping $|A|^2$. Conversely a Gram determinant made from this original measure remains the same determinant when the entire right-hand side is substituted entry by entry; no extra positivity or asymptotic bound follows from renaming the entries.
+
+\section{What is corrected and what remains to be calculated}
+The source is now the original integer-dilation zeta operator (FR1)--(FR4). The Gaussian, its two moments, and its differential image are explicit inputs, with the proved return (FR13)--(FR14). The genuinely nonfaithful theta projection is replaced by the fully specified pair (FR22), without pretending that its original seminorm sees the restored boundary component. Exceptional zero and pole germs have the shifted-module inverse (FR29), not an identification of unrecorded ordinary fibres. The returned heat generator is (FR33), the retained contour correction is (FR31), and the original packet metric is (FR34)--(FR35).
+
+These are completed comparisons for the stated objects. Earlier determinant asymptotics, regularized traces, heat contact estimates and positivity arguments must be reconstructed at their own source domains using these full formulas. This note does not declare those further reconstructions completed. It also establishes no verdict about CDP20: no step of that theorem's proof is analysed here. The failure of an unjustified substitution and the falsity of the classical definition of $\xi$ are different claims; the explicit formulas above establish the former correction, not the latter claim.
+
+\begin{thebibliography}{9}
+\bibitem{Meyer} Ralf Meyer, \emph{A spectral interpretation for the zeros of the Riemann zeta function}, \href{https://arxiv.org/abs/math/0412277v3}{arXiv:math/0412277v3}, especially the Zeta-operator section: \texttt{def:zeta\_operator}, \texttt{pro:Z\_invertible}, \texttt{eq:Poisson}, \texttt{eq:pole\_extension}, \texttt{the:Zeta\_estimate}, \texttt{eq:Zspectral}, and the Gaussian specialization. Author TeX read; the indexed file was verified byte-identical to the official v3 source. Exact identity and coverage are retained in the accompanying source ledger. Meyer's symbol $\xi$ in that specialization denotes $\pi^{-s/2}\Gamma(s/2)\zeta(s)$, whereas (FR26) includes $s(s-1)/2$.
+\bibitem{Connes} Alain Connes, \emph{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function}, \href{https://arxiv.org/abs/math/9811068v1}{arXiv:math/9811068v1}, Section III (6)--(19), periodization, Haar measure and original norm; author TeX read at lines 599--801. The extra moment-first algebraic kernel and its augmented inverse are proved in (FR15)--(FR23), not attributed to that paper.
+\bibitem{CC} Alain Connes and Caterina Consani, \emph{Hochschild homology, trace map and zeta-cycles}, \href{https://arxiv.org/abs/2207.10419v1}{arXiv:2207.10419v1}, original-source labels \texttt{h0coinv}, \texttt{propmapE}, \texttt{propmapE1}, \texttt{quotbruhatschwartz}, statements and complete proofs read at lines 262--406. Their real map $\mathcal E(f)(x)=x^{1/2}\sum_{n\ge1}f(nx)$ is half of (FR21) on the unramified even section; their trace is $\Theta$. Both factors are retained here. The complete real Laplacian inverse is also proved above.
+\bibitem{DLMFZ} T. M. Apostol, \emph{Zeta and Related Functions}, NIST Digital Library of Mathematical Functions, \href{https://dlmf.nist.gov/25.4}{Section 25.4}, especially (25.4.2)--(25.4.4). The page attributes these reflection formulas to Apostol, \emph{Introduction to Analytic Number Theory} (1976), pp.259--260; the DLMF text, not that book, was consulted here.
+\bibitem{DLMFG} R. A. Askey and R. Roy, \emph{Gamma Function}, NIST Digital Library of Mathematical Functions, \href{https://dlmf.nist.gov/5.2}{Section 5.2}, Euler integral, Gamma poles and residues, and digamma definition.
+\bibitem{AZ} Retained programme derivation, \emph{The absolute-base maps and the role of every integer}, (AZ1)--(AZ6), complete unchanged source \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/44d03e48849934edf59f645cb5021b639ab31ac4/workbenches/splitzero-tandem/continuations/20260923-original-zeta-return/sources/09_absolute_base_maps.tex}{09\_absolute\_base\_maps.tex}. The underlying monoid and blueprint literature is credited there to Anton Deitmar and Oliver Lorscheid. This citation does not attribute the programme's specific split-zero semiring to those authors.
+\bibitem{PM} Retained programme derivation, \emph{Prime boundary classes in the actual adelic theta receiver}, (PM1)--(PM23), complete unchanged source \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/44d03e48849934edf59f645cb5021b639ab31ac4/workbenches/splitzero-tandem/continuations/20260923-original-zeta-return/sources/21_prime_memory_and_actual_theta_receiver.tex}{21\_prime\_memory\_and\_actual\_theta\_receiver.tex}. Its original author-source locators and human attributions remain intact. Equations (FR15)--(FR23) provide a full proof of the exact sequence used here and the augmented inverse.
+\end{thebibliography}
+\end{document}

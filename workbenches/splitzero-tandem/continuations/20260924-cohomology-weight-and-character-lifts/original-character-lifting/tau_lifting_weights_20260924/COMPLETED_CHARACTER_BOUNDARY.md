@@ -1,0 +1,975 @@
+# Completed original-character boundary complexes and the exact zeta comparison
+
+Independent derivation CCB0–CCB17, 24 September 2026. The original finite moving algebra has several inequivalent completions. This note calculates the ordinary smooth completion, a complete algebra retaining all imaginary-leaf continuations, the maximal smooth graph completion of its two-term lifting complex, and the joint completion with all actual zeta jets. CCB11–CCB17 calculate the graph closure in the actual strong Mellin space and its original quotient, retaining the character endpoint and its integer-moment relations. A maximality statement always specifies its ambient observations; no topology-independent largest completion is asserted.
+
+All operations occur in the specified complex receiving spaces. The corpus and operation rules, and the complete global user arguments USR-9ad1c0a2d09dba92, USR-f55d16feb948d8c2 and USR-6152e3bc6302258c, were consulted before interpreting any failed receiving map. Primitive \(Z_1/\tau\) retains no addition, parity, numerical coordinate or weight. The original arithmetic is already reconstructed.
+
+## CCB0. Original functions, all signs and the ambient smooth topology
+
+Retain Connes–Consani's \(G=\mathbb A_{\mathbb Q}/\mathbb Q\), with characters \(e_r(g)\), \(r\in\mathbb Q\), and leaf derivative
+\[
+D e_r=2\pi i r e_r.
+\]
+Here the leaf is the image of the real subgroup \(\iota_\infty(\mathbb R)\) in \(G\). Retain every \(\lambda>0\), the full signed coordinate \(y\in\mathbb R\), and
+\[
+W_{\rm alg}=\mathbb C[\mathbb R_{>0}^{\times}],
+\quad\chi_\lambda[x]=x^\lambda,\quad\theta_\mu[x]=[x^\mu],
+\]
+\[
+q^r(g,y)=e_r(g)[e^{-2\pi ry}].
+\]
+The source algebra from CB4 is
+\[
+\mathcal C=C^\infty(\mathbb R)\otimes W_{\rm alg}\otimes\mathbb C[\mathbb Q].
+\]
+Its faithful character realization consists of finite sums
+\[
+\alpha(h(y)[x]q^r)(\lambda,g,y)
+=h(y)e^{\lambda\log x}e_r(g)e^{-2\pi\lambda ry}.
+\tag{CCB0.1}
+\]
+MQ1 and CB4 give the exact Fourier and character return. Negative \(r,y\) and every factor \(2\pi,\lambda\) are retained.
+
+Let \(\mathcal S\) be the space of all functions \(f(\lambda,g,y)\) smooth in \(\lambda,y\) and in the leaf direction \(D\), with every mixed derivative jointly continuous. Give it seminorms
+\[
+p_{N,m}(f)=
+\max_{a+b+c\le m}
+\sup_{\lambda\in[N^{-1},N],\ g\in G,\ |y|\le N}
+|\partial_\lambda^a\partial_y^bD^cf|,
+\quad N\ge2,\ m\ge0.
+\tag{CCB0.2}
+\]
+The space is complete: locally uniform limits of every derivative are compatible by the fundamental theorem of calculus in \(\lambda,y\) and along \(g+\iota_\infty(t)\). Leibniz's formula proves continuous multiplication.
+
+The full original operator and raw operator are
+\[
+d=yD_\lambda,\qquad D_\lambda=\lambda D+i\partial_y.
+\tag{CCB0.3}
+\]
+Both act continuously on \(\mathcal S\). On (CCB0.1),
+\[
+d\,\alpha(h[x]q^r)
+=\alpha(iyh'[x]q^r).
+\]
+This is the original character operator, not the operator obtained by deleting its radial factor.
+
+For a Haar measure \(\nu\) on \(G\) with mass \(M>0\), Fourier extraction below always means
+\[
+f_r=M^{-1}\int_G f(g)\overline{e_r(g)}\,d\nu(g).
+\tag{CCB0.4}
+\]
+The coefficient \(M^{-1}\) is retained. Haar translation invariance proves orthogonality.
+
+## CCB1. Density of the original algebra in the ordinary smooth space
+
+The completion of \(\alpha(\mathcal C)\) for (CCB0.2) is all of \(\mathcal S\). The proof also records the approximation mechanism used later.
+
+For \(n\ge1\), let \(G\to\mathbb R/n!\mathbb Z\) be the quotient dual to \((1/n!)\mathbb Z\subset\mathbb Q\), and let \(K_n\) be its kernel. These compact kernels decrease to \(\{0\}\), since rational characters distinguish points. They eventually lie in every neighborhood of zero: otherwise compactness and their nesting give a nonzero point in their intersection outside such a neighborhood.
+
+Average over \(K_n\) with Haar mass one. The resulting operator \(P_n\) commutes with all derivatives in (CCB0.2). Uniform continuity on compact parameter sets gives \(P_nf\to f\) in every stated seminorm. On the resulting circle quotient, Fejér convolution gives finite rational-frequency sums and also commutes with all these derivatives. The approximate-identity estimate proves simultaneous convergence for each finite set of derivatives. No absolute convergence of a Fourier series over \(\mathbb Q\) is assumed.
+
+It remains to approximate each smooth coefficient \(a(\lambda,y)\) of a finite Fourier sum. Finite sums
+\[
+\sum_j h_j(y)e^{t_j\lambda},\qquad t_j\in\mathbb R,
+\tag{CCB1.1}
+\]
+are dense in the smooth compact-open topology on \((0,\infty)\times\mathbb R\). One explicit argument first approximates \(\partial_\lambda^m a\) uniformly on a fixed compact rectangle, including the required \(y\)-derivatives, by Bernstein polynomials in \(\lambda\). Their coefficients are smooth evaluations in \(y\). Integrating \(m\) times in \(\lambda\), with the original derivatives of orders below \(m\) at the left endpoint retained, approximates every required mixed derivative by polynomials in \(\lambda\) with smooth \(y\)-coefficients. Finally
+\[
+e^{\epsilon\lambda}
+\left(\frac{e^{\epsilon\lambda}-1}{\epsilon}\right)^j
+\longrightarrow\lambda^j\quad(\epsilon\downarrow0)
+\]
+with every derivative uniformly on compact \(\lambda\)-sets. Its expansion is a finite sum of exponentials with strictly positive exponents. This proves (CCB1.1), and even allows all \(t_j>0\).
+
+For a fixed rational frequency, multiplication by \(e^{2\pi\lambda ry}\) is a smooth invertible operation on each compact parameter set. Approximate the coefficient after that multiplication and then restore \(e^{-2\pi\lambda ry}\). This yields elements of (CCB0.1), proving the asserted density. The same proof shows density using only coefficients \([x]\) with \(x>1\).
+
+## CCB2. Why the ordinary smooth completion does not retain the radial homotopy
+
+On the finite original algebra, CB's boundary projection and homotopy are
+\[
+P\,\alpha(h[x]q^r)=\alpha(h(0)[x]q^r),
+\]
+\[
+T\,\alpha(h[x]q^r)=
+\alpha\left(\frac1i\int_0^y\frac{h(t)-h(0)}t\,dt\ [x]q^r\right).
+\tag{CCB2.1}
+\]
+They obey \(dT=Td=I-P\). The expression inside the integral is smooth through zero and uses the oriented integral for negative \(y\).
+
+These maps are not continuous for the topology (CCB0.2). To prove it, choose a smooth compactly supported \(\chi\) equal to one near zero, and put
+\[
+f_n(\lambda,g,y)
+=e^{-n}\chi(n^2y)e_n(g)e^{-2\pi\lambda ny}.
+\tag{CCB2.2}
+\]
+This belongs to the original algebra with coefficient \([1]\). On its support, \(|y|\le Cn^{-2}\). For \(\lambda\) in any fixed compact positive interval, the moving exponential is bounded by \(\exp(C'/n)\). Each prescribed derivative adds only a fixed polynomial power of \(n\), so
+\(p_{N,m}(f_n)\to0\).
+
+However,
+\[
+(Pf_n)(1,0,-1)=e^{-n}e^{2\pi n}\longrightarrow\infty.
+\]
+Thus \(P\) has no continuous extension to the ordinary smooth completion. If \(T\) had one, continuity of \(d\) and the identity \(P=I-dT\) would give such an extension of \(P\), a contradiction. This is an exact failure of a specified receiving topology. CCB3 and CCB6 construct completions retaining the maps.
+
+## CCB3. A complete algebra retaining every imaginary-leaf continuation
+
+Introduce an auxiliary real continuation parameter \(z\), distinct from \(y\), and define
+\[
+\mathcal X=
+\left\{F(\lambda,g,y,z):
+\partial_zF=i\lambda DF,\
+\text{all mixed }\lambda,y,z,D\text{ derivatives are continuous}\right\}.
+\tag{CCB3.1}
+\]
+The topology is given by
+\[
+q_{N,m}(F)=
+\max_{a+b+c+d\le m}
+\sup_{\lambda\in[N^{-1},N],g\in G,|y|,|z|\le N}
+|\partial_\lambda^a\partial_y^b\partial_z^cD^dF|.
+\tag{CCB3.2}
+\]
+Completeness follows from the derivative-limit argument in CCB0 and the closed defining equation. Leibniz's rule proves that \(\mathcal X\) is a complete Fréchet algebra.
+
+Lift each original generator by
+\[
+\widetilde\alpha(h[x]q^r)
+=h(y)e^{\lambda\log x}e_r(g)e^{-2\pi\lambda rz}.
+\tag{CCB3.3}
+\]
+It satisfies the equation in (CCB3.1). The lift is faithful by the Fourier and character argument of MQ1.
+
+This finite algebra is dense in \(\mathcal X\). The compact-kernel averages and Fejér convolutions of CCB1 commute with \(\partial_z-i\lambda D\), and approximate with all derivatives. Each remaining finite Fourier coefficient satisfies
+\[
+\partial_zF_r=-2\pi\lambda r F_r,
+\]
+hence equals \(a_r(\lambda,y)e^{-2\pi\lambda rz}\). Approximate \(a_r\) by (CCB1.1), retaining the finitely many moving exponential factors. This proves density and identifies \(\mathcal X\) as the completion for the explicitly given continuation seminorms.
+
+In this specified ambient smooth continuation category, \(\mathcal X\) is the full, and hence maximal, solution space: every smooth family satisfying the original imaginary-leaf equation occurs in the completion. This is not a claim of maximality among every possible topology.
+
+The diagonal map
+\[
+J_{\rm diag}F(\lambda,g,y)=F(\lambda,g,y,y)
+\tag{CCB3.4}
+\]
+is continuous and injective. Indeed its \(r\)-th Fourier coefficient is
+\(a_r(\lambda,y)e^{-2\pi\lambda ry}\), so its vanishing forces every \(a_r\) to vanish; uniqueness of Fourier coefficients then gives \(F=0\). Fourier uniqueness follows already from the convergent compact-kernel and Fejér approximations.
+
+Its image has an exact continuation characterization. For \(w=u+iv\), define
+\[
+H_f(\lambda,g,y;w)
+=F(\lambda,g+\iota_\infty(u),y,y+v/\lambda).
+\]
+The equation in (CCB3.1) gives
+\(\partial_vH_f=i\partial_uH_f\), so this is the full entire continuation of the real leaf function. Conversely such a jointly smooth entire continuation determines
+\[
+F(\lambda,g,y,z)
+=H_f(\lambda,g,y;i\lambda(z-y)).
+\tag{CCB3.5}
+\]
+Thus the extra parameter retains actual continuation data determined uniquely by \(f\), rather than an independent unexplained coefficient.
+
+The transported topology on \(J_{\rm diag}\mathcal X\) is essential. For example
+\[
+f_n(\lambda,g,y)=e^{-\sqrt n}e_n(g)
+\]
+tends to zero in every ordinary smooth seminorm, while its unique lift
+\[
+F_n=e^{-\sqrt n}e_n(g)e^{2\pi\lambda n(y-z)}
+\]
+diverges at \((\lambda,g,y,z)=(1,0,0,-1)\). Moreover the smooth function
+\[
+f(g)=\sum_{n\ge1}e^{-\sqrt n}e_n(g)
+\]
+has no such full continuation: at \(y=0,z<0\), its necessary Fourier coefficients would be unbounded, whereas the Fourier coefficients of any continuous function on compact \(G\) are bounded by its supremum norm. The derivative series defining \(f\) converge uniformly because \(\sum n^ke^{-\sqrt n}<\infty\) for every \(k\). Therefore the diagonal image is proper. It is dense in \(\mathcal S\), by CCB1.
+
+## CCB4. Continuous homotopy and the complete boundary cohomology
+
+On \(\mathcal X\), define
+\[
+\widetilde d=iy\partial_y,\qquad
+\widetilde PF(\lambda,g,y,z)=F(\lambda,g,0,z),
+\]
+\[
+\widetilde TF(\lambda,g,y,z)
+=\frac1i\int_0^y
+\frac{F(\lambda,g,t,z)-F(\lambda,g,0,z)}t\,dt.
+\tag{CCB4.1}
+\]
+All integrals have their original orientation. The identity
+\[
+\frac{F(t)-F(0)}t=\int_0^1\partial_yF(ut)\,du
+\]
+proves smoothness through zero and preservation of the continuation equation.
+
+For \(b\ge1\),
+\[
+\partial_y^b\widetilde TF
+=\frac1i\int_0^1s^{b-1}
+(\partial_y^bF)(\lambda,g,sy,z)\,ds.
+\tag{CCB4.2}
+\]
+For \(b=0\),
+\[
+|\widetilde TF|\le |y|
+\sup_{|t|\le|y|}|\partial_yF(\lambda,g,t,z)|.
+\]
+The other derivatives commute with the integrals. These bounds prove continuity in (CCB3.2), with a specified loss of at most one \(y\)-derivative. They prove
+\[
+\widetilde d\widetilde T
+=\widetilde T\widetilde d=I-\widetilde P,\qquad
+\widetilde P\widetilde T=0.
+\tag{CCB4.3}
+\]
+Let
+\[
+\mathcal B_{\rm ent}=\{F\in\mathcal X:\partial_yF=0\}.
+\]
+Restriction at \(y=0\) and extension independent of \(y\) give continuous inverse maps to this closed boundary subspace. If \(\widetilde dF=0\), its derivative vanishes away from zero and hence also at zero by continuity. Thus
+\[
+\ker\widetilde d=\mathcal B_{\rm ent},\qquad
+\operatorname{im}\widetilde d=\ker\widetilde P.
+\]
+The image is closed, and the actual topological cohomology is
+\[
+\boxed{H^0(\mathcal X\to\mathcal X)=
+H^1(\mathcal X\to\mathcal X)=\mathcal B_{\rm ent}.}
+\tag{CCB4.4}
+\]
+The boundary-restriction kernel is contracted by the displayed continuous homotopy, so its connecting map is zero.
+
+On the actual diagonal character functions, the differential is still the original one:
+\[
+\partial_yJ_{\rm diag}F
+=J_{\rm diag}\partial_yF+i\lambda D J_{\rm diag}F,
+\]
+and therefore
+\[
+J_{\rm diag}\widetilde d
+=y(\lambda D+i\partial_y)J_{\rm diag}.
+\tag{CCB4.5}
+\]
+The boundary projection on that image is the full continued boundary function
+\[
+P f(\lambda,g,y)=F(\lambda,g,0,y).
+\]
+It is not ordinary extension constant in \(y\). The diagonal homotopy is
+\[
+Tf(\lambda,g,y)=\frac1i\int_0^y
+\frac{
+H_f(\lambda,g,t;i\lambda(y-t))-
+H_f(\lambda,g,0;i\lambda y)}
+t\,dt.
+\tag{CCB4.6}
+\]
+These formulas retain the entire moving \(q^r\) factors.
+
+The raw operator is also retained. On \(\mathcal X\), its counterpart is
+\(i\partial_y\), and multiplication by \(y\) gives the chain map
+\((I,M_y)\) to the original complex. Multiplication by \(y\) is injective; its image is exactly the kernel of restriction at zero by the displayed division formula. Its cokernel is \(\mathcal B_{\rm ent}\). Integration from zero makes \(i\partial_y\) onto. Thus the raw complex has \(H^0=\mathcal B_{\rm ent}\), \(H^1=0\), whereas the original complex retains the extra \(\mathcal B_{\rm ent}\) in degree one. Completion has not removed that radial boundary contribution.
+
+## CCB5. Frobenius, all real signs, and the finite-valuation frame
+
+The exact arithmetic action on \(\mathcal X\) is
+\[
+A_\mu F(\lambda,g,y,z)
+=F(\mu\lambda,g,y/\mu,z/\mu),\qquad\mu>0.
+\tag{CCB5.1}
+\]
+Indeed
+\[
+\partial_zA_\mu F
+=\mu^{-1}i(\mu\lambda)D A_\mu F=i\lambda D A_\mu F.
+\]
+Each compact seminorm of the transformed function is controlled by finitely many seminorms on the transformed compact set, with the explicit derivative factors \(\mu^a\mu^{-b-c}\). Thus these are continuous automorphisms. They obey \(A_\mu A_\nu=A_{\mu\nu}\) and commute with \(\widetilde d,\widetilde P,\widetilde T\); the last equality follows by \(t=\mu u\) in the integral. On original generators this is exactly
+\(h(y/\mu)[x^\mu]q^r\).
+
+The original sign action is
+\[
+SF(\lambda,g,y,z)=F(\lambda,-g,-y,-z).
+\tag{CCB5.2}
+\]
+It preserves the equation because both \(D\) and \(\partial_z\) change sign. The oriented substitution \(t=-u\) proves \(S\widetilde T=\widetilde TS\). It also commutes with the other maps and with \(A_\mu\). The same homotopy therefore restricts to the closed sign-invariant subspaces. Their boundary cohomology is \(\mathcal B_{\rm ent}^{S}\); no frequency \(r\) is discarded, and the pair \(r,-r\) retains its full two-term sum.
+
+The finite-valuation comparison remains exactly MQ8 and CB1. On finite ideles,
+\[
+c(Y_f)=\prod_p p^{v_p(Y_p)}>0,\qquad
+g=[X/c(Y_f)],\quad y=Y_\infty/c(Y_f),
+\tag{CCB5.3}
+\]
+with all signs allowed for \(Y_\infty\). A negative rational gauge transformation sends \(c\) to \(|a|c\), and hence sends \((g,y)\) to \((-g,-y)\), while a positive one leaves these quotient coordinates unchanged. Therefore the sign-invariant objects descend to the original signed quotient.
+
+On the frequency \(r\), the exact pullback is
+\[
+e_r(g)e^{-2\pi\lambda ry}
+=\psi_f(rX_f/c)e^{2\pi irX_\infty/c}
+ e^{-2\pi\lambda rY_\infty/c}.
+\tag{CCB5.4}
+\]
+For every fixed valuation frame \(c\), substitution is a continuous pullback in the specified character topology. This gives a compatible product of completed frame spaces, with framewise topology; the gauge transformations permute the frames and implement the displayed sign action. Compatibility is a closed equality between continuous frame maps. The \(c=1\) component determines the compatible family by the exact formulas, so its inverse reconstructs all frames.
+
+Nothing here asserts continuity of \(c(Y_f)\) for the ambient additive-adele topology, or extends that map across \(Y_f=0\). CB1 proves why such a substitution would be false. The completion uses the source orbit topology and the retained frame maps. The graph correspondence's \(G\)-boundary is still present and is not identified with a point or with primitive \(\tau\).
+
+## CCB6. The maximal smooth graph completion of the lifting complex
+
+The entire-continuation algebra above is useful but does not contain every smooth interior for which the two-term lifting maps have smooth limits. The maximal graph realizations can also be calculated exactly.
+
+In \(\mathcal S\), put
+\[
+\mathcal H=\ker D_\lambda,\qquad
+\mathcal S_0=\{g\in\mathcal S:g(\lambda,\cdot,0)=0\}.
+\]
+Both are closed Fréchet spaces. The Fourier equation for \(h\in\mathcal H\) is
+\[
+\partial_yh_r+2\pi\lambda r h_r=0,\qquad
+h_r(\lambda,y)=h_r(\lambda,0)e^{-2\pi\lambda ry}.
+\tag{CCB6.1}
+\]
+Consequently boundary restriction is injective on \(\mathcal H\), and its image consists exactly of the boundary functions with the full smooth continuation in (CCB6.1). This is the same boundary space as \(\mathcal B_{\rm ent}\), with the explicit map \(F(\lambda,g,z)\mapsto F(\lambda,g,y)\).
+
+Define two completed cochain spaces as follows:
+\[
+\mathcal C^0_{\max}
+=\{h+g:h\in\mathcal H,\ g\in\mathcal S_0\},
+\]
+\[
+\mathcal C^1_{\max}
+=\{h+dg:h\in\mathcal H,\ g\in\mathcal S_0\},
+\tag{CCB6.2}
+\]
+each carrying the product topology of its displayed parameters \((h,g)\).
+
+Both realizations in \(\mathcal S\) are injective. For degree zero, take the boundary trace of \(h+g=0\); (CCB6.1) gives \(h=0\), hence \(g=0\). For degree one, if \(h+dg=0\), the trace gives \(h=0\). Then \(dg=0\); away from \(y=0\), \(D_\lambda g=0\), and smoothness gives the same equation at zero. Equation (CCB6.1) and the zero trace give \(g=0\).
+
+The continuous complex and homotopy are now fully explicit:
+\[
+d(h+g)=dg,\quad
+T(h+dg)=g,\quad
+P(h+g)=h,\quad P(h+dg)=h.
+\tag{CCB6.3}
+\]
+They satisfy \(dT=I-P\), \(Td=I-P\). Thus
+\[
+H^0(\mathcal C^\bullet_{\max})=
+H^1(\mathcal C^\bullet_{\max})=\mathcal H
+\tag{CCB6.4}
+\]
+with continuous splittings and closed differential image.
+
+These are actual completions of the finite original complex. Finite original holomorphic sums are dense in \(\mathcal H\): Fourier averaging and Fejér preserve \(D_\lambda h=0\), after which their coefficient functions of \(\lambda\) are approximated by finite source exponentials as in CCB1. Original finite functions of zero trace are dense in \(\mathcal S_0\): write \(g=yv\) using the smooth division formula, approximate \(v\) in \(\mathcal S\) by CCB1, and multiply by \(y\). Therefore \(h_n+g_n\) approximates every degree-zero pair, and \(h_n+dg_n\) approximates every degree-one pair. Their finite radial homotopies converge to \(g\), exactly as (CCB6.3) states.
+
+This establishes the maximal graph assertion. In degree zero the completion is the closure of the map \(f\mapsto(f,Pf)\) in \(\mathcal S\times\mathcal H\); its image consists exactly of pairs \((f,h)\) with equal boundary traces. In degree one it is the closure of \(f\mapsto(f,Tf,Pf)\) in \(\mathcal S\times\mathcal S_0\times\mathcal H\), and its image is exactly
+\[
+\{(dg+h,g,h):g\in\mathcal S_0,\ h\in\mathcal H\}.
+\tag{CCB6.5}
+\]
+This image is closed. Every smooth simultaneous limit of the original function, homotopy and projection must satisfy this equation; conversely density above supplies every such triple.
+
+Equivalently, the maximal degree-one domain is characterized by the full mode formula
+\[
+(Tf)_r(\lambda,y)
+=\frac{e^{-2\pi\lambda ry}}{i}
+\int_0^y
+\frac{e^{2\pi\lambda rt}f_r(\lambda,t)-f_r(\lambda,0)}t\,dt,
+\tag{CCB6.6}
+\]
+provided these coefficients assemble to a member of \(\mathcal S\). This is an exact domain characterization, not an assumption: assembly gives \(g\in\mathcal S_0\), and then \(h=f-dg\) has the coefficients (CCB6.1), so lies in \(\mathcal H\). Conversely every member of (CCB6.2) has exactly (CCB6.6) by the elementary first-order ODE. All constants and exponential factors are retained.
+
+Frobenius and sign act on \(\mathcal S\) by
+\(f(\lambda,g,y)\mapsto f(\mu\lambda,g,y/\mu)\) and
+\(f(\lambda,-g,-y)\). They preserve \(\mathcal H,\mathcal S_0\) and commute with \(d\); hence they act continuously on both graph spaces and commute with (CCB6.3).
+
+The original finite algebra is dense in each degree, but different degrees now have their specified graph topologies. We do not assert an unproved pointwise multiplication on degree one. The common complete algebra carrying every operator as a continuous endomorphism is the explicitly proved \(\mathcal X\) in CCB3–CCB5, with continuous maps into both graph realizations. This identifies the categories rather than calling one arbitrary topology the unique completion.
+
+## CCB7. The original-zeta comparison is not continuous in the character completion
+
+Retain the exact CW map
+\[
+\overline K_b:V_+\longrightarrow Q,\quad
+F_{K_b[x]}(s)=B(s)(\log x)^s,\quad
+B(s)=\sqrt\pi\exp((s-\tfrac12)^2/4),
+\tag{CCB7.1}
+\]
+where \(Q\) is the actual quotient constructed from the original \(\zeta\), and \(V_+\) has basis \([x]\), \(x>1\). For an actual nontrivial zero \(\rho\), write \(\beta=\Re\rho\in(0,1)\), and let \(j_{\rho,0}\) be its constant jet coordinate, a continuous functional on \(Q\).
+
+For \(t>0\), take the exact source element
+\[
+v_t=t^{-\rho}\bigl([e^t]-[e^{2t}]\bigr)\in V_+,
+\qquad t^{-\rho}=\exp(-\rho\log t).
+\tag{CCB7.2}
+\]
+For every compact positive \(\lambda\)-interval and each fixed derivative order,
+\[
+\partial_\lambda^k\chi_\lambda(v_t)
+=t^{-\rho}\partial_\lambda^k(e^{\lambda t}-e^{2\lambda t})
+=O(t^{1-\beta}).
+\tag{CCB7.3}
+\]
+For \(k=0\) this follows from the mean value integral; for \(k\ge1\), the two derivative terms are bounded by constants times \(t^{k-\beta}\), which is \(O(t^{1-\beta})\) for \(0<t\le1\). Thus \(v_t\), regarded as a zero-frequency character function independent of \(y,z\), tends to zero in every topology constructed above.
+
+But
+\[
+j_{\rho,0}\overline K_b(v_t)
+=B(\rho)(1-2^\rho)\ne0
+\tag{CCB7.4}
+\]
+for every \(t\). The inequality holds because \(|2^\rho|=2^\beta>1\). Therefore the coefficientwise CW map has no continuous extension from this character completion to the original \(Q\), or even to this single continuous zero observation.
+
+This uses the established original quotient and the actual zero; it is not a statement about a missing source operation or a failure of the full user-defined arithmetic. CCB8–CCB9 construct the exact replacement that retains both observations.
+
+## CCB8. Every finite packet of actual zero jets can be fixed while characters vanish
+
+Let \(\Sigma\) be any finite set of distinct actual nontrivial zeros, with their exact multiplicities \(m_\rho\). Write
+\[
+A_\Sigma=\prod_{\rho\in\Sigma}
+\mathbb C[T_\rho]/(T_\rho^{m_\rho}),
+\qquad
+D_t|_{A_\rho}=t^\rho\exp((\log t)T_\rho).
+\tag{CCB8.1}
+\]
+The complete CW comparison gives
+\[
+j_\Sigma\overline K_b\theta_t=D_tj_\Sigma\overline K_b.
+\]
+It retains the Gaussian jet
+\[
+B(\rho+T_\rho)=
+\sqrt\pi e^{(\rho-\frac12)^2/4}
+\exp((\rho-\tfrac12)T_\rho/2+T_\rho^2/4)
+\]
+and its explicit inverse from CW4.
+
+Finite interpolation remains onto after imposing the augmentation-zero condition
+\[
+\operatorname{aug}\left(\sum_jc_j[x_j]\right)=\sum_jc_j=0.
+\tag{CCB8.2}
+\]
+Here is a complete proof. Consider the joint map
+\[
+V_+\longrightarrow\mathbb C\oplus A_\Sigma,\quad
+v\longmapsto(\operatorname{aug}v,j_\Sigma\overline K_bv).
+\]
+A linear functional vanishing on its image gives, after writing
+\(u=\log\log x\),
+\[
+c+\sum_{\rho\in\Sigma}p_\rho(u)e^{\rho u}=0,\qquad
+\deg p_\rho<m_\rho.
+\]
+The invertible Gaussian jets only make invertible triangular changes in the coefficient polynomials. The functions in this expression are independent. Apply products of the operators \((\partial_u-\eta)^{m_\eta}\), including the factor \(\partial_u\) for the distinct exponent \(0\), to isolate each chosen exponent. On its remaining polynomial factor every operator with different exponent has nonzero constant diagonal and is invertible. Therefore every polynomial and \(c\) vanishes. A proper subspace of a finite-dimensional target has a nonzero annihilating functional, by extension of a basis; hence the joint map is onto. In particular each \((0,a)\) has a preimage.
+
+Choose fixed vectors \(v_1,\ldots,v_M\in V_+\) of augmentation zero mapping to a basis of \(A_\Sigma\). For any desired packet \(a\in A_\Sigma\), let \(c_j(t)\) be the coordinates of \(D_t^{-1}a\) in that basis and define
+\[
+u_t(a)=\sum_{j=1}^M c_j(t)\theta_t(v_j).
+\tag{CCB8.3}
+\]
+Then, for every \(t>0\),
+\[
+\boxed{j_\Sigma\overline K_bu_t(a)=a.}
+\tag{CCB8.4}
+\]
+Every basis element in \(\theta_t(v_j)\) is still greater than one.
+
+Put \(\beta_\Sigma=\max_{\rho\in\Sigma}\Re\rho<1\). Expanding the finite nilpotent inverse in (CCB8.1) gives the explicit bound
+\[
+|c_j(t)|\le C_a\,t^{-\beta_\Sigma}
+(1+|\log t|)^{M_\Sigma},\quad0<t\le1,
+\tag{CCB8.5}
+\]
+where one can take \(M_\Sigma=\max_\rho(m_\rho-1)\), increasing only the constant for the fixed basis.
+
+If \(v_j=\sum_\ell b_{j\ell}[x_{j\ell}]\), augmentation zero gives
+\[
+\chi_\lambda(\theta_tv_j)
+=\sum_\ell b_{j\ell}
+\bigl(e^{\lambda t\log x_{j\ell}}-1\bigr).
+\]
+Every prescribed \(\lambda\)-derivative on a compact positive interval is \(O(t)\); the proof is exactly the estimate in CCB7 with finitely many fixed \(\log x_{j\ell}\). Consequently
+\[
+\|\chi(u_t(a))\|_{K,k}
+\le C_{a,K,k}\,
+t^{1-\beta_\Sigma}(1+|\log t|)^{M_\Sigma}
+\longrightarrow0.
+\tag{CCB8.6}
+\]
+Thus all character seminorms vanish while the entire finite jet packet stays exactly equal to \(a\), with every multiplicity retained. Multiplication by any fixed smooth \(h(y)\) and fixed moving frequency \(q^r\) preserves convergence in the character continuation topology: on each compact set all derivatives of its finitely many exponential factors are bounded.
+
+## CCB9. The full joint completion is an exact product of observations
+
+First consider boundary coefficients alone. Let \(\mathcal H\) be the completed character boundary space of CCB6, realized by its full \(y\)-dependent holomorphic extension. For each actual zero \(\rho\), define \(\mathcal H_\rho\) to be the complete Fréchet space of \(A_\rho\)-valued functions \(H(g,z)\), smooth in \(z\) and the leaf direction, satisfying
+\[
+\partial_zH=iDH,
+\tag{CCB9.1}
+\]
+with all compact-open derivative seminorms. Its finite Fourier elements are
+\(\sum_r a_re_r(g)e^{-2\pi rz}\). The compact-kernel and Fejér proof shows these elements are dense. Every rational frequency remains. The parameter \(z\) here realizes the geometric factor after the exact substitution \(z=\lambda y\); no factor \(\lambda\) has been deleted.
+
+On the original positive-coefficient finite boundary algebra define the joint map
+\[
+v=\sum_r w_rq^r\longmapsto
+\left(
+\sum_r\chi_\lambda(w_r)e_r(g)e^{-2\pi\lambda ry},\
+\left(\sum_rj_\rho\overline K_bw_r\,e_r(g)e^{-2\pi rz}\right)_{\rho}
+\right).
+\tag{CCB9.2}
+\]
+Its target is
+\[
+\mathcal H\times\prod_{\rho\in\mathcal Z}\mathcal H_\rho,
+\tag{CCB9.3}
+\]
+where \(\mathcal Z\) is the full set of actual nontrivial zeros, each retained with its multiplicity algebra. Use the product topology, not a Hilbert norm or a sum norm.
+
+The closure of (CCB9.2) is exactly all of (CCB9.3). To prove it, fix a finite zero packet \(\Sigma\) and finitely many frequencies. For any prescribed coefficients at those frequencies, apply (CCB8.3) separately to each frequency and sum. Its character component tends to zero while its finite packet stays exactly prescribed. Finite-frequency elements are dense in each \(\mathcal H_\rho\), and every product neighborhood restricts only finitely many zero coordinates. Hence the closure contains the whole vertical subspace
+\[
+\{0\}\times\prod_\rho\mathcal H_\rho.
+\]
+The character projection of the source is dense in \(\mathcal H\), by CCB1 restricted to the holomorphic coefficients. Subtracting the already contained vertical component from any source image places its character component with zero jet component in the closure. Density then gives
+\(\mathcal H\times\{0\}\), proving the product assertion.
+
+The same proof includes the entire smooth-radial algebra. Define \(\mathcal Y_\rho\) by allowing a further smooth parameter \(y\) in (CCB9.1), with equation in \(g,z\) unchanged. Its differential and homotopy are \(iy\partial_y\) and the exact integral at fixed \(z\). The simultaneous completion of the source positive-coefficient algebra for its character-continuation seminorms and all these moving-jet seminorms is
+\[
+\boxed{\mathcal X\times\prod_{\rho\in\mathcal Z}\mathcal Y_\rho.}
+\tag{CCB9.4}
+\]
+Indeed finite sums \(h(y)a_re_r(g)e^{-2\pi rz}\) are dense in each finite target packet, by the same Fourier approximation and smooth coefficient approximation. CCB8 realizes them with vanishing character component; the preceding product proof applies without changing a sign or multiplicity.
+
+Both components carry the original two-term differential and its homotopy. The product differential has closed image and the product homotopy proves
+\[
+H^0=H^1=
+\mathcal B_{\rm ent}\times\prod_\rho\mathcal H_\rho.
+\tag{CCB9.5}
+\]
+The arithmetic action on the character component is (CCB5.1). On \(\mathcal Y_\rho\) it is exactly
+\[
+H_\rho(g,y,z)\longmapsto
+\mu^\rho\exp((\log\mu)T_\rho)\,
+H_\rho(g,y/\mu,z).
+\tag{CCB9.6}
+\]
+The geometric variable \(z=\lambda y\) is unchanged because
+\((\mu\lambda)(y/\mu)=\lambda y\). Every Gaussian factor from the actual CW comparison remains in the source-to-jet map and commutes with this full nilpotent multiplier. Sign acts by \((g,y,z)\mapsto(-g,-y,-z)\). The homotopy commutes with these actions. Projecting by the exact averaging operator \((I+S)/2\) shows the same joint-density and product statements on the invariant subspaces, retaining the coefficient \(1/2\) and both members of nontrivial sign orbits.
+
+At frequency zero and without the radial variable, (CCB9.3) specializes to the particularly explicit result
+\[
+\overline{\{(\chi(v),(j_\rho\overline K_bv)_\rho):v\in V_+\}}
+=
+C^\infty((0,\infty))\times\prod_\rho A_\rho.
+\tag{CCB9.7}
+\]
+Thus the character and complete product-jet observations become independent in this topology. This is a calculated property of the completion, not a proof that arbitrary product jets are realized in the original \(Q\). CW explicitly distinguishes that quotient from the unrestricted product. The dense original graph and its completed product must not be substituted for one another in a weight argument.
+
+For an actual-\(Q\) comparison one may instead retain \(Q\)'s own Fréchet seminorms as well as the character seminorms and take the closure of the actual graph. Concretely \(Q=\mathcal A/I\) is complete because \(I\) is closed in the complete strong Mellin space; the graph closure in the corresponding product of complete character and \(Q\)-valued moving-function spaces is a complete receiving space with continuous projections. Its finite zero observations are the maps calculated above. No equality of that actual-\(Q\) graph closure with (CCB9.4) is asserted: the product-jet topology does not contain all the original quotient seminorms. The failure in CCB7 and the exact product calculation specify why those seminorms cannot be omitted while claiming the same comparison.
+
+## CCB10. Proven maps and provenance
+
+The calculation supplies:
+
+- The exact ordinary smooth completion and a sequence proving that it loses the radial lifting homotopy.
+- A complete algebra containing all original signs, coefficient characters and rational frequencies, with an explicit faithful diagonal map and full continuation topology.
+- The continuous original differential, radial homotopy, exact boundary cohomology and the retained cokernel of multiplication by \(y\).
+- The maximal smooth graph completion of the two-term lifting complex, with complete degree-by-degree domains and no assumed vanishing.
+- A discontinuity witness for the actual original-zeta comparison and an exact calculation of the joint completion retaining every actual zero jet.
+
+These computations concern named receiving spaces and their topologies. They neither assign cohomology to primitive \(Z_1/\tau\) nor establish a numerical Deligne weight. The finite-valuation frame, the signed source quotient and every lattice-label comparison remain explicit. Each linear map extends to the already specified label receiver by \((v,\ell)\mapsto(f(v),\ell)\), retaining a label even when its amplitude vanishes; no new semimodule cohomology is inferred from the vector-space quotient.
+
+Human source: Alain Connes and Caterina Consani, [The Riemann–Roch strategy: Complex lift of the Scaling Site, arXiv:1805.10501v1](https://arxiv.org/abs/1805.10501v1). The original author TeX was read at §5.1 Lemma adelicomp, §5.2 actionpq and the adelic quotient, §5.4 classorb1/proetcov, and Remark additivestruct (lines 1707–1719), and §7.1 holom, holom1, holom2, functionq and perfectoid. These are bounded source passages, not a whole-paper reading claim.
+
+Programme proofs read and used: CLASSICAL_BOUNDARY_LIFTING.md CB0–CB8 completely; MOVING_Q_ZETA_COMPARISON.md MQ0–MQ9; CC_W_MELLIN_INDEPENDENT.md CW0–CW7; CORPUS_AND_OPERATION_RULES.md completely and the three full user arguments named at the beginning. The actual-zeta interpolation, Gaussian factors and zero multiplicities are retained from CW and rederived where used in CCB7–CCB9. No completed zeta function replaces the original in this argument.
+
+An independent mathematical check of CCB3–CCB5 verified the density, completeness, continuation topology, exact diagonal differential and action factors. The maximal graph completion and joint zeta-product calculation were derived here. The historical source of the original complex lift and arithmetic Frobenius remains Connes–Consani; the completed receiving spaces above are explicit derivations rather than attributed source assertions.
+
+
+## CCB11. The actual strong Mellin space and both character domains
+
+The following calculation determines the actual-\(Q\) graph, rather than replacing \(Q\) by its zero-jet observations.
+
+Retain the original strong Mellin space and all its seminorms
+\[
+\mathcal A=
+\left\{k\in C^\infty(\mathbb R_{>0}):
+p_{N,j}(k)<\infty\text{ for every }N,j\right\},
+\]
+\[
+p_{N,j}(k)=
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jk(u)|.
+\tag{CCB11.1}
+\]
+Its original transform and dilations are
+\[
+F_k(s)=\int_0^\infty k(u)u^{s-1/2}\frac{du}{u},
+\qquad
+W_a k(u)=a^{1/2}k(u/a).
+\]
+The original Gaussian is \(b(u)=e^{-(\log u)^2}\), with
+\[
+F_b(s)=B(s)=\sqrt\pi\exp((s-\tfrac12)^2/4).
+\tag{CCB11.2}
+\]
+For \(x=e^a>1\), so \(a>0\), the source graph generator is exactly
+\[
+\left(\lambda\longmapsto e^{\lambda a},\ W_a b\right).
+\tag{CCB11.3}
+\]
+Its second coordinate includes \(a^{1/2}\); it is not an unscaled Gaussian translate.
+
+Write
+\[
+\mathscr E_+=C^\infty((0,\infty))
+\]
+with smooth compact-open seminorms. Also retain the endpoint space
+\[
+\mathscr E_0=C^\infty([0,\infty)),
+\]
+defined as functions smooth on \((0,\infty)\) whose derivatives of every order have continuous limits at zero, with seminorms
+\[
+\|f\|_{N,m}=\max_{0\le j\le m}\sup_{0\le\lambda\le N}|f^{(j)}(\lambda)|.
+\tag{CCB11.4}
+\]
+These are complete Fréchet spaces: integration of the uniform derivative limits proves the derivative identities, including at zero.
+
+The source character functions have the unique endpoint extension
+\(\chi_0[x]=1\). This section retains that extension and every derivative there. It does not identify the auxiliary character parameter zero with \(Z_0\), \(Z_1\), or \(\tau\).
+
+In logarithmic coordinates \(v=\log u\), (CCB11.1) is the space of smooth functions \(g(v)\) whose derivatives decay faster than every fixed exponential. Multiplication by smooth cutoffs equal to one on \([-R,R]\) proves that \(C_c^\infty(\mathbb R)\) is dense in this logarithmic space. Explicitly, the error and all its derivatives are supported where \(|v|\ge R\); a seminorm with exponent \(N+1\) bounds the exponent-\(N\) tail by a constant times \(e^{-R}\), while cutoff derivatives contribute only bounded inverse powers of \(R\). This also proves completeness of \(\mathcal A\) by the same derivative-limit argument.
+
+## CCB12. Two exact analytic lemmas
+
+### The Laplace growth lemma
+
+The Fourier convention in the two analytic lemmas of this section is
+\(\widehat\varphi(\xi)=\int_{\mathbb R}\varphi(v)e^{-iv\xi}\,dv\), with inverse
+\(\varphi(v)=(2\pi)^{-1}\int_{\mathbb R}\widehat\varphi(\xi)e^{iv\xi}\,d\xi\).
+The factor \(1/(2\pi)\) is retained when pairing this inverse with a distribution.
+
+Let \(T\) be a continuous linear functional on \(\mathscr E_+\), or on \(\mathscr E_0\), and put
+\[
+L_T(z)=T(\lambda\longmapsto e^{z\lambda}).
+\]
+Continuity supplies a bound by finitely many derivative seminorms on one compact interval \([c,C]\), where \(0<c<C\) in \(\mathscr E_+\), and \(0=c<C\) is allowed in \(\mathscr E_0\). Thus for some integer \(m\) and constant \(A\),
+\[
+|L_T(z)|\le A(1+|z|)^m
+\begin{cases}
+e^{C\Re z},&\Re z\ge0,\\
+e^{c\Re z},&\Re z\le0.
+\end{cases}
+\tag{CCB12.1}
+\]
+The map is entire: its derivative series and difference quotients converge in every compact character seminorm. In particular it has at most exponential growth of order one and has polynomial growth on the imaginary axis.
+
+Suppose additionally that \(L_T(t)\) has polynomial growth as \(t\to+\infty\). Then \(L_T\) is a polynomial on the whole complex plane. Here is the complete sector argument. Choose an integer \(n\) at least as large as the polynomial exponents on the real and imaginary axes. In each right quadrant divide \(L_T(z)\) by \((z+1)^n\); in each left quadrant divide it by \((z-1)^n\). The relevant denominator has no zero in that closed quadrant, and the quotient is bounded on both bounding rays.
+
+For a quadrant with central argument \(\theta\), choose \(1<\alpha<2\) and multiply this quotient by
+\[
+\exp(-\epsilon e^{-i\alpha\theta}z^\alpha),\qquad\epsilon>0,
+\]
+using the branch of \(z^\alpha\) on that quadrant. On the whole sector,
+\[
+\Re(e^{-i\alpha\theta}z^\alpha)
+\ge |z|^\alpha\cos(\alpha\pi/4)>0.
+\]
+On a sufficiently large circular boundary this decay dominates the order-one exponential bound in (CCB12.1). On the two rays the multiplier has modulus at most one. The maximum principle on truncated quadrants, followed by letting their radius tend to infinity, bounds the multiplied quotient by its ray bound. Letting \(\epsilon\downarrow0\) proves a bound on the unmultiplied quotient. Applying this argument in all four quadrants gives
+\[
+|L_T(z)|\le A'(1+|z|)^n
+\]
+on the plane. Cauchy's integral formula then makes every derivative of order greater than \(n\) vanish. This proves the polynomial assertion without a positivity assumption on \(T\).
+
+For \(\mathscr E_+\), (CCB12.1) on the negative real axis gives exponential decay times a polynomial. A polynomial with that decay is zero. Hence in this case \(L_T=0\).
+
+The functional conclusion is also exact. Restrict \(T\) to restrictions of test functions on the whole real line. Its compact derivative bound makes this a distribution supported on \([c,C]\). Fourier inversion shows that its transform \(L_T(i\xi)\) determines it: Fourier inversion of a Schwartz test can be paired under the integral because the distribution has finite order and compact support. Thus \(L_T=0\) gives the zero distribution. Restrictions of globally smooth functions are dense in either character space: on any compact interval, approximate the highest derivative by polynomials and integrate, retaining the lower derivatives at one endpoint, as in CCB1. It follows that \(T=0\).
+
+In the endpoint case, write the polynomial as \(L_T(z)=\sum_{n=0}^N c_nz^n\). The functional \(\sum c_nf^{(n)}(0)\) has exactly this transform. The same Fourier argument and density prove
+\[
+\boxed{T(f)=\sum_{n=0}^N c_n f^{(n)}(0).}
+\tag{CCB12.2}
+\]
+This proves that polynomial positive-axis growth leaves only the endpoint derivatives; none of the argument assumes \(T\) positive.
+
+### Totality of the original Gaussian dilations
+
+The linear span of \(\{W_a b:a>0\}\) is dense in \(\mathcal A\). To prove it, let \(\ell\) be a continuous linear functional annihilating every such vector. With \(r=\log a\), the logarithmic function is
+\[
+W_a b=e^{r/2}\exp(-(v-r)^2).
+\]
+The factor \(e^{r/2}\) is nonzero, so \(\ell(\exp(-(v-r)^2))=0\) for every real \(r\).
+
+The function of a complex parameter
+\[
+z\longmapsto \ell(\exp(-(v-z)^2))
+\]
+is entire. On each compact \(z\)-set, every derivative and every seminorm of the integrand are bounded by a polynomial in \(v\) times
+\(\exp(-v^2+C|v|+C)\); this proves differentiability in the Fréchet topology and hence after applying \(\ell\). The identity theorem gives its vanishing for all complex \(z\).
+
+Define a tempered distribution by
+\[
+S(\varphi)=\ell(e^{-v^2}\varphi(v)),\qquad\varphi\in\mathcal S(\mathbb R).
+\]
+The map \(\varphi\mapsto e^{-v^2}\varphi\) is continuous into the logarithmic version of \(\mathcal A\): after every derivative, its weighted seminorm is bounded by finitely many Schwartz seminorms because the Gaussian dominates every retained exponential weight.
+
+For real \(\xi\),
+\[
+e^{-v^2}e^{-i\xi v}
+=e^{-\xi^2/4}\exp(-(v+i\xi/2)^2).
+\]
+Applying \(\ell\) gives zero. This is the Fourier transform of \(S\): for a Schwartz function of \(\xi\), its integral against these Gaussian-weighted exponentials converges in every \(\mathcal A\)-seminorm, since each derivative introduces only a fixed polynomial in \(\xi\). The pairing may therefore be interchanged with that integral. Fourier inversion gives \(S=0\).
+
+For \(\varphi\in C_c^\infty\), the function \(e^{v^2}\varphi\) is a Schwartz function, so \(\ell(\varphi)=S(e^{v^2}\varphi)=0\). Density of compactly supported smooth functions in \(\mathcal A\), proved in CCB11, gives \(\ell=0\). Hahn–Banach separation of a proper closed linear subspace now proves the asserted totality.
+
+## CCB13. Full graph density before quotienting when \(\lambda>0\)
+
+For \(v\in V_+\), let
+\[
+\Gamma_+(v)=(\chi(v),K_bv)\in\mathscr E_+\times\mathcal A.
+\]
+Then
+\[
+\boxed{\overline{\Gamma_+(V_+)}
+=\mathscr E_+\times\mathcal A.}
+\tag{CCB13.1}
+\]
+
+Indeed a continuous linear functional on the product has the form
+\(T(f)+\ell(k)\). If it annihilates the graph, (CCB11.3) gives
+\[
+L_T(a)=-\ell(W_a b)\qquad(a>0).
+\tag{CCB13.2}
+\]
+Continuity of \(\ell\) bounds it by finitely many of (CCB11.1). The exact dilation estimate is
+\[
+p_{N,j}(W_a b)
+\le a^{1/2}\max(a^N,a^{-N})p_{N,j}(b).
+\tag{CCB13.3}
+\]
+It follows by substituting \(u=av\), retaining \(a^{1/2}\) and both powers \(a^{\pm N}\). For \(a\ge1\), the right side has polynomial growth \(a^{N+1/2}\). Thus (CCB13.2) satisfies the Laplace growth lemma, which gives \(T=0\). Then \(\ell(W_a b)=0\) for all \(a>0\), and Gaussian totality gives \(\ell=0\). A proper closed linear subspace of the locally convex product has a nonzero continuous linear annihilator. Therefore the graph is dense.
+
+Both factors are complete, so (CCB13.1) identifies the completion for the joint character and original strong Mellin seminorms. It is a theorem about these exact observations and their topology. No zero count, zero simplicity, RH assumption or replacement of \(\zeta\) is used.
+
+## CCB14. Retaining the endpoint restores every integer Mellin relation before quotienting
+
+In \(\mathscr E_0\times\mathcal A\), the source graph satisfies, for every integer \(n\ge0\),
+\[
+\left.\partial_\lambda^n\chi_\lambda(v)\right|_{\lambda=0}
+=\frac{F_{K_bv}(n)}{B(n)},
+\qquad
+B(n)=\sqrt\pi\exp((n-\tfrac12)^2/4).
+\tag{CCB14.1}
+\]
+For a basis vector \([e^a]\), both sides equal \(a^n\). Linearity proves the identity for every \(v\). All factors of the Mellin transform remain.
+
+Let
+\[
+\mathscr R=
+\left\{(f,k)\in\mathscr E_0\times\mathcal A:
+f^{(n)}(0)=B(n)^{-1}F_k(n)\text{ for all }n\ge0\right\}.
+\]
+Every displayed observation is continuous. For the Mellin coordinate at \(n\), choose \(N>|n-\tfrac12|\); in logarithmic coordinates its absolute value is bounded by
+\[
+p_{N,0}(k)\int_{\mathbb R}
+\frac{e^{(n-1/2)v}}{e^{Nv}+e^{-Nv}}\,dv,
+\]
+whose retained integral is finite. Thus \(\mathscr R\) is closed. In fact
+\[
+\boxed{\overline{\{(\chi(v),K_bv):v\in V_+\}}=\mathscr R.}
+\tag{CCB14.2}
+\]
+
+To prove the reverse inclusion, classify the annihilators. The same calculation as CCB13 gives polynomial positive-axis growth for \(L_T\). The endpoint conclusion (CCB12.2) therefore gives
+\(T(f)=\sum_{n=0}^N c_nf^{(n)}(0)\). On all Gaussian dilations,
+\[
+\ell(W_a b)=-\sum_{n=0}^Nc_na^n
+=-\sum_{n=0}^N\frac{c_n}{B(n)}F_{W_a b}(n).
+\]
+Gaussian totality then determines
+\[
+\ell(k)=-\sum_{n=0}^N\frac{c_n}{B(n)}F_k(n)
+\]
+on all of \(\mathcal A\). Hence the entire annihilator of the graph consists precisely of finite linear combinations of the defining relations of \(\mathscr R\). Hahn–Banach separation proves (CCB14.2).
+
+This is the exact prequotient information recovered by including the endpoint. Merely saying that \(\lambda=0\) was outside the original positive family would fail to retain these available source identities. They are kept here as an explicit extension and comparison, without identifying \(\lambda=0\) with primitive \(\tau\).
+
+## CCB15. The original zeta image independently controls every finite integer packet
+
+Retain
+\[
+I=\overline{\mathcal E(S_0^{\rm even})}^{\mathcal A},\quad
+Q=\mathcal A/I,\quad
+\mathcal E f(u)=u^{1/2}\sum_{m\ge1}f(mu),
+\]
+where \(f(0)=0\) and \(\int_{\mathbb R}f=0\). We now prove that no nonzero finite combination of the integer Mellin observations \(F_k(n)\), \(n\ge0\), vanishes on \(I\).
+
+It suffices to use the following actual source tests. Let
+\(\varphi\in C_c^\infty((0,\infty))\) have integral zero, and extend it evenly to \(f\) on \(\mathbb R\). Because its support stays away from zero, \(f\) is even Schwartz, \(f(0)=0\), and
+\(\int_{\mathbb R}f=2\int_0^\infty\varphi=0\).
+
+Membership \(\mathcal Ef\in\mathcal A\), and hence in \(I\), has a direct estimate. In this paragraph write
+\[
+(\mathcal F_{2\pi}f)(\xi)=\int_{\mathbb R}f(x)e^{-2\pi ix\xi}\,dx.
+\]
+The smooth periodization \(\sum_{n\in\mathbb Z}f(u(x+n))\) has \(m\)-th Fourier coefficient \(u^{-1}(\mathcal F_{2\pi}f)(m/u)\), by integrating over one period and substituting \(v=u(x+n)\). Its Fourier series converges with all derivatives because these coefficients decay faster than every power. Evaluating at \(x=0\) proves the exact Poisson identity. Since \(f\) is even and \(f(0)=(\mathcal F_{2\pi}f)(0)=0\), it gives
+\[
+\mathcal Ef(u)=\frac12u^{-1/2}
+\sum_{m\in\mathbb Z\setminus\{0\}}(\mathcal F_{2\pi}f)(m/u).
+\]
+For \(0<u\le1\), its \(j\)-th Euler derivative is
+\[
+(u\partial_u)^j\mathcal Ef(u)=
+\frac12u^{-1/2}\sum_{m\ne0}
+\left[(-\tfrac12-\xi\partial_\xi)^j\mathcal F_{2\pi}f\right](m/u).
+\]
+Each bracket is Schwartz. For every real \(L>1\), its modulus is at most
+\[
+C_{j,L}\,\zeta(L)\,u^{L-1/2},
+\qquad \frac12\sum_{m\ne0}|m|^{-L}=\zeta(L).
+\]
+Choose \(L>N+1/2\) for each original seminorm \(p_{N,j}\). This controls the endpoint \(u=0\). For \(u\) exceeding the support radius of \(f\), the original positive sum defining \(\mathcal Ef\) vanishes identically. On the intervening compact interval it and every derivative are smooth and bounded. Thus all seminorms (CCB11.1) are finite, with the factor \(1/2\) and both signs retained throughout the comparison.
+
+Define its entire Mellin factor
+\[
+M_\varphi(s)=\int_0^\infty\varphi(u)u^{s-1}\,du.
+\]
+The original identity is
+\[
+F_{\mathcal Ef}(s)=\zeta(s)M_\varphi(s).
+\tag{CCB15.1}
+\]
+It first follows by absolute convergence for \(\Re s>1\), then by analytic continuation; here \(M_\varphi\) is entire and \(M_\varphi(1)=0\).
+
+For completeness the two endpoint constants can be recovered without a completed zeta function. For \(\Re s>1\),
+\[
+\zeta(s)
+=s\int_1^\infty\lfloor u\rfloor u^{-s-1}\,du
+=\frac1{s-1}+\frac12
+-s\int_1^\infty(\{u\}-\tfrac12)u^{-s-1}\,du.
+\tag{CCB15.2}
+\]
+The first equality follows by summing the integrals from each integer to infinity. Put
+\(P(x)=\int_1^x(\{u\}-\tfrac12)\,du
+=\tfrac12(\{x\}^2-\{x\})\). Thus \(-1/8\le P(x)\le0\), and it vanishes at each positive integer. Integration by parts gives
+\[
+\int_1^\infty(\{u\}-\tfrac12)u^{-s-1}\,du
+=(s+1)\int_1^\infty P(u)u^{-s-2}\,du,
+\]
+whose right side is holomorphic for \(\Re s>-1\). Thus the original formula gives
+\(\zeta(0)=-1/2\) and the original pole at \(s=1\) has residue \(1\).
+
+Consequently the full integer observations of (CCB15.1) are
+\[
+F_{\mathcal Ef}(0)
+=-\frac12\int_0^\infty\frac{\varphi(u)}u\,du,
+\]
+\[
+F_{\mathcal Ef}(1)
+=\int_0^\infty\varphi(u)\log u\,du,
+\]
+\[
+F_{\mathcal Ef}(n)
+=\zeta(n)\int_0^\infty\varphi(u)u^{n-1}\,du
+\quad(n\ge2).
+\tag{CCB15.3}
+\]
+The middle formula keeps the pole cancellation exactly:
+\[
+\zeta(s)=\frac1{s-1}+a_0+O(s-1),\quad
+M_\varphi(s)=(s-1)M_\varphi'(1)+O((s-1)^2),
+\]
+so the constant product is \(M_\varphi'(1)\). The term \(a_0M_\varphi(1)\) is zero because the actual source test has integral zero; it has not been silently omitted. For \(n\ge2\), \(\zeta(n)>0\) by its convergent positive Dirichlet series.
+
+Suppose \(\sum_{n=0}^N d_nF_k(n)\) vanishes on \(I\). Then for every such \(\varphi\),
+\[
+\int_0^\infty\varphi(u)
+\left(-\frac{d_0}{2u}+d_1\log u+
+\sum_{n=2}^Nd_n\zeta(n)u^{n-1}\right)\,du=0,
+\tag{CCB15.4}
+\]
+with absent indices interpreted as absent terms. A smooth function annihilating every compact test of integral zero is constant. To verify this, choose a fixed compact test \(\chi\) with integral one; applying the equation to
+\(\psi-(\int\psi)\chi\) shows that its distribution equals the constant \(\int\chi G\). Since \(G\) is smooth, it equals that constant pointwise.
+
+No nonzero combination in parentheses in (CCB15.4) can be constant. Let \(u\to\infty\): the highest positive polynomial power forces its coefficient to be zero; repeat for all such powers. The remaining logarithmic term forces \(d_1=0\). The remaining function \(-d_0/(2u)\) tends to zero, so the constant is zero and \(d_0=0\). Since each \(\zeta(n)\ne0\), this proves every \(d_n=0\).
+
+Equivalently, for every finite set \(J\subset\mathbb Z_{\ge0}\), the map
+\[
+I\longrightarrow\mathbb C^J,\qquad
+k\longmapsto(F_k(n))_{n\in J}
+\tag{CCB15.5}
+\]
+is onto: a proper subspace of this finite-dimensional target would have a nonzero annihilating functional, contradicting what was proved.
+
+One may construct these finite tests directly. The functions
+\(1,u^{-1},\log u,u,\ldots,u^{N-1}\), with only the needed indices retained, are linearly independent by the same calculation. There are finitely many positive sample points at which their evaluation matrix has full rank; otherwise all evaluation vectors would lie in a proper subspace, giving a nonzero linear relation between these functions. Choose smooth compact bumps of integral one around those points. For sufficiently small supports, their moment matrix is still invertible by continuity of its determinant. Solve that finite linear system with the first moment prescribed as zero and the other observations prescribed as desired. The resulting finite linear combination supplies \(\varphi\), hence an actual \(\mathcal Ef\in I\), with the exact requested integer packet. This construction retains the zero, pole and every integer coefficient in (CCB15.3).
+
+## CCB16. The actual-\(Q\) graph is the full product, including the endpoint topology
+
+Let \(\pi_Q:\mathcal A\to Q\) be the original quotient. Both actual graph closures are
+\[
+\boxed{
+\overline{\{(\chi(v),\overline K_bv):v\in V_+\}}
+=\mathscr E_+\times Q,}
+\tag{CCB16.1}
+\]
+\[
+\boxed{
+\overline{\{(\chi(v),\overline K_bv):v\in V_+\}}
+=\mathscr E_0\times Q.}
+\tag{CCB16.2}
+\]
+The character domain in each equality is the one displayed there. These are closures in the product of that domain's full Fréchet topology and \(Q\)'s actual quotient topology.
+
+For (CCB16.1), apply the continuous surjection
+\(\operatorname{id}_{\mathscr E_+}\times\pi_Q\), namely \((f,k)\mapsto(f,\pi_Qk)\), to the dense graph in (CCB13.1). Every target point has a preimage, and an approximating source net maps to an approximating net in the target. This proves density.
+
+For (CCB16.2), let \(T(f)+\ell_Q(q)\) annihilate the graph and put
+\(\ell_A=\ell_Q\pi_Q\). The endpoint annihilator calculation of CCB14 gives
+\[
+T(f)=\sum_{n=0}^Nc_nf^{(n)}(0),\qquad
+\ell_A(k)=-\sum_{n=0}^N\frac{c_n}{B(n)}F_k(n).
+\]
+Because \(\ell_A\) factors through \(Q\), it vanishes on \(I\). CCB15 proves independence of every finite integer packet on \(I\), and each \(B(n)\ne0\); hence every \(c_n=0\). Then \(\ell_A=0\), and surjectivity of \(\pi_Q\) gives \(\ell_Q=0\). Hahn–Banach separation proves (CCB16.2).
+
+The source graph is injective because its character component is faithful on finite \(V_+\). Its completion for the two actual seminorm families is therefore the full product in the displayed formulas. This proves the actual-\(Q\) result globally, without inferring it from finite jets.
+
+The full scaling maps are retained. On each product the action is
+\[
+(f,k)\longmapsto(f(\mu\,\cdot),W_\mu k),\qquad
+(f,q)\longmapsto(f(\mu\,\cdot),W_\mu q).
+\tag{CCB16.3}
+\]
+The estimate (CCB13.3) proves continuity on \(\mathcal A\). The original \(I\) is \(W_\mu\)-invariant by the exact formula
+\[
+W_\mu\mathcal Ef(u)
+=\mu^{1/2}(u/\mu)^{1/2}\sum_{m\ge1}f(mu/\mu)
+=u^{1/2}\sum_{m\ge1}f_\mu(mu)
+=\mathcal Ef_\mu(u),\qquad f_\mu(v)=f(v/\mu).
+\]
+Here \(f_\mu\) is even Schwartz, \(f_\mu(0)=0\), and
+\(\int_{\mathbb R}f_\mu=\mu\int_{\mathbb R}f=0\). Continuity extends this to the closure \(I\), and applying the inverse dilation proves \(W_\mu I=I\). Thus the action descends to \(Q\). The exact endpoint relations before quotienting are preserved:
+\[
+\partial_\lambda^n(f(\mu\lambda))|_{\lambda=0}
+=\mu^nf^{(n)}(0),\qquad
+F_{W_\mu k}(n)=\mu^nF_k(n).
+\]
+Thus no source factor or group action is discarded in either completion.
+
+The comparison has now identified precisely where the original integer-moment relation resides:
+\[
+\begin{array}{c}
+\text{source finite graph}\\[2pt]
+\downarrow\\[2pt]
+\mathscr R\subset\mathscr E_0\times\mathcal A
+\quad\text{with all relations }f^{(n)}(0)=B(n)^{-1}F_k(n)\\[2pt]
+\downarrow\ (f,k)\mapsto(f,\pi_Qk)\\[2pt]
+\mathscr E_0\times Q\quad\text{as the closure of its image}.
+\end{array}
+\tag{CCB16.4}
+\]
+No claim that the middle-to-bottom map is surjective before closure is needed or made. Its image is dense by (CCB16.2). The original subspace \(I\) supplies arbitrary finite changes of those integer observations by (CCB15.5), which is the exact reason no nonzero continuous endpoint coupling survives in that quotient graph completion.
+
+## CCB17. Consequences and proof scope of the actual-quotient calculation
+
+CCB13–CCB16 compute the coefficient case of the actual-\(Q\) graph described at the end of CCB9, using the actual original strong Mellin space and the actual \(Q\). The separately proved moving-function product-jet calculation remains as stated there; no unproved tensor-completion identification is needed for the coefficient theorem.
+
+The source's integer-moment identities have not been declared irrelevant. They are explicitly present in the complete prequotient object \(\mathscr R\), with every Gaussian factor, and their exact relation to the original zeta-image subspace is computed in (CCB15.3)–(CCB15.5). Passing to the stated completed quotient graph makes the character and quotient coordinates independent. That is a proved statement about this operation and topology; it is not a purity theorem, an identification of \(\lambda=0\) with primitive \(\tau\), or a reason to discard \(\mathscr R\) from the programme.
+
+The completion maps are actual continuous maps and the scalar source graph remains faithful before completion. The new full-product statement cannot be substituted for the source's original algebraic image when proving an arithmetic constraint. Conversely it can be used to identify exactly which constraints a proposed completion argument has lost, by checking the retained middle object in (CCB16.4).
+
+An independent mathematical review read CCB11–CCB17 in full and verified the quadrant growth estimate, original dilation factor, Gaussian-weighted distribution proof, endpoint annihilator classification, and actual-zeta integer observations. Its requested membership check for the compact source tests was supplied by the complete periodization and seminorm calculation now included in CCB15. No core mathematical error was found in that review.
+
+Human provenance remains as in CCB10 and CW: Connes–Consani supply the original moving functions, character action, arithmetic Frobenius and zeta receiving programme. The Gaussian transform and full quotient definitions are those retained in CW. The sector estimate, Gaussian-totality proof, graph-closure classification, original-zeta endpoint calculation and finite moment independence are proved in full in CCB11–CCB16. Fourier inversion and Hahn–Banach are used in their usual complex locally convex forms, with their exact applications stated. No zero-count theorem, RH assumption, positivity assumption on a dual functional, or completed-zeta replacement enters these new graph-density proofs.

@@ -1,0 +1,738 @@
+% Independent mathematical derivation. Prefix HTK.
+% Requires amsmath, amssymb, hyperref. No theorem environment is required.
+\section{Every tensor coupling in the full support heat product}
+\label{sec:full-support-heat-tensor}
+
+\paragraph{Sources and retained objects.}
+The coefficient space, heat group and complete lattice maps are
+HSL15--35 of the included full-lattice heat-operator proof.
+The complete transported-product proof HTP1--24 establishes the
+binary product, all its complex characters and the actual theta
+integral. The full support product proof SHP3--28 establishes
+the parity-flag algebra and its synchronization maps. The derivation
+below proves the complete finite tensor powers, their convergent
+coupling series and their full support formulas. No comparison with
+an unspecified tensor category is a premise.
+
+The original kernel is Brad Rodgers and Terence Tao's
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}}, author source \nolinkurl{fmp-template.tex},
+definitions \texttt{phidef} and \texttt{htdef}. The exact source
+identity and the bounded author-source reading are recorded in
+THS1--5 of the included actual theta heat proof; the kernel
+and its constants are reproduced below. The full-lattice carrier
+is the foundation retained under the byline The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split
+Support Geometry: Universal Zero Fibres, Arithmetic Curves, Frobenius
+and Perfect Quantization}, v11, Definition \texttt{def:lattice-split}}.
+Its full support localization is proved in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorems \texttt{thm:rebuilt-full-support} and \texttt{thm:e-stalk}}.
+No zero-location theorem from any of these sources is used.
+
+\subsection{The actual completed tensor space and its diagonal map}
+
+Fix an integer $k\ge2$. Retain the original Taylor coefficients
+and norms
+\begin{equation}\tag{HTK1}
+ \mathcal E=\left\{f(z)=\sum_{n\ge0}a_nz^n:
+  \|f\|_h=\sum_{n\ge0}|a_n|\sqrt{n!}\,h^n<\infty
+                 \text{ for every }h>0\right\}.
+\end{equation}
+For a vector $\mathbf h=(h_1,\ldots,h_k)$ of positive radii,
+define the multivariate coefficient space by
+\begin{equation}\tag{HTK2}
+\begin{gathered}
+ F(\mathbf z)=\sum_{\mathbf n\in\mathbb N_0^k}
+                       a_{\mathbf n}\mathbf z^{\mathbf n},\\
+ q_{\mathbf h}(F)=\sum_{\mathbf n}|a_{\mathbf n}|
+               \prod_{i=1}^k\sqrt{n_i!}\,h_i^{n_i},\\
+ \mathcal E^{[k]}=\{F:q_{\mathbf h}(F)<\infty
+                                  \text{ for every }\mathbf h>0\}.
+\end{gathered}
+\end{equation}
+Common radii $h_1=\cdots=h_k=h\in\mathbb N_{>0}$ suffice,
+since every finite list of radii is bounded by a common integer.
+Coordinate limits and completeness of each weighted $\ell^1$
+space prove completeness exactly as for HTK1. Rectangular
+polynomial truncations converge in every displayed norm.
+Moreover
+\[
+ |F(\mathbf z)|\le q_{\mathbf h}(F)
+             \exp\left(\sum_i\frac{|z_i|^2}{2h_i^2}\right),
+\]
+because $|z_i|^{n_i}/(\sqrt{n_i!}h_i^{n_i})$ is at most
+$\exp(|z_i|^2/(2h_i^2))$. Thus these are actual entire
+functions, with their original separate coordinates.
+
+This space is the completed projective tensor product of the
+specified coefficient spaces. Here is a direct proof rather
+than an assumed identification. On the algebraic tensor product
+define
+\[
+ \pi_{\mathbf h}(u)=\inf_{u=\sum_{r=1}^m
+                  f_{r,1}\otimes\cdots\otimes f_{r,k}}
+                   \sum_{r=1}^m\prod_i\|f_{r,i}\|_{h_i}.
+\]
+The coefficient map $f_1\otimes\cdots\otimes f_k\mapsto
+\prod_i f_i(z_i)$ satisfies $q_{\mathbf h}\le\pi_{\mathbf h}$,
+by expanding each finite tensor presentation and taking absolute
+values. It is injective. To see this, restrict each tensor factor
+to the finite-dimensional span occurring in a presentation.
+Its coordinate coefficient functionals separate that span;
+finitely many of them therefore span its dual. Products of those
+functionals separate the resulting finite-dimensional tensor
+product. If all multivariate coefficients vanish, every such
+functional vanishes and hence the original tensor is zero.
+
+For a polynomial tensor the monomial basis presentation gives
+the reverse inequality $\pi_{\mathbf h}\le q_{\mathbf h}$.
+For a general algebraic tensor $u$, truncate each factor at degree
+$N$. The finite tensor presentation and a telescoping difference
+give $\pi_{\mathbf h}(u-u_N)\to0$, because the factors converge
+in their defining norms and their truncated norms are bounded.
+Consequently $q_{\mathbf h}(u-u_N)\to0$ as well. Equality of the
+two norms on $u_N$ gives equality on $u$. Polynomial tensors are
+dense in HTK2, so completion gives the precise isomorphism
+\begin{equation}\tag{HTK3}
+ \mathcal E\widehat\otimes_\pi\cdots
+       \widehat\otimes_\pi\mathcal E\ \simeq\ \mathcal E^{[k]}.
+\end{equation}
+The seminorms with separate radii generate the projective
+topology: a finite collection of input seminorms is dominated
+in each factor by one of the increasing norms in HTK1.
+This specifies the completion used in HTK3 completely.
+
+The diagonal map and the $k$-fold multiplication bound are
+\begin{equation}\tag{HTK4}
+\begin{gathered}
+ (\Delta_kF)(z)=F(z,\ldots,z),\\
+ \|\Delta_kF\|_h\le q_{(\sqrt{k}h,\ldots,\sqrt{k}h)}(F),
+ \qquad
+ \left\|\prod_{i=1}^kg_i\right\|_h
+                       \le\prod_{i=1}^k\|g_i\|_{\sqrt{k}h}.
+\end{gathered}
+\end{equation}
+For $N=\sum_i n_i$, the multinomial theorem gives
+$N!/\prod_i n_i!\le k^N$. Taking its square root and
+summing absolute coefficients proves the first bound; the
+second follows on a simple tensor. Each output coefficient
+is a finite sum over $\sum_i n_i=N$, so the map is also
+the literal diagonal substitution on entire functions.
+
+For $n\ge0$, $b>0$ and $D=d/dz$, the exact derivative bound is
+\begin{equation}\tag{HTK5}
+ \|D^nf\|_h\le\sqrt{n!}\,b^{-n}
+                      \|f\|_{\sqrt{h^2+b^2}}.
+\end{equation}
+Indeed the coefficient with original degree $m\ge n$ contributes
+$|a_m|\sqrt{m!}\sqrt{n!}\sqrt{\binom mn}h^{m-n}$.
+The single binomial term
+$\binom mn h^{2(m-n)}b^{2n}\le(h^2+b^2)^m$
+proves HTK5 after summation. Applying that argument in every
+coordinate gives, with $D_i=\partial/\partial z_i$,
+\begin{equation}\tag{HTK6}
+ q_{\mathbf h}(D_1^{d_1}\cdots D_k^{d_k}F)
+ \le\left(\prod_i\sqrt{d_i!}\,b_i^{-d_i}\right)
+        q_{(\sqrt{h_i^2+b_i^2})_{i=1}^k}(F).
+\end{equation}
+
+\subsection{The full edge series and the exact heat comparison}
+
+Let $\mathscr E_k=\{(i,j):1\le i<j\le k\}$ be the complete
+set of unordered pairs. For a tuple $\mathbf n=(n_{ij})$ of
+nonnegative integers indexed by these pairs, put
+\begin{equation}\tag{HTK7}
+ N(\mathbf n)=\sum_{i<j}n_{ij},\qquad
+ d_i(\mathbf n)=\sum_{j<i}n_{ji}+\sum_{j>i}n_{ij},\qquad
+ \sum_i d_i=2N.
+\end{equation}
+Every pair is retained. Define the coupling operator by
+\begin{equation}\tag{HTK8}
+ C_t^{(k)}F=\sum_{\mathbf n\in\mathbb N_0^{\mathscr E_k}}
+    \left(\prod_{i<j}\frac{(-2t)^{n_{ij}}}{n_{ij}!}\right)
+                         D_1^{d_1}\cdots D_k^{d_k}F.
+\end{equation}
+The term with all $n_{ij}=0$ has coefficient $1$, including
+at $t=0$. For any $b_i>0$ with
+$b_ib_j>2(k-1)|t|$ for every $i<j$, set
+$r_{ij}=2(k-1)|t|/(b_ib_j)$. Then
+\begin{equation}\tag{HTK9}
+\begin{split}
+ &\sum_{\mathbf n}
+  \left(\prod_{i<j}\frac{(2|t|)^{n_{ij}}}{n_{ij}!}\right)
+             q_{\mathbf h}(D_1^{d_1}\cdots D_k^{d_k}F)\\
+ &\hspace{8mm}\le
+       \left(\prod_{i<j}\frac1{1-r_{ij}}\right)
+          q_{(\sqrt{h_i^2+b_i^2})_{i=1}^k}(F)<\infty.
+\end{split}
+\end{equation}
+To prove it, the multinomial theorem at vertex $i$ gives
+$d_i!\le(k-1)^{d_i}\prod_{j\ne i}n_{ij}!$, where
+$n_{ij}=n_{ji}$ in this inequality. Multiplying the square
+roots over all vertices yields
+\[
+ \prod_i\sqrt{d_i!}\le
+      (k-1)^{N(\mathbf n)}\prod_{i<j}n_{ij}!.
+\]
+Insert this in HTK6. The factorials cancel, and the summand
+is bounded by $\prod_{i<j}r_{ij}^{n_{ij}}$ times the input
+norm in HTK9. The independent geometric sums prove the bound.
+The parameters always exist, for example all $b_i$ equal to
+any $b>\sqrt{2(k-1)|t|}$. Enlarging $|t|$ to its maximum
+on a compact set proves locally uniform absolute convergence
+in every norm. Thus HTK8 defines a continuous operator on the
+complete space HTK2.
+
+Keep $T_t=e^{-tD^2}$ with its proved HSL17--18 meaning:
+\[
+ T_tf=\sum_{m\ge0}\frac{(-t)^m}{m!}D^{2m}f,
+ \quad \sum_{m\ge0}\frac{|t|^m}{m!}\|D^{2m}f\|_h
+                  \le\|f\|_{h+\sqrt{2|t|}},
+ \quad T_tT_s=T_{t+s}.
+\]
+On HTK2 let $A_t^{(k)}$ apply $T_t$ separately in every
+coordinate. The same nonnegative coefficient proof in each
+coordinate bounds its absolute multiple series by
+$q_{(h_i+\sqrt{2|t|})_i}(F)$. It is a continuous group and
+on simple tensors equals $T_t\otimes\cdots\otimes T_t$.
+For a polynomial, $D\Delta_k=\Delta_k\sum_iD_i$ and all
+relevant differential series terminate. The commuting finite
+exponentials therefore give
+\begin{equation}\tag{HTK10}
+\begin{split}
+ T_t\Delta_k A_{-t}^{(k)}F
+ &=\Delta_k e^{-t(\sum_iD_i)^2}e^{t\sum_iD_i^2}F\\
+ &=\Delta_k e^{-2t\sum_{i<j}D_iD_j}F
+  =\Delta_k C_t^{(k)}F.
+\end{split}
+\end{equation}
+Each exponential identity follows by the finite multinomial
+formula on that polynomial. HTK4, HTK9 and the heat bounds
+make both ends continuous on HTK2. Polynomial density extends
+HTK10 to every $F\in\mathcal E^{[k]}$. The same proof first
+on polynomials and then by continuity gives
+$C_t^{(k)}C_s^{(k)}=C_{t+s}^{(k)}$ and
+$(C_t^{(k)})^{-1}=C_{-t}^{(k)}$. Thus the tensor correction
+is itself an actual continuous group, with no infinite formal
+cancellation required.
+
+For $f_i\in\mathcal E$, the $k$-fold transported product
+therefore is exactly
+\begin{equation}\tag{HTK11}
+\boxed{\begin{aligned}
+ \mathop{\star_t}_{i=1}^k f_i
+ &:=T_t\left(\prod_iT_{-t}f_i\right)\\
+ &=\sum_{\mathbf n\in\mathbb N_0^{\mathscr E_k}}
+     \left(\prod_{i<j}\frac{(-2t)^{n_{ij}}}{n_{ij}!}\right)
+                      \prod_i D^{d_i(\mathbf n)}f_i.
+\end{aligned}}
+\end{equation}
+Its absolute convergence has the literal bound
+\begin{equation}\tag{HTK12}
+\begin{split}
+ &\sum_{\mathbf n}
+    \left(\prod_{i<j}\frac{(2|t|)^{n_{ij}}}{n_{ij}!}\right)
+                  \left\|\prod_iD^{d_i}f_i\right\|_h\\
+ &\hspace{8mm}\le
+       \left(\prod_{i<j}\frac1{1-2(k-1)|t|/(b_ib_j)}\right)
+                  \prod_i\|f_i\|_{\sqrt{kh^2+b_i^2}}.
+\end{split}
+\end{equation}
+Apply HTK4 to each derivative product, HTK5 to each factor
+at radius $\sqrt{k}h$, and the same factorial calculation
+as in HTK9. This also proves multilinear continuity directly.
+Every parenthesization of the binary product HTP8 gives HTK11:
+applying the injective $T_{-t}$ to such a product gives the
+ordinary product $\prod_iT_{-t}f_i$, by induction on the
+binary parentheses. The independent tensor map $A_t^{(k)}$
+and the diagonal heat map are connected by precisely $C_t^{(k)}$;
+HTK10 is their proved comparison, including all cross terms.
+
+\begin{figure}[ht]
+\centering
+$\begin{array}{ccccc}
+ \mathcal E^{[k]}&\xrightarrow{\ A_{-t}^{(k)}\ }&
+ \mathcal E^{[k]}&\xrightarrow{\ \Delta_k\ }&\mathcal E\\
+ {\scriptstyle C_t^{(k)}}\downarrow&&&&\downarrow{\scriptstyle T_t}\\
+ \mathcal E^{[k]}&\xrightarrow{\hspace{7mm}\Delta_k\hspace{7mm}}&
+ \mathcal E&\xrightarrow{\ \operatorname{id}\ }&\mathcal E
+ \end{array}$
+\caption{The exact tensor comparison HTK10. Each upper coordinate
+has its own original heat operator. Moving heat through the diagonal
+introduces $-2tD_iD_j$ for every pair, exactly HTK7--9. The spaces,
+maps and their convergence are proved in HTK1--12; the diagram does
+not identify independent heat with diagonal heat without this map.}
+\end{figure}
+
+\subsection{The original theta kernel on every tensor factor}
+
+Use the unchanged kernel and family
+\begin{equation}\tag{HTK13}
+\begin{gathered}
+ \Phi(u)=\sum_{m\ge1}
+   (2\pi^2m^4e^{9u}-3\pi m^2e^{5u})e^{-\pi m^2e^{4u}},
+       \quad u\ge0,\\
+ H_a(z)=\int_0^\infty e^{au^2}\Phi(u)\cos(zu)\,du,\\
+ c=e^{-3\pi},\quad
+ C_\Phi=2\pi^2\frac{1+11c+11c^2+c^3}{(1-c)^5},\\
+ I_p(A,B)=\int_0^\infty u^pe^{Au^2+Bu}\Phi(u)\,du,
+ \quad
+ \mathcal M_p(A,B)=\frac{C_\Phi}{2\pi}
+     \exp\left(\frac{3A^2}{32\pi}
+         +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right).
+\end{gathered}
+\end{equation}
+For $A,B\ge0$ and integer $p\ge0$, THS3--5 prove
+$0<\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}}$ and
+$I_p(A,B)\le\mathcal M_p(A,B)$. The positivity follows
+term by term from
+$\pi m^2e^{5u}(2\pi m^2e^{4u}-3)>0$. For the upper bound,
+discard the negative prefactor and use
+$m^2-1\ge3(m-1)$ to sum $\sum m^4c^{m-1}$.
+For the moment bound use $u^p\le e^{pu}$, split the negative
+exponent into quarters and a half, and apply
+\[
+ Au^2-\frac\pi4e^{4u}\le\frac{3A^2}{32\pi},\qquad
+ (B+9+p)u-\frac\pi4e^{4u}\le\frac{(B+9+p)^2}{8\pi},
+ \qquad
+ \int_0^\infty e^{-\pi e^{4u}/2}du\le\frac{e^{-\pi/2}}{2\pi}.
+\]
+The first two inequalities follow respectively from
+$e^{4u}\ge(32/3)u^4$ and $e^{4u}\ge8u^2$ by completing
+the relevant square. The last uses $e^{4u}\ge1+4u$.
+These give the constants displayed in HTK13 without an
+unmentioned change of variables or function factor.
+
+THS13--15, or the following direct estimates, give
+$H_a\in\mathcal E$ and $T_rH_a=H_{a+r}$ for complex $a,r$.
+Indeed $|\cos(zu)|\le e^{|z|u}$ and
+$|z|u\le\alpha|z|^2+u^2/(4\alpha)$ give every positive
+Gaussian growth bound. HSL16 then gives membership in HTK1.
+The absolute heat-integrand sum is at most
+$e^{(\operatorname{Re}a+|r|)u^2+|\operatorname{Im}z|u}\Phi(u)$;
+HTK13 bounds its integral after enlarging a negative quadratic
+coefficient to zero. Termwise heat differentiation has the
+exact sign $(-r)^m(-1)^m=r^m$, giving $e^{ru^2}$ and hence
+the asserted heat identity.
+
+For $\boldsymbol\epsilon\in\{-1,1\}^k$, retain the signed
+frequency
+$s_{\boldsymbol\epsilon}(\mathbf u)=\sum_i\epsilon_i u_i$.
+For arbitrary complex $a_1,\ldots,a_k,t,z$, the full tensor
+integral is
+\begin{equation}\tag{HTK14}
+\boxed{\begin{aligned}
+ \left(\mathop{\star_t}_{i=1}^kH_{a_i}\right)(z)
+ =2^{-k}\sum_{\boldsymbol\epsilon\in\{-1,1\}^k}
+ \int_{[0,\infty)^k}&\left(\prod_i\Phi(u_i)\right)
+   \exp\left(\sum_i a_i u_i^2
+        +2t\sum_{i<j}\epsilon_i\epsilon_j u_i u_j\right)\\
+ &\hspace{-12mm}\cdot
+                  \cos\left(z\sum_i\epsilon_i u_i\right)d\mathbf u.
+\end{aligned}}
+\end{equation}
+All derivatives, integrals and sums used to establish this
+formula are absolutely controlled in each norm of HTK1.
+To verify this before exchanging them, Cauchy--Schwarz gives
+$\sum_{m\ge0}x^m/\sqrt{m!}\le\sqrt2e^{x^2}$ for $x\ge0$:
+write the summands as
+$2^{-m/2}(\sqrt2x)^m/\sqrt{m!}$.
+Consequently sine and cosine of $uz$ have $h$-norm at most
+$\sqrt2e^{h^2u^2}$. Their $d$th derivatives have norm at
+most $\sqrt2u^de^{h^2u^2}$, since differentiation only
+changes sine to cosine, a sign and the factor $u^d$.
+By HTK4 the norm of the product of derivatives in HTK11
+is therefore at most
+$2^{k/2}\prod_i u_i^{d_i}e^{kh^2\sum_i u_i^2}$.
+Summing its absolute edge weights yields
+$\exp(2|t|\sum_{i<j}u_iu_j)$.
+The inequality $2u_iu_j\le u_i^2+u_j^2$ now proves
+\begin{equation}\tag{HTK15}
+\begin{gathered}
+ B_i(h)=\max\{\operatorname{Re}a_i+kh^2+(k-1)|t|,0\},\\
+ \int_{[0,\infty)^k}\prod_i\Phi(u_i)e^{\sum_i(\operatorname{Re}a_i)u_i^2}
+ \sum_{\mathbf n}\left(\prod_{i<j}\frac{(2|t|)^{n_{ij}}}{n_{ij}!}\right)
+       \left\|\prod_iD^{d_i}\cos(zu_i)\right\|_h\\
+ \hspace{8mm}\le 2^{k/2}\prod_i I_0(B_i(h),0)
+                  \le2^{k/2}\prod_i\mathcal M_0(B_i(h),0)<\infty.
+\end{gathered}
+\end{equation}
+Here each $D$ in the product differentiates its own cosine
+factor before multiplication. The finite derivative orders
+and any parameter derivatives introduce only finite moment
+powers; the corresponding $I_p$ bounds apply. Nonnegative
+summation over absolute Taylor coefficients, followed by
+Tonelli's theorem, proves all the stated interchanges in
+each weighted $\ell^1$ norm. The resulting coefficients
+belong to every such space, so they define the same element
+of $\mathcal E$. On compact parameter sets a common bound
+is obtained by enlarging the real parts and moduli in HTK15.
+This also proves local uniformity and entire parameter
+dependence. Expanding any of the original positive kernel
+series is allowed by the same majorant, so no kernel term
+has been dropped.
+
+It remains to compute the integrand, including its signs.
+The exact cosine expansion is
+\[
+ \cos(zu_i)=2^{-1}\sum_{\epsilon_i=\pm1}e^{\mathrm i\epsilon_i zu_i}.
+\]
+For an edge tuple $\mathbf n$, its derivatives contribute
+$\prod_i(\mathrm i\epsilon_i u_i)^{d_i}$.
+Since $\sum_i d_i=2N$, the factor $\mathrm i^{2N}=(-1)^N$
+cancels the sign in $(-2t)^N$. The resulting edge series
+is the product of the exponentials
+$\exp(2t\epsilon_i\epsilon_j u_iu_j)$.
+Thus the sum is first obtained with
+$\exp(\mathrm i z s_{\boldsymbol\epsilon})$.
+The substitution $\boldsymbol\epsilon\mapsto
+-\boldsymbol\epsilon$ leaves the quadratic exponent
+unchanged and changes $s$ to $-s$. Pairing those terms
+replaces their exponential by the displayed cosine.
+The factor $2^{-k}$ remains unchanged. This proves HTK14
+with every pair, sign, coefficient and coordinate retained.
+
+With $B=|\operatorname{Im}z|$ and
+$A_i=\max\{\operatorname{Re}a_i+(k-1)|t|,0\}$, it follows that
+\begin{equation}\tag{HTK16}
+ \left|\left(\mathop{\star_t}_{i=1}^kH_{a_i}\right)(z)\right|
+     \le\prod_i I_0(A_i,B)
+     \le\prod_i\mathcal M_0(A_i,B).
+\end{equation}
+Indeed $|\cos(zs)|\le e^{B|s|}\le e^{B\sum_i u_i}$,
+and the absolute cross exponent is at most
+$(k-1)|t|\sum_i u_i^2$. Each of the $2^k$ terms has the
+same separating bound, cancelling exactly the prefactor
+$2^{-k}$. This proves the requested bound for arbitrary
+complex parameters, without replacing $H_a$ by a quotient.
+
+For real $a_i,t$, the even coefficients of HTK14 are all
+strictly alternating and every odd coefficient is zero:
+\begin{equation}\tag{HTK17}
+ [z^{2j}]\left(\mathop{\star_t}_{i=1}^kH_{a_i}\right)
+ =\frac{(-1)^j}{2^k(2j)!}
+   \sum_{\boldsymbol\epsilon}\int
+      \prod_i\Phi(u_i)e^{\sum_i a_i u_i^2+
+                      2t\sum_{i<j}\epsilon_i\epsilon_j u_i u_j}
+                 s_{\boldsymbol\epsilon}(\mathbf u)^{2j}d\mathbf u,
+ \qquad (-1)^j[z^{2j}]>0.
+\end{equation}
+The moment bounds justify differentiation at zero.
+Every integrand after removing $(-1)^j$ is nonnegative.
+For $j=0$ it is positive everywhere; for $j>0$ the all-positive
+sign tuple gives $s=\sum_i u_i>0$ on $(0,\infty)^k$.
+That open set has positive measure and a positive kernel.
+Thus its finite integral is strictly positive, proving the
+assertion rather than assuming nonvanishing of a coefficient.
+
+\subsection{Actual equal-time tensor powers and their characters}
+
+Set every $a_i=t$ with $t\le0$ real. The exact exponent is
+\begin{equation}\tag{HTK18}
+ \sum_i t u_i^2+2t\sum_{i<j}\epsilon_i\epsilon_j u_iu_j
+            =t\left(\sum_i\epsilon_i u_i\right)^2\le0,
+ \qquad
+ H_t^{\star_t k}=T_t(H_0^k).
+\end{equation}
+The second identity follows from $T_{-t}H_t=H_0$ and
+HTK11. Consequently the exact bound with a base independent
+of both $k$ and $t\le0$ is
+\begin{equation}\tag{HTK19}
+ \boxed{\displaystyle
+ |T_t(H_0^k)(z)|\le
+       \left[\int_0^\infty\Phi(u)e^{|\operatorname{Im}z|u}du\right]^k
+       = I_0(0,|\operatorname{Im}z|)^k.}
+\end{equation}
+Use HTK18 directly in HTK14 and then separate the bound
+$e^{B\sum_i u_i}$. The proof works for $k=1$ as well.
+The power on the right is part of the statement; no assertion
+that its base is at most $1$ is used.
+
+There is a concrete measure map behind this tensor identity.
+Define a finite positive measure $\mu$ on $\mathbb R$ by
+\begin{equation}\tag{HTK20}
+ \int_{\mathbb R}\psi(x)d\mu(x)
+   =\frac12\sum_{\epsilon=\pm1}\int_0^\infty
+                         \Phi(u)\psi(\epsilon u)du,
+ \qquad \mu(\mathbb R)=I_0(0,0).
+\end{equation}
+This is the pushforward of the two original $u$ copies,
+with their explicitly displayed weight; it is not a
+probability rescaling. Let $\Sigma(x_1,\ldots,x_k)=\sum_i x_i$
+and define $\mu^{*k}=\Sigma_*(\mu^{\otimes k})$.
+Absolute exponential moments from HTK13 give
+\begin{equation}\tag{HTK21}
+ \int e^{\mathrm i z s}d\mu^{*k}(s)=H_0(z)^k,
+ \qquad
+ T_t(H_0^k)(z)=\int e^{ts^2}\cos(zs)d\mu^{*k}(s).
+\end{equation}
+For the first equality, Fubini factors the integral and
+the sign pairing in HTK20 gives $H_0$. For the second,
+the pushforward definition and HTK18 give exactly HTK14.
+Both measures are even, so exponential and cosine integrals
+coincide. When $t\le0$ the positive measure
+$e^{ts^2}\mu^{*k}$ is at most $\mu^{*k}$, and
+\[
+ \int e^{B|s|}d\mu^{*k}(s)
+ \le\int e^{B\sum_i|x_i|}d\mu^{\otimes k}(\mathbf x)
+ =I_0(0,B)^k.
+\]
+This gives a second proof of HTK19 and specifies the actual
+map from the independent tensor factors to the signed-sum
+coordinate. For unequal parameters, the weight on the
+original tensor coordinates is exactly
+$\exp(\sum_i a_ix_i^2+2t\sum_{i<j}x_ix_j)$; its
+pushforward has the integral HTK14, by the same definition
+and HTK16. In particular the tensor dependence has not been
+replaced by a claim of independent heat after taking the sum.
+
+The characters of the amplitude algebra are the actual HTP15
+characters $\chi_{t,z}(f)=(T_{-t}f)(z)$. Their precise
+comparison with these powers is
+\begin{equation}\tag{HTK22}
+\begin{gathered}
+ \chi_{t,z}\left(\mathop{\star_t}_{i=1}^kH_{a_i}\right)
+                  =\prod_iH_{a_i-t}(z),\\
+ \chi_{t,z}(T_t(H_0^k))=H_0(z)^k,\\
+ \chi_{t,z}(H_{2t}^{\star_t k})=H_t(z)^k.
+\end{gathered}
+\end{equation}
+Apply $T_{-t}$ in HTK11 and use the proved theta heat law.
+For completeness, the character classification uses the
+division identity
+$f(w)-f(z)=(w-z)Q_zf(w)$ with $Q_zf\in\mathcal E$,
+proved with Gaussian bounds in HTP14. For an ordinary
+unital complex character put $z=\chi(w)$ and apply it to
+this identity, obtaining $\chi(f)=f(z)$. Transport by
+$T_t$ gives exactly the characters displayed here.
+The distinction from evaluation is explicit:
+$(w\star_tw)(z)=z^2-2t$, whereas $w(z)^2=z^2$.
+Thus HTK19 controls ordinary values of the displayed
+transported powers, and HTK22 proves the exact character
+values to which they are related. It supplies no lower
+bound excluding a zero of $H_0$ at a nonreal point, and
+proves no zero-location or RH conclusion.
+
+\subsection{Every independent label and every iterated parity closure}
+
+Let $L$ be the full nontrivial bounded distributive lattice,
+with original carrier
+$S=G_L(\mathbb C)=\{(0,\lambda):\lambda\in L\}
+\cup\{(a,1_L):a\in\mathbb C\}$ and its original coordinate
+join and meet operations. Write $\widehat L=\operatorname{Idl}(L)$;
+its arbitrary joins are generated ideals, its meet is
+intersection, and $\jmath(\lambda)=\downarrow\lambda$.
+The finite-meet distributivity over arbitrary joins proved
+in HSL19 and SHP3 also follows from
+$c=\bigvee_r(c\wedge b_r)$ whenever
+$c\le\bigvee_r b_r$. All infinite support joins below are
+first computed there, without assuming completeness of $L$.
+
+For coefficient support sequences define ordinary convolution
+$*$ and inclusive parity closure by
+\begin{equation}\tag{HTK23}
+ (\nu^{(1)}*\cdots*\nu^{(k)})_n
+       =\bigvee_{r_1+\cdots+r_k=n}\bigwedge_i\nu^{(i)}_{r_i},
+ \qquad
+ (P\nu)_n=\bigvee_{j\ge n,\ j\equiv n\ (2)}\nu_j.
+\end{equation}
+The full closed product of parity flags $P\nu^{(i)}=\nu^{(i)}$
+has the following finite formula in the original $L$:
+\begin{equation}\tag{HTK24}
+\begin{gathered}
+ \mathscr R_{k,n}=
+ \{\mathbf r\in\mathbb N_0^k:\textstyle\sum_i r_i=n\}
+ \ \cup\\
+ \{\mathbf r\in\{0,1\}^k:\textstyle\sum_i r_i>n,
+                                  \ \sum_i r_i\equiv n\ (2)\},\\
+ \mathscr Q_k(\nu^{(1)},\ldots,\nu^{(k)})_n
+       =\bigvee_{\mathbf r\in\mathscr R_{k,n}}
+                                      \bigwedge_i\nu^{(i)}_{r_i}
+       =P(\nu^{(1)}*\cdots*\nu^{(k)})_n.
+\end{gathered}
+\end{equation}
+To prove equality, a term of the last expression has total
+index at least $n$ of the same parity. If its total is larger
+than $n$ and some index is at least $2$, lower that index
+by $2$. The flag inequality weakly increases the label meet.
+After finitely many such steps the total reaches $n$ or all
+indices are $0$ or $1$. The resulting tuple is in
+$\mathscr R_{k,n}$. Thus each term of the parity tail is
+bounded by a term of the finite join in HTK24. Conversely
+every tuple in that finite set occurs in the parity tail.
+This proves both inequalities, and proves that the ideal
+value is the principal ideal of the displayed original label.
+No extra binary tuple can occur for $n\ge k-1$: its total
+would have to be at least $n+2>k$. For $k=2$ the only extra
+term is $\nu^{(1)}_1\wedge\nu^{(2)}_1$ at $n=0$,
+recovering SHP5 exactly.
+
+This is also the actual iterated product, for arbitrary
+parentheses, and it includes raw independent labels.
+For any sequences in $\widehat L$, one has
+\begin{equation}\tag{HTK25}
+ P\bigl((P\nu^{(1)})*\cdots*(P\nu^{(k)})\bigr)
+                  =P(\nu^{(1)}*\cdots*\nu^{(k)}).
+\end{equation}
+Indeed, on expansion, an input label to a closed factor at
+index $r_i$ comes from $a_i\ge r_i$ of the same parity.
+Any outer parity-tail term therefore has
+$\sum_i a_i\ge\sum_i r_i\ge n$ and total parity $n$;
+it occurs in the right side. This gives one inequality.
+The reverse follows from $\nu^{(i)}\le P\nu^{(i)}$.
+Taking $k=2$ in this proved equality allows one to remove
+each internal closure in any iterated closed product.
+Induction on its parenthesization reduces it to the right
+side of HTK25, proving that every intermediate closure is
+accounted for by HTK24, not omitted.
+
+The independently labelled domain $\mathcal D_L$ of SHP6
+consists of $(f,\nu)$ with $f\in\mathcal E$,
+$[z^n]f\ne0\Rightarrow\nu_n=1_L$, and principal ideal
+parity tails $P\jmath(\nu)_n=\downarrow s_n$.
+The labels $\nu_n$ have no further dependence requirement.
+For $k$ such inputs their ordinary coefficient product has
+principal parity-tail generators exactly
+$\mathscr Q_k(s^{(1)},\ldots,s^{(k)})$:
+apply HTK25 in $\widehat L$, and then HTK24 to the
+principal tails. This proves closure within the original
+lattice for the full $k$-fold product.
+
+The flag algebra is the exact image
+\begin{equation}\tag{HTK26}
+ \mathcal A_L=\{(f,\nu):f\in\mathcal E, \nu_n\ge\nu_{n+2},
+               \ [z^n]f\ne0\Rightarrow\nu_n=1_L\},
+ \qquad \mathcal P(f,\nu)=(f,P\nu).
+\end{equation}
+Its binary product $\circ$ uses ordinary amplitude product
+and the closed support product SHP5; HTK25 proves directly
+that $\mathcal P$ takes raw products to these products.
+Its heat group is $U_t(f,\nu)=(T_tf,\nu)$.
+This preserves the carrier: a nonzero output coefficient
+has a nonzero higher coefficient of matching parity, whose
+top label propagates down the flag. Its inverse is $U_{-t}$,
+by the amplitude heat law and the unchanged labels.
+Hence its exact $k$-fold transported product is
+\begin{equation}\tag{HTK27}
+ \mathop{\star_t}_{i=1}^k(f_i,\nu^{(i)})
+   =\left(T_t\left(\prod_iT_{-t}f_i\right),
+                  \mathscr Q_k(\nu^{(1)},\ldots,\nu^{(k)})\right).
+\end{equation}
+This follows by invertible transport from the iterated
+$\circ$ product just proved. It is in the carrier: each
+intermediate ordinary coefficient product with a nonzero
+amplitude has a nonzero contributing term, forcing a top
+support meet; the outer heat map preserves the carrier as
+above. In particular no support label in HTK27 is computed
+by erasing a term of the amplitude series HTK11 when it
+vanishes or when different amplitudes cancel.
+
+\subsection{The full coefficient maps and the exact theta lift}
+
+Retain $K_L=K\otimes_{\mathbb B}L$ and
+$\iota_L(\lambda)=1_K\otimes\lambda$. The nonzero indicator
+$\beta:K\to\mathbb B$ is a semiring map, because tropical
+addition is zero exactly when both inputs are zero and
+a product is zero exactly when a factor is zero. Thus
+$\rho_L=\beta\otimes\operatorname{id}_L$ satisfies
+$\rho_L\iota_L=\operatorname{id}_L$.
+Coordinatewise application proves the injective map
+\begin{equation}\tag{HTK28}
+ \boldsymbol\Phi(f,\nu)
+     =(f,(\iota_L(\nu_n))_{n\ge0}),\qquad
+ \boldsymbol\Phi\left(\mathop{\star_t}_{i=1}^kv_i\right)
+ =\left(\mathop{\star_t}_{i=1}^kf_i,
+             \mathscr Q_k(\iota_L\nu^{(1)},\ldots,
+                                           \iota_L\nu^{(k)})\right).
+\end{equation}
+In the right-hand $\mathscr Q_k$, finite joins and meets are
+respectively addition and multiplication in $K_L$. Every
+term of HTK24 is finite, so preservation follows directly
+from the semiring laws of $\iota_L$. Applying $\rho_L$ to
+every coefficient recovers all original labels. This is
+the actual original coefficient map
+$(a_n,\nu_n)\mapsto(a_n,1_K\otimes\nu_n)$, organized as a
+function and its full flag, and not one global label.
+
+For arbitrary ideal-labelled flags, the exact completed maps
+are
+\begin{equation}\tag{HTK29}
+\begin{gathered}
+ \mathfrak K_L=\operatorname{Idl}_{\mathrm{ord}}(K_L),\\
+ \iota^\#(I)=\{w\in K_L:\exists a\in I,\ w\le\iota_L(a)\},\\
+ \rho^\#(J)=\{\lambda\in L:\exists w\in J,
+                                      \ \lambda\le\rho_L(w)\},\\
+ \rho^\#\iota^\#=\operatorname{id},\qquad
+ \iota^\#(\downarrow\lambda)=\downarrow\iota_L(\lambda).
+\end{gathered}
+\end{equation}
+Here ordered ideals are lower subsets closed under finite
+idempotent sums, with joins generated by unions and products
+generated by pairwise products. The displayed sets are
+ideals: finite sums of two witnesses are witnessed by
+their finite sum in the source ideal. The generator
+description shows preservation of arbitrary joins and
+products by the induced maps; principal units are
+preserved as well. The retraction follows from
+$\rho_L\iota_L=\operatorname{id}$ and monotonicity:
+if $w\le\iota_L(a)$ then $\rho_L(w)\le a$, and each
+$a$ is witnessed by $w=\iota_L(a)$. These are the actual
+HSL33--35 completed maps, with their proof included.
+Applying them coordinatewise to HTK23--27 proves HTK28
+for all ideal-labelled inputs too. The original formula
+is its restriction under the two principal embeddings.
+Thus the arbitrary support completion and the full original
+lattice have an explicit faithful connecting map.
+
+For completeness, the exact passage to one global label is
+$\epsilon(\nu)=\nu_0\vee\nu_1$.
+For a parity flag this is the join of all its entries, since
+every entry is below the first entry of its parity. Expanding
+the finite distributive product gives
+\begin{equation}\tag{HTK30}
+ \epsilon\bigl(\mathscr Q_k(\nu^{(1)},\ldots,\nu^{(k)})\bigr)
+                    =\bigwedge_i(\nu^{(i)}_0\vee\nu^{(i)}_1).
+\end{equation}
+Every term on the left is at most the right side.
+Conversely a term of the distributed right side chooses
+one binary index from each factor; its total has parity
+$0$ or $1$, so it occurs in the corresponding parity-tail
+output at index $0$ or $1$. HTK24 therefore contains that
+term, proving the reverse inequality. The full coefficient
+map commutes with this global map because $\iota_L$
+preserves the finite join. To retain ordinary amplitude
+multiplication after transport, the actual map is
+\begin{equation}\tag{HTK31}
+ \gamma_t(f,\nu)=(T_{-t}f,\epsilon(\nu))\in G_L(\mathcal E),
+ \qquad
+ \gamma_t\left(\mathop{\star_t}_{i=1}^k v_i\right)
+                        =\prod_i\gamma_t(v_i).
+\end{equation}
+HTK11 and HTK30 prove every coordinate of this identity.
+The unchanged amplitude map instead lands in
+$G_L(\mathcal E_t)$, where multiplication is $\star_t$.
+These are the precise synchronization maps proved in
+SHP17--27; no ordinary-product target is silently assigned
+to the unchanged amplitude map.
+
+Finally let $\eta_{2j}=1_L$, $\eta_{2j+1}=0_L$, and use
+the actual theta lift $\mathbf H_a=(H_a,\eta)$ of THS18.
+HTK24 gives
+\begin{equation}\tag{HTK32}
+ \mathscr Q_k(\eta,\ldots,\eta)=\eta,\qquad
+ \mathop{\star_t}_{i=1}^k\mathbf H_{a_i}
+       =\left(\mathop{\star_t}_{i=1}^k H_{a_i},\eta\right),\qquad
+ \mathbf H_t^{\star_t k}=(T_t(H_0^k),\eta).
+\end{equation}
+At any even output degree take $(n,0,\ldots,0)$ in HTK24;
+its meet is top. At an odd output degree every admissible
+tuple has an odd index, hence a bottom factor, so every
+meet is bottom. This proves the first identity and then
+HTK27 proves the other two. For real $a_i,t$, HTK17 forces
+every even label to be top by actual nonvanishing; for
+complex parameters the same prescribed labels are retained.
+Applying HTK28 gives precisely $(a_{2j},1_{K_L})$ at even
+degrees and $(0,0_{K_L})$ at odd degrees. This completes the
+tensor calculation with all coefficient supports, all
+cross couplings and the entire original theta amplitude.

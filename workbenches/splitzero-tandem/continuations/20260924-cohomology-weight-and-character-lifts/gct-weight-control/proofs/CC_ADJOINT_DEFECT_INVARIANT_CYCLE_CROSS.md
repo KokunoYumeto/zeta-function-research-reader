@@ -1,0 +1,731 @@
+# The adjoint-defect receiver and its actual invariant-cycle cross
+
+Complete local derivation. Proof locators **ADC0–ADC9**. This note calculates the invariant-cycle cross of the existing receiver of the positive-adjoint discrepancy. Its attaching map is retained; neither a new coefficient system nor a purity hypothesis is inserted.
+
+## ADC0. Construction stage, correction audit, and inputs
+
+The supporting datum is \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). All operations here take place on the coefficient spaces after complete-history arithmetic reconstruction. No addition, coordinate, metric, midpoint, or extra parity is assigned to the support. The two arithmetic branches retain their own recovered counters.
+
+Before this calculation the connected USER_ARGUMENT_RECONSTRUCTION.md, its correction-precedence table, READ_FIRST_USER_CONSTRUCTION.md, the verbatim WU062 passage, and the WU064–WU065 amendment were read. In particular, an obstruction in a specified coefficient receiver must be connected by actual maps to the other programme objects; an independently selected extension cannot replace the desired lifting problem. WU065 also requires attempting the next calculation using all established results when a preceding result does not give the sought conclusion.
+
+The actual inputs are RGR0–RGR12 in CC_RESIDUE_GYSIN_RECEIVER_INDEPENDENT.md; LNC0–LNC11 in CC_LOCAL_NEARBY_CYCLES_AND_SPECIALIZATION.md; LVD0–LVD9 in CC_LOCAL_VANISHING_DUAL_ARROWS.md; and DC0–DC12 in DELIGNE_INVARIANT_CYCLE_QUOTIENT.md. RGR constructs the source map and current cone. LNC constructs nearby cycles, the exact local cross, and the proper-current/cover signs. DC proves the two weight directions and the exact quotient for Deligne's distinct geometric objects. The positive-adjoint operator is the actual GTAH0–GTAH1 operator in GEOMETRIC_TRANSFER_POSITIVE_ADJOINT_DEFECT.md. No source theorem for finite-rank constructible sheaves is applied to infinite coefficients without the explicit local calculation.
+
+Sheaf derived statements use sheaves of complex vector spaces, and all specified coefficient/current maps are continuous. Kernels and quotients retain their actual topologies; no closed image is inferred from an algebraic quotient. Continuous duals are distinguished from unrestricted algebraic duals.
+
+## ADC1. The full source and the particular attaching map
+
+Use the original source spaces and quotient
+\[
+S=\{f\in\mathcal S(\mathbb R;\mathbb C):f(-v)=f(v),\
+ f(0)=0,\ \int_{\mathbb R}f(v)\,dv=0\},
+\]
+\[
+A=\{a\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^ja(u)|<\infty\
+\text{for every }N,j\},\quad
+\Sigma f(u)=2\sum_{n\geq1}f(nu),
+\]
+\[
+J=\Sigma S,\qquad Q=A/J,\qquad q:A\to Q,\qquad
+B=A'_\beta,\quad j=q':Q'_\beta\hookrightarrow B .
+\tag{ADC1.1}
+\]
+SSI/ESI give closed \(J\) and the continuous inverse of \(\Sigma:S\to J\). SDT/CSD give the strong embedding \(j(Q')=J^\perp\). The prime denotes the continuous complex-linear dual, and \(\beta\) denotes uniform convergence on bounded subsets.
+
+The complete original transform is
+\[
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u},\qquad
+\Theta^{-1}F(u)=\frac{u^{-1/2}}{\pi}
+\int_{\mathbb R}F(1/2+it)u^{-it}\,dt.
+\tag{ADC1.2}
+\]
+It identifies \(J\) with the entire strip-Schwartz ideal of full vanishing jets at the original nontrivial zeros, with orders \(m_\rho\). The retained divisor is
+\[
+f_0(v)=\frac{\pi}{2}v^2(2\pi v^2-3)e^{-\pi v^2},\qquad
+F_0(s)=\Theta\Sigma f_0(s)
+=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\tag{ADC1.3}
+\]
+Its exceptional values remain
+\[
+F_0(0)=F_0(1)=\frac18,\quad F_0(-1)=F_0(2)=\frac{\pi}{24},
+\quad
+F_0(-2k)=\frac{k(2k+1)(-1)^k\pi^k}{2\,k!}\zeta'(-2k)\ne0.
+\tag{ADC1.4}
+\]
+At \(\rho+t\), the full local factor is
+\[
+F_0(\rho+t)=t^{m_\rho}
+\frac{(\rho+t)(\rho+t-1)}8\pi^{-(\rho+t)/2}
+\Gamma((\rho+t)/2)\frac{\zeta(\rho+t)}{t^{m_\rho}}.
+\tag{ADC1.5}
+\]
+Every derivative of this factor is retained. The original arithmetic is
+\[
+\zeta(s)=1+\sum_{n\ge2}n^{-s}=\prod_p(1-p^{-s})^{-1},\quad
+-\frac{\zeta'(s)}{\zeta(s)}
+=\sum_p\sum_{k\ge1}(\log p)p^{-ks}\quad(\Re s>1).
+\tag{ADC1.6}
+\]
+Thus the unit and all prime-power repetitions remain in the source. No modified zero divisor is substituted.
+
+Let \(\mathscr Z\) be the distinct original nontrivial zeros, \(\rho^\#=1-\overline\rho\), and
+\[
+H=\ell^2(\mathscr Z,m),\quad
+\langle x,y\rangle_+=\sum_\rho m_\rho x_\rho\overline{y_\rho},
+\quad(\mathsf Jy)_\rho=y_{\rho^\#}.
+\]
+The actual continuous map \(E:Q\to H\) is \(E(F)_\rho=(\Theta_QF)(\rho)\). Its image contains every finite value vector and is dense. Its full higher-jet kernel is retained in \(Q\). Put \(C=\overline H\), with its conjugate complex structure. For a fixed recovered parameter \(r>1\),
+\[
+(T_ry)_\rho=r^\rho y_\rho,\quad U_r=rT_{1/r},\quad
+D_r=T_r^*-U_r,\qquad
+d_r(\rho):=e^{-i\Im\rho\log r}
+ \bigl(r^{\Re\rho}-r^{1-\Re\rho}\bigr).
+\tag{ADC1.7}
+\]
+Then \((D_ry)_\rho=d_r(\rho)y_\rho\). These are bounded operators by the known open strip. An integer \(r=n\) is a geometric cover degree; a noninteger \(r\) is only a coefficient parameter.
+
+The precise attaching map is
+\[
+A_H(y)(F)=\langle EF,\mathsf Jy\rangle_+,\quad
+\sigma_r:C\to Q'_\beta,\quad
+\sigma_r(\overline y)=A_H(D_ry),\qquad
+a_r=j\sigma_r:C\to B.
+\tag{ADC1.8}
+\]
+\(A_H\) is anti-linear, so \(\sigma_r\) is complex-linear. For a bounded test set \(K\subset Q\),
+\[
+\sup_{F\in K}|\sigma_r(\overline y)(F)|
+\leq \sup_{F\in K}\|EF\|_+\,\|D_r\|\,\|y\|_+,
+\tag{ADC1.9}
+\]
+proving strong continuity and absolute convergence. Density of \(E(Q)\) proves injectivity of \(A_H\); \(j\) is injective. Consequently
+\[
+\ker a_r=\ker\sigma_r=\overline{\ker D_r}
+ =:C_{\rm crit},
+\tag{ADC1.10}
+\]
+where \(C_{\rm crit}\) consists exactly of coordinates supported at the actual critical-line zeros. The equality follows from strict monotonicity of \(r^x\) in (ADC1.7); it asserts neither existence nor nonexistence of an off-line zero.
+
+For comparison with the original residue realization, if
+\(\zeta(\rho+t)=t^{m_\rho}u_\rho(t)\), the functional in (ADC1.8) is the strong limit of the original-\(\zeta\) residues with finite numerators
+\[
+h_{B_0}(y)=\sum_{\rho\in B_0}
+m_\rho(-1)^{m_\rho-1}u_\rho(0)\,
+\overline{(D_ry)_{\rho^\#}}\,
+e_{1-\rho,m_\rho-1},
+\quad
+\mathcal R(F,h)=\sum_\rho\operatorname{Res}_{s=\rho}
+\frac{F(s)h(1-s)}{\zeta(s)}\,ds.
+\tag{ADC1.11}
+\]
+The \(e\)'s are RTT's full-jet isolators. Its residue calculation gives the exact coefficient of the value functional; (ADC1.9) controls the strong limit. Neither multiplicity nor the leading original-zeta unit is omitted.
+
+## ADC2. The current cone, endpoints, and its four local functors
+
+Fix a pole disk with positive coordinate \(z\) at zero or \(1/z\) at infinity. Let \(\mathscr T_A\) be the continuous compact-test current complex,
+\[
+\mathscr T_A^n(U)=(\mathcal E_c^{-n}(U;A))',
+\quad dT(\phi)=(-1)^{n+1}T(d\phi),\quad -2\leq n\leq0.
+\]
+Its constants represent \(\underline B[2]\). Positive Dirac and angular currents satisfy
+\[
+\delta_p\lambda(f)=\lambda(f(p)),\quad
+h_p\lambda(\omega)=\lambda\left(\int\frac{d\arg z_p}{2\pi}\wedge\omega\right),
+\quad dh_p\lambda=\delta_p\lambda.
+\tag{ADC2.1}
+\]
+The last equality is Stokes with positive small-circle integral one. All \(A\)-valued integrals are formed before the functional is applied.
+
+The actual receiver is
+\[
+\mathscr E_r=\operatorname{Cone}(-\delta_pa_r)[-1].
+\]
+In degrees \(-1,0,1\) its terms and differentials are
+\[
+\mathscr T_A^{-2},\quad\mathscr T_A^{-1}\oplus i_*C,\quad
+\mathscr T_A^0,\qquad
+d^{-1}b=(-d_Tb,0),\quad
+d^0(b,x)=-d_Tb+\delta_pa_rx.
+\tag{ADC2.2}
+\]
+It is RGR's actual homotopy pullback; the triangle is
+\[
+\underline B[1]\longrightarrow\mathscr E_r
+\longrightarrow i_*C\xrightarrow{\mathrm{Gys}_B\,a_r}\underline B[2].
+\tag{ADC2.3}
+\]
+On a disk the constant and angular representatives give the continuous cohomology models
+\[
+i^*\mathscr E_r\simeq B[1]\oplus C,\qquad
+R\Gamma(D^*,\mathscr E_r)\simeq B[1]\oplus B[\vartheta_p],
+\]
+\[
+\lambda\longmapsto c_\lambda\quad(\deg-1),\qquad
+x\longmapsto(h_pa_rx,x)\quad(\deg0),
+\quad \mathrm{res}=(1_B,a_r).
+\tag{ADC2.4}
+\]
+Closedness of the latter representative follows from (ADC2.1); the compact-test contraction removes the remaining current terms. These are continuous comparisons on fixed disks, and their cohomology identifications agree as disks shrink, as in CSD/RGR.
+
+Pulling the punctured constant system to the universal cover and contracting leaves
+\[
+R\psi\mathscr E_r=B[1],\quad T=1,\qquad
+\operatorname{sp}:B[1]\oplus C\longrightarrow B[1]
+\text{ is projection}.
+\tag{ADC2.5}
+\]
+Its vanishing cone is \(R\phi\mathscr E_r=C[1]\). Equivalently the shifted functors \(\Psi=R\psi[-1]\), \(\Phi=R\phi[-1]\) have
+\[
+\Psi\mathscr E_r=B,\quad \Phi\mathscr E_r=C,\qquad
+\mathrm{can}=0,\quad\mathrm{var}=a_r.
+\tag{ADC2.6}
+\]
+The positive angular convention fixes the plus in variation; it is the second restriction component in (ADC2.4), not a sign deduced from \(1-T=0\).
+
+The restriction fibre first has coefficient complex
+\[
+B\xrightarrow{b\mapsto(0,b)}C\oplus B
+\xrightarrow{(x,b)\mapsto a_rx}B
+\quad\text{in degrees }-1,0,1.
+\tag{ADC2.7}
+\]
+Cancel its identity pair to obtain
+\[
+i^!\mathscr E_r\simeq[C\xrightarrow{+a_r}B]
+\quad(\deg0,1).
+\tag{ADC2.8}
+\]
+The target is positively oriented: in the shifted current differential,
+\(d h_pb=-\delta_pb\), so the fibre differential gives
+\(d(h_pb,0)=(-\delta_pb,h_pb)\). The positive Dirac class is therefore the positive angular boundary coordinate. This explains why (ADC2.8) has \(+a_r\), whereas a literal standard shifted cone on \(a_r\) has differential \(-a_r\); negating its target gives the displayed comparison.
+
+Both source endpoint lines remain as in RGR10:
+\[
+\mathscr E_{r,\mathrm{full}}=\mathscr E_r\oplus i_*E_p'[-1].
+\tag{ADC2.9}
+\]
+Their stalk and costalk are \(E_p'[-1]\), their nearby complex is zero, and their unshifted vanishing complex is \(E_p'[0]\). Thus they appear in special and support degree \(1\), and vanishing degree \(0\), separately from (ADC2.5)–(ADC2.8).
+
+Here \(E_+=\mathbb C c_0\oplus\mathbb C c_1\) and \(E_-=\mathbb C d_0\oplus\mathbb C d_1\) retain respectively the original value-at-zero and integral channels in the two source charts. Their original coefficient actions are
+\[
+\rho_+(t)|_{E_+}=\operatorname{diag}(1,t),\qquad
+\rho_-(t)|_{E_-}=\operatorname{diag}(t,1).
+\tag{ADC2.10}
+\]
+These are the endpoint components of the complete source maps in (LNC5.2); transposition keeps each indicated coordinate label.
+
+## ADC3. The exact invariant-cycle cross of this receiver
+
+Write
+\[
+S_r=a_r(C)\subset B,\qquad N_r=B/S_r.
+\tag{ADC3.1}
+\]
+These are the actual image and algebraic quotient with their stated topologies. No closedness is asserted. From (ADC2.8), the full support groups are
+\[
+H^0_p(\mathscr E_{r,\mathrm{full}})=C_{\rm crit},\qquad
+H^1_p(\mathscr E_{r,\mathrm{full}})=N_r\oplus E_p'.
+\tag{ADC3.2}
+\]
+Let \(V_i=H^i(R\psi\mathscr E_{r,\mathrm{full}})\),
+\(A_i^{\rm sp}=H^i(i^*\mathscr E_{r,\mathrm{full}})\),
+\(B_i^{\rm punct}=H^i(D^*,\mathscr E_{r,\mathrm{full}})\).
+Define the actual invariants \(C_i^{\rm inv}=V_i^T\), angular coinvariants
+\(K_i=V_{i-1,T}[\vartheta_p]\), and \(O_i=H^{i+1}_p\).
+The only nearby group is \(V_{-1}=B\), with monodromy identity. Thus the entire nonzero cross is:
+
+| \(i\) | \(A_i^{\rm sp}\) | \(K_i\) | \(B_i^{\rm punct}\) | \(C_i^{\rm inv}\) | \(O_i\) | \(\alpha_i\) | \(\partial_i\) |
+|---|---|---|---|---|---|---|---|
+| \(-1\) | \(B\) | \(0\) | \(B\) | \(B\) | \(C_{\rm crit}\) | \(1\) | \(0\) |
+| \(0\) | \(C\) | \(B[\vartheta_p]\) | \(B[\vartheta_p]\) | \(0\) | \(N_r\oplus E_p'\) | \(a_r\) | \(b\mapsto([b],0)\) |
+| \(1\) | \(E_p'\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
+
+The row \(0\to K_i\xrightarrow{j_i}B_i^{\rm punct}\to C_i^{\rm inv}\to0\) has identity \(\pi_{-1}\) and identity \(j_0\). The complete remaining localization part is
+\[
+0\to C_{\rm crit}\to C\xrightarrow{a_r}B
+\xrightarrow{b\mapsto([b],0)}N_r\oplus E_p'
+\xrightarrow{\mathrm{pr}_{E_p'}}E_p'\to0.
+\tag{ADC3.3}
+\]
+Every sign follows from (ADC2.7)–(ADC2.8).
+
+It follows by these actual maps, without a weight argument, that
+\[
+\boxed{\operatorname{im}\partial_i/\partial_i j_iK_i=0
+\quad\text{for every }i.}
+\tag{ADC3.4}
+\]
+At degree \(-1\) the boundary is zero. At degree zero the coinvariant injection is identity, so its boundary image is all \(N_r\oplus0\). The quotient of the whole receiver is still
+\[
+O_0/\partial_0j_0K_0=E_p',
+\tag{ADC3.5}
+\]
+not zero when endpoints are retained. This is exactly the remaining specialization kernel in degree one. Equations (ADC3.4)–(ADC3.5) distinguish the obstruction image from the whole quotient receiver.
+
+The vanishing of (ADC3.4) does not imply the attaching map vanished: it holds for the present \(a_r\) before any conclusion about \(D_r\). The stronger conclusion of DC8 has a different test here:
+\[
+\ker(\partial_0j_0)=S_r,\qquad
+K_0\xrightarrow{\partial_0j_0}\operatorname{im}\partial_0=N_r
+\text{ is injective }\Longleftrightarrow a_r=0
+\Longleftrightarrow D_r=0.
+\tag{ADC3.6}
+\]
+The actual source subquotient in DC5.5 is
+\[
+0\to C_{\rm crit}\to C\xrightarrow{a_r}S_r\to0.
+\tag{ADC3.7}
+\]
+The map \(C/C_{\rm crit}\to S_r\) is a continuous algebraic bijection. We do not assume its inverse continuous for the ambient subspace topology of \(S_r\).
+
+There is also an exact calculation of the stronger DC9 candidate:
+\[
+\frac{A_0^{\rm sp}}{\operatorname{im}(H^0_p\to A_0^{\rm sp})}
+=C/C_{\rm crit}\longrightarrow C_0^{\rm inv}=0.
+\tag{ADC3.8}
+\]
+Its kernel is the entire displayed source quotient, identified algebraically with \(S_r\). Thus the actual next object that must be controlled after the automatically zero invariant-cycle obstruction is \(S_r\), not the already zero quotient (ADC3.4).
+
+## ADC4. The exact relation to the original coefficient quotient
+
+Human-source attribution: the extension of continuous linear functionals is the Hahn–Banach theorem, not a programme result. See Terence Tao, [245B, Notes6: Duality and the Hahn–Banach theorem](https://terrytao.wordpress.com/2009/01/26/245b-notes-6-duality-and-the-hahn-banach-theorem/), Theorem1 and its complex proof (26 January2009). For the locally convex use here, continuity bounds a functional by a continuous seminorm; quotienting its kernel reduces this application to that normed-space theorem. No continuous splitting of the original quotient is thereby asserted.
+
+Write \(S_r^Q=\sigma_r(C)\subset Q'\). Since \(j\) is injective, \(S_r=jS_r^Q\). The full continuous-transpose coefficient row is
+\[
+0\to Q'\xrightarrow jB\xrightarrow{k'}J'\to0,
+\tag{ADC4.1}
+\]
+where \(k:J\hookrightarrow A\). Exactness is the quotient definition and Hahn–Banach on closed \(J\); no strong-open mapping theorem is used. It induces the exact row
+\[
+0\to Q'/S_r^Q\xrightarrow{[\lambda]\mapsto[j\lambda]}
+N_r\xrightarrow{[b]\mapsto k'b}J'\to0.
+\tag{ADC4.2}
+\]
+For injectivity, \(j\lambda\in S_r=jS_r^Q\) implies \(\lambda\in S_r^Q\).
+The middle kernel consists of classes with \(k'b=0\), hence \(b=j\lambda\).
+Surjectivity is that of \(k'\). These prove every exactness assertion.
+
+The row is exactly the pushout of (ADC4.1) along \(Q'\to Q'/S_r^Q\): send a pushout class \([(b,[\lambda])]\) to \([b+j\lambda]\), and send \([b]\) back to \([(b,0)]\). Changing \(\lambda\) by an element of \(S_r^Q\) or using the relation \((j\mu,-[\mu])\) changes the first formula by an element of \(S_r\). Both compositions are identity. The formulas descend from continuous maps and are continuous for quotient topologies.
+
+The sheaf comparison retaining this row is RGR9's actual coefficient fibre
+\[
+\mathscr K_r=\operatorname{Cone}(-\mathrm{Gys}_{Q'}\,\sigma_r)[-1],
+\qquad
+\mathscr K_r\longrightarrow\mathscr E_r
+\longrightarrow\underline{J'}[1]\longrightarrow\mathscr K_r[1].
+\tag{ADC4.3}
+\]
+The first map uses \(j\) on nearby coefficients and \(1_C\) on vanishing coefficients; the second uses \(k'\) and zero. On costalks they are
+\[
+[C\xrightarrow{\sigma_r}Q']\xrightarrow{(1_C,j)}
+[C\xrightarrow{a_r}B]\longrightarrow J'[-1].
+\tag{ADC4.4}
+\]
+These are literal continuous current maps induced by the original \(q\) and \(k\). Their cokernel row is (ADC4.2). In particular the source of the arithmetic boundary-image part is the dual of the same original LNC quotient \(Q\), rather than an unrelated coefficient.
+
+The reduced arithmetic receiver \(\mathscr K_r\) has the endpoint-free part of ADC3's cross, with \(B\) replaced by \(Q'\), \(a_r\) by \(\sigma_r\), and boundary image \(Q'/S_r^Q\). Alternatively \(\mathscr K_{r,\mathrm{full}}=\mathscr K_r\oplus i_*E_p'[-1]\) retains exactly the endpoint terms in the full ADC3 table. Its coinvariant-boundary kernel is exactly \(S_r^Q\). Both invariant-cycle quotients still vanish. This isolates the original arithmetic coefficient inside the full \(A'\) receiver without changing the test for the attaching map.
+
+Finally, the actual morphism \(\mathscr E_r\to D_cP\) of RGR5 has nearby map \(1_B\) and vanishing map \(\sigma_r:C\to Q'\); on costalks it is
+\[
+[C\xrightarrow{a_r}B]\xrightarrow{(\sigma_r,1_B)}
+[Q'\xrightarrow jB].
+\tag{ADC4.5}
+\]
+Its cone is \(i_*\operatorname{Cone}(\sigma_r)\), retaining the kernel
+\(C_{\rm crit}\) and quotient \(Q'/S_r^Q\). It connects ADC3 to the original LNC/LVD dual local arrows by an actual sheaf map. No equality of a Gysin Hom class and an \(M\)-module Ext class is inferred.
+
+## ADC5. The coefficient covariance and the full image map
+
+Write \(T_t^Q\) for the actual dilation induced on \(Q\) and
+\(U_t^Q=tT_{1/t}^Q\). Their value maps intertwine with the corresponding bounded \(T_t,U_t\) on \(H\). GTAH's exact identities are
+\[
+T_t^*=\mathsf JU_t\mathsf J,\qquad
+U_t^*=\mathsf JT_t\mathsf J,\qquad t>0.
+\tag{ADC5.1}
+\]
+Direct evaluation gives, for \(F\in Q\), \(y\in H\),
+\[
+(T_t^Q)'A_H(y)(F)
+=\langle T_t EF,\mathsf Jy\rangle_+
+=\langle EF,T_t^*\mathsf Jy\rangle_+
+=A_H(U_ty)(F).
+\]
+The second identity follows by exchanging \(T_t,U_t\). Since \(D_r\) is diagonal, it commutes with both. Thus, with linear maps on the conjugate space,
+\[
+\sigma_r\,\overline U_t=(T_t^Q)'\sigma_r,\qquad
+\sigma_r\,\overline T_t=(U_t^Q)'\sigma_r,
+\]
+\[
+a_r\,\overline U_t=T_t'a_r,\qquad
+a_r\,\overline T_t=U_t'a_r,\quad U_t'=tT_{1/t}'.
+\tag{ADC5.2}
+\]
+All maps are continuous; transposes are strong-continuous because continuous primal maps carry bounded sets to bounded sets. Consequently \(S_r^Q,S_r\), their exact quotients in ADC4, and \(\ker a_r\) are stable under these actions. Their induced quotient actions are continuous even when an image quotient is not separated.
+
+This gives an exact description on each value coordinate. Let \(e_\rho\in H\) be the vector of value one at \(\rho\) and zero elsewhere, and let
+\(\delta_{\rho^\#,0}\in Q'\) be evaluation at \(\rho^\#\). Then
+\[
+\sigma_r(\overline e_\rho)
+=m_\rho\,\overline{d_r(\rho)}\,\delta_{\rho^\#,0},\qquad
+a_r(\overline e_\rho)
+=m_\rho\,\overline{d_r(\rho)}\,q'\delta_{\rho^\#,0}.
+\tag{ADC5.3}
+\]
+The calculation is substitution into (ADC1.8) and \(m_{\rho^\#}=m_\rho\). In particular, every actual off-critical value functional lies in \(S_r^Q\); it vanishes from this formula exactly when \(\rho\) is on the critical line. Finite-coordinate vectors are dense in \(H\), and the image map is continuous, but this does not assert density of finite primal full-jet blocks in \(Q\) or closedness of \(S_r\).
+
+On a nonzero image line the two actions have exactly matching source and target eigenvalues:
+\[
+\begin{array}{c|c|c}
+\text{action}&C/C_{\rm crit}\text{ at }\overline e_\rho
+&S_r\text{ at }q'\delta_{\rho^\#,0}\\ \hline
+\overline U_t\text{ / }T_t'&t^{1-\overline\rho}&t^{\rho^\#}\\
+\overline T_t\text{ / }U_t'&t^{\overline\rho}&t^{1-\rho^\#}.
+\end{array}
+\tag{ADC5.4}
+\]
+The entries are equal because \(\rho^\#=1-\overline\rho\). This is an intertwining map on the actual entire source, with displayed formulas on its value coordinates; it is not a proposed replacement arithmetic.
+
+The continuous pairing with the original full quotient is equally exact. Define
+\[
+Z_r=\{F\in Q:\sigma_r(x)(F)=0\text{ for every }x\in C\}.
+\tag{ADC5.5}
+\]
+Using (ADC1.8) and the positive inner product gives
+\[
+\sigma_r(\overline y)(F)
+=\langle EF,\mathsf JD_ry\rangle_+
+=\langle D_r^*\mathsf JEF,y\rangle_+,
+\]
+\[
+Z_r=\ker(D_r^*\mathsf JE)
+=\{F\in Q:F(\rho)=0\text{ at every actual off-critical }\rho\}.
+\tag{ADC5.6}
+\]
+For the last equality, the scalar multiplying the reflected value is nonzero exactly at an off-critical zero; reflection preserves that subset. All higher jets remain in \(Z_r\) when the values vanish. The pairing descends to
+\[
+(Q/Z_r)\times(C/C_{\rm crit})\longrightarrow\mathbb C,\quad
+([F],[\overline y])\longmapsto\sigma_r(\overline y)(F).
+\tag{ADC5.7}
+\]
+It is separately induced by the continuous original pairing. Its left and right radicals are zero by (ADC5.6) and the injectivity calculation (ADC1.10). This proves a concrete relation to the original \(Q\), without asserting that either infinite-dimensional quotient is the entire continuous dual of the other. Topological completions and image closures are additional calculated receivers, not used to change (ADC5.7).
+
+## ADC6. What the genuine power-cover maps do to this cross
+
+For a recovered integer \(n\geq1\), the proper-current map over \(b_n(z_p)=z_p^n\) is a map \(b_{n*}\mathscr E_r\to\mathscr E_r\). Its literal nearby source is \(B^n[1]\), with cyclic permutation monodromy, and its nearby map is
+\[
+(b_0,\ldots,b_{n-1})\longmapsto T_n'\sum_{j=0}^{n-1}b_j.
+\tag{ADC6.1}
+\]
+To derive it, pull back the target universal cover: it has \(n\) contractible inverse components. On each component the holomorphic local isomorphism preserves the positive orientation and pushes its constant current to \(T_n'b_j\); add the branches. This is the same full branch calculation as LNC6.14 and retains all \(n\) components.
+
+On nearby invariants the map is \(nT_n'\); on the angular coinvariants, identified by sum, it is \(T_n'\). A proper map has a single inverse-image pole here, so its actual stalk maps and positive costalk maps are
+\[
+\begin{array}{c|cc}
+&\text{first displayed degree}&\text{second displayed degree}\\ \hline
+i^*\mathscr E_r=B[1]\oplus C&nT_n'&\overline U_n\\
+i^!\mathscr E_r=[C\to B]&\overline U_n&T_n'.
+\end{array}
+\tag{ADC6.2}
+\]
+For the point-supported coordinate this uses (ADC5.2):
+\(a_r\overline U_n=T_n'a_r\). For the current differential, pushforward commutes with \(d\), and Dirac pushforward gives
+\(b_{n*}\delta_p\lambda=\delta_pT_n'\lambda\).
+The angular current pushes forward with degree one; its \(n\) local inverse branches each contribute \(1/n\). This proves the entire chain map, not only its induced eigenvalues.
+
+The independently constructed weighted geometric trace on the original primal sheaf has transpose giving the reverse map
+\(\mathscr E_r\to b_{n*}\mathscr E_r\). Its full nearby map and invariant/coinvariant factors are
+\[
+b\longmapsto(T_{1/n}'b,\ldots,T_{1/n}'b),\qquad
+B_{\rm inv}:T_{1/n}',\qquad B_{\rm coinv}:nT_{1/n}'=U_n'.
+\tag{ADC6.3}
+\]
+The finite-coordinate diagonal has sum \(nT_{1/n}'\), which fixes the angular factor. The point map is \(\overline T_n\), and the costalk identity is exactly
+\(a_r\overline T_n=U_n'a_r\). Thus on the cross the resulting maps are
+\[
+i^*: (T_{1/n}',\overline T_n),\qquad
+i^!: (\overline T_n,nT_{1/n}').
+\tag{ADC6.4}
+\]
+The existence of the entire sheaf trace, including its finite-coordinate nearby/vanishing correction, is constructed in DCA3–DCA7 of CC_ADJOINT_DEFECT_COVER_ACTIONS.md. Its actual remaining coordinates can be displayed here. Put \(V_n=B^n\), let \(\mathsf t(v)_j=v_{j-1}\) with cyclic indices, and let \(\Delta b=(b,\ldots,b)\), \(\Sigma_n v=\sum_jv_j\), \(e_0b=(b,0,\ldots,0)\). The letter \(\mathsf t\) denotes sheet monodromy and is distinct from the support \(\tau\). Then
+\[
+\Phi(b_{n*}\mathscr E_r)=C\oplus(V_n/\Delta B),\quad
+\mathrm{can}_n(v)=(0,[v]),\quad
+\mathrm{var}_n(x,[v])=e_0a_rx-(\mathsf t-1)v,
+\]
+\[
+\mathsf t_\Phi(x,[v])=(x,[\mathsf t v-e_0a_rx]).
+\tag{ADC6.6}
+\]
+These are DCA3.7–DCA3.9's actual cut-cone coordinates. In particular
+\(\mathrm{var}_n\mathrm{can}_n=1-\mathsf t\) and
+\(\mathrm{can}_n\mathrm{var}_n=1-\mathsf t_\Phi\).
+The constant stalk restriction is \(\Delta\), and its angular restriction is \(e_0a_r\); applying \(\Sigma_n\) recovers exactly \(a_r\), with no lost degree factor.
+
+Proper-current pushforward on this full vanishing space is
+\((x,[v])\mapsto\overline U_nx\).
+For the reverse map define
+\[
+c_x=T_{1/n}'a_rx,\qquad
+w_n(x)=(0,c_x,2c_x,\ldots,(n-1)c_x).
+\]
+Its full vanishing arrow is
+\[
+x\longmapsto(\overline T_nx,[w_n(x)]),\qquad
+(\mathsf t-1)w_n(x)=ne_0c_x-\Delta c_x.
+\tag{ADC6.7}
+\]
+The zeroth component of the last equality is \((n-1)c_x\), and each remaining component is \(-c_x\). Since \(a_r\overline T_nx=nc_x\), this proves the entire variation square:
+\[
+\mathrm{var}_n(\overline T_nx,[w_n(x)])
+=\Delta T_{1/n}'a_rx.
+\tag{ADC6.8}
+\]
+The correction is also the actual gluing homotopy. In the punctured circle complex
+\([V_n\xrightarrow{\mathsf t-1}V_n]\) in degrees \((-1,0)\), the difference between the two stalk-restriction composites is \(d\,w_n+w_n\,d\). DCA3.5 realizes the sheaf from the homotopy fibre of
+\(Rj_*L\oplus i_*S^{\mathrm{st}}\to i_*i^*Rj_*L\), \((u,s)\mapsto u-\mathrm{res}(s)\).
+On its restriction fibre the map is explicitly
+\((s,v)\mapsto(f_Ss,f_Nv+w_n(s))\);
+substitution in \(d(s,v)=(ds,\mathrm{res}(s)-dv)\) proves the chain identity. This constructs the sheaf map rather than inferring it from cohomology. All finite-coordinate operations are continuous. Thus (ADC6.3)–(ADC6.4) are the invariant/coinvariant maps of this full arrow, not a holomorphic \(n\)-th-root inverse. The additional \(V_n/\Delta B\) has been retained.
+
+Both maps descend to \(N_r=B/S_r\), by (ADC5.2). On the positive boundary \(\partial_0:B\to N_r\oplus E_p'\) they commute because the induced quotient actions are precisely the actions of \(T_n'\) or \(nT_{1/n}'\) on the same representative \(b\). The coefficient covariance also proves commutation with every map in (ADC4.2)–(ADC4.5). The endpoint summands are transported by their original dual pole characters: current pushforward uses the dual endpoint part of \(\rho_p(n)\), and the weighted-transfer transpose uses the corresponding \(n\rho_p(1/n)'\). Their boundary component remains zero and their inclusion/projection is unchanged.
+
+In the dual coordinate labels of (ADC2.10), these endpoint maps are explicitly
+\[
+\begin{array}{c|cc}
+&E_+'&E_-'\\ \hline
+\text{current pushforward}&\operatorname{diag}(1,n)&\operatorname{diag}(n,1)\\
+\text{weighted-transfer transpose}&\operatorname{diag}(n,1)&\operatorname{diag}(1,n).
+\end{array}
+\tag{ADC6.5}
+\]
+The second row is obtained by substituting \(t=1/n\) in (ADC2.10) and multiplying the transpose by the retained degree \(n\).
+
+For \(t>0\) not an integer, (ADC5.2) still gives the actual coefficient actions. The maps in this paragraph with geometric degree \(n\) are not reinterpreted as noninteger covers.
+
+## ADC7. Testing Deligne's two weight directions on the actual boundary
+
+DC6–DC8 use two independent inputs: an upper bound on the special-fibre classes and a lower bound on the coinvariants and supported cohomology, the latter obtained by genuine duality with its retained Tate factor. The full source conclusion is stronger than (ADC3.4): it identifies the low-weight piece with \(\ker\partial\), disjoint from the coinvariant summand, and proves
+\(\partial j:K_i\to\operatorname{im}\partial_i\) injective.
+
+Here all these maps have been computed. In degree zero, special classes map by \(a_r:C\to K_0=B\). Thus a separation that killed the intersection of special image and coinvariants would kill exactly \(S_r\), by (ADC3.6). We now test the existing actions on that intersection.
+
+For a fixed geometric degree \(n>1\), define the logarithmic weight of a scalar \(\lambda\ne0\) as
+\(w_n(\lambda)=2\log|\lambda|/\log n\).
+This is an explicit modulus calculation, not an assertion that the coefficient space is a finite-dimensional mixed Frobenius module.
+Under current pushforward, the invariant nearby line indexed by \(\rho^\#\) has scalar \(n^{1+\rho^\#}\), whereas its angular coinvariant has scalar \(n^{\rho^\#}\). Their respective logarithmic weights are
+\[
+2(2-\Re\rho),\qquad 2(1-\Re\rho).
+\tag{ADC7.1}
+\]
+The decrease by two is the trace direction of this current pushforward; it is not Deligne's pullback Tate increase.
+
+For the weighted-transfer transpose, the invariant line has scalar \(n^{-\rho^\#}\) and the angular line has scalar \(n^{1-\rho^\#}\). Their weights are
+\[
+-2(1-\Re\rho),\qquad 2\Re\rho.
+\tag{ADC7.2}
+\]
+This has the positive angular increase by two. Nevertheless the special source class \(\overline e_\rho\) has exactly the same angular scalar \(n^{\overline\rho}=n^{1-\rho^\#}\), by (ADC5.4). Under the pushforward it likewise has exactly the same scalar as the angular target, \(n^{\rho^\#}\). Consequently neither actual direction separates the source quotient \(C/C_{\rm crit}\) from \(S_r\): on every nonzero image line they have identical eigenvalues. Multiplying both sides of an equivariant map by a common Tate character shifts both weights equally and does not change this equality. Multiplying only one side would require a different map or action; none is inserted here.
+
+The full boundary image \(N_r\) has a further exact source component that also prevents assigning it a uniform one-sided weight bound from these formulas. For any \(s_0\) not an original nontrivial zero, evaluation
+\[
+\epsilon_{s_0}(a)=\Theta a(s_0)\in B
+\tag{ADC7.3}
+\]
+is continuous and has nonzero restriction to \(J\), because \(F_0(s_0)\ne0\). Since \(S_r\subset J^\perp\), its class in \(N_r\) is nonzero. Under current pushforward angular action \(T_n'\) it has scalar \(n^{s_0}\); under weighted-transfer angular action \(nT_{1/n}'\) it has scalar \(n^{1-s_0}\). The resulting weights
+\[
+2\Re s_0,\qquad 2(1-\Re s_0)
+\tag{ADC7.4}
+\]
+are unbounded in both directions as \(s_0\) ranges outside the original divisor. This uses the actual \(J'\) quotient in (ADC4.2), with the full entire \(F_0\), including its nonzero endpoint and trivial-zero values. It is not a hypothetical zeta spectrum.
+
+Passing to the arithmetic subreceiver \(\mathscr K_r\) removes precisely this \(J'\) quotient by the proven triangle (ADC4.3). It leaves the actual row
+\[
+0\to S_r^Q\to Q'\to Q'/S_r^Q\to0
+\tag{ADC7.5}
+\]
+and the special-image map \(\sigma_r\). Its kernel is still \(C_{\rm crit}\), and its nonzero image lines still have the matching weights (ADC5.4). Thus the next useful attempted reduction has been performed: the full unwanted coefficient quotient is removed by an exact existing map, while the arithmetic intersection that DC's stronger argument would have to kill remains explicitly \(S_r^Q\).
+
+Finally, the normal separator \(c\) from GMS/FOD has identity action on the entire original \(\mathcal Q\); its transpose is identity on \(Q'\). Hence it acts as identity on \(S_r^Q\), not zero. The actual equality \(ce_+=0\) for the translated normal extension cannot therefore be reused as \(c\sigma_r=0\). The precise relation is the original dual extension and its pushout in ADC4. This verifies the existing attempt using the full earlier results rather than substituting the already killed normal class for the present attaching map.
+
+## ADC8. The continuous transpose and the actual original-quotient cross
+
+Human-source attribution: this use of the complex Hilbert-space Riesz representation theorem is classical. See Terence Tao, [245B, Notes5: Hilbert spaces](https://terrytao.wordpress.com/2009/01/17/254a-notes-5-hilbert-spaces/), Theorem1, Remark2 and Exercise15 (17 January2009). Remark2 identifies the continuous dual with the conjugate Hilbert space; the explicit conjugate-space map and adjoint convention in the present calculation remain displayed below.
+
+The coefficient transpose can be computed without assuming a duality theorem. Identify
+\[
+C'=(\overline H)'\simeq H,\qquad
+x\longmapsto(\overline y\longmapsto\langle x,y\rangle_+).
+\tag{ADC8.1}
+\]
+This is the strong topological Riesz isomorphism for the conjugate Hilbert space. Evaluation \(A\to(A'_\beta)'\), followed by \(a_r'\), gives
+\[
+b_r:A\longrightarrow H,\qquad
+b_r=D_r^*\mathsf J E q.
+\tag{ADC8.2}
+\]
+Indeed, on \(\overline y\),
+\[
+a_r'(\mathrm{ev}_f)(\overline y)
+=a_r(\overline y)(f)
+=\langle E qf,\mathsf JD_ry\rangle_+
+=\langle D_r^*\mathsf JE qf,y\rangle_+.
+\tag{ADC8.3}
+\]
+Every map here is continuous, by (ADC1.9). Define also
+\[
+\beta_r:Q\to H,\qquad \beta_r=D_r^*\mathsf JE,\qquad
+b_r=\beta_rq.
+\tag{ADC8.4}
+\]
+Its kernel is exactly \(Z_r\) from (ADC5.5)–(ADC5.6); it retains all higher jets and all critical-line values.
+
+The actual coefficient cone to which these maps apply is
+\[
+\mathscr P_r=\operatorname{Cone}
+(\underline A\xrightarrow{b_r\,\mathrm{ev}_p}i_*H)
+=[\,\underline A^{-1}\xrightarrow{+b_r}i_*H^0\,].
+\tag{ADC8.5}
+\]
+This is constructed by the displayed map on the original source. The following cross uses its literal two-term complex, so no arbitrary exactness of continuous dualization is being presumed.
+
+The required current-level comparison is now explicit. ACD2–ACD4 in CC_ADJOINT_DEFECT_CONTINUOUS_DUAL.md construct the fine resolution
+\[
+\mathscr L_r^{-1}=\mathscr E_A^0,\quad
+\mathscr L_r^0=\mathscr E_A^1\oplus i_*H,\quad
+\mathscr L_r^1=\mathscr E_A^2,\qquad
+d^{-1}f=(-df,b_rf(p)),\quad d^0(\omega,h)=-d\omega.
+\tag{ADC8.5a}
+\]
+Inclusion of locally constant functions and the identity on \(H\) compare (ADC8.5) with this resolution. The coefficient-valued Poincaré contraction proves this is a quasi-isomorphism. It does not require the image of \(b_r\) to be closed. Use the fixed-support smooth seminorms and their compact-support locally convex inductive limit to form the actual continuous Hom sheaf
+\(\mathscr D_r^k(U)=\Gamma_c(U,\mathscr L_r^{-k})'\), with
+\(d_{\mathscr D}\ell=(-1)^{k+1}\ell d_{\mathscr L}\).
+Its degrees \((-1,0,1)\) are the current terms
+\(\mathscr T_A^{-2},\mathscr T_A^{-1}\oplus i_*H',\mathscr T_A^0\), and
+\[
+d_{\mathscr D}^{-1}v=(d_Tv,0),\qquad
+d_{\mathscr D}^{0}(u,\lambda)=d_Tu-\delta_pb_r'\lambda.
+\tag{ADC8.5b}
+\]
+For instance the second formula on a test \(f\) is
+\(-u(-df)-\lambda(b_rf(p))\); this fixes both signs.
+With \(R:C\to H'\), \(R(\overline y)(h)=\langle h,y\rangle_+\), equation (ADC8.3) gives \(b_r'R=a_r\). The map
+\[
+\mathscr D_r\longrightarrow\mathscr E_r,\qquad
+v\mapsto-v\ (\deg-1),\quad
+(u,Rx)\mapsto(u,x)\ (\deg0),\quad
+w\mapsto-w\ (\deg1)
+\tag{ADC8.5c}
+\]
+is a continuous chain isomorphism: the differential composites are
+\((d_Tv,0)\) and \(-d_Tu+\delta_pa_rx\).
+This identifies \(\mathscr E_r\) with the literal continuous support-dual complex of the constructed \(\mathscr P_r\) resolution. It is not an assertion that continuous dualization is exact on every locally convex complex. The positive compact-form pairing in outer degrees has the minus signs just displayed; the point pairing is \(R(x)(h)\). ACD3's compact-support contraction proves the local support comparison, with the same positive Dirac class as (ADC2.8).
+
+Its restriction to the puncture is \(\underline A[1]\), and its pole complex is \([A^{-1}\xrightarrow{b_r}H^0]\). Therefore
+\[
+R\psi\mathscr P_r=A[1],\quad T=1,\quad
+H^{-1}(i^*\mathscr P_r)=\ker b_r,\quad
+H^0(i^*\mathscr P_r)=H/b_rA.
+\tag{ADC8.6}
+\]
+The map to \(A[1]\oplus A[\vartheta_p]\) is identity on the degree-minus-one \(A\) and zero on \(H\). In its restriction fibre the degree-zero coordinate is \(H\oplus A\), with preceding differential
+\(a\mapsto(b_ra,a)\). Its quotient coordinate is \( (h,a)\mapsto h-b_ra\). This cancels the identity pair and gives
+\[
+i^!\mathscr P_r\simeq H[0]\oplus A[-1],\qquad
+\partial_{-1}=-b_r:A\to H,\qquad
+\partial_0=+1:A[\vartheta_p]\to A.
+\tag{ADC8.7}
+\]
+The last sign is positive after the same cochain shift as in LVD3/RGR6; it also follows from the retained positive Dirac coordinate in the fibre. The full source includes the endpoint term
+\[
+\mathscr P_{r,\mathrm{full}}=\mathscr P_r\oplus i_*E_p''[1],
+\tag{ADC8.8}
+\]
+where \(E_p''\simeq E_p\) by finite-dimensional evaluation, with both original labels retained. This contributes special/support degree \(-1\), no nearby group, and unshifted vanishing degree \(-2\).
+
+The resulting entire nonzero cross is:
+
+| \(i\) | special \(A_i\) | \(K_i\) | punctured \(B_i\) | nearby invariants \(C_i\) | support \(O_i\) | \(\alpha_i\) | \(\partial_i\) |
+|---|---|---|---|---|---|---|---|
+| \(-2\) | \(0\) | \(0\) | \(0\) | \(0\) | \(E_p''\) | \(0\) | \(0\) |
+| \(-1\) | \(\ker b_r\oplus E_p''\) | \(0\) | \(A\) | \(A\) | \(H\) | \((a,e)\mapsto a\) | \(-b_r\) |
+| \(0\) | \(H/b_rA\) | \(A[\vartheta_p]\) | \(A[\vartheta_p]\) | \(0\) | \(A\) | \(0\) | \(+1\) |
+
+In particular the genuine invariant-cycle obstruction is now
+\[
+\boxed{\operatorname{im}\partial_{-1}/\partial_{-1}j_{-1}K_{-1}
+=b_rA=\beta_rQ,\qquad
+\operatorname{coker}\operatorname{sp}_{-1}
+=A/\ker b_r\simeq Q/Z_r.}
+\tag{ADC8.9}
+\]
+The first identification of the cokernel with the image uses \([a]\mapsto-b_ra\), retaining the boundary sign. The induced algebraic bijection \(Q/Z_r\to b_rA\) can equivalently use \([F]\mapsto\beta_rF\) when the minus is stated separately. Quotient topologies are retained, and no inverse for its ambient image topology is asserted. All other obstruction images vanish.
+
+This dual direction receives the original LNC quotient through an explicit map of the full local source. Put
+\(\mathsf P=\mathscr F_{\rm red}[1]\simeq\operatorname{Cone}(q\,\mathrm{ev}_p)\), with terms \(\underline A^{-1}\to i_*Q^0\). Then
+\[
+f_r:\mathsf P\longrightarrow\mathscr P_r,\qquad
+f_r^{-1}=1_A,\quad f_r^0=\beta_r
+\tag{ADC8.10}
+\]
+is a continuous sheaf chain map since \(\beta_rq=b_r\). On the full objects add the original evaluation \(E_p[1]\to E_p''[1]\). Its nearby map is identity \(A\), and its vanishing map is \(\beta_r:Q\to H\). On support degree zero it is \(\beta_r\), and on support degree one it is identity \(A\). Thus the original boundary \(-q:A\to Q\) and the new boundary \(-b_r:A\to H\) satisfy
+\[
+\begin{array}{ccc}
+A&\xrightarrow{-q}&Q\\
+\Vert&&\downarrow\beta_r\\
+A&\xrightarrow{-b_r}&H .
+\end{array}
+\tag{ADC8.11}
+\]
+It satisfies all four commuting-map identities (DC10.2), with the explicit shifts and coefficients just computed. Here those identities are proved on the displayed continuous complexes; the finite-dimensional Frobenius hypotheses used for DC10's weight conclusions are not asserted for them. Its induced map on obstruction images is the actual surjection
+\[
+Q\xrightarrow{\beta_r}\beta_rQ,\qquad
+\ker\beta_r=Z_r.
+\tag{ADC8.12}
+\]
+This constructs the precise arithmetic subquotient of the original local defect, rather than naming two different receivers as if they were identical.
+
+The transpose is also the actual old current map (ADC4.5), with its representative sign retained. On the fine resolutions of the plus-\(q\) and plus-\(b_r\) cones, \(f_r\) is identity on forms and \(\beta_r\) on the point term; its transpose is identity on currents and \(\beta_r'R=\sigma_r\) on point functionals. The literal dual of the plus-\(q\) cone in the sign convention (ADC8.5c) is \(\operatorname{Cone}(-\delta_pq')[-1]\). The accepted RGR representative is \(\operatorname{Cone}(+\delta_pq')[-1]\); their comparison negates the point coordinate. Therefore the map into that accepted representative is \((u,x)\mapsto(u,-\sigma_rx)\), as proved directly in (ACD4.4). Its positive costalk coordinates are still \((\sigma_r,1_B)\), by the simultaneous coordinate comparisons in (RGR6.3a). Thus the local source square and the earlier current comparison are related by an actual continuous transpose, rather than by a coincidence of coefficient groups.
+
+Finally \(b_r=0\) if and only if \(D_r=0\): if \(b_r=0\), the bounded map \(D_r^*\mathsf J\) vanishes on dense \(E(Q)\), hence on \(H\); conversely \(D_r=0\) makes every formula zero. Therefore the new cross's surjectivity in degree \(-1\) is equivalent to vanishing of the actual adjoint discrepancy. Unlike (ADC3.4), its obstruction image is the part that detects that discrepancy.
+
+The exact coefficient actions on this new boundary can also be calculated:
+\[
+\beta_r T_t^Q=U_t^*\beta_r,\qquad
+\beta_r U_t^Q=T_t^*\beta_r,\qquad
+b_rT_t^A=U_t^*b_r,\quad b_rU_t^A=T_t^*b_r.
+\tag{ADC8.13}
+\]
+For the first equality, \(E T_t^Q=T_tE\) and
+\(\mathsf JT_t=U_t^*\mathsf J\) by (ADC5.1); the diagonal \(D_r^*\) commutes with \(U_t^*\). This gives
+\(D_r^*\mathsf J T_tE=U_t^*D_r^*\mathsf JE\).
+The second follows with \(T_t,U_t\) exchanged; composing with \(q\) gives the remaining formulas.
+They define actual continuous chain maps on (ADC8.5), and show that the two coefficient directions descend to its invariant-cycle image.
+For a value class in \(Q/Z_r\) supported at an actual \(\rho\), its nonzero image lies at \(\rho^\#\) in \(H\). A representative in the complete \(Q\) can still have higher-jet Jordan terms; these lie in the recorded kernel \(Z_r\), rather than being deleted from \(Q\). The source and target scalars on the indicated quotient and image are respectively
+\[
+t^\rho=t^{\,1-\overline{\rho^\#}},\qquad
+t^{1-\rho}=t^{\,\overline{\rho^\#}}.
+\tag{ADC8.14}
+\]
+Their weights again agree on every nonzero image line. This proves the compatibility directly on the new cross, rather than inferring a vanished map from the existence of the two actions.
+
+## ADC9. Exact outcome and source-use record
+
+The two calculated crosses test different parts of the same actual attaching data:
+\[
+\begin{array}{c|c|c}
+\text{receiver}&\text{invariant-cycle obstruction image}
+&\text{additional retained defect}\\ \hline
+\mathscr E_r&0&S_r=\ker(K_0\to\operatorname{im}\partial_0)\\
+\mathscr P_r&b_rA\simeq Q/Z_r&
+H/b_rA\text{ in special degree }0.
+\end{array}
+\tag{ADC9.1}
+\]
+Their source maps are the actual \(a_r(\overline y)=q'A_H(D_ry)\) and
+\(b_r=D_r^*\mathsf JE q\), not independent examples. The complete point-source quotient \(C/C_{\rm crit}\) and the original arithmetic quotient \(Q/Z_r\) are joined by the nondegenerate pairing (ADC5.7). The comparison maps with the original source are (ADC4.5), (ADC8.10), and the boundary square (ADC8.11). The full original dual extension survives as the pushout (ADC4.2), with the source kernel and every endpoint degree retained.
+
+The next attempted step required by WU065 has therefore been carried out. Starting from the automatically vanishing invariant-cycle cokernel of \(\mathscr E_r\), the calculation first isolates the stronger coinvariant-injectivity defect, then removes its full \(J'\) coefficient quotient by the actual source triangle, and then constructs the transpose cone receiving the original invariant-cycle quotient. Its obstruction is precisely the image of the adjoint discrepancy on original classes. The two actual coefficient directions are computed on that image in (ADC8.13)–(ADC8.14); neither has separated source and target weights there. This describes the proved effect of the existing maps, without declaring a finite-field purity theorem for these coefficients or using a new twist to force one.
+
+Reading coverage for this derivation: the connected USER_ARGUMENT_RECONSTRUCTION.md, its correction-precedence table, the verbatim WU062 and WU064–WU065 passages; the complete DC0–DC12 proof; LVD0–LVD9; RGR0–RGR12, including the full original-source, current-cone and positive-adjoint distinctions; GTAH0–GTAH4; ACD0–ACD8, with the literal current-resolution and source-map comparison in ACD2–ACD4 used in ADC8; DCA0–DCA12, including its complete cut-cone, genuine cover/trace and composition homotopies, with DCA3 and DCA6 used explicitly in ADC6; and the accepted LNC0–LNC11 proof, previously authored and independently reviewed here. LNC's current, nearby and support maps are used with their already proved continuous contractions and signs. The original source references and their exact witness status are preserved in DC0, LNC11, LVD0 and RGR0. In particular Deligne's local invariant-cycle proof is read through the identified current French transcription of Weil II; this is not claimed to be Deligne-authored TeX.
+
+This is a calculation on the actual recovered arithmetic and current/sheaf maps. It establishes neither an off-critical zero nor the vanishing of \(D_r\). It supplies the exact subquotients and commuting maps through which that discrepancy enters the stronger Deligne comparison.

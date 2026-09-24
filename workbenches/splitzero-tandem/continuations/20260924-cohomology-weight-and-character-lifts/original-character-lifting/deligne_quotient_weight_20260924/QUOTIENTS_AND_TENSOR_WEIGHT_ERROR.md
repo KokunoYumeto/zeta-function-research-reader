@@ -1,0 +1,341 @@
+# Exact equivariant quotients and tensor weight error in the original zeta receiver
+
+Independent mathematical derivation, 24 September 2026. This note uses the actual Mellin quotient and prime actions defined in IH2–IH3 and PL6. It proves the quotient maps and their effects rather than treating “quotientable” as a synonym for “pure.” It does not assume a Deligne weight estimate for this receiver.
+
+Source notation is retained: \(Z_0\) is absence; \(Z_1\) is primitive presence \(\tau\), without \(Z_2\) parity. Addition on source \(\tau\) is not defined here. The vector-space zero and scalar identities below belong to receiving algebras. Neither is identified with source absence or with \(\tau\). Every support coefficient is retained by an explicitly specified identity map in QS8.
+
+## QS1. The actual local and global objects
+
+Let \(\mathcal A\), \(I\), and \(Q=\mathcal A/I\) be precisely IH2.1:
+\[
+p_{N,j}(k)=\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jk(u)|<\infty,\qquad
+I=\overline{\mathcal E(S_0^{\mathrm{even}})}^{\mathcal A},
+\]
+\[
+\mathcal E f(u)=u^{1/2}\sum_{n\ge1}f(nu),\qquad
+F_k(s)=\int_0^\infty k(u)u^{s-1/2}\frac{du}{u}.
+\tag{QS1.1}
+\]
+The conditions defining \(S_0^{\mathrm{even}}\) are even Schwartz regularity, \(f(0)=0\), and \(\int_{\mathbb R}f=0\). Every symbol below is an observation in this receiver of the original, uncompleted zeta function.
+
+For an actual nontrivial zero \(\rho\) with multiplicity \(m\), retain
+\[
+A_{\rho,m}=\mathbb C[t_\rho]/(t_\rho^m),\qquad
+j_{\rho,m}([k])=\sum_{j=0}^{m-1}\frac{F_k^{(j)}(\rho)}{j!}t_\rho^j.
+\tag{QS1.2}
+\]
+For \(a>0\), the clock operator and its full local multiplier are
+\[
+W_a k(u)=a^{1/2}k(u/a),\qquad
+w_{a,\rho,m}=a^\rho\sum_{j=0}^{m-1}\frac{(\log a)^j}{j!}t_\rho^j.
+\tag{QS1.3}
+\]
+Thus \(j_{\rho,m}W_a=M_{w_{a,\rho,m}}j_{\rho,m}\). The factor \(a^{1/2}\) in the original operator and every nilpotent coefficient are retained. IH2–IH3 prove that these maps descend through \(I\), that \(j_{\rho,m}\) is onto, and that their product is onto for any finite set of distinct zeros.
+
+No deformation of the arithmetic counting measure is presumed merely from the existence of a spectral character.
+
+## QS2. Complete classification on one primary block
+
+Fix \(p>1\), put \(\lambda=p^\rho\), and write \(T=M_{t_\rho}\). Then
+\[
+M_w=\lambda\exp((\log p)T),\qquad T^m=0,
+\]
+\[
+X=\lambda^{-1}M_w-I,\qquad
+T=\frac1{\log p}\sum_{j=1}^{m-1}\frac{(-1)^{j+1}}jX^j.
+\tag{QS2.1}
+\]
+These are finite polynomial identities: substitute into \(\log(\exp z)=z\) modulo \(z^m\). Conversely \(M_w=\lambda\sum_{j=0}^{m-1}(\log p)^jT^j/j!\).
+
+A complex-linear subspace \(K\subset A_{\rho,m}\) is \(M_w\)-invariant if and only if it is \(T\)-invariant, by these two polynomial identities. Such a subspace is an ideal, because it is invariant under every polynomial in \(t_\rho\).
+
+Every ideal is exactly \((t_\rho^r)\) for a unique \(r\in\{0,\ldots,m\}\). For a nonzero ideal, take its least nonzero degree \(r\), and select \(t_\rho^r u(t_\rho)\) with \(u(0)\ne0\). The inverse of \(u\) is a finite geometric polynomial in its nilpotent part, so the ideal contains \(t_\rho^r\). Minimality of \(r\) says that every other element is divisible by \(t_\rho^r\). The zero ideal corresponds to \(r=m\).
+
+Consequently every equivariant quotient is, up to equivariant linear isomorphism, the exact truncation
+\[
+q_r:A_{\rho,m}\longrightarrow A_{\rho,r}
+ =\mathbb C[t_\rho]/(t_\rho^r),\qquad 0\le r\le m.
+\tag{QS2.2}
+\]
+Here \(r=0\) denotes the zero vector space; for every \(r\ge1\) the surviving operator is multiplication by
+\[
+p^\rho\sum_{j=0}^{r-1}\frac{(\log p)^j}{j!}t_\rho^j,\qquad
+\det(XI-M_{w,r})=(X-p^\rho)^r.
+\tag{QS2.3}
+\]
+A nonzero quotient cannot change \(p^\rho\). It can shorten the nilpotent block or kill the entire block. These are all possibilities in this category.
+
+The intertwiner space between blocks at the same \(\rho\), of lengths \(m,r\), is explicit. Formula (QS2.1) shows that an intertwiner commutes with \(t_\rho\). It is determined by the image \(v\) of the constant polynomial and must satisfy \(t_\rho^mv=0\). Thus
+\[
+\operatorname{Hom}_{W_p}(A_{\rho,m},A_{\rho,r})
+\cong t_\rho^{\max(r-m,0)}A_{\rho,r}.
+\tag{QS2.4}
+\]
+The map sends \(f(t_\rho)\) to \(f(t_\rho)v\); it is surjective precisely when \(m\ge r\) and \(v(0)\ne0\).
+
+## QS3. Two counted primes separate all distinct zero characters
+
+For complex \(\rho,\nu\),
+\[
+2^\rho=2^\nu,\quad3^\rho=3^\nu
+\quad\Longrightarrow\quad \rho=\nu.
+\tag{QS3.1}
+\]
+Indeed \((\rho-\nu)\log2=2\pi ia\) and \((\rho-\nu)\log3=2\pi ib\) for integers \(a,b\). A nonzero difference forces \(a,b\ne0\) and \(\log2/\log3=a/b\), contradicting unique factorization after exponentiation.
+
+For a finite set \(S\) of distinct actual zeros, put
+\[
+B_S=\prod_{\rho\in S}A_{\rho,m_\rho}.
+\]
+There is \(c\in\mathbb C\) for which \(\lambda_\rho=2^\rho+c3^\rho\) are pairwise distinct. Each equality forbids at most one \(c\), unless its coefficients of \(c\) agree; in that case (QS3.1) makes the constant coefficients different, so no \(c\) is forbidden.
+
+Set \(M=M_{w_2}+cM_{w_3}\). On the \(\rho\)-block,
+\((M-\lambda_\rho I)^{m_\rho}=0\). The pairwise coprime polynomials \((X-\lambda_\rho)^{m_\rho}\) have Chinese-remainder projectors \(P_\rho(X)\):
+\[
+P_\rho\equiv1\bmod(X-\lambda_\rho)^{m_\rho},\qquad
+P_\rho\equiv0\bmod(X-\lambda_\nu)^{m_\nu}\quad(\nu\ne\rho).
+\]
+Bezout's identity constructs them. Evaluating at \(M\) gives the exact projection onto each block.
+
+Any subspace \(K\subset B_S\) invariant under \(W_2,W_3\) is invariant under these projections. QS2 therefore gives
+\[
+K=\prod_{\rho\in S}(t_\rho^{r_\rho}),\qquad
+0\le r_\rho\le m_\rho.
+\tag{QS3.2}
+\]
+Conversely every displayed \(K\) is invariant under every \(W_a\). This is the complete finite spectral quotient classification for all prime actions.
+
+No nonzero simultaneous \(W_2,W_3\) intertwiner connects blocks at distinct \(\rho,\nu\). At least one prime has distinct eigenvalues by (QS3.1); Bezout's identity for its two coprime minimal-polynomial factors forces that intertwiner to vanish. Thus equivariant isomorphism cannot transport an off-critical block to a critical block.
+
+This is for the original fixed actions. PL2 treats a simultaneous change of clock separately: \(\zeta(s)\) becomes \(\zeta(cs)\), and both its zero and reflection line rescale. That comparison does not make an off-critical position critical relative to the rescaled line.
+
+## QS4. Reflection-compatible quotients retain the off-critical value form
+
+Take the full actual off-critical orbit
+\[
+\mathcal O_\rho=(\rho,\ 1-\overline\rho,\ \overline\rho,\ 1-\rho),
+\quad \rho=\beta+i\gamma,\quad0<\beta<1,\quad
+\beta\ne\tfrac12,\quad\gamma\ne0.
+\]
+All four multiplicities are \(m\). Reflection is
+\[
+(x^\#)_\omega(t)=\overline{x_{1-\overline\omega}}(-t).
+\tag{QS4.1}
+\]
+A quotient in QS3 carries this involution exactly when
+\[
+r_\omega=r_{1-\overline\omega}.
+\tag{QS4.2}
+\]
+The original conjugation symmetry further imposes \(r_\omega=r_{\overline\omega}\). All four lengths then agree. Length zero kills the whole orbit; any positive length retains all four characters.
+
+Retain the original-multiplicity form
+\[
+H_m(x,y)=m\sum_{\omega\in\mathcal O_\rho}
+\overline{x_{1-\overline\omega}(0)}y_\omega(0).
+\tag{QS4.3}
+\]
+Its radical is the product of the four ideals \((t_\omega)\), because its value matrix is the invertible matrix \(m\operatorname{diag}(J_2,J_2)\), with
+\[
+J_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+Every quotient with all \(r_\omega\ge1\) has kernel in that radical, so the form descends. Its value signature remains \((2,2)\); values \((1,-1,0,0)\) give \(-2m\). Quotienting higher jets cannot make this form positive.
+
+The descended form still has coefficient \(m\), the original multiplicity. Intrinsic trace on a shortened block would have coefficient \(r_\omega\). Replacing \(m\) by \(r_\omega\) would alter the original trace datum.
+
+No prescribed finite value vector is asserted to vanish at all other zeta zeros. IH3 gives surjectivity onto this finite orbit; this signature statement is about its exact finite receiving form. The global form retains all other zeros.
+
+## QS5. The greatest globally invisible quotient is explicit
+
+For the set \(Z\) of distinct actual nontrivial zeros define
+\[
+J_{\mathrm{val}}=\bigcap_{\rho\in Z}\ker(F_\bullet(\rho)),\qquad
+J_{\mathrm{jet}}=\bigcap_{\rho\in Z}\ker j_{\rho,m_\rho}.
+\tag{QS5.1}
+\]
+These are closed invariant convolution ideals. Closedness follows from continuity of Mellin derivatives. The ideal property follows from the character and algebra-map product laws. Full multiplier formulas prove invariance under \(W_a\); permutation of zeros and jets proves invariance under the original symmetries.
+
+For \(\pi_K:Q\to Q/K\), all original value observations factor through \(\pi_K\) exactly when
+\[
+K\subset J_{\mathrm{val}},
+\tag{QS5.2}
+\]
+and all full original jets factor exactly when
+\[
+K\subset J_{\mathrm{jet}}.
+\tag{QS5.3}
+\]
+Proof: a linear map factors through a quotient exactly when it vanishes on its kernel. Apply this to each specified observation.
+
+Thus \(Q/J_{\mathrm{val}}\) and \(Q/J_{\mathrm{jet}}\) are the greatest reductions retaining respectively every value and every jet. Every quotient satisfying (QS5.3) has the unique induced map
+\[
+Q/K\longrightarrow Q/J_{\mathrm{jet}},\qquad
+q+K\longmapsto q+J_{\mathrm{jet}}.
+\tag{QS5.4}
+\]
+Each original \(j_{\rho,m_\rho}\) is still onto from this terminal observation quotient, since it was onto from \(Q\). Every actual character and original primary length survives.
+
+For value preservation alone, the nonzero maps \(F_\bullet(\rho)\) remain onto \(\mathbb C\). On an equivariant quotient, \(j_{\rho,m_\rho}(K)\) is \(W_p\)-invariant, hence is an ideal by QS2. Value preservation forces that ideal into \((t_\rho)\). The induced local quotient therefore has positive length: jets may shorten, but the character cannot disappear.
+
+No equality \(J_{\mathrm{jet}}=0\), or unsupplied spectral-synthesis theorem, is asserted. Removing any extra vectors in this intersection still changes no zero character. IH6 already provides a complete joint-grid receiver with kernel \(J_{\mathrm{val}}\), giving a concrete injective realization of \(Q/J_{\mathrm{val}}\).
+
+Preserving the original meromorphic zeta function has an additional elementary consequence: equality in its original variable fixes all zero germs and their orders. It cannot simultaneously assert a changed zero set of that same function. A new conclusion about those zeros' positions requires an estimate rather than another invocation of uniqueness.
+
+## QS6. Actual tensor powers with every nilpotent retained
+
+The \(k\)-fold tensor power of one block is exactly
+\[
+A_{\rho,m}^{\otimes k}
+=\mathbb C[t_1,\ldots,t_k]/(t_1^m,\ldots,t_k^m).
+\tag{QS6.1}
+\]
+With \(N=t_1+\cdots+t_k\), its diagonal prime multiplier is
+\[
+w_{p,\rho,m}^{\otimes k}
+=p^{k\rho}\prod_{i=1}^k\left(\sum_{j=0}^{m-1}
+\frac{(\log p)^jt_i^j}{j!}\right)
+=p^{k\rho}\sum_{j=0}^{k(m-1)}\frac{(\log p)^jN^j}{j!}.
+\tag{QS6.2}
+\]
+The multinomial identity proves this equality in the stated quotient. Its dimension is \(m^k\). The nilpotence order of \(N\) is exactly \(k(m-1)+1\): larger total degree forces an exponent at least \(m\), while
+\[
+N^{k(m-1)}
+=\frac{(k(m-1))!}{((m-1)!)^k}
+\,\prod_{i=1}^k t_i^{m-1}\ne0.
+\tag{QS6.3}
+\]
+For \(m=1\), this says \(N^0=1\) and \(N=0\).
+
+For every repetition \(r\ge1\),
+\[
+\operatorname{Tr}((W_p^{\otimes k})^r)=m^kp^{kr\rho},
+\qquad
+\det(XI-W_p^{\otimes k})=(X-p^{k\rho})^{m^k}.
+\tag{QS6.4}
+\]
+Every positive-degree term is strictly triangular in a degree-ordered monomial basis. This proves both identities without deleting nilpotents from the actual operator.
+
+For the full four-point algebra \(B_\rho\), distribute the tensor product:
+\[
+B_\rho^{\otimes k}
+=\prod_{(\omega_1,\ldots,\omega_k)\in\mathcal O_\rho^k}
+\mathbb C[t_1,\ldots,t_k]/(t_1^m,\ldots,t_k^m).
+\tag{QS6.5}
+\]
+On its indicated factor the multiplier is exactly
+\[
+p^{\omega_1+\cdots+\omega_k}
+\left(\sum_{j=0}^{k(m-1)}\frac{(\log p)^jN^j}{j!}\right).
+\tag{QS6.6}
+\]
+All mixed choices of reflected and conjugate characters remain. Consequently
+\[
+\operatorname{Tr}((W_p^{\otimes k})^r)
+=m^k\left(\sum_{\omega\in\mathcal O_\rho}p^{r\omega}\right)^k,
+\tag{QS6.7}
+\]
+\[
+\det(XI-W_p^{\otimes k})
+=\prod_{(\omega_1,\ldots,\omega_k)\in\mathcal O_\rho^k}
+\left(X-p^{\omega_1+\cdots+\omega_k}\right)^{m^k}.
+\tag{QS6.8}
+\]
+Coincident eigenvalues add their positive integer multiplicities; they do not cancel.
+
+## QS7. The tensor exponent error is computed, not assumed bounded
+
+For a finite matrix \(A\) with nonzero distinct eigenvalues \(\lambda_j\) and positive integer algebraic multiplicities \(d_j\),
+\[
+\sum_{r\ge0}\operatorname{Tr}(A^r)z^r
+=\sum_j\frac{d_j}{1-\lambda_jz}
+\tag{QS7.1}
+\]
+near zero. Distinct denominators have distinct poles and nonzero residues. The radius of this series is \(1/\max_j|\lambda_j|\), so Cauchy's coefficient-radius formula gives
+\[
+\limsup_{r\to\infty}|\operatorname{Tr}(A^r)|^{1/r}
+=\max_j|\lambda_j|.
+\tag{QS7.2}
+\]
+This handles cancellation among trace terms and all multiplicities; it requires no lower bound for each individual repetition.
+
+Apply this to the actual operator on \(B_\rho^{\otimes k}\). Set
+\[
+b=\max(\beta,1-\beta),\qquad
+\delta=b-\tfrac12=|\beta-\tfrac12|.
+\]
+All tuples have real exponent at most \(kb\), and repeating a character with real part \(b\) attains it. Therefore
+\[
+L_{p,k}
+=\limsup_{r\to\infty}
+\frac{\log|\operatorname{Tr}((W_p^{\otimes k})^r)|}{r\log p}
+=kb,
+\]
+\[
+\boxed{E_{p,k}:=L_{p,k}-\frac{k}{2}=k\delta.}
+\tag{QS7.3}
+\]
+The logarithm at a zero trace term is \(-\infty\), which does not affect (QS7.2). Every prime action and every repetition is retained in this definition.
+
+The actual estimate supplied by the critical strip is
+\[
+|\operatorname{Tr}((W_p^{\otimes k})^r)|
+\le(4m)^kp^{rk},\qquad r,k\ge1.
+\tag{QS7.4}
+\]
+Every one of the four summands in (QS6.7) has modulus at most \(p^r\). This proves (QS7.4). Its error relative to \(k/2\) is \(k/2\), growing with \(k\), so it supplies no amplification to zero.
+
+Among the calculated nonnegative sequences \(E_{p,k}=k\delta\), the ones with bounded supremum are exactly the zero sequence. More generally the sequences with \(E_{p,k}/k\to0\) are exactly the zero sequence. These follow directly from \(\delta\ge0\). They classify the error sequences; they do not assert that the actual receiver has either bound.
+
+For comparison with the numerical form of a Deligne amplification, an estimate shaped as
+\[
+|\operatorname{Tr}((W_p^{\otimes k})^r)|
+\le C_k r^{d_k}p^{r(k/2+c)}
+\tag{QS7.5}
+\]
+has exponent at most \(k/2+c\), because for fixed \(k\) its \(r\)-th root loses the factors \(C_k^{1/r}r^{d_k/r}\). Its exponent error is the fixed \(c\), independent of \(k\). Comparing the exact (QS7.3) gives \(k\delta\le c\), and the preceding sequence classification removes \(\delta>0\).
+
+Equation (QS7.5) is a comparison of estimate shapes. It is not proved for the programme in this note and is not supplied as an assumption completing RH. The proved results are the actual exponent (QS7.3), actual bound (QS7.4), and full quotient classification. Every positive-length reflection-compatible quotient retains the same \(b,\delta\); shortening multiplicities changes finite trace coefficients but not the exponential rate.
+
+The tensor product here is the complex-linear receiving tensor product proved in QS6. No tensor comparison from a source cohomology is assumed by changing notation, and no operation on source \(\tau\) appears in its exponent computation.
+
+## QS8. Every support label is retained with the exact kernel
+
+Let \(C_{\mathrm{coeff}}\) be the programme's formal receiving coefficient algebra, with separate recorded symbols \(U=[\tau]\), \(f=[1]\), and let \(W_L\) be the vector space on all specified support labels. Put \(V=C_{\mathrm{coeff}}\otimes_\mathbb C W_L\). Their vector operations define no addition on source \(\tau\).
+
+Use exactly
+\[
+q\otimes\operatorname{id}_V,\qquad
+j_{\rho,m}\otimes\operatorname{id}_V.
+\tag{QS8.1}
+\]
+Choose a basis of \(V\). Every algebraic tensor is a finite sum \(\sum_\alpha x_\alpha\otimes v_\alpha\) in independent basis elements. Its image is zero precisely when each \(q(x_\alpha)\) is zero. Hence
+\[
+\ker(q\otimes\operatorname{id}_V)=(\ker q)\otimes V.
+\tag{QS8.2}
+\]
+Every named support coordinate remains the same coordinate. A surviving character survives in every nonzero coefficient coordinate; no supported label is identified with source absence by these maps.
+
+This is the exact identity-on-labels extension. It does not assert that every possible quotient of a larger mixed coefficient category preserves labels. Such a quotient needs its own definition.
+
+## QS9. Consequence for the proposed global quotient route
+
+The canonical original-zeta reconstruction fixes the arithmetic measure and original meromorphic function. The quotient classification now gives:
+
+1. Killing a block removes its zero observation; it is detectable.
+2. Shortening a block retains the character and loses specified higher derivatives; it does not retain complete original jets.
+3. Removing the global joint observation kernel retains every observation, including any off-critical one.
+4. Equivariant isomorphism for fixed prime actions preserves every character; \(2,3\) already separate them.
+5. Tensor powers of a surviving off-critical orbit have exact exponent error \(k|\beta-\tfrac12|\), with all mixed sectors and nilpotents present.
+
+A quotient invisible to all retained observations therefore cannot make an observed off-critical character critical. It can remove unobserved receiver data. This proves the distinction through the actual quotient maps and kernels.
+
+No proof or disproof of RH is asserted. The result identifies the invariant that a geometric weight estimate must control and calculates why invisible quotienting or meromorphic uniqueness alone cannot change it.
+
+## Reading and source identity
+
+Read completely for this derivation:
+
+- IH1–IH8, original local programme source: INTEGRAL_HISTORY_AND_PURITY.md
+- PL1–PL8, original local programme source: PRIME_CLOCK_LOOPS_AND_Z1.md
+
+QS2–QS8 supply complete finite-algebra, quotient, and tensor proofs. No historical novelty is asserted for these elementary mechanisms. This independent note has not read Deligne's full source; the coordinating task is undertaking the human-source reconstruction and must supply precise theorem locators. No alleged Deligne theorem is used as an input here.

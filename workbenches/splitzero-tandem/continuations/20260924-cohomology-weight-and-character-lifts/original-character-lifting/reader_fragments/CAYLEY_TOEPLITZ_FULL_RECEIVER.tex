@@ -1,0 +1,752 @@
+% Independent mathematical derivation. Prefix CTP. Requires amsmath,amssymb,hyperref.
+\section{The exact Cayley--Toeplitz receiver of the original entire zero trace}
+\label{sec:cayley-toeplitz-full-receiver}
+
+\paragraph{Objects and provenance.}
+The entire function is the original Rodgers--Tao function
+$H(Z)=H_0(Z)=\xi(1/2+iZ/2)/8$, with its original factor $1/8$,
+coordinate $Z$, and positive theta kernel. The source is Brad Rodgers
+and Terence Tao, \href{https://arxiv.org/abs/1801.05914v5}{\emph{The
+de Bruijn--Newman constant is non-negative}}, the displayed definitions
+of $\Phi$ and $H_t$ and the identity $H_0=\xi/8$.
+The complete local-jet and Laurent receiver used here is (ALM1)--(ALM32),
+\emph{A finite rational Laurent witness for every off-real heat zero};
+the retained positive block and its exact residual are (RWR18)--(RWR27),
+\emph{Independent reproduction of the supplied rational witness}.
+The Toeplitz comparison source is Alain Connes and Walter D. van
+Suijlekom, \href{https://arxiv.org/abs/2511.23257v1}{\emph{Quadratic
+Forms, Real Zeros and Echoes of the Spectral Action}}, original
+\path{Araki-final-oct25.tex},
+the introduction's Corollary \texttt{corcar} and Section 2,
+Proposition \texttt{toeplitzcase}, read directly in source lines
+751--949. Their statement is the Carath\'eodory--Fej\'er theorem's
+corank-one consequence, with its positivity and rank hypotheses.
+The present calculation connects that receiver to Toeplitz forms;
+it does not identify a finite Toeplitz eigenvector with a theta kernel.
+All implications and maps used for this connection are proved below.
+The support carrier is the original foundation retained under the
+byline The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split Support Geometry}, v11, Definition \texttt{def:lattice-split}}.
+
+\subsection{The actual function, every zero, and the complete rational domain}
+
+Keep, without rescaling,
+\begin{equation}\tag{CTP1}
+ H(Z)=\int_0^\infty\Phi(u)\cos(Zu)\,du,\qquad
+ \Phi(u)=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})
+                         e^{-\pi n^2e^{4u}}.
+\end{equation}
+Every summand is positive for $u\ge0$. The bound
+$0<\Phi(u)\le C e^{9u-(\pi/2)e^{4u}}$, with
+$C=2\pi^2\sum_{n\ge1}n^4e^{-(\pi/2)n^2}<\infty$, follows by
+discarding the negative summand and using
+$n^2e^{4u}\ge(n^2+e^{4u})/2$. Thus $H$ is entire, even, and real on
+the real axis, and differentiation under its integral is valid on
+every compact set. In particular
+\begin{equation}\tag{CTP2}
+ H(iy)=\int_0^\infty\Phi(u)\cosh(yu)\,du>0
+ \quad(y\in\mathbb R).
+\end{equation}
+Write $\mathcal Z$ for its distinct zeros and $m_w$ for the full
+multiplicity of $w\in\mathcal Z$. The estimates and paired
+factorization in (ALM2)--(ALM4) give
+\begin{equation}\tag{CTP3}
+ \sum_{w\in\mathcal Z}\frac{m_w}{|w|^2}<\infty,\qquad
+ H(Z)=H(0)\prod_{\{w,-w\}}(1-Z^2/w^2)^{m_w},\qquad
+ \ell(Z):=\frac{H'(Z)}{H(Z)}
+   =\sum_{\{w,-w\}}\frac{2m_wZ}{Z^2-w^2}.
+\end{equation}
+Here the product takes one representative of each sign pair, whereas
+all sums below labeled $\mathcal Z$ take both roots and all
+multiplicities. For reference, the bound on $\Phi$ gives
+$\log\max_{|Z|\le R}|H(Z)|=O(R\log(2+R))$ by maximizing
+$Ru-(\pi/8)e^{4u}$. Jensen's formula gives
+$n(R)=O(R\log(2+R))$, and dyadic summation gives the first statement.
+Hadamard factorization, paired under $w\mapsto-w$, then gives the
+displayed product: the remaining exponential is of degree at most
+one and its linear term is zero by evenness. The logarithmic
+derivative follows locally uniformly off the zeros. These growth
+and product facts matter: evenness and the zero set alone would not
+exclude multiplying $H$ by $e^{Z^2}$ and changing $\ell$.
+There are infinitely many distinct zeros, since a finite product
+would be a polynomial, whereas every coefficient
+$(-1)^j\int u^{2j}\Phi(u)du/(2j)!$ is nonzero.
+
+Fix a real $b>0$. By (CTP2), $0,ib,-ib$ are not zeros. Let
+\begin{equation}\tag{CTP4}
+ \mathscr A_b=\{F\in\mathbb C(Z):
+   \text{all finite poles of }F\text{ belong to }\{0,ib,-ib\},
+   \ F(Z)=O(Z^{-1})\text{ at infinity}\}.
+\end{equation}
+This is a complex vector space, preserved by
+$F^\dagger(Z)=\overline{F(\bar Z)}$. It contains the original Laurent
+space $\mathscr R=\{Z^{-1}p(Z^{-2}):p\in\mathbb C[X]\}$.
+Its full local-jet map and pairing are
+\begin{equation}\tag{CTP5}
+\begin{split}
+ j_b(F)&=([F]_w)_{w\in\mathcal Z}
+   \in\prod_{w\in\mathcal Z}\mathcal O_{\mathbb C,w}/(H),\\
+ \mathcal T(F,G)&=\sum_{w\in\mathcal Z}m_w
+                  \overline{F(\bar w)}G(w)
+  =\sum_{w\in\mathcal Z}\operatorname{Res}_{Z=w}
+          F^\dagger(Z)G(Z)\ell(Z)\,dZ.
+\end{split}
+\end{equation}
+The series is absolutely convergent by (CTP3), since its summands
+are $O(m_w|w|^{-2})$ outside a finite set. Every local algebra retains
+its original length $m_w$: if $H=(Z-w)^mU$ with $U(w)\ne0$, then
+$\ell=m/(Z-w)+U'/U$, giving the displayed residue. Only the resulting
+trace kills nilpotents. The jet map itself retains them. A rational
+function vanishing in all these jets vanishes at infinitely many
+distinct points and is zero, so $j_b$ is injective. The infinite
+pairing is defined on $\mathscr A_b$ or its specified injective image,
+not on an unrestricted product of local algebras. Conjugation of the
+sum and the substitution $w\mapsto\bar w$ prove that $\mathcal T$
+is Hermitian.
+
+The original arithmetic residue factors remain exactly
+$s=1/2+iZ/2$, $g(s)=16H(-2i(s-1/2))$,
+$ds/g=(i/32)dZ/H$, and $\alpha^*g'=-32iH'$. Their product is one.
+Consequently (CTP5) is the same Jacobian residue contraction as
+(ALM7)--(ALM8), extended to the indicated rational domain.
+
+\subsection{A finite partial-fraction rule for the entire zero trace}
+
+Suppose $r\in\mathbb C(Z)$ has poles only in $\{0,ib,-ib\}$ and is
+$O(Z^{-2})$. Its unique partial fraction expansion is
+\begin{equation}\tag{CTP6}
+ r(Z)=\sum_{a\in\{0,ib,-ib\}}\sum_{n=1}^{N_a}
+                  A_{a,n}(Z-a)^{-n},\qquad
+ \sum_a A_{a,1}=0.
+\end{equation}
+The last equality is its vanishing coefficient of $Z^{-1}$ at
+infinity. Every coefficient is an exact finite derivative:
+$A_{a,n}=\left[(\partial_Z^{N_a-n}/(N_a-n)!)
+((Z-a)^{N_a}r(Z))\right]_{Z=a}$ when $N_a$ is the pole order.
+Then
+\begin{equation}\tag{CTP7}
+ \sum_{w\in\mathcal Z}m_w r(w)
+  =-\sum_{a\in\{0,ib,-ib\}}\sum_{n=1}^{N_a}
+          \frac{A_{a,n}}{(n-1)!}\ell^{(n-1)}(a).
+\end{equation}
+For $n\ge2$, differentiating the paired, locally uniform series in
+(CTP3) gives
+$\sum_w m_w(w-a)^{-n}=-\ell^{(n-1)}(a)/(n-1)!$.
+For the simple-pole terms, use $\sum_a A_{a,1}=0$ before summation:
+$\sum_a A_{a,1}(w-a)^{-1}
+=\sum_a A_{a,1}((w-a)^{-1}-w^{-1})$.
+Each difference is $O(|w|^{-2})$ and its sum is $-\ell(a)$ by the
+paired product and $\ell(0)=0$. This proves (CTP7) without assigning
+an absolutely convergent meaning to an isolated $\sum_w1/w$.
+Apply (CTP7) to $r=F^\dagger G$ to compute every finite matrix of
+(CTP5) from finitely many derivatives of the actual $H$ at
+$0,ib,-ib$. It is an exact finite evaluation rule with all zeros
+present, not a truncation of the zero multiset.
+
+\subsection{Cayley coordinates, the Toeplitz matrix, and its exact finite map}
+
+Set
+\begin{equation}\tag{CTP8}
+ C_b(Z)=\frac{Z-ib}{Z+ib},\qquad
+ F_j(Z)=\frac{C_b(Z)^j}{Z+ib}\quad(j\in\mathbb Z),\qquad
+ c_k(b)=\sum_{w\in\mathcal Z}
+               \frac{m_w}{w^2+b^2}C_b(w)^k\quad(k\in\mathbb Z).
+\end{equation}
+The values $C_b(w)$ are nonzero and finite. They tend to one as
+$|w|\to\infty$. Thus, for every fixed integer $k$, $C_b(w)^k$ is
+bounded over the root set and $|w^2+b^2|^{-1}=O(|w|^{-2})$.
+This proves absolute convergence of every $c_k$ and of every
+pairing of the $F_j$.
+
+The involution has the precise, necessary orientation
+\begin{equation}\tag{CTP9}
+ C_b^\dagger=C_b^{-1},\qquad
+ F_i^\dagger(Z)=\frac{C_b(Z)^{-i}}{Z-ib}=F_{-i-1}(Z),\qquad
+ F_i^\dagger F_j=\frac{C_b^{j-i}}{Z^2+b^2}.
+\end{equation}
+For $d\ge1$ define the complex-linear injection
+\begin{equation}\tag{CTP10}
+ W_{b,d}:\mathbb C^d\longrightarrow\mathscr A_b,\quad
+ a\longmapsto\sum_{j=0}^{d-1}a_jF_j,\qquad
+ T_d(b)=(c_{j-i}(b))_{0\le i,j<d}.
+\end{equation}
+Equations (CTP5) and (CTP9) prove, with no scalar factor missing,
+\begin{equation}\tag{CTP11}
+ \mathcal T(W_{b,d}a,W_{b,d}v)=a^*T_d(b)v.
+\end{equation}
+The map is injective because $C_b$ is a nonconstant rational
+coordinate. The identities $C_b(-w)=C_b(w)^{-1}$ and
+$C_b(-\bar w)=\overline{C_b(w)}$, together with the unchanged
+multiplicities and weights, give
+\begin{equation}\tag{CTP12}
+ c_{-k}=c_k=\overline{c_k}.
+\end{equation}
+Thus the exact matrix is real symmetric and Toeplitz. This conclusion
+uses both evenness and reality of the original $H$.
+
+The finite coefficient map also has an explicit rational inverse.
+If $p(U)=\sum_{j<d}a_jU^j$, write
+\begin{equation}\tag{CTP13}
+ W_{b,d}a(Z)=\frac{q(Z)}{(Z+ib)^d},\qquad
+ q(Z)=\sum_{j=0}^{d-1}a_j(Z-ib)^j(Z+ib)^{d-j-1}.
+\end{equation}
+This maps all polynomials of degree less than $d$ bijectively to
+all such $q$; the inverse is
+\begin{equation}\tag{CTP14}
+ p(U)=\frac{(1-U)^{d-1}}{(2ib)^{d-1}}
+                  q\!\left(ib\frac{1+U}{1-U}\right).
+\end{equation}
+The right side is a polynomial of degree at most $d-1$ because
+$\deg q<d$. Substituting $U=C_b(Z)$ and
+$1-U=2ib/(Z+ib)$ verifies both compositions exactly. For rational
+$b>0$ these maps have coefficients in $\mathbb Q(i)$.
+The union of the images is precisely the rational functions
+vanishing at infinity whose only possible pole is $-ib$.
+
+\subsection{An exact resolvent from the original logarithmic derivative}
+
+For $z\ne1$ put $v_b(z)=-ib(1+z)/(1-z)$, and let
+$R_b=\sup_{w\in\mathcal Z}|C_b(w)|<\infty$. The geometric series,
+dominated by the absolutely summable weights for $|z|R_b<1$, gives
+\begin{equation}\tag{CTP15}
+\begin{split}
+ G_b(z):=\sum_{k\ge0}c_kz^k
+ &=\sum_{w\in\mathcal Z}
+   \frac{m_w}{(w^2+b^2)(1-zC_b(w))}\\
+ &=\frac{\ell(v_b(z))-\ell(ib)}{2ib}.
+\end{split}
+\end{equation}
+Indeed
+\[
+ \frac1{(w^2+b^2)(1-zC_b(w))}
+ =\frac1{2ib}\left(\frac1{w-ib}-\frac1{w-v_b(z)}\right).
+\]
+The difference is summable and (CTP3) sums it to the stated
+logarithmic derivatives. The expression is meromorphic on
+$\mathbb C\setminus\{1\}$. Alternatively its root series converges
+locally uniformly off $1$ and the indicated poles: outside a finite
+root set, $C_b(w)$ is uniformly close to one and the denominators
+stay uniformly away from zero on such a compact set. Its only
+finite poles away from $1$ are
+\begin{equation}\tag{CTP16}
+ z_w=C_b(w)^{-1}=\frac{w+ib}{w-ib},\qquad
+ \operatorname{Res}_{z=z_w}G_b(z)=-\frac{m_w}{(w-ib)^2}\ne0.
+\end{equation}
+The Cayley map is injective, so distinct roots give distinct poles.
+For a chosen $z_w\ne1$, choose a closed disk about $z_w$ disjoint
+from $1$ and all other poles. Such a disk exists: an infinite
+sequence of distinct roots has modulus tending to infinity, and
+its Cayley pole images tend to $1$; the remaining finitely many
+images are distinct. On this disk the series with the one $w$
+term removed is locally uniformly convergent and holomorphic,
+by the preceding denominator bound. It cannot cancel the pole.
+The multiplicity enters the nonzero residue and cannot disappear.
+For a direct sign check, $v_b'(z)=-2ib/(1-z)^2$, so the residue in
+the last expression of (CTP15) is
+$m_w(1-z_w)^2/(4b^2)=-m_w/(w-ib)^2$.
+
+Putting $z=0$ and using $\ell(-ib)=-\ell(ib)$ gives
+\begin{equation}\tag{CTP17}
+ c_0=-\frac{H'(ib)}{ibH(ib)}
+ =\frac{\int_0^\infty u\Phi(u)\sinh(bu)du}
+           {b\int_0^\infty\Phi(u)\cosh(bu)du}>0.
+\end{equation}
+The strict inequality uses the actual positive kernel in (CTP1),
+not merely the fact that $H(ib)>0$.
+For every $k\ge1$, expand $v_b(z)=-ib-2ibz/(1-z)$ near zero.
+The coefficient of $z^k$ in $(z/(1-z))^r$ is
+$\binom{k-1}{r-1}$ for $1\le r\le k$. Since
+$\ell^{(r)}(-ib)=(-1)^{r+1}\ell^{(r)}(ib)$, one obtains the finite
+formula
+\begin{equation}\tag{CTP18}
+ c_k=-\sum_{r=1}^k
+       \binom{k-1}{r-1}\frac{(2ib)^{r-1}}{r!}\ell^{(r)}(ib).
+\end{equation}
+All derivatives are of the original $H$; its original mass has not
+been reassigned. For example, $c_1=-\ell'(ib)$ equals
+\begin{equation}\tag{CTP19}
+ c_1=\frac{\int u^2\Phi(u)\cosh(bu)du}{\int\Phi(u)\cosh(bu)du}
+ -\left(\frac{\int u\Phi(u)\sinh(bu)du}
+                  {\int\Phi(u)\cosh(bu)du}\right)^2>0.
+\end{equation}
+Cauchy--Schwarz bounds the subtracted numerator by
+$(\int\Phi\cosh)(\int u^2\Phi\sinh^2/\cosh)$, which is strictly
+less than the first product because
+$\cosh-\sinh^2/\cosh=1/\cosh>0$. This proves the last inequality.
+It does not prove $c_1\le c_0$ or any later Toeplitz inequality.
+
+\subsection{Completeness: every nonreal zero yields a two-coefficient test}
+
+If all the roots are real, (CTP8)--(CTP11) give the positive finite
+measure and its exact Toeplitz form
+\begin{equation}\tag{CTP20}
+ \mu_b=\sum_{w\in\mathcal Z}\frac{m_w}{w^2+b^2}\delta_{C_b(w)},
+ \quad \mu_b(\mathbb T)=c_0,\quad
+ a^*T_da=\int_{\mathbb T}|p(U)|^2d\mu_b(U)>0\quad(a\ne0).
+\end{equation}
+Here $\mathbb T=\{U:|U|=1\}$. Strictness follows from infinitely
+many distinct atoms and the fact that a nonzero polynomial has only
+finitely many zeros. No division by $c_0$ has been made.
+
+If a nonreal root exists, conjugation supplies one with
+$\operatorname{Im}w<0$. Directly,
+\begin{equation}\tag{CTP21}
+ |C_b(w)|^2=
+ \frac{(\operatorname{Re}w)^2+(\operatorname{Im}w-b)^2}
+      {(\operatorname{Re}w)^2+(\operatorname{Im}w+b)^2}>1.
+\end{equation}
+Since $C_b(w)\to1$ along unbounded roots, $R_b>1$ is then a
+maximum, attained in a finite set. Equations (CTP15)--(CTP16) show
+that the Taylor series at zero has radius exactly $1/R_b<1$:
+there is no pole at smaller modulus, and a pole at that modulus
+has a nonzero residue. Therefore
+\begin{equation}\tag{CTP22}
+ \limsup_{k\to\infty}|c_k|^{1/k}=R_b>1.
+\end{equation}
+In particular there is a finite $k\ge1$ with $|c_k|>c_0$.
+Because $c_k$ is real, set $\varepsilon_k=\operatorname{sgn}c_k$
+and keep the two coefficients exactly equal to $1,-\varepsilon_k$:
+\begin{equation}\tag{CTP23}
+ f_{b,k}(Z)=\frac{1-\varepsilon_kC_b(Z)^k}{Z+ib},\qquad
+ \mathcal T(f_{b,k},f_{b,k})=2(c_0-|c_k|)<0.
+\end{equation}
+This is a finite integer coefficient vector in the original
+$T_{k+1}$, with zero entries in all positions except $0,k$.
+For rational $b$ the function itself has coefficients in
+$\mathbb Q(i)$. The series giving its trace still includes every
+root and every multiplicity.
+
+For any fixed $b>0$ we have consequently proved the equivalence
+\begin{equation}\tag{CTP24}
+\begin{aligned}
+ &\text{all zeros of the actual }H\text{ are real}\\
+ &\quad\Longleftrightarrow T_d(b)\succ0\text{ for every }d\ge1\\
+ &\quad\Longleftrightarrow T_d(b)\succeq0\text{ for every }d\ge1\\
+ &\quad\Longleftrightarrow |c_k(b)|\le c_0(b)\text{ for every }k\ge1.
+\end{aligned}
+\end{equation}
+For the final implication use the contrapositive (CTP22); the
+forward implication also follows from (CTP20). Positive
+semidefiniteness implies the last bound by the principal block on
+indices $0,k$ in $T_{k+1}$. These are completeness statements for
+the constructed receiver. No assertion that their infinite
+positivity condition holds has been made. In the real-root case
+the Taylor radius is exactly one: the poles $z_w$ lie on the unit
+circle, are individually nonzero, and accumulate only at one.
+Thus in both cases the growth identity
+$\limsup|c_k|^{1/k}=R_b$ holds, with $R_b=1$ in the real-root case.
+
+\subsection{The exact relation to all Laurent moments, at every value of the parameter}
+
+Retain the reciprocal nodes and their entire multiplicity fibers
+from (ALM10): $\Lambda=\{w^{-2}:w\in\mathcal Z\}$,
+$M_\lambda=2m_w$ when $\lambda=w^{-2}$,
+$V=\sum_\lambda M_\lambda|\lambda|<\infty$, and
+$R=\max_\lambda|\lambda|$. Then, for $k\ge0$,
+\begin{equation}\tag{CTP25}
+\begin{split}
+ P_k(Y)&=\sum_{l=0}^k(-1)^l\binom{2k}{2l}Y^l,\\
+ c_k&=\sum_{\lambda\in\Lambda}M_\lambda\lambda
+                 \frac{P_k(b^2\lambda)}{(1+b^2\lambda)^{k+1}}.
+\end{split}
+\end{equation}
+To verify the identity, average the $w$ and $-w$ summands of
+(CTP8), using unchanged multiplicities. Their even rational factor is
+\[
+ \frac{C_b(w)^k+C_b(w)^{-k}}{2(w^2+b^2)}
+ =\frac{\sum_{l=0}^k(-1)^l\binom{2k}{2l}b^{2l}w^{2k-2l}}
+             {(w^2+b^2)^{k+1}}.
+\]
+This is precisely the function of $\lambda$ in (CTP25).
+Its denominator never vanishes on the actual node set because
+$H(ib)\ne0$. The aggregation loses neither member of a sign pair.
+
+When $b^2R<1$, the exact convergent expansion in the original
+Laurent moments $S_n=\sum_wm_ww^{-2n}$ is
+\begin{equation}\tag{CTP26}
+ c_k=\sum_{n\ge0}(-1)^nb^{2n}S_{n+1}
+       \sum_{l=0}^{\min(k,n)}\binom{2k}{2l}\binom{k+n-l}{n-l}.
+\end{equation}
+Expand $(1+Y)^{-k-1}$ by the binomial series and multiply by
+$P_k(Y)$. The displayed inner sum is its coefficient with sign
+$(-1)^n$. Absolute convergence and interchange with the root sum
+follow from $|S_{n+1}|\le VR^n$ and a polynomial bound in $n$ for
+the inner sum, with the fixed ratio $b^2R<1$.
+This restricted series is not used outside its stated disk.
+
+For every $b>0$, even when that series does not converge, the
+rational function in (CTP25) is a controlled limit of actual
+Laurent polynomials. Here is a constructive proof that also fixes
+the omitted infinite tail. Let
+$r_k(X)=P_k(b^2X)/(1+b^2X)^{k+1}$. Choose
+$0<r_0<r_1<1/b^2$ with no node of modulus $r_0$ and let
+$S=\{\lambda\in\Lambda:|\lambda|>r_0\}$, a finite set.
+The Taylor series of $r_k$ converges uniformly on $|X|\le r_0$;
+for any $\epsilon>0$ take a Taylor polynomial $Q$ whose error there
+is less than $\epsilon/2$. For $\lambda\in S$ define
+$L_\lambda(X)=\prod_{\mu\in S\setminus\{\lambda\}}
+(X-\mu)/(\lambda-\mu)$ and
+$B_\lambda=\prod_{\mu\ne\lambda}(r_0+|\mu|)/|\lambda-\mu|$.
+Choose a finite integer $N$ such that
+\begin{equation}\tag{CTP27}
+ \sum_{\lambda\in S}|r_k(\lambda)-Q(\lambda)|B_\lambda
+                   (r_0/|\lambda|)^N<\epsilon/2,
+ \quad
+ Q_\epsilon(X)=Q(X)+\sum_{\lambda\in S}
+ [r_k(\lambda)-Q(\lambda)](X/\lambda)^NL_\lambda(X).
+\end{equation}
+If $S$ is empty the correction sum is zero. Each ratio in a
+nonempty sum is strictly less than one, so the choice exists.
+The correction has the prescribed value at each node in $S$,
+and on the whole remaining disk its absolute size is less than
+$\epsilon/2$. Consequently
+\begin{equation}\tag{CTP28}
+ \sup_{\lambda\in\Lambda}|Q_\epsilon(\lambda)-r_k(\lambda)|
+       <\epsilon,\qquad
+ \left|\sum_\lambda M_\lambda\lambda Q_\epsilon(\lambda)-c_k\right|
+       \le V\epsilon.
+\end{equation}
+Conjugation pairs make $Q_\epsilon$ real when $Q$ is taken real.
+Every sum on the left is a finite linear combination of the
+original $S_n$. Thus (CTP25)--(CTP28) give an exact, globally
+valid bridge from the Laurent receiver, with a proved full-tail
+bound. They do not delete a cutoff-dependent boundary term.
+
+There is no nonzero finite identification of the two original
+test spaces by equality of their full jets: a Laurent test has
+its only possible pole at zero, whereas a Cayley test in the
+union of (CTP10) has its only possible pole at $-ib$. Equality
+in every jet implies rational equality by the injectivity in
+(CTP5); such a common function would have no finite pole and
+vanish at infinity, hence be zero. Their precise relation is
+the common injective rational receiver (CTP4)--(CTP7), the
+moment maps (CTP25)--(CTP28), and the following exact residual.
+
+\subsection{The original positive block and the Cayley residual}
+
+Keep the certified block $A=K_{64}(0)\succ0$ of (RWR18), in its
+original coordinates, and the original injection
+$E:\mathbb C^{64}\to\mathscr R$, $Ea=\sum_{h=0}^{63}a_hZ^{-2h-1}$.
+The positivity and its interval certificate are already part of
+(RWR1)--(RWR17); no new numerical assertion is used here.
+For $F\in\mathscr A_b$ set $r(F)_h=\mathcal T(Ee_h,F)$ and define
+\begin{equation}\tag{CTP29}
+ \Pi_bF=F-EA^{-1}r(F),\qquad
+ \mathcal T(Ea,\Pi_bF)=0,\qquad \Pi_b^2=\Pi_b.
+\end{equation}
+These equalities follow from $r(Ea)=Aa$. The kernel of $\Pi_b$
+is exactly $E\mathbb C^{64}$, and its image is the orthogonal
+complement of that space in $\mathscr A_b$. For the original
+Laurent subspace this restricts exactly to (RWR25).
+For $0\le j<d$ set
+\begin{equation}\tag{CTP30}
+ B_{hj}=\mathcal T(Z^{-2h-1},F_j),\qquad
+ D_d(b)=T_d(b)-B^*A^{-1}B,\qquad
+ \widetilde W_{b,d}=\Pi_bW_{b,d}.
+\end{equation}
+The entries of $B$ have the exact finite derivative evaluation
+(CTP7) with
+$r(Z)=Z^{-2h-1}(Z-ib)^j/(Z+ib)^{j+1}$.
+All constants, signs, and poles are thus specified, including
+the full root sum. Direct expansion proves
+\begin{equation}\tag{CTP31}
+\begin{split}
+ \mathcal T(\widetilde W a,\widetilde W v)&=a^*D_d(b)v,\\
+ \mathcal T(E\alpha+W a,E\alpha+W a)
+  &=(\alpha+A^{-1}Ba)^*A(\alpha+A^{-1}Ba)+a^*D_d(b)a.
+\end{split}
+\end{equation}
+The map $\widetilde W$ is injective: a vector in its kernel
+would give a common nonzero Laurent and Cayley function,
+which the preceding pole argument excludes. The block coordinate
+change is exactly $(\alpha,a)\mapsto(\alpha+A^{-1}Ba,a)$,
+with inverse $(\beta,a)\mapsto(\beta-A^{-1}Ba,a)$.
+Every negative test (CTP23) has
+$a^*D_da=a^*T_da-(Ba)^*A^{-1}(Ba)<0$.
+Conversely, positivity of every $D_d$ implies positivity of every
+$T_d$ by (CTP30), hence reality of all roots by (CTP24).
+If all roots are real, (CTP5) is positive on every nonzero rational
+test, so every $D_d$ is strictly positive by injectivity.
+This proves a complete alternative residual criterion, in the
+same original trace, with no assertion about its unresolved sign.
+On the direct sum of the original Laurent and Cayley test spaces,
+(CTP29) also retains every mixed matrix entry; replacing that direct
+sum by two independently positive blocks would discard those entries.
+
+\subsection{The entire support lattice and all connecting maps}
+
+Retain the original arbitrary nontrivial bounded distributive
+lattice $L$. For every vector space $V$ used above keep
+\begin{equation}\tag{CTP32}
+\begin{gathered}
+ G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\}),\\
+ (v,\lambda)+(w,\mu)=(v+w,\lambda\vee\mu),\quad
+ (a,\eta)(v,\lambda)=(av,\eta\wedge\lambda),\\
+ \tau=(0,0_L),\qquad e=(0,1_L).
+\end{gathered}
+\end{equation}
+For every complex-linear map $A:V\to W$ in (CTP5), (CTP10),
+(CTP13)--(CTP14), and (CTP29)--(CTP31), the exact lift
+$A^\uparrow(v,\lambda)=(Av,\lambda)$ is well defined,
+additive, and $G_L(\mathbb C)$-linear. Nonzero output amplitude
+requires nonzero input amplitude and hence top support; the
+operation checks are direct substitution and lattice
+distributivity. The pairing lift is
+\begin{equation}\tag{CTP33}
+ \mathcal T^L((F,\lambda),(G,\mu))
+       =(\mathcal T(F,G),\lambda\wedge\mu),\qquad
+ \mathcal T^L(W^\uparrow(a,\lambda),W^\uparrow(v,\mu))
+       =(a^*T_dv,\lambda\wedge\mu).
+\end{equation}
+It is well defined because a nonzero pairing requires both
+amplitudes nonzero. Sesquilinearity, including the unchanged
+involution $(a,\eta)^*=(\bar a,\eta)$, follows from the scalar
+pairing and distributivity of meet over join. The same formula
+applies to $D_d$, $B$, and the original Laurent residual.
+
+Retain the programme's idempotent semifield $K$ with zero,
+$K_L=K\otimes_{\mathbb B}L$, and $\iota_L(\lambda)=1_K\otimes\lambda$.
+The full comparison and its commuting maps are
+\begin{equation}\tag{CTP34}
+ \Phi_V(v,\lambda)=(v,\iota_L(\lambda)),\qquad
+ (A\times I)\Phi_V=\Phi_WA^\uparrow.
+\end{equation}
+The nonzero character $\chi:K\to\mathbb B$ is a semiring map:
+in an idempotent semifield a sum is zero only when both inputs
+are zero, and a product is zero only when one input is zero.
+Therefore $\rho_L=\chi\otimes I_L$ satisfies
+$\rho_L\iota_L=I_L$. This proves that the comparison retains
+every original support label. Equations (CTP33)--(CTP34)
+commute with the pairing, with meet of the two input labels.
+Every canceled amplitude at top support remains $e$ and is
+not changed to $\tau$. The finite coordinate decompositions
+use $G_L(\mathbb C^{64}\oplus\mathbb C^d)$ with its one retained
+label, not a product with independently chosen labels.
+
+In particular the negative test (CTP23), when present, has
+the unchanged image
+\begin{equation}\tag{CTP35}
+ (2(c_0-|c_k|),1_L)\xmapsto{\Phi_{\mathbb R}}
+       (2(c_0-|c_k|),1_K\otimes1_L).
+\end{equation}
+The original tau geometry, every zero multiplicity, the complete
+arithmetic residue factor, and all finite or infinite moment
+indices have survived the construction. The mathematics above
+constructs and proves the receiver and its precise detection
+criterion; it does not evaluate the sign of all its forms.
+
+\subsection{The exact Li and Weil maps, including the original factors}
+
+The coefficient criterion originates in Xian-Jin Li,
+\href{https://doi.org/10.1006/jnth.1997.2137}{\emph{The positivity of
+a sequence of numbers and the Riemann hypothesis}} (1997).
+Enrico Bombieri and Jeffrey C. Lagarias developed its zero-multiset
+and Weil-functional relations in
+\href{https://doi.org/10.1006/jnth.1999.2392}{\emph{Complements to
+Li's criterion for the Riemann hypothesis}} (1999).
+The original author LaTeX actually consulted here is Jeffrey C.
+Lagarias, \href{https://arxiv.org/abs/math/0404394v4}{\emph{Li
+Coefficients for Automorphic $L$-Functions}},
+\path{math-0404394v4.tex}, lines 197--359 and 1170--1424:
+source equations \texttt{103}, \texttt{101}, \texttt{102a},
+\texttt{301}, \texttt{303}, \texttt{304}, and Theorem
+\texttt{th31}. The author explicitly credits J. B. Keiper's 1992
+precursor coefficients in lines 263--274. The following map
+identifies the present objects with those coefficients and test
+functions; no historical novelty for the coefficient criterion is
+asserted.
+
+For arbitrary $b>0$ define, in a neighborhood of $z=0$, the unique
+holomorphic logarithm with value zero at zero by
+\begin{equation}\tag{CTP36}
+ \log\frac{H(v_b(z))}{H(ib)}
+     =\sum_{n\ge1}\frac{\Lambda_n(b)}n z^n,
+ \qquad \Lambda_0(b)=0,
+ \qquad \Lambda_{-n}(b)=\Lambda_n(b).
+\end{equation}
+This is legitimate because $H(v_b(0))=H(-ib)=H(ib)>0$.
+There is no change to $H$ or its mass: the displayed ratio merely
+specifies the logarithm's constant. For each sign pair of roots,
+the exact factor identity is
+\[
+ \frac{1-v_b(z)^2/w^2}{1+b^2/w^2}
+ =\frac{(1-zC_b(w))(1-zC_b(w)^{-1})}{(1-z)^2}.
+\]
+Logarithmically differentiate the locally uniformly convergent
+paired product, or take coefficients in its logarithm on a small
+zero-free disk. This gives
+\begin{equation}\tag{CTP37}
+ \Lambda_n(b)=\sum_{\{w,-w\}}m_w
+                 (2-C_b(w)^n-C_b(w)^{-n})\qquad(n\ge1).
+\end{equation}
+The summand is $O(m_w|w|^{-2})$: for fixed $n$ the first-order
+terms in $C_b(w)-1=O(1/w)$ cancel between the two powers.
+Thus the paired sum is absolutely convergent with every
+multiplicity retained.
+Differentiating (CTP36) and using
+$v_b'=-2ib/(1-z)^2$, (CTP15), and
+$\ell(ib)=-ibc_0$, gives
+\begin{equation}\tag{CTP38}\begin{gathered}
+ (1-z)^2\sum_{n\ge1}\Lambda_n(b)z^{n-1}
+           =4b^2G_b(z)-2b^2c_0,\\
+ \qquad
+ \Lambda_1(b)=2b^2c_0,\quad
+ \Lambda_{k+1}(b)-2\Lambda_k(b)+\Lambda_{k-1}(b)=4b^2c_k.\end{gathered}
+\end{equation}
+The last equality is valid for $k\ge1$; with the displayed even
+extension and $\Lambda_0=0$ it also holds for $k=0$.
+Its inverse, obtained by summing these second differences, is
+\begin{equation}\tag{CTP39}
+ \Lambda_n(b)=2b^2nc_0+4b^2\sum_{k=1}^{n-1}(n-k)c_k
+ \quad(n\ge1).
+\end{equation}
+Indeed both sides have the same second differences and the same
+values at $n=0,1$. These are finite, mutually inverse linear maps
+on each required coefficient segment, with no lost constant term.
+
+At $b=1$, the original arithmetic coordinate gives
+\begin{equation}\tag{CTP40}
+ s(v_1(z))=\frac1{1-z},\qquad
+ \frac{H(v_1(z))}{H(i)}
+     =\frac{\xi(1/(1-z))}{\xi(0)},\qquad
+ \xi(0)=\xi(1).
+\end{equation}
+Lagarias's equations \texttt{102a} and \texttt{103c} therefore
+identify $\Lambda_n(1)$ with the classical Li coefficient
+$\lambda_n$ (his index $-n$ has the same value).
+The exact specialization is
+\begin{equation}\tag{CTP41}
+ c_0(1)=\frac{\lambda_1}{2},\qquad
+ c_k(1)=\frac{\lambda_{k+1}-2\lambda_k+\lambda_{k-1}}4
+ \quad(k\ge1).
+\end{equation}
+In particular the complete two-coefficient detector (CTP24)
+is exactly the bound
+$|\lambda_{k+1}-2\lambda_k+\lambda_{k-1}|\le2\lambda_1$
+for every $k\ge1$, in these unchanged conventions. No proof of
+that infinite family of bounds is claimed.
+
+The test-space identification is stronger than an agreement of
+coefficient sequences. Let
+$G_n(s)=1-(1-1/s)^n$ be Lagarias's Li test function, for
+$n\in\mathbb Z$, and let $\mathscr L$ be his Li class: rational
+functions vanishing at infinity with poles contained in $\{0,1\}$.
+Under $\alpha(Z)=1/2+iZ/2$ one has exactly
+\begin{equation}\tag{CTP42}
+ C_1(Z)=\frac{s}{s-1},\qquad
+ F_j(Z)=\alpha^*\left(\frac{G_{-j-1}-G_{-j}}{2i}\right)(Z)
+ \quad(j\in\mathbb Z).
+\end{equation}
+The second identity follows from
+$G_{-j-1}-G_{-j}=C_1^j(1-C_1)=C_1^j/(1-s)$ and
+$Z+i=2i(1-s)$. For $m>0$ the inverse finite sums are
+\begin{equation}\tag{CTP43}
+ \alpha^*G_{-m}=2i\sum_{j=0}^{m-1}F_j,
+ \qquad \alpha^*G_m=-2i\sum_{j=-m}^{-1}F_j.
+\end{equation}
+They telescope directly. Equations (CTP13)--(CTP14) for the two
+pole locations also show that the span of all integer-indexed
+$F_j$ is exactly the pullback of $\mathscr L$.
+The additional Laurent pole $Z=0$ corresponds to $s=1/2$; it
+is retained in $\mathscr A_1$ and is not claimed to belong to
+Lagarias's test class. The full local-jet trace is its proved
+common receiving space.
+
+Lagarias's source pairing, equation \texttt{301}, is linear in
+its first entry. The programme pairing is conjugate-linear
+in its first entry. With this difference explicitly retained,
+\begin{equation}\tag{CTP44}
+ \mathcal T(\alpha^*f,\alpha^*g)
+       =\langle g,f\rangle_{\mathcal W},\qquad
+ \langle G_n,G_m\rangle_{\mathcal W}
+       =\lambda_n+\lambda_{-m}-\lambda_{n-m}.
+\end{equation}
+For the first equality use $\alpha(\bar w)=1-\overline{\alpha(w)}$
+in every summand and preserve $m_w$. For the second, the finite
+identity
+$G_n(s)G_{-m}(s)=G_n(s)+G_{-m}(s)-G_{n-m}(s)$ and
+$\overline{G_m(1-\bar s)}=G_{-m}(s)$ prove the formula with
+the convergent symmetric zero sums used by the source.
+Their combined product is absolutely summable. This also gives
+a direct verification of the displayed source theorem without
+depending on any typographical intermediate expansion in its
+proof. Substituting (CTP42) into (CTP44) gives
+\begin{equation}\tag{CTP45}
+ (T_d(1))_{ij}=\frac14
+   (\lambda_{j-i+1}-2\lambda_{j-i}+\lambda_{j-i-1}),
+ \qquad \lambda_{-n}=\lambda_n.
+\end{equation}
+The factor is $1/4$, the product of $1/(2i)$ with its conjugate.
+Thus this Toeplitz form is exactly the finite-difference pullback
+of the classical Li--Weil Gram form, with complete multiplicities.
+All coordinate, finite-sum, and coefficient maps
+(CTP38)--(CTP45) are fixed complex-linear maps on their stated
+spaces, so their explicit full-$L$ lifts are (CTP32)--(CTP34).
+For the map reversing the two pairing entries, the labels are
+reversed as well; their meet is unchanged by commutativity.
+
+\subsection{The precise finite extremal defect in the source comparison}
+
+For any particular $d$, let $\mu_d$ be the actual least eigenvalue
+of the actual Hermitian matrix $T_d(b)$. The spectral theorem
+gives the exact positive semidefinite Toeplitz matrix
+\begin{equation}\tag{CTP46}
+ \widehat T_d=T_d(b)-\mu_d I_d\succeq0,
+ \qquad \ker\widehat T_d=\ker(T_d(b)-\mu_d I_d).
+\end{equation}
+This construction does not assert $\mu_d\ge0$ or simplicity.
+Its changed coefficient is exactly $c_0-\mu_d$; every
+nonconstant coefficient $c_k$, $|k|<d$, remains $c_k$.
+The Carath\'eodory--Fej\'er corank-one consequence in Connes--van
+Suijlekom, Corollary \texttt{corcar} and Proposition
+\texttt{toeplitzcase}, concerns this positive matrix when its
+kernel has dimension one. Its polynomial is the coefficient
+polynomial of a vector in that kernel. Equations (CTP13)--(CTP14)
+give the exact Cayley rational function of that polynomial;
+they provide no identity of this finite polynomial with $H$.
+
+The full defect is an actual functional, not an unspecified
+change of matrix. Define on Laurent polynomials in $U$
+\begin{equation}\tag{CTP47}
+ \mathscr L_b(P)=\sum_{w\in\mathcal Z}
+            \frac{m_w}{w^2+b^2}P(C_b(w)),\qquad
+ h(P)=\frac1{2\pi}\int_0^{2\pi}P(e^{i\theta})d\theta,
+ \qquad \widehat{\mathscr L}_{b,d}=\mathscr L_b-\mu_d h.
+\end{equation}
+Every sum converges because a fixed Laurent polynomial is
+bounded on the Cayley image of the roots. With
+$P^*(U)=\overline{P(1/\bar U)}$, (CTP9) gives
+$\mathscr L_b(P^*Q)=\mathcal T(P(C_b)/(Z+ib),Q(C_b)/(Z+ib))$.
+Furthermore $h(U^k)=\delta_{k0}$ and
+$h(P^*P)=\sum_j|a_j|^2$ for $P=\sum a_jU^j$.
+For the finite restriction take exactly
+$P(U)=\sum_{j=0}^{d-1}a_jU^j$ and
+$Q(U)=\sum_{j=0}^{d-1}v_jU^j$, with $a,v\in\mathbb C^d$.
+Then
+\begin{equation}\tag{CTP48}
+ \widehat{\mathscr L}_{b,d}(P^*Q)=a^*\widehat T_dv,
+ \qquad
+ \mathcal T(Wa,Wa)=\mu_d\sum_j|a_j|^2
+ \quad(a\in\ker\widehat T_d).
+\end{equation}
+Every factor in this equality is retained, including the
+$1/(2\pi)$ in the unit-mass Haar functional. It is not a
+rescaling of the original zero-trace mass $c_0$.
+The analytic generating function of the changed moments is
+exactly $G_b(z)-\mu_d$. Subtracting a constant leaves every
+pole (CTP16) and its residue unchanged. Thus finite extremal
+positivity does not remove the all-zero defect that (CTP22)
+detects. Equations (CTP46)--(CTP48) are the exact connecting
+map and its defect required to apply the source's Toeplitz
+geometry to this receiver.
+
+Finally $\mathscr L_b$, $h$, and
+$\widehat{\mathscr L}_{b,d}$ are complex-linear maps on the same
+Laurent-polynomial space. Their full lifts send
+$(P,\lambda)$ respectively to
+$(\mathscr L_b(P),\lambda)$, $(h(P),\lambda)$ and
+$(\mathscr L_b(P)-\mu_dh(P),\lambda)$.
+Cancellation in the difference retains $\lambda$ exactly;
+at top support it is $e$, never $\tau$. These maps commute
+with $\Phi$ by direct substitution in (CTP34), and their
+Hermitian forms carry the meet of the two input labels.

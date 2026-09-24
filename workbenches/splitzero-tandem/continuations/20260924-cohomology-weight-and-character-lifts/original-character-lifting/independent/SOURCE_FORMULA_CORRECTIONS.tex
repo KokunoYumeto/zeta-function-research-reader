@@ -1,0 +1,157 @@
+\section{Exact checks and repairs in the classical circle calculation}
+\label{sec:cc-circle-formula-checks}
+
+This section concerns the original author source \nolinkurl{RRZ.tex} of
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/2306.00456}{\emph{Riemann--Roch for the ring
+$\mathbb Z$}}. The source SHA--256 is
+\par\noindent
+\nolinkurl{1975ade5af5d3facf0f954da414a85c07c8adb7a83d1cc08e38f3112c5d072f9}.
+\par\noindent
+The exact locations are the sequence definition at lines 309--311,
+Lemma \texttt{sequenceb} at lines 316--322, and Proposition
+\texttt{caseh1} and its proof at lines 324--338. The sequence formula
+is verified below. The minimum-distance assertion and the choice of
+a nearest integer in a fixed interval require the indicated repairs.
+The resulting classical dimension statement is preserved. Nothing
+here identifies a first cohomology for the support-sensitive carrier.
+
+\subsection{The interval formula, with its actual indices}
+
+The author's formula is
+\begin{equation}\tag{SFC1}
+ j(n)=\frac{(-2)^n}{3}-\frac{(-1)^n}{2}+\frac16,
+ \qquad k(n)=2\lfloor n/2\rfloor+1.
+\end{equation}
+In particular $j(1)=0$, $j(2)=1$, and $j(3)=-2$. The displayed
+value list in the source starts at $n=1$. For $n=2$, its interval
+formula is therefore
+\begin{equation}\tag{SFC2}
+ [j(k(2)),j(k(2))+2^2-1]=[j(3),j(3)+3]=[-2,1],
+\end{equation}
+exactly the subset sums of $\{1,-2\}$. No change to $k(n)$ is needed.
+
+For all $n\ge0$ define $G(n)=\{(-2)^r:0\le r<n\}$. The least
+and greatest subset sums are
+\begin{equation}\tag{SFC3}
+ L_n=-\frac{2(4^{\lfloor n/2\rfloor}-1)}3,
+ \qquad U_n=\frac{4^{\lceil n/2\rceil}-1}3,
+ \qquad L_n=j(k(n)),\quad U_n-L_n=2^n-1.
+\end{equation}
+The first two formulas are the sums of all negative and all positive
+powers, respectively. Substitution of the odd number $k(n)$ into
+(SFC1) proves $L_n=j(k(n))$. The two parity cases of $n$ give the
+last equality. The subset sums are distinct: in the difference of
+two unequal sums, take the smallest index $r$ with nonzero coefficient.
+The coefficient is $1$ or $-1$, so the difference is nonzero modulo
+$2^{r+1}$. There are consequently $2^n$ distinct integer sums in an
+interval of exactly that cardinality. They fill $[L_n,U_n]$.
+The repeated label $\Delta(4)$ on the last listed interval
+$[-10,21]$ at source line 320 should be $\Delta(5)$; (SFC3)
+gives $L_5=-10$ and $U_5=21$ directly.
+
+\subsection{The exact circular minimum distance}
+
+Use the circle $\mathbb R/\mathbb Z$ with
+$d(x,y)=\min_{r\in\mathbb Z}|x-y-r|$, and the actual set
+\begin{equation}\tag{SFC4}
+ F(m)=\{(-2)^{-j}\bmod\mathbb Z:1\le j\le m\}.
+\end{equation}
+For $m=0$ it is empty, and for $m=1$ it is a singleton, so the
+pairwise-separation requirement is vacuous. For every $m\ge2$,
+\begin{equation}\tag{SFC5}
+ \min_{x\ne y\in F(m)}d(x,y)
+      =\min\left\{\frac14,3\cdot2^{-m}\right\}.
+\end{equation}
+For proof, write $x_j=(-1)^j2^{-j}$. The distance between $x_1=-1/2$
+and $x_j$ is $1/2-2^{-j}$ for every $j\ge2$: if $j$ is even one
+uses the complementary circular arc. Its minimum is $1/4$, attained
+at $j=2$. For $2\le i<j\le m$, the absolute difference is at most
+$3/8<1/2$, so it already equals the circular distance. It is
+\[
+ 2^{-j}(2^{j-i}-1)\quad\text{when }i,j\text{ have equal parity},
+ \qquad
+ 2^{-j}(2^{j-i}+1)\quad\text{otherwise}.
+\]
+Equal parity implies $j-i\ge2$; different parity implies $j-i\ge1$.
+Both expressions are at least $3\cdot2^{-j}\ge3\cdot2^{-m}$.
+For $m\ge3$, the adjacent pair $i=m-1,j=m$ attains this value.
+For $m=2$, only the first pair exists. This proves (SFC5).
+
+In particular, at $m=2$ the two points are $-1/2$ and $1/4$, whose
+distance is $1/4$, not $3/4$. At $m=3$ the minimum is still $1/4$,
+not $3/8$. These are the small cases missed by the minimum-distance
+expression in source line 331. For $m\ge4$, its expression
+$3\cdot2^{-m}$ does equal (SFC5).
+
+\subsection{The periodic grid proves the covering step}
+
+The subset sums of (SFC4) are exactly the dyadic grid
+\begin{equation}\tag{SFC6}
+ \left\{\sum_{j=1}^m\alpha_j(-2)^{-j}\bmod\mathbb Z:
+               \alpha_j\in\{0,1\}\right\}
+       =\left\{\frac{r}{2^m}\bmod\mathbb Z:0\le r<2^m\right\}.
+\end{equation}
+To verify this without an endpoint assumption, multiply two proposed
+equal subset sums by $(-2)^m$. Their difference is an integer
+combination of $1,-2,\ldots,(-2)^{m-1}$ with coefficients in
+$\{-1,0,1\}$, divisible by $2^m$. A smallest nonzero coefficient
+would give valuation less than $m$, by the argument after (SFC3),
+which is impossible. The $2^m$ subset sums therefore give distinct
+elements of the group of $2^m$ grid points, proving equality.
+
+For any $x\in\mathbb R$, choose an integer $r$ nearest to $2^m x$,
+so $|2^m x-r|\le1/2$. Reducing $r$ modulo $2^m$ does not alter the
+circle class of $r/2^m$. Hence
+\begin{equation}\tag{SFC7}
+ \max_{x\in\mathbb R/\mathbb Z}
+       \min_{y\text{ a subset sum of }F(m)}d(x,y)=2^{-m-1}.
+\end{equation}
+The upper bound follows from the nearest-integer construction; the
+midpoints of adjacent grid points attain it.
+
+The fixed nonperiodic nearest-integer step at source lines 336--337
+cannot replace this reduction. For $m=2$, its integer interval is
+$\Delta(2)=[-2,1]$. The point $x=7/16$ belongs to the corresponding
+half-open real interval $[-1/2,1/2)$, but
+\begin{equation}\tag{SFC8}
+ \min_{q\in\{-2,-1,0,1\}}|4x-q|=\frac34>\frac12.
+\end{equation}
+The nearest integer is $2$, outside that chosen interval. Modulo four
+it is represented by $-2$, and the associated circle point is
+$-1/2\bmod\mathbb Z$, at distance $1/16$ from $x$. Thus the
+periodic-grid argument gives the required covering even at this
+endpoint case.
+
+\subsection{The classical dimension conclusion is retained}
+
+For the original tolerant circle object in Connes--Consani's
+Proposition \texttt{caseh1}, all group subset sums are admissible,
+and the degree-one tolerance is $d(x,y)\le\lambda$.
+When $\lambda\ge1/2$, the empty set generates because every circle
+point is within tolerance of zero. When
+\begin{equation}\tag{SFC9}
+ 2^{-m-1}\le\lambda<2^{-m},\qquad m\ge1,
+\end{equation}
+the $m$-element set $F(m)$ generates by (SFC7). Its separation
+condition is also valid: it is vacuous for $m=1$; for $m=2$,
+(SFC5) gives $1/4>\lambda$; and for $m\ge3$ both entries in the
+minimum in (SFC5) exceed $\lambda<2^{-m}$.
+
+Conversely, a set of $r$ generators has at most $2^r$ subset sums.
+For $\lambda<1/2$, each closed circular tolerance ball has measure
+$2\lambda$, in the length-one Haar measure. Covering the circle
+therefore requires $2\lambda\,2^r\ge1$. If $r\le m-1$ in (SFC9),
+this left side is strictly less than $1$. Thus $r\ge m$, and the
+original formula is proved with the repaired steps:
+\begin{equation}\tag{SFC10}
+ \dim_{\mathbb S}U(1)_\lambda=
+ \begin{cases}
+ 0,&\lambda\ge1/2,\\
+ m,&2^{-m-1}\le\lambda<2^{-m},\quad m\ge1.
+ \end{cases}
+\end{equation}
+This calculation supplies corrected finite-circle distances and a
+periodic covering proof for the existing classical object. It makes
+no claim that the support fibres calculated in (SRR4)--(SRR5)
+have disappeared in a new first cohomology construction.

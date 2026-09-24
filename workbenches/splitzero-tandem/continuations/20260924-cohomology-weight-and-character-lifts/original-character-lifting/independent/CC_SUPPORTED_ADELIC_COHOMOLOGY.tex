@@ -1,0 +1,411 @@
+% Root derivation, 2026-09-23. ASC1--18.
+\section{The full supported adelic simplicial object and its relative cohomology}
+\label{sec:supported-adelic-cohomology}
+
+\paragraph{Original source and exact scope.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/2205.01391v2}{\emph{Riemann--Roch for
+$\overline{\operatorname{Spec}\mathbb Z}$}}, original author source
+\nolinkurl{RR-J-final.tex}, define the signed bounded section functor and
+adelic addition in \texttt{setup}, \texttt{psi}, \texttt{setup1}, and
+\texttt{cokerpsi} (source lines 199--274). Their Appendix B,
+\texttt{descript1}--\texttt{proppi0}, constructs the restricted
+Dold--Kan object and calculates its spherical simplices and relation;
+Appendix A, \texttt{thedimh1}, gives its adelic circle comparison.
+The present construction applies these actual maps to the full support
+carrier. It retains both independently labelled source legs. Its
+directed relation, relative spherical simplices and comparison fibres
+are calculated below. A lift of a scalar formula is not assumed to
+commute with the original kernel or product.
+
+The lattice operations are those of The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}
+{\emph{Split Support Geometry}, version 11, Definition
+\texttt{def:lattice-split}}. RDT1--6 in the accompanying complete
+proof retain the original divisor and the unsigned, all-subset
+section functor of Connes--Consani's later
+\href{https://arxiv.org/abs/2306.00456v1}{\emph{Riemann--Roch for
+the ring $\mathbb Z$}}. Both different section functors are retained
+here with their exact inclusion.
+
+\subsection{The divisor and the full two-leg source}
+
+Let $L$ be a bounded distributive lattice with $0_L\ne1_L$. For an
+additive abelian group $A$ put
+\begin{equation}\tag{ASC1}
+G_L(A)=\{(0,\lambda):\lambda\in L\}\cup(A\times\{1_L\}),\qquad
+(x,\lambda)+(y,\mu)=(x+y,\lambda\vee\mu),\quad
+\tau=(0,0_L),\quad e=(0,1_L).
+\end{equation}
+The symbol $H(M)$ for an additive pointed monoid means the functor
+$H(M)(r_+)=M^r$, with sums over fibres of a pointed map and empty
+sum the monoid identity. No additive inverse relative to $\tau$ is
+asserted for a nonzero amplitude.
+
+Retain the original divisor and every local restriction:
+\begin{equation}\tag{ASC2}
+\begin{gathered}
+D=\sum_p d_p[p]+d_\infty[\infty],\qquad
+N=\prod_p p^{-d_p}>0,\qquad a=e^{d_\infty}>0,\\
+O_f(D)=\prod_p p^{-d_p}\mathbb Z_p=N\widehat{\mathbb Z},\qquad
+I(D)=\mathbb Q\cap O_f(D)=N\mathbb Z.
+\end{gathered}
+\end{equation}
+The equality of the finite ideals holds place by place because
+$v_p(N)=-d_p$. The last equality follows by writing $q/N$ as a
+reduced rational number and testing its valuation at every prime.
+All appearances of $N,a$ below refer to these retained original data.
+
+Set $B_L=G_L(\mathbb A_{\mathbb Q})$. The source uses the product
+of two monoids, with the two labels independent:
+\begin{equation}\tag{ASC3}
+P_L=G_L(\mathbb Q)\times G_L(\mathbb A_{\mathbb Q}),\qquad
+\Phi_L((q,\alpha),(o,\beta))=(q+o,\alpha\vee\beta).
+\end{equation}
+Here $q$ is embedded diagonally. This is an additive pointed monoid
+map: both orders of adding two inputs give amplitude
+$q+q'+o+o'$ and label $\alpha\vee\alpha'\vee\beta\vee\beta'$.
+Its value is admissible, since a nonzero output amplitude requires
+at least one nonzero input amplitude and hence top output support.
+
+For $n\ge0$ and $r_+=\{*,1,\ldots,r\}$ define $X_n(D)(r_+)$ by
+the following full arrays:
+\begin{equation}\tag{ASC4}
+\begin{gathered}
+b_j=(x_j,\lambda_j)\in B_L\quad(1\le j\le r),\\
+z_{\ell j}=((q_{\ell j},\alpha_{\ell j}),
+             (o_{\ell j},\beta_{\ell j}))\in P_L
+       \quad(1\le\ell\le n,\ 1\le j\le r),\\
+o_{\ell j,f}\in O_f(D),\qquad
+\sum_{\ell=1}^n\sum_{j=1}^r|o_{\ell j,\infty}|\le a.
+\end{gathered}
+\end{equation}
+The empty interior array at $n=0$ has sum zero. At $r=0$ there is
+one empty array. The vertex $b$ has no size restriction. Every
+amplitude-zero source coordinate has its full independent $L$-label.
+In particular $G_L(\mathbb Q)\times G_L(\mathbb A)$ has not been
+replaced by $G_L(\mathbb Q\times\mathbb A)$.
+
+\subsection{Every simplicial and pointed-set map}
+
+Write $z_\ell=(z_{\ell j})_j$, with addition componentwise.
+For $n\ge1$ use the following face convention, which gives the
+source's two faces $b$ and $b+\Phi_Lz$ in degree one:
+\begin{equation}\tag{ASC5}
+\begin{aligned}
+d_0(b;z_1,\ldots,z_n)&=(b;z_1,\ldots,z_{n-1}),\\
+d_i(b;z_1,\ldots,z_n)
+ &=(b;z_1,\ldots,z_{n-i}+z_{n-i+1},\ldots,z_n)
+                 &&(0<i<n),\\
+d_n(b;z_1,\ldots,z_n)&=(b+\Phi_Lz_1;z_2,\ldots,z_n).
+\end{aligned}
+\end{equation}
+For $0\le i\le n$, $s_i$ inserts the identity
+$0_{P_L}=(\tau,\tau)$ immediately after $z_{n-i}$; $s_n$
+inserts it before $z_1$, and $s_0$ appends it after $z_n$.
+This convention includes $s_0(b)=(b;0_{P_L})$ when $n=0$.
+
+All these arrays remain admitted. Dropping an interior coordinate
+decreases the real absolute sum; merging two decreases it by the
+triangle inequality; insertion contributes zero. The finite
+components remain in the additive subgroup $O_f(D)$. No support
+label is removed from a surviving coordinate except by its displayed
+join with another label.
+
+For completeness, the simplicial identities can be checked without
+an inverse in either monoid. Form the category whose objects are
+$B_L^r$ and whose arrow labelled $z\in P_L^r$ goes from $b$ to
+$b+\Phi_Lz$. Composition adds arrow labels; its associativity and
+identity laws follow from (ASC3). Its ordinary nerve has the usual
+faces deleting a vertex and composing the adjacent arrows.
+Reversing the ordinal gives exactly (ASC5) and the stated
+degeneracies. Deleting two ordered vertices in either order deletes
+the same vertices and sums the same consecutive arrow blocks.
+Inserting two identity arrows in either order gives the same array;
+deleting an inserted identity either reverses that insertion or
+commutes past it. These are respectively the face--face,
+degeneracy--degeneracy and face--degeneracy identities.
+The restrictions in (ASC4) are stable under every such operation,
+so they define a simplicial subset of that nerve.
+
+For a pointed map $f:r_+\to s_+$, sum the vertices and each
+interior row over each nonbasepoint fibre of $f$. On amplitudes
+these are the original sums; on every leg's supports they are
+joins; an empty fibre gives $\tau$ on that leg. The resulting
+absolute sum is at most the old sum, and its finite restrictions
+hold. These maps commute with (ASC5) and all degeneracies by
+additivity of $\Phi_L$. Associativity of sums and joins proves
+composition in $\Gamma$. Thus (ASC4)--(ASC5) define the entire
+supported $\Gamma$-space, not just its first two sets.
+
+The construction uses the nerve formulas directly. No Dold--Kan
+equivalence for noncancellative monoids is invoked. Let $X^{\rm amp}(D)$
+be the same restricted arrays and maps on the original amplitude
+groups, as in the cited Connes--Consani construction. Forgetting every
+label gives the pointed simplicial $\Gamma$-map
+\begin{equation}\tag{ASC5a}
+p_D:X(D)\longrightarrow X^{\rm amp}(D).
+\end{equation}
+It is surjective in every bidegree: attach top labels to all nonzero
+coordinates and any labels to zero coordinates. It commutes with
+faces, degeneracies and pointed-set maps because their amplitude
+formulas are unchanged. Over a fixed admitted amplitude array its
+fibre has one independent copy of $L$ for each zero vertex amplitude,
+each zero rational-leg amplitude, and each zero adelic-leg amplitude.
+Nonzero coordinates force top labels independently. In particular
+the fibre over the entirely zero array in bidegree $(n,r)$ is
+\begin{equation}\tag{ASC5b}
+p_D^{-1}(0)=L^{(2n+1)r}.
+\end{equation}
+The maps between these fibres are the actual joins and identity
+insertions already specified, rather than unconstrained product maps.
+There is no pointed simplicial $\Gamma$-section of (ASC5a): in degree
+zero such a section would be a pointed additive section
+$\mathbb A\to G_L(\mathbb A)$. A nonzero $x$ and $-x$ have forced
+top lifts whose sum is $e$, whereas the pointed lift of zero is
+$\tau$. This contradicts fold naturality. Degreewise surjectivity
+therefore does not provide the missing natural section.
+
+\subsection{The native relation and its exact symmetric part}
+
+Let $\mathcal R_{D,r}$ be the original Connes--Consani relation
+on $\mathbb A^r$: $(x,y)\in\mathcal R_{D,r}$ means that there
+are $q_j\in\mathbb Q$, $o_{j,f}\in O_f(D)$ with
+$y_j-x_j=q_j+o_j$ and $\sum_j|o_{j,\infty}|\le a$.
+It is reflexive and symmetric, by zero choices and simultaneous
+negation. The degree-zero relation furnished by (ASC5), directed
+from $d_0$ to $d_1$, is exactly
+\begin{equation}\tag{ASC6}
+\begin{split}
+((x_j,\lambda_j),(y_j,\mu_j))\in\mathcal R^{\to}_{L,D,r}
+\quad\Longleftrightarrow\quad
+(x,y)\in\mathcal R_{D,r}\ \text{and}\
+\lambda_j\le\mu_j\quad\hbox{for every }j.
+\end{split}
+\end{equation}
+Necessity follows because the output label is
+$\lambda_j\vee\alpha_j\vee\beta_j$.
+For sufficiency choose the original amplitude antecedents. If
+$\mu_j<1_L$, admissibility and $\lambda_j\le\mu_j$ force
+$x_j=y_j=0$. At that coordinate choose $q_j=o_j=0$ instead;
+this does not increase the absolute sum. Give these zero legs
+labels $\mu_j$ and $0_L$. If $\mu_j=1_L$, give both selected
+legs top support. These choices realize the desired label and
+amplitude in every coordinate and prove the converse.
+
+Consequently the native relation is generally directed:
+$\tau\mathrel{\mathcal R^{\to}}e$, whereas
+$e\not\mathrel{\mathcal R^{\to}}\tau$. Its maximal symmetric
+subrelation is precisely
+\begin{equation}\tag{ASC7}
+\mathcal R^{=}_{L,D,r}
+ =\mathcal R^{\to}_{L,D,r}\cap
+      (\mathcal R^{\to}_{L,D,r})^{\mathrm{op}}
+ =\{((x,\lambda),(y,\mu)):
+       (x,y)\in\mathcal R_{D,r},\ \lambda_j=\mu_j\ \forall j\}.
+\end{equation}
+Indeed a symmetric subrelation can contain a pair only when it
+and its reverse occur; the displayed intersection is itself
+symmetric and reflexive. It is preserved by every $\Gamma$ map:
+the amplitude relation is preserved by the triangle inequality
+and output joins of equal input labels are equal. This gives a
+specified tolerant $\Gamma$-object while keeping $e$ distinct
+from $\tau$ in its relation as well as its carrier.
+
+For comparison the amplitude-pullback relation
+$\mathcal R^{\rm amp}_{L,D,r}$ imposes only
+$(x,y)\in\mathcal R_{D,r}$. The identity carrier map
+$(B_L^r,\mathcal R^=)\to(B_L^r,\mathcal R^{\rm amp})$ is a
+tolerance morphism. The reverse identity is not, since the
+amplitude-pullback relation relates $\tau$ and $e$. Both exact
+relations are retained; neither is silently substituted for the
+other. The duality comparison CTD below calculates their maps.
+
+\subsection{Spherical simplices over the entire zero section}
+
+The global pointed vertex at level $r$ is $(\tau,\ldots,\tau)$.
+A degree-one simplex $(b;z)$ is spherical there precisely when
+$b=\tau^r$ and $\Phi_Lz=\tau^r$. This forces
+$\alpha_j\vee\beta_j=0_L$, hence both source legs are $\tau$.
+The ordinary global pointed spherical set is therefore a singleton:
+\begin{equation}\tag{ASC8}
+\operatorname{Sph}_1(X(D)(r_+),\tau^r)=\{(\tau^r;0_{P_L}^r)\}.
+\end{equation}
+This statement does not say that the original supported sections
+are absent. Nor is it a calculation of the fundamental group of a
+geometric realization: no Kan condition for these bounded simplicial
+sets has been asserted. Their actual relative spherical object is
+calculated next.
+
+Let $\sigma=(\sigma_j)\in L^r$ and
+$b_\sigma=((0,\sigma_j))_j$. Both faces of $(b_\sigma;z)$ equal
+$b_\sigma$ exactly when
+\begin{equation}\tag{ASC9}
+\begin{gathered}
+z_j=((q_j,\alpha_j),(-q_j,\beta_j)),\quad
+q_j\in N\mathbb Z,\quad \sum_j|q_j|\le a,\\
+q_j\ne0\ \Longrightarrow\ \alpha_j=\beta_j=1_L,
+\qquad \alpha_j\vee\beta_j\le\sigma_j.
+\end{gathered}
+\end{equation}
+Necessity and sufficiency follow directly from the two faces and
+the original finite and real restrictions. This proves the
+relative spherical object over every zero-section label, including
+all its proper support strata.
+
+The degree-one homotopy relation used in the original source is
+equality on these spherical simplices. In the explicit degree-two
+array its faces are
+\begin{equation}\tag{ASC10}
+d_0(b;z_1,z_2)=(b;z_1),\qquad
+d_1(b;z_1,z_2)=(b;z_1+z_2),\qquad
+d_2(b;z_1,z_2)=(b+\Phi_Lz_1;z_2).
+\end{equation}
+The source's degree-one homotopy requires the first face to be
+the degenerate vertex $s_0(b_\sigma)$. It forces $b=b_\sigma$
+and $z_1=0_{P_L}^r$. The two remaining faces then coincide.
+Conversely any spherical simplex gives such a homotopy by taking
+$z_1=0$, $z_2=z$. Thus no unmentioned quotient of (ASC9) is taken.
+The base labels are themselves pushed forward by joins under
+$\Gamma$ maps; fixing the vector of top labels alone would not
+be natural at an output with an empty fibre.
+
+Let $\mathscr Z_L^1(D)$ denote the full relative object (ASC9),
+and let $\mathscr K_L^{\rm ind}(D)$ forget $\sigma$ but keep
+both source labels. Define the signed section object
+\begin{equation}\tag{ASC11}
+\mathscr S_L^0(D)(r_+)=
+\{((q_j,\nu_j)):\ q_j\in N\mathbb Z,\
+  \sum_j|q_j|\le a,\ q_j\ne0\Rightarrow\nu_j=1_L\}.
+\end{equation}
+There are two natural retractions with their displayed sections:
+\begin{equation}\tag{ASC12}
+\begin{gathered}
+\mathscr Z_L^1(D)\longrightarrow\mathscr K_L^{\rm ind}(D)
+       \longrightarrow\mathscr S_L^0(D),\\
+(q,\alpha,\beta,\sigma)\longmapsto(q,\alpha,\beta)
+       \longmapsto(q,\alpha\vee\beta),\\
+(q,\alpha,\beta)\longmapsto
+       (q,\alpha,\beta,\alpha\vee\beta),\qquad
+(q,\nu)\longmapsto(q,\nu,\nu).
+\end{gathered}
+\end{equation}
+Each composite with its section is the identity. All formulas
+commute with sums and joins over fibres and keep empty fibres.
+For the middle section this uses
+$(\bigvee\alpha_j)\vee(\bigvee\beta_j)
+=\bigvee(\alpha_j\vee\beta_j)$. The first section sets the
+base to the least label that makes the loop spherical. Thus this
+is an exact relation to the original signed section amplitudes,
+not a claim that the ordinary $\tau$-pointed kernel was nonzero.
+
+Over an admitted $(q_j,\nu_j)_j$ the fibre of the composite in
+(ASC12) is the product, over coordinates with $q_j=0$, of
+\begin{equation}\tag{ASC13}
+\{(\alpha,\beta,\sigma)\in L^3:
+       \alpha\vee\beta=\nu_j,\quad\nu_j\le\sigma\}.
+\end{equation}
+At a nonzero coordinate all three labels are forced to $1_L$.
+Formula (ASC13) is retained even when $L$ is infinite; no finite
+cardinality or infinite join is imposed. In particular, replacing
+the two source legs by one common label would lose real fibres.
+
+The signed bound in (ASC11) implies every original subset bound
+$-a\le\sum_{j\in J}q_j\le a$. It gives the natural injection
+\begin{equation}\tag{ASC14}
+\mathscr S_L^0(D)\lhook\joinrel\longrightarrow
+\mathcal H_L^0(D)
+\end{equation}
+into RDT3, keeping all labels. The injection is generally proper:
+for $N\le a<2N$ the tuple $((N,1_L),(-N,1_L))$ belongs to the
+all-subset object but fails the signed bound $2N\le a$.
+Thus the two original Connes--Consani constructions are related
+by an explicit map and an explicit difference, not by an assumed
+identification.
+
+\subsection{The exact adelic circle map and its retained fibres}
+
+For $x=(x_f,x_\infty)\in\mathbb A$ choose $q\in\mathbb Q$
+with $x_f-q\in O_f(D)$ and put
+\begin{equation}\tag{ASC15}
+\pi_D(x)=[x_\infty-q]\in\mathbb R/N\mathbb Z.
+\end{equation}
+Here is a direct existence argument. Set $u_f=x_f/N$ and choose
+a positive integer $M$ with $Mu_f\in\widehat{\mathbb Z}$.
+By the Chinese remainder theorem choose $h\in\mathbb Z$ such
+that $h\equiv Mu_p\pmod {p^{v_p(M)}\mathbb Z_p}$ at each
+prime dividing $M$. Then $u_f-h/M\in\widehat{\mathbb Z}$:
+the assertion follows by division at primes dividing $M$ and
+integrality at all others. Take $q=Nh/M$.
+Two choices differ by $\mathbb Q\cap O_f(D)=N\mathbb Z$,
+so (ASC15) is independent of the choice. Adding two choices
+proves additivity. On an open finite-adelic coset of $O_f(D)$
+the choice can be held fixed, proving continuity. Every real
+class is reached by $(0,t)$, choosing $q=0$.
+
+Its exact kernel is
+\begin{equation}\tag{ASC16}
+\ker\pi_D=\mathbb Q+j(O_f(D)),\qquad j(o_f)=(o_f,0).
+\end{equation}
+If $x_\infty-q=Nn$, replace $q$ by $q+Nn$ to express $x$
+in the right hand side. The reverse inclusion follows at once
+from (ASC15). This also proves that the kernel is closed,
+as the inverse image of the identity in the Hausdorff circle.
+It is not correct to use $x_\infty\bmod N\mathbb Z$ alone
+as (ASC15): the finite-adelic choice of $q$ is essential.
+There is no additive section of $\pi_D$. The class of $N/m$
+for $m\ge2$ has order $m$, whereas the additive adele group
+is torsion-free. A group-homomorphic section would send this
+nonzero class to a torsion element and could not be a section.
+
+Let $d_N$ be the metric on $\mathbb R/N\mathbb Z$ induced by
+the original absolute value on $\mathbb R$, so its circumference
+is $N$. Then the entire original relation is
+\begin{equation}\tag{ASC17}
+(x,y)\in\mathcal R_{D,r}\quad\Longleftrightarrow\quad
+\sum_{j=1}^r d_N(\pi_Dx_j,\pi_Dy_j)\le a.
+\end{equation}
+For the forward implication use the admitted real components
+$o_{j,\infty}$ as representatives of the circle differences.
+For the reverse choose $q_j$ matching each finite difference;
+vary $q_j$ by $N\mathbb Z$ so that the real difference has
+minimum absolute value. Such a minimum exists in every real
+coset. Those finitely many minimum representatives give
+$o_j=y_j-x_j-q_j$ with exactly the bound in (ASC17).
+
+The full label map is
+\begin{equation}\tag{ASC18}
+\Pi_D:G_L(\mathbb A)\longrightarrow G_L(\mathbb R/N\mathbb Z),
+\qquad (x,\lambda)\longmapsto(\pi_Dx,\lambda).
+\end{equation}
+It is an additive pointed map. It commutes with the underlying
+$G_L(\mathbb Z)$ scalar action
+$(n,\mu)(x,\lambda)=(nx,\mu\wedge\lambda)$ by additivity of
+$\pi_D$. The scalars $(0,\mu)$ give the explicit zero-amplitude masks
+$Z_\mu(x,\lambda)=(0,\mu\wedge\lambda)$, and
+$\Pi_DZ_\mu=Z_\mu\Pi_D$. These masks preserve the displayed
+tolerances. Multiplication by an integer of absolute value greater
+than one need not preserve the fixed tolerance bound $a$. Meeting
+a nonzero amplitude's label with a proper label while keeping that
+amplitude would leave the carrier, and is not an operation used here.
+Equations (ASC7),(ASC17)
+show that it pulls back the label-exact circle tolerance to the
+native symmetric part; it also pulls back the amplitude-pullback
+circle tolerance to the stated amplitude relation. The fibre
+over $(0,\lambda)$ for $\lambda<1_L$ is its one labelled zero.
+The fibre over $e$ is $\ker\pi_D\times\{1_L\}$. Every nonzero
+circle class has its full adele coset at top support. The
+ordinary pointed kernel is again the singleton $\{\tau\}$,
+although this map has the full nontrivial fibres just calculated.
+A pointed additive section of $\Pi_D$ would, on amplitudes of
+the top group sector, yield an additive section of $\pi_D$;
+the torsion argument excludes it.
+
+This gives the complete original divisor relation, both source
+supports, the relative loop object, and the exact map into the
+tolerant circle used in Serre duality. It leaves no inference
+from a singleton pointed kernel to absence of supported sections.
+Nor does it identify this divisor cohomology with the spectral
+cohomology of the original Weil trace. The next comparison is
+the explicit duality calculation CTD, applied to (ASC18); the
+RDT theta map retains its original zeta and Gamma factors.

@@ -1,0 +1,571 @@
+% Independent mathematical derivation. Prefix THS. Requires amsmath,amssymb,hyperref.
+\section{The theta heat flow through the complete supported coefficient map}
+\label{sec:theta-heat-full-support}
+
+\paragraph{Scope correction, 23 September 2026.}
+This chapter lifts the specified classical analytic heat kernel. It does
+not derive that kernel from the entire absolute arithmetic base.
+THS22 and THS25 explicitly show that its orbit and evaluated scalar
+observable do not distinguish all support labels. The exact original
+zeta and shifted-Hurwitz receiving formulas, retained boundary component,
+exceptional modules, and inverse Mellin map are reconstructed in
+ZTC1--21 and CFD1--27. Those comparisons, rather than the scalar
+theta orbit alone, specify which original arithmetic object is retained.
+
+\paragraph{Original source and actual reading.}
+The original human source is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}}, arXiv:1801.05914v5. The author file
+\nolinkurl{fmp-template.tex}, retained in
+\texttt{zero\_inversion\_intake/original\_tex}, has SHA--256
+\begin{center}\small
+\nolinkurl{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\end{center}
+Lines 1--155 were read, including the exact definitions
+\texttt{phidef}, \texttt{htdef}, \texttt{hoz} and \texttt{sas}.
+This is a bounded reading, not a reading of the complete paper.
+The arguments here use the displayed kernel and integral, and prove
+all convergence, differentiation and coefficient statements below
+directly. No threshold theorem about the zeros is invoked.
+The complete coefficient map is ZIL11--12 of the included
+\nolinkurl{ZERO_INVERSION_FULL_LATTICE_REVIEW.tex}; its source at
+the time of reading has SHA--256
+\begin{center}\small
+\nolinkurl{eb87afa8b3ffac41ca0845bb1f2ba49d9dba14e6c6ac0db86d72d0e5963a50b9}.
+\end{center}
+Its lines 1--135 and 231--290 were read, including the complete
+coefficient laws and the map with its retraction. The needed algebra
+is proved again here. The existing included ZHR source was read in
+full for its original coordinates; none of its threshold implications
+is a premise of this calculation.
+
+\subsection{The original kernel and a uniform bound for every moment}
+
+Keep the original variables and all constants:
+\begin{equation}\tag{THS1}
+\begin{gathered}
+ \Phi(u)=\sum_{n=1}^{\infty}\Phi_n(u),\qquad
+ \Phi_n(u)=(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+ \quad u\ge0,\\
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du,
+ \qquad (t,z)\in\mathbb C^2.
+\end{gathered}
+\end{equation}
+Complex time extends the same integral, without changing its kernel.
+Set
+\begin{equation}\tag{THS2}
+ a=e^{-3\pi},\qquad
+ C_4=\frac{1+11a+11a^2+a^3}{(1-a)^5},\qquad C_\Phi=2\pi^2C_4.
+\end{equation}
+Then, for every $u\ge0$,
+\begin{equation}\tag{THS3}
+ 0<\pi(2\pi-3)e^{9u-\pi e^{4u}}
+       \le\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}}.
+\end{equation}
+Indeed
+$\Phi_n(u)=\pi n^2e^{5u}(2\pi n^2e^{4u}-3)e^{-\pi n^2e^{4u}}$
+is positive, since $2\pi-3>0$. Its $n=1$ term is at least the
+lower bound: $2\pi e^{4u}-3\ge(2\pi-3)e^{4u}$.
+For the upper bound discard the negative term and use
+$n^2-1\ge3(n-1)$ for $n\ge1$ and $e^{4u}\ge1$. Thus
+\[
+ \sum_{n\ge1}n^4e^{-\pi(n^2-1)e^{4u}}
+ \le\sum_{n\ge1}n^4a^{n-1}=C_4.
+\]
+The last identity follows by applying $(a\,d/da)^4$ to
+$\sum_{n\ge1}a^n=a/(1-a)$ and dividing by $a$; differentiation
+is valid on $|a|<1$ by the geometric series. In particular the
+kernel series converges absolutely, uniformly on every compact
+$u$ interval, with the stated global bound.
+
+For $A,B\ge0$ and every integer $p\ge0$, define the finite
+explicit number
+\begin{equation}\tag{THS4}
+ \mathcal M_p(A,B)=\frac{C_\Phi}{2\pi}
+ \exp\left(\frac{3A^2}{32\pi}
+            +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right).
+\end{equation}
+The following pointwise and integral bounds hold:
+\begin{equation}\tag{THS5}
+\begin{gathered}
+ u^p e^{Au^2+Bu}\Phi(u)
+ \le C_\Phi\exp\left(\frac{3A^2}{32\pi}
+                  +\frac{(B+9+p)^2}{8\pi}\right)
+                e^{-\pi e^{4u}/2},\\
+ \int_0^\infty u^p e^{Au^2+Bu}\Phi(u)\,du
+                  \le\mathcal M_p(A,B).
+\end{gathered}
+\end{equation}
+To prove this, use $u^p\le e^{pu}$, with $0^0=1$ in this
+inequality, and the two Taylor bounds
+$e^{4u}\ge(32/3)u^4$ and $e^{4u}\ge8u^2$.
+Completing the square in $u^2$ and then in $u$ gives
+\[
+ Au^2-\frac\pi4e^{4u}
+       \le Au^2-\frac{8\pi}{3}u^4\le\frac{3A^2}{32\pi},\qquad
+ (B+9+p)u-\frac\pi4e^{4u}
+       \le(B+9+p)u-2\pi u^2\le\frac{(B+9+p)^2}{8\pi}.
+\]
+The remaining half of the negative exponential proves the first
+line. Finally $e^{4u}\ge1+4u$ gives
+$\int_0^\infty e^{-\pi e^{4u}/2}\,du\le e^{-\pi/2}/(2\pi)$,
+proving the second line. These estimates include every moment
+order, every positive exponential-square weight, and any fixed
+linear exponential weight.
+
+\subsection{All differentiations and infinite heat sums}
+
+For $\alpha,\beta\ge0$ integers and compact bounds
+$\operatorname{Re}t\le A$ and $|\operatorname{Im}z|\le B$,
+where $A,B\ge0$, one has
+\begin{equation}\tag{THS6}
+ \partial_t^\alpha\partial_z^\beta H_t(z)
+  =\int_0^\infty u^{2\alpha+\beta}e^{tu^2}\Phi(u)
+                      \cos(zu+\beta\pi/2)\,du,
+ \qquad
+ |\partial_t^\alpha\partial_z^\beta H_t(z)|
+     \le\mathcal M_{2\alpha+\beta}(A,B).
+\end{equation}
+Indeed $|\cos w|,|\sin w|\le e^{|\operatorname{Im}w|}$.
+Thus THS5 dominates every displayed integrand on those compact
+sets. Difference quotients may be written as integrals of the
+next derivative along a segment in a slightly larger compact
+set; the same majorant applies. Dominated convergence therefore
+proves the first complex derivative and its integral formula.
+Iteration proves every mixed derivative and commutation of their
+orders. Alternatively the exponential and cosine series about
+any $(t_0,z_0)$ converge under the integrable majorant
+$e^{(\operatorname{Re}t_0+R)u^2+(|\operatorname{Im}z_0|+S)u}
+\Phi(u)$ on a bidisc of radii $R,S$. This also proves joint
+entireness. All these arguments also allow the sum over $n$ in
+THS1 to pass through the integral and derivatives: the sum of
+the absolute integrands is bounded by the same expression
+because every $\Phi_n(u)$ is positive. In particular
+\begin{equation}\tag{THS7}
+ \partial_tH_t(z)=-\partial_z^2H_t(z),\qquad
+ H_t(-z)=H_t(z),\qquad
+ H_{\bar t}(\bar z)=\overline{H_t(z)}.
+\end{equation}
+The last two identities follow directly from the integral and
+the real positive kernel.
+
+The exact Taylor expansion is
+\begin{equation}\tag{THS8}
+ H_t(z)=\sum_{j=0}^{\infty}h_j(t)z^{2j},\qquad
+ h_j(t)=\frac{(-1)^j}{(2j)!}
+          \int_0^\infty e^{tu^2}\Phi(u)u^{2j}\,du.
+\end{equation}
+For $|z|\le R$, the sum of the absolute integrands is
+$e^{\operatorname{Re}t u^2}\Phi(u)\cosh(Ru)$, bounded by
+THS5. This proves the expansion, absolute locally uniform
+convergence, and the absence of every odd coefficient.
+Every $h_j$ is entire in $t$ by THS6. For real $t$ there is the
+explicit strict lower bound
+\begin{equation}\tag{THS9}
+ (-1)^jh_j(t)\ge
+ \frac{\pi(2\pi-3)}{(2j)!(2j+1)}
+          \exp\bigl(\min(t,0)-\pi e^4\bigr)>0.
+\end{equation}
+Restrict the integral to $0\le u\le1$. On that interval THS3
+is at least $\pi(2\pi-3)e^{-\pi e^4}$ and
+$e^{tu^2}\ge e^{\min(t,0)}$; integrate $u^{2j}$.
+Thus every even Taylor coefficient is nonzero at every real
+time. No such nonvanishing statement is assumed at complex time.
+
+For arbitrary complex $t,r$, the coefficient heat identity is
+\begin{equation}\tag{THS10}
+ h_j(t+r)=\sum_{m=0}^{\infty}
+       \frac{(-r)^m(2j+2m)!}{m!(2j)!}\,h_{j+m}(t).
+\end{equation}
+To verify absolute convergence before summing, THS8 and the
+triangle inequality give
+\begin{equation}\tag{THS11}
+ \sum_{m\ge0}\frac{|r|^m(2j+2m)!}{m!(2j)!}|h_{j+m}(t)|
+ \le\frac1{(2j)!}\int_0^\infty
+      u^{2j}e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\,du<\infty.
+\end{equation}
+For a displayed bound replace the exponent coefficient by
+$\max(\operatorname{Re}t+|r|,0)$ and apply THS5.
+After interchanging sum and integral, the signs satisfy
+$(-1)^m(-1)^{j+m}=(-1)^j$ and the remaining sum is
+$\sum_m(ru^2)^m/m!=e^{ru^2}$. This proves THS10.
+The same argument gives, for any finite number of successive
+complex time steps $r_1,\ldots,r_d$, an absolutely convergent
+multiple series with majorant
+\begin{equation}\tag{THS12}
+ \frac1{(2j)!}\int_0^\infty u^{2j}
+ e^{(\operatorname{Re}t+\sum_{a=1}^d|r_a|)u^2}\Phi(u)\,du.
+\end{equation}
+Indeed the product of the absolute exponential series is
+$\prod_a e^{|r_a|u^2}$. Finite partial products increase to
+that positive bound; their integrals converge by THS5. Tonelli's
+theorem followed by absolute convergence permits all orders of
+summation. The binomial or multinomial identity then combines
+the steps into $\sum_a r_a$, with their original signs.
+
+There is also the function identity, with absolute locally
+uniform convergence in every complex variable,
+\begin{equation}\tag{THS13}
+ H_{t+r}(z)=\sum_{m=0}^{\infty}\frac{(-r)^m}{m!}
+                   \partial_z^{2m}H_t(z).
+\end{equation}
+Insert THS6:
+\[
+ \partial_z^{2m}\cos(zu)=(-1)^mu^{2m}\cos(zu).
+\]
+The absolute integral majorant is
+\[
+ e^{(\operatorname{Re}t+|r|)u^2+|\operatorname{Im}z|u}\Phi(u);
+\]
+THS5 applies uniformly on compact sets. This proves THS13,
+and applies after every further $t,r,z$ derivative by increasing
+the moment order. The group law on this actual family follows
+either from THS12 or by evaluating its final integral.
+In particular coefficient differentiation gives
+\begin{equation}\tag{THS14}
+ h_j'(t)=-(2j+2)(2j+1)h_{j+1}(t).
+\end{equation}
+For connection with the entire-function domain, every $a>0$
+satisfies
+\begin{equation}\tag{THS15}
+ \sup_{z\in\mathbb C}|H_t(z)|e^{-a|z|^2}
+ \le\int_0^\infty
+        e^{(\operatorname{Re}t+1/(4a))u^2}\Phi(u)\,du<\infty.
+\end{equation}
+This follows from $|z|u\le a|z|^2+u^2/(4a)$ and
+$|\cos(zu)|\le e^{|z|u}$. Thus the actual family belongs to
+the space of entire functions satisfying every positive Gaussian
+bound. This is a proved inclusion, without changing its kernel.
+
+\subsection{Every original lattice label and the actual coefficient map}
+
+Let $L$ be any bounded distributive lattice, with no completeness
+assumption. Its bottom and top are $0_L,1_L$. Retain
+\begin{equation}\tag{THS16}
+\begin{gathered}
+ S=G_L(\mathbb C)=\{(0,\lambda):\lambda\in L\}
+                 \cup\{(c,1_L):c\in\mathbb C\},\\
+ (c,\lambda)+(d,\nu)=(c+d,\lambda\vee\nu),\qquad
+ (c,\lambda)(d,\nu)=(cd,\lambda\wedge\nu),\\
+ \tau=(0,0_L),\quad e=(0,1_L),\quad
+ 1_S=(1,1_L),\quad\widehat c=(c,1_L).
+\end{gathered}
+\end{equation}
+If an amplitude sum is nonzero at least one input label is top;
+if a product is nonzero both input labels are top. Thus these
+operations preserve the carrier. The ring laws and lattice
+distributivity prove all semiring laws. No lower label is
+identified with another. The construction also covers the
+one-element lattice, when $\tau=e$ and $S$ is the original ring.
+
+Keep the programme's tropical semifield with zero $K$ and put
+$K_L=K\otimes_{\mathbb B}L$. Its zero and unit are
+$\mathbf0_K,\mathbf1_K$. The map that sends nonzero elements
+of $K$ to $1\in\mathbb B$ and zero to zero preserves addition
+and multiplication: a tropical sum is zero precisely when all
+its terms are zero and a product is zero precisely when a
+factor is zero. Tensoring this map with $L$ proves the
+well-defined retraction
+\begin{equation}\tag{THS17}
+\begin{gathered}
+ \iota_L(\lambda)=\mathbf1_K\otimes\lambda,\qquad
+ \rho_L\left(\sum_i b_i\otimes\lambda_i\right)
+       =\bigvee_{b_i\ne\mathbf0_K}\lambda_i,\qquad
+ \rho_L\iota_L=\operatorname{id}_L,\\
+ \Phi_{\mathbb C}:S\longrightarrow\mathbb C\times K_L,
+ \qquad\Phi_{\mathbb C}(c,\lambda)=(c,\iota_L(\lambda)).
+\end{gathered}
+\end{equation}
+The retraction shows that $\iota_L$ is injective. Both coordinates
+of $\Phi_{\mathbb C}$ preserve both operations, zero and unit,
+and their equality determines both original coordinates.
+Thus this is the injective original full-lattice map, not a
+choice of one Boolean character.
+
+For clarity about infinite sums, the following restricted
+convergence is sufficient. A sequence $(c_m,\lambda_m)$ in $S$
+has a sum here if $\sum_m|c_m|<\infty$ and the finite joins
+$\lambda_0\vee\cdots\vee\lambda_M$ are constant for all
+sufficiently large $M$. Its sum is the amplitude sum with that
+eventual label. It belongs to $S$: if the amplitude sum is
+nonzero at least one summand has nonzero amplitude and hence
+top label. On these sums THS17 commutes with summation, because
+the finite support sums in its target are exactly
+$\iota_L(\lambda_0\vee\cdots\vee\lambda_M)$ and are likewise
+eventually constant. This defines no arbitrary infinite join
+in $L$ or $K_L$. Every infinite sum below satisfies this
+restricted definition from its first summand.
+
+The actual supported coefficient vector is
+\begin{equation}\tag{THS18}
+ \mathbf a(t)=(a_n(t))_{n\ge0},\qquad
+ a_{2j}(t)=(h_j(t),1_L),\qquad a_{2j+1}(t)=\tau.
+\end{equation}
+At real times its even labels are forced by THS9 and the carrier
+condition in THS16. The odd coefficients are structurally absent
+from the cosine series and have the additive zero $\tau$.
+For complex time the same labels are retained: if an even
+coefficient happens to vanish it has value $e$, not $\tau$.
+This gives a specified entire amplitude family with its unchanged
+support vector, not an assertion of nonvanishing at complex times.
+
+For every original supported time $x=(r,\lambda)\in S$, define
+the upper triangular heat matrix on all degrees by
+\begin{equation}\tag{THS19}
+ U_x(i,j)=
+ \begin{cases}
+ 1_S,&j=i,\\
+ \displaystyle\left(\frac{(-r)^m j!}{m!i!},\lambda\right),
+       &j=i+2m,\ m\ge1,\\
+ \tau,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+Every entry lies in $S$. Indeed a nonzero off-diagonal amplitude
+forces $r\ne0$, which forces $\lambda=1_L$. Equivalently that
+entry is $\widehat{(-1)^m j!/(m!i!)}\,x^m$.
+Thus if $r=0$, all off-diagonal amplitudes vanish but their
+original label remains $\lambda$; they are not deleted.
+For $x=(r,\lambda)$ and $y=(s,\mu)$, every matrix-product entry
+is a finite sum and
+\begin{equation}\tag{THS20}
+ U_xU_y=U_{x+y},\qquad
+ x+y=(r+s,\lambda\vee\mu),\qquad U_\tau=I.
+\end{equation}
+For an even gap $j-i=2m>0$, the amplitude of the product is
+$\frac{j!}{i!}\sum_{b=0}^m(-r)^b(-s)^{m-b}/(b!(m-b)!)$
+which is $(-r-s)^mj!/(m!i!)$. Its two endpoint terms have
+labels $\lambda$ and $\mu$; each interior term has label
+$\lambda\wedge\mu$. Their join is exactly $\lambda\vee\mu$,
+including when some or every amplitude is zero. The diagonal
+has its one unit term; an odd or negative gap has only absorbing
+zero terms. This proves every entry and the identity statement.
+
+For the actual vector, all coefficient sums converge in the
+specified sense and satisfy the full supported heat law
+\begin{equation}\tag{THS21}
+ U_{(r,\lambda)}\mathbf a(t)=\mathbf a(t+r),
+ \qquad t\in\mathbb C,\quad(r,\lambda)\in S.
+\end{equation}
+At row $2j$, its amplitude sum is THS10, absolutely convergent
+by THS11. The $m=0$ summand already has label $1_L$, so every
+finite partial sum has that same label. At every odd row every
+source coefficient is $\tau$, and every product and partial sum
+is $\tau$. This proves all amplitudes and every label.
+For successive actions the absolute double or multiple sums
+are THS12. Their finite support joins again have the displayed
+labels because they include the diagonal contribution. Thus
+THS20 acts on this vector with no change of summation order or
+support completion left unproved.
+
+In particular every zero-amplitude time, with its full original
+label, acts by
+\begin{equation}\tag{THS22}
+ U_{(0,\lambda)}\mathbf a(t)=\mathbf a(t)
+ \quad(\lambda\in L),\qquad
+ U_e\mathbf a(t)=\mathbf a(t),\qquad U_\tau\mathbf a(t)=\mathbf a(t).
+\end{equation}
+These equalities do not equate the different operators on
+arbitrary supported vectors. For example a vector whose only
+nonzero entry is $a_2=1_S$ acquires coefficient $(0,\lambda)$
+in degree zero under $U_{(0,\lambda)}$. On THS18 the even
+degree-zero label, and every even tail label, is already top;
+the same action adds no support. No label has been discarded.
+
+Apply $\Phi_{\mathbb C}$ to every coefficient and to every
+matrix entry; denote the resulting objects by
+$\boldsymbol{\mathcal A}(t)$ and $\mathcal U_x$. Then
+\begin{equation}\tag{THS23}
+ \Phi_{\mathbb C}^{\mathbb N}(U_x\mathbf a(t))
+   =\mathcal U_x\Phi_{\mathbb C}^{\mathbb N}(\mathbf a(t))
+   =\boldsymbol{\mathcal A}(t+r),\qquad
+ \mathcal A_{2j}(t)=(h_j(t),1_{K_L}),\quad
+ \mathcal A_{2j+1}(t)=(0,0_{K_L}).
+\end{equation}
+Finite partial sums commute because THS17 is a semiring map;
+their absolute amplitude limits and eventually constant support
+limits commute by the explicit sum definition. Injectivity
+retains every coefficient, including all supported zeros.
+
+The coefficient heat differential also holds before and after
+this map. On the fixed support vector in THS18, define the time
+derivative by its proved entire amplitudes, retaining its even
+top and odd bottom labels. The formal second derivative in $z$
+has row $i$ equal to $\widehat{(i+2)(i+1)}\,a_{i+2}$.
+Multiplication by $\widehat{-1}$ keeps the labels. THS14 proves
+\begin{equation}\tag{THS24}
+ \partial_t\mathbf a(t)=-D_z^2\mathbf a(t),\qquad
+ \Phi_{\mathbb C}^{\mathbb N}(\partial_t\mathbf a(t))
+      =-D_z^2\boldsymbol{\mathcal A}(t).
+\end{equation}
+This derivative is not an undeclared subtraction operation in
+an arbitrary semiring. Each even coordinate lies in the exact
+additive group $\mathbb C\times\{1_L\}$, whose identity is $e$;
+each odd coordinate is the fixed singleton $\{\tau\}$.
+Their product therefore has its coefficientwise complex vector
+space structure with zero vector $(e,\tau,e,\tau,\ldots)$.
+Differentiation there is ordinary coordinate differentiation;
+the preceding integral bounds justify it for this family.
+The inclusion into the full supported coefficient space retains
+these identities and is not asserted to preserve its global
+zero vector $(\tau,\tau,\ldots)$. This proves the precise meaning
+of the differential in THS24 without changing any support.
+
+Evaluation at any original supported point $y=(z,\nu)\in S$
+also converges and gives
+\begin{equation}\tag{THS25}
+ \sum_{n\ge0}a_n(t)y^n=(H_t(z),1_L),\qquad
+ \sum_{n\ge0}\Phi_{\mathbb C}(a_n(t))
+                  \Phi_{\mathbb C}(y)^n=(H_t(z),1_{K_L}).
+\end{equation}
+Absolute convergence is THS8; the constant term is already
+top-supported, so every partial support sum is top, including
+$z=0$ and every allowed label $\nu$ of that zero. The two
+equalities follow by THS17 and the ordinary Taylor expansion.
+In particular an analytic zero has the original value $e$,
+and its exact image $(0,1_{K_L})$, throughout this heat flow.
+
+\begin{figure}[ht]
+\centering
+$\begin{array}{ccc}
+ \mathbf a(t)&\xrightarrow{\ U_{(r,\lambda)}\ }&\mathbf a(t+r)\\[3pt]
+ {\scriptstyle\Phi_{\mathbb C}^{\mathbb N}}\downarrow&&
+             \downarrow{\scriptstyle\Phi_{\mathbb C}^{\mathbb N}}\\[3pt]
+ \boldsymbol{\mathcal A}(t)&\xrightarrow{\ \mathcal U_{(r,\lambda)}\ }&
+                         \boldsymbol{\mathcal A}(t+r)
+ \end{array}$
+\caption{The actual coefficient heat map, THS19--23. An even
+coordinate retains label $1_L$ and its exact moment amplitude;
+an odd coordinate is $\tau$. Every zero-amplitude time
+$(0,\lambda)$ fixes this particular vector by THS22. All lattice
+labels remain in the time object and the full coefficient map;
+the diagram is not a replacement by a Boolean character.
+The kernel and coordinates are Rodgers--Tao's THS1.}
+\end{figure}
+\subsection{The exact defect of every finite polynomial truncation}
+Let $P_NH_t(z)=\sum_{j=0}^Nh_j(t)z^{2j}$ and let $P_N$ on
+supported vectors replace all coefficients above degree $2N$
+by $\tau$. At $0\le j\le N$ the amplitude of the discrepancy
+between $P_NH_{t+r}$ and the polynomial heat evolution
+$e^{-rD_z^2}P_NH_t$ is exactly
+\begin{equation}\tag{THS26}
+\begin{split}
+ \Delta_{N,j}(t,r)
+ &=\sum_{m=N-j+1}^{\infty}
+       \frac{(-r)^m(2j+2m)!}{m!(2j)!}\,h_{j+m}(t)\\
+ &=\frac{(-1)^j}{(2j)!}\int_0^\infty e^{tu^2}\Phi(u)u^{2j}
+   \left(e^{ru^2}-\sum_{m=0}^{N-j}\frac{(ru^2)^m}{m!}\right)du.
+\end{split}
+\end{equation}
+This follows by subtracting the finite beginning of the absolutely
+convergent series THS10; the polynomial derivative formula gives
+exactly those retained terms. For complex $t,r$, writing
+$M=N-j+1\ge1$, the tail has the explicit estimate
+\begin{equation}\tag{THS27}
+ |\Delta_{N,j}(t,r)|
+ \le\frac{|r|^M}{(2j)!M!}
+      \int_0^\infty u^{2N+2}
+          e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\,du.
+\end{equation}
+Use $\sum_{m=M}^{\infty}v^m/m!\le v^Me^v/M!$ for $v\ge0$:
+the inequality $(M+\ell)!\ge M!\ell!$ proves it term by term.
+The right side is finite and explicitly bounded by THS5.
+If $t$ is real and $r>0$, then
+\begin{equation}\tag{THS28}
+             (-1)^j\Delta_{N,j}(t,r)>0
+             \quad(0\le j\le N).
+\end{equation}
+The exponential tail in THS26 is strictly positive for every
+$u>0$, and every other factor after removing $(-1)^j$ is
+positive by THS3. Its finite integral is therefore positive.
+This proves that finite polynomial truncation does not
+intertwine the actual heat flow, even at the constant coefficient.
+Injectivity of THS17 shows that the full coefficient map does
+not remove this discrepancy. Both retained low coefficients
+still have their top labels; their amplitudes differ by the
+explicit nonzero quantity above.
+Nevertheless the actual finite evolutions do converge to the
+full flow, with the original coefficients. For $|z|\le R$ the
+absolute double-series majorant for their terms is
+\begin{equation}\tag{THS29}
+ \int_0^\infty
+ e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\cosh(Ru)\,du<\infty.
+\end{equation}
+Indeed the indices are $j,m\ge0$, and the absolute coefficient
+integrands are bounded by
+$u^{2j+2m}|r|^mR^{2j}/(m!(2j)!)$ times
+$e^{\operatorname{Re}tu^2}\Phi(u)$. Summing gives exactly
+the displayed majorant. The polynomial evolution retains the
+triangle $j+m\le N$. These increasing triangles exhaust the
+double series, so its absolute tails tend to zero, uniformly
+on compact sets of $(t,r,z)$ by using their common THS5 bound.
+Thus $e^{-rD_z^2}P_NH_t\to H_{t+r}$ locally uniformly, while
+THS28 excludes exact intertwining at each finite $N$.
+At each fixed supported coefficient its label is also eventually
+the exact label in THS18. This states both the genuine limiting
+map and the finite defect, with no assumed truncation identity.
+\subsection{An explicit geometric bound for the entire discarded tail}
+The convergence in THS29 has an explicit rate that retains the
+original cutoff. Define
+\[
+ E_N(t,r,z)=H_{t+r}(z)-e^{-rD_z^2}P_NH_t(z).
+\]
+For every $\sigma>1$, $R\ge0$ and complex $t,r$, one has
+\begin{equation}\tag{THS30}
+ \sup_{|z|\le R}|E_N(t,r,z)|
+ \le\sigma^{-(N+1)}
+ \mathcal M_0\bigl(\max(\operatorname{Re}t+\sigma|r|,0),
+                         \sqrt\sigma R\bigr).
+\end{equation}
+To prove this, the exact error is the absolutely convergent
+double series of THS29 over $j+m>N$. For each such term,
+$1\le\sigma^{j+m-(N+1)}$. Multiply its absolute integrand by
+this bound, then sum over every $j,m\ge0$. The resulting upper
+bound is precisely
+\[
+ \sigma^{-(N+1)}\int_0^\infty
+ e^{(\operatorname{Re}t+\sigma|r|)u^2}\Phi(u)
+                  \cosh(\sqrt\sigma R u)\,du.
+\]
+Since $\cosh v\le e^v$ for $v\ge0$, THS5 gives (THS30).
+No coefficient, time parameter or cutoff has been rescaled in
+the actual heat family; $\sigma$ is only an explicitly stated
+parameter in the proved upper bound.
+
+Every mixed derivative of this error has a corresponding exact
+rate. For $\alpha,\beta,\gamma\ge0$, positive radii
+$\delta_t,\delta_r,\delta_z$, complex $t_0,r_0$, and $R\ge0$,
+put
+\[
+ A_*=\max\{\operatorname{Re}t_0+\delta_t
+                 +\sigma(|r_0|+\delta_r),0\},\qquad
+ B_*=\sqrt\sigma(R+\delta_z).
+\]
+Then
+\begin{equation}\tag{THS31}
+ \sup_{|z|\le R}
+ |\partial_t^\alpha\partial_r^\beta\partial_z^\gamma
+                  E_N(t_0,r_0,z)|
+ \le
+ \frac{\alpha!\beta!\gamma!}
+      {\delta_t^\alpha\delta_r^\beta\delta_z^\gamma}
+       \sigma^{-(N+1)}\mathcal M_0(A_*,B_*).
+\end{equation}
+The error is entire in all three variables by THS6, THS13
+and its finite polynomial term. On the product of circles of
+the three displayed radii about $(t_0,r_0,z)$, one has
+$\operatorname{Re}t\le\operatorname{Re}t_0+\delta_t$,
+$|r|\le|r_0|+\delta_r$ and $|z'|\le R+\delta_z$.
+Apply (THS30) there, then apply the one-variable Cauchy
+integral formula successively in the three variables. Each
+formula contributes its exact factorial and inverse radius
+power, proving (THS31). Its constants are finite by THS4 and
+independent of $N$, so the bound tends geometrically to zero
+for the original growing polynomial cutoff. The coefficient
+supports at every retained even index are already top and
+the odd indices are already $\tau$, as proved in THS18--29;
+this amplitude error bound introduces no missing support limit.
+
+The full supported heat law proved here retains the entire
+amplitude family, all original lattice labels and their joint
+map. It does not decide whether $H_0$ has nonreal zeros and
+asserts no conclusion about RH.

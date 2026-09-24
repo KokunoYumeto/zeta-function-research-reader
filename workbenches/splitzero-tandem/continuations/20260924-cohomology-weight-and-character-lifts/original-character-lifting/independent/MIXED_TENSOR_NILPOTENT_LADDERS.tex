@@ -1,0 +1,525 @@
+% Complete independent derivation. Prefix OLM. Requires amsmath,
+% amssymb and hyperref. The original metric and epsilon are retained.
+\section{Complete mixed-tensor nilpotent ladders in the original metric}
+\label{sec:mixed-tensor-nilpotent-ladders}
+
+\paragraph{Programme input and scope.}
+This calculation extends OLR13 and OLR28--OLR31 of
+\nolinkurl{OPERATOR_LOCALITY_PRIME_RECEIVER.tex}, and TDP11,
+TDP12 and TDP23 of the retained programme proof
+\nolinkurl{TAU_DELiGNE_PRIME_MEMORY.tex}.
+Those are the actual input proofs; no theorem from SGA or from
+Deligne is invoked here. The original source has
+$k\ge17$, $k\equiv1\pmod4$, $q=(k+1)^2$ and each literal cutoff
+$q-1\le N\le2q$, with its positive metric $G_N$ on the
+$q$-dimensional complex space $E$.
+Keep the actual vectors $e,f\in E$ and coefficient $\epsilon>0$:
+\[
+\begin{gathered}
+\langle v,w\rangle_N=v^*G_Nw,\qquad
+\|e\|_N=\|f\|_N=1,\quad e^\dagger f=0,\\
+R=\epsilon fe^\dagger,\quad
+\Pi=ee^\dagger+ff^\dagger,\quad
+W=\operatorname{im}\Pi=\mathbb Ce\oplus\mathbb Cf,\quad
+U=\ker\Pi,\quad E=W\mathbin\perp U.
+\end{gathered}
+\tag{OLM1}
+\]
+Thus $Re=\epsilon f$, $Rf=0$, $R|_U=0$, and $\dim U=q-2$.
+Every adjoint below uses this metric or its original tensor product.
+The grade introduced below counts slots occupied by $f$. It is
+not identified with an arithmetic weight or a purity filtration.
+
+\subsection{Every active sector and its original adjoint}
+
+For a positive integer $t$ let
+\[
+X=R^{[t]}=\sum_{a=1}^t I^{\otimes(a-1)}\otimes R
+                         \otimes I^{\otimes(t-a)},
+\qquad E_t=E^{\otimes t},\quad G_t=G_N^{\otimes t}.
+\tag{OLM2}
+\]
+For each $J\subseteq\{1,\ldots,t\}$ let $E_J$ be the tensor
+subspace with factor $W$ at slots in $J$ and factor $U$ elsewhere.
+Then
+\[
+E_t=\mathop{\bigoplus}_{J\subseteq\{1,\ldots,t\}}^{\perp}E_J,
+\qquad
+E_J\simeq W^{\otimes j}\otimes U^{\otimes(t-j)},
+\quad j=|J|.
+\tag{OLM3}
+\]
+The isomorphism moves the $W$ factors into increasing order before
+the $U$ factors, without changing the order within either family.
+It is an isometry, since the tensor inner product is the product
+of the factor inner products. Distinct sectors are orthogonal
+because some slot pairs $W$ with $U$. Expanding the identity
+$I_E=\Pi+(I_E-\Pi)$ in every slot proves exhaustiveness.
+Every sector reduces both $X$ and $X^\dagger$, and the restriction
+of $X$ is $X_j\otimes I$, where $X_j$ is the sum of the same
+original $R$ over the $j$ active slots.
+
+For $0\le s\le j$, let $V_{j,s}\subset W^{\otimes j}$ be the
+span of the original tensor words containing $s$ copies of $f$
+and $j-s$ copies of $e$. These words are orthonormal already by
+OLM1. Therefore the $V_{j,s}$ are mutually orthogonal and have
+dimension $\binom js$.
+Put $Y_j=X_j^\dagger$.
+The operator $X_j$ replaces each occurrence of $e$ in turn by
+$\epsilon f$, and $Y_j$ replaces each $f$ in turn by $\epsilon e$.
+Terms from different slots commute. In one slot
+$R^\dagger R-RR^\dagger=\epsilon^2(ee^\dagger-ff^\dagger)$,
+so the complete commutator is
+\[
+[Y_j,X_j]|_{V_{j,s}}=\epsilon^2(j-2s)I_{V_{j,s}},
+\quad
+\|X_jv\|^2-\|Y_jv\|^2
+ =\epsilon^2(j-2s)\|v\|^2.
+\tag{OLM4}
+\]
+The second equality follows by pairing the first with $v$.
+In particular $X_j:V_{j,s}\to V_{j,s+1}$ is injective for
+$s<j/2$. The isometry interchanging $e$ and $f$ in every slot
+interchanges $X_j$ and $Y_j$. It sends $V_{j,s}$ to $V_{j,j-s}$.
+Thus $Y_j:V_{j,s+1}\to V_{j,s}$ is injective for $s\ge j/2$,
+and its adjoint $X_j$ is surjective there.
+These facts use the original $\epsilon$; it has not been replaced
+by one.
+
+\subsection{Actual primitive spaces and their orthogonal projections}
+
+For $0\le r\le\lfloor j/2\rfloor$ define
+\[
+\mathcal P_{j,r}=\ker(Y_j:V_{j,r}\to V_{j,r-1}),
+\qquad
+m_{j,r}=\dim\mathcal P_{j,r}
+         =\binom jr-\binom j{r-1},
+\quad\binom j{-1}=0.
+\tag{OLM5}
+\]
+For $r=0$, interpret $V_{j,-1}=0$.
+For $r\ge1$, the map $X_j:V_{j,r-1}\to V_{j,r}$ is injective
+by OLM4. Its adjoint $Y_j$ is consequently onto $V_{j,r-1}$:
+the orthogonal complement of its image is the kernel of $X_j$,
+which is zero. Rank and nullity prove the dimension in OLM5.
+These are concrete kernels of the actual adjoint, not postulated
+primitive classes.
+
+The corresponding orthogonal projector is explicit. With all
+restrictions to the displayed grades understood, put
+\[
+\mathsf P_{j,0}=I_{V_{j,0}},\qquad
+\mathsf P_{j,r}
+=I_{V_{j,r}}-X_j(Y_jX_j|_{V_{j,r-1}})^{-1}Y_j
+\quad(r\ge1).
+\tag{OLM6}
+\]
+The inverse exists because
+$\langle v,Y_jX_jv\rangle=\|X_jv\|^2>0$ for nonzero
+$v\in V_{j,r-1}$. The subtracted operator is self-adjoint and
+idempotent, by multiplication and $Y_j=X_j^\dagger$.
+It fixes $\operatorname{im}(X_j|_{V_{j,r-1}})$ and vanishes
+on $\ker Y_j$. These two subspaces are orthogonal complements,
+so OLM6 is exactly the claimed projector.
+
+\subsection{Exact ladder lengths, lowering coefficients and norms}
+
+Fix $j,r$ as above and write $d=j-2r$.
+For every $u\in\mathcal P_{j,r}$ one has
+\[
+Y_jX_j^a u=\epsilon^2a(d-a+1)X_j^{a-1}u
+\qquad(a\ge1).
+\tag{OLM7}
+\]
+To prove it, expand
+$[Y_j,X_j^a]=\sum_{b=0}^{a-1}X_j^b[Y_j,X_j]X_j^{a-1-b}$.
+The vector to which the commutator in summand $b$ is applied
+has grade $r+a-1-b$. OLM4 makes its coefficient
+$\epsilon^2(j-2r-2a+2+2b)$.
+Summing those $a$ coefficients gives
+$\epsilon^2a(d-a+1)$, and the term $X_j^aY_ju$ is zero.
+This proves OLM7 without deleting any power of $\epsilon$.
+
+Define the literal factors
+\[
+s_{d,a}=\epsilon^{2a}a!\frac{d!}{(d-a)!}
+\quad(0\le a\le d),\qquad s_{d,0}=1.
+\]
+Then the original inner products are
+\[
+\boxed{
+\langle X_j^a u,X_j^b v\rangle
+ =\mathbf1_{a=b}s_{d,a}\langle u,v\rangle,
+\qquad u,v\in\mathcal P_{j,r},\quad0\le a,b\le d.}
+\tag{OLM8}
+\]
+Different powers have different grades, hence are orthogonal.
+At equal powers, move one $X_j$ from the first entry to the
+second by its actual adjoint and use OLM7. Induction gives
+$s_{d,a}=\epsilon^2a(d-a+1)s_{d,a-1}$, the displayed factorial
+product. It is strictly positive for $a\le d$.
+At the next power OLM7 gives $Y_jX_j^{d+1}u=0$, and therefore
+$\|X_j^{d+1}u\|^2=\langle X_j^d u,Y_jX_j^{d+1}u\rangle=0$.
+Thus a nonzero primitive $u$ has the exact ladder
+\[
+u,X_ju,\ldots,X_j^du\ne0,\qquad X_j^{d+1}u=0,
+\qquad\text{length }d+1=j-2r+1.
+\tag{OLM9}
+\]
+For its unaltered power vectors the raising coefficient is one,
+while its lowering coefficient at level $a$ is exactly
+$\epsilon^2a(d-a+1)$ from OLM7. The metric entries OLM8 record
+why these are adjoints. No power vector has been divided by
+its norm, and no source metric has been changed.
+
+Ladders arising from different primitive grades are orthogonal.
+It suffices to examine equal total grades: let $r<r'$ and
+$r+a=r'+b$, so $a>b$. Moving $X_j^b$ from the second vector
+to the first gives $Y_j^bX_j^a u$, a scalar multiple of
+$X_j^{a-b}u$ by OLM7. Its pairing with
+$v\in\mathcal P_{j,r'}$ is zero because the adjoint expression
+contains $Y_j^{a-b}v=0$. Ladders from orthogonal primitive
+vectors in the same primitive space are orthogonal by OLM8.
+
+They fill every original grade. At grade $s$ the nonzero summands
+are exactly $X_j^{s-r}\mathcal P_{j,r}$ for
+$0\le r\le\min(s,j-s)$, and their dimensions sum to
+\[
+\sum_{r=0}^{\min(s,j-s)}m_{j,r}
+=\binom j{\min(s,j-s)}=\binom js=\dim V_{j,s}.
+\tag{OLM10}
+\]
+Their orthogonality and the nonzero factors in OLM8 prove
+independence, so this dimension identity proves equality.
+Equivalently the map
+\[
+\mathcal L_j:
+\bigoplus_{r=0}^{\lfloor j/2\rfloor}
+    \bigoplus_{a=0}^{j-2r}\mathcal P_{j,r}
+\longrightarrow W^{\otimes j},\qquad
+(u_{r,a})\longmapsto\sum_{r,a}X_j^a u_{r,a}
+\tag{OLM11}
+\]
+is bijective and satisfies
+$\|\mathcal L_j(u)\|^2=\sum_{r,a}s_{j-2r,a}\|u_{r,a}\|^2$.
+This identity specifies the domain metric transported from the
+original one. It is not an assertion that the unweighted domain
+direct sum has that metric.
+
+The inverse has an exact formula in the original operators.
+Let $v_s$ be the orthogonal component in grade $s$ of $v$.
+For $a=s-r$ in the indicated range, its primitive coordinate is
+\[
+u_{r,a}=s_{j-2r,a}^{-1}\mathsf P_{j,r}Y_j^a v_{r+a}.
+\tag{OLM12}
+\]
+For its own summand, OLM7 iterated gives
+$Y_j^aX_j^a u=s_{j-2r,a}u$.
+For a summand of a lower primitive grade, the same iteration
+leaves a positive power of $X_j$ in grade $r$, which OLM6
+annihilates. For a higher primitive grade it applies more
+lowerings than available powers and the result vanishes.
+This proves OLM12 and supplies the connecting inverse, including
+all factorials and powers of $\epsilon$.
+
+\subsection{Full Jordan multiplicities over all original slots}
+
+The decomposition in OLM11, followed by the sector maps OLM3,
+proves that for each pair $(j,r)$ the original $X=R^{[t]}$ has
+Jordan blocks of length $j-2r+1$ with total multiplicity
+\[
+\boxed{
+M_{t;j,r}=\binom tj(q-2)^{t-j}
+       \left(\binom jr-\binom j{r-1}\right),
+\quad0\le j\le t,\quad0\le r\le\lfloor j/2\rfloor.}
+\tag{OLM13}
+\]
+There are $\binom tj$ literal choices of active slots.
+For each, the inactive factor has dimension $(q-2)^{t-j}$,
+and each primitive vector supplies exactly the one ladder OLM9.
+The sector decompositions exhaust $E_t$, so no blocks are missing.
+For a fixed length $\ell\ge1$, the multiplicity, with equal
+lengths combined, is
+\[
+\boxed{
+M_{t,\ell}=\sum_{\substack{0\le j\le t\\
+j\ge\ell-1,\ j-\ell+1\text{ even}}}
+\binom tj(q-2)^{t-j}
+\left[
+\binom j{(j-\ell+1)/2}-
+\binom j{(j-\ell-1)/2}
+\right].}
+\tag{OLM14}
+\]
+Binomial coefficients with negative lower index mean zero.
+The longest block has length $t+1$ and multiplicity one,
+arising from $j=t,r=0$.
+The exact dimensions of every power kernel and image follow:
+\[
+\dim\ker X^a=\sum_{\ell=1}^{t+1}M_{t,\ell}\min(a,\ell),
+\qquad
+\operatorname{rank}X^a
+=\sum_{\ell=1}^{t+1}M_{t,\ell}\max(\ell-a,0)
+\quad(a\ge0).
+\tag{OLM15}
+\]
+Within a length-$\ell$ ladder, applying $X^a$ shifts each
+unchanged power vector by $a$ and kills exactly its last
+$\min(a,\ell)$ positions; independence proves these identities.
+In particular $\sum_\ell\ell M_{t,\ell}=q^t$.
+At $a=1$, summing $m_{j,r}$ over $r$ telescopes to
+$\binom j{\lfloor j/2\rfloor}$ and recovers OLR29 exactly.
+
+\subsection{Every exponential entry and its complete Gram energy}
+
+Let $h\in\mathbb C$. On a ladder with primitive grade $r$ and
+$d=j-2r$, the original exponential has the finite exact action
+\[
+e^{hX_j}X_j^a u
+=\sum_{b=a}^d\frac{h^{b-a}}{(b-a)!}X_j^b u,
+\qquad
+\langle X_j^b u,e^{hX_j}X_j^a v\rangle
+=\begin{cases}
+s_{d,b}\dfrac{h^{b-a}}{(b-a)!}\langle u,v\rangle,&b\ge a,\\
+0,&b<a.
+\end{cases}
+\tag{OLM16}
+\]
+The first identity is the exponential series terminated by
+OLM9; OLM8 gives the second with the stated complex phase.
+No additional eigenvalue or unipotent coefficient has been
+introduced: all powers of $\epsilon$ remain in the literal
+vectors and the factors $s_{d,b}$.
+
+The formula works directly with primitive-space-valued coordinates.
+For one fixed sector and primitive grade, let
+$v=\sum_{a=0}^dX_j^a u_a$, where
+$u_a\in\mathcal P_{j,r}\otimes U^{\otimes(t-j)}$ and $X_j$
+acts on its active factor. Then
+\[
+\boxed{
+\|e^{hX}v\|_{G_t}^2
+=\sum_{b=0}^d s_{d,b}
+   \left\|\sum_{a=0}^b\frac{h^{b-a}}{(b-a)!}u_a\right\|^2.}
+\tag{OLM17}
+\]
+This follows by collecting the coefficient of $X_j^b$ in
+OLM16 and applying OLM8. The norm inside uses the original
+primitive and inactive-factor metrics. The expression retains
+every interference term between different positions in the
+same ladder; such terms must not be discarded merely because
+the original ladder positions were orthogonal.
+
+More explicitly, define
+\[
+\mathsf G_{d;a,c}(h,z)
+=\sum_{b=\max(a,c)}^d s_{d,b}
+ \frac{\overline h^{\,b-a}z^{b-c}}
+      {(b-a)!(b-c)!}.
+\tag{OLM18}
+\]
+For $v=\sum_aX_j^a u_a$ and $w=\sum_cX_j^c v_c$ in the same
+primitive sector, finite expansion gives
+\[
+\langle e^{hX}v,e^{zX}w\rangle_{G_t}
+=\sum_{a,c=0}^d\mathsf G_{d;a,c}(h,z)\langle u_a,v_c\rangle.
+\tag{OLM19}
+\]
+Indeed the coefficient in the first argument is conjugated and
+the second is not, which fixes the order of the powers in
+OLM18. At $h=z=0$ the matrix is the original diagonal
+$s_{d,a}\mathbf1_{a=c}$.
+For every $h$, its diagonal specialization $\mathsf G_d(h,h)$
+is positive definite: the triangular coefficient map in OLM17
+has diagonal entries one and inverse obtained with $-h$, and
+every $s_{d,b}$ is positive. Its determinant is
+$\prod_{b=0}^d s_{d,b}$, since the triangular map and its adjoint
+have determinant one. These statements retain the original
+Gram matrix and do not impose an arithmetic purity condition.
+
+All sectors and primitive grades are orthogonal and reduce
+both $X$ and $X^\dagger$. Consequently the norm and pairing on
+the entire $E_t$ are exactly the sums of OLM17 and OLM19 over
+the actual $J\subseteq\{1,\ldots,t\}$ and all its primitive
+grades. These formulas give the full energy, including every
+inactive slot, rather than only its largest Jordan block.
+
+The exact exponential displacement is particularly explicit:
+\[
+\boxed{
+\|(e^{hX}-I)v\|_{G_t}^2
+=\sum_{b=1}^d s_{d,b}
+ \left\|\sum_{a=0}^{b-1}\frac{h^{b-a}}{(b-a)!}u_a\right\|^2}
+\tag{OLM20}
+\]
+on each primitive sector, with the same sums over sectors for
+a general vector. It follows by removing the $a=b$ term in
+OLM17. For $h\ne0$, the kernel is precisely the top position
+$X_j^d\mathcal P_{j,r}$ in each ladder: the coefficient at
+$b=1$ first forces $u_0=0$, then $b=2$ forces $u_1=0$, and
+induction forces $u_0=\cdots=u_{d-1}=0$. The coefficient $u_d$
+is unrestricted. Thus the displacement has the same kernel
+as $X$, exactly as in the locality calculation OLR28.
+
+For a nonzero vector in one ladder sector let $a_0$ be its
+smallest occupied position. Along positive real $h\to\infty$,
+the exact polynomial OLM17 has leading term
+\[
+\|e^{hX}v\|_{G_t}^2
+=\frac{s_{d,d}}{(d-a_0)!^2}\|u_{a_0}\|^2h^{2(d-a_0)}
++O\bigl(h^{2(d-a_0)-1}\bigr)
+\quad(a_0<d).
+\tag{OLM21}
+\]
+Only $b=d$ and its smallest occupied $a=a_0$ contribute this
+highest degree; every other term has smaller degree, proving
+the formula without a possible cancellation of its positive
+leading coefficient. If $a_0=d$, the vector is fixed and its
+energy is exactly $s_{d,d}\|u_d\|^2$.
+The same leading term holds for OLM20 when $a_0<d$.
+Taking $h=p^n$ retains the exact $p$-adic-to-complex locality
+failure in every nonfixed ladder position.
+
+\subsection{Exact global singular energy as an independent consequence}
+
+The tensor exponential identity in TDP23 can be proved directly:
+the slot operators commute and each has square zero, so
+\[
+e^{hX}=(I_E+hR)^{\otimes t}.
+\tag{OLM22}
+\]
+On the original orthonormal pair $(e,f)$, the one-factor matrix
+of $I+hR$ is
+$\left(\begin{smallmatrix}1&0\\h\epsilon&1\end{smallmatrix}\right)$;
+on $U$ it is $I_U$.
+Writing $a=\epsilon^2|h|^2$, the two eigenvalues of its actual
+positive Gram operator on $W$ are
+\[
+\lambda_\pm(h)=\frac{2+a\ \pm\sqrt{a^2+4a}}2,
+\qquad\lambda_+\lambda_-=1.
+\tag{OLM23}
+\]
+Indeed that Gram matrix is
+$\left(\begin{smallmatrix}1+a&\epsilon\overline h\\
+\epsilon h&1\end{smallmatrix}\right)$, whose trace is $2+a$
+and determinant is one. Its characteristic polynomial proves
+OLM23. The other $q-2$ eigenvalues are one.
+The squared singular values of the entire tensor exponential
+therefore consist of
+\[
+\lambda_+^{\,b}\lambda_-^{\,c},\qquad
+\text{multiplicity }\frac{t!}{b!c!(t-b-c)!}(q-2)^{t-b-c},
+\quad b,c\ge0,\quad b+c\le t.
+\tag{OLM24}
+\]
+To prove this, take orthogonal eigenspaces of the positive
+one-factor Gram operator, tensor them in the original slots,
+and count choices of the two one-dimensional factors and
+the $(q-2)$-dimensional factor. The tensor Gram operator is
+the tensor of the original Gram operators by OLM22.
+If eigenvalues coincide, the displayed positive multiplicities
+add; the labelling remains valid, also at $h=0$.
+Thus the complete operator norm and squared Hilbert--Schmidt
+energy are exactly
+\[
+\boxed{
+\|e^{hX}\|_{G_t}=\lambda_+(h)^{t/2},\qquad
+\|e^{hX}\|_{\rm HS,G_t}^2=(q+\epsilon^2|h|^2)^t.}
+\tag{OLM25}
+\]
+The first identity follows from the largest product eigenvalue,
+and the second follows by summing OLM24, or multiplying the
+one-factor traces. These are consequences in the same metric
+as the full ladder Gram formulas; no norm estimate has replaced
+the exact ladder entries.
+
+\subsection{The full support lifts and free-mask correspondence}
+
+For the full bounded distributive lattice $L$ keep
+$V_L^\uparrow=\{(0,\lambda):\lambda\in L\}
+\cup\{(v,1_L):v\in V\}$ and the original lift
+$T^\uparrow(v,\lambda)=(Tv,\lambda)$ over $G_L(\mathbb C)$.
+The componentwise ring and lattice operations prove directly
+that $T^\uparrow$ is linear and that composition is preserved.
+Apply this to the complete isomorphism formed by OLM3 and
+OLM11 and to its explicit inverse OLM12.
+They become mutually inverse maps on the full synchronized
+carriers, recovering every support label as well as every
+primitive coordinate. The domain of this lift is the
+synchronized carrier of the entire direct sum in OLM11 and
+OLM3. It is not a product assigning unrelated support labels
+to different summands.
+
+All metric identities lift with the same support meet:
+\[
+\langle(v,\lambda),(w,\mu)\rangle_L
+=(\langle v,w\rangle_{G_t},\lambda\wedge\mu),
+\qquad
+(X^a)^\uparrow(X^b)^\uparrow=(X^{a+b})^\uparrow.
+\tag{OLM26}
+\]
+The pair on the right of the first formula lies in
+$G_L(\mathbb C)$: a nonzero amplitude requires both vectors
+nonzero and hence both supports top. At a zero amplitude the
+literal meet is retained.
+For $a+b\ge t+1$, the second formula is the supported-zero
+operator $(v,\lambda)\mapsto(0,\lambda)$, not the map constant
+at $\tau$. All factorial coefficients in OLM7--OLM21 are
+unchanged on amplitudes.
+
+For $h\ne0$, the exact locality-defect correspondence is
+\[
+\begin{gathered}
+((e^{hX}-I)^\uparrow)^{-1}(Z_L)=(\ker X)_L^\uparrow,\\
+\ker X=\mathop{\bigoplus}_{J,r}^{\perp}
+ X_j^{j-2r}\mathcal P_{j,r}\otimes U^{\otimes(t-j)},
+\qquad Z_L=\{(0,\lambda):\lambda\in L\}.
+\end{gathered}
+\tag{OLM27}
+\]
+OLM20 proves the amplitude kernel and its complete ladder
+description. The lift retains the support of every preimage,
+which proves the first equality. The quotient map by this
+kernel, followed by its induced injection into
+$\operatorname{im}(e^{hX}-I)$, is exactly the lift of OLR7;
+its formula on a class is $[v]\mapsto(e^{hX}-I)v$.
+It is well-defined, injective and onto its displayed image
+because its amplitude kernel is precisely the stated one.
+
+In the original free coordinates of the positive-dimensional
+space $E_t$ of dimension $q^t$, write a vector as
+$(v,\boldsymbol\mu)$, with $v_i\ne0\Rightarrow\mu_i=1_L$.
+Keep the original synchronization and its complete fibre:
+\[
+\begin{split}
+P_{\rm syn}(v,\boldsymbol\mu)&=(v,\bigvee_i\mu_i),\\
+P_{\rm syn}^{-1}(v,\lambda)
+&=\{(v,\boldsymbol\mu):\bigvee_i\mu_i=\lambda,
+                           \ v_i\ne0\Rightarrow\mu_i=1_L\}.
+\end{split}
+\tag{OLM28}
+\]
+The free operator has amplitude $I$ and all-top support matrix,
+so it sends every output support coordinate to the displayed
+join. Repeating that join leaves it unchanged, proving it is
+an idempotent with precisely the displayed fibres.
+The free masks over OLM27 are exactly those whose original
+amplitude belongs to the explicitly computed $\ker X$; all
+zero-amplitude masks are retained.
+There is no asserted change of free-semimodule basis to a
+ladder basis. The exact relation is the correspondence OLM28
+followed by the synchronized isomorphism OLM11 and inverse
+OLM12. This keeps every original mask while using the proved
+metric ladder coordinates for its amplitude.
+If an individual zero-dimensional summand is considered on
+its own, its free zero-coordinate semimodule has one element
+whereas its synchronized zero-vector carrier still has all
+of $L$; the positive-dimensional assertion just made concerns
+the full original $E_t$ and does not suppress that distinction.
+
+These constructions give the complete original-metric
+nilpotent decomposition, every Jordan multiplicity, every
+exponential coefficient and its joint energy, and the exact
+full-support maps. Their slot-counting grades and finite
+ladder commutator have not been identified with an arithmetic
+weight, monodromy filtration or a Frobenius purity statement.

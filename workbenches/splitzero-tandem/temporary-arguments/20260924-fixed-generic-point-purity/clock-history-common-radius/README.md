@@ -1,0 +1,256 @@
+---
+title: "Complete clock histories and a common spectral radius"
+date: "24 September 2026"
+---
+
+# Complete clock histories and a common spectral radius
+
+This is a continuation of the investigator's proposal: retain the fixed non-parity-labelled support, recover the complete winding count, detect primes as first appearances, and calculate whether the resulting global object has a common spectral modulus. The calculations below give an exact route from winding-cover degree to a common spectral radius. They do not establish the Riemann hypothesis or identify the constructed spectrum with the zeros of the original Riemann zeta function.
+
+The result is structural. No zero search, numerical fitting, arbitrary distance from the base point, or change to the zeta function is used. All masses, index factors, the order-four branch, and the restriction to odd arithmetic degrees remain visible. The construction is related to established adelic dilation and Bost–Connes geometry; no historical novelty claim is made.
+
+![Retained backward shells and the exact continuous spectral circle; section 5 supplies the proof.](clock_radius.png)
+
+The shell row is an indexed-set schematic, not a metric on the support point. The spectral panel uses the explicit example n=3. Its two interior marks are eigenvalues of the compressed compact operator, not of the extended operator. Figure source: [make_figure.py](make_figure.py).
+
+## 1. What the investigator proposed, and what the notation means
+
+The motivating observation was that the complete prime-clock history is needed to distinguish an arbitrary integer using those clocks alone, and that this common global requirement might produce a purity statement. The investigator's later refinement describes Z0 as no retained torsion/winding and Z1 as retained structure without parity. They also tentatively asked whether tau names the entire support-with-structure. This refinement supersedes treating the earlier presence labels as an already completed geometric identification.
+
+We do not impose a new answer to that naming question. The actual source objects used below are the fixed generic point \(\eta\), its multiplicative stalk, and explicit receiving spaces. No expression \(\tau+\tau\), \(n-\tau\), metric on \(\tau\), or parity label on \(\tau\) is introduced. The investigator uses “torsion” to include the retained winding count; below the actual finite-order subgroup is separately named so its precise relation to the winding is visible.
+
+In the Connes–Consani three-point geometry, \(\eta\) is the unique generic point, so their mirror fixes it. If a point label must be exchanged by the mirror, an equivariant label at \(\eta\) would have to equal its own flip. Neither label does. This proves the absence of that exchanged point label. It does not erase the stalk attached to the point. [Connes–Consani, §§3–4][CC]
+
+The stalk's nonabsorbing multiplicative group and action are
+\[
+G=\langle T,J\mid TJ=JT,\ J^4=1\rangle,
+\quad \epsilon=J^2,
+\quad A(T)=\epsilon T^{-1},\quad A(J)=J^{-1}.
+\]
+The presentation gives a bijection
+\[
+T^mJ^k\longleftrightarrow(m,[k]_4),
+\qquad G\cong\mathbb Z\times\mathbb Z/4,
+\]
+preserving multiplication by addition in these coordinates. Indeed the displayed coordinates satisfy the presentation, and their inverse is \((m,[k]_4)\mapsto T^mJ^k\). Thus
+\[
+A(m,[k]_4)=(-m,[2m-k]_4),\qquad A^2=1.
+\]
+The absorbing stalk element is separate from every element of \(G\), including \((0,[0]_4)\). The group identity is not an absent supporting point.
+
+## 2. Prime observations and the exact global-information statement
+
+For a finite nonempty set \(P\) of primes, let \(M_P=\prod_{p\in P}p\). On the winding coordinate the observation is
+\[
+O_P:\mathbb Z\longrightarrow\prod_{p\in P}\mathbb Z/p\mathbb Z,
+\qquad m\longmapsto([m]_p)_{p\in P}.
+\]
+Its fibre at the reading of \(m\) is exactly \(m+M_P\mathbb Z\): equality of readings means each prime divides the difference, and pairwise coprimality makes this equivalent to divisibility by their product. Every such fibre is infinite. An infinite family of distinct primes separates every pair of integers, because a fixed nonzero difference has only finitely many prime divisors. Therefore every integer has the same least observation cardinality, \(\aleph_0\), **relative to these unrestricted residue observations**. A finite bound on the unknown integer would change that question.
+
+This is compatible with the sequential sieve. Begin with no active channels. At count \(m\ge2\), activate a channel precisely when no earlier active channel divides \(m\). Induction proves that the active channels are exactly the primes: a prime has no smaller nonunit divisor, while a composite has a smaller prime divisor, already active. Four creates no new channel because the channel at two already returns at four. Six is covered by both two and three. The underlying count and every overlap remain; only a new channel is suppressed.
+
+Prime powers must also remain if winding-cover degrees are to survive completion. For example, observation modulo \(p\) sees multiplication by both \(p\) and \(p^2\) as zero in that coordinate. We therefore retain **all** finite winding clocks and the full branch:
+\[
+K=\varprojlim_{N\mid M}\bigl(\mathbb Z/(4N)\mathbb Z\times\mathbb Z/4\bigr)
+\cong\widehat{\mathbb Z}\times\mathbb Z/4.
+\]
+The moduli \(4N\) are cofinal among all integer moduli. Reduction extends a compatible family uniquely to all moduli, proving this identification. The map
+\[
+i:G\hookrightarrow K,\qquad T^mJ^k\mapsto(([m]_N)_N,[k]_4)
+\]
+is injective: an integer divisible by every positive integer is zero. It is dense: every finite collection of compatible congruences is realized at its least common multiple and has an integer representative. The finite Chinese remainder construction gives
+\(\widehat{\mathbb Z}\cong\prod_p\mathbb Z_p\), including the full two-adic factor. The space is compact as a closed compatible-family subspace of a product of finite discrete spaces.
+
+Every continuous character \(\chi:K\to\mathbb C^\times\) has modulus one. Its modulus image is a compact subgroup of the positive real numbers. An element greater than one would have unbounded positive powers; an element less than one would have an inverse greater than one. Hence that subgroup is \(\{1\}\). This proves a common-modulus statement from the actual completion, not by declaring infinite observation cardinality to be an eigenvalue weight.
+
+The signed characters retain \(\chi(\epsilon)=-1\). Explicitly their restrictions to \(G\) are
+\[
+\chi_{z,j}(T^mJ^k)=z^m j^k,
+\qquad z\text{ a root of unity},\quad j\in\{i,-i\}.
+\]
+Every such character factors through a finite quotient and is continuous. Conversely a continuous character factors through a finite quotient: choose a sufficiently short arc about one containing no nontrivial subgroup of the circle; a sufficiently small open subgroup of \(K\) maps into that arc and therefore into one. These characters separate the full \(K\): a different branch coordinate is detected by \(z=1,j=i\); a different spatial coordinate is detected in a finite cyclic quotient. The original absorbing element can be retained as a separate isolated point evaluated as zero, distinct from all these nonzero values.
+
+These calculations integrate the source task's P9–P13 prime-clock and completion results. Their complete arguments are supplied here for a self-contained receiving calculation, not presented as a second independent discovery.
+
+## 3. The index carries a precise arithmetic size
+
+Fix an odd integer \(n>1\). The source power map extends to
+\[
+F_n:K\longrightarrow K,\qquad (x,k)\longmapsto(nx,nk).
+\]
+Multiplication by \(n\) on \(\widehat{\mathbb Z}\) is injective. To prove this directly, if \(nx=0\), read a representative of \(x\) modulo \(nr\). The relation \(nr\mid na\) implies \(r\mid a\); hence every coordinate of \(x\) is zero. Its image is exactly the kernel of reduction modulo \(n\): if \(x\) reduces to zero there, choose its representative modulo \(nr\) divisible by \(n\), divide by \(n\), and reduce modulo \(r\). These well-defined compatible residues construct its unique preimage.
+
+The branch map \(k\mapsto nk\) is a bijection modulo four. Thus, writing \(C_n=F_nK\),
+\[
+C_n=n\widehat{\mathbb Z}\times\mathbb Z/4,
+\qquad [K:C_n]=n.
+\]
+Give \(K\) Haar measure \(\mu\) with its arbitrary original total mass \(M>0\). No choice \(M=1\) is made. Translation invariance and the \(n\) cosets show
+\[
+\mu(C_n)=M/n,\qquad \mu(F_nB)=\mu(B)/n.
+\]
+For the second identity, transported Haar measure on the open subgroup is a multiple of restricted Haar measure; the first identity determines the multiple. This also follows on every finite cylinder from its retained counting measure.
+
+The odd restriction is not cosmetic. The actual signed power map fixes \(\epsilon\) only when \(\epsilon^n=\epsilon\), hence only for odd \(n\). All two-adic **clock data** remain in \(K\); an even-degree signed power map is not silently inserted. This is the same restriction as in the source's odd arithmetic topos. [Connes–Consani, §§6–7][CC]
+
+## 4. The compact observation and its exact receiving maps
+
+The following is an analytic realization of the specified clock group, not a vector-space definition of \(\tau\). On \(\mathcal H_K=L^2(K,\mu)\) use the raw operators
+\[
+U_nf=f\circ F_n,
+\qquad
+V_nf(y)=
+\begin{cases}f(F_n^{-1}y),&y\in C_n,\\0,&y\notin C_n,\end{cases}
+\qquad E_nf=\mathbf1_{C_n}f.
+\]
+The measure identity gives
+\[
+\|U_nf\|^2=n\int_{C_n}|f|^2\,d\mu,
+\qquad \|V_nf\|^2=n^{-1}\|f\|^2.
+\]
+It also proves well-definedness on equivalence classes modulo null sets. Pointwise composition gives \(U_nV_n=I\), \(V_nU_n=E_n\). The same substitution in the inner product gives \(U_n^*=nV_n\), and therefore
+\[
+U_nU_n^*=nI,\qquad U_n^*U_n=nE_n,\qquad \|U_n\|=\sqrt n.
+\]
+Equality in the norm is attained by \(\mathbf1_{C_n}\). These formulas retain both \(n\) and the support projection. The compact operator has the eigenvector \(\mathbf1_K\) with eigenvalue one and the nontrivial kernel of functions supported outside \(C_n\). Its norm alone is consequently not a common-eigenvalue-modulus assertion.
+
+## 5. Retain the backward history: the common-radius theorem
+
+Instead of erasing the previous distinction, keep every inverse-dilation stage:
+\[
+H_n=\bigcup_{r\ge0}n^{-r}\widehat{\mathbb Z}
+=\prod_{p\mid n}\mathbb Q_p\times\prod_{p\nmid n}\mathbb Z_p,
+\qquad X_n=H_n\times\mathbb Z/4.
+\]
+The equality follows because only the finitely many primes dividing \(n\) acquire denominators, and one sufficiently large power of \(n\) clears any specified finite collection of their negative valuations. This is a locally compact additive group, with \(K\) a compact open subgroup. Its Haar measure is uniquely extended with the original mass \(\mu(K)=M\). The union has infinite mass since \(\mu(F_n^{-r}K)=n^rM\).
+
+Now \(F_n\) is an automorphism of \(X_n\). Its Haar modulus is still \(1/n\), as determined on \(K\). On \(\mathcal H_n=L^2(X_n,\mu)\) define, without a scalar prefactor,
+\[
+D_nf=f\circ F_n.
+\]
+Change of variables proves
+\[
+\|D_nf\|^2=n\|f\|^2,\quad
+D_n^{-1}f=f\circ F_n^{-1},\quad
+D_n^*=nD_n^{-1},
+\]
+and hence
+\[
+\boxed{D_n^*D_n=D_nD_n^*=nI.}
+\]
+The operator norm is \(\sqrt n\), and the inverse norm is \(n^{-1/2}\). The spectrum therefore lies on \(|\lambda|=\sqrt n\): the operator bound excludes larger modulus, and applying the inverse bound excludes smaller modulus.
+
+The whole circle occurs. Put \(S=K\setminus F_nK\), \(s=\mu(S)=M(1-1/n)>0\), and \(S_j=F_n^jS\) for all integers \(j\). These shells are disjoint and have mass \(n^{-j}s\). They cover \(X_n\) except for \(\bigcap_{r\ge0}F_n^rK\), a null set since its mass is at most \(Mn^{-r}\) for every \(r\).
+
+For any \(|\lambda|=\sqrt n\) and positive integer \(L\), retain the unscaled function
+\[
+f_L=\sum_{j=0}^{L-1}\lambda^j\mathbf1_{S_j}.
+\]
+Since \(D_n\mathbf1_{S_j}=\mathbf1_{S_{j-1}}\), cancellation of the matching interior terms leaves precisely two boundary terms. Their supports are disjoint, giving
+\[
+\|f_L\|^2=Ls,\qquad
+\|(D_n-\lambda I)f_L\|^2=2ns.
+\]
+Thus the relative error tends to zero, and no bounded inverse for \(D_n-\lambda I\) exists. This proves
+\[
+\boxed{\sigma(D_n)=\{\lambda\in\mathbb C:|\lambda|=\sqrt n\}.}
+\]
+There are no nonzero square-integrable eigenvectors. An eigenrelation would give \(|\lambda|=\sqrt n\) and equal \(L^2\) mass on each shell, since
+\[
+\int_{S_j}|f|^2\,d\mu=n^{-j}|\lambda|^{2j}\int_S|f|^2\,d\mu
+=\int_S|f|^2\,d\mu.
+\]
+Summing over all integers \(j\) forces this mass to vanish. The circle is continuous spectrum, not a list of algebraic Frobenius eigenvalues.
+
+The exact comparison with section 4 is zero extension
+\[
+\mathcal J:\mathcal H_K\hookrightarrow\mathcal H_n.
+\]
+It is isometric with the unchanged measure; its adjoint is restriction. Direct evaluation gives
+\[
+\mathcal J^*D_n\mathcal J=U_n,\qquad
+\mathcal J^*D_n^{-1}\mathcal J=V_n,\qquad
+\mathcal J^*D_n^*\mathcal J=nV_n.
+\]
+Moreover \(D_n^r\mathcal J\mathcal H_K=L^2(F_n^{-r}K)\) for \(r\ge0\). These subspaces have dense union because their supports increase to \(X_n\). Thus this realization is generated by precisely the retained backward histories; no unrelated Hilbert-space summand has been appended. Extension of the compact eigenfunction gives \(\mathbf1_K\), not the nonsquare-integrable constant on \(X_n\).
+
+## 6. The original mirror and every branch remain
+
+Since \(n\) is odd, \(x_2\in\mathbb Z_2\) for every \(x\in H_n\). Hence the full source mirror extends by
+\[
+A(x,k)=(-x,[2(x_2\bmod4)-k]_4).
+\]
+Direct substitution proves \(A^2=I\) and \(AF_n=F_nA\); in both orders the second coordinate is \([2n(x_2\bmod4)-nk]_4\). It preserves \(K\) and hence its Haar measure, and uniqueness of the extended Haar measure gives measure preservation on \(X_n\).
+
+Consequently \(Rf=f\circ A\) is a self-adjoint unitary, commuting with \(D_n,D_n^*\). It intertwines the compact and extended realizations through \(R\mathcal J=\mathcal J R_K\). The branch coordinate is not collapsed: odd multiplication permutes its four values. The original sign \(\epsilon\) stays fixed, while \(J\) goes to \(J\) or \(J^{-1}\) according to \(n\bmod4\). The support point remains fixed throughout; none of these equations assigns it a winding coefficient.
+
+## 7. The relation to Deligne and to established adelic constructions
+
+The proved mechanism is
+\[
+[K:F_nK]=n
+\quad\Longrightarrow\quad \mu(F_nB)=\mu(B)/n
+\quad\Longrightarrow\quad D_n^*D_n=nI
+\quad\Longrightarrow\quad |\lambda|=n^{1/2}\text{ on }\sigma(D_n).
+\]
+It is independent of the original positive mass \(M\). The equality is not obtained by dividing the operator by \(\sqrt n\). This is a substantive common-radius realization of retained counting data.
+
+Deligne's statement retains additional, specific arithmetic data. An algebraic Frobenius eigenvalue \(\alpha_x\) is pure of weight \(w\) when every complex conjugate satisfies
+\[
+|\iota(\alpha_x)|=N(x)^{w/2}.
+\]
+Thus the common quantity over different residue cardinalities is the exponent \(w\); at a fixed cardinality, it is a common numerical radius. Section 5 supplies an exact square-root radius for a specified operator. It does not make its continuous spectrum into algebraic cohomological eigenvalues. Deligne's \(H_c^i\to H^i\) image obtains equal upper and lower weights through his estimates and duality; an infinite number of observations is not substituted for that theorem. [Deligne, Definitions 1.2.1–1.2.2 and Corollaries 3.3.4–3.3.6][D]
+
+The spatial extension-by-zero map used above is an existing Bost–Connes construction. Connes–Marcolli–Ramachandran write
+\[
+\alpha_n(f)(\rho)=f(n^{-1}\rho)\quad(\rho\in n\widehat{\mathbb Z}),
+\]
+with zero outside that range. They identify the semigroup algebra as a corner of the rational-action algebra on finite adeles. Their source locators are equations `alphax-cycl`, `BCalg`, `crossQA1`; the map to our spatial functions is the identical formula, while our order-four factor and odd-degree restriction are retained additions from the specific twistor source. We use this established arithmetic setting, not a proposed equivalence of unrelated spaces. [Connes–Marcolli–Ramachandran][CMR]
+
+There is also a directly relevant source morphism in Connes's trace-formula work. On its actual test domain it uses
+\[
+\mathcal E f(g)=|g|^{1/2}\sum_{q\in k^\times}f(qg),
+\qquad
+\mathcal E U(a)=|a|^{1/2}V(a)\mathcal E,
+\]
+where \(U(a)f(x)=f(a^{-1}x)\) and \(V(a)\xi(g)=\xi(a^{-1}g)\). Substitution proves the second equality, retaining the entire \(|a|^{1/2}\) factor. This uses the source's distinct arithmetic quotient and test domain; it is not an assertion that our \(\mathcal J\) is \(\mathcal E\). In that source possible off-critical zeros are treated as resonances, so the clock-circle calculation alone does not exclude them. [Connes, equations (18)–(19) and abstract][C98]
+
+## 8. The archimedean factor cannot be discarded
+
+The circle in section 5 belongs to the finite-place dilation realization \(X_n\). To display exactly what happens on adding a real coordinate, use the product \(X_n\times\mathbb R\), with the same finite Haar measure and ordinary Lebesgue measure, and
+\[
+F_n^{\mathrm{all}}(x,k,t)=(nx,nk,nt).
+\]
+Its image-measure factor on sets is \((1/n)\,n=1\). For its raw pullback, change variables in both coordinates to obtain
+\[
+\int |f(nx,nk,nt)|^2\,d\mu(x,k)\,dt
+=n\,\frac1n\int |f(y,l,u)|^2\,d\mu(y,l)\,du.
+\]
+Both factors are retained. This operator is unitary and has spectrum on the unit circle. This displayed product is a comparison space, not an identification with the entire Connes–Consani absolute curve or with the idele-class quotient.
+
+Therefore the finite square-root factor is real mathematical information, but its place in a global arithmetic action has to be read together with the archimedean action and the actual quotient maps. The calculation has produced those factors and the compact-to-global maps rather than declaring them harmless.
+
+## 9. Programme position and provenance
+
+The original Riemann function remains
+\[
+\zeta(s)=\sum_{m=1}^{\infty}m^{-s}
+=\prod_{p}(1-p^{-s})^{-1}\qquad(\Re s>1),
+\]
+with its meromorphic continuation understood when discussing its nontrivial zeros. No completed or rescaled function replaces it here. The argument does not assume simple zeros.
+
+The completed advance is a precise common-radius operator calculation attached to the full clock completion and its backwards dilations, retaining the mirror and branch. It connects the investigator's global-history intuition to an existing adelic mechanism. No map identifying the resulting Hilbert realization with a cohomological space whose spectrum detects every zero of this \(\zeta\) has been proved in this note. Consequently this is not a proof or disproof of RH.
+
+The investigator supplied the questions and corrections about non-parity support, retained winding, first prime appearances and global history. The accompanying task supplied the prime-clock P9–P13 construction. A separate mathematical agent independently derived the raw pullback, its automorphic extension, exact compression and shell proof; this note includes those proofs, rather than using agent agreement as a certificate. The human-source origins remain explicit below.
+
+### Sources and exact reading coverage
+
+- Alain Connes and Caterina Consani, *The Absolute Twistor Line and the Geometry of the compactification of Spec Z*, arXiv:2609.00299v1. Original author TeX: §§3–4, and current §§6–7 power maps; source equations `def:alpha_symmetry`, `def:absolute_curve`, `prop:twistor_frobenius`. [Primary source][CC]
+- Pierre Deligne, *La conjecture de Weil. II*, Publications Mathématiques de l'IHÉS **52** (1980), 137–252. Definitions 1.2.1–1.2.7 were read in the supplied French S20 transcription, not misrepresented as original author TeX; the original publication identity is linked. The earlier source task supplies the retained-factor 3.3.4–3.3.6 comparison. [Original publication][D]
+- Alain Connes, Matilde Marcolli and Niranjan Ramachandran, *KMS states and complex multiplication*, arXiv:math/0501424. Original author TeX, equations `RhatZ`, `alphax-cycl`, `BCalg`, `crossQA1`; current reading lines 859–924 and 933–957. [Primary source][CMR]
+- Alain Connes, *Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068. Original author TeX, current reading equations (10)–(19), lines 726–803, and the abstract. The weighted target representation in that paper is not asserted unitary. [Primary source][C98]
+
+[CC]: https://arxiv.org/html/2609.00299v1
+[D]: https://www.numdam.org/item/PMIHES_1980__52__137_0/
+[CMR]: https://arxiv.org/abs/math/0501424
+[C98]: https://arxiv.org/abs/math/9811068

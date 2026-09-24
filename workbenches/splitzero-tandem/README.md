@@ -4,6 +4,8 @@
 ### Point-of-use human-source correction
 
 The [FRG2 citation edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/source-corrections/20260925-frg2-human-citation) places the classical Meixner–Pollaczek attribution beside the formula in the cumulative paper and supplement, and carries it into their later source copies. It includes complete corrected LaTeX and rebuilt 837- and 263-page readers. The mathematics is unchanged; historical editions and the full project contents below are preserved.
+
+[Matching Zenodo correction — 10.5281/zenodo.22948252](https://zenodo.org/records/22948252) · [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-frg2-human-citation.json). All 24 preceding continuation files are retained.
 <!-- /frg2-citation-correction-20260925 -->
 
 <!-- three-reader-edition-20260924 -->

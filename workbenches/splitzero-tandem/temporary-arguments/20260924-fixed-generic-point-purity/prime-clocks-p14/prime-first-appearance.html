@@ -1,0 +1,110 @@
+<div id="prime-first-appearance">
+  <style>
+    #prime-first-appearance .pfa-stack { display: grid; gap: 16px; }
+    #prime-first-appearance .pfa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); gap: 6px; }
+    #prime-first-appearance .pfa-cell { display: grid; place-items: center; min-height: 38px; color: var(--foreground); background: var(--muted); }
+    #prime-first-appearance .pfa-cell.pfa-new { background: color-mix(in srgb, var(--viz-series-1) 22%, transparent); }
+    #prime-first-appearance .pfa-cell.pfa-covered { background: color-mix(in srgb, var(--foreground) 10%, transparent); text-decoration: line-through; }
+    #prime-first-appearance .pfa-cell.pfa-future { color: var(--muted-foreground); background: transparent; }
+    #prime-first-appearance .pfa-cell.pfa-current { box-shadow: inset 0 -3px var(--foreground); }
+    #prime-first-appearance .pfa-lines { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; min-height: 64px; }
+    #prime-first-appearance .pfa-line { display: grid; justify-items: center; gap: 5px; min-width: 24px; color: var(--foreground); }
+    #prime-first-appearance .pfa-mark { display: block; width: 4px; height: 28px; background: var(--viz-series-1); }
+    #prime-first-appearance .pfa-legend { display: flex; flex-wrap: wrap; gap: 16px; }
+    #prime-first-appearance .pfa-key { display: inline-block; width: 12px; height: 12px; margin-right: 5px; background: color-mix(in srgb, var(--viz-series-1) 22%, transparent); }
+  </style>
+  <div class="pfa-stack">
+    <h3>First appearances in the winding sieve</h3>
+    <div>
+      <label class="form-label" for="pfa-count">Winding count: <span id="pfa-value" class="tabular-nums">6</span></label>
+      <div class="viz-controls">
+        <button type="button" class="btn" id="pfa-back">Previous</button>
+        <input id="pfa-count" class="form-range" type="range" min="1" max="48" step="1" value="6" aria-label="Winding count">
+        <button type="button" class="btn btn-primary" id="pfa-next">Next</button>
+      </div>
+    </div>
+    <div id="pfa-detail" aria-live="polite"></div>
+    <div>
+      <div class="form-label">Underlying progression</div>
+      <div id="pfa-grid" class="pfa-grid tabular-nums" role="img" aria-label="Counts from one to forty-eight, with prime first appearances and covered composites"></div>
+    </div>
+    <div class="pfa-legend text-small">
+      <span><span class="pfa-key" aria-hidden="true"></span>New prime channel</span>
+      <span><s>Composite</s>: covered already</span>
+      <span>Underlined: current count</span>
+    </div>
+    <div>
+      <div class="form-label">Observed prime lines · labels are activation counts</div>
+      <div id="pfa-lines" class="pfa-lines tabular-nums" aria-label="Prime channels activated so far"></div>
+    </div>
+    <div class="text-small">Sieve incidence diagram · equal line heights encode presence, not spectral weight · proof P9</div>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('prime-first-appearance');
+      const input = root.querySelector('#pfa-count');
+      const grid = root.querySelector('#pfa-grid');
+      const lines = root.querySelector('#pfa-lines');
+      const detail = root.querySelector('#pfa-detail');
+      const back = root.querySelector('#pfa-back');
+      const next = root.querySelector('#pfa-next');
+      const max = 48;
+      const channels = [];
+      const events = [{}, { blockers: [], isNew: false }];
+      for (let n = 2; n <= max; n++) {
+        const blockers = channels.filter(p => n % p === 0);
+        const isNew = blockers.length === 0;
+        events[n] = { blockers, isNew };
+        if (isNew) channels.push(n);
+      }
+      let current = 6;
+      const readState = state => {
+        const value = state?.modelContent?.windingCount ?? state?.windingCount;
+        if (Number.isInteger(value) && value >= 1 && value <= max) current = value;
+      };
+      const render = () => {
+        input.value = current;
+        root.querySelector('#pfa-value').textContent = current;
+        back.disabled = current === 1;
+        next.disabled = current === max;
+        const event = events[current];
+        detail.textContent = current === 1 ? '1: multiplicative unit; no prime channel.' : event.isNew ? current + ': first unblocked appearance → new prime channel.' : current + ': covered by ' + event.blockers.join(' and ') + ' → no new line.';
+        grid.replaceChildren();
+        for (let n = 1; n <= max; n++) {
+          const cell = document.createElement('span');
+          const state = n > current ? 'pfa-future' : events[n].isNew ? 'pfa-new' : n === 1 ? '' : 'pfa-covered';
+          cell.className = 'pfa-cell ' + state + (n === current ? ' pfa-current' : '');
+          cell.textContent = n;
+          cell.setAttribute('aria-label', n + (n > current ? ': not reached' : n === 1 ? ': unit' : events[n].isNew ? ': new prime channel' : ': covered by ' + events[n].blockers.join(', ')));
+          grid.append(cell);
+        }
+        lines.replaceChildren();
+        for (const p of channels.filter(p => p <= current)) {
+          const label = document.createElement('span');
+          label.className = 'pfa-line';
+          const mark = document.createElement('span');
+          mark.className = 'pfa-mark';
+          mark.setAttribute('aria-hidden', 'true');
+          const value = document.createElement('span');
+          value.textContent = p;
+          label.append(mark, value);
+          lines.append(label);
+        }
+        if (!lines.children.length) lines.textContent = 'No prime channel yet';
+      };
+      const update = n => {
+        current = Math.max(1, Math.min(max, n));
+        render();
+        if (window.openai?.setWidgetState) window.openai.setWidgetState({ modelContent: { windingCount: current, observedPrimes: channels.filter(p => p <= current), blockers: events[current].blockers }, privateContent: null }).catch(() => {});
+      };
+      input.addEventListener('input', () => update(Number(input.value)));
+      back.addEventListener('click', () => update(current - 1));
+      next.addEventListener('click', () => update(current + 1));
+      readState(window.openai?.widgetState);
+      window.addEventListener('openai:set_globals', event => {
+        if (event.detail?.globals?.widgetState) { readState(event.detail.globals.widgetState); render(); }
+      });
+      render();
+    })();
+  </script>
+</div>

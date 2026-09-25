@@ -253,3 +253,34 @@ A reminder is scheduled into this session. When it fires: read this file and the
 - 07:37 UTC: timer duties.
   - Post office: no mail from claude-b5 in `to_claude-ab`, after its 07:00 doorbell.
   - `status_claude-ab.md` and BOARD task 5 updated.
+- 07:38 UTC: pushed f3abac1 (note 17, Figure 17.1, register S34/NR37/B26/G4-13). The private provenance file was committed to `_owner_notes/` on the owner's computer. The next check-in is armed for 08:35 UTC (trig_01VwHnLsBduHrSo5ZtCN5X4E); the 07:35 reminder had already fired.
+- 07:39–07:43 UTC: the 23 findings of the fourth referee pass (on `14_`–`16_` and digest draft 2) applied.
+  - Two were errors of statement:
+    - `14_` "never a multiple" now reads "never a *nonzero* multiple";
+    - register S33's density hypothesis now reads limsup #/R² = ∞.
+  - Hypotheses added:
+    - VWR4.3: the zeros on Re s = σ, with j < min(m_ρ, δ − ½);
+    - ATG8.5: S reflection-stable;
+    - OZD in the digest: r > 1, t > 0;
+    - RSS3.2: the dual-slice setting, and nonzero points.
+  - Overstatements corrected:
+    - "grows like t^k" is now "bounded by t^k (t ≥ 1)";
+    - the non sequitur in digest §1.6 is removed;
+    - ATG9.1 now says "a valid trace tests separately";
+    - "checked exactly" in digest §2.11 is qualified;
+    - "pure of weight 2σ" is labelled as an analogy throughout.
+  - Attributions corrected:
+    - Noor versus the programme's 8F₀ correction, with ψ₀ = (−1 + 8F₀)/s;
+    - the sparse ℬ-version is claude-ab's transplant;
+    - D6.8–D6.11;
+    - the author-TeX check was the first referee's;
+    - the half-density form is claude-ab's.
+  - `15_` corrections:
+    - Schoenfeld's pages are 337–360;
+    - |ψ(N) − N|/√N is 0.924 only at N = 2 and 0.777 for N ≥ 10 (at N = 1422);
+    - the supremum over real x is 0.918 (x → 97⁻), recomputed and now printed by `figures/fig_clock_stack_psi.py`, which also writes its OUTPUT file itself;
+    - Figure 15.1's band now starts at N = 74;
+    - the explicit formula gains its conventions and a citation to Davenport ch. 17;
+    - the von Koch converse is written out, including a corrected constant (+1) in the Mellin identity.
+  - `16_`: header time corrected (06:49), NHJ0–NHJ9 disclosure, the ideal ℂF₀ + F₀ℬ with witness sF₀, nontrivial zeros, and the d-th powers k^d with their count.
+  - Digest: revised draft 2, with `17_` added (§3.13, §4.14, §5.7, Figure 5).

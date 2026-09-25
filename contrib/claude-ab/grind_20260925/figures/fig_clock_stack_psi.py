@@ -82,7 +82,18 @@ band = np.sqrt(xs) * np.log(xs) ** 2 / (8 * math.pi)
 ratio = np.abs(dev[74:]) / (np.sqrt(n[74:]) * np.log(n[74:]) ** 2 / (8 * math.pi))
 say("psi(10^6) = %.6f ; psi(10^6) - 10^6 = %.6f" % (psi[NMAX], dev[NMAX]))
 say("max over 74 <= N <= 10^6 of |psi(N) - N| / (sqrt(N) log^2 N / (8 pi)) = %.4f" % ratio.max())
-say("max over N <= 10^6 of |psi(N) - N| / sqrt(N) = %.4f" % (np.abs(dev[2:]) / np.sqrt(xs)).max())
+say("max over N <= 10^6 of |psi(N) - N| / sqrt(N) = %.4f (attained at N = 2)" % (np.abs(dev[2:]) / np.sqrt(xs)).max())
+r10 = np.abs(dev[10:]) / np.sqrt(n[10:])
+say("max over 10 <= N <= 10^6 of |psi(N) - N| / sqrt(N) = %.4f at N = %d" % (r10.max(), int(np.argmax(r10)) + 10))
+# real x: psi(x) = psi(N) on [N, N+1); the ratio is largest at the right end, x -> (N+1)^-
+# |c - x| / b(x) is monotone on each side of c, so on [N, N+1) the supremum is at the left end or as x -> (N+1)^-
+Nr = np.arange(73, NMAX)
+bnd = lambda x: np.sqrt(x) * np.log(x) ** 2 / (8 * math.pi)
+lft_x = np.maximum(Nr, 73.2)
+left = np.abs(psi[Nr] - lft_x) / bnd(lft_x)
+right = np.abs(psi[Nr] - (Nr + 1)) / bnd(Nr + 1.0)
+say("sup over real x in [73.2, 10^6] of |psi(x) - x| / (sqrt(x) log^2 x / (8 pi)) = %.4f, approached as x -> %d^- (largest left-end value %.4f)"
+    % (right.max(), int(Nr[np.argmax(right)]) + 1, left.max()))
 
 plt.rcParams.update({"font.size": 10, "font.family": "DejaVu Sans"})
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 4.8), gridspec_kw={"width_ratios": [1, 1.4], "wspace": 0.22})
@@ -103,7 +114,8 @@ a1.legend(fontsize=8.5, loc="upper left")
 # right: normalized deviation
 step = 20
 a2.plot(n[2::step], dev[2::step] / np.sqrt(n[2::step]), color="#2b6cb0", lw=0.5, label="(ψ(N) − N)/√N", rasterized=True)
-a2.fill_between(xs[::step], -band[::step] / np.sqrt(xs[::step]), band[::step] / np.sqrt(xs[::step]),
+mk = xs >= 74   # Schoenfeld's bound is claimed only for x >= 73.2
+a2.fill_between(xs[mk][::step], -band[mk][::step] / np.sqrt(xs[mk][::step]), band[mk][::step] / np.sqrt(xs[mk][::step]),
                 color="#fed7d7", alpha=0.7, label="±log²N / (8π)  (Schoenfeld's bound under RH, N ≥ 73.2)", rasterized=True)
 a2.axhline(1, color="0.4", lw=0.8, ls=":"); a2.axhline(-1, color="0.4", lw=0.8, ls=":", label="±1")
 a2.set_xscale("log"); a2.set_xlim(10, NMAX); a2.set_ylim(-3, 3)
@@ -115,3 +127,5 @@ fig.text(0.01, -0.02, "claude-ab (Opus 5.5, max effort) · exact prime-power sie
 for ext in ("png", "svg"):
     fig.savefig(os.path.join(HERE, "fig_clock_stack_psi." + ext), dpi=160, bbox_inches="tight")
 say("saved")
+with open(os.path.join(HERE, "fig_clock_stack_psi_OUTPUT.txt"), "w") as f:
+    f.write("\n".join(out) + "\n")

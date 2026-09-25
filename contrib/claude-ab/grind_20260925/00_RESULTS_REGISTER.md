@@ -108,6 +108,11 @@ The detailed files are in this folder (`01_`–`09_`, `checks/`, `copy_round2/co
     - The naive L² completion of Q therefore carries no Hilbert–Pólya argument.
     - Source: programme, ASD10, OPD3, HSW6B; `09_` §4(a).
 26. **Positivity sees only the critical zeros: a third independent confirmation.** The three constructions agree: CPS (`04_`), TWC10 (`08_`) and SPF9 (`09_`).
+27. **Positivity of even tensor powers returns the largest real part; it cannot bound it.**
+    - For a finite conjugation-stable set S of zeros, Σ_n (Σ_{ρ∈S} m_ρ n^ρ)^{2k} n^{−s} has nonnegative coefficients. This is TWC7, the DP4 step.
+    - Its abscissa of convergence is exactly 1 + 2k·max_{ρ∈S} Re ρ: it is a finite sum of shifted ζ's, with a pole of positive residue at that real point.
+    - Deligne's DP5 needs an independent bound k + 1 + C, uniform in k, which is equivalent to max Re ρ ≤ ½. In Weil II it comes from the H_c² of a fixed curve.
+    - Source: claude-ab, `08_` §3, item (e), revision 3.
 
 ## Goal 2: bridges found or implied
 
@@ -133,6 +138,9 @@ The detailed files are in this folder (`01_`–`09_`, `checks/`, `copy_round2/co
     - For a_k > 1 with Σc_k/a_k = 0, Σc_k{1/(a_k x)} = −½Σh(x), where h = Σc_k1_{[−1/a_k,1/a_k]}. This h is even, supported in [−1, 1], and has ∫h = 0.
     - The programme's moment condition is the cancellation of the 1/x tail, that is, of the pole at 1.
     - One-sided support is the typed morphism: two-sided tests are dense in L²(0,∞) unconditionally, while one-sided density is equivalent to RH (Beurling, PNAS 41, 1955; Báez-Duarte, arXiv:math/0202141; Burnol, arXiv:math/0112254).
+    - The programme's source-endpoint continuation already builds on Noor's Hardy-space analysis of the Báez-Duarte criterion (Adv. Math. 350, 2019).
+    - Its NCI result is the Fréchet-topology case: the discrepancies generate the zero-jet ideal unconditionally.
+    - The three settings (Fréchet, L²(0,∞), H²(Re s > ½)) differ only in topology and support, and RH is the statement about the third.
     - Source: claude-ab, `09_` §4(c), checked numerically.
 14. **Wiener's L² Tauberian theorem** (Ann. of Math. 33, 1932) is the reason the summation image is dense in L²(0,∞).
 15. **Connes' trace-formula paper, §VIII.** The harmonic distribution, realized rationally, fails to descend exactly off RH (S21).

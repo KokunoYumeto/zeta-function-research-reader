@@ -144,8 +144,11 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - OPD4.2 is the Hilbert–Pólya mechanism with its obstruction term.
   - Register v3: S20–S22, negative results 24–26, bridges 13–17.
   - The owner downloaded the zip. From now on the work is delivered through the cloud and GitHub.
+- 05:05–05:30 UTC:
+  - Board task 1 is done: the even-tensor-power positivity is TWC7. The positive even-power series has abscissa exactly 1 + 2k·max Re ρ, so positivity only returns max Re ρ. This is `08_` revision 3, register negative result 27.
+  - Read the README and results bulletin of the source-endpoint continuation. It uses Noor's Hardy-space version of the Báez-Duarte criterion, and its NCI result is the Fréchet case of the Nyman–Beurling picture. `09_` §4(c) and register bridge 13 are updated accordingly.
 - Next block:
-  1. Check Codex's even-tensor-power positivity calculation against DP4–DP5 (unless the local session takes it).
+  1. (done 05:10) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.
   3. The FLIP_FABLE Addendum 4 erratum (possibly the local session).
   4. The concise Claude's-edition PDF for Zenodo, once the register stabilizes.

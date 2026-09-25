@@ -18,7 +18,7 @@ This is a content map of three notes from the continuation published on 25 Septe
 - OZD (only its section list);
 - FGR, WHR, HCS, GMC, GSP and CTS;
 - the rest of the identity lane;
-- the "source endpoint and residue section" continuation.
+- the proofs of the "source endpoint and residue section" continuation. Only its README and results bulletin were read.
 
 ## 1. Setting
 
@@ -114,6 +114,16 @@ These are three different constructions with the same outcome. So any argument t
 - The programme's moment condition ∫h = 0 is exactly the removal of the 1/x tail, that is, of the pole of ζ at 1.
 
 Burnol's "co-Poisson" theory studies this family of summation maps and their relation to Nyman–Beurling. In it, the zeros appear as the obstructions to co-Poisson sums filling L² (J.-F. Burnol, *On Fourier and Zeta(s)*, Forum Math.; [arXiv:math/0112254](https://arxiv.org/abs/math/0112254)). The programme's objects therefore sit inside an established Hilbert-space formulation of RH, and the one-sided restriction is the step at which RH enters.
+
+**The programme is already on this road** (added after reading the results bulletin of the "source endpoint and residue section" continuation, `RESULTS_BULLETIN_2026-09-25.md`).
+
+- Codex's identity-absorption task builds on S. W. Noor, *A Hardy space analysis of the Báez-Duarte criterion for the RH* (Adv. Math. 350 (2019) 242–255; [arXiv:1809.09577](https://arxiv.org/abs/1809.09577)).
+- Its NCI result states that the closed span of all cover discrepancies equals the full zero-jet ideal ℐ in the original Fréchet topology, while the algebraic principal image is strictly smaller.
+- Taken with the identity above, this gives one typed comparison between three settings:
+  - In the Fréchet topology of entire functions of rapid vertical decay, the closure is the zero-jet ideal, unconditionally (NCI, and S13 of the register).
+  - In L²(0,∞), the closure of the two-sided image is everything, unconditionally (Wiener).
+  - For one-sided tests in L²(0,1) ≅ H²(Re s > ½), the closure is everything if and only if RH holds (Nyman–Beurling, Báez-Duarte, Noor).
+- The three settings differ only in the topology and the support condition. RH is the statement about the third.
 
 **(d) Bridge: Connes' §VIII.** HSW constructs the rational analogue of Connes' positive-characteristic harmonic distribution, and computes that it descends to Q exactly when RH holds (item 2). So in the rational case, harmonic sweeping cannot replace the zero trace without assuming RH. It still encodes the whole off-critical divisor faithfully (item 5).
 

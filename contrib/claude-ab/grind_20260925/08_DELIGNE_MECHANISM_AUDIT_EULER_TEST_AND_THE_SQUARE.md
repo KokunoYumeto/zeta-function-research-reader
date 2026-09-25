@@ -1,6 +1,6 @@
 # Where the second attempt's RH lanes use arithmetic: the Euler test, Deligne's inputs, and the square
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, revision 2.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, revision 3 (revision 2 at 04:40 UTC; revision 3 at 05:10 UTC adds item (e) of §3).
 
 Revision 2 corrects the first version after two readings:
 
@@ -142,7 +142,14 @@ Points (a)–(e) of the I4 row:
   - Its top tensor detector is already a boundary (FST4.2). On the completed source only b₂(ℛ₂) ⊂ closure of im d₁ is proved (FST4.4).
   - FST obtains the fixed geometric +2 on one sphere. FST7 states that this does not allow Deligne's pole argument to be applied to the vanished top detector.
 - **(d)** TWC11 records that neither the external product (degree increment 2k) nor the same-base complex has been assigned the fixed-curve cohomological denominator. TWC9 adds that its computation does not rule out such a construction.
-- **(e)** The Codex lane reports a further calculation, which I have not yet located or checked: the even tensor powers retain the spectral data and have nonnegative Euler coefficients. That is the DP4 half of the §1.5 step. The DP5 half would be a pole-free disc fixed uniformly in k. Codex says it is checking this against its newer boundary construction. It reports a ramified map with the exact factor n^{−1} in the nilpotent relation, which the ordinary counting map lacks.
+- **(e)** The Codex lane reported a calculation in which the even tensor powers keep the spectral data and have nonnegative coefficients. I located it in revision 3: it is TWC7.
+  - For a finite conjugation-stable set S of zeros, Tr(T_n^{⊗k} | J_S^{⊗k}) = (Σ_{ρ∈S} m_ρ n^ρ)^k. This is real, so its even powers are nonnegative, which is the DP4 step.
+  - TWC7 states that this does not make the infinite trace converge and gives no global determinant.
+  - What positivity then yields can be computed exactly. Put D_S^{(2k)}(s) = Σ_n (Σ_{ρ∈S} m_ρ n^ρ)^{2k} n^{−s}. Expanding, D_S^{(2k)}(s) is the sum, over 2k-tuples of zeros in S, of the products of their multiplicities times ζ(s − Σ_j ρ_j).
+  - This series converges absolutely for Re s > 1 + 2kβ_max, where β_max = max_{ρ∈S} Re ρ. It has a pole with positive residue at the real point s = 1 + 2kβ_max, coming from the tuples (ρ, ρ̄, …, ρ, ρ̄) with Re ρ = β_max. Tuples with the same exponent sum cannot cancel there, because each residue is a positive product of multiplicities.
+  - So the abscissa of convergence is exactly 1 + 2kβ_max. Positivity of the even powers therefore returns max Re ρ; it cannot bound it.
+  - The DP5 half would be an independent bound on this abscissa of the form k + 1 + C, with C independent of k and S. Letting k → ∞, such a bound is equivalent to β_max ≤ ½. In Deligne's proof that bound comes from the H_c² of a fixed curve (DP5.1).
+  - Codex says it is checking this against its newer boundary construction. It reports a ramified map with the exact factor n^{−1} in the nilpotent relation, which the ordinary counting map lacks.
 
 **What I1 and I2 are used for.** In the programme's proved separations (TL, TL7, ORE6), I1 and I2 are used to produce the strip 0 < Re ρ < 1. In Deligne's scheme, the step from the boundary to the middle uses I3 and I4 together: a discreteness gain on an auxiliary object, transported through the square. Alternatively, in §1.5 form, it uses positivity of even tensor powers together with a pole bound uniform in k. In the files I have read, the programme supplies I1, I2 and positivity of tensor powers. It has not yet supplied I3 or the uniform pole bound. Whether its constructions can supply them is open; IH5 and TWC9 both say so.
 
@@ -210,4 +217,5 @@ The part left open is the one named in the question above.
    - Manin's "absolute Descartes powers" is in §0, not §1.6.
    - Deninger's formula is eq. (1.5) in §1.1.
    - Connes' square of the arithmetic site is introduced in §4.3.1.
-8. **New item.** Codex's even-tensor-power positivity calculation is added as (e), not yet checked by me.
+8. **New item.** Codex's even-tensor-power positivity calculation is added as (e).
+9. **Revision 3** (05:10 UTC). Item (e) is located as TWC7, with the exact abscissa 1 + 2kβ_max of the positive even-power series and the consequence stated there.

@@ -17,9 +17,10 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - At 17:05 UTC `36_` was added: the Deligne reader's DP, DMG and DLM (Weil II §§1.3–1.9), with the reader's six corrections compared with the printed pages. The additions are §2 items 25–26, §3 items 31–33 and §4 item 26.
 - At 18:00 UTC `37_` was added: the Deligne reader's DB, DBC and DW0–DW4 (Weil II §§2.1–2.2 and 3.1–3.2), with seven further displays checked on the printed pages (and two rechecked). The additions are §2 items 27–28, §3 items 34–36 and §4 item 27, and §2 item 26 is extended.
 - At 18:46 UTC `38_` was added: the Deligne reader's MDB0–MDB8 (mixed duality; the recovered arithmetic base). With it every part of the reader has been read; all but DB9, DW5–DW11, DC, DR and MDB9–MDB11 (mapped in `07_`–`08_`) have been audited item by item. The additions are §3 items 37–38.
+- At 19:43 UTC `39_` was added: the rest of CGS and DCP (the source-space gluing and the doubled Connes–Consani pullback). The additions are §3 items 39–40 and §4 item 28.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`38_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`39_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -197,6 +198,8 @@ This digest collects what an audit-and-extension lane established about the owne
 36. **The quartet's tensor Euler products cannot detect zeros of ζ:** their genuine pole exists for every complex ρ, zero or not. (`37_` 37.N5)
 37. **The programme's recovered arithmetic base carries only the free rank of the winding group:** the recovered ring is End(ℤ) = ℤ whatever the torsion and the twists are, and the support maps are the maps to a point. (`38_` 38.N1–38.N2)
 38. **No object that the reader builds from programme data has a Frobenius eigenvalue of weight 1,** so none of them realizes the purity circle |a|² = p; H¹ of a curve over F_p does, but it is not programme data. (`38_` 38.N3)
+39. **The doubled source adds nothing to Connes–Consani's cohomology,** and none of its constructions depends on where the zeros are; its "lift" is Poisson summation, not a separation of weights. (`39_` 39.N1–39.N3)
+40. **The Ext-vanishing against the endpoint characters sees only ζ(0) ≠ 0 and the pole at 1.** (`39_` 39.N4)
 ## 4. Bridges between programmes and fields
 
 1. **Deligne, Weil II §2.1.9 = Hadamard–de la Vallée Poussin = the programme's timed primes.** The programme's measure maps invertibly onto Deligne's positive measure. (DB9, DR)
@@ -251,6 +254,7 @@ This digest collects what an audit-and-extension lane established about the owne
 25. **Which operator satisfies Deligne's monodromy relation.** Deligne's FNF^{−1} = Q^{−1}N has the form of the programme's relation for ramification, P_bNP_b^{−1} = b^{−1}N. The counting operators commute with N, and any operator that satisfies the relation and induces the counting scalar has its weights shifted by −2j on the j-th jet level. (`35_` §3; a comparison of relations only)
 26. **The regraded jet blocks satisfy the conclusion of Deligne's local theorem (Weil II 1.8.4), with a centre that depends on the multiplicity.** Under the regrading of the amplification file (DW9) the jet block of a zero ρ of multiplicity m has Gr_i of weight 2Re ρ − (m − 1) + i, although the block itself has m weights; the blocks of an off-line quartet share a centre iff Re ρ = ½. This restates §3 item 30 and adds no constraint. (`36_` Remark 36.R1)
 27. **Deligne's criterion 1.5.1, against the programme's quartet.** Read with Deligne's definitions (the determinant weights of the constituents), the quartet satisfies every input of 1.5.1, and the criterion gives nothing: each character is pure anyway. The missing input is one that forces the constituents onto the average weight 1, equivalently a pole bound at k + 1 + C uniform in k. (`37_` §6)
+28. **The programme's doubled pullback is Connes–Consani §5.** In the trivial finite-unit sector for ℚ, its complexes, signs, Fourier graph, idèle action and mirror are those of *Schemes over 𝔽₁ and zeta functions* (arXiv:0903.2024), pulled back to the doubled source; the pullback adds no cohomology. (`39_`)
 ## 5. The 𝔽₁ context
 
 1. **The support.** The owner's τ〈Z₁; no Z₂〉 is realized at the generic point of Connes–Consani's 𝔽_{1²}-line. "No Z₂" has two exact readings: no exchanged label, which holds at the generic point; and no sign, which holds exactly in characteristic 2. (`01_` for the realization; `00_`, goal 4, item 1 for the two readings)

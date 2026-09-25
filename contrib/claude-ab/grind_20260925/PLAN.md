@@ -226,3 +226,9 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Deliverable: `14_CONTINUATIONS_25SEP_PART3_WEIGHT_RECEIVERS_AND_TENSOR_GROWTH.md`.
   - Register: S31; negative results 33–35; bridge 24.
   - VWR10.9 bears on the owner's remark that an off-line zero could not hide in the pure state; a pointer was added to the private provenance file.
+- 06:44–06:46 UTC: `15_CLOCK_STACK_TAU_AT_WINDING_ZERO_AND_PSI.md`.
+  - PMS M1–M9 read in full.
+  - Checks and Figure 15.1: `figures/fig_clock_stack_psi.py`.
+  - Schoenfeld's conditional ψ bound verified as stated in arXiv:2312.05628, eq. (1).
+  - Register: S32; goal-4 item 12; bridge 25.
+  - Note: the platform stamps output images with C2PA provenance metadata. The PNG and SVG sizes changed for that reason only.

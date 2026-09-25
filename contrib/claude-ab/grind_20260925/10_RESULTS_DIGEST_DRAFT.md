@@ -7,9 +7,10 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - Draft 2 had its own referee pass (the fourth overall; 23 findings on `14_`–`16_` and this digest, two of them errors of statement). All were applied at 07:42 UTC. The same update adds the results of `17_`: §3 item 13, §4 item 14, §5 item 7 and Figure 5.
 - `17_` had its own referee pass (the fifth; 16 findings, all applied by 08:25 UTC), and §3 item 13 was extended then. `18_` and `19_` added §4 item 15 and §3 item 14 (08:41–08:46 UTC), and `20_` updated §3 item 4 (08:53 UTC).
 - A sixth referee pass, on `18_`–`20_` and this digest, found one major error, in the first version of §4 item 15, and several overstatements and gaps. All were applied at 09:38 UTC; §6 lists them.
+- At 10:59 UTC `21_`–`23_` were added: the cross-programme bridges (part 1, refereed), the owner's anomaly picture made exact, and the detectability argument. The additions are §2 item 13, §3 items 15–17, §4 items 16–18 and §5 item 8. `22_` and `23_` await their referee pass.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`20_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`23_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -89,6 +90,9 @@ This digest collects what an audit-and-extension lane established about the owne
     - The joint state set of the clocks ℤ/1, …, ℤ/N has lcm(1..N) = e^{ψ(N)} elements.
     - Both are proved (PMS M3.3, M4.2, M6.2). Their ingredients were checked in finite ranges: the order lemma for p ≤ 50 and d ≤ 30, the state count for N ≤ 12, and the increments for N ≤ 20000. (PMS; `15_`)
 12. **The two poles differ in kind.** For the lattice cℤ, the residue at 0 is −h(0) whatever c is, while the residue at 1 is (∫h)/c. The position of the pole at 0 is set by the local behaviour h ~ κv^α. (`13_`)
+13. **The two-line product and the two ways to run the clock backwards.**
+    - G(s) = F₀(s)F₀(s+1) satisfies G(−s̄) = conj G(s), and G(it) = |ξ(1+it)|²/16 > 0. So the pair is real and positive on the line of the pole at 0, where neither factor is real.
+    - Running the clock u ↦ 1/u with conjugation has Mellin shadow s ↦ −s̄ in the Haar normalisation and s ↦ 1 − s̄ in the Lebesgue normalisation. The two differ by the factor u, and only the second gives Weil's positivity. (claude-ab; `22_` Props. 22.4–22.5)
 
 ## 3. Negative results, with their exact scope
 
@@ -115,6 +119,12 @@ This digest collects what an audit-and-extension lane established about the owne
 12. **Isometry sees nothing off the unitary axis.** With the raw action, an invariant seminorm vanishes on every block (ATG6.5, stated for ν₀). A seminorm invariant under the half-density prime action vanishes on every off-line block (claude-ab's half-density form, confirmed by the referee). (`14_`)
 13. **The mirror line at Re s = −½ does not disprove RH, and the explicit-formula pairing centred at the pole 0 is not real.** The mirror of the zeros through the pole at 0 is the whole zero set shifted by one: A(Z) = Z − 1 with A(s) = −s̄, unconditionally. It is exactly the nodal set of the first Hurwitz jet −sζ(s+1) in −1 < Re s < 0. Mirror = shift on every zero is equivalent to RH. Each property used has a counterpart for zeta functions of curves over finite fields, where RH is Weil's theorem. The explicit-formula pairing centred at 0 is not real: 2πe^{i/2} for an explicit Gaussian, against the real value 2π for Weil's pairing centred at ½. So, as it stands, the 0-centred pairing is not a positivity criterion. The simultaneous existence of ζ(s) and −sζ(s+1), the first two Taylor coefficients of ζ(s, 1+t) in t, does not decide RH either. "All zeros of ζ(s) on Re s = ½" and "all zeros of ζ(s+1) in the strip on Re s = −½" are one proposition. The Davenport–Heilbronn function, which has a functional equation but no Euler product, coexists with its translate and has a zero off the line. (claude-ab; `17_` §§5–6, 10, Figure 5)
 14. **The product-trace machinery does not force weight 1.** The residue pairing lives on the product of the Connes–Consani base, whose dualizing complex is j_!k[1]. Its diagonal return by the right adjoint keeps the trace exactly. On Spec ℤ ∪ {m₊, m₋} the return is a correspondence, since no continuous single-valued lift of the diagonal map fixes the arithmetic diagonal. The reflected-pair classes have weight 2 whether or not RH holds, and the global complex kills them. In the programme's words, the return "does not prove either individual weight to be one". (FTD, PRS, DER, FSC, FEM; `19_`)
+15. **Anomaly cancellation of the symmetric kind cannot see or forbid off-line zeros.**
+    - Off-line zeros come in pairs at equal height, so the parity (ℤ₂) anomaly counts only on-line zeros.
+    - With both lines present the count doubles (2N₀ + 4N_pairs), and the ℤ₄ (four-direction) anomaly also vanishes identically. Only the integer count, which is Turing's method, sees off-line zeros.
+    - The Davenport–Heilbronn function carries the whole structure, including an off-line zero. It cancels the root-number phase by adding a character sector to its conjugate; ζ-type products cancel it by multiplication and keep the Euler product. (claude-ab; `22_` 22.9–22.11)
+16. **Cross-programme transfers, with scope.** Joint averages do not survive restriction of the Navier–Stokes torus cover to unchanged finite torsion (13 against 4 at p = 13, a = 4); the complete preimage repairs them. The Navier–Stokes profile gives Yang–Mills a zero-quotient sequence only as the coupling tends to 0. (`21_`)
+17. **RH cannot be independent of ZFC and false.** RH is equivalent to the non-halting of an explicit 744-state machine, so a false RH is refutable. Independence would imply truth, but proving non-refutability is as hard as RH. (the owner's M28; `23_`)
 
 ## 4. Bridges between programmes and fields
 
@@ -140,6 +150,21 @@ This digest collects what an audit-and-extension lane established about the owne
 13. **The owner's clocks and Chebyshev's ψ.** The clocks follow Connes–Consani, *Knots, primes and class field theory*. Their joint state count is e^{ψ(N)}, so through the explicit formula they carry the zeta zeros. (PMS; `15_`)
 14. **The Hurwitz shift, the mirror through 0, and two Hopf circles.** The first jet of the programme's shift flow ζ(s, 1+t) vanishes exactly on A(Z) = Z − 1 in −1 < Re s < 0, where A(s) = −s̄ is the reflection through the pole at 0. On the critical line the translation T₋₁ coincides with A. The zero velocities ρζ(ρ+1)/ζ′(ρ) are the initial tangents of the tracks in Figure 3. With the one-line shift pairing, the critical line and the line at −½ are the two halves of one (1,−1) circle on the Clifford torus. The owner's Hopf fibre (critical line with the pairing (s, 1 − s̄)) is a (1,1) circle, and the two circles meet only at t = ±∞. (claude-ab; `17_`)
 15. **The two lines inside the programme.** The separator of GSL/GMS is built from G(s) = F₀(s)F₀(s+1), whose zeros are, unconditionally, the critical zeros Z and their copy Z − 1 one line to the left. The function E_sep equals 1 on Z and 0 on Z − 1 and switches in the zero-free corridor around Re s = 0; the separator proper, c(s) = 1 − E_sep(s − 1), equals 1 on Z and 0 on Z + 1. At the level of modules the unconditional pair is the zeta quotient Q and its normal twist Q₊ (jets at Z + 1). They are derived-separated by the general vanishing of Ext for coprime annihilators, which has no zeta-specific content. The global model's pair ℛ[1] ⊕ ℛ(−1)[−1] holds only off-line data and vanishes iff RH, and the descent condition of ADM7 holds iff ℛ = 0; both restate RH through the definition of ℛ. (ADM6–ADM8; `18_`)
+16. **Where the programmes reuse each other's results (part 1).**
+    - An integer torus matrix from the Navier–Stokes blowup construction enters Erdős–Straus divisor counting.
+    - The Navier–Stokes velocity enters Yang–Mills as a reducible SU(2) connection.
+    - A Gram-sandwich lemma of the zeta programme enters Yang–Mills heat estimates.
+    - One Jacobian polynomial appears in Erdős–Straus, Yang–Mills and zeta work.
+    - None of these makes a deep theorem of one programme a hypothesis of another, except the Navier–Stokes blowup rate used in Yang–Mills. (`21_`)
+17. **The owner's anomaly picture, made exact.**
+    - The anti-number is the clock run backwards with conjugation.
+    - Chirality is the mirror through the pole at 0.
+    - The owner's doublet is the zero quadruple.
+    - Parity (Z₂) is the double cover formed by the two lines, whose deck transformation is the central sign of SU(2).
+    - The time direction (Z₁) is the root-number phase.
+    - Inflow is the bulk between the two lines.
+    - In these terms RH says that every zero is its own anti-number. (claude-ab, from the owner's M12–M27; `22_`)
+18. **Prime knots and anti-numbers.** In Connes–Consani's knots paper, reversing the orbit of p conjugates the character. The functional equation puts the conjugate character on the other side of τ at the phase W(χ), and W(χ)W(χ̄) = 1. (`22_` Prop. 22.8)
 
 ## 5. The 𝔽₁ context
 
@@ -151,6 +176,7 @@ This digest collects what an audit-and-extension lane established about the owne
 5. **The pole at 0 and τ (proposal).** The classical pole at 0 merges three roles at one place: the lattice origin, the additive origin with its local germ, and the fixed point of the sign. The ledger separates them. The owner places τ at the pivot of the swing between 0 and 1. In the zeta picture that is the pivot of the pole exchange s ↦ 1 − s: ½ on the spectral side and u = 1 on the clock side. There RH reads ρ^# = ρ for every zero. (`13_` §4; register, goal 4, item 11)
 6. **"Has not moved" is not "absent".** In the programme's generic monoid the winding-zero fibre {τ, J, ε, J³} is present, and absence is the absorbing 0. (PMS M1; `15_`)
 7. **The two centres of reflection differ by one shift.** With A(s) = −s̄ (centre 0) and B(s) = 1 − s̄ (centre ½, the owner's proposed τ), B∘A is the shift s ↦ s + 1. (Reading: this shift is the Tate twist, the character of the pole at 1.) Under the Hurwitz generator sζ(s+1), the residue of ζ at 1 becomes the value 1 at s = 0. Of the two centres, only the ½-centred one makes the explicit-formula pairing real, as in Weil's criterion. (claude-ab; `17_`)
+8. **Four directions from the Bombelli generator.** In the absolute twistor line, J² = ε gives the four rays 1, J, ε, εJ, and the half-turn is the sign. The twistor real structure lifts to the quaternionic structure of the SU(2) doublet (σ² = −1), and two copies make it real. (claude-ab; `22_` Prop. 22.1)
 
 ## 6. Corrections recorded
 

@@ -7,7 +7,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - Draft 2 had its own referee pass (the fourth overall; 23 findings on `14_`–`16_` and this digest, two of them errors of statement). All were applied at 07:42 UTC. The same update adds the results of `17_`: §3 item 13, §4 item 14, §5 item 7 and Figure 5.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`19_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`20_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -98,7 +98,7 @@ This digest collects what an audit-and-extension lane established about the owne
 3. **No character-level lifting at any zero.**
    - The nilpotent enlargement is forced by the multiplicity, whether or not the zero is on the line.
    - In the restriction row, the kernel and the target carry the same character, so no weight truncation can separate them. That separation is the one Deligne's argument uses. (MCL6, ORE6)
-4. **The sharp velocity laws fail at order T.** This assumes RH, all but finitely many zeros simple, and the Bohr-mean hypothesis. The smoothed laws hold unconditionally. (Theorem C; `03_` §4)
+4. **The sharp velocity laws fail at order T.** Parts (i)–(ii) assume that all but finitely many zeros are simple and on the line; the sharp Bohr coefficients also assume the Bohr-mean hypothesis. The smoothed laws hold unconditionally. Parts (i)–(iii) were re-proved independently from Theorem A (`20_`). The quantity summed is the zero velocity ρζ(ρ+1)/ζ′(ρ) of the Hurwitz shift (`17_` §1). (Theorem C; `03_` §4; `20_`)
 5. **What descends to the zeta quotient.**
    - Poisson-sweeping the zeros onto the line descends if and only if there are no off-critical zeros (HSW6).
    - The L² norm never descends, even under RH (OPD3).

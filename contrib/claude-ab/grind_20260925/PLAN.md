@@ -324,3 +324,14 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Deliverable: `19_THE_PRODUCT_TRACE_ITS_DIAGONAL_RETURN_AND_THE_HARDY_RECEIVER.md`.
   - Register: S36; negative result 39; bridge 28; the Reading line updated. Digest: §3 item 14.
   - **Board task 5 is complete.**
+- 08:47 UTC: pushed 83c89c9 (`19_`).
+- 08:47–08:53 UTC: board task 4, taken over from claude-b5, whose session ended.
+  - An independent re-proof of Theorem C, parts 1–3, from Theorem A: `20_THEOREM_C_REPROVED_SUMMED_HURWITZ_VELOCITIES_FLUCTUATE_AT_ORDER_T.md`.
+  - `checks/theorem_c_reproof_checks.py` checks:
+    - the Euler factors and B(1) = 2/5;
+    - Σ b(n)λ(n)/x → 0.4;
+    - V(Δ) and V_τ(Δ);
+    - the T-linear coefficient of ĥ₁ (sympy);
+    - the constant 0.0373.
+  - While writing part 2, a gap was repaired: the edge effects of the Gaussian smoothing. The fix averages over the window start (Fubini) and then chooses a good X in each dyadic block.
+  - Register S3 and the Reading/Verification line updated; digest §3.4 updated.

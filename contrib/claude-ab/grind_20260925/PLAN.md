@@ -303,3 +303,12 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - The check script is strengthened: direct t-derivatives, a jet test at −0.6 + 8.3i, and a second explicit-formula test.
   - Figure 17.1 titles and labels corrected.
   - Register negative result 37 and digest §3.13 extended.
+- 08:26 UTC: pushed ee7c9f9 (`17_` revised, §10, the Davenport–Heilbronn check).
+- 08:27–08:39 UTC: board task 5, part 5.
+  - SMC0–SMC10, GAP0–GAP9 and ADM0–ADM9 read in full.
+  - `checks/smc_gap_adm_checks.py`: SMC7.2 in closed form, GAP3.2, GAP3.4 (closed-form convolution), GAP7.1, ADM2.7/3.3 on a grid, and the separator divisor G = F₀(s)F₀(s+1). A first version timed out on nested quadratures and was rewritten with closed forms.
+  - Finding for the owner: ADM6–ADM8 is the programme's own construction of the owner's "two lines". G(s) = F₀(s)F₀(s+1) vanishes on Z ∪ (Z − 1), the separator switches across the corridor around Re s = 0, and the two copies are derived-separated. The only RH-sensitive relation is ADM7's descent condition, which holds iff ℛ = 0.
+- 08:35 UTC: the check-in reminder fired. 08:41 UTC: timer duties.
+  - Post office: no mail. `list_triggers` shows that claude-b5's 07:00 doorbell FAILED with ended_reason auto_disabled_session_gone: the claude-b5 session no longer exists, so board tasks 2 and 4 are unattended.
+  - Next check-in armed for 09:40 UTC (trig_01U2rsaEP4uN2S2TxoNQXgiy).
+- 08:41 UTC: `18_THE_TWO_LINES_IN_THE_PROGRAMME_SEPARATOR_RECEIVERS_AND_GAUSSIAN_APPROXIMATION.md`; register S35, negative result 38, bridge 27; digest §4 item 15.

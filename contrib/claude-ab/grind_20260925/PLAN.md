@@ -42,6 +42,21 @@ The owner's computer is not connected at the start of this plan. Block 1 therefo
 
 A reminder is scheduled into this session. When it fires: read this file and the log below, continue the first unfinished block, append to the log, and schedule the next reminder before stopping.
 
+## Standing rules added 25 September (owner)
+
+- **GitHub.** Work goes on the branch `claude/claude-ab-grind-20260925` of KokunoYumeto/zeta-function-research-reader, under `contrib/claude-ab/`. `main` is never touched.
+  - Pushes run on the owner's computer through its stored git login. The owner's GitHub token is not used; it was declined.
+  - The session's own git proxy does not authorize the repository.
+- **Zenodo.** The correct record is 22911829. Record 22949437 is not to be used.
+  - When the work is mature, prepare it as a pure addition: a new version of 22911829 that keeps every existing file unchanged and adds this folder, with a manifest of the added files and their hashes.
+  - Publishing mints a DOI. The owner states a new version can be undone within a month and has approved the addition in advance, once the work is mature. At publication, show the exact file list.
+  - Owner, later the same morning:
+    - Integrate with the first record (22911829) as a new version under the same concept DOI.
+    - Keep every existing file and add only this edition.
+    - The concise results document is the part readers want. It should become a PDF, possibly the front (preview) PDF.
+    - Metadata may only be added to, with a note in the sense of "Claude's edition: added …". No existing field is replaced, and nothing in Codex's lane is changed.
+    - A record can be tombstoned; the owner counts that as undoing it.
+
 ## Earlier backlog (from this session's task list)
 
 - #10: collect and verify the ChatGPT Pro audit (A/B).
@@ -84,7 +99,31 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Referee pass on the copy's Theorem E, done by me instead of a copy round: `06_THEOREM_E_REFEREE_REPORT.md` (verdict: correct), with `checks/thmE_referee_checks.py` (all pass).
   - Register updated: lemmas S14–S16, negative results 14–17, bridge 9.
   - Next timer: 06:31 UTC.
+- 03:40–05:00 UTC: Block 1, part 3 (second half), the Euler test, and GitHub.
+  - Read in full:
+    - MCL0–MCL11, ORE0–ORE10, RPC0–RPC8 and SCT0–SCT6;
+    - from the Deligne reader: DB9, DR0–DR7, DC0–DC12, DW5–DW11 and MDB9–MDB11;
+    - from the 25 September continuation: FST0–FST7, with TWC6 and TWC10–TWC11.
+  - `07_SECOND_ATTEMPT_CHARACTER_LIFTING_AND_DELIGNE_CROSS.md`, with `checks/mcl_ore_checks.py` (all pass, m = 1 and m = 2).
+  - `08_DELIGNE_MECHANISM_AUDIT_EULER_TEST_AND_THE_SQUARE.md`:
+    - the Euler test on the even lattice sheets a = 1/q, with Lemma 2 (free monoid ⟺ φ(q) ≤ 2 ⟺ positive log ⟺ no zeros in Re s > 1);
+    - Deligne's inputs compared with the programme;
+    - the F1 framing (Manin 1995, Kurokawa, Connes 2016).
+  - A referee subagent checked `08_`. It found:
+    - a wrong zero count (24, not 13);
+    - Manin's §0, not §1.6;
+    - Section 2 items that use the closed image or the global projector;
+    - several overstatements.
+
+    Revision 2 corrects all of them. Codex's feedback, relayed by the owner, is included: purity concerns the middle extension, "cannot supply" is too strong, and there is an even-tensor-power positivity calculation (item (e)).
+  - Register v2: S17–S19, negative results 18–23, bridges 10–12, F1 items 8–9.
+  - GitHub:
+    - The session's proxy refused pushes. The owner's pasted token was declined.
+    - The branch was pushed from the owner's PC with its stored git login: `claude/claude-ab-grind-20260925`, commit f0ca4d9.
+  - The owner opened a local Claude session for cooperation. It cannot be reached from here, so `BRIEFING_FOR_LOCAL_SESSION.md` was written for the owner to paste.
+  - Timer: 06:31 UTC.
 - Next block:
-  1. Block 1, part 3 (second half): the character-lifting core (MCL, then SCT, RPC, ORE), then the Deligne reconstruction's core (DC/DR/DP) in order of dependence.
-  2. Write the FLIP_FABLE Addendum 4 erratum into the negative-results record.
-  3. Optionally, copy-newresults round 3 (a literature comparison with Meyer for S12–S13; a re-proof of Theorem C).
+  1. Check Codex's even-tensor-power positivity calculation against DP4–DP5 (unless the local session takes it).
+  2. Read the rest of the 25 September continuations: the counterfactual and identity lanes, and GCT beyond FST and TWC.
+  3. The FLIP_FABLE Addendum 4 erratum (possibly the local session).
+  4. The concise Claude's-edition PDF for Zenodo, once the register stabilizes.

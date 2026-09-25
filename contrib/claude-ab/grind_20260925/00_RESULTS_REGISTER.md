@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 1, 25 September 2026, 03:30 UTC. Maintained by claude-ab (Opus 5.5 configuration). Each entry gives:
+Version 2, 25 September 2026, 04:30 UTC (version 1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 1, 25 September 2026, 03:30 UTC. Maintained by claude-ab (Opus 5.5 confi
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`04_`, `checks/`, `copy_round2/code/`) and in the repository.
+The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -35,6 +35,9 @@ The detailed files are in this folder (`01_`–`04_`, `checks/`, `copy_round2/co
 | S14 | **At most two primes have p^ρ algebraic**, for every nonreal ρ. Hence the dilation eigenvalues p^ρ are not all eigenvalues of finite-rank integral endomorphisms | proved (the six exponentials theorem of Lang and Ramachandra is cited) | programme, IH5.3 (`05_`) | elementary consequence of a known theorem |
 | S15 | **Two primes suffice to see every zero.** All zero values F(ω) are determined by the grid Σ_ω m_ωF(ω)e^{−ω(a log 2 + b log 3)}, (a, b) ∈ ℤ² | proved | programme, IH6 | unchecked |
 | S16 | **Deligne's specialization-surjectivity argument** (Weil II §3.6), reconstructed with exact weight bookkeeping | reconstruction of a known theorem | programme, TL1 | classical |
+| S17 | **Two primes suffice for generalized eigenvectors.** Let h/ℓ be irrational. A distribution V on ℝ with (E_h − 1)^r V = 0 = (E_ℓ − 1)^s V is a polynomial of degree < min(r, s). Hence simultaneous generalized p^ρ- and q^ρ-eigenfunctionals are exactly the Mellin jets; one prime alone has the aliases ρ + 2πik/log p | proved; ideal argument checked by hand | programme, MCL3.4 (`07_`) | for continuous V, a case of L. Schwartz's mean-periodic spectral synthesis (Ann. of Math. 48, 1947) |
+| S18 | **Least-order lifting and its obstruction.** At a zero of multiplicity m, the k-th source Mellin jet lifts through the transposed summation map with least generalized-character order m + k + 1, by an explicit formula. The fixed-order obstruction class, read through the residue pairing, is (−1)^j j!/2 · t^{r−1−j} χ_ζ(b+t) mod t^{min(m,r)}, with rank min(m, r) | proved in the programme; verified numerically for m = 1 (ζ) and m = 2 (ζ²) to 1e−39 | programme, MCL5–MCL9, ORE4–ORE5 (`07_`, `checks/mcl_ore_checks.py`) | unchecked; Meyer's framework |
+| S19 | **The even lattice sums at a = 1/q.** Z_{1/q}(s) = ζ(s,1/q) + ζ(s,1−1/q) = q^s Σ_{n≡±1 (q)} n^{−s}. The following are equivalent: the monoid {n ≡ ±1 mod q} is free; φ(q) ≤ 2; its formal log has nonnegative coefficients; there are no zeros in Re s > 1. At q = 5: 36 = 4·9 = 6·6, the log coefficient r_36 = −1/2, and there are 24 zeros with Re s > 0.505 below height 150 (argument principle), the lowest at 0.54307 + 15.70405i | proved (the step (iv) ⇒ (ii) cites Saias–Weingartner, Acta Arith. 140, 2009); numerics verified at 30 digits | claude-ab, `08_` Lemma 2; `checks/monoid_log.py`, `z15_zero_check.py` | the parts are classical; the packaging as a sheet test is new here |
 
 ## Goal 1: negative results, with exact scope
 
@@ -69,6 +72,33 @@ The detailed files are in this folder (`01_`–`04_`, `checks/`, `copy_round2/co
     - The receivers separate weights using only the strip bounds, or Tate shifts built into the receiver.
     - A geometric source for a dividing line at weight 1, which a Deligne-type argument would need, has not been constructed.
     - Source: programme, TL (scope stated in TL8); the reading is my assessment.
+18. **No character-level lifting at any zero.**
+    - No eigenvector of A′ maps onto the source character. The least lift of the k-th jet has order m + k + 1.
+    - This depends on the multiplicity, not on the position of the zero.
+    - Source: programme, MCL6 (`07_`).
+19. **Deligne's separation cannot occur in the ζ restriction row.**
+    - Kernel, middle term and target carry the same character 1 − ρ.
+    - Any weight truncation keeps or kills the whole extension.
+    - The fixed-order class is nonzero at every zero, on or off the line.
+    - Source: programme, ORE5.8, ORE6.5.
+20. **The residue pushout removes the obstruction at every zero.** Its vanishing therefore carries no information about Re ρ. Source: programme, RPC6.3.
+21. **Positivity of the timed-prime measure reaches exactly Re s = 1.**
+    - It gives the Hadamard–de la Vallée Poussin theorem, and nothing further.
+    - With standard growth bounds it also gives the classical zero-free region.
+    - Deligne's further steps need a discreteness input and the square, or a pole bound uniform in the tensor power.
+    - Source: programme, DB9 and DR4; claude-ab, `08_` §3.
+22. **The lifting algebra does not see the sheet.**
+    - MCL3–MCL7, ORE6.2, ORE6.5, IH6.4 and PL2.1 hold word for word for the even lattice sum at a = 1/5.
+    - The finite-block content of MCL9 and ORE4 holds there in substance.
+    - On that sheet factorization is not unique and there are zeros in Re s > ½.
+    - These statements alone therefore cannot distinguish the critical line.
+    - Source: claude-ab, `08_` §2, revision 2, after the referee pass.
+23. **Tensor powers and the square, as constructed, give no weight gain.**
+    - The characters of source and target match in every tensor power.
+    - The transfer-compatible positive forms kill every tuple off the centered set, including the off-line same-eigenvalue powers that Deligne's amplification uses.
+    - The tensor Weil form is indefinite on the reflected sector.
+    - The square's obstruction vanishes exactly when the original one does.
+    - Source: programme, TWC6, TWC10–TWC11 and FST3–FST5, published 24–25 September; summarized in `08_` §3.
 
 ## Goal 2: bridges found or implied
 
@@ -81,7 +111,16 @@ The detailed files are in this folder (`01_`–`04_`, `checks/`, `copy_round2/co
 7. **Zero velocities and primes.** The primes are read off as the maximal amplitudes of the velocity spectrum, exactly on the Eulerian sheets (S3–S5).
 8. **The positive-quotient lane** links Connes' ℰ and Meyer (noncommutative geometry), the Weil explicit formula (analytic number theory) and Deligne-type receivers (algebraic geometry), through S7, PSC3–PSC5 and CPS5.
 9. **Deligne's lifting mechanism beside Connes–Consani and the explicit formula.** The mechanism, with exact weight bookkeeping, is placed next to the curves E_p = ℂ^×/p^ℤ and the explicit formula, with all maps written out (TL; PL6).
-10. **Pending.** The cross-programme reuse the owner reported (Navier–Stokes, Yang–Mills, the S¹/topology work, Erdős–Straus) is not yet examined.
+10. **Deligne ↔ Hadamard–de la Vallée Poussin ↔ timed primes.**
+    - Weil II §2.1, specialized to ζ in §2.1.9, is the classical proof of ζ(1+it) ≠ 0.
+    - The programme's timed-prime measure maps invertibly onto Deligne's positive measure.
+    - Source: DB9, DR0–DR4 (`07_` item 12).
+11. **Two-prime density.** MCL3.4, IH6 and PL3 rest on one fact, that (log p)ℤ + (log q)ℤ is dense in ℝ. This is the multiplicative form of the two-period (mean-periodic) phenomenon (S17).
+12. **Deligne's squaring, Kurokawa's tensor product, and the F₁ square.**
+    - Deligne's step α ↦ α² (H¹ ⊗ H¹ ↪ H²) has as additive form Kurokawa's tensor product of zeta functions, whose spectral parameters are ρ + ρ′ (Manin, Astérisque 228, 1995, §1.4).
+    - Weil's proof uses C̄ × C̄. Connes proposes the square of the arithmetic site as its analogue (arXiv:1509.05576, §§2.3 and 4.3.2).
+    - Source: `08_` §§3–4.
+13. **Pending.** The cross-programme reuse the owner reported (Navier–Stokes, Yang–Mills, the S¹/topology work, Erdős–Straus) is not yet examined.
 
 ## Goal 4: F₁ context
 
@@ -94,18 +133,30 @@ The detailed files are in this folder (`01_`–`04_`, `checks/`, `copy_round2/co
 5. **The global quotient of all prime clocks** is ℤ̂, the Bost–Connes space, which Connes–Consani treat as an 𝔽₁ object.
 6. **Framing of the question** (Beurling). The owner's admissibility rule ("retain the original arithmetic") singles out the actual primes. The RH question in this programme is therefore how the additive counting step constrains the multiplicative system, since regularity alone does not (item 12 of goal 1).
 7. **The points of ℙ¹ over 𝔽_{1²}** are {0, ∞, ±1}. The branched double cover at these points is y² = x³ − x (S10).
+8. **The question the weight lane inadvertently asked.**
+   - Construct, over the reconstructed arithmetic, a square with a Künneth-type map H¹ ⊗ H¹ → H². Add either an auxiliary object whose weights are discrete, or a pole bound for positive even tensor powers that is uniform in the power.
+   - The square is Manin's 1995 question (§0) of "absolute Descartes powers" of Spec ℤ, with Kurokawa's tensor product as its additive shadow. The second ingredient is specific to Deligne.
+   - The programme's own TWC and FST construct a square and all tensor powers, with computed outcomes.
+   - Source: `08_` §4.
+9. **The F₁² units and the Eulerian sheets (an observation).** The Eulerian sheets a = 1/q of the even lattice family are exactly those with (ℤ/q)^× = {±1}, the units of CC's 𝔽_{1²} (S19).
 
 ## Open and pending
 
 **Reading:**
-- the 63-part Deligne reconstruction (weight-control lane);
-- the character-lifting lane;
+- the Deligne reader outside DB9, DR, DC, DW5–DW11 and MDB9–MDB11;
+- the rest of the 25 September continuations (the counterfactual and identity lanes; GCT beyond FST and TWC);
 - PTQ, SSI, GDC and AST.
 
 **Verification:**
-- a full referee pass on Theorem E;
 - an independent re-proof of Theorem C, parts 1–2;
 - the literature comparison of S12–S13 with Meyer and with Weil-positivity work;
-- novelty searches for S5–S9.
+- novelty searches for S5–S9 and S17–S19;
+- an independent check of `08_`.
 
-**Examination:** the cross-programme reuse (goal 2, item 9).
+The full referee pass on Theorem E is done (`06_`).
+
+**Examination:** the cross-programme reuse (goal 2, item 13).
+
+**Errata:** the FLIP_FABLE Addendum 4 erratum (goal 1, item 4).
+
+**Publication:** the concise Claude's-edition PDF for Zenodo, as a new version of record 22911829 (PLAN, standing rules).

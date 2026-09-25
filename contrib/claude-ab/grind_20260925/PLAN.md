@@ -198,3 +198,12 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Register: S22 updated; S25–S29; negative results 29–32; bridges 19–23; goal-4 items 10 (the pole at 1 is the average) and 11 (the pole at 0 is a local-model input, the pole at τ an open definition, after the owner's correction).
   - Citations verified: Balazard–Saias–Yor, Adv. Math. 143 (1999); Sekatskii et al., Ukr. Math. J. 64 (2012); Bost–Connes, Selecta Math. 1 (1995) 411–457; Connes, Selecta Math. 5 (1999), from p. 29; Krasichkov-Ternovskii, J. Soviet Math. 26 (1984); Vladimirov 2002 (via arXiv:2009.02802).
   - Replies to the owner: the pole at 1 is the average, as in Bost–Connes; the pole at 0 is set by the local model.
+- 06:01–06:06 UTC: the owner asked that the classical "pole at 0" be tracked, since it may merge several objects and in the programme could be the pole at τ.
+  - Replies: the pole at 0 is a local-model input, while the pole at 1 is a counting fact.
+  - Deliverable: `13_LEDGER_OF_THE_ZEROS_AND_ONES_IN_THE_COMPLETED_ZETA.md`, with the split identity (2) checked to 10⁻³¹ in `checks/zero_ledger_check.py`.
+  - Register: S30; goal-4 item 11 now points to `13_`.
+  - Branch pushed 8d9a75f..04af7ef (note 12); note 13 goes in the next push.
+- 06:06 UTC: timestamp correction. The register line said 06:03 and 06:08, and the headers of `13_` said 06:05 and 06:10; all four had been written ahead of the clock. Corrected to the `date -u` readings. Rule, again: a timestamp is written only from a `date -u` taken in the same command.
+- 06:06 UTC: the owner described τ as the pivot of a swing between 0 and 1, not 0 itself.
+  - Reply: the swing corresponds to the pole exchange s ↦ 1 − s, whose pivot is ½ (u = 1 on the clock side). The two poles are Fourier duals of each other, δ₀ ↔ 1. RH is ρ^# = ρ for every zero.
+  - Added as `13_` §2(c)–(d) and §4 (the pivot slot, as a proposal).

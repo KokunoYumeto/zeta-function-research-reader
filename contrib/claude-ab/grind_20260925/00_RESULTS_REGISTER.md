@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41 and 06:03 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59 and 06:05 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41 and 06:03 UTC (v2:
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`12_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`13_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -48,6 +48,7 @@ The detailed files are in this folder (`01_`–`12_`, `checks/`, `figures/`, `co
 | S27 | **Exact weighted dilation norm.** On L²((0,∞), (1+log²u)^δ du), ‖T_a‖ = a^{1/2}Λ₊(log a)^{δ/2}, with Λ₊(t) = (t²+2+\|t\|√(t²+4))/2. Hence prime dilations on Connes' weighted quotients have spectrum on \|z\| = √p | proved; Λ₊ checked on a grid | programme, WHR8 | elementary |
 | S28 | **Connes against Meyer.** The natural map from Meyer's Fréchet quotient Q to lim_n of Connes' weighted Hilbert quotients has kernel exactly the classes vanishing on all critical-line jets. So it is injective iff RH holds. The algebraic map Q → H_δ/J is always injective; the loss happens in the Hausdorff quotient | proved in the programme; WHR2.4 and WHR3.2 checked | programme, WHR5–WHR10 (`12_` §1.6) | restatement relating Connes (Selecta Math. 5 (1999)) and Meyer (arXiv:math/0412277); not searched |
 | S29 | **Spectral synthesis on the zeta quotient.** Explicit finite-rank Riesz–Gaussian operators K_j converge to the identity on Q. Closed multiplier submodules are exactly the jet-order submodules. The line ideal and the off-line ideal have dense sum | proved in the programme; read for correctness, not re-derived | programme, GSP2–GSP6, CTS1–CTS4 | a local-description theorem in Krasichkov-Ternovskii's sense for this module |
+| S30 | **The two poles differ in kind.** Split the Mellin integral of the punctured lattice sum at u = 1 and apply Poisson summation. Then 2ζ(s)M_S h(s) = (entire) + ĥ(0)/(s−1) − h(0)/s: the pole at 0 is the lattice's n = 0 term, the pole at 1 the dual lattice's. For the lattice cℤ the residue at 0 is −h(0) for every c, while the residue at 1 is (∫h)/c. So the pole at 0 counts one point and the pole at 1 measures a density. The position of the pole at 0 is set by the local model of h at the origin: h ~ c·v^α puts it at −α | derived; the split identity checked to 10⁻³¹ at four points, with both residues and the cancellation at −2 | claude-ab, `13_` §§1–2; `checks/zero_ledger_check.py` | classical in content (Riemann 1859; Tate 1950); the ledger of which "0" does what is new here |
 
 ## Goal 1: negative results, with exact scope
 
@@ -225,6 +226,8 @@ The detailed files are in this folder (`01_`–`12_`, `checks/`, `figures/`, `co
       - In the programme, the object at that point is τ. A "pole at τ" would be computed from a local model of test functions at τ by the formula above, and the programme has not specified that model.
       - The reading of the residue at 0 as "presence without an exchanged label" (0 = −0 is the only non-free orbit of ±1) is a proposed typed map. It is not an identification with τ: the integer 0 has even parity.
       - The standard literature uses only the smooth model, so it cannot see this difference (the owner's point, 25 September).
+    - The full ledger of the objects called 0 and 1 is `13_`; the slots available to τ are listed there as a proposal (§4).
+    - The owner's own placement: τ is the pivot of the swing between 0 and 1, not 0 itself. In the zeta picture this is the pivot of the pole exchange: s ↦ 1 − s about ½, or u ↦ 1/u about u = 1. There RH reads ρ^# = ρ for every zero, with ρ^# = 1 − ρ̄: no exchanged partner (`13_` §2(d), §4; a proposed typed map, not a theorem).
     - Source: claude-ab and the owner, 25 September.
 
 ## Open and pending

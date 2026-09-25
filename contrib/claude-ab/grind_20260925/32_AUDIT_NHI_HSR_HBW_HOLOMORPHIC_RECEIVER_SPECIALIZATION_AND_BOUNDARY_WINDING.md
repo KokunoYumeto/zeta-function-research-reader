@@ -173,7 +173,7 @@ One referee (a Claude subagent) read `32_`–`33_`. It re-ran the three check sc
   - The reflection-pair bridge now says the only possible tail annihilator is a multiple of ev₁, and none exists for C = 8F₀.
   - Credit for the case M = 0 goes to NHJ4 and `30_` Corollary 30.2.
   - Lemma 32.2 needs G ≢ 0. HBW8.9–8.12, not HSR4.1, is literally the lemma.
-  - §0: the section references and the provenance of §5 were corrected, and the reference to the owner's computer was removed.
+  - §0: the section references and the provenance of §5 were corrected, and a reference to a private location was removed.
   - 32.N3: HBW3 and HBW8 are described exactly. 32.N1's "this is why" became "consistent with".
   - The bridges to NPE4.2 now say "has the same matrix as".
   - Notation (b_{a,N}, σ) and the precision figure (10⁻³⁷) were corrected.

@@ -6,10 +6,11 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - In the YM workbench (commit fa79faf), folder `yang-mills/sources/ym_quantum_coarse_graining_astra_20260908/`:
   - `FABEL_JACOBI_TO_YM_COORDINATE_AUDIT.md`, in full;
   - `FABEL_CORRECTIONS_20260908.md`, in full;
-  - `FABEL_TENSOR_TRANSFER.md`, the transport conventions and the statements of Theorem 13.1 and of the scope.
+  - `FABEL_TENSOR_TRANSFER.md`, the transport conventions and the statements of Theorem 13.1 and of the scope;
+  - `FABEL_LOW_MODE_TRANSFER.md`, the statement of Theorem 14.2 (its proof is audited in `34_`).
 - In the YM workbench, `yang-mills/sources/ym_gap_primary_20260908/magnetic_translation_true_vacuum.md`: §1 and §9.
 - In the YM workbench, `navier-stokes/RESEARCH_STATE.md`, in full. I also searched the 840 KB NS workbench TeX for "Fabel", "Jacobi", "S6" and "heat flow".
-- On the owner's computer, in `work/`:
+- In the programme's local working folders (not in the repository):
   - `cyclotomic_clock_transfer_20260924/`: DERIVATION.md, LOGBOOK.md and CHECK_RESULTS.json, in full;
   - `quantum_tau_programme_bridge_20260924/`: the directory listing and `RESULTS_BULLETIN_2026-09-25.md`, in full.
 
@@ -29,7 +30,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
    - The "diffusion tensor" K_τ degenerates to a rank-one leading term, z^6K_τ → vv^T with v = (1/4, 3/8, −9/4).
    - The three endpoint spectral coefficients 113569/36864, 100825/12288 and 531/512 of the YM tensor transfer are exact.
    - The YM side uses K_τ as spatial weights of a lattice local-energy operator, and asserts no fluid-to-Hamiltonian intertwiner.
-   - Its later Section 14 (`FABEL_LOW_MODE_TRANSFER.md`, Theorem 14.2; statement read, proof not checked) claims a sequence of physical vectors orthogonal to the vacuum whose energy quotients decay like 100√2π/j. The sequence runs along changing regulators: box L_j = j², spacing a_j = 1/(100j) and couplings g_j < 1/j. So the physical box length j/100 grows while the coupling tends to 0.
+   - Its later Section 14 (`FABEL_LOW_MODE_TRANSFER.md`, Theorem 14.2; statement read, proof not checked) claims a sequence of physical vectors orthogonal to the vacuum whose energy quotients decay like 100√2π/j. The sequence runs along changing regulators: box L_j = j², spacing a_j = 1/(100j) and couplings g_j < 1/j. So the physical box (half-side j/100, full side j/50) grows while the coupling tends to 0.
    - By the source's own account, the continuum identification remains unresolved. The same limitation, a zero-quotient sequence only as the coupling tends to 0, was found for the NS-profile edge in `21_` (scope limit 21.4).
 3. **S⁶ → YM uses one number from the S⁶ data (Lemma 28.2).** The magnetic background is, after an exact frame change, the constant field of strength 2π/D on a plane, where D = Lq + 6m² is the determinant of the imaginary period block. The workbench states that the identification with S⁶ is not an input.
 4. **The NS workbench's own heat and S⁶ transfers are not certified by that workbench.** Its research state says their implications "are not certified by this reader". The "heat correction" in the NS construction is internal to the NS proof, not a transfer. There is no morphism to state.
@@ -136,7 +137,7 @@ After the frame change exp(−H_cf), the background is the constant magnetic fie
 
 So there is no certified NS-side transfer to state as a morphism. The edge Jacobian → NS kinematics of §1 is the one that exists, and it is proved here (Lemma 28.1).
 
-## 5. The two local folders on the owner's computer
+## 5. The two local programme folders
 
 ### 5.1 `quantum_tau_programme_bridge_20260924`
 
@@ -234,5 +235,5 @@ Its `RESULTS_BULLETIN_2026-09-25.md` has 15 entries: SZ-20260925-001 to -013, th
 `34_` audits the proof, which this note did not check.
 - The algebra is correct, and the proof is a valid diagonal argument conditional on the fixed-box weak-coupling limits.
 - The energy quotients are, up to 1 ± 1/(10j), the free two-gluon colour-singlet threshold of an open box of side j/50, and Q_j·ℓ_j → 2√2π.
-- The quotient does not depend on the Fabel tensor.
-- The box length in §2 was the half-side; it is corrected above.
+- The window Δ_j(1 ± 1/(10j)), and hence the limit of j·Q_j, do not depend on the Fabel tensor; the tensor enters the norm ‖w_j‖² and the energy (corrected after the twelfth referee pass, `34_` §6).
+- The box length in §0 item 2 and in §2 was the half-side; both are corrected above.

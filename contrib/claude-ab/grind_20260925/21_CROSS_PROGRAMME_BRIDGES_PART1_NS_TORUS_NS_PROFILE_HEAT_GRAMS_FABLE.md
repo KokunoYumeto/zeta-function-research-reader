@@ -241,7 +241,7 @@ Check D illustrates both regimes on the model f = τ^{−0.53} + τ^{−0.2}.
 - **Next parts of task 2:**
   - the YM uses of the Jacobian polynomial and of Π(z);
   - the NS workbench's own heat and S⁶ transfers;
-  - the local folders `quantum_tau_programme_bridge_20260924` and `cyclotomic_clock_transfer_20260924` on the owner's computer.
+  - the local programme folders `quantum_tau_programme_bridge_20260924` and `cyclotomic_clock_transfer_20260924` (not in the repository).
 
 ## 11. Revision after the seventh referee pass (10:51 UTC)
 

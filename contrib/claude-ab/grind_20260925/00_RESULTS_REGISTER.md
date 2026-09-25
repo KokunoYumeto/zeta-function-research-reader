@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43, 06:47, 06:49, 07:35, 08:41, 08:46, 08:53, 09:35, 10:59 and 11:53 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43, 06:47, 06:49, 07:35, 08:41, 08:46, 08:53, 09:35, 10:59, 11:53 and 12:56 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`28_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -68,6 +68,11 @@ The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `co
 | S47 | **The exact summation image.** f ↦ ℳ₀Σf = 2ζ(s)∫f v^{s−1}dv is a topological isomorphism from {f even Schwartz, f(0) = 0 = ∫f} onto the ideal I of B. The inverse is the inverse Mellin transform of F/(2ζ), or ½Σμ(n)b(nx). The Taylor coefficients at 0 are F(−2r)/(2ζ′(−2r)) | proved in the programme (SSI, OMS3); audited | programme SSI/OMS; claude-ab `25_` Lemma 25.1 | on OMS's account, Meyer's range theorem (arXiv:math/0412277) plus the division estimate; Meyer not read |
 | S48 | **Positive transfer-adjoint forms are diagonal on the line zeros.** A bounded positive form B on ℓ²(Z, m) with B(T_nx, y) = B(x, U_ny) for all n is Σ_{line}m_ρc_ρx_ρȳ_ρ. The off-diagonal step uses 3^k ≠ 2^l | proved | programme PTQ4; claude-ab `25_` Lemma 25.2 | elementary |
 | S49 | **Global residue duality with explicit constants.** B_ζ(F,G) = (2πi)^{−1}(∫_{Re 2} − ∫_{Re −1})F(s)G(1−s)/ζ(s)ds satisfies \|B_ζ\| ≤ ζ(2)(1+4π²)/π · b_{2,1}b_{2,1} (8.79 in place of 21.19 is also valid). It descends to Q, is nondegenerate, has local determinant (m!/ζ^{(m)}(ρ))^m, and satisfies B(T_ax,T_ay) = aB(x,y) and B(Lx,y) = B(x,(1−L)y) | proved in the programme (GZR); audited | programme GZR; claude-ab `26_` Lemma 26.1 | classical residue pairing in contour form |
+| S50 | **The spectral theory of multiplication by s on B/I_D.** If Φ ∈ B has divisor D: Spec L = supp D; R_λF = (F − Φ·F(λ)/Φ(λ))/(λ − s); the Riesz projector at ρ is multiplication by an entire e_ρ ∈ B, of rank m_ρ, with one Jordan block | proved in the programme (RZ3–RZ7); audited | programme RZ; claude-ab `27_` Lemma 27.1 | elementary |
+| S51 | **B is a Fréchet–Schwartz space.** The unit ball of b_{A+1,M+1} is b_{A,M}-precompact (Cauchy estimates, Arzelà–Ascoli, tails). So B and B/I are Montel and reflexive, and (B/I)′_β ≅ I^⊥ topologically, without passing through the summation image | proved; refereed | claude-ab `27_` Lemma 27.2 | standard permanence properties |
+| S52 | **Keller maps give incompressible polynomial flows.** If det DF ≡ c ≠ 0 and V is affine, then U = DF^{−1}(V∘F) is polynomial with div U = (div V)∘F (Piola), and F maps U-curves to V-curves. For a polynomial automorphism every such curve is complete. For the Jacobian counterexample F (det DF = −2), γ(τ) = (z^{−1}, −3z/2, 13z²/2), z = √(1−8τ), is a U-curve escaping at τ = 1/8 with F(γ) = (−1/4 + 2τ, 0, 0). The Lagrangian tensor has z^6K_τ → vv^T, v = (1/4, 3/8, −9/4) | proved; checked exactly; refereed | claude-ab `28_` Lemma 28.1 (the curve from the YM workbench) | not searched |
+| S53 | **The S⁶ period block enters the YM magnetic background only through D = Lq + 6m².** A_orig = (2π/D)H_c y₁dy₂ + H_c df exactly, so after a frame change the field is constant of strength 2π/D (on the non-wrapping patch) | proved; checked | claude-ab `28_` Lemma 28.2 (identity displayed in the YM source) | elementary |
+| S54 | **Signed clocks and the integral Bost–Connes ring.** On ℤ[ℚ/ℤ]: σ_nρ_n = n, ρ_nσ_n = E_n·, ρ_n(a)ρ_n(b) = nρ_n(ab), σ_mρ_n = dρ_{n/d}σ_{m/d}. ker σ_n = (e(1/n) − 1)R and im ρ_n = E_nR are mutual annihilators, with R/(ker σ_n + E_nR) ≅ R/nR (finite level: index n^{N/n}). Even-degree transfer is never a fibre map over a sign-faithful character (χ(ε) = −1) | proved in the programme (CCT, local folder); checked | programme CCT-1–CCT-8; claude-ab `28_` §5.2 | consistent with the integral Bost–Connes model (Connes–Consani–Marcolli, abstract) |
 
 ## Goal 1: negative results, with exact scope
 
@@ -186,6 +191,8 @@ The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `co
 45. **The separator proof does not reach the Davenport–Heilbronn function.** By Saias–Weingartner, f has infinitely many zeros with Re s > 1, because f is not P(s)L(s,ψ) (b(1) = 1 against −κ²). By reflection, no vertical line separates Z_f from Z_f − 1. Whether the splitting itself fails for f is open. Source: `24_` Prop. 24.6.
 46. **B does not split along the two lines.** The normal row 0 → I₊ → B → Q₊ → 0 has no M-linear section: Q₊ is torsion and B torsion-free. The separator is not an idempotent of M, since an entire c with c² = c is constant. Source: GMS3, GMS6; `24_` §2.4.
 47. **The positive-side constructions are RH-equivalent by construction.** AST's ℛ, GDC's N_O, PTQ's H_off and the descent of W, PTQ8.3's trace and ECR5.5's detector: eight constructions reducing to three conditions (N_O = Q; H_off = 0; a strictly positive sum over the off-line zeros vanishes). Each restates Z_O = ∅. The two numerical detectors are not holomorphic in ρ, so the explicit formula does not directly compute them. GZR's global duality is nondegenerate but not positive. Source: `25_` §5, `26_` §2.
+48. **More RH- or simplicity-equivalences by definition (RTT, RZ).** W ≥ 0 iff RH; W positive definite iff RH and all zeros simple; U_a = D_a^* for one a ≠ 1 iff RH; the trace image is dense iff all zeros are simple. The residue bridge R̂(F, SG) = W(F, G) is Weil's explicit-formula functional (RTT9.4, re-derived and matched to about 10⁻²⁶). FOD/NEA see only the divisor. Source: `27_` §2.
+49. **Cross-programme transfers, part 2, with scope.** The Jacobian → YM chain yields no fixed-coupling or continuum statement. The source's own zero-quotient sequence (FABEL_LOW_MODE_TRANSFER Theorem 14.2, proof not checked) runs with g_j → 0 and growing physical box, and the continuum identification is unresolved by its own account. The S⁶ → YM edge uses only D > 0 on its patch. The NS workbench certifies none of its early heat/S⁶ transfers. Prime-only clock seeds are not transfer-stable. Source: `28_`.
 
 ## Goal 2: bridges found or implied
 
@@ -251,6 +258,7 @@ The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `co
     RH has three exact forms in these terms: every zero is its own anti-number; number–anti-number annihilation is positive (Weil); the bulk is empty. Source: `22_`.
 30. **Prime knots and anti-numbers.** In Connes–Consani's knots paper the orbit C_p has monodromy Frob_p. Reversing it conjugates the character, so the functional equation Λ(s,χ) = W(χ)Λ(1−s,χ̄) puts the anti-character on the other side of τ, at the phase W(χ). The anti-sector cancels the phase: W(χ)W(χ̄) = 1. Source: `22_` Prop. 22.8.
 31. **The ACD/AST defect is a zero minus its reflected partner.** d_r(ρ) = conj(r^ρ − r^{ρ#}), with ρ# = 1 − ρ̄. This is the involution used for the pivot at ½ in `13_` and `17_`. The correspondence with `22_`'s anti-numbers waits for board task 9. Source: `24_` §3.3.
+32. **Cross-programme reuse, part 2 (`28_`).** The Jacobian polynomial → an incompressible polynomial flow with finite-time escape, straightened by F (Lemma 28.1) → the YM tensor transfer (exact endpoint coefficients 113569/36864, 100825/12288, 531/512) → finite-regulator projected states (source's claim). The S⁶ period block → a constant magnetic field of strength 2π/D (Lemma 28.2). The owner's signed clocks ⟨T, J, ε⟩ → the integral Bost–Connes ring, with the sign obstruction at even degree and the retained quotient ℤ/n (CCT). The local folder `quantum_tau_programme_bridge_20260924` is the programme's own working folder.
 
 ## Goal 4: F₁ context
 
@@ -303,7 +311,7 @@ The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `co
 - the Deligne reader outside DB9, DR, DC, DW5–DW11 and MDB9–MDB11;
 - none of board task 5 remains: DER, FEM, FSC, FTD, PRS and NHJ4–NHJ9 were read in full on 25 September (`19_`), and SMC, GAP and ADM likewise (`18_`). Read in full on 25 September: OZD, SPF1–SPF8, GSP, CTS, FGR, WHR, HCS and GMC (`12_`); VWR0–VWR11 and ATG0–ATG10 (`14_`); PMS M1–M9 (`15_`); NCI0–NCI8, RSS0–RSS6 and NHJ0–NHJ3 (`16_`);
 - the owner's July 2026 files received on 25 September: `16.tex`, `16.1.tex`, `cumulative_nullity_k4_ledger.tex`, `full_noncommutative_k4_operation.tex`, `jt_invariant_exact_lift_supplement.tex`, `matrix_valued_nonunitary_frobenius_toeplitz.tex`, and `6.tex` outside its Hopf section. These are outlined only; `giuga_blind_plane_cayley_dickson.tex` was read in full;
-- read and audited on 25 September (board task 8): GSL, GMS, AST (`24_`); GDC, PTQ, SSI, ECR, ECI (`25_`); GZR, OMS0–OMS4 and OMS8 (`26_`). Read in part: SSI10, CGS0–CGS3, DCP0–DCP3. Not read: OMS5–OMS7A and the rest of CGS and DCP; the Codex session logs.
+- read and audited on 25 September (board task 8): GSL, GMS, AST (`24_`); GDC, PTQ, SSI, ECR, ECI (`25_`); GZR, OMS0–OMS4 and OMS8 (`26_`); RTT, RZ, SDT, FOD, NEA (`27_`); the Fabel/Jacobi and magnetic-translation YM files, the NS research state and the cyclotomic clock transfer (`28_`). Read in part: SSI10, CGS0–CGS3, DCP0–DCP3. Not read: OMS5–OMS7A and the rest of CGS and DCP; the Codex session logs.
 
 **Verification:**
 - ~~an independent re-proof of Theorem C, parts 1–2~~: done at 08:53 UTC (`20_`), given Theorem A. It is a completion of the copy's route rather than an independent one, revised at 09:35 UTC after the sixth referee pass;
@@ -314,7 +322,8 @@ The detailed files are in this folder (`01_`–`26_`, `checks/`, `figures/`, `co
 The full referee pass on Theorem E is done (`06_`).
 
 **Examination:**
-- the cross-programme reuse, part 2 (goal 2, item 17): the YM uses of the Jacobian polynomial and of Π(z), the NS workbench's own heat and S⁶ transfers, and the local folders `quantum_tau_programme_bridge_20260924` and `cyclotomic_clock_transfer_20260924`;
+- the programme bulletin of 25 September: eight result groups not yet read (GDE, ABH, NJS/SSR, NHI/HSR/HBW, BML/BMR, BRC/BRR, GJN/GJNR, ETR), starting with ETR1 (the sharp first-negative formal Euler-log bound −1/6), which touches `11_`;
+- the proof of FABEL_LOW_MODE_TRANSFER Theorem 14.2 (YM workbench);
 - the continuation directions of `22_` §5: the multiplicative doublet class, annihilation positivity with two lines, detection at the prime squares, and the holonomy as a function on the strip.
 
 **Errata:** none pending. The FLIP_FABLE Addendum 4 erratum was written on 25 September.

@@ -9,9 +9,10 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - A sixth referee pass, on `18_`–`20_` and this digest, found one major error, in the first version of §4 item 15, and several overstatements and gaps. All were applied at 09:38 UTC; §6 lists them.
 - At 10:59 UTC `21_`–`23_` were added: the cross-programme bridges (part 1, refereed), the owner's anomaly picture made exact, and the detectability argument. The additions are §2 item 13, §3 items 15–17, §4 items 16–18 and §5 item 8. `22_` and `23_` await their referee pass.
 - At 11:54 UTC `24_`–`26_` were added, for board task 8, which the owner gave priority from about 11:03 UTC. They audit GSL, GMS, AST, GDC, PTQ, SSI, ECR, ECI, GZR and OMS, and were refereed in the eighth pass. The additions are §2 items 14–17, §3 items 18–20, §4 item 19 and §5 item 9.
+- At 12:57 UTC `27_`–`28_` were added and refereed in the ninth pass. `27_` audits RTT, RZ, SDT, FOD and NEA. `28_` covers the cross-programme bridges, part 2. The additions are §2 item 18, §3 items 21–22 and §4 item 20.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`26_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`28_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -107,6 +108,10 @@ This digest collects what an audit-and-extension lane established about the owne
 16. **Positive adjointness sees the line zeros one coordinate at a time.** A bounded positive form for which pullback and transfer are adjoint is diagonal on the line zeros and zero elsewhere. (PTQ4; `25_` Lemma 25.2)
 17. **The global residue duality.** The contour pairing (2πi)^{−1}(∫_{Re 2} − ∫_{Re −1})F(s)G(1−s)/ζ(s)ds is continuous with an explicit constant and nondegenerate on the zeta quotient. It pairs the jets at ρ with those at 1 − ρ, with local determinant (m!/ζ^{(m)}(ρ))^m. (GZR; `26_` Lemma 26.1)
 
+18. **A polynomial map with constant Jacobian turns straight lines into an incompressible flow.** If det DF is a nonzero constant, then U = DF^{−1}(V∘F) is a polynomial, divergence-free field whose flow lines F carries onto those of V.
+    - For a polynomial automorphism every flow line is complete.
+    - For the Jacobian-conjecture counterexample recorded in the Yang–Mills workbench, one flow line escapes to infinity at τ = 1/8 while its image stays on a bounded segment. The failure of properness is seen as finite-time escape. (`28_` Lemma 28.1)
+
 ## 3. Negative results, with their exact scope
 
 1. **Detection, clock changes and loops.**
@@ -149,6 +154,16 @@ This digest collects what an audit-and-extension lane established about the owne
     - The detectors are not holomorphic in ρ, so the explicit formula does not directly compute them.
     - The global duality is nondegenerate but not positive. (AST, GDC, PTQ, ECR, GZR; `25_` §5, `26_`)
 
+21. **More conditions that are RH, or simple zeros, by definition.**
+    - The Weil form is nonnegative exactly under RH, and definite exactly under RH with simple zeros.
+    - The pullback and the transfer are adjoint for one integer exactly under RH.
+    - The trace image is dense exactly when the zeros are simple.
+    - The residue bridge is Weil's explicit formula. (RTT, RZ; `27_`)
+22. **The cross-programme chains stop before a physical statement.**
+    - Jacobian → Yang–Mills reaches finite-regulator states. The source's zero-quotient sequence runs with coupling → 0 and growing box.
+    - S⁶ → Yang–Mills uses a single number from the S⁶ data.
+    - The Navier–Stokes workbench certifies none of its early transfers. (`28_`)
+
 ## 4. Bridges between programmes and fields
 
 1. **Deligne, Weil II §2.1.9 = Hadamard–de la Vallée Poussin = the programme's timed primes.** The programme's measure maps invertibly onto Deligne's positive measure. (DB9, DR)
@@ -190,6 +205,11 @@ This digest collects what an audit-and-extension lane established about the owne
 18. **Prime knots and anti-numbers.** In Connes–Consani's knots paper, reversing the orbit of p conjugates the character. The functional equation puts the conjugate character on the other side of τ at the phase W(χ), and W(χ)W(χ̄) = 1. (`22_` Prop. 22.8)
 
 19. **The programme's defect is a zero minus its reflected partner.** d_r(ρ) = conj(r^ρ − r^{1−ρ̄}). It vanishes exactly when ρ is its own partner under s ↦ 1 − s̄, the involution used for the pivot at ½. (claude-ab; `24_` §3.3)
+
+20. **Cross-programme reuse, part 2.**
+    - The Jacobian polynomial becomes an incompressible flow and then a Yang–Mills tensor transfer. The endpoint coefficients were checked exactly.
+    - The S⁶ period block becomes a constant magnetic field of strength 2π/D.
+    - The owner's signed clocks ⟨T, J, ε⟩ map to the integral Bost–Connes ring. The sign ε blocks even degrees, and the unnormalised transfer keeps a quotient ℤ/n. (`28_`)
 
 ## 5. The 𝔽₁ context
 

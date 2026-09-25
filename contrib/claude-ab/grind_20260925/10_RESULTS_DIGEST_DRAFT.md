@@ -16,9 +16,10 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - At 16:53 UTC the twelfth referee pass on `34_`–`35_` was applied (3 major findings, all corrected: a heuristic about the mass gap stated as a fact, the tensor-independence of the YM quotient overstated, a wrong hash statement). The referee compared DW with the printed Weil II: DW follows Deligne's printed proofs, and the three misprints that DW reports, in (1.3.10)(iv), (1.6.14.3) and (1.7.5), are in the printed original. §3 item 29 and §4 item 25 are revised.
 - At 17:05 UTC `36_` was added: the Deligne reader's DP, DMG and DLM (Weil II §§1.3–1.9), with the reader's six corrections compared with the printed pages. The additions are §2 items 25–26, §3 items 31–33 and §4 item 26.
 - At 18:00 UTC `37_` was added: the Deligne reader's DB, DBC and DW0–DW4 (Weil II §§2.1–2.2 and 3.1–3.2), with seven further displays checked on the printed pages (and two rechecked). The additions are §2 items 27–28, §3 items 34–36 and §4 item 27, and §2 item 26 is extended.
+- At 18:46 UTC `38_` was added: the Deligne reader's MDB0–MDB8 (mixed duality; the recovered arithmetic base). With it the whole reader has been audited. The additions are §3 items 37–38.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`37_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`38_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -194,6 +195,8 @@ This digest collects what an audit-and-extension lane established about the owne
 34. **Positivity alone cannot exclude Deligne's quadratic exception;** some extra input is necessary (in Weil II §2.2, the double cover). (`37_` 37.N1)
 35. **The Hadamard–de la Vallée-Poussin method gives, for ζ, only ζ(1 + it) ≠ 0;** the reader's "original-zeta specialization" is this classical statement. (`37_` 37.N2–37.N3)
 36. **The quartet's tensor Euler products cannot detect zeros of ζ:** their genuine pole exists for every complex ρ, zero or not. (`37_` 37.N5)
+37. **The programme's recovered arithmetic base carries only the free rank of the winding group:** the recovered ring is End(ℤ) = ℤ whatever the torsion and the twists are, and the support maps are the maps to a point. (`38_` 38.N1–38.N2)
+38. **No object built on the recovered base has weight 1,** so none realizes the purity circle |a|² = p. (`38_` 38.N3)
 ## 4. Bridges between programmes and fields
 
 1. **Deligne, Weil II §2.1.9 = Hadamard–de la Vallée Poussin = the programme's timed primes.** The programme's measure maps invertibly onto Deligne's positive measure. (DB9, DR)

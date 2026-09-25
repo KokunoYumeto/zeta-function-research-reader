@@ -1,0 +1,108 @@
+==============================================================================
+MDB0-MDB8 audit checks (context items [ctx] from MDB9-MDB11)
+==============================================================================
+
+--- A. weight bookkeeping (MDB5-MDB6) ---
+[A01] PASS  MDB6.3 shift rule: K in D<=w  <=>  K(r)[m] in D<=w+m-2r
+        327600 random (K,r,m,w) cases, mismatches = 0
+[A02] PASS  CONTROL: wrong rule K(r)[m] in D<=w-m+2r is rejected
+        wrong rule disagrees in 99691 of 327600 cases
+[A03] PASS  MDB6.4 D(K(r)[m]) = (DK)(-r)[-m] on weight multisets
+[A04] PASS  CONTROL: variant D(K(r)[m]) = (DK)(r)[m] is rejected
+[A05] PASS  6.2.4/6.2.5b on a point: pure of weight w <=> every H^i has all weights i+w
+        1521 of 3000 samples were pure
+[A06] PASS  MDB6.7-6.8: smooth dim d, lisse H^j: eigenvalue a in deg j <-> q^-d a^-1 in deg -j-2d; purity <=> H^j pointwise pure of weight w+j
+[A07] PASS  MDB5.3-5.4/6.6: K_X=E(d)[2d], K'_X=K_X(-1)[-2]=E(d-1)[2d-2], both pure of weight 0
+        d=0: K_X={0: [0]}, K'_X={2: [2]}, D_X K_X={0: [0]}
+        d=1: K_X={-2: [-2]}, K'_X={0: [0]}, D_X K_X={0: [0]}
+        d=2: K_X={-4: [-4]}, K'_X={-2: [-2]}, D_X K_X={0: [0]}
+[A08] PASS  MDB5.7/6.6: stalk E(r)[m] and costalk E(r-1)[m-2] both pure of weight m-2r
+[A09] PASS  MDB5.6: D_s i^* = (Ri^! D'_S)(1)[2] and D_s Ri^! = (i^* D'_S)(1)[2] on Tate objects
+[A10] PASS  CONTROL: MDB5.6 with the (1)[2] factors removed is rejected
+[A11] PASS  MDB7.8: i_{p*}E pure of weight 0 for D' (dual H^2=E(-1), weight 2 in degree 2)
+[A12] PASS  MDB6.6/6.2.5a: K(N)[2N] has the weight of K; (DK)(-1)[-2] has the weight of DK
+
+--- B. point counts and duality (MDB4, MDB5, MDB7) ---
+[B01.q3] PASS  #G_m(F_3^k) by brute force = a2^k - a1^k with a1=1 (H^1_c), a2=q (H^2_c)
+        N_k={1: 2, 2: 8, 3: 26}, fitted a1=1, a2=3
+[B02.q3] PASS  MDB4.4 D_pt Rf_!E = Rf_* D E on G_m -> pt (eigenvalues per degree)
+        D Rf_!E: {-1: [Fraction(1, 1)], -2: [Fraction(1, 3)]}; Rf_*E(1)[2]: {-2: [Fraction(1, 3)], -1: [Fraction(1, 1)]}
+[B03.q3] PASS  Purity Ri^!E = E(-1)[-2] (equal-char analogue of MDB5.2): only the correct candidate matches traces and degrees; wrong twist/shift variants rejected
+        support Euler traces {1: Fraction(3, 1), 2: Fraction(9, 1), 3: Fraction(27, 1)}; passing candidates ['E(-1)[-2]']
+[B04.q3] PASS  Negative (MDB7 caveat): for pure E on G_m, Rf_! lies in D<=0 but not D>=0; Rf_* lies in D>=0 but not D<=0
+        Rf_!E weights {1: [0], 2: [2]}; Rf_*E weights {0: [0], 1: [2]}
+[B01.q5] PASS  #G_m(F_5^k) by brute force = a2^k - a1^k with a1=1 (H^1_c), a2=q (H^2_c)
+        N_k={1: 4, 2: 24, 3: 124}, fitted a1=1, a2=5
+[B02.q5] PASS  MDB4.4 D_pt Rf_!E = Rf_* D E on G_m -> pt (eigenvalues per degree)
+        D Rf_!E: {-1: [Fraction(1, 1)], -2: [Fraction(1, 5)]}; Rf_*E(1)[2]: {-2: [Fraction(1, 5)], -1: [Fraction(1, 1)]}
+[B03.q5] PASS  Purity Ri^!E = E(-1)[-2] (equal-char analogue of MDB5.2): only the correct candidate matches traces and degrees; wrong twist/shift variants rejected
+        support Euler traces {1: Fraction(5, 1), 2: Fraction(25, 1), 3: Fraction(125, 1)}; passing candidates ['E(-1)[-2]']
+[B04.q5] PASS  Negative (MDB7 caveat): for pure E on G_m, Rf_! lies in D<=0 but not D>=0; Rf_* lies in D>=0 but not D<=0
+        Rf_!E weights {1: [0], 2: [2]}; Rf_*E weights {0: [0], 1: [2]}
+[B05] PASS  MDB7.2-7.4 example: #(G_m^2)(F_3^k) = q^2k - 2q^k + 1; Rf_!E in D<=0 on the nose
+[B06] PASS  Negative (MDB7 caveat): Legendre fibres have |a|^2<=4p (weight 1) but the nodal fibre at lambda=0 has H^1 eigenvalue eps=+-1 (weight 0): i_0^* j_*R^1 is not in D>=1
+        p=5: nodal #=5, eps=1, (-1/p)=1
+        p=7: nodal #=9, eps=-1, (-1/p)=-1
+        p=11: nodal #=13, eps=-1, (-1/p)=-1
+        p=13: nodal #=13, eps=1, (-1/p)=1
+
+--- C. programme objects (MDB0-MDB2) ---
+[C01] PASS  MDB2.1: the five sets form a topology; eta is the unique dense point; every homeomorphism fixes eta
+        homeomorphisms: 2 (identity and the +/- swap)
+[C02] PASS  MDB2.3: the least open neighbourhood of eta is Omega={eta}, so F_eta = F(Omega)
+[C03] PASS  MDB2 parity: no equivariant label X -> {even,odd} (fixed point eta); CONTROL: a free involution does admit one
+        equivariant labels on X: 0; on free 2-point set: 2
+[C04] PASS  MDB2.6: c_Sigma is continuous and every nonempty open of X has full preimage under j_tau o c_Sigma (the map is constant, i.e. factors through the terminal space)
+[C05] PASS  MDB0.1: in G=<T,J,eps | J^2=eps, eps^2=1, commuting> = Z x C4, H=<J> is the full torsion subgroup and G/H = <T> is infinite cyclic
+[C06] PASS  MDB2.4 (imported chart data) is consistent: J -> eps J is an automorphism of G fixing T, eps; the involution A(T)=eps T^-1, A(J)=J^-1 is an involution inducing inversion on L
+[C07] PASS  MDB1.1-1.2: n -> [n] is a ring isomorphism Z -> End(Z) ([m]+[n]=[m+n], [m][n]=[mn]); [n] is independent of the generator (u vs u^-1)
+[C08] PASS  MDB1.5: C_B([n]) = [n]' for the branch isomorphism x -> 2x onto 2Z; conjugation by inversion is the identity on R
+[C09] PASS  MDB1.3: residue norm N(s_p) = |R/pR| = |L/[p]L| = p (Smith form and coset count)
+[C10] PASS  Negative (MDB1/MDB2.5): G -> End(G/G_tors) sees only the free rank; Z x C4, Z x C6, Z x C2 x C2 and Z give the same ring Z (C4 and phase data are forgotten)
+        free ranks: {'Z x C4': 1, 'Z x C6': 1, 'Z x C2 x C2': 1, 'Z': 1}
+
+--- D. Tate twist and Frobenius conventions (MDB3, MDB5, MDB6) ---
+[D01] PASS  MDB3.5/MDB6: in F_{7^3}, x->x^7 generates Gal (order 3); geometric Frobenius acts on mu_9 = Z/9(1) by 7^-1 = 4 and on Z/9(-1) by 7 = p (weights -2 and +2)
+[D02] PASS  MDB6.1: E(r) has geometric eigenvalue p^-r, weight -2r (r=-2..2, p=7)
+[D03] PASS  MDB7.1: w_{q^d}(a^d) = w_q(a) (pullback preserves pointwise weights)
+[D04] PASS  MDB5.2f Hensel step (finite level): residue l-th roots lift (p=7, l=5, mod 7^8), so K^x/(K^x)^l is detected by the valuation
+[D05] PASS  MDB5.2d-e: trivial coefficients give H^0 = H^1 = Z/9 (9 = l^a) with geometric Frobenius p on H^1 = Z/9(-1); CONTROL: a nontrivial action (gamma = 4) gives 3 and 3 instead
+        trivial: |H^0|,|H^1| = (9, 9); gamma=4: (3, 3)
+
+--- E. mixed filtration linear algebra (MDB7, MDB8) ---
+[E01] PASS  MDB7: eigenvalues of an extension = union of sub and quotient multisets (block upper triangular char. polynomial factorizes)
+[E02] PASS  MDB8.4-8.5: for Frobenius-equivariant h (solved from F'h = hF, Jordan blocks allowed), h(W_n V) = im h cap W_n V' for every n
+        60 (h, n) cases
+[E03] PASS  CONTROL: a random non-equivariant linear map fails to preserve W_n
+        non-equivariant map leaves W_n in 20 cases
+[E04] PASS  MDB8.2 on a point: an extension is non-split iff F-coinvariants of Hom(V,W) are nonzero iff the eigenvalues agree (equal weights allowed, cf. MDB8.3)
+[E05] PASS  Negative (MDB8, normality retained): unipotent monodromy [[1,1],[0,1]] (all eigenvalues 1, pure weight 0) has a single invariant line and no invariant complement -> not semisimple (nodal-cubic local system shows 3.4.1(iii) needs normality)
+[E06] PASS  Negative (MDB8 scope): for j_*F (Legendre family at lambda=0, p=13, computed weights) W_0|U = 0 and ker s = 0 force W_0 = 0, while the boundary stalk has weight 0 != 1: no increasing filtration with pointwise-pure graded pieces exists for this non-lisse mixed sheaf
+        a_lambda=6, generic weights [1.0, 1.0], eps=1, boundary weight 0.0
+[E07] PASS  MDB8.3k (stalk form): kernel of V -> (V/W_n) + (V/W_n) over two preimages equals W_n
+
+--- F. zeta Euler product, degree factor, defect, purity circle ---
+[F01.s2] PASS  MDB1.4: (1-3^-s)^-1 prod_(p!=3)(1-p^-s)^-1 = zeta(2) (primes < 200000)
+        ratio = 0.999999619831
+[F01.s3] PASS  MDB1.4: (1-3^-s)^-1 prod_(p!=3)(1-p^-s)^-1 = zeta(3) (primes < 200000)
+        ratio = 0.999999999999
+[F02] PASS  CONTROL: dropping the coefficient-prime factor (1-3^-s)^-1 is rejected
+[F03] PASS  MDB5.7/[ctx MDB9] degree factor: costalk factors det(1-p^-s F|E(-1))^-1 = (1-p^(1-s))^-1 multiply to zeta(s-1) (s=4)
+[F04] PASS  CONTROL: costalk factor without the Tate factor p gives zeta(s), not zeta(s-1): rejected
+[F05] PASS  [ctx MDB10] defect: Frobenius-equivariant maps E -> E(1) at s_p solve c = p^-1 c, so Hom_F = 0 while Hom of the underlying lines is 1-dimensional
+[F06] PASS  [ctx MDB9] purity circle on actual curves: |alpha|^2 = p, alpha*beta = p (Poincare duality with Tate factor; equivalently {1/alpha,1/beta} = {alpha/p,beta/p}, i.e. D Rf_* = Rf_* D in degree -1, MDB4.4), p/conj(alpha) = alpha; F_p^2 counts match p^2+1-(alpha^2+beta^2)
+        p=13: #E(F_p)=18, a_p=-4, #E(F_p^2)=180
+        p=17: #E(F_p)=12, a_p=6, #E(F_p^2)=288
+        p=19: #E(F_p)=26, a_p=-6, #E(F_p^2)=364
+[F07] PASS  CONTROL: untwisted dual a -> 1/conj(a) does not fix alpha (Tate factor needed)
+[F08] PASS  [ctx MDB9.9-9.10] negative: xi(1-conj s) = conj xi(s) holds unconditionally, so the zero set is always stable under rho -> 1-conj(rho), i.e. a -> p/conj(a); a hypothetical off-line pair (Re rho = 0.7) is swapped by the involution yet lies off |a|^2 = p
+[F09] PASS  [ctx prior audit] quartet {rho, 1-conj rho, conj rho, 1-rho}: average (determinant) weight is 1 for every Re rho, so it cannot detect off-line zeros
+
+--- G. bridge obstructions ---
+[G01] PASS  Bridge test: a Weil-Deligne pair satisfies Phi N Phi^-1 = q^-1 N (so N Phi = q Phi N, the shape N P_b = b P_b N with b=q, Phi having eigenvectors); an operator commuting with N != 0 satisfies it only if q = 1, so W_p with [W_p,N]=0, N!=0 cannot be the Frobenius at p
+        q forced to [1]
+[G02] PASS  Bridge test: every operator on a nonzero finite-dimensional complex space has an eigenvector, so an operator without eigenvectors has no nonzero finite-dimensional stable subspace and receives no nonzero equivariant map from a stalk or H^i over F_p
+
+==============================================================================
+SUMMARY: 56 PASS, 0 FAIL, 56 items
+==============================================================================

@@ -1,6 +1,6 @@
 # The product trace, its diagonal return, the full arithmetic correspondence, and the Hardy receiver (FTD, PRS, DER, FSC, FEM, NHJ4–NHJ9)
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 08:45 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 08:45 UTC. Revised at 09:20 UTC after an independent referee pass: the scope of FSC2 is narrowed, the direction of the FEM2 left inverse is corrected, the relation of B_ζ to the Lebesgue pairing is stated precisely, and one misattribution to `17_` is removed.
 
 This is a content map of the remaining blocks of board task 5, each read in full:
 
@@ -17,7 +17,7 @@ With this note, task 5 is complete.
 - The Connes–Consani base is a three-point space Y = {c₊, c₋, η}. On it, sheaf cohomology has only degrees 0 and 1, and its dualizing complex is concentrated at the generic point in degree −1 (FTD).
 - So the residue pairing of the zeta quotient, which has target degree 2, cannot come from a degree-zero sheaf map on Y itself (FTD9). It comes from the product Y × Y (PRS).
 - Returning the product trace along the diagonal needs the right adjoint RΔ^!. That adjoint equals Rq_* for an explicit map q : Y² → Y, and it keeps the trace with coefficient +1, whereas ordinary pullback loses a degree (DER).
-- Carried back to the arithmetic source X = Spec ℤ ∪ {m₊, m₋}, no single-valued return map exists. A correspondence does exist, with an exact derived comparison (FSC). It transports every operator and every extension class faithfully (FEM).
+- Carried back to the arithmetic source X = Spec ℤ ∪ {m₊, m₋}, there is no continuous single-valued lift of q that fixes the arithmetic diagonal. A correspondence does exist, with an exact derived comparison (FSC). It transports every operator and every extension class faithfully (FEM).
 - The paired characters always multiply to p, so the pair's weights always sum to 2. Nothing in this chain forces the individual weight 1 (DER10, FEM7).
 - Separately, NHJ proves that the Gaussian-corrected Noor tests are dense in ℬ, so the Hardy receiver is injective on the whole dual. The only obstruction to cover-invariance of its Hilbert domain is an explicit boundary pole 1/(1−z).
 
@@ -51,7 +51,7 @@ With this note, task 5 is complete.
 - **Characters (PRS6, PRS8).**
   - B_ζ(T_ab, T_ac) = a·B_ζ(b, c): the target carries the character of the pole at 1.
   - For eigenvectors with T_ax = a^ρx and T_ay = a^σy, a nonzero pairing forces ρ + σ = 1.
-  - This pairing is bilinear. It pairs ρ with 1 − ρ, not with ρ̄ or 1 − ρ̄. (This is the Lebesgue-type pairing of `17_` Proposition 17.4(d), not the Hermitian ½-centred pairing of `17_` §5.)
+  - This pairing is bilinear. It pairs ρ with 1 − ρ, not with ρ̄ or 1 − ρ̄. It shares the bilinear s ↔ 1 − s shape and the character a of the Lebesgue pairing ⟨·,·⟩₁ of `17_` Proposition 17.4(d), but it is not that pairing. It is also not the Hermitian ½-centred pairing of `17_` §5.
 
 ## 3. DER: the diagonal needs the right adjoint
 
@@ -61,7 +61,7 @@ With this note, task 5 is complete.
   - The diagonal of Y² is neither open nor closed.
 - **The right adjoint (DER2).** RΔ^! = Rq_*, and RΓ(Y, Rq_*G) = RΓ(Y², G) for every bounded complex G.
 - **The extraordinary return of the trace (DER3–DER5).**
-  - RΔ^!K ≃ j_{η!}χ_dil k[−1], through an explicit injective complex T of length 3 and a strong deformation retract onto a two-term complex.
+  - RΔ^!K ≃ j_{η!}χ_dil k[−1], through an explicit injective complex T with three terms and a strong deformation retract onto a two-term complex.
   - The counit preserves the global trace with coefficient +1: RΓ(Y, RΔ^!K) ≃ RΓ(Y², K) = χk[−2].
   - Ordinary pullback gives Δ^{−1}K = j_{η!}χk, a degree lower.
 - **The comparison map vanishes (DER6).** The canonical comparison RΔ^!K → Δ^{−1}K is zero in the derived category, by an explicit homotopy.
@@ -76,7 +76,7 @@ With this note, task 5 is complete.
 
 ## 4. FSC and FEM: back to the whole arithmetic source
 
-- **No single-valued return (FSC2).**
+- **No continuous single-valued lift of q fixing the diagonal (FSC2).**
   - Let X = Spec ℤ ∪ {m₊, m₋} and f : X → Y. There is no continuous q̃ : X² → X with f q̃ = q(f×f) and q̃Δ_X = id.
   - Proof: for every prime p, the closure of (p,p) contains (m₊,m₋). So q̃(m₊,m₋) lies in the intersection of the closures {p, m₊, m₋}, which is {m₊, m₋}. But f q̃(m₊,m₋) = q(c₊,c₋) = η forces a point of U.
 - **The correspondence (FSC3–FSC6).**
@@ -85,7 +85,7 @@ With this note, task 5 is complete.
   - The derived comparison Ra_*b^{−1}f^{−1}G ≅ (f×f)^{−1}Δ_*G is proved through injective resolutions. It uses the facts that every nonempty open contains the generic point and that point-direct-images are injective.
 - **Faithful transport (FEM1–FEM3).**
   - FEM verifies FSC6 independently.
-  - It constructs a continuous section i : Y → X (η ↦ the generic point, c_± ↦ m_±), with (i×i)Δ a left inverse of v = q(f×f). So derived morphisms and extension classes are transported faithfully.
+  - It constructs a continuous section i : Y → X (η ↦ the generic point, c_± ↦ m_±), with ℓ = (i×i)Δ a section of v = q(f×f), meaning vℓ = id. So ℓ^{−1} is a left inverse of v^{−1}, and derived morphisms and extension classes are transported faithfully.
   - All real and prime dilations and the chart mirror are transported. The mirror carries B_ζ to its companion: B_ζ(Rx, Ry) = −B_{ζ∨}(x, y), where ζ∨(s) = ζ(1−s).
 - **No finite characters in the tensor row (FEM4–FEM5).**
   - A contains no nonzero finite-dimensional subspace invariant under L_A = −u d/du. An eigenfunction would be c·u^{−λ}, which lies in A only if c = 0. The same holds for each prime operator T_p.
@@ -93,7 +93,7 @@ With this note, task 5 is complete.
 - **The connecting classes (FEM6–FEM8).**
   - The connecting map δ_q : ker q|_{Q⊗Q} → M/qM is injective and equivariant, with an exact mirror relation carrying a sign (−1)^r.
   - At primary blocks ρ, σ the explicit representative (FEM7.4) keeps every binomial coefficient.
-  - For σ = 1 − ρ the class has character p, of weight 2, "regardless of whether either zero is on the critical line. Thus these classes can be nonzero even when RH holds. They are not counterexamples to RH." (FEM7)
+  - For σ = 1 − ρ the class has character p, of weight 2. FEM7 states that this holds "regardless of whether either zero is on the critical line", that these classes "can be nonzero even when RH holds", and that "They are not counterexamples to RH or a contradiction in the source definitions."
   - In the full global complex the explicit section S kills these classes: q(L_tot)e = d_G S(m). The global complex is quasi-isomorphic to K₀[0] ⊕ (Q⊗Q)[−1] (FEM8, GMC).
 
 ## 5. NHJ4–NHJ9: the Hardy receiver of Noor's tests
@@ -121,7 +121,7 @@ Notation from `16_`: F_{t,m} = g_tψ_m, where ψ_m = (m^{1−s} − (m+1)^{1−s
 
 - DER10 and FEM7 are the programme's own statement of the point made in `17_` §6. The pairing of ρ with its partner 1 − ρ always has total weight 2, "regardless of whether either zero is on the critical line". Pair cancellation therefore holds for every zero and cannot locate one.
 - PRS8 pairs ρ with 1 − ρ bilinearly, with the character a of the pole at 1. The Hermitian ½-centred Weil pairing of `17_` §5 pairs ρ with 1 − ρ̄. The two differ by complex conjugation, and only the Hermitian one carries a positivity criterion.
-- FEM5's lemma, that A has no finite-dimensional dilation-invariant subspace because u^{−λ} ∉ A, is the precise form of the observation in `17_` §4: the characters on the critical line and on its mirror are generalized eigenvectors, never vectors of the space. Eigenvalues appear only in the quotient Q.
+- FEM5's lemma, that A has no finite-dimensional dilation-invariant subspace because u^{−λ} ∉ A, has a consequence for the characters on the critical line and on its mirror. They are generalized eigenvectors, never vectors of the space. Eigenvalues appear only in the quotient Q.
 
 ## 7. Checks
 
@@ -144,7 +144,7 @@ The remaining steps were read for correctness without re-derivation: the long ho
 
 - **Negative results (goal 1).**
   - The residue pairing cannot come from a degree-zero sheaf map on the three-point base (FTD9).
-  - No single-valued return map fixes the arithmetic diagonal (FSC2).
+  - No continuous single-valued lift of q fixes the arithmetic diagonal (FSC2).
   - Ordinary diagonal pullback loses the trace's degree, and its comparison with the right adjoint is zero (DER6).
   - The reflected-pair classes have weight 2 whether or not RH holds, and the global boundary kills them (FEM7–FEM8).
   - Each is a precise statement about the specified spaces and maps; none bears on where the zeros are.

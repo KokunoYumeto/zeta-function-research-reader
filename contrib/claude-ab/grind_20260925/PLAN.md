@@ -335,3 +335,18 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - the constant 0.0373.
   - While writing part 2, a gap was repaired: the edge effects of the Gaussian smoothing. The fix averages over the window start (Fubini) and then chooses a good X in each dyadic block.
   - Register S3 and the Reading/Verification line updated; digest §3.4 updated.
+- 08:54 UTC: pushed 16f7af3 (`20_`); BOARD tasks 4 and 5 marked done. The next check-in was moved from 09:40 to 09:10 UTC (trig_01U2rsaEP4uN2S2TxoNQXgiy; its prompt text still names task 5, now finished).
+  - Next, in order:
+    - an independent referee pass on `18_`–`20_` and the revised digest;
+    - board task 2 (cross-programme bridges), starting from the owner's Navier–Stokes record;
+    - the Zenodo package after the owner's review.
+- 08:54 UTC: the three queued check-in notifications (06:31, 07:35, 08:35) were delivered after the long turn ended. All their duties had already been carried out during the turn. The next check-in is at 09:10. Launching the referee pass on `18_`–`20_` and the revised digest now.
+- About 08:55–09:12 UTC: the sixth referee pass (one subagent), on `18_`–`20_` and the revised digest. Its scripts ran 09:00–09:11 UTC.
+  - It re-ran the check scripts of `18_` and `19_` and wrote its own: `referee_indep_checks.py` (b(n) by Dirichlet convolution, sieve to 10⁷; now `checks/referee_theorem_c_independent_checks.py`) and a PRS envelope check of the GZR2 bound.
+  - Major finding: in `18_` (and in the addendum sent to the owner) ℛ was misread as the full quotient. ℛ = Q/N_O holds only off-line values, so ℛ[1] ⊕ ℛ(−1)[−1] vanishes iff RH; the unconditional pair of copies is Q and Q₊ (jets at Z + 1). The correction was sent to the owner between 09:12 and 09:20 UTC.
+  - `20_` findings: the attribution (the proof follows the copy's route, with the same choices in Lemma U); the zeros below the real axis were bounded only termwise; Theorem 20.4 lacked the integration by parts under its mean-square hypothesis; Lemma 20.2(b)'s interval argument needs Δ ≤ 0.3930, not ½; h(i/2) was not O(e^{−cT₁}) uniformly; "exactly" in Theorem 20.3 step 4; §7's "λ aligns them all".
+  - Other findings: FSC2's scope; "cannot force" → "does not force"; "coincide" (T₋₁ = A on the line, not the Hurwitz flow); the Corollary B error in digest §3.4; "first referee" in digest §2.8; labelling of readings in digest §5.7.
+- 09:20 UTC: `18_` and `19_` revised (lists in `18_` §8 and the `19_` header).
+- 09:32 UTC: `20_` revised: Lemma 20.5 (Stieltjes form of Theorem A's sum under each hypothesis: exceptional zeros, the good heights with S(T_k) = O(T_k^{A′}), positive heights, conjugate zeros by partial summation); Theorem 20.3 steps 1–4 and 8 rewritten on it; Theorem 20.4 step 2 rewritten (dyadic Cauchy–Schwarz, S₊, M₊, E₊); Lemma 20.2(b) range Δ ≤ 0.39; Proposition 20.1 bounds explicit; §§6–7 wording; §9 lists the changes. `checks/theorem_c_reproof_checks.py` gained (7) the threshold and main terms by quadrature and (8) the Gaussian-window bounds; all pass.
+- 09:35 UTC: register S3 (statement and hypotheses: smoothed coefficients unconditional, sharp coefficients need Bohr means), negative result 1, S36, negative results 37–39, bridges 26–27, and the Verification line corrected.
+- 09:39 UTC: digest header change log, §2.1, §2.8, §3.4, §3.13, §3.14, §4.14, §4.15, §5.7 and §6 corrected. Branch README rows 18–20 corrected. The referee passes are now counted consistently: `08_`, `09_`–`10_`, `11_`–`13_`, `14_`–`16_`, `17_`, `18_`–`20_` (sixth).

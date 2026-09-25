@@ -7,6 +7,8 @@
  (4) the T-linear part of the Gaussian-window transform: h1hat(xi) contains -(T/2pi) ghat(xi) e^{-i T xi}/xi (sympy).
  (5) sum_{n>=2} b(n)^2/(n log^2 n) and the constant 7/(12 pi^2) times it.
  (6) Kronecker illustration: max over sampled T of Re D_Delta(T) against V(Delta), Delta = 0.5.
+ (7) threshold Delta <= 0.3930 for the interval bound of Lemma 20.2(b); main terms by quadrature.
+ (8) Gaussian-window bounds of sections 2 and 4: |h(i/2)|, int_{-oo}^0 h, E(a + Delta Z)^+ (revision after the sixth referee pass).
 claude-ab, model claude-opus-5-5 (Opus 5.5, maximum reasoning effort), 25 September 2026.
 """
 import os, math
@@ -87,5 +89,30 @@ for chunk in np.array_split(Ts, 200):
         best = vals[j]; arg = chunk[j]
 say("(6) Delta = 0.5, first 400 terms: V = %.4f ; max of Re D_Delta(T) over T in [0, 2e5], step 0.5: %.4f at T = %.1f ; sup_T Re D_Delta >= V(Delta) by Kronecker"
     % (V, best, arg))
+# (7) threshold and main terms (revision after the sixth referee pass)
+import mpmath as mp
+mp.mp.dps = 30
+thr = 1 / (1 + math.sqrt(1 + 2 * math.log(2)))
+say("(7) [u0 - 1/Delta, u0] lies in [log 2, oo) iff 1/Delta >= 1 + sqrt(1 + 2 log 2) = %.4f, i.e. Delta <= %.4f" % (1 / thr, thr))
+for D in [0.5, 0.39, 0.35, 0.3]:
+    main = mp.mpf(2) / 5 * mp.quad(lambda u: mp.e ** (u / 2 - D * D * u * u / 2) / u, [math.log(2), 1 / (2 * D * D), mp.inf])
+    lb = 0.8 * D * math.exp(1 / (8 * D * D) - 0.5)
+    say("(7) Delta = %.2f: u0 - 1/Delta = %.3f (log 2 = %.3f); main term by quadrature = %.4f; interval bound (4/5) Delta e^{1/(8 Delta^2) - 1/2} = %.4f%s"
+        % (D, 1 / (2 * D * D) - 1 / D, math.log(2), float(main), lb, "" if D <= thr else " (Delta outside the proved range)"))
+# (8) Gaussian-window bounds; h(z) = Phi((z - T1)/Delta) - Phi((z - T)/Delta)
+def Phi(z):
+    return (1 + mp.erf(z / mp.sqrt(2))) / 2
+for (D, T1, T) in [(0.3, 3.0, 50.0), (0.5, 5.0, 40.0), (1.0, 10.0, 80.0)]:
+    hi2 = Phi((mp.mpc(0, 0.5) - T1) / D) - Phi((mp.mpc(0, 0.5) - T) / D)
+    bd = 0.5 * mp.e ** ((0.25 - T1 ** 2) / (2 * D * D))
+    neg_direct = mp.quad(lambda u: Phi((u - T1) / D) - Phi((u - T) / D), [-mp.inf, 0])
+    neg_formula = mp.quad(lambda v: Phi(-v / D), [T1, T])
+    neg_bd = D * mp.e ** (-T1 ** 2 / (2 * D * D)) / mp.sqrt(2 * mp.pi)
+    sech_int = mp.quad(lambda u: mp.sech(mp.pi * u) * (Phi((u - T1) / D) - Phi((u - T) / D)), [-mp.inf, 0, T1, T, mp.inf])
+    say("(8) Delta=%.1f T1=%.0f T=%.0f: |h(i/2)| = %.3e <= %.3e ; int_{-oo}^0 h = %.3e (formula %.3e) <= %.3e ; int sech(pi u) h(u) du = %.3e <= 1"
+        % (D, T1, T, float(abs(hi2)), float(bd), float(neg_direct), float(neg_formula), float(neg_bd), float(sech_int)))
+for (a, D) in [(0.0, 1.0), (3.0, 1.0), (10.0, 0.3)]:
+    val = mp.quad(lambda u: u * mp.npdf(u, a, D), [0, a, mp.inf])
+    say("(8) a=%.1f Delta=%.1f: int_0^oo u g_Delta(u - a) du = %.6f <= a + Delta/sqrt(2 pi) = %.6f" % (a, D, float(val), a + D / math.sqrt(2 * math.pi)))
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "theorem_c_reproof_checks_OUTPUT.txt"), "w") as fh:
     fh.write("\n".join(out) + "\n")

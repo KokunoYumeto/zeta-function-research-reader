@@ -101,7 +101,7 @@ For S = K_τ, z^{12}ν_{K_τ} converges to (113569/36864)ν₀ + (100825/12288)�
 **The later Section 14 (statement read; proof not checked here).** FABEL_CORRECTIONS ("Subsequent continuation in Section 14") and `FABEL_LOW_MODE_TRANSFER.md` Theorem 14.2 claim "a proved finite-regulator sequence". The vectors are
 w_j = 1_{(Δ_j/2, 11Δ_j/10)}(H_{g_j,L_j,a_j} − ℰ)Ξ_{f_{S_j}}, with S_j = K_{τ_j}.
 They are orthogonal to the vacuum, with ‖w_j‖² ~ 𝒞_*j^{18} and energy quotient ~ 100√2π/j.
-- **What varies.** The regulators vary with j: L_j = j², a_j = 1/(100j), g_j < 1/j. So the physical box length L_ja_j = j/100 tends to infinity and the coupling tends to 0.
+- **What varies.** The regulators vary with j: L_j = j², a_j = 1/(100j), g_j < 1/j. So the physical box half-side L_ja_j = j/100 (full side 2L_ja_j = j/50; corrected in `34_`) tends to infinity and the coupling tends to 0.
 - **What the source leaves open.** "The common interacting continuum state/observable identification remains unresolved" (FABEL_CORRECTIONS). "The construction does not identify their changing Hilbert spaces with an interacting four-dimensional continuum theory" (FABEL_LOW_MODE_TRANSFER, opening).
 - **The typed conclusion.** The morphism F → YM reaches projected physical states at each finite regulator, as claimed by the source. It does not reach a fixed-coupling or continuum statement. This parallels `21_` scope limit 21.4, where the NS profile gave a zero-quotient sequence only as the coupling tends to 0.
 
@@ -228,3 +228,11 @@ Its `RESULTS_BULLETIN_2026-09-25.md` has 15 entries: SZ-20260925-001 to -013, th
 ### Correction found in the tenth referee pass (14:14 UTC)
 
 §5.1 listed "NPE/NER (in part)" among the blocks audited in earlier notes. No earlier note audits NPE or NER. `16_` read NHJ0–NHJ3 in full and NHJ4–NHJ9 only through their displayed results. The list is corrected above. NPE0–NPE4 were read at 14:10 UTC for `31_` Lemma 31.2.
+
+### Addendum (15:37 UTC): the proof of Theorem 14.2
+
+`34_` audits the proof, which this note did not check.
+- The algebra is correct, and the proof is a valid diagonal argument conditional on the fixed-box weak-coupling limits.
+- The energy quotients are, up to 1 ± 1/(10j), the free two-gluon colour-singlet threshold of an open box of side j/50, and Q_j·ℓ_j → 2√2π.
+- The quotient does not depend on the Fabel tensor.
+- The box length in §2 was the half-side; it is corrected above.

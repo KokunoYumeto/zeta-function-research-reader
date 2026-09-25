@@ -27,7 +27,7 @@ The setting is the one in `07_` §1.
 - S is the space of even Schwartz h with h(0) = 0 and ∫h = 0.
 - A is the space of rapidly decaying smooth functions on (0, ∞).
 - Σh(u) = 2Σ_{n≥1} h(nu), with J = ΣS closed and Q = A/J.
-- F = M_0 b is the Mellin transform.
+- F = M_0 b(s) = ∫₀^∞ b(u)u^s du/u is the Mellin transform on A, and M_S h(s) = ∫₀^∞ h(v)v^s dv/v is its counterpart on S.
 - The dilations are T_a b(u) = b(u/a), with generator L = −u∂_u.
 
 ## 2. What the notes establish
@@ -54,7 +54,7 @@ The setting is the one in `07_` §1.
    (β − ½) ‖b_ρ‖²_{L²(du)} = −Re⟨b_ρ, b_0⟩.
 
    - The proof is one integration by parts, 2Re⟨b, Lb⟩ = ‖b‖², together with Lb_ρ = ρb_ρ + b_0.
-   - The dilations do not act as eigenvectors on the representatives: T_a b_ρ = a^ρ b_ρ + R_{a,ρ}, where R_{a,ρ} ∈ J is explicit, with M_0R_{a,ρ} = G(s)(a^s − a^ρ)/(s − ρ) (OPD2).
+   - b_ρ is not an eigenvector of the dilations on A. Instead T_a b_ρ = a^ρ b_ρ + R_{a,ρ}, where R_{a,ρ} ∈ J is explicit, with M_0R_{a,ρ} = G(s)(a^s − a^ρ)/(s − ρ) (OPD2).
    - R_{a,ρ} is nonzero for every a ≠ 1, even at critical zeros (OPD2.5).
 7. **Summing the pairings** (OPD5). H_off(b_†) = 2Σ m|Re⟨b_ρ, b_0⟩|, while the signed sum Σ m Re⟨b_ρ, b_0⟩ = 0, because reflected partners cancel (OPD5.2–5.3).
 8. **Positive forms before the quotient** (SPF0, SPF9–SPF10).
@@ -81,33 +81,41 @@ The setting is the one in `07_` §1.
 
 ## 4. My reading of what these notes add up to
 
-**(a) The source-pairing identity is the Hilbert–Pólya mechanism.**
+**(a) The source-pairing identity and the Hilbert–Pólya mechanism.** The facts are OPD's; the reading is mine.
 - On L²((0,∞), du) one has ‖T_a f‖² = a‖f‖². So a^{−1/2}T_a is unitary and L − ½ is skew-adjoint.
 - For a vector with (L − ρ)b = b_0, OPD4.2 reads Re ρ − ½ = −Re⟨b, b_0⟩/‖b‖².
-- On the quotient Q the source b_0 ∈ J is zero, and [b_ρ] is an honest eigenvector. If the L² inner product descended to Q, the pairing would vanish and every zero would lie on the line.
-- It does not descend. J is dense in L²(du) (the programme's ASD10; HSW6B gives the proof). That proof is Wiener's L² Tauberian theorem: the translates of g_{b_0} span L²(ℝ) because their Fourier transform G(½+it) vanishes only on a null set (N. Wiener, *Tauberian theorems*, Ann. of Math. 33 (1932) 1–100).
-- The RH content of the second attempt is therefore located precisely: it is the size of Re⟨b_ρ, b_0⟩ on actual representatives, and the harmonic defect (items 4 and 7) sums exactly these sizes.
+- On the quotient Q the source b_0 ∈ J is zero, and [b_ρ] is an honest eigenvector. A skew-adjoint structure on Q would force the pairing to vanish.
+- The L² form cannot supply that structure. It is definite, so it could pass to Q only if J = 0, and b_0 ≠ 0. More strongly, J is dense in L²(du) (the programme's ASD10; HSW6B gives the proof), so the quotient seminorm is identically zero.
+  - HSW6B's argument is the easy direction of Wiener's L² Tauberian theorem: the translates of g_{b_0} span L²(ℝ) because their Fourier transform G(½+it) is nonzero almost everywhere (N. Wiener, *Tauberian theorems*, Ann. of Math. 33 (1932) 1–100).
+- Since ‖b_ρ‖ > 0, OPD4.2 restates RH at each zero as Re⟨b_ρ, b_0⟩ = 0. It adds no leverage by itself, but it names the scalar that the harmonic defect sums (items 4 and 7).
 
-**(b) Three independent confirmations that positivity sees only the critical zeros.**
+**(b) Three related results: positivity sees only the critical zeros.**
 - CPS: the positive receiver of R is zero (`04_`).
 - TWC10: the same holds for off-line same-eigenvalue tensor powers (`08_` §3).
 - SPF9: a positive transfer form descends only when its measure sits on the critical zeros.
 
-These are three different constructions with the same outcome. So any argument that goes through a positive, transfer-compatible form on the zeta quotient has assumed, not proved, the location of the zeros.
+These results are related, not independent:
+- TWC10 at k = 1 is CPS's zero receiver.
+- SPF10 recovers the CFP classification on the quotient.
+- For k ≥ 2, TWC10's positive receiver keeps the reflected pairs, with modulus exactly n.
 
-**(c) Bridge: Nyman–Beurling is the programme's Σ with one-sided support.** The following identity is elementary; `checks/nyman_beurling_bridge_check.py` checks it numerically.
+What they share is this: such forms vanish on all the off-line data they could detect. So by themselves they cannot decide where the zeros lie.
+
+**(c) Bridge: the Nyman–Beurling functions are values of the programme's Σ on one-sided step tests.** The following identity is elementary; `checks/nyman_beurling_bridge_check.py` checks it numerically.
 
 - Let a_k > 1 and c_k ∈ ℂ with Σ_k c_k/a_k = 0.
 - Put h = Σ_k c_k 1_{[−1/a_k, 1/a_k]}. Then h is even, supported in [−1, 1], and ∫h = 2Σ c_k/a_k = 0. This is the programme's moment condition.
+- But h is not in S. It is a discontinuous step function, and h(0) = Σc_k is generally nonzero. The identity holds for a_k ≥ 1; strict a_k > 1 is needed for Σh(1) = 0.
 - Then
 
   Σ_k c_k {1/(a_k x)} = −½ · Σh(x),  and Σh(x) = 0 for x > 1.
 
   *Proof.* {1/(ax)} = 1/(ax) − ⌊1/(ax)⌋. The terms c_k/(a_k x) cancel exactly because Σc_k/a_k = 0, and 2⌊1/(ax)⌋ = Σ(1_{[−1/a,1/a]})(x). ∎
-- The functions ρ_a(x) = {1/(ax)} are those of the Nyman–Beurling criterion: RH holds if and only if χ_{(0,1]} lies in the L²(0,∞)-closure of their span. Báez-Duarte strengthened this to a ∈ ℕ ([arXiv:math/0202141](https://arxiv.org/abs/math/0202141)); the original is A. Beurling, *A closure problem related to the Riemann zeta-function*, [PNAS 41 (1955) 312–314](https://www.pnas.org/doi/10.1073/pnas.41.5.312).
-- Titchmarsh's identity ∫_0^∞ {1/x} x^{s−1} dx = −ζ(s)/s (0 < Re s < 1) also checks numerically to 1e−9.
+- The functions ρ_a(x) = {1/(ax)} are those of the Nyman–Beurling criterion, in Báez-Duarte's form: RH holds if and only if χ_{(0,1]} lies in the L²(0,∞)-closure of the span of the ρ_a, a ≥ 1. He also showed that a ∈ ℕ suffices ([arXiv:math/0202141](https://arxiv.org/abs/math/0202141); Rend. Lincei 14 (2003) 5–11).
+- The L² criterion on (0,1) is Nyman's (thesis, 1950). Beurling's *A closure problem related to the Riemann zeta-function* ([PNAS 41 (1955) 312–314](https://www.pnas.org/doi/10.1073/pnas.41.5.312)) gives the L^p version.
+- Titchmarsh's identity ∫_0^∞ {1/x} x^{s−1} dx = −ζ(s)/s (0 < Re s < 1; Titchmarsh (2.1.5) with x ↦ 1/x) checks numerically to about 10⁻¹¹, the limit of the float64 summation, once the next Euler–Maclaurin tail term is kept.
 
-**The typed morphism** between the unconditional statement and the RH-equivalent one is the support condition.
+**The typed morphism** between the unconditional statement and the RH-equivalent one lies in the support condition, the topology and the test class.
 
 - Two-sided tests h ∈ S give an image J that is dense in all of L²(0,∞) (Wiener). Through Mellin–Plancherel, L²(0,∞) sees only the critical line.
 - Tests supported in [−1, 1] give images supported in (0, 1]. Mellin transforms of L²(0,1) see the half-plane Re s > ½, where a zero of ζ is an obstruction to density.
@@ -117,13 +125,13 @@ Burnol's "co-Poisson" theory studies this family of summation maps and their rel
 
 **The programme is already on this road** (added after reading the results bulletin of the "source endpoint and residue section" continuation, `RESULTS_BULLETIN_2026-09-25.md`).
 
-- Codex's identity-absorption task builds on S. W. Noor, *A Hardy space analysis of the Báez-Duarte criterion for the RH* (Adv. Math. 350 (2019) 242–255; [arXiv:1809.09577](https://arxiv.org/abs/1809.09577)).
+- The continuation, which its README describes as coming from the identity-absorption task, builds on S. W. Noor, *A Hardy space analysis of the Báez-Duarte criterion for the RH* (Adv. Math. 350 (2019) 242–255; [arXiv:1809.09577](https://arxiv.org/abs/1809.09577)). Noor works in the Hardy space of the disk.
 - Its NCI result states that the closed span of all cover discrepancies equals the full zero-jet ideal ℐ in the original Fréchet topology, while the algebraic principal image is strictly smaller.
 - Taken with the identity above, this gives one typed comparison between three settings:
   - In the Fréchet topology of entire functions of rapid vertical decay, the closure is the zero-jet ideal, unconditionally (NCI, and S13 of the register).
   - In L²(0,∞), the closure of the two-sided image is everything, unconditionally (Wiener).
-  - For one-sided tests in L²(0,1) ≅ H²(Re s > ½), the closure is everything if and only if RH holds (Nyman–Beurling, Báez-Duarte, Noor).
-- The three settings differ only in the topology and the support condition. RH is the statement about the third.
+  - For one-sided step tests in L²(0,1), the closure is everything if and only if RH holds (Nyman–Beurling, Báez-Duarte; Noor in H² of the disk). Through Mf(s) = ∫₀¹f(x)x^{s−1}dx, the space L²(0,1) is isometric, up to the factor (2π)^{1/2}, to H²(Re s > ½). There evaluation at a zero with Re ρ > ½ is continuous, which is why such a zero obstructs density.
+- The three settings differ in topology, support and test class: Schwartz tests; step tests outside S; and NCI's discrepancy family. RH is the statement about the third.
 
 **(d) Bridge: Connes' §VIII.** HSW constructs the rational analogue of Connes' positive-characteristic harmonic distribution, and computes that it descends to Q exactly when RH holds (item 2). So in the rational case, harmonic sweeping cannot replace the zero trace without assuming RH. It still encodes the whole off-critical divisor faithfully (item 5).
 
@@ -132,15 +140,15 @@ Burnol's "co-Poisson" theory studies this family of summation maps and their rel
 **Negative results (goal 1).**
 1. Poisson sweeping of the zeros descends to Q if and only if there are no off-critical zeros (HSW6).
 2. The L² norm does not descend to Q, because J is dense in L²(du). So the naive L² completion of Q gives no Hilbert–Pólya argument (OPD3, HSW6B, ASD10).
-3. Positive transfer-compatible forms descend if and only if their spectral measure sits on the critical zeros (SPF9). This is the third independent confirmation that positivity sees only the critical zeros (§4(b)).
+3. Positive transfer-compatible forms descend if and only if their spectral measure sits on the critical zeros (SPF9). This is related to CFP, CPS and TWC10; see §4(b).
 
 **Standalone lemmas (goal 3).**
 1. **Source-pairing identity.** For b_0 ∈ A with M_0b_0(ρ) = 0 and b_ρ the solution of (L − ρ)b_ρ = b_0 in A, (Re ρ − ½)‖b_ρ‖² = −Re⟨b_ρ, b_0⟩ in L²(du) (OPD4.2).
 2. **Harmonic defect.** H_off(b_†) = 2Σ m|Re ρ − ½|‖b_ρ‖², and it is comparable to Σ m|Re ρ − ½|/(1+γ²) with explicit constants (HSW6A–6B).
-3. **Positive-form classification** on ℬ (SPF0.3): the analogue of Bochner's theorem for the transfer relation.
+3. **Positive-form classification** on ℬ (SPF0.3): the analogue of Bochner's theorem for the transfer relation. The proof, SPF1–SPF8, was not read by me.
 
 **Bridges (goal 2).**
-1. Nyman–Beurling and Burnol's co-Poisson theory, with the programme's Σ restricted to tests supported in [−1, 1]. The moment condition corresponds to the pole at 1 (§4(c)).
+1. Nyman–Beurling and Burnol's co-Poisson theory: the Nyman–Beurling functions are values of the programme's Σ on one-sided step tests with ∫h = 0. These tests are not in S. The moment condition corresponds to the pole at 1 (§4(c)).
 2. Wiener's L² Tauberian theorem, as the reason J is dense in L²(0,∞).
 3. Connes' trace-formula paper, §VIII: its harmonic distribution, rationally realized.
-4. The Hilbert–Pólya mechanism (§4(a)).
+4. The Hilbert–Pólya mechanism, as a reading of OPD4.2 (§4(a)).

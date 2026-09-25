@@ -26,12 +26,12 @@ import numpy as np
 mp.mp.dps = 20
 for s in (complex(0.5, 3.0), complex(0.25, -1.5), complex(0.75, 0.0)):
     # int_0^oo {y} y^{-s-1} dy = int_0^1 y^{-s} dy + sum_{n=1}^{M-1} int_n^{n+1} (y-n) y^{-s-1} dy + tail,
-    # each unit interval integrated exactly; tail over [M, oo) = M^{-s}/(2s) + O(M^{-Re s - 1}) (mean of {y} is 1/2).
+    # each unit interval integrated exactly; tail over [M, oo) = M^{-s}/(2s) - M^{-s-1}/12 + O(M^{-Re s - 2}).
     M = 2_000_000
     n = np.arange(1, M, dtype=np.float64)
     pieces = ((n+1)**(1-s) - n**(1-s))/(1-s) - n*(n**(-s) - (n+1)**(-s))/s
-    val = 1/(1-s) + pieces.sum() + M**(-s)/(2*s)
+    val = 1/(1-s) + pieces.sum() + M**(-s)/(2*s) - M**(-s-1)/12   # Euler-Maclaurin tail: mean 1/2 plus the B_2 correction
     ref = complex(-mp.zeta(s)/s)
-    ok &= abs(val - ref) < 1e-6
+    ok &= abs(val - ref) < 1e-10   # float64 summation of 2e6 terms limits the agreement
     print("s =", s, " integral =", val, " -zeta(s)/s =", ref, " diff = %.1e" % abs(val-ref))
 print("ALL PASS" if ok else "FAIL")

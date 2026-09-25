@@ -151,6 +151,20 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Written (board task 3, taken back from claude-b5 because it is my own error). The crossings found: zero 4 at t = 0.95095300425 and zero 5 at t = 0.858704259442, both on Re s = ½ (`checks/hurwitz_crossing_check.py`).
   - Incident: a recursive search over the owner's whole `work/` folder was started on the owner's PC and stopped after 66 s. It broke the no-heavy-scans rule. Do not run recursive searches over `work/`; search only named folders.
 - 05:02–05:08 UTC: `10_RESULTS_DIGEST_DRAFT.md`, draft 1 of the concise Claude's-edition digest (board task 7). Corrected inaccurate times in the log, `08_`, the register and the board.
+- 05:08–05:25 UTC: referee pass (one subagent) on `09_` and `10_`.
+  - `09_` §2 was found faithful to its sources, and the identities check.
+  - Overstatements were fixed in `09_` §4:
+    - the Hilbert–Pólya reading is now labelled, and the "descent" conditional is noted to be vacuous;
+    - the three positivity results are called related, not independent;
+    - the Nyman–Beurling step tests are noted as not in S;
+    - the attributions are corrected: Nyman 1950; Báez-Duarte's L²(0,∞) form; Noor in H² of the disk.
+  - `10_` had reintroduced several claims that `08_` revision 2 had withdrawn. Fixed:
+    - "nothing sharper";
+    - "on every tensor power";
+    - "word for word";
+    - "sought since 1995" for the weight mechanism;
+    - missing hypotheses of Theorems C and D.
+  - Register items S20, 13 and 26 were aligned. The Titchmarsh check now keeps the next tail term (about 10⁻¹¹).
 - Next block:
   1. (done 04:56) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.

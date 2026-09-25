@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59 and 06:05 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05 and 06:43 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59 and 06:05 U
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`13_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`14_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -49,6 +49,7 @@ The detailed files are in this folder (`01_`–`13_`, `checks/`, `figures/`, `co
 | S28 | **Connes against Meyer.** The natural map from Meyer's Fréchet quotient Q to lim_n of Connes' weighted Hilbert quotients has kernel exactly the classes vanishing on all critical-line jets. So it is injective iff RH holds. The algebraic map Q → H_δ/J is always injective; the loss happens in the Hausdorff quotient | proved in the programme; WHR2.4 and WHR3.2 checked | programme, WHR5–WHR10 (`12_` §1.6) | restatement relating Connes (Selecta Math. 5 (1999)) and Meyer (arXiv:math/0412277); not searched |
 | S29 | **Spectral synthesis on the zeta quotient.** Explicit finite-rank Riesz–Gaussian operators K_j converge to the identity on Q. Closed multiplier submodules are exactly the jet-order submodules. The line ideal and the off-line ideal have dense sum | proved in the programme; read for correctness, not re-derived | programme, GSP2–GSP6, CTS1–CTS4 | a local-description theorem in Krasichkov-Ternovskii's sense for this module |
 | S30 | **The two poles differ in kind.** Split the Mellin integral of the punctured lattice sum at u = 1 and apply Poisson summation. Then 2ζ(s)M_S h(s) = (entire) + ĥ(0)/(s−1) − h(0)/s: the pole at 0 is the lattice's n = 0 term, the pole at 1 the dual lattice's. For the lattice cℤ the residue at 0 is −h(0) for every c, while the residue at 1 is (∫h)/c. So the pole at 0 counts one point and the pole at 1 measures a density. The position of the pole at 0 is set by the local model of h at the origin: h ~ c·v^α puts it at −α | derived; the split identity checked to 10⁻³¹ at four points, with both residues and the cancellation at −2 | claude-ab, `13_` §§1–2; `checks/zero_ledger_check.py` | classical in content (Riemann 1859; Tate 1950); the ledger of which "0" does what is new here |
+| S31 | **Connes' construction on every vertical line.** For 0 < σ < 1, the quotient of L²((0,∞), u^{2σ−1}(1+log²u)^δ du) by the closure of J realizes exactly the zeros on Re s = σ, with jet orders j < δ − ½. The prime dilations there have spectrum on \|z\| = p^σ (pure of weight 2σ). The mirror maps σ to 1 − σ isometrically. The family over all σ and N is jointly faithful on Q. RH ⟺ every receiver with σ ≠ ½ is zero | proved in the programme; jet norms and Λ₊ checked | programme, VWR2–VWR7 (`14_` §1) | Connes treats σ = ½; other lines not checked in the literature |
 
 ## Goal 1: negative results, with exact scope
 
@@ -145,6 +146,16 @@ The detailed files are in this folder (`01_`–`13_`, `checks/`, `figures/`, `co
     - Since ρ + ρ^# = 1 + 2iγ, the tensor of a reflected off-line pair is centred and lies outside the common radical of the positive transfer forms (CTS4.6). On such pairs the Weil tensor pairing is ±2m². CTS works on R = Q/N_O, which keeps only off-line values.
     - Source: programme, GMC4–GMC6 and CTS4–CTS5; `12_` §§1.4, 1.8.
 32. **No weight gap on the Hilbert-closure defect.** On the off-line defect K_off, the restriction cross's connecting map has source and target of the same character a^{1−ρ}. Its value is the functional-equation germ, of rank min(m, r). Source: programme, HCS7, HCS10–HCS11; `12_` §1.7.
+33. **An isometric seminorm sees no zero off the unitary axis.**
+    - A seminorm invariant under T_p and T_p^{−1} vanishes on every primary block with 0 < Re ρ < 1 (programme, ATG6.5).
+    - With the half-density action U_p = p^{−1/2}T_p, invariance forces vanishing on every off-line block, since ν(x) = p^{Re ρ − ½}ν(x) (claude-ab's form of the same argument).
+    - Source: `14_` §2.
+34. **Tensor growth gives no uniform bound.**
+    - The faithful norm on Q^{⊗k} has growth exponent k (ATG6.4). The critical Hilbert components have exponent k/2, but their kernel contains every tensor with a K_off factor (ATG6A.4).
+    - The exact finite-trace exponent is k·max Re ρ, so the error against k/2 is k(B − ½), linear in k (ATG8.4–8.5). No proved estimate has Deligne's shape k/2 + c.
+    - Q^{⊗k} has infinite-multiplicity eigenvalues for k ≥ 2, from the reflected pairs (ATG9).
+    - Source: programme, ATG; `14_` §2. Consistent with negative result 27.
+35. **The off-line defect cannot hide in the generic-point term.** The functional Θ_off = Σ_{Re ρ≠½} m_ρ F(ρ) is continuous on Q and vanishes iff there are no off-line zeros. It is never a nonzero multiple of b ↦ b(1): an explicit b_* ∈ J has b_*(1) = 2 and Θ_off(b_*) = 0. Source: programme, VWR10.5–10.9; `14_` §1.
 
 ## Goal 2: bridges found or implied
 
@@ -188,6 +199,7 @@ The detailed files are in this folder (`01_`–`13_`, `checks/`, `figures/`, `co
 21. **Connes 1999, Theorem 1, and Meyer 2005 in one comparison map (S28).** Connes' weight exponent is δ_CC = 2δ.
 22. **Spectral synthesis.** GSP5 is a local description of closed submodules (Krasichkov-Ternovskii, J. Soviet Math. 26 (1984) 2180–2182; Mat. Sb. 87–88 (1972)) for the zeta-quotient module.
 23. **Bochner–Schwartz.** SPF0 is the Bochner–Schwartz theorem transported by the Mellin transform; SPF9 then adds the descent condition through ξ ∈ 𝓘.
+24. **The vertical receivers as a weight decomposition** (analogy of structure). Each receiver Q_{σ,N} is pure of weight 2σ. The mirror is a duality w ↔ 2 − w with a weight-2 target, and RH is purity of weight 1. This is the zeta-side shape of Deligne's weight argument; the weight-1 exclusion is not proved (VWR9). Source: `14_` §§1, 3.
 
 ## Goal 4: F₁ context
 

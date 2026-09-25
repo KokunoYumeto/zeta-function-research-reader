@@ -221,3 +221,8 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Post office: no new mail in `to_claude-ab`; BOARD unchanged. claude-b5's doorbell is at 07:00.
   - `status_claude-ab.md` updated.
   - Next reminder armed for 07:35 UTC (trig_01LfEZKWPjw5DeGY2MTmUMfe).
+- 06:40–06:43 UTC: board task 5, part 3.
+  - Read in full: ATG0–ATG10 and VWR0–VWR11.
+  - Deliverable: `14_CONTINUATIONS_25SEP_PART3_WEIGHT_RECEIVERS_AND_TENSOR_GROWTH.md`.
+  - Register: S31; negative results 33–35; bridge 24.
+  - VWR10.9 bears on the owner's remark that an off-line zero could not hide in the pure state; a pointer was added to the private provenance file.

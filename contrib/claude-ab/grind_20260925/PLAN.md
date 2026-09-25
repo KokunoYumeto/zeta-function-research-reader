@@ -312,3 +312,15 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Post office: no mail. `list_triggers` shows that claude-b5's 07:00 doorbell FAILED with ended_reason auto_disabled_session_gone: the claude-b5 session no longer exists, so board tasks 2 and 4 are unattended.
   - Next check-in armed for 09:40 UTC (trig_01U2rsaEP4uN2S2TxoNQXgiy).
 - 08:41 UTC: `18_THE_TWO_LINES_IN_THE_PROGRAMME_SEPARATOR_RECEIVERS_AND_GAUSSIAN_APPROXIMATION.md`; register S35, negative result 38, bridge 27; digest §4 item 15.
+- 08:42 UTC: pushed 6174569 (`18_`). The post-office status and BOARD record that claude-b5's session has ended. A short note to the owner reports the ADM finding (the programme's separator G(s) = F₀(s)F₀(s+1)).
+- 08:43–08:46 UTC: board task 5, part 6.
+  - FSC0–FSC6, DER0–DER11, PRS0–PRS9, FTD0–FTD10, FEM0–FEM10 and NHJ4–NHJ9 read in full.
+  - `checks/der_fsc_fem_ftd_prs_nhj_checks.py` checks:
+    - the DER4–DER6 matrices, homotopies and trace (exact, sympy);
+    - PRS3.1;
+    - the FSC2 closure argument on a finite model;
+    - the NHJ7.2 telescoping identity (27 cases, ≤ 6·10⁻²³) and NHJ7.5;
+    - the GZR2 bound on 1/ζ(−1+it) (worst ratio 0.444).
+  - Deliverable: `19_THE_PRODUCT_TRACE_ITS_DIAGONAL_RETURN_AND_THE_HARDY_RECEIVER.md`.
+  - Register: S36; negative result 39; bridge 28; the Reading line updated. Digest: §3 item 14.
+  - **Board task 5 is complete.**

@@ -165,9 +165,9 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - "sought since 1995" for the weight mechanism;
     - missing hypotheses of Theorems C and D.
   - Register items S20, 13 and 26 were aligned. The Titchmarsh check now keeps the next tail term (about 10⁻¹¹).
-- 05:25–05:57 UTC: `11_FREE_MONOIDS_EULERIAN_SHEETS_AND_F12_UNITS.md`.
-  - Revision 1 (05:40) joined Theorem E at a = 1/q and `08_` Lemma 2 as statements about congruence monoids M_H.
-  - Revision 2 (05:50):
+- 05:29–05:41 UTC: `11_FREE_MONOIDS_EULERIAN_SHEETS_AND_F12_UNITS.md`.
+  - Revision 1 (05:26) joined Theorem E at a = 1/q and `08_` Lemma 2 as statements about congruence monoids M_H.
+  - Revision 2 (05:39):
     - The table observation is now Lemma 11.2, for every monoid of integers: log ≥ 0 iff free, with the first negative coefficient 1 − j + ε at n₀.
     - Lemma 11.3 (half-factorial iff index ≤ 2) and Corollary 11.4 (even free iff one-sided half-factorial) are added.
     - Example 11.5: zeros do not detect freeness in general.
@@ -176,8 +176,25 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - `checks/first_negative_coefficient.py`: all subgroups for q ≤ 30, n ≤ 60000;
     - `checks/n0_factorizations.py`.
   - Register: S5 novelty, S19, S23, S24, negative result 28, bridge 18, goal-4 item 9. Digest 10_ updated.
+- 05:41–05:48 UTC: illustrations. The owner allowed illustrated mathematics "whenever it can".
+  - New `figures/` folder: each figure is drawn by a script from checked data, with `*_OUTPUT.txt` and `data/*.csv`.
+    - `fig_z15_zeros`: all 90 zeros of Z_{1/5} below height 150 are located. 66 lie left of the line, 24 right, and none within 0.0068 of it. ζ's 52 zeros are drawn beside them.
+    - `fig_monoid_sheets`: class-group orders for q ≤ 30, with n₀.
+    - `fig_shifted_flow_crossings`: the zero trajectories and the two crossings.
+  - Embedded in `08_` (Figure 8.1), `11_` (Figure 11.1), the erratum and the digest (Figures 1–3). The ζ comparison cites Platt–Trudgian, BLMS 53 (2021).
+  - Branch pushed: 1900506..8d9a75f (bundle cab-8d9a75fa.bundle).
 - Next block:
   1. (done 04:56) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.
   3. (done 05:01) The FLIP_FABLE Addendum 4 erratum.
   4. The concise Claude's-edition PDF for Zenodo: draft 1 (Markdown) exists as `10_`; render it to PDF once the owner has looked at it.
+- 05:48 UTC: timestamp correction. Times written in this block (05:50, 05:55, 05:57, 06:05, 06:12) had been estimated instead of read from the clock. They are corrected to the `date -u` readings: session resumed 05:29, `11_` revision 2 05:39, register and digest 05:41, figures 05:46, push 05:47. Rule: run `date -u` before writing any timestamp. File mtimes on the outputs mount do not always update and must not be used.
+- 05:48–06:01 UTC: board task 5, part 2.
+  - Read in full: OZD, SPF1–SPF8, GSP, CTS, FGR, WHR, HCS and GMC (continuation `20260925-full-source-tensor-and-original-divisor`).
+  - Deliverable: `12_CONTINUATIONS_25SEP_PART2_…`.
+  - Checks, all agreeing:
+    - `checks/c925_part2_checks.py`: OZD3.3, OZD5.3, OZD5.8, SPF8.2/8.4, WHR2.4, WHR3.2, WHR8.2;
+    - `checks/fgr_trace_check.py`: FGR4.2 at O(1/T), FGR2.3, and √24/5.
+  - Register: S22 updated; S25–S29; negative results 29–32; bridges 19–23; goal-4 items 10 (the pole at 1 is the average) and 11 (the pole at 0 is a local-model input, the pole at τ an open definition, after the owner's correction).
+  - Citations verified: Balazard–Saias–Yor, Adv. Math. 143 (1999); Sekatskii et al., Ukr. Math. J. 64 (2012); Bost–Connes, Selecta Math. 1 (1995) 411–457; Connes, Selecta Math. 5 (1999), from p. 29; Krasichkov-Ternovskii, J. Soviet Math. 26 (1984); Vladimirov 2002 (via arXiv:2009.02802).
+  - Replies to the owner: the pole at 1 is the average, as in Bost–Connes; the pole at 0 is set by the local model.

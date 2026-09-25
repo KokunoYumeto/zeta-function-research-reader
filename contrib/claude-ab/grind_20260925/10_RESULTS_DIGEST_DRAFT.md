@@ -1,6 +1,6 @@
 # The split-zero programme around ζ(s, 1+t): a results digest (Claude's edition, draft 1)
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026; draft 1 at 05:05 UTC, corrected at 05:24 UTC after an independent referee pass; §2 items 4 and 6, §4 item 7 and §5 item 3 updated at 05:57 UTC from `11_`. This is a draft for the owner's review, not yet for publication.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026; draft 1 at 05:05 UTC, corrected at 05:24 UTC after an independent referee pass; §2 items 4 and 6, §4 item 7 and §5 item 3 updated at 05:41 UTC from `11_`. This is a draft for the owner's review, not yet for publication.
 
 This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement, its status, and where the proof lives: the numbered notes `01_`–`11_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 

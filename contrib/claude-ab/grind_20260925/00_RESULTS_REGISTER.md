@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02 and 05:55 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41 and 06:03 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 3, 25 September 2026, 04:55 UTC; updated 05:02 and 05:55 UTC (v2: 04:30 
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`11_`, `checks/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`12_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -40,9 +40,14 @@ The detailed files are in this folder (`01_`–`11_`, `checks/`, `copy_round2/co
 | S19 | **The even lattice sums at a = 1/q.** Z_{1/q}(s) = ζ(s,1/q) + ζ(s,1−1/q) = q^s Σ_{n≡±1 (q)} n^{−s}. The following are equivalent: the monoid {n ≡ ±1 mod q} is free; φ(q) ≤ 2; its formal log has nonnegative coefficients; there are no zeros in Re s > 1. At q = 5: 36 = 4·9 = 6·6, the log coefficient r_36 = −1/2, and there are 24 zeros with Re s > 0.505 below height 150 (argument principle), the lowest at 0.54307 + 15.70405i. All 90 zeros below height 150 are located: 66 lie left of the line, 24 right, and none within 0.0068 of it (`08_` Figure 8.1) | proved (the step (iv) ⇒ (ii) cites Saias–Weingartner, Acta Arith. 140, 2009); numerics verified at 30 digits | claude-ab, `08_` Lemma 2; `checks/monoid_log.py`, `z15_zero_check.py`. Generalized to every congruence monoid M_H in `11_` (Proposition 11.1) | freeness ⟺ φ(q) ≤ 2 is the Krull-monoid criterion (class group (ℤ/q)^×/{±1}; `11_` §1.4). The analytic packaging as a sheet test is new here |
 | S20 | **Source-pairing identity.** Let b_0 ∈ A have Mellin transform vanishing at ρ, and let b_ρ ∈ A solve (L − ρ)b_ρ = b_0 with L = −u∂_u. Then (Re ρ − ½)‖b_ρ‖²_{L²(du)} = −Re⟨b_ρ, b_0⟩. This is the skew-adjointness of L − ½ on L²(du) with a source term. Since ‖b_ρ‖ > 0, it restates RH at ρ as Re⟨b_ρ, b_0⟩ = 0. Reading it as the Hilbert–Pólya mechanism is my interpretation | proved (one integration by parts); checked on a synthetic off-critical pair to 1e−14 | programme, OPD4.2 (`09_`) | elementary; the framing is new here |
 | S21 | **The harmonic (Poisson-swept) defect, exactly.** For the explicit test b_† = Σh_† ∈ J, the swept zero distribution gives H(b_†) = ∫\|G(½+it)\|²W_off(t)dt = 2Σ_ρ m\|Re ρ − ½\|‖b_ρ‖². This is comparable to Σ m\|Re ρ−½\|/(1+γ²) with explicit constants. So the sweeping descends to Q iff there are no off-critical zeros | proved in the programme; the norm identity is checked on a synthetic pair | programme, HSW5–HSW6B, OPD5 (`09_`) | rational analogue of Connes' §VIII harmonic distribution (arXiv:math/9811068) |
-| S22 | **Positive transfer forms before the quotient** are exactly ∫F(½+iλ)\overline{G(½+iλ)}dμ(λ) with μ positive and tempered. They descend to the zeta quotient iff supp μ lies in the critical zeros | proved in the programme (SPF1–SPF8 not read by me) | programme, SPF0, SPF9–SPF10 (`09_`) | a Bochner-type classification |
+| S22 | **Positive transfer forms before the quotient** are exactly ∫F(½+iλ)\overline{G(½+iλ)}dμ(λ) with μ positive and tempered. They descend to the zeta quotient iff supp μ lies in the critical zeros | proved in the programme; SPF1–SPF8 read in full on 25 September (`12_` §1.2); SPF8.2 and the exceptional values of F₀ checked | programme, SPF0–SPF10 (`09_`, `12_`) | the Bochner–Schwartz theorem in Mellin coordinates (Vladimirov 2002, p. 125), proved self-contained |
 | S23 | **The formal logarithm detects freeness in any monoid of integers.** For every multiplicative submonoid M of the positive integers, M is free iff all coefficients r_n of log Σ_{m∈M} m^{−s} are ≥ 0. The first negative coefficient sits exactly at the smallest element n₀ with two factorizations, where r_{n₀} = 1 − j + ε. Here j is the number of factorizations and ε = Σ 1/k over those of the form u^k. The value is at most −1/6, attained by 64 = 4³ = 8² in {1} ∪ {2^e : e ≥ 2}, and at most −½ for congruence monoids | proved; checked exactly for every subgroup H of (ℤ/q)^×, q ≤ 30, n ≤ 60000, and for ten other monoids | claude-ab, `11_` Lemma 11.2; `checks/first_negative_coefficient.py` | not located (one search); elementary |
 | S24 | **Half-factoriality and the sign.** M_H = {n : n mod q ∈ H} is half-factorial iff [(ℤ/q)^× : H] ≤ 2. Hence the even monoid {n ≡ ±1 mod q} is free iff the one-sided monoid {n ≡ 1 mod q} is half-factorial iff q ∈ {1, 2, 3, 4, 6} | proved; checked (same script, including constructed witnesses up to 4.5·10²¹) | claude-ab, `11_` Lemma 11.3 and Corollary 11.4 | classical for H = {1} (Baginski–Chapman Theorem 3.4(1); Carlitz, Proc. AMS 11 (1960) for rings of integers); the corollary's formulation is new here |
+| S25 | **Divisor-potential form of RH.** Put 𝓔_r(t) = Σ_ρ m_ρ(r^σ − r^{1−σ})²e^{2t(σ²−γ²)} ≥ 0; it vanishes iff RH holds. For a symmetric cutoff supported in (−½, 3/2), 𝓔_r(t) = (1/2π)∫ ½log\|ζ(s)ζ(1−s̄)\| Δφ₊ dA + (r−1)²(e^{2t}+1)/2. So RH is equivalent to one area identity for the even part of log\|ζ\| | proved in the programme; constants and the odd-part identity checked by claude-ab (sympy; mpmath, 3·10⁻³¹) | programme, OZD0–OZD7 (`12_` §1.1) | belongs to the Littlewood-lemma family (Balazard–Saias–Yor, Adv. Math. 143 (1999); Sekatskii–Beltraminelli–Merlini, Ukr. Math. J. 64 (2012)); this exact form not searched |
+| S26 | **The swept trace.** For finitely many exponents with multiplicities, the translation trace compressed to the jet-constraint span on [−T, T] tends to Σ m e^{−\|β−½\|\|t\|}e^{iγt}. Same-side unit vectors keep a nonzero limiting inner product, so the full Gram inverse is needed | proved in the programme; checked numerically (error O(1/T) up to T = 80; inner product to 12 digits) | programme, FGR0–FGR6; `checks/fgr_trace_check.py` | completes Connes' §VIII harmonic-measure sketch (arXiv:math/9811068); the sketch's wording not verified by me |
+| S27 | **Exact weighted dilation norm.** On L²((0,∞), (1+log²u)^δ du), ‖T_a‖ = a^{1/2}Λ₊(log a)^{δ/2}, with Λ₊(t) = (t²+2+\|t\|√(t²+4))/2. Hence prime dilations on Connes' weighted quotients have spectrum on \|z\| = √p | proved; Λ₊ checked on a grid | programme, WHR8 | elementary |
+| S28 | **Connes against Meyer.** The natural map from Meyer's Fréchet quotient Q to lim_n of Connes' weighted Hilbert quotients has kernel exactly the classes vanishing on all critical-line jets. So it is injective iff RH holds. The algebraic map Q → H_δ/J is always injective; the loss happens in the Hausdorff quotient | proved in the programme; WHR2.4 and WHR3.2 checked | programme, WHR5–WHR10 (`12_` §1.6) | restatement relating Connes (Selecta Math. 5 (1999)) and Meyer (arXiv:math/0412277); not searched |
+| S29 | **Spectral synthesis on the zeta quotient.** Explicit finite-rank Riesz–Gaussian operators K_j converge to the identity on Q. Closed multiplier submodules are exactly the jet-order submodules. The line ideal and the off-line ideal have dense sum | proved in the programme; read for correctness, not re-derived | programme, GSP2–GSP6, CTS1–CTS4 | a local-description theorem in Krasichkov-Ternovskii's sense for this module |
 
 ## Goal 1: negative results, with exact scope
 
@@ -124,6 +129,21 @@ The detailed files are in this folder (`01_`–`11_`, `checks/`, `copy_round2/co
     - So "no zeros in Re s > 1" implies freeness only for special families. For congruence monoids it does, by Saias–Weingartner.
     - The formal-logarithm test (S23) works for every monoid of integers.
     - Source: claude-ab, `11_` Example 11.5.
+29. **The functional equation removes only the odd part.**
+    - Under s ↦ 1 − s̄, the odd part of log\|ζ\| is exactly ½log\|χ\|. Its contribution to the off-line detector 𝓔_r(t) is fully accounted for by the pole and the trivial zeros.
+    - The detector lives entirely in the even part, about which the functional equation says nothing further.
+    - My assessment: for fixed (r, t), the Gaussian weight e^{−2tγ²} makes each such identity numerically blind above modest heights.
+    - Source: programme, OZD5, OZD7; `12_` §1.1.
+30. **Connes' Hilbert realization loses exactly the off-line classes.**
+    - The Hilbert receiver is automatically pure: prime spectra lie on \|z\| = √p.
+    - Its kernel is the off-line jet classes, and the kernel vanishes iff RH holds.
+    - A spectral-radius argument there proves purity of what remains after the off-line classes are lost. It does not prove RH.
+    - Source: programme, WHR8–WHR10, WHR12; `12_` §1.6.
+31. **The square adds nothing beyond Q ⊗ Q, and positivity sees reflected pairs as centred.**
+    - The mixed boundary of the tensor square contracts globally: RΓ ≃ K₀[0] ⊕ (Q⊗Q)[−1], equivariantly.
+    - Since ρ + ρ^# = 1 + 2iγ, every continuous positive transfer form on the square keeps reflected off-line pairs. On those pairs the Weil tensor pairing is ±2m².
+    - Source: programme, GMC4–GMC6 and CTS4–CTS5; `12_` §§1.4, 1.8.
+32. **No weight gap on the Hilbert-closure defect.** On the off-line defect K_off, the restriction cross's connecting map has source and target of the same character a^{1−ρ}. Its value is the functional-equation germ, of rank min(m, r). Source: programme, HCS7, HCS10–HCS11; `12_` §1.7.
 
 ## Goal 2: bridges found or implied
 
@@ -162,6 +182,11 @@ The detailed files are in this folder (`01_`–`11_`, `checks/`, `copy_round2/co
     - At a = 1/q, the copy's Theorem E (multiplicativity of the velocity spectrum) is the factoriality criterion for the congruence monoid {n ≡ 1 mod q}. This is a Krull monoid with class group (ℤ/q)^× (Baginski–Chapman, Theorems 3.2 and 3.4).
     - The even-sheet Euler test (`08_` Lemma 2) is the same criterion after dividing the class group by ±1. It coincides with Carlitz's class-number-two criterion for half-factoriality of the one-sided monoid.
     - Source: `11_`.
+19. **The off-line detector and the Littlewood-lemma criteria.** OZD's area identity (S25) is a relative of the RH-equivalent integral identities for log\|ζ\|: Balazard–Saias–Yor, Adv. Math. 143 (1999) 284–287, and the generalized Littlewood families of Sekatskii–Beltraminelli–Merlini, Ukr. Math. J. 64 (2012) 247–261.
+20. **Connes' §VIII harmonic distribution, done with the full Gram matrix.** The off-line exponents are swept onto the line with their Poisson kernels (S26). This is harmonic measure, and FGR supplies the correct finite-window argument.
+21. **Connes 1999, Theorem 1, and Meyer 2005 in one comparison map (S28).** Connes' weight exponent is δ_CC = 2δ.
+22. **Spectral synthesis.** GSP5 is a local description of closed submodules (Krasichkov-Ternovskii, J. Soviet Math. 26 (1984) 2180–2182; Mat. Sb. 87–88 (1972)) for the zeta-quotient module.
+23. **Bochner–Schwartz.** SPF0 is the Bochner–Schwartz theorem transported by the Mellin transform; SPF9 then adds the descent condition through ξ ∈ 𝓘.
 
 ## Goal 4: F₁ context
 
@@ -184,11 +209,29 @@ The detailed files are in this folder (`01_`–`11_`, `checks/`, `copy_round2/co
    - Proved refinement (S24): they are exactly the sheets on which the one-sided monoid is half-factorial.
    - Quotienting by the sign divides the class group by ±1 and turns half-factoriality into factoriality. Reading this as 𝔽₁ → 𝔽_{1²} is interpretation (`11_` §3).
 
+10. **The pole at 1 is the average, and the moment condition removes it.**
+    - For h ∈ S, M(Σh)(s) = 2ζ(s)M_S h(s), and M_S h(1) = ½∫_ℝ h. So ∫h = 0 cancels exactly the simple pole of ζ at 1. Likewise h(0) = 0 cancels the pole of M_S h at 0, whose residue is h(0).
+    - That pole carries the average: its residue is the density of the integers (ζ(s) = s∫₁^∞⌊u⌋u^{−s−1}du), and through −ζ′/ζ the main term x of ψ(x) in von Mangoldt's explicit formula. Every zero contributes only an oscillation.
+    - In the Bost–Connes system the partition function is ζ(β), and its pole at β = 1 is the phase transition. There is a unique KMS_β state for 0 < β ≤ 1, and for β > 1 the extremal states form a ℤ̂^×-torsor (Bost–Connes, Selecta Math. 1 (1995) 411–457).
+    - So Q = A/J is the arithmetic spectrum with the average subtracted. None of these statements uses RH.
+    - Source: claude-ab, reply to the owner, 25 September.
+11. **The pole at 0 is an input from the local model; the pole at τ is an open definition.**
+    - **Proved.**
+      - ζ is regular at 0, with ζ(0) = −½. The pole of M(Σh) = 2ζ·M_S h at s = 0 comes from M_S h, that is, from the test function at v → 0. In Λ(s) = π^{−s/2}Γ(s/2)ζ(s) it is the pole of the archimedean factor Γ(s/2).
+      - If h ~ c·v^α at 0, the pole sits at −α with residue c. The standard smooth even model gives poles at 0, −2, −4, …, with residues h^{(2k)}(0)/(2k)!. The trivial zeros ζ(−2k) = 0 cancel all of them except the one at s = 0, whose residue is −h(0).
+      - In Poisson summation, Σh(u) = u^{−1}Σĥ(u^{−1}) + u^{−1}ĥ(0) − h(0). The terms h(0) and ĥ(0)/u are the contributions of 0 in the lattice and in the dual lattice. They give the poles at 0 and at 1, and the moment conditions remove both.
+      - So the pole at 1 is a counting fact about the integers, while the pole at 0 depends on how the model is continued at the point 0, where the nonzero numbers stop.
+    - **Proposal, not a result.**
+      - In the programme, the object at that point is τ. A "pole at τ" would be computed from a local model of test functions at τ by the formula above, and the programme has not specified that model.
+      - The reading of the residue at 0 as "presence without an exchanged label" (0 = −0 is the only non-free orbit of ±1) is a proposed typed map. It is not an identification with τ: the integer 0 has even parity.
+      - The standard literature uses only the smooth model, so it cannot see this difference (the owner's point, 25 September).
+    - Source: claude-ab and the owner, 25 September.
+
 ## Open and pending
 
 **Reading:**
 - the Deligne reader outside DB9, DR, DC, DW5–DW11 and MDB9–MDB11;
-- the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation;
+- the rest of the 25 September continuations: DER, FSC, VWR, `ALL_TENSOR_DERIVED_RETURN_AND_ACTUAL_GROWTH`, `FULL_SOURCE_RETURN_EQUIVARIANCE_AND_MIXED_TENSOR_CLASS`, `FINITE_TOPOLOGY_DUALIZING_COMPLEX`, `ORIGINAL_RESIDUE_PRODUCT_SHEAF_PAIRING`, GAP, ADM, SMC, and the source-endpoint proofs NCI, RSS and NHJ. OZD, SPF1–SPF8, GSP, CTS, FGR, WHR, HCS and GMC were read in full on 25 September (`12_`);
 - PTQ, SSI, GDC and AST.
 
 **Verification:**

@@ -1,6 +1,6 @@
 # Free monoids, Eulerian sheets and the units of 𝔽_{1²}: Theorem E and Lemma 2 in one picture
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026. Revision 1 at 05:40 UTC. Revision 2 at 05:50 UTC: the observation about the first negative coefficient is now proved in general (Lemma 11.2), half-factoriality is added (Lemma 11.3, Corollary 11.4), and the literature paragraph is corrected (§1.4).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026. Revision 1 at 05:26 UTC. Revision 2 at 05:39 UTC: the observation about the first negative coefficient is now proved in general (Lemma 11.2), half-factoriality is added (Lemma 11.3, Corollary 11.4), and the literature paragraph is corrected (§1.4).
 
 This note joins two results already in the register:
 

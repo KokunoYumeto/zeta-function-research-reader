@@ -1,0 +1,321 @@
+# Independent check of the global harmonic defect and original resolvent norm sum
+
+25 September 2026. Independent proofs HSC1–HSC6 verify HSW3–HSW7, particularly HSW6A and HSW6B, in [ORIGINAL_ZETA_HARMONIC_SWEEP_AND_OFFCRITICAL_DEFECT.md](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/ORIGINAL_ZETA_HARMONIC_SWEEP_AND_OFFCRITICAL_DEFECT.md). The previously constructed inputs are the original \(A\), \(S\), \(\Sigma h(u)=2\sum_{n\ge1}h(nu)\), \(J=\Sigma S\), and \(M_0b(s)=\int_0^\infty b(u)u^sdu/u\). No numerical structure is placed on primitive \(Z_1/\tau\).
+
+**Verdict.** The explicit original summation preimage, global convergence, both constants in HSW6A.3, the original resolvent formula, its Plancherel factor, and the meromorphic recovery of the complete off-critical divisor are correct. The norm bounds of HSW6B.8 have a further valid consequence: the same bounds hold for every actual nontrivial zero, including those on the critical line. HSC5 proves this extension directly without division by a zero distance.
+
+Publication source credit: The Fourier L2 identity is classical: R. Roy, F. W. J. Olver, R. A. Askey, R. Wong and W. P. Reinhardt, NIST DLMF Chapter1, [§1.14(i), Parseval formula](https://dlmf.nist.gov/1.14#i). The receiving calculation below retains its own stated Fourier convention and derives the corresponding factors. This pass checked DLMF, not the Titchmarsh predecessor pages cited there.
+
+The harmonic-resonance comparison originates in Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, math/9811068v1](https://arxiv.org/abs/math/9811068v1), §VIII, Lemma 3 and equation (29). The present check verifies the stated programme calculation; it does not claim that the characteristic-zero cutoff limit was proved in that source. The original author TeX lines 2680–2720 were read during the preceding independent FGR check. The full calculations below retain the source multiplier and do not use a completed zeta function in place of \(\zeta\).
+
+## HSC1. Original summation preimage and its full factors
+
+For \(v\ne0\), put
+
+\[
+ h_0(v)=\frac{\log|v|-2}{8\sqrt\pi}
+ e^{-(\log|v|)^2/4},\qquad h_0(0)=0.
+\]
+
+Every derivative away from zero is a finite linear combination of
+\(v^{-j}(\log|v|)^k e^{-(\log|v|)^2/4}\), with the appropriate coefficients on each half-axis. On writing \(|v|=e^x\), any additional power of \(|v|\) or \(|v|^{-1}\) gives an exponential linear in \(x\), dominated as \(x\to\pm\infty\) by the negative quadratic. Thus \(h_0\) is an even Schwartz function and extends flatly across zero.
+
+The Gaussian integral and its first derivative give, with no omitted factor of two,
+
+\[
+ \int_{\mathbb R}e^{-x^2/4+sx}dx=2\sqrt\pi e^{s^2},\qquad
+ \int_{\mathbb R}x e^{-x^2/4+sx}dx=4\sqrt\pi s e^{s^2},
+\]
+
+\[
+ M_Sh_0(s)=\int_0^\infty h_0(v)v^s\frac{dv}{v}
+ =\frac{s-1}{2}e^{s^2}.
+\tag{HSC1.1}
+\]
+
+Both Gaussian formulas extend to all complex \(s\) by locally uniform Gaussian domination. Consequently \(\int_{\mathbb R}h_0=2M_Sh_0(1)=0\), so \(h_0\in S\). For \(b_0=\Sigma h_0\), absolute convergence in \(\Re s>1\) permits integration of the series and substitution \(v=nu\). Hence
+
+\[
+ G(s)=M_0b_0(s)=2\zeta(s)M_Sh_0(s)
+ =(s-1)\zeta(s)e^{s^2}.
+\tag{HSC1.2}
+\]
+
+The actual factor \(2\) in \(\Sigma\) cancels the displayed denominator \(2\) in (HSC1.1). The identity continues as an entire identity because \(b_0\in A\). It has \(G(0)=1/2\) and \(G(1)=\exp(1)\), using the original zeta value and pole residue.
+
+Set \(c(v)=Rb_0(v)=v^{-1}b_0(v^{-1})\) and
+
+\[
+ h_\dagger(t)=\int_0^\infty c(v)h_0(t/v)\frac{dv}{v}.
+\tag{HSC1.3}
+\]
+
+For nonnegative integers \(N,j\), differentiation and the inequality
+\(1+|t|\le\max(1,v)(1+|t/v|)\) give
+
+\[
+ \sup_t(1+|t|)^N|h_\dagger^{(j)}(t)|
+ \le \sup_w(1+|w|)^N|h_0^{(j)}(w)|
+ \int_0^\infty |c(v)|v^{-j}\max(1,v)^N\frac{dv}{v}<\infty.
+\tag{HSC1.4}
+\]
+
+The same integrable majorants justify differentiation. Thus \(h_\dagger\) is Schwartz, even, and zero at zero. Absolute Fubini for the total integral is justified by
+\(\|h_0\|_{L^1}\int_0^\infty|c(v)|dv<\infty\); the inner substitution \(t=vw\) retains its Jacobian \(v\), giving
+
+\[
+ \int_{\mathbb R}h_\dagger(t)dt
+ =\left(\int_0^\infty c(v)dv\right)
+ \left(\int_{\mathbb R}h_0(w)dw\right)=0.
+\]
+
+Hence \(h_\dagger\in S\). For fixed \(u>0\), a Schwartz bound gives
+\(\sum_{n\ge1}|h_0(nu/v)|\le C(1+v/u)\). The two resulting moments of \(|c|\) are finite. This permits the sum/integral interchange and proves
+
+\[
+ \Sigma h_\dagger(u)
+ =\int_0^\infty c(v)\,2\sum_{n\ge1}h_0(nu/v)\frac{dv}{v}
+ =(b_0*Rb_0)(u)=b_\dagger(u).
+\tag{HSC1.5}
+\]
+
+This proves actual membership in \(J\), independently of the Mellin-ideal characterization. Mellin convolution and inversion then give
+
+\[
+ F_\dagger(s)=G(s)G(1-s)
+ =-s(s-1)\zeta(s)\zeta(1-s)e^{s^2+(1-s)^2},
+\tag{HSC1.6}
+\]
+
+\[
+ F_\dagger(0)=F_\dagger(1)=\exp(1)/2,\qquad
+ F_\dagger(1/2+it)=|G(1/2+it)|^2.
+\tag{HSC1.7}
+\]
+
+Every nontrivial zero occurs to order \(2m_\rho\) in (HSC1.6), since the original functional equation preserves the multiplicity at \(1-\rho\). The displayed function is an auxiliary test, not an altered original zeta function.
+
+## HSC2. Global harmonic convergence and the actual zero-class test
+
+Write \(\rho=\beta+i\gamma\), \(d_\rho=|\beta-1/2|\), with distinct zero locations and their multiplicities \(m_\rho\) counted separately. For an off-critical zero put
+
+\[
+ P_{d_\rho}(t-\gamma)=\frac{d_\rho}{\pi((t-\gamma)^2+d_\rho^2)}.
+\]
+
+For a test \(F=M_0b\), let \(B_2=\sup_t(1+|t|)^2|F(1/2+it)|\). If \(|\gamma|<2\), probability mass gives
+\(|\mathcal H_\rho(b)|\le B_2\le9B_2(1+|\gamma|)^{-2}\).
+If \(|\gamma|\ge2\), split at \(|t-\gamma|\le|\gamma|/2\). On this part \(|t|\ge|\gamma|/2\), giving the upper bound \(4B_2(1+|\gamma|)^{-2}\). On its complement the density is at most \(2/(\pi\gamma^2)\), since \(d_\rho<1/2\). Also \(\int|F(1/2+it)|dt\le2B_2\). The resulting contribution is at most
+\(9B_2/[\pi(1+|\gamma|)^2]\). Their sum is below the claimed constant \(9\). The on-line point-mass case is bounded with constant one.
+
+The original zero-count estimate \(N(T)=O(T\log(eT))\) implies
+\(\sum_\rho m_\rho(1+|\gamma|)^{-2}<\infty\). Thus the full harmonic sum is absolutely convergent and continuous on \(A\). The same estimate on compact real intervals proves locally uniform convergence of
+
+Publication source credit: Human-source attribution: the unconditional zero-counting estimate is the classical Riemann–von Mangoldt theorem. The inspected native-TeX witness is Alain Connes, [The Riemann Hypothesis: Past, Present and a Letter Through Time](https://arxiv.org/abs/2602.04022v1), the Hardy–Littlewood discussion immediately before “Zero-free regions and zero-density estimates” (author TeX line499). It states the asymptotic that implies the bound used here; this is not a new zero-counting theorem.
+
+\[
+ W_{\rm off}(t)=\sum_{\beta\ne1/2}m_\rho P_{d_\rho}(t-\gamma).
+\tag{HSC2.1}
+\]
+
+For completeness its weighted mass has the exact identity
+
+\[
+ \int_{\mathbb R}\frac{P_d(t-\gamma)}{1+t^2}dt
+ =\frac{1+d}{(1+d)^2+\gamma^2}.
+\tag{HSC2.2}
+\]
+
+Indeed \((1+t^2)^{-1}=\pi P_1(t)\), and the Fourier transform \(\widehat{P_d}(x)=e^{-d|x|}\) proves \(P_1*P_d=P_{1+d}\); evaluating at \(\gamma\) proves (HSC2.2), including its factor \(\pi\). The right side is at most \(3/[2(1+\gamma^2)]\). This proves the stated tempered-measure conclusion after summation.
+
+Since (HSC1.5) gives \(b_\dagger\in J\), its original zero values all vanish. Its critical harmonic terms are zero, whereas its full harmonic value is the convergent nonnegative integral
+
+\[
+ \mathcal H_{\rm off}(b_\dagger)
+ =\int_{\mathbb R}|G(1/2+it)|^2W_{\rm off}(t)dt.
+\tag{HSC2.3}
+\]
+
+If the off-critical divisor is nonempty, any one of its densities is strictly positive everywhere. The nonzero entire function \(G\) has positive squared integral on any nonempty real interval, so (HSC2.3) is then strictly positive. This verifies the failure-of-descent test without asserting existence of an off-critical zero. For a reflected pair with distance \(d\), height \(\gamma\), and multiplicity \(m\), restriction to \([-T,T]\) gives the stated bound
+\(2md A_T/[\pi((|\gamma|+T)^2+d^2)]\).
+
+In the original arithmetic identity the zero sum is zero on this test, while its two endpoint terms add to \(\exp(1)\). Consequently the claimed identity \(P_\zeta(b_\dagger)=\exp(1)+A_\infty(b_\dagger)\) follows by direct substitution in the retained VWR10 explicit formula. This check does not remove either Gamma term or the prime-repetition terms. The finite trivial-zero terms vanish by the explicit factors in (HSC1.6), rather than by an omitted contribution.
+
+Publication source credit: Human-source attribution: the explicit formula is due to A. P. Guinand, *A summation formula in the theory of prime numbers*, Proc. London Math. Soc. (2)50 (1949),107–119, and André Weil, *Sur les formules explicites de la théorie des nombres premiers*, Comm. Sém. Math. Univ. Lund (1952),252–265. The inspected native-TeX witness is Alain Connes, [arXiv:2602.04022v1](https://arxiv.org/abs/2602.04022v1), “Riemann’s formula, von Mangoldt paper”, equations `mellin`, `bombieriexplicit`, `bombieriexplicit1`, `bombieriexplicit2` (lines463–482). The historical originals are credited through that witness; no new reading of those originals is claimed. The full logarithmic-coordinate transport and admissible-test estimates used in this programme remain in GIQ9 and the earlier complete trace derivation.
+
+## HSC3. Independent check of both global constants
+
+Use exactly the four constants \(A_1,L_0,B_0,M_1\) of HSW6A.2 and put
+\(C=18M_1^2+5L_0+8B_0\). The Mellin transform of an element of \(A\) and all of its Mellin derivatives are rapidly decreasing uniformly on a fixed vertical strip. This follows by repeated integration by parts in logarithmic coordinates, using every exponential derivative bound. Hence all four constants are finite and \(A_1>0\).
+
+For one actual off-critical zero, \(0<d<1/2\), the denominator on \(|t|\le1\) satisfies
+
+\[
+ (t-\gamma)^2+d^2\le2t^2+2\gamma^2+1/4
+ \le\tfrac94(1+\gamma^2).
+\]
+
+It follows directly that
+
+\[
+ \mathcal H_\rho(b_\dagger)
+ \ge \frac{4d A_1}{9\pi(1+\gamma^2)}.
+\tag{HSC3.1}
+\]
+
+For the upper estimate, \(G(\rho)=0\) gives
+
+\[
+ \mathcal H_\rho(b_\dagger)
+ =\frac d\pi\int_{\mathbb R}
+ \left|\frac{G(1/2+it)}{1/2+it-\rho}\right|^2dt.
+\tag{HSC3.2}
+\]
+
+On \(|t-\gamma|\le1\), integrate \(G'\) along the segment from \(\rho\) to \(1/2+it\). Its real parts are in \([0,1]\). Its imaginary part \(y\) satisfies \(|y-\gamma|\le1\), so
+\(1+\gamma^2\le3(1+y^2)\). The difference quotient is at most \(3M_1/(1+\gamma^2)\), giving integral at most \(18M_1^2/(1+\gamma^2)^2\), hence at most \(18M_1^2/(1+\gamma^2)\).
+
+On \(|t-\gamma|>1\), use \(|1/2+it-\rho|^2\ge(t-\gamma)^2\). If \(|\gamma|\le2\), this part is at most \(L_0\le5L_0/(1+\gamma^2)\). If \(|\gamma|>2\), split it further at \(|t|=|\gamma|/2\). The first part is at most \(4L_0/\gamma^2\le5L_0/(1+\gamma^2)\). In the second part the numerator is at most \(4B_0/(1+\gamma^2)\), and integration of \((t-\gamma)^{-2}\) over \(|t-\gamma|>1\) gives exactly \(2\). Its upper bound is therefore \(8B_0/(1+\gamma^2)\).
+
+Thus the integral in (HSC3.2) is at most \(C/(1+\gamma^2)\). Multiply by \(m_\rho d/\pi\) and sum nonnegative terms. This proves, with the full stated constants,
+
+\[
+ \frac{4A_1}{9\pi}\sum_{\beta\ne1/2}
+ \frac{m_\rho d_\rho}{1+\gamma^2}
+ \le \mathcal H_{\rm off}(b_\dagger)
+ \le\frac C\pi\sum_{\beta\ne1/2}
+ \frac{m_\rho d_\rho}{1+\gamma^2}.
+\tag{HSC3.3}
+\]
+
+There is no lower bound assumption on \(d_\rho\). Its disappearance from the upper integral estimate is justified by the actual zero relation \(G(\rho)=0\).
+
+## HSC4. Original resolvent representative and exact norm identity
+
+For every actual nontrivial zero, define
+
+\[
+ b_\rho(u)=u^{-\rho}\int_u^\infty v^{\rho-1}b_0(v)dv
+ =-u^{-\rho}\int_0^u v^{\rho-1}b_0(v)dv.
+\tag{HSC4.1}
+\]
+
+The equality follows from the absolutely convergent integral \(G(\rho)=0\). To prove both endpoint bounds independently, for \(u\ge1\) choose \(K>\Re\rho\) and use \(|b_0(v)|\le C_Kv^{-K}\) in the first expression. This gives \(|b_\rho(u)|\le C_Ku^{-K}/(K-\Re\rho)\). For \(0<u\le1\), use \(|b_0(v)|\le C_Kv^K\) in the second expression, yielding \(|b_\rho(u)|\le C_Ku^K/(K+\Re\rho)\). The exponents \(K\) can be arbitrarily large.
+
+Differentiating the first expression gives
+
+\[
+ u\partial_u b_\rho=-\rho b_\rho-b_0,\qquad
+ (L-\rho)b_\rho=b_0,\quad L=-u\partial_u.
+\tag{HSC4.2}
+\]
+
+Induction gives all Euler derivative bounds, so \(b_\rho\in A\). A homogeneous solution is \(c u^{-\rho}\), and none except \(c=0\) has both endpoint bounds. Thus this solution in \(A\) is unique. Integration by parts with vanishing endpoint terms gives
+
+\[
+ M_0b_\rho(s)=U_\rho(s)=\frac{G(s)}{s-\rho},
+\tag{HSC4.3}
+\]
+
+where the value at \(s=\rho\) is filled holomorphically. At that zero its residue-class jet is exactly
+
+\[
+ U_\rho(\rho+t)\equiv
+ \frac{(\rho-1)e^{\rho^2}\zeta^{(m_\rho)}(\rho)}{m_\rho!}
+ t^{m_\rho-1}\pmod{t^{m_\rho}}.
+\tag{HSC4.4}
+\]
+
+The coefficient is nonzero. At other zeros division is by a local unit and preserves all required vanishing. This independently verifies the particular primary vector and its eigenvector identity in the original \(Q\). It does not discard the other orders of a multiple-zero block.
+
+The Fourier convention is
+\(U_\rho(1/2+it)=\int e^{x/2}b_\rho(e^x)e^{itx}dx\). Its complete Plancherel identity is
+
+\[
+ \int_{\mathbb R}|U_\rho(1/2+it)|^2dt
+ =2\pi\int_{\mathbb R}e^x|b_\rho(e^x)|^2dx
+ =2\pi\int_0^\infty|b_\rho(u)|^2du.
+\tag{HSC4.5}
+\]
+
+The Jacobian \(du=e^x dx\) and the Fourier factor \(2\pi\) are both present. Substitution in (HSC3.2) gives
+
+\[
+ \mathcal H_\rho(b_\dagger)=2d_\rho\|b_\rho\|_{L^2(du)}^2.
+\tag{HSC4.6}
+\]
+
+For an on-line zero the left side is zero by (HSC1.7), and the right side is zero because \(d_\rho=0\); its representative is nevertheless nonzero. Summing the nonnegative convergent terms proves the full identity
+
+\[
+ \mathcal H_{\rm all}(b_\dagger)
+ =\mathcal H_{\rm off}(b_\dagger)
+ =2\sum_\rho m_\rho|\Re\rho-1/2|\,
+ \|b_\rho\|_{L^2(du)}^2.
+\tag{HSC4.7}
+\]
+
+All factors from the original source have therefore survived the resolvent return.
+
+## HSC5. Stronger norm bound, valid also on the critical line
+
+The comparison in HSW6B.8 holds for every actual nontrivial zero:
+
+\[
+ \boxed{
+ \frac{2A_1}{9\pi(1+\gamma^2)}
+ \le\|b_\rho\|_{L^2(du)}^2
+ \le\frac{18M_1^2+5L_0+8B_0}{2\pi(1+\gamma^2)}.}
+\tag{HSC5.1}
+\]
+
+To include \(d_\rho=0\), work directly with the entire function \(U_\rho\), rather than divide (HSC4.6) by \(d_\rho\). Away from a possible removable point on the integration line,
+
+\[
+ |U_\rho(1/2+it)|^2
+ =\frac{|G(1/2+it)|^2}{(t-\gamma)^2+d_\rho^2}.
+\]
+
+On \([-1,1]\) the denominator bound in HSC3 still holds for \(0\le d_\rho<1/2\). Hence its integral is at least \(4A_1/[9(1+\gamma^2)]\). A removable point has measure zero and cannot change this estimate; the holomorphic extension also makes the inequality continuous where needed. The difference-quotient proof for the near part in HSC3 works unchanged when \(d_\rho=0\), using the derivative at the removable point. The two far-part bounds are also unchanged. Consequently its complete squared integral is at most \(C/(1+\gamma^2)\). Apply (HSC4.5) to obtain (HSC5.1).
+
+This strengthens a bound on the canonical representatives, not on arbitrary representatives of their quotient classes. It supplies no positive norm on \(Q\). Indeed \(J\) contains all dilations of \(b_0\); under \(Ub(x)=e^{x/2}b(e^x)\) these are \(a^{1/2}Ub_0(x-\log a)\). If an \(L^2\) vector is orthogonal to all translates, the product of its Fourier transform with the conjugate of \(G(1/2+it)\) is an \(L^1\) function whose inverse transform vanishes. Fourier uniqueness makes that product zero almost everywhere. Since the nonzero entire \(G\) has only a discrete set of zeros on the line, the vector must be zero. This proves density of the actual \(J\) and confirms why the representative norm in (HSC4.7) must not be presented as the quotient norm.
+
+## HSC6. Complete meromorphic divisor recovery
+
+For complex \(z\), consider
+
+\[
+ \mathscr W_{\rm off}(z)=
+ \sum_{\beta\ne1/2}\frac{m_\rho d_\rho}
+ {\pi((z-\gamma)^2+d_\rho^2)}.
+\tag{HSC6.1}
+\]
+
+On \(|z|\le R\), with \(|\gamma|\ge2R+2\), each factor
+\(z-\gamma\pm i d_\rho\) has modulus at least \(|\gamma|/2\), because \(d_\rho<1/2\). The term is bounded by \(2m_\rho/(\pi\gamma^2)\). The tail is uniformly summable by the zero count. Finitely many remaining zero locations give finitely many rational terms. Hence the sum is meromorphic with precisely the potential poles stated in HSW7.
+
+An actual horizontal pair \(1/2\pm d+i\gamma\), each of multiplicity \(m\), gives
+
+\[
+ \frac{2md}{\pi((z-\gamma)^2+d^2)}
+ =\frac{m}{\pi i}
+ \left(\frac1{z-\gamma-id}-\frac1{z-\gamma+id}\right).
+\tag{HSC6.2}
+\]
+
+The residues are \(m/(\pi i)\) above the line and \(-m/(\pi i)\) below it. Coincidence of two upper poles forces equality of both \(\gamma\) and \(d\), hence the same original horizontal pair; an upper pole cannot equal a lower pole because \(d>0\). Thus no other pair cancels these residues. The original coordinate return
+
+\[
+ s=1/2+iz
+\]
+
+sends the upper pole to \(1/2-d+i\gamma\) and the lower one to \(1/2+d+i\gamma\), with the original integer multiplicity recovered from the displayed residue. This verifies the complete divisor encoding, not only a positive aggregate size.
+
+The density on the real axis determines that meromorphic function uniquely: locally there are no real poles, the identity theorem applies to any real interval, and continuation through the connected complement of the discrete pole set determines it globally. Equality of the corresponding distributions on compact smooth tests implies equality of their continuous densities, giving the same conclusion. This is uniqueness of exact data, not a stability assertion about finite measurements.
+
+The verified sum (HSC4.7), its bounds (HSC3.3), and this divisor encoding concern the actual whole zero divisor. They do not assert its off-critical part is nonempty or empty. The remaining arithmetic comparison cannot replace these exact formulas by positivity alone.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

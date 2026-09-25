@@ -1,0 +1,630 @@
+# The original Mellin quotient, weighted Hilbert return, and its exact kernel
+
+25 September 2026. Independent derivation WHR0–WHR12. This is a receiving-space calculation with the original zeta function. It neither assigns an additive operation or numerical weight to primitive \(Z_1/\tau\), nor declares the full tau lifting goal complete.
+
+## WHR0. Sources, current definitions, and the actual comparison
+
+The source definitions are [B1–B5/P1–P5 and retraction R1](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/foundations/user_definitions_20260924/SOURCE_OPERATIONS_AND_PROOFS.md). They were read before this calculation. Source \(Z_0\) is absence, \(0=e=\varnothing\), with no source parity; \(Z_1/\tau\) is primitive presence with no parity or addition. Integer amounts and their \(Z_2\) data remain in the arithmetic layer. The Hilbert spaces below are constructed from the already reconstructed complex coefficient space; they are not definitions of primitive tau.
+
+The complete relevant user passages were read in `user_corpus_private/USER_MESSAGES.jsonl`: USR-9ad1c0a2d09dba92, USR-f55d16feb948d8c2, USR-6152e3bc6302258c, and USR-4322be19bff532cd. Their demand for the whole arithmetic and their correction of unsupported operations govern the interpretation here. In particular, the closure step in WHR11 is exhibited as a receiving operation, not attributed to an alleged failure of source arithmetic.
+
+The human spectral source is Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068v1), Section III, equations (6)–(26), Theorem 1, and Appendix I. Original author TeX read for this derivation: [../connes98_intake/math_9811068v1_author.tex](https://arxiv.org/abs/math/9811068v1), lines 791–931 and 3795–3946; SHA256 `f89f55df9faa2b8a49ccc2fee6a0dd4cbfb8d5279edae86e70979413b055eff6`. Connes already proves the Hilbert spectral mechanism and its multiplicity cutoff. His norm exponent is \(\delta_{\rm CC}/2\); the exponent denoted \(\delta\) below therefore satisfies \(\delta_{\rm CC}=2\delta\). No novelty is claimed for that spectral theorem.
+
+The full coefficient geometry is Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). Its exact programme return, including the source arithmetic and all extra closed coefficients, is [DCP](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_CC_DOUBLE_PULLBACK.md). The geometric lifting target remains Pierre Deligne, [*La conjecture de Weil II*, §§3.6.1–3.6.3](https://www.numdam.org/item/PMIHES_1980__52__137_0/). A Hilbert quotient's spectrum is not substituted for Deligne's geometric support-weight comparison.
+
+The original analytic input, with its complete proof, is [SSI1–SSI7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/geometric-positive-quotient/EXACT_SCHWARTZ_SUMMATION_IMAGE.md). The primary isolators are [RZ5–RZ6](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/gct-weight-control/proofs/ORIGINAL_ZETA_RESOLVENT_AND_PROJECTORS.md); the exact factor change between its earlier representatives and the unshifted representatives is retained below. [ASD10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/ACTUAL_SUPPORTED_DUALITY_INDEPENDENT.md) already proves density of \(J\) in \(L^2(du)\). The present calculation does not repeat that result as a new contribution: it computes the full weighted annihilator, exact comparison kernel, and original-complex map.
+
+## WHR1. Original spaces and explicit coordinate map
+
+Retain
+\[
+ S=\left\{h\in\mathcal S(\mathbb R):h(-v)=h(v),\ h(0)=0,
+              \ \int_{\mathbb R}h(v)\,dv=0\right\},
+\]
+\[
+ A=\left\{b\in C^\infty(\mathbb R_{>0}):
+ \sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jb(u)|<\infty
+ \text{ for all }N,j\geq0\right\},
+\]
+\[
+ \Sigma h(u)=2\sum_{n\geq1}h(nu),\qquad J=\Sigma S,
+ \qquad Q=A/J.
+ \tag{WHR1.1}
+\]
+The raw Mellin transform is
+\[
+ F(s)=\mathcal M_0b(s)=\int_0^\infty b(u)u^s\frac{du}{u}.
+ \tag{WHR1.2}
+\]
+It identifies \(A\) with the space \(\mathcal B\) of entire functions rapidly decreasing on every bounded vertical strip. The original image is
+\[
+ \mathcal M_0J=I=\{F\in\mathcal B:
+ F^{(j)}(\rho)=0\text{ for every actual nontrivial zero }\rho
+ \text{ and }0\leq j<m_\rho\}.
+ \tag{WHR1.3}
+\]
+SSI proves this with the pole at one, every trivial zero, and the complete inverse Mellin residues retained. We use that theorem, not a replacement by a completed function.
+
+For \(\delta>0\) define
+\[
+ H_\delta=L^2\!\left(\mathbb R_{>0},
+       (1+(\log u)^2)^\delta\,du\right),
+ \quad w_\delta(x)=(1+x^2)^\delta.
+ \tag{WHR1.4}
+\]
+The actual coordinate map and inverse are
+\[
+ (Ub)(x)=e^{x/2}b(e^x),\qquad
+ (U^{-1}g)(u)=u^{-1/2}g(\log u).
+ \tag{WHR1.5}
+\]
+Since \(du=e^x dx\), direct substitution gives exactly
+\[
+ \|b\|_{H_\delta}^2
+ =\int_{\mathbb R}|Ub(x)|^2w_\delta(x)\,dx.
+ \tag{WHR1.6}
+\]
+This is an isometry between two displayed spaces, not a change of the original zeta function. The map \(A\to H_\delta\) is continuous: the defining seminorm with any integer \(N>1\) bounds its squared norm by
+\[
+ p_{N,0}(b)^2\int_0^\infty
+ \frac{(1+(\log u)^2)^\delta}{(u^N+u^{-N})^2}\,du<\infty.
+\]
+It has dense image, because \(U A\) contains every smooth compactly supported function on \(\mathbb R\), and such functions are dense in the displayed weighted \(L^2\) space by truncation and smoothing.
+
+For logarithmic Fourier calculations we specify the positive phase
+\[
+ \widehat g(t)=\int_{\mathbb R}g(x)e^{itx}\,dx,
+ \qquad g(x)=\frac1{2\pi}\int_{\mathbb R}\widehat g(t)e^{-itx}\,dt.
+ \tag{WHR1.7}
+\]
+Thus \(\widehat{Ub}(t)=F(\tfrac12+it)\). This phase is specified separately from the original real Fourier transform of \(h\), whose phase remains \(e^{-2\pi ivt}\).
+
+## WHR2. Exactly which original Mellin derivatives are continuous
+
+For \(\rho=\beta+i\gamma\) and an integer \(j\geq0\), the original derivative evaluation on \(A\) is
+\[
+ L_{\rho,j}(b)=F^{(j)}(\rho)
+ =\int_0^\infty b(u)u^{\rho-1}(\log u)^j\,du
+ =\int_{\mathbb R}Ub(x)x^je^{(\beta-1/2)x+i\gamma x}\,dx.
+ \tag{WHR2.1}
+\]
+It extends continuously to \(H_\delta\) exactly when
+\[
+ \boxed{\beta=\tfrac12\quad\text{and}\quad j<\delta-\tfrac12.}
+ \tag{WHR2.2}
+\]
+Indeed the squared norm of this integral functional is
+\[
+ \int_{\mathbb R}|x|^{2j}e^{2(\beta-1/2)x}(1+x^2)^{-\delta}\,dx.
+ \tag{WHR2.3}
+\]
+For \(\beta\ne1/2\), one end has exponential growth. For \(\beta=1/2\), the integral is finite exactly when \(2j-2\delta<-1\). At equality it diverges logarithmically. Necessity is not merely a failure of a particular estimate: if the functional had a continuous extension, the Riesz representation theorem and testing against \(C_c^\infty\subset U A\) would force its representing function to be exactly the one in WHR2.3. Thus divergence rules out the extension.
+
+In the finite case, the exact value is
+\[
+ \|L_{\rho,j}\|_{H_\delta'}^2
+ =\frac{\Gamma(j+\tfrac12)\Gamma(\delta-j-\tfrac12)}{\Gamma(\delta)}.
+ \tag{WHR2.4}
+\]
+Proof: split the integral into its two equal half-lines and substitute \(y=x^2\), obtaining
+\(\int_0^\infty y^{j-1/2}(1+y)^{-\delta}dy\). The Euler beta integral gives the displayed formula with its full factors.
+
+For the Hilbert inner product linear in its first input, the original-variable Riesz representative is
+\[
+ r_{\rho,j}(u)=
+ \frac{u^{\bar\rho-1}(\log u)^j}{(1+(\log u)^2)^\delta}.
+ \tag{WHR2.5}
+\]
+No division by \(j!\) has been made; these are the original derivatives.
+
+## WHR3. An explicit actual source function generates the multiplier equation
+
+Set, for \(v\ne0\),
+\[
+ h_0(v)=\frac{\log|v|-2}{8\sqrt\pi}
+              \exp\!\left(-\frac{(\log|v|)^2}{4}\right),
+ \qquad h_0(0)=0.
+ \tag{WHR3.1}
+\]
+This is even Schwartz and flat at zero. To check all derivatives, differentiating on \(v>0\) gives a finite sum of terms
+\(v^{-k}P(\log v)e^{-(\log v)^2/4}\), with \(P\) a polynomial. Multiplication by any power of \(v\), at either endpoint, leaves a Gaussian in \(\log v\) times an exponential and a polynomial. Every such expression tends to zero. The same argument on \(v<0\) and flatness give a smooth even extension and all Schwartz bounds.
+
+For every complex \(s\), Gaussian integration gives
+\[
+ \int_0^\infty\frac1{2\sqrt\pi}
+ e^{-(\log v)^2/4}v^s\frac{dv}{v}=e^{s^2}.
+\]
+Differentiating under the Gaussian integral yields, with every coefficient retained,
+\[
+ \mathcal M_Sh_0(s)
+ :=\int_0^\infty h_0(v)v^s\frac{dv}{v}
+ =\frac{s-1}{2}e^{s^2}.
+ \tag{WHR3.2}
+\]
+Consequently \(\int_{\mathbb R}h_0=2\mathcal M_Sh_0(1)=0\), so \(h_0\in S\). Define the actual summation image
+\[
+ b_0=\Sigma h_0=2\sum_{n\geq1}h_0(nu)\in J.
+ \tag{WHR3.3}
+\]
+Absolute integration and summation first on \(\Re s>1\), followed by analytic continuation, give
+\[
+ \boxed{\mathcal M_0b_0(s)=(s-1)\zeta(s)e^{s^2}.}
+ \tag{WHR3.4}
+\]
+The factor \(s-1\) came from the displayed source moment condition; it is not a new choice of zeta. The original pole at one has its exact retained value
+\(\mathcal M_0b_0(1)=\exp(1)\), the usual real exponential value, since \(\operatorname{Res}_{s=1}\zeta(s)=1\). This value is not the source absence symbol \(e\). At every trivial zero \(-2n\), WHR3.4 vanishes; no assertion that those zeros are absent from this original formula is made. On the line \(s=1/2+it\), its zeros are exactly the original critical-line zeros, with their original multiplicities.
+
+Put \(g_0=Ub_0\). It is Schwartz, and its positive-phase Fourier transform is
+\[
+ m(t)=\widehat g_0(t)
+ =(-\tfrac12+it)\zeta(\tfrac12+it)e^{(1/2+it)^2}.
+ \tag{WHR3.5}
+\]
+For every \(a>0\), \(T_ab(u)=b(u/a)\) preserves \(J\):
+\[
+ T_a\Sigma h=\Sigma(h(\cdot/a)),\qquad h(\cdot/a)\in S.
+ \tag{WHR3.6}
+\]
+This uses the full already reconstructed arithmetic sum, not a selected list of primes.
+
+## WHR4. Weighted duals and frequency cutoffs with proved convergence
+
+Write \(K_\delta=L^2(\mathbb R,w_\delta dx)\). Every continuous complex-linear functional on it has the bilinear form
+\[
+ \ell_y(g)=\int_{\mathbb R}g(x)y(x)\,dx,
+ \qquad y\in K_{-\delta}:=L^2(\mathbb R,w_\delta^{-1}dx),
+ \qquad \|\ell_y\|=\|y\|_{K_{-\delta}}.
+ \tag{WHR4.1}
+\]
+The function \(y\) defines a tempered distribution: Cauchy–Schwarz bounds its action on a Schwartz function \(\phi\) by
+\(\|y\|_{K_{-\delta}}\|\phi\|_{K_\delta}\).
+Define its frequency distribution by
+\[
+ \langle T_y,\phi\rangle
+ =\int_{\mathbb R}y(x)\left(\frac1{2\pi}
+                  \int_{\mathbb R}\phi(t)e^{-itx}\,dt\right)dx.
+ \tag{WHR4.2}
+\]
+For \(g\in\mathcal S\), one has exactly
+\(\ell_y(g)=\langle T_y,\widehat g\rangle\).
+
+We need density in the weighted dual norm, not merely distributional convergence. Let \(\chi\in C_c^\infty(\mathbb R)\) equal one near zero and let \(\chi_R(t)=\chi(t/R)\), \(R\geq1\). Multiplication \(T_y\mapsto\chi_RT_y\) corresponds to
+\[
+ y_R=k_R*y,\qquad
+ k_R(x)=Rk(Rx),\qquad
+ k(x)=\frac1{2\pi}\int_{\mathbb R}\chi(t)e^{itx}\,dt,
+ \qquad\int k=1.
+ \tag{WHR4.3}
+\]
+These convolution operators are bounded on \(K_{-\delta}\), uniformly for \(R\geq1\), and
+\[
+ \|y_R-y\|_{K_{-\delta}}\longrightarrow0.
+ \tag{WHR4.4}
+\]
+Here is a proof with the required topology. From
+\(1+(x-z)^2\leq2(1+x^2)(1+z^2)\), weighted translation satisfies
+\[
+ \|y(\cdot-z)\|_{K_{-\delta}}
+ \leq2^{\delta/2}(1+z^2)^{\delta/2}\|y\|_{K_{-\delta}}.
+ \tag{WHR4.5}
+\]
+Minkowski's inequality proves boundedness of convolution by a kernel \(k\) whose absolute integral with the factor \((1+z^2)^{\delta/2}\) is finite. The kernels in WHR4.3 have a common such bound by substitution. Translations are strongly continuous: this follows first for compactly supported smooth functions by dominated convergence, and then for all of \(K_{-\delta}\) by their density and WHR4.5. Finally
+\[
+ y_R-y=\int_{\mathbb R}k(z)
+                    \bigl(y(\cdot-z/R)-y\bigr)\,dz,
+\]
+and dominated convergence in the weighted norm, using the Schwartz decay of \(k\) and WHR4.5, proves WHR4.4. The same proof gives boundedness of multiplication by any fixed compactly supported smooth frequency function.
+
+## WHR5. The complete annihilator of the actual summation image
+
+Let \(\mathscr Z_c\) be the set of actual original nontrivial zeros with real part \(1/2\). Write them as \(\rho=1/2+i\gamma_\rho\), retaining each multiplicity \(m_\rho\). Define the index set
+\[
+ \mathscr J_\delta=\{(\rho,j):\rho\in\mathscr Z_c,
+                   \ 0\leq j<m_\rho,
+                   \ j<\delta-\tfrac12\}.
+ \tag{WHR5.1}
+\]
+The annihilator of \(J\) in the continuous dual of \(H_\delta\) is exactly the norm-closed linear span
+\[
+ \boxed{J^{\perp,\delta}
+   =\overline{\operatorname{span}}^{\,H_\delta'}
+                  \{L_{\rho,j}:(\rho,j)\in\mathscr J_\delta\}.}
+ \tag{WHR5.2}
+\]
+
+**Proof, including the global converse.** Every listed functional is continuous by WHR2 and kills \(J\) by the original identity
+\(\mathcal M_0\Sigma h(s)=2\zeta(s)\mathcal M_Sh(s)\), where \(\mathcal M_Sh\) is holomorphic at all nontrivial zeros. Thus the right side is contained in the left.
+
+Conversely take a continuous functional annihilating \(J\), and use WHR4 to write it as \(\ell_y\) after the coordinate map. Since it kills every dilation of \(b_0\), WHR3.6 and
+\[
+ U T_{e^v}b_0(x)=e^{v/2}g_0(x-v)
+\]
+give
+\[
+ C(v):=\int_{\mathbb R}y(x)g_0(x-v)\,dx=0
+ \quad\text{for every }v\in\mathbb R.
+ \tag{WHR5.3}
+\]
+The integral and all its derivatives exist by weighted Cauchy–Schwarz. The convolution theorem for tempered distributions, with the conventions WHR1.7 and WHR4.2, now gives
+\[
+ mT_y=0.
+ \tag{WHR5.4}
+\]
+For completeness, \(C=y*\check g_0\) with \(\check g_0(x)=g_0(-x)\). With \(\mathcal F_-\) denoting the undivided negative-phase transform, the exact two identities are
+\[
+ \mathcal F_-C=(\mathcal F_-y)(\mathcal F_-\check g_0)
+             =(2\pi T_y)m,\qquad
+ \frac1{2\pi}\mathcal F_-C=mT_y.
+\]
+Thus WHR5.4 has no missing Fourier factor. Weighted Cauchy–Schwarz and the translation bound in WHR4.5 make the original correlation and all its derivatives of at most polynomial growth, so this distributional convolution identity applies to the actual integral in WHR5.3.
+
+On any open interval where \(m\ne0\), a compactly supported test function can be divided by \(m\); WHR5.4 therefore makes \(T_y\) zero there. At a zero \(\gamma_\rho\), write
+\[
+ m(t)=(t-\gamma_\rho)^{m_\rho}v_\rho(t),
+ \qquad v_\rho(\gamma_\rho)\ne0.
+\]
+After multiplying by a local nonzero inverse, the distribution satisfies
+\((t-\gamma_\rho)^{m_\rho}T_y=0\). The full local conclusion is a linear combination of \(\delta_{\gamma_\rho}^{(j)}\), \(0\leq j<m_\rho\). One way to see the order bound without omitting any derivative is to subtract the Taylor polynomial of a test function through order \(m_\rho-1\); its remainder is \((t-\gamma_\rho)^{m_\rho}\) times a smooth function, which is killed. The resulting functional depends only on those finitely many Taylor coefficients.
+
+Localize further by a compactly supported frequency function equal to one near this zero and with no other zero in its support. WHR4 proves that the localized distribution still comes from an element of \(K_{-\delta}\). Its corresponding function is \(e^{i\gamma_\rho x}P(x)\), where \(P\) is a polynomial. Its weighted squared norm is finite exactly when its degree is less than \(\delta-1/2\); the highest term controls both tails. Thus only orders in \(\mathscr J_\delta\) occur. With WHR4.2, the functional \(L_{\rho,j}\) corresponds exactly to
+\[
+ T_{\rho,j}=i^j\delta_{\gamma_\rho}^{(j)},
+\]
+since \(i^j(-1)^j\partial_t^j\widehat g(\gamma_\rho)=
+\int x^je^{i\gamma_\rho x}g(x)dx\).
+
+Finally multiply \(T_y\) by \(\chi_R\). Its support is now a finite set: zeros of the nonzero analytic function \(m\) are locally finite. It is therefore a finite linear combination of the allowed point derivatives. WHR4.4 shows that these finite combinations converge to the original annihilator functional in its actual dual norm. This proves WHR5.2 for the whole infinite zero set, without a numerical sample, a lower bound on zero spacing, a simplicity assumption, or RH. ∎
+
+The same argument gives the stronger explicit cyclic-image statement
+\[
+ \boxed{\overline{\operatorname{span}\{T_ab_0:a>0\}}^{\,H_\delta}
+            =\overline J^{\,H_\delta}.}
+ \tag{WHR5.5}
+\]
+Indeed annihilating the displayed dilation span already gives WHR5.3 and hence every step of the converse proof. Its annihilator is therefore the same as that of \(J\); taking common kernels proves equality of their closures. Thus one constructed actual Schwartz source function, with all its original dilations, suffices for the complete weighted closure, including every original critical-line multiplicity.
+
+## WHR6. Exact closure and exact Hilbert quotient
+
+Let
+\[
+ J_\delta=\overline J^{\,H_\delta},\qquad
+ \mathcal H_\delta=H_\delta/J_\delta.
+ \tag{WHR6.1}
+\]
+The Hilbert-space annihilator theorem and WHR5 give
+\[
+ \boxed{J_\delta=
+ \bigcap_{(\rho,j)\in\mathscr J_\delta}\ker L_{\rho,j}.}
+ \tag{WHR6.2}
+\]
+To justify the annihilator theorem at this precise place, orthogonal projection onto the closed subspace \(J_\delta\) decomposes every vector as a member of \(J_\delta\) plus a member of its orthogonal complement. A vector outside \(J_\delta\) is separated by the inner product with its nonzero orthogonal component. Thus taking common kernels of all annihilators gives exactly the closure, not a possibly larger subspace. Combining this fact with the norm-closed span in WHR5 proves WHR6.2.
+
+In particular \(0<\delta\leq1/2\) gives \(\mathcal H_\delta=0\); there is no allowed jet in that range. For larger \(\delta\), the exact number of visible derivative coordinates at an original zero is
+\[
+ r_\delta(\rho)=\min\{m_\rho,\ \max(0,\lceil\delta-\tfrac12\rceil)\}
+ \quad(\rho\in\mathscr Z_c).
+ \tag{WHR6.3}
+\]
+The strict inequality in WHR5.1 governs the half-integer endpoints. This equals Connes's stated largest-integer cutoff after \(\delta_{\rm CC}=2\delta\).
+
+There is a complete intrinsic sequence model for \(\mathcal H_\delta\), including all convergence restrictions. For finitely supported complex coefficients \(c=(c_{\rho,j})\), put
+\[
+ D_\delta(c)^2=
+ \int_{\mathbb R}\left|\sum c_{\rho,j}x^je^{i\gamma_\rho x}\right|^2
+                         (1+x^2)^{-\delta}\,dx.
+ \tag{WHR6.4}
+\]
+For a sequence \(v=(v_{\rho,j})_{\mathscr J_\delta}\), define
+\[
+ N_\delta(v)=\sup_{c\ne0}
+       \frac{|\sum c_{\rho,j}v_{\rho,j}|}{D_\delta(c)}.
+ \tag{WHR6.5}
+\]
+When the index set is empty, the sequence space is the zero space and its norm is zero. For a nonempty index set, distinct finite exponential-polynomials are linearly independent. To prove this, write a finite relation as \(\sum_\gamma e^{i\gamma x}P_\gamma(x)=0\). For a chosen \(\gamma_0\), apply \(\prod_{\gamma\ne\gamma_0}(\partial_x-i\gamma)^{\deg P_\gamma+1}\). All other terms vanish. On the remaining polynomial, the induced factors are \(\partial_x+i(\gamma_0-\gamma)\), each invertible on every bounded-degree polynomial space because its matrix is triangular with nonzero constant diagonal. Thus \(P_{\gamma_0}=0\), and repeating this argument gives every coefficient zero. Consequently the denominator in WHR6.5 is nonzero for a nonzero coefficient family. The space of sequences with finite WHR6.5 is isometrically \(\mathcal H_\delta\), under
+\[
+ [b]\longmapsto\bigl(L_{\rho,j}(b)\bigr)_{\mathscr J_\delta}.
+ \tag{WHR6.6}
+\]
+Proof: WHR5 identifies the annihilator as the completion of the finite functionals whose norm is WHR6.4. A sequence satisfying WHR6.5 is exactly a bounded linear functional on this dense span. It extends uniquely to its completion and is represented by a vector in its Hilbert dual, equivalently by a unique class in \(H_\delta/J_\delta\). The norm is the supremum in WHR6.5. This argument proves surjectivity of the sequence description; it does not incorrectly replace the receiver by an unrestricted product of jets.
+
+All cross terms in its Gram matrix are explicit:
+\[
+ K_{(\rho,j),(\sigma,k)}=
+ \int_{\mathbb R}x^{j+k}e^{i(\gamma_\rho-\gamma_\sigma)x}
+                                     (1+x^2)^{-\delta}\,dx.
+ \tag{WHR6.7}
+\]
+For zero derivatives, the exact Gaussian integral representation is
+\[
+ K_{(\rho,0),(\sigma,0)}=
+ \frac{\sqrt\pi}{\Gamma(\delta)}
+ \int_0^\infty t^{\delta-3/2}
+     \exp\!\left(-t-\frac{(\gamma_\rho-\gamma_\sigma)^2}{4t}\right)dt.
+ \tag{WHR6.8}
+\]
+It follows by inserting
+\((1+x^2)^{-\delta}=\Gamma(\delta)^{-1}\int_0^\infty t^{\delta-1}e^{-t(1+x^2)}dt\)
+and evaluating the Fourier transform of the Gaussian. For \(j+k>0\), differentiating WHR6.7 with respect to \(\gamma_\rho-\gamma_\sigma\) gives the exact factor \(i^{-(j+k)}\). Allowed indices ensure integrability of every derivative used. No cross terms have been dropped.
+
+## WHR7. The canonical map from the entire original quotient
+
+The inclusion \(A\to H_\delta\) and \(J\subset J_\delta\) construct a canonical continuous linear map
+\[
+ q_\delta:Q=A/J\longrightarrow\mathcal H_\delta,
+ \qquad [b]_J\longmapsto[b]_{J_\delta}.
+ \tag{WHR7.1}
+\]
+Define, in the original entire Mellin space,
+\[
+ I_\delta=\{F\in\mathcal B:
+ F^{(j)}(\rho)=0\text{ for }(\rho,j)\in\mathscr J_\delta\}.
+ \tag{WHR7.2}
+\]
+Then its kernel and image are exactly
+\[
+ \boxed{\ker q_\delta\simeq I_\delta/I,}
+ \tag{WHR7.3}
+\]
+\[
+ \boxed{\operatorname{im}q_\delta
+   =\left\{\bigl(F^{(j)}(\rho)\bigr)_{\mathscr J_\delta}:
+                                       F\in\mathcal B\right\}
+       \subset\{v:N_\delta(v)<\infty\}.}
+ \tag{WHR7.4}
+\]
+Both equalities follow from WHR6.2 and the proved topological Mellin isomorphism in SSI. The image is dense because \(A\) is dense in \(H_\delta\). Formula WHR7.4 records its exact analytic extension requirement; it does not assert that every Hilbert jet sequence is the restriction of an entire \(F\in\mathcal B\). In particular, for every such image sequence, every fixed derivative order has rapid decay in \(|\gamma_\rho|\), by the defining vertical-strip bounds and Cauchy estimates for \(F\).
+
+Its exact quotient seminorm, directly on the original classes, is
+\[
+ \|q_\delta([b])\|=
+ \inf_{h\in S}\|b+\Sigma h\|_{H_\delta}
+ =N_\delta\!\left((F^{(j)}(\rho))_{\mathscr J_\delta}\right).
+ \tag{WHR7.5}
+\]
+The infimum over \(J\) equals the infimum over its closure by norm continuity. This is a global quotient calculation with every original prime summand in \(\Sigma\); it is not a selection of finitely many zero conditions.
+
+For a complete original primary block at \(\rho\), use the global functions \(E_{\rho,j}\) from RZ5, whose full jets are
+\[
+ E_{\rho,j}^{(k)}(\sigma)
+       =j!\,\mathbf1_{\{\sigma=\rho,\ k=j\}},
+ \qquad 0\leq k<m_\sigma.
+ \tag{WHR7.6}
+\]
+The unshifted original representatives here are
+\(b_{\rho,j}=\mathcal M_0^{-1}E_{\rho,j}\).
+They are not the earlier representatives with raw transform \(2E_{\rho,j}\). Thus no factor two, or factor four in a two-input pairing, is hidden in WHR7.6. Every off-critical primary block is in \(\ker q_\delta\). At a critical zero the kernel on its block is exactly the span of \([b_{\rho,j}]\) with \(r_\delta(\rho)\leq j<m_\rho\), and its visible quotient has dimension \(r_\delta(\rho)\). The displayed jet identity proves each assertion without assuming that the global quotient is an unrestricted product of blocks.
+
+The complete original formulas for these same isolators, including the factor \(s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)/8\), its values at zero, one and the negative even integers, every reciprocal Taylor coefficient, and the unshifted inverse Mellin integral, are also written out in [VWR8, equations VWR8.2–VWR8.6](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/FULL_VERTICAL_WEIGHT_RETURN.md). That full calculation is part of this comparison's retained proof, not an assertion that the displayed Gamma and endpoint factors may be erased.
+
+## WHR8. Original prime actions, exact finite-time norm, and receiver spectral bound
+
+Let \(a>0\), \(t=\log a\). Retain the original action \(T_ab(u)=b(u/a)\), without dividing it by \(a^{1/2}\). Direct calculation gives
+\[
+ U T_a U^{-1}g(x)=a^{1/2}g(x-t),
+\]
+\[
+ \|T_ab\|_{H_\delta}^2
+ =a\int_{\mathbb R}|Ub(y)|^2(1+(y+t)^2)^\delta\,dy.
+ \tag{WHR8.1}
+\]
+The exact ratio maximum is
+\[
+ \sup_{y\in\mathbb R}\frac{1+(y+t)^2}{1+y^2}
+ =\Lambda_+(t):=
+ \frac{t^2+2+|t|\sqrt{t^2+4}}2.
+ \tag{WHR8.2}
+\]
+Proof: the ratio is the Rayleigh quotient of the real symmetric matrix
+\(\left(\begin{smallmatrix}1+t^2&t\\t&1\end{smallmatrix}\right)\)
+on vectors \((1,y)\). Its eigenvalues are the displayed \(\Lambda_+(t)\) and its reciprocal. For \(t\ne0\), a maximal eigenvector has nonzero first coordinate, so this bound is achieved at a finite \(y\); for \(t=0\), the ratio is identically one. Smooth bumps concentrated near that point show that the induced multiplication/translation bound is sharp. Hence
+\[
+ \boxed{\|T_a\|_{H_\delta\to H_\delta}
+        =a^{1/2}\Lambda_+(\log a)^{\delta/2}.}
+ \tag{WHR8.3}
+\]
+The same formula with \(a^{-1}\) gives the exact inverse norm. Because \(J\) is invariant in both directions, so is \(J_\delta\), and there is an invertible induced operator \(\overline T_a\) on \(\mathcal H_\delta\), with the upper bound in WHR8.3.
+
+For every positive integer \(n\), including all finite factors,
+\[
+ \|\overline T_a^{\,n}\|
+ \leq a^{n/2}\Lambda_+(n\log a)^{\delta/2},
+ \qquad
+ \|\overline T_a^{-n}\|
+ \leq a^{-n/2}\Lambda_+(n\log a)^{\delta/2}.
+ \tag{WHR8.4}
+\]
+For example \(\Lambda_+(t)\leq t^2+2\), since
+\(|t|\sqrt{t^2+4}\leq t^2+2\). Therefore
+\(\Lambda_+(nt)^{\delta/(2n)}\to1\).
+The spectral radius formula, applied to the bounded operator and its inverse, proves
+\[
+ \boxed{\operatorname{Spec}(\overline T_p)
+               \subset\{z\in\mathbb C:|z|=\sqrt p\}}
+ \quad\text{for every original prime }p.
+ \tag{WHR8.5}
+\]
+For a zero receiver the spectrum is understood on that zero space. For a nonzero receiver, inversion gives the lower modulus bound as well as the upper one. This is an actual consequence of the computed receiver norm. It does not establish injectivity of WHR7.1.
+
+All original derivatives and nilpotents transform by
+\[
+ (\mathcal M_0T_ab)^{(j)}(\rho)
+ =a^\rho\sum_{k=0}^j\binom jk(\log a)^{j-k}F^{(k)}(\rho).
+ \tag{WHR8.6}
+\]
+This follows from \(\mathcal M_0T_ab(s)=a^sF(s)\) and the full Leibniz formula. At a visible block, the generator acts on the derivative coordinates as
+\(F_j\mapsto\rho F_j+jF_{j-1}\), with \(F_{-1}=0\). Thus the surviving nilpotent has its actual length \(r_\delta(\rho)\); no semisimplicity has been assumed or concluded from WHR8.5.
+
+The original mirror is also retained exactly:
+\[
+ Rb(u)=u^{-1}b(u^{-1}),\qquad URb(x)=Ub(-x),\qquad
+ \|Rb\|_{H_\delta}=\|b\|_{H_\delta},\qquad
+ RT_aR=aT_{a^{-1}}.
+ \tag{WHR8.7}
+\]
+The norm identity follows from the even logarithmic weight. The action identity follows by substitution in the original variable. The original Poisson identity in SSI is
+\[
+ \Sigma\widehat h(u)=u^{-1}\Sigma h(u^{-1})
+               +u^{-1}h(0)-\int_{\mathbb R}h(v)\,dv.
+\]
+On the actual source \(S\), the last two terms vanish by its specified conditions and \(\widehat h\in S\). Thus \(R\) preserves \(J\), its closure, the quotient, and every comparison map. Its exact derivative action is
+\[
+ L_{\rho,j}(Rb)=(-1)^jF^{(j)}(1-\rho).
+ \tag{WHR8.8}
+\]
+This proves the mirror comparison with its original endpoint terms and jet signs; it does not replace \(\zeta\) by a completed function or replace the original \(T_a\) by a rescaled representation.
+
+## WHR9. The whole family retains every critical-line multiplicity
+
+For \(\delta'>\delta>0\), the inclusion \(H_{\delta'}\to H_\delta\) has norm at most one. It sends \(J_{\delta'}\) into \(J_\delta\): approximate an element by members of the same original \(J\) in the stronger norm and then use the inclusion. Hence it induces a canonical bounded map
+\[
+ \mathcal H_{\delta'}\longrightarrow\mathcal H_\delta,
+\]
+and the original maps \(q_\delta\) commute with these transitions. On derivative observations the transition retains exactly those indices present in \(\mathscr J_\delta\). No assertion of surjectivity of this transition is needed or made.
+
+Use the cofinal sequence \(\delta=1,2,3,\ldots\). This constructs a single compatible map
+\[
+ q_\infty:Q\longrightarrow\varprojlim_{n\geq1}\mathcal H_n.
+ \tag{WHR9.1}
+\]
+Define
+\[
+ I_c=\{F\in\mathcal B:F^{(j)}(\rho)=0
+        \text{ for every }\rho\in\mathscr Z_c,
+                   \ 0\leq j<m_\rho\}.
+\]
+The exact kernel is
+\[
+ \boxed{\ker q_\infty\simeq I_c/I.}
+ \tag{WHR9.2}
+\]
+Indeed every fixed integer derivative order satisfies \(j<n-1/2\) for sufficiently large \(n\), so the common kernel of all WHR7.3 imposes exactly all critical-line jets and no others. All multiplicities have been retained in this limit.
+
+This establishes the exact equivalence
+\[
+ \boxed{q_\infty\text{ is injective}\quad\Longleftrightarrow\quad
+    \text{every original nontrivial zero has real part }1/2.}
+ \tag{WHR9.3}
+\]
+Proof: when every such zero is critical, WHR1.3 gives \(I_c=I\). Conversely an off-critical zero \(\rho\) has the actual entire isolator \(E_{\rho,0}\) of WHR7.6. That function lies in \(I_c\), since all critical zeros differ from \(\rho\), but it does not lie in \(I\), since its value at \(\rho\) is one. It gives a nonzero kernel element. This uses a constructed original representative and a proved comparison map, not a declaration that the full quotient already has weight one.
+
+## WHR10. What the original complex does before taking a closure
+
+Retain the full coefficient complex from DCP and ASD,
+\[
+ D=[P\xrightarrow{d}A],\qquad P=W_+\oplus W_-,
+ \quad d=r_+-r_-,\qquad\operatorname{im}d=J,
+ \tag{WHR10.1}
+\]
+in degrees zero and one. Here both complete \(W_\pm\) include their original Schwartz terms, all endpoint terms, and all faithful extra closed coefficients. The map \(d\) is unchanged. Form the receiving complex
+\[
+ D_\delta=[P\xrightarrow{\iota_\delta d}H_\delta],
+ \qquad \iota_\delta:A\hookrightarrow H_\delta.
+ \tag{WHR10.2}
+\]
+The two maps \(\mathrm{id}_P\) and \(\iota_\delta\) define a strict chain map \(D\to D_\delta\). Since \(\iota_\delta\) is injective,
+\[
+ H^0(D)\xrightarrow{\sim}H^0(D_\delta),
+ \qquad H^1(D_\delta)=H_\delta/J
+ \tag{WHR10.3}
+\]
+as algebraic cohomology, equipped in the second expression with its quotient topology if a topological space is required. The induced algebraic map
+\[
+ Q=A/J\longrightarrow H_\delta/J
+ \tag{WHR10.4}
+\]
+is injective for every \(\delta>0\). Its proof is immediate from the defined inclusion: an original \(b\in A\) becomes zero precisely when \(b\in J\), and that is exactly the original equivalence relation.
+
+The further step from algebraic cohomology to its Hausdorff quotient is the exact sequence
+\[
+ 0\longrightarrow J_\delta/J\longrightarrow H_\delta/J
+       \longrightarrow H_\delta/J_\delta\longrightarrow0.
+ \tag{WHR10.5}
+\]
+Here \(J_\delta/J\) is exactly the closure of zero in \(H_\delta/J\). This follows directly from the quotient topology: every neighborhood of the class of \(b\) meets zero exactly when every original neighborhood of \(b\) meets \(J\). Thus WHR7.1 is the composite of the injective algebraic cohomology map WHR10.4 with this specified Hausdorffization. Its lost original classes are exactly
+\[
+ (A\cap J_\delta)/J\simeq I_\delta/I.
+ \tag{WHR10.6}
+\]
+Every original endpoint and extra coefficient remains in \(P\) and in its complete degree-zero kernel; no such coefficient was removed to obtain these identities. The factor \(a^{1/2}\) and prime norm estimate concern only the constructed \(H_\delta\) receiving action. A spectral-radius theorem for a Hilbert space cannot be applied without change to the non-Hausdorff quotient WHR10.4.
+
+This strict complex map is the global cohomology map of an actual sheaf map. On the established three-point space
+\[
+Y=\{c_+,c_-,\eta\},\qquad
+U_+=\{c_+,\eta\},\quad U_-=\{c_-,\eta\},
+\]
+define
+\[
+\mathcal F_\delta=
+\bigl(W_+\xrightarrow{\iota_\delta r_+}H_\delta
+                  \xleftarrow{\iota_\delta r_-}W_-\bigr).
+\tag{WHR10.7}
+\]
+The values at the two closed stalks are the complete original \(W_\pm\); the value at \(\eta\) is the indicated Hilbert vector space. On \(Y\), its sections are the pairs with equal restrictions; on the three minimal open sets, sections have the stated values. This specifies a sheaf: gluing on the only nontrivial cover \(Y=U_+\cup U_-\) is exactly the displayed equality of restrictions. It is considered as a sheaf of complex vector spaces, with the coefficient topologies also retained for its continuous maps.
+
+The components \(\mathrm{id}_{W_+},\mathrm{id}_{W_-},\iota_\delta\) give
+\[
+\mathcal F\longrightarrow\mathcal F_\delta,
+\tag{WHR10.8}
+\]
+since each restriction square reads \(\iota_\delta r_\pm=\iota_\delta r_\pm\). The cover \(U_+,U_-\) and its intersection are acyclic for these sheaves: each is a minimal open neighborhood, so its section functor is a stalk evaluation and is exact. Consequently their ordered Čech complexes compute the full algebraic sheaf cohomology. Those complexes are exactly \(D\) and \(D_\delta\), with the original difference \(r_+-r_-\). This proves that WHR10.3–WHR10.6 belong to a constructed comparison of the original sheaf, not merely to an unrelated constant diagram.
+
+For the actual source map \(f:X^{\rm dbl}\to Y\) already proved in DCP, inverse image gives the exact sheaf map
+\[
+f^{-1}\mathcal F\longrightarrow f^{-1}\mathcal F_\delta.
+\tag{WHR10.9}
+\]
+At every original arithmetic point \(x\in U=\operatorname{Spec}\mathbb Z\), its coefficient map is the same explicitly constructed \(A\hookrightarrow H_\delta\), while the arithmetic points themselves remain distinct in \(X^{\rm dbl}\). At \(m_\pm\), it is the identity on all of \(W_\pm\). The original prime-action restriction squares commute by WHR3.6, and the new inclusion commutes with \(T_a\); hence this is also the actual equivariant source sheaf comparison. This statement proves the map and its stalks; it does not assert an unstated proper-base-change theorem or a geometric identification of its Hilbert quotient with Deligne's invariant cycles.
+
+The closure step itself is also an exact sheaf construction. Put
+\[
+\overline{\mathcal F}_\delta
+=(W_+\xrightarrow0\mathcal H_\delta\xleftarrow0W_-).
+\]
+Since \(r_\pm(W_\pm)\subseteq J\subseteq J_\delta\), identities on the closed stalks and the quotient map at the generic stalk give
+\[
+0\longrightarrow j_{\eta!}J_\delta
+\longrightarrow\mathcal F_\delta
+\longrightarrow\overline{\mathcal F}_\delta
+\longrightarrow0.
+\tag{WHR10.10}
+\]
+Exactness is checked on all three stalks: the two closed kernels are zero and the generic kernel is \(J_\delta\). Its ordered Čech sequence is
+\[
+0\longrightarrow[0\longrightarrow J_\delta]
+\longrightarrow[P\xrightarrow d H_\delta]
+\longrightarrow[P\xrightarrow0\mathcal H_\delta]
+\longrightarrow0.
+\]
+The resulting complete nonzero cohomology sequence is
+\[
+0\longrightarrow H\longrightarrow P\xrightarrow d J_\delta
+\longrightarrow H_\delta/J
+\longrightarrow\mathcal H_\delta\longrightarrow0.
+\tag{WHR10.11}
+\]
+The connecting map is \(p\mapsto dp\), because its degree-zero lift is \(p\) itself and the original differential is \(r_+-r_-\). The image of \(J_\delta\to H_\delta/J\) is exactly \(J_\delta/J\). This is a constructed generic-support sheaf and its exact connecting map, not an identification with Deligne's closed-fibre support group. The same construction for every \(\sigma\), with all original factors, is [VWR6.4–VWR6.6](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/FULL_VERTICAL_WEIGHT_RETURN.md).
+
+## WHR11. Support labels and source-action scope
+
+All constructed arrows are complex-linear receiving maps, preserve zero, and commute with the original real/prime dilations by WHR3.6 and WHR8.6. For every established lattice carrier
+\(G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\})\),
+their exact label-preserving lifts are
+\[
+ (0,\lambda)\longmapsto(0,\lambda),\qquad
+ (v,1_L)\longmapsto(f(v),1_L).
+ \tag{WHR11.1}
+\]
+At an amplitude in \(\ker f\), the output is the supported zero with the same top label. It is not global absence and is not primitive \(\tau\). The composition law follows by direct substitution. No lattice label is removed by forming the amplitude quotient.
+
+The source arithmetic action is the existing one on the full coefficient construction. Primitive tau's global identity action and integer one's arithmetic action retain the distinctions supplied by the faithful extra closed copies. WHR10 is the identity on those copies. The new positive Hilbert norm is on the arithmetic coefficient receiver only. A source integer scalar \(n\) and the prime dilation \(T_n\) are not identified: the former is scalar multiplication and the latter is the explicitly written change of argument, with Mellin multiplier \(n^s\).
+
+## WHR12. The result of the next calculation and its exact use
+
+The forward question was whether the global original residue/cohomology comparison can receive a positive norm with a derived \(p^{1/2}\) bound while retaining the original quotient. WHR3–WHR8 carry out that construction and derive its exact finite-time estimate. WHR5–WHR7 then compute the comparison on the entire actual zero set, not merely on known critical zeros or a finite collection. WHR9 keeps every critical-line nilpotent order through the whole family. WHR10 locates the exact additional operation responsible for the possible lost classes: the original map into algebraic cohomology is injective, and Hausdorffization has the explicitly computed kernel.
+
+The conclusion is therefore an exact comparison, not a purity assertion for primitive tau or for all of \(Q\). The remaining full-source use cannot replace WHR9.2 by zero on the grounds that WHR8.5 holds in the receiver: WHR9.3 calculates exactly the strength of that replacement. These formulas provide the concrete full-kernel object to be acted on by the source geometry and Deligne-type lifting map. They retain the original function, every multiplicity, all arithmetic action factors, all closed coefficients, and all support labels.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

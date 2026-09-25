@@ -1,0 +1,249 @@
+# The actual extension class in the original source and residue spaces
+
+24 September 2026. Complete receiving derivation, ECR0–ECR7.
+
+## ECR0. The constructed prerequisites and the attempted step
+
+The support remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). The functions, complex coefficients and positive parameters in this calculation belong to the already reconstructed complete arithmetic receiver. None is an arithmetic value, parity, coordinate or addition assigned to \(\tau\). Separate branch histories and their coefficient records remain.
+
+The complete received proofs are FOD0–FOD8 in [../tau_weight_cohomology_20260924/CC_FULL_SOURCE_OBSTRUCTION_DECOMPOSITION.md](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/gct-weight-control/proofs/CC_FULL_SOURCE_OBSTRUCTION_DECOMPOSITION.md), SHA256 `0f16829aa955a3af1bd8b16d70851df5467040b9685d607a7a1b8aa3a0cae0a3`, and NEA0–NEA10 in [../tau_weight_cohomology_20260924/CC_NORMAL_EXTENSION_ANNIHILATOR.md](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/gct-weight-control/proofs/CC_NORMAL_EXTENSION_ANNIHILATOR.md), SHA256 `817455b79efe7a3cdbb5310f760cfef86f5a9bc02a2498a116df0253c8f3172b`. Both were read completely for this receiving calculation. RTT0–RTT11, GTAH0–GTAH7 and GSR0–GSR4 supply the existing residue, adjoint and multiplier comparisons.
+
+FOD proves the actual original extension
+\[
+e_0:\quad0\longrightarrow\mathcal I\longrightarrow\mathcal B
+\longrightarrow\mathcal Q\longrightarrow0,
+\qquad \mathcal Q=\mathcal B/\mathcal I,
+\tag{ECR0.1}
+\]
+and its exact annihilator \(\mathfrak a\subset M\), the ideal of entire strip-polynomial multipliers vanishing at each actual nontrivial zeta zero \(\rho\) to multiplicity \(m_\rho\). The source ideal is \(\mathcal I=\mathcal B\cap\mathfrak a\), where \(\mathcal B\) is the entire rapid-strip space. Consequently
+\[
+\mathscr N_0=M e_0\simeq M/\mathfrak a,\qquad [h]\longmapsto h e_0.
+\tag{ECR0.2}
+\]
+The symbol \(\mathscr N_0\) in this note is the cyclic extension-class module. RTT's value-zero kernel is written \(\mathcal N_{\rm jet}\) here to avoid a collision of names.
+
+What would connect this new class module to the existing positivity calculation is a proved map into the actual source quotient and residue space, rather than assigning a norm to an unspecified Ext topology. We now construct a full family of such maps and calculate its effect on the original trace and on the measured adjoint defect.
+
+## ECR1. Injective maps in both directions, with their full composites
+
+For every \(t>0\), use the specified entire test function
+\[
+g_t(s)=\exp(t s^2).
+\tag{ECR1.1}
+\]
+It is nowhere zero and belongs to \(\mathcal B\subset M\), because for \(|x|\le A\),
+\[
+(1+|y|)^N|g_t(x+iy)|
+\le e^{tA^2}(1+|y|)^N e^{-ty^2},
+\tag{ECR1.2}
+\]
+whose supremum is finite for every \(A,N\). If \(h\in M\) has growth exponent \(N_A\) on that strip, the same estimate with exponent \(N+N_A\) proves \(g_th\in\mathcal B\).
+
+Define actual \(M\)-linear maps
+\[
+j:\mathcal Q\longrightarrow\mathscr N_0,
+\quad [F]_{\mathcal I}\longmapsto F e_0,
+\qquad
+b_t:\mathscr N_0\longrightarrow\mathcal Q,
+\quad h e_0\longmapsto[g_t h]_{\mathcal I}.
+\tag{ECR1.3}
+\]
+For \(j\), the kernel condition is exactly \(\mathcal B\cap\mathfrak a=\mathcal I\). For \(b_t\), a change of representative by \(\mathfrak a\) changes the product by \(\mathcal I\), so it is well defined. If \(g_t h\in\mathcal I\), the fact that \(g_t\) is a unit in every local holomorphic ring forces the full vanishing order of \(h\) at every original zero. Hence \(h\in\mathfrak a\). Both maps are therefore injective, with every multiplicity coordinate retained. Their composites are exactly
+\[
+j b_t=m_{g_t}\quad\hbox{on }\mathscr N_0,
+\qquad b_t j=m_{g_t}\quad\hbox{on }\mathcal Q.
+\tag{ECR1.4}
+\]
+These are not identity maps. No topology is imposed on the ambient Ext group or on \(M/\mathfrak a\).
+
+Neither embedding in (ECR1.3) is surjective. If \(e_0\) were in the image of \(j\), an \(F\in\mathcal B\) would have \(F(\rho)=1\) at every nontrivial zero. The unbounded imaginary parts of the actual zeta zeros and rapid strip decay contradict this. Here unboundedness follows from the established zero-count asymptotic for the original zeta, not an off-line-zero assertion. If \([g_{t/2}]\) were in the image of \(b_t\), some \(h\in M\) would satisfy
+\[
+h(\rho)=g_{t/2}(\rho)/g_t(\rho)=e^{-t\rho^2/2}.
+\tag{ECR1.5}
+\]
+Writing \(\rho=\sigma+i\gamma\), its modulus is \(e^{t(\gamma^2-\sigma^2)/2}\). Since \(0<\sigma<1\) and \(|\gamma|\) is unbounded, it cannot obey a polynomial bound on the fixed zero strip. This proves the second nonsurjectivity. The same argument applied to \(g_t h=1\) modulo \(\mathfrak a\) proves that \([g_t]\) is not a unit in \(M/\mathfrak a\). Its absence of zeros does not license division in this multiplier quotient.
+
+## ECR2. Every local jet and the exact relation between test parameters
+
+At an actual zero \(\rho\) of multiplicity \(m\), put \(z=s-\rho\). The complete multiplier is
+\[
+g_t(\rho+z)=e^{t\rho^2}e^{2t\rho z}e^{tz^2},
+\qquad
+[z^r]g_t(\rho+z)
+=e^{t\rho^2}\sum_{v=0}^{\lfloor r/2\rfloor}
+\frac{(2t\rho)^{r-2v}t^v}{(r-2v)!v!}.
+\tag{ECR2.1}
+\]
+Thus on the entire multiplicity block, the matrix of \(b_t\) in ordinary Taylor coordinates is lower triangular with entry \([z^{i-j}]g_t(\rho+z)\) for \(i\ge j\), and zero otherwise. Its determinant is \(e^{mt\rho^2}\ne0\). Its local inverse retains all coefficients of \(e^{-t\rho^2}e^{-2t\rho z}e^{-tz^2}\), truncated only at the stated length \(m\). This is a local finite-length inverse, not an inverse in \(M\) or of either global embedding.
+
+For \(u>t>0\), the full global identity is
+\[
+g_u=g_{u-t}g_t,\qquad b_u=m_{g_{u-t}}b_t.
+\tag{ECR2.2}
+\]
+All multipliers in this formula belong to \(\mathcal B\subset M\). It compares the entire family without identifying its different test functions or cancelling any factor.
+
+## ECR3. The actual source representative
+
+The original half-Mellin map is the already proved isomorphism
+\[
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u},
+\qquad
+\Theta^{-1}F(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}F(1/2+iy)u^{-iy}\,dy.
+\tag{ECR3.1}
+\]
+For the extension-class representative \(h\), the actual source of \(b_t(h e_0)\) is
+\[
+a_{t,h}(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}e^{t(1/2+iy)^2}h(1/2+iy)u^{-iy}\,dy.
+\tag{ECR3.2}
+\]
+Gaussian decay and polynomial strip growth prove absolute convergence after every fixed number of logarithmic derivatives; (ECR1.2) and the full inverse-Mellin estimates give every source seminorm. This is the entire actual source space \(A\), not necessarily its subspace \(J\).
+
+For the actual generator \(e_0\), retain the elementary Gaussian integral explicitly:
+\[
+a_{t,1}(u)=\frac{e^{t/4}}{\sqrt{\pi t}}u^{-1/2}
+\exp\!\left(-\frac{(\log u-t)^2}{4t}\right).
+\tag{ECR3.3}
+\]
+Indeed \(e^{t(1/2+iy)^2}=e^{t/4}e^{-ty^2}e^{ity}\), and integrating \(e^{-ty^2}e^{-iy(\log u-t)}\) gives \(\sqrt{\pi/t}\exp(- (\log u-t)^2/(4t))\). Every original factor in (ECR3.1) remains. This is a chosen source test, not a replacement of the original zeta or its theta transform.
+
+## ECR4. Exact residue and full original Weil pairing
+
+Let \(\mathsf S:\mathcal Q\to\mathcal H_{\rm res}\) be RTT5's continuous anti-linear residue receiver. The actual map on extension classes is
+\[
+\mathsf S_t=\mathsf S b_t:\mathscr N_0\longrightarrow\mathcal H_{\rm res}.
+\tag{ECR4.1}
+\]
+No continuity relative to an unspecified topology on \(\mathscr N_0\) is claimed. Introduce the value-vanishing ideal
+\[
+\mathfrak a_{\rm val}=\{h\in M:h(\rho)=0\text{ for all actual }\rho\}.
+\tag{ECR4.2}
+\]
+RTT5 gives precisely
+\[
+\ker\mathsf S_t=\mathfrak a_{\rm val}/\mathfrak a
+\quad\text{under (ECR0.2)}.
+\tag{ECR4.3}
+\]
+The reason is \(g_t(\rho)\ne0\) for every zero. This kernel has zero constant coordinate in every multiplicity block, but we do not identify it with the global nilradical without a proof controlling all multiplicities simultaneously.
+
+Put \(\rho^\#=1-\overline\rho\). RTT5 now gives the full exact formula
+\[
+\begin{aligned}
+W_t(h,k)
+&=\widehat{\mathcal R}\bigl(b_t(h e_0),\mathsf S_t(k e_0)\bigr)\\
+&=\sum_\rho m_\rho
+e^{t\{\rho^2+(1-\rho)^2\}}
+h(\rho)\overline{k(\rho^\#)}.
+\end{aligned}
+\tag{ECR4.4}
+\]
+The exponential factor follows from
+\(g_t(\rho)\overline{g_t(\rho^\#)}=e^{t\rho^2}e^{t(1-\rho)^2}\); it has not been replaced by one or by a real modulus. Absolute convergence follows from the Gaussian decay, polynomial multiplier bounds and the original zero-count estimate. This proves a Hermitian form by transport of the established form, or directly by exchanging \(\rho\) and \(\rho^\#\).
+
+For completeness its complete arithmetic receiver has the original entire test
+\[
+A_{t,h,k}(s)=e^{t\{s^2+(1-s)^2\}}
+h(s)\overline{k(1-\overline s)}.
+\tag{ECR4.5}
+\]
+Let \(v_{t,h,k}\) be its actual logarithmic inverse transform, with
+\(A(s)=\int_{\mathbb R}v(v_0)e^{-(s-1/2)v_0}\,dv_0\) and
+\(\widehat v(y)=\int v(v_0)e^{-iyv_0}\,dv_0\). It belongs to the complete source test space by (ECR3.2), reflection, and the convolution proof in GIQ9, reread for this calculation. Then
+\[
+W_t(h,k)=A(0)+A(1)+\mathcal A_\infty(v)-P_{\rm hist}(v),
+\tag{ECR4.6}
+\]
+where the full terms are
+\[
+\mathcal A_\infty(v)=\frac1{2\pi}\int_{\mathbb R}\widehat v(y)
+\left(\Re\frac{\Gamma'(1/4+iy/2)}{\Gamma(1/4+iy/2)}-\log\pi\right)dy,
+\]
+\[
+P_{\rm hist}(v)=\sum_{n\ge2}\frac{\log L_n-\log L_{n-1}}{\sqrt n}
+\bigl(v(\log n)+v(-\log n)\bigr),\qquad
+L_n=\operatorname{lcm}(1,\ldots,n).
+\tag{ECR4.7}
+\]
+In particular \(A(0)=e^t h(0)\overline{k(1)}\) and
+\(A(1)=e^t h(1)\overline{k(0)}\). The original pole and trivial divisor remain at every finite cutoff \(B\):
+\[
+V_{\zeta,B}=W_t(h,k)+\sum_{r=1}^B A(-2r)-A(1),
+\qquad
+G_B=\mathcal A_\infty(v)+A(0)+\sum_{r=1}^B A(-2r),
+\]
+\[
+V_{\zeta,B}=G_B-P_{\rm hist}(v),\qquad
+A(-2r)=e^{t\{4r^2+(1+2r)^2\}}h(-2r)\overline{k(1+2r)}.
+\tag{ECR4.8}
+\]
+No divergent infinite trivial-zero sum is asserted. GIQ9 proves convergence of all the other displayed complete sums and the full source-domain extension of the explicit formula.
+
+## ECR5. The positive value form and exact defect on the actual class module
+
+The positive auxiliary form pulled back by the actual embedding is
+\[
+\langle h e_0,k e_0\rangle_t
+=\sum_\rho m_\rho e^{2t\Re(\rho^2)}
+h(\rho)\overline{k(\rho)}.
+\tag{ECR5.1}
+\]
+It converges absolutely by the same estimates, and has exactly the kernel in (ECR4.3). It is positive semidefinite, since its diagonal is a sum of nonnegative terms with strictly positive coefficients. All these value-zero classes remain in the original extension-class module and in the full jet injection \(b_t\).
+
+For every recovered \(a>0\), retain the coefficient actions
+\[
+T_a(h e_0)=a^s h e_0,\qquad U_a(h e_0)=a^{1-s}h e_0.
+\tag{ECR5.2}
+\]
+Both multipliers are in \(M\), and \(b_t\) commutes with them because all these are pointwise multipliers. Thus the coefficient transfer is preserved for every \(a>0\). For \(a=n\) a positive integer, GTR's actual degree-\(n\) covering realizes this as its geometric transfer. No covering with nonintegral degree is asserted. The full coefficient identities are
+\[
+W_t(T_a x,y)=W_t(x,U_a y),\qquad U_aT_a=aI.
+\tag{ECR5.3}
+\]
+These follow either by transport through \(b_t\) or directly from the full sum (ECR4.4).
+
+On the established value Hilbert space, \(D_a=T_a^*-U_a\) has multiplier
+\(e^{-i\gamma\log a}(a^\sigma-a^{1-\sigma})\), where \(\rho=\sigma+i\gamma\). Its exact pullback to the cyclic class module is
+\[
+\mathfrak d_{a,t}(h e_0,k e_0)
+=\sum_\rho m_\rho e^{2t(\sigma^2-\gamma^2)}
+(a^\sigma-a^{1-\sigma})^2h(\rho)\overline{k(\rho)}.
+\tag{ECR5.4}
+\]
+This is \(\langle D_aE_0b_t(h e_0),D_aE_0b_t(k e_0)\rangle\), so it is positive semidefinite with its actual source map exhibited. For fixed \(a>1\), the squared factor is at most \((a-1)^2\), while \(e^{2t\sigma^2}\le e^{2t}\). These inequalities and polynomial multiplier growth prove convergence over all actual zeros. No nonholomorphic multiplier has been substituted into (ECR4.6).
+
+For the particular actual extension generator the formula is
+\[
+\mathfrak d_{a,t}(e_0,e_0)
+=\sum_\rho m_\rho e^{2t(\sigma^2-\gamma^2)}
+(a^\sigma-a^{1-\sigma})^2.
+\tag{ECR5.5}
+\]
+Every term is nonnegative, and for \(a>1\) its vanishing is equivalent to \(\sigma=1/2\). Thus this single actual class tests the entire measured defect; it is not a finite zero sample. This computes an exact detection property, not the vanishing of the sum. The coefficient is the full original-source Gaussian weight, including \(e^{2t\sigma^2}\).
+
+## ECR6. What the separator and the full source extension do to this test
+
+FOD proves \(c e_0=e_0\), \(c e_+=0\), and the decomposition of the full joint class into the low and high components, retaining its intersection kernel. By \(M\)-linearity, (ECR1.3) therefore gives
+\[
+b_t(c x)=b_t(x),\qquad \mathsf S_t(c x)=\mathsf S_t(x),
+\qquad
+\mathfrak d_{a,t}(c x,c y)=\mathfrak d_{a,t}(x,y)
+\quad(x,y\in\mathscr N_0).
+\tag{ECR6.1}
+\]
+The annihilation of the high component is consequently compatible with, and does not cancel, the surviving defect of the original component. The connecting map is the one actually proved in FOD3: pushout takes the low component to \(e_0\) and induces an isomorphism on their cyclic modules because both annihilators are \(\mathfrak a\). Composing that isomorphism with \(b_t\) and \(\mathsf S_t\) supplies the same formulas directly on the actual low source-extension component. Its full kernel \(\mathcal I\cap\mathcal I_+\) remains in that extension.
+
+The two normal and original components have separate degree actions. Transport of the normal source by \(\lambda=s+1\) has character \(a^{s+1}\), not \(a^s\). No cancellation between their norms or trace terms follows by erasing that extra factor. The complete involution and degree comparison is calculated separately in the receiving extension-class involution note.
+
+## ECR7. Scope and the next receiving step
+
+This calculation places the actual extension-class module into the entire original source by explicit proper embeddings, preserves every local jet, and maps its value trace into the complete residue space. It exhibits the actual extension generator as a global test of the previously measured positive-adjoint defect. The full original-zeta arithmetic formula, pole, Gamma, endpoints and finite trivial-divisor terms remain (ECR4.6)–(ECR4.8).
+
+The multiplier that annihilates the normal localization component leaves this original class and its defect fixed. What would advance the purity argument is therefore additional control on the original component through the actual involution and duality, with both degree actions retained. The separate extension-class involution calculation is being carried out on these modules; its result must be compared using the maps (ECR1.3) and (ECR4.1), rather than by assigning a positive form to an unconstructed Ext topology. No claim of Deligne weight purity or RH is made by the detection identity (ECR5.5).
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

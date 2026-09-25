@@ -1,0 +1,464 @@
+# The original residue pairing on the product base and its diagonal pullback
+
+24 September 2026. Independent derivation RPD0–RPD10.
+
+## RPD0. The exact continuation and its sources
+
+[FTD0–FTD10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/FINITE_TOPOLOGY_DUALIZING_COMPLEX.md) constructed the right adjoint on the actual Connes–Consani three-point topology, with all stalks, restrictions, and the continuous/algebraic dual comparison. It proved that the existing nonzero global map into the character-twisted dual shifted by \(-2\) cannot be the global sections of a degree-zero same-site sheaf map with that target. Following the amended forward rule and the whole established corpus, the next operation here is the product-site pairing, followed by an explicit diagonal pullback. Neither operation changes the original arithmetic quotient.
+
+The current corpus rules (private construction record; not distributed), [DCP0–DCP12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_CC_DOUBLE_PULLBACK.md), [CGS0–CGS10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_COEFFICIENT_GLUE.md), and the full user arguments recorded by FTD0 remain controlling. Source \(Z_0,Z_1/\tau,Z_2\) keep their supplied meanings. No source addition, numerical weight or parity is assigned to primitive \(\tau\).
+
+The human geometric source is Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3), with original author-source coverage recorded in DCP0. The analytic source framework is Ralf Meyer, [arXiv:math/0412277v3](https://arxiv.org/abs/math/0412277v3), with the full original-zeta comparison proved in [OMS](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md). Deligne's geometric weight argument remains [*La conjecture de Weil. II*, §§3.6.1–3.6.3](https://www.numdam.org/item/PMIHES_1980__52__137_0/), whose actual cross was read and reconstructed in ORE7. No geometric purity statement is transferred by assumption.
+
+The actual residue pairing, including its original function, continuity, full multiplicity, descent and real action, is the existing [GZR0–GZR9](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/GLOBAL_ORIGINAL_ZETA_RESIDUE_DUALITY_INDEPENDENT.md). This proof constructs its new sheaf-level product realization and all requested comparison maps, rather than claiming the original pairing is newly derived.
+
+## RPD1. Original spaces and full contour
+
+Use the actual finite base
+\[
+Y=\{c_+,c_-,\eta\},\qquad
+U_\pm=\{c_\pm,\eta\},\quad U_\eta=\{\eta\}.
+\]
+The faithful original coefficient sheaf is
+\[
+F=\Omega_{\rm full}
+=(W_+\xrightarrow{r_+}A\xleftarrow{r_-}W_-),
+\quad
+W_\pm=(S\oplus\mathbb C^2)\oplus V_\pm^{\rm extra}.
+\tag{RPD1.1}
+\]
+Here
+\[
+S=\{h\in\mathcal S(\mathbb R;\mathbb C):
+h(-v)=h(v),\ h(0)=0,\ \int_{\mathbb R}h=0\},
+\]
+\[
+A=\{b\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^jb(u)|<\infty
+\quad(N,j\ge0)\}.
+\]
+The restrictions are
+\[
+r_+(h,c,w)=\Sigma h,\quad r_-(h,d,w)=R\Sigma h,\quad
+\Sigma h(u)=2\sum_{n\ge1}h(nu),\quad Rb(u)=u^{-1}b(u^{-1}).
+\tag{RPD1.2}
+\]
+Every endpoint and every extra coordinate has zero restriction and remains in its chart space. The closed image theorem gives
+\[
+r_+(W_+)=r_-(W_-)=J=\Sigma S,\qquad Q=A/J,\qquad \pi:A\to Q.
+\]
+The original Čech complex is
+\[
+D=[P:=W_+\oplus W_-\xrightarrow{d=r_+-r_-}A]
+\quad(\deg=0,1).
+\tag{RPD1.3}
+\]
+
+Write \(\mathcal M_0a(s)=\int_0^\infty a(u)u^s\,du/u\). Define the original raw pairing by
+\[
+B_A(a,b)=\frac1{2\pi i}
+\left(\int_{2-i\infty}^{2+i\infty}
+-\int_{-1-i\infty}^{-1+i\infty}\right)
+\frac{\mathcal M_0a(s)\mathcal M_0b(1-s)}{\zeta(s)}\,ds.
+\tag{RPD1.4}
+\]
+Both edges are upward. This is the original denominator \(\zeta(s)\). The original comparison with an earlier centered representative is
+\(\mathcal T k(u)=2u^{-1/2}k(u)\) and
+\(\mathcal M_0\mathcal T k=2\mathcal M k\); consequently the corresponding two-input formula on \(\mathcal T k,\mathcal T\ell\) retains the factor4. No centered replacement is used here.
+
+GZR proves, with
+\(b_{2,1}(F)=\sup_{|\sigma|\le2,t\in\mathbb R}(1+|t|)|F(\sigma+it)|\),
+\[
+|B_A(a,b)|\le
+\frac{\zeta(2)(1+4\pi^2)}{\pi}\,
+b_{2,1}(\mathcal M_0a)b_{2,1}(\mathcal M_0b).
+\tag{RPD1.5}
+\]
+The integrals converge separately. Its original-source division proof gives
+\[
+B_A(J,A)=B_A(A,J)=0,\qquad
+B_A(a,b)=B_\zeta(\pi a,\pi b).
+\tag{RPD1.6}
+\]
+The endpoint values are \(\zeta(0)=-1/2\) and a simple zero of \(1/\zeta\) at1. The trivial zeros are outside the two stated edges; their original inverse-Mellin residues are
+\[
+\frac{F(-2r)}{\zeta'(-2r)},\qquad
+\zeta'(-2r)=(-1)^r2^{-2r-1}\pi^{-2r}(2r)!\zeta(1+2r).
+\tag{RPD1.7}
+\]
+They remain in the full return theorem invoked for RPD1.6. The functional equation uses the complete multiplier
+\[
+\zeta(s)=\chi_\zeta(s)\zeta(1-s),\qquad
+\chi_\zeta(s)=\pi^{s-1/2}
+\frac{\Gamma((1-s)/2)}{\Gamma(s/2)}.
+\tag{RPD1.8}
+\]
+These factors are not replaced by a completed denominator.
+
+The diagonal real action is \(T_ab(u)=b(u/a)\) with the original compatible chart actions. Direct substitution gives
+\[
+B_A(T_aa,T_ab)=a\,B_A(a,b).
+\tag{RPD1.9}
+\]
+The two factors acquired by the Mellin integrand are \(a^s\) and \(a^{1-s}\), whose product is the actual character \(\chi_{\rm dil}(a)=a\).
+
+## RPD2. Construct the product sheaf morphism on all nine points
+
+The product \(Y\times Y\) has nine points and minimal open \(U_x\times U_y\) at \((x,y)\). Define the external tensor sheaf
+\[
+(F\boxtimes F)_{(x,y)}=F_x\otimes_kF_y,\qquad k=\mathbb C,
+\tag{RPD2.1}
+\]
+with every restriction the tensor product of the original restrictions. This is the algebraic tensor over the stated receiving field. It is the actual external tensor of sheaves: the inverse-image stalks from both projections are \(F_x,F_y\), and sheaf tensor is computed stalkwise.
+
+Let \(g=(\eta,\eta)\) and \(j_g:\{g\}\hookrightarrow Y^2\). The extension by zero
+\[
+K=j_{g!}(\chi_{\rm dil}k)
+\tag{RPD2.2}
+\]
+has stalk \(\chi_{\rm dil}k\) at \(g\), zero at every other point, and zero maps on every arrow with zero source. This follows directly from the diagram extension-by-zero adjunction: a map from this diagram is determined by its generic component.
+
+Define \(\beta:F\boxtimes F\to K\) to be \(B_A\) at \(g\) and zero at the other eight points. It is a sheaf morphism. To check every naturality square ending at \(g\), any incoming restriction from a point other than \(g\) has image in \(J\otimes A\), \(A\otimes J\), or \(J\otimes J\), according to whether its first, second, or both coordinates are closed. Equation RPD1.6 makes \(\beta_g\) zero on each such image. All other squares have zero target components. Thus
+\[
+\boxed{\beta:F\boxtimes F\longrightarrow j_{(\eta,\eta)!}\chi_{\rm dil}k}
+\tag{RPD2.3}
+\]
+is constructed on the entire product topology.
+
+It is equivariant for simultaneous dilation on both factors by RPD1.9, and therefore for every original prime action. No one-dimensional character for two independently chosen dilations is asserted: the proved character covariance is for the stated diagonal group action.
+
+The topology is also explicit. Each original stalk is Fréchet; put the projective locally convex tensor topology on each algebraic tensor in RPD2.1. The original restrictions are continuous, and RPD1.5 makes the generic functional continuous. It extends uniquely to the completed projective tensor because \(k\) is complete. Thus the same component formulas define a continuous morphism on that completed diagram as well. All cohomology tensor identities below refer to the algebraic sheaf calculation unless stated otherwise; no completed-tensor exactness theorem is silently assumed.
+
+## RPD3. Ordered product Čech complex and trace in degree2
+
+Use the plus/minus ordering in each factor. The original length-one projective resolution of \(k_Y\) is FTD2.1, with the map at the generic point \(t\mapsto(-t,t)\). Its external tensor with itself is a length-two projective resolution of \(k_{Y^2}\). Exactness can be checked stalkwise: each factor is a split exact resolution of a one-dimensional vector space, and the tensor total complex has the same degree-zero cohomology and zero higher cohomology. Its projective terms represent the nine stalk evaluations, so it computes derived global sections for every sheaf on \(Y^2\).
+
+Applying this resolution to \(F\boxtimes F\), with the ordinary Koszul identification of the two Hom complexes, gives the ordered product complex
+\[
+C^0=P\otimes P,\quad
+C^1=(A\otimes P)\oplus(P\otimes A),\quad
+C^2=A\otimes A,
+\tag{RPD3.1}
+\]
+\[
+d_C^0(x\otimes y)=(dx\otimes y,\ x\otimes dy),
+\]
+\[
+d_C^1(a\otimes y,\ x\otimes b)
+=-a\otimes dy+dx\otimes b.
+\tag{RPD3.2}
+\]
+Thus \(C=D\otimes D\) with differential \(d\otimes1+(-1)^{\deg}1\otimes d\). The two terms of \(d_C^1d_C^0\) are \(-dx\otimes dy\) and \(+dx\otimes dy\), so their sum is zero.
+
+The degree-two orientation is part of this formula. In the literal Hom of the external projective resolution, the identification with Hom-tensor has sign
+\((-1)^{ij}\) for degrees \(i,j\). At \(i=j=1\) it is \(-1\). This is the Koszul sign that gives the degree-one differential in RPD3.2. After this specified identification the top coordinate \(A\otimes A\) is the ordered product Čech coordinate used throughout this note; no further sign is suppressed.
+
+The same resolution on \(K\) has zero terms in degrees0 and1 and \(\chi_{\rm dil}k\) in degree2. Therefore
+\[
+\boxed{R\Gamma(Y^2,K)=\chi_{\rm dil}k[-2],\qquad
+H^2(Y^2,K)=\chi_{\rm dil}k.}
+\tag{RPD3.3}
+\]
+Its trace sends the stated top Čech coordinate to itself. The induced cochain map of RPD2.3 is exactly
+\[
+\beta_C^0=0,\quad\beta_C^1=0,\quad
+\beta_C^2(a\otimes b)=B_A(a,b).
+\tag{RPD3.4}
+\]
+It is a cochain map because the two terms in RPD3.2 belong to \(A\otimes J\) and \(J\otimes A\). This proof gives the degree2 and every sign from the original ordered complex.
+
+The entire algebraic cohomology of \(C\) is retained:
+\[
+H^0(C)=H\otimes H,\quad
+H^1(C)=(H\otimes Q)\oplus(Q\otimes H),\quad
+H^2(C)=Q\otimes Q,\quad H=\ker d.
+\tag{RPD3.5}
+\]
+For a direct proof, split the vector-space rows \(0\to H\to P\to J\to0\) and \(0\to J\to A\to Q\to0\) algebraically. This decomposes \(D\) into \(H[0]\), \(Q[-1]\), and the contractible complex \([J\xrightarrow{\mathrm{id}}J]\). Tensoring its explicit identity homotopy, with the Koszul sign, contracts every summand containing this last complex. The resulting cohomology is RPD3.5; its isomorphisms are the canonical products of cohomology classes, so the statement is independent of the chosen splittings. A continuous section \(Q\to A\) is not asserted.
+
+In degree2 one can avoid any splitting: the image of \(d_C^1\) is exactly
+\(J\otimes A+A\otimes J\), since the two variables in RPD3.2 range independently. Its quotient is exactly \(Q\otimes Q\). The resulting degree-two map is
+\[
+\boxed{\overline\beta:Q\otimes Q\to\chi_{\rm dil}k,\qquad
+q_1\otimes q_2\mapsto B_\zeta(q_1,q_2).}
+\tag{RPD3.6}
+\]
+Every endpoint and faithful extra copy remains in \(H\) and hence in the first two groups of RPD3.5. The trace has zero components in those degrees; their groups have not been deleted.
+
+## RPD4. Currying gives exactly the existing global residue map
+
+Let \(L=\chi_{\rm dil}k[-2]\). Its only nonzero term is \(L^2=\chi_{\rm dil}k\). Currying RPD3.4 gives the continuous-Hom complex map
+\[
+\Psi:D\longrightarrow\operatorname{Hom}_c(D,L)
+=\chi_{\rm dil}D'_c[-2].
+\tag{RPD4.1}
+\]
+The nonzero terms of this target are \(A'\) in degree1 and \(P'\) in degree2. With the usual Hom differential
+\(d_{\rm Hom}f=d_Lf-(-1)^{\deg f}f d_D\), its differential from degree1 is \(+d'\). The complete curried map is
+\[
+\boxed{\Psi^0=0,\qquad
+\Psi^1(a)(b)=B_A(a,b),\qquad
+\Psi^1=\pi'D_\zeta\pi.}
+\tag{RPD4.2}
+\]
+There is no additional minus sign in this currying: evaluation is \(f\otimes b\mapsto f(b)\), and the Koszul signs are already those of the tensor and Hom differentials.
+
+Direct verification keeps both equations:
+\(\Psi^1(dx)(b)=B_A(dx,b)=0\), and
+\(d'\Psi^1(a)(x)=B_A(a,dx)=0\).
+These are precisely the two sheaf naturality conditions in RPD2, now evaluated as the global cochain equations. The induced degree-one cohomology map is the existing injection \(D_\zeta:Q\to\chi_{\rm dil}Q'\).
+
+Its continuity into the actual strong dual follows from RPD1.5. For every bounded set \(T\subset A\), its dual seminorm is bounded by
+\[
+\sup_{b\in T}|B_A(a,b)|
+\le\frac{\zeta(2)(1+4\pi^2)}{\pi}
+\,b_{2,1}(\mathcal M_0a)\,
+\sup_{b\in T}b_{2,1}(\mathcal M_0b).
+\]
+The last supremum is finite by continuity of \(\mathcal M_0\). Thus this currying lands in the actual continuous dual, rather than requiring an identification with the full algebraic dual.
+
+Finally
+\[
+\Psi(T_aa)(b)=B_A(T_aa,b)
+=a\,B_A(a,T_{a^{-1}}b)
+\]
+gives exactly the character-twisted contragredient action in ASD. This proves the product-site bridge to its original global \(\Psi\), without contradicting FTD9's different same-site vanishing statement.
+
+## RPD5. The actual diagonal topology and sheaf pullback
+
+Let \(\Delta:Y\to Y^2\), \(x\mapsto(x,x)\). It is continuous because
+\(\Delta^{-1}(U\times V)=U\cap V\); its inverse onto its image is either coordinate projection, so it is a topological embedding.
+
+It is not closed. The point \((\eta,\eta)\) is in the closure relation above every point: every nonempty basic open contains it. Hence its closure is all of \(Y^2\). The diagonal contains this point but omits, for example, \((c_+,c_-)\), so its closure is larger than itself. It is not open either: the smallest neighbourhood of \((c_+,c_+)\) contains \((c_+,\eta)\), which is not diagonal. Because a dense locally closed subset would be open, the diagonal is not locally closed.
+
+Inverse-image sheaves on these finite diagrams have the actual stalks at their image points. Consequently
+\[
+\Delta^{-1}(F\boxtimes F)=F\otimes F
+=(W_+\otimes W_+\xrightarrow{r_+\otimes r_+}A\otimes A
+\xleftarrow{r_-\otimes r_-}W_-\otimes W_-),
+\]
+\[
+\Delta^{-1}K=j_{\eta!}\chi_{\rm dil}k.
+\tag{RPD5.1}
+\]
+The map \(\Delta^{-1}\beta\) is \(B_A\) at \(\eta\) and zero on the two closed stalks. It remains a nonzero sheaf morphism. Its naturality now requires vanishing on \(J\otimes J\), which follows from the stronger two-slot vanishing RPD1.6.
+
+The original ordered one-dimensional Čech complex gives
+\[
+R\Gamma(Y,j_{\eta!}\chi_{\rm dil}k)
+=\chi_{\rm dil}k[-1].
+\tag{RPD5.2}
+\]
+In particular its \(H^1\) is \(\chi_{\rm dil}k\), whereas its \(H^2\) is zero. The pullback on sheaves is exact over \(k\), but it has not been identified with a closed-diagonal Gysin map; the topology just computed precludes that identification without another constructed operation.
+
+## RPD6. The precise global diagonal comparison and its signs
+
+A concrete diagonal Čech comparison from \(C=D\otimes D\) to the Čech complex \(C_\Delta\) of RPD5.1 has degree0
+\[
+\kappa^0(x\otimes y)=(x_+\otimes y_+,\,x_-\otimes y_-),
+\]
+degree1
+\[
+\kappa^1(a\otimes y,\ x\otimes b)
+=a\otimes r_-(y_-)+r_+(x_+)\otimes b,
+\qquad \kappa^2=0.
+\tag{RPD6.1}
+\]
+Here \(x=(x_+,x_-)\), \(y=(y_+,y_-)\), and
+\[
+d_\Delta(z_+,z_-)
+=(r_+\otimes r_+)z_+-(r_-\otimes r_-)z_-.
+\]
+The degree-zero cochain equation is the exact identity
+\[
+\begin{aligned}
+\kappa^1d_C(x\otimes y)
+&=(r_+x_+-r_-x_-)\otimes r_-y_-
++r_+x_+\otimes(r_+y_+-r_-y_-)\\
+&=r_+x_+\otimes r_+y_+-r_-x_-\otimes r_-y_-\\
+&=d_\Delta\kappa^0(x\otimes y).
+\end{aligned}
+\tag{RPD6.2}
+\]
+The remaining cochain equation has both sides zero. The comparison is natural in the product sheaf: for a general product-site sheaf, replace each displayed tensor restriction by its actual restriction along the corresponding rectangle. In degree0 it is exactly restriction of compatible global sections to the diagonal. The source complex comes from the projective resolution in RPD3, so its cohomology is the universal derived global-section functor. Therefore this natural cochain comparison extending degree-zero restriction induces the actual global pullback maps on every cohomology group.
+
+Interchanging the choices of plus and minus in the degree-one formula gives another such comparison. Their difference in degree1 is
+\(-a\otimes dy+dx\otimes b=d_C^1(a\otimes y,x\otimes b)\).
+The map \(h:C^2\to C_\Delta^1\) equal to identity, zero elsewhere, is the explicit cochain homotopy between them. Thus the prescribed orientation is transparent and the induced cohomology map is unchanged.
+
+For the target \(K\), its global product complex is concentrated in degree2 and its diagonal complex in degree1. The degree-preserving diagonal comparison is the zero map. Moreover the source-target square commutes strictly: composing RPD6.1 with \(B_A\) in degree1 gives
+\[
+B_A(a,r_-y_-)+B_A(r_+x_+,b)=0
+\tag{RPD6.3}
+\]
+by the two original annihilation identities. All other possible components are zero. Thus the nonzero degree2 product trace pulls back to zero, while the nonzero diagonal sheaf pairing occurs in degree1. These statements describe different degrees of the actual comparison, rather than contradicting one another.
+
+The lower-degree groups of the product are also accounted for. Under RPD3.5 the map on \(H^0\) is the diagonal product of global sections. A representative of \(H\otimes Q\) is \(x\otimes b\) with \(dx=0\), and its diagonal image is
+\([r_+x_+\otimes b]\in H^1(C_\Delta)\), with \(r_+x_+=r_-x_-\in J\).
+A representative of \(Q\otimes H\) is \(a\otimes y\), and its image is
+\([a\otimes r_-y_-]\).
+Thus both images lie in the mixed \(J\)-terms calculated next. Since the global Fourier graph maps onto \(J\), these two image spaces together give every such mixed term. Endpoints and extra copies have zero restriction and therefore map to zero in this degree, while remaining in \(H\) itself.
+
+## RPD7. The full diagonal quotient and both distinct kernels
+
+Algebraic tensor over \(k\) preserves surjections. Therefore the two diagonal restriction images are both \(J\otimes J\), and
+\[
+\boxed{H^1(C_\Delta)=Q_\Delta:=(A\otimes A)/(J\otimes J).}
+\tag{RPD7.1}
+\]
+Its degree-zero cohomology is the complete fibre product of
+\(W_+\otimes W_+\to J\otimes J\leftarrow W_-\otimes W_-\).
+If \(E_\pm=\ker r_\pm=\mathbb C^2_\pm\oplus V_\pm^{\rm extra}\), the kernel of each of these tensor restrictions is
+\[
+K_\pm^\Delta=
+E_\pm\otimes W_\pm+W_\pm\otimes E_\pm.
+\]
+The intersection of its two indicated summands is \(E_\pm\otimes E_\pm\), as follows by taking a vector-space complement to \(E_\pm\). Consequently the complete degree-zero row is
+\[
+0\to K_+^\Delta\oplus K_-^\Delta
+\to H^0(C_\Delta)\to J\otimes J\to0.
+\tag{RPD7.2}
+\]
+The last map takes the common restriction and is onto because both restriction maps are onto. This retains all diagonal endpoint and extra contributions.
+
+There is a canonical surjection
+\[
+\vartheta:Q_\Delta\to Q\otimes Q,
+\qquad [a\otimes b]\mapsto\pi a\otimes\pi b.
+\tag{RPD7.3}
+\]
+Its exact kernel is
+\[
+\boxed{
+0\to(J\otimes Q)\oplus(Q\otimes J)
+\longrightarrow Q_\Delta\xrightarrow{\vartheta}Q\otimes Q\to0.}
+\tag{RPD7.4}
+\]
+For the first injection, \(j\otimes[b]\) maps to \([j\otimes b]\) and \([a]\otimes j\) maps to \([a\otimes j]\). A different lift changes the tensor by \(J\otimes J\), so these maps are well-defined. In \(A\otimes A\),
+\((J\otimes A)\cap(A\otimes J)=J\otimes J\), verified by a vector-space complement of \(J\). Their quotients modulo this intersection are respectively \(J\otimes Q\) and \(Q\otimes J\). This proves injectivity, the direct-sum assertion and exactness. It also proves the image description at the end of RPD6.
+
+The scalar diagonal pairing is
+\[
+\beta_\Delta:Q_\Delta\xrightarrow{\vartheta}Q\otimes Q
+\xrightarrow{\overline\beta}\chi_{\rm dil}k.
+\tag{RPD7.5}
+\]
+The kernel in RPD7.4 is the kernel of \(\vartheta\), not the whole kernel of this scalar map. Its complete scalar kernel has the exact row
+\[
+\boxed{
+0\to(J\otimes Q)\oplus(Q\otimes J)
+\to\ker\beta_\Delta\to\ker\overline\beta\to0.}
+\tag{RPD7.6}
+\]
+This follows by restricting the surjection \(\vartheta\) to the preimage of \(\ker\overline\beta\); every element of that scalar kernel has a lift, and the kernel of the restriction remains RPD7.4.
+
+For an entirely explicit scalar splitting, choose any actual nontrivial zero \(\rho\), of order \(m\), and the entire Mellin jet isolators \(E_{\rho,j}\) constructed in GZR. Define their unshifted quotient representatives by
+\[
+e_{\rho,j}=\pi\bigl(M_0^{-1}E_{\rho,j}\bigr)\in Q.
+\]
+The inverse exists in the original test space by the exact Mellin return. These are not \(\mathcal T k_{\rho,j}\): the latter has Mellin transform \(2E_{\rho,j}\), so using it in both slots would multiply the following value by four. GZR's full residue calculation with the specified \(M_0^{-1}\) representatives gives
+\[
+B_\zeta(e_{\rho,m-1},e_{1-\rho,0})
+=\frac{m!}{\zeta^{(m)}(\rho)}.
+\]
+Therefore
+\[
+z_0=e_{\rho,m-1}\otimes
+\frac{\zeta^{(m)}(\rho)}{m!}e_{1-\rho,0}
+\quad\text{satisfies}\quad\overline\beta(z_0)=1.
+\tag{RPD7.7}
+\]
+The linear map \(z\mapsto z-\overline\beta(z)z_0\) projects onto the entire kernel \(\ker\overline\beta\). This is a chosen scalar splitting, not a claim of group-equivariant splitting. Nondegeneracy of \(B_\zeta\) in its two slots does not make \(\overline\beta:Q\otimes Q\to k\) injective. For example, isolated nonzero primary tensors whose second character is not the reflection of the first have zero pairing by GZR6, while remaining nonzero tensors. All such terms remain in RPD7.6.
+
+## RPD8. The actual diagonal image of the product and the scalar defect
+
+Combining RPD6–RPD7 gives the exact mathematical relation between the two global calculations:
+\[
+H^1(Y^2,F\boxtimes F)
+=(H\otimes Q)\oplus(Q\otimes H)
+\longrightarrow Q_\Delta
+\]
+has image precisely
+\((J\otimes Q)\oplus(Q\otimes J)=\ker\vartheta\).
+Its cochain representatives were computed in RPD6. Thus the diagonal scalar pairing kills the entire image of global product degree1. The independent quotient \(Q\otimes Q\) on which it is nonzero appears in product degree2, but that degree pulls back to zero because the diagonal Čech dimension is1.
+
+This establishes more than a mismatch of dimensions: the natural comparison map, its image, the remaining quotient, and the full scalar kernel have been explicitly constructed. It neither removes the product pairing nor pretends that its trace can be transferred by a closed-diagonal pullback.
+
+## RPD9. Full multiplicity, companion signs and the exact weight content
+
+At an actual zero \(\rho\) of order \(m\), retain
+\[
+\zeta(\rho+t)=t^m u_\rho(t),\qquad
+u_\rho(t)=\sum_{k\ge0}\frac{\zeta^{(m+k)}(\rho)}{(m+k)!}t^k,
+\quad
+\frac1{u_\rho(t)}=\sum_{k\ge0}c_{\rho,k}t^k.
+\]
+The original local residue form is
+\[
+\sum_{i+j+k=m-1}
+\frac{F^{(i)}(\rho)}{i!}
+\frac{G^{(j)}(1-\rho)}{j!}
+(-1)^j c_{\rho,k}.
+\tag{RPD9.1}
+\]
+All contributing original derivatives and nilpotents remain in the product morphism. GZR's global primary adjoint relation says that it pairs \(Q_\rho\) only with \(Q_{1-\rho}\). Their exact original actions are
+\[
+T_a|_{Q_\rho}=a^\rho
+\sum_{j=0}^{m-1}\frac{(\log a)^j}{j!}N_\rho^j,\qquad
+T_a|_{Q_{1-\rho}}=a^{1-\rho}
+\sum_{j=0}^{m-1}\frac{(\log a)^j}{j!}N_{1-\rho}^j.
+\tag{RPD9.2}
+\]
+The residue form satisfies
+\[
+B_\zeta(N_\rho x,y)=-B_\zeta(x,N_{1-\rho}y).
+\tag{RPD9.3}
+\]
+One verifies this by multiplying \(F(\rho+t)\) by \(t\) and observing that the second reflected argument introduces \(-t\). Hence the two finite exponential nilpotents cancel in the simultaneous action and the full character is \(a^{\rho+1-\rho}=a\). This proves the covariance without discarding any Jordan level.
+
+At every prime \(p\), the numerical character weights of the two factors are \(2\Re\rho\) and \(2(1-\Re\rho)\), whose sum is2. The trace target \(\chi_{\rm dil}\) has weight2. The proved equation fixes the sum, not either factor separately. All formulas hold for the actual zero parameter without setting its real part to \(1/2\), so this product realization alone gives no additional weight separation. This is a precise statement about what its exact equations contain, not a claim that an off-critical zero exists.
+
+For the companion denominator \(\zeta(1-s)\), GZR proves
+\[
+B_\zeta(y,x)=-B_{\zeta^\vee}(x,y).
+\tag{RPD9.4}
+\]
+The factor swap on the tensor complex is
+\(x\otimes y\mapsto(-1)^{\deg x\deg y}y\otimes x\);
+on its degree2 part this is negative interchange. The geometric coordinate interchange also acts by minus identity on the ordered degree2 trace, because the two Čech directions are interchanged. These signs remain distinct from the companion sign in RPD9.4. No symmetry, Hermitian form or positivity is inferred for \(B_\zeta\) itself.
+
+## RPD10. Source actions, labels and the completed forward step
+
+On the product use the tensor of the receiving rings. Its action on the generic tensor is by the product of the two arithmetic scalar coordinates; the target scalar representation uses that same product. If either argument is in a source-faithful extra closed copy, its restriction to the generic point is zero, as prescribed by the original sheaf. The product sheaf retains every such copy. This does not identify source \(\tau\) with integer1: their actions still differ on those copies. In particular simultaneous source integer action on two inputs multiplies the pairing by \(n^2\), whereas simultaneous original spectral dilation at \(a=n>0\) gives the separate factor \(n\) of RPD1.9. These are different specified operations.
+
+For the established support carriers, a bilinear amplitude map retains the ordered pair of input labels:
+\[
+((x,\lambda),(y,\mu))\longmapsto
+(B_\zeta(x,y),(\lambda,\mu)).
+\]
+A nonzero amplitude requires both top labels; a zero keeps the full pair. Linear comparison maps preserve each existing label by \((v,\lambda)\mapsto(f(v),\lambda)\). Independent chart and tensor factors keep their separate labels; no supported zero becomes primitive \(\tau\).
+
+The forward calculation after FTD's same-site nonlift is therefore complete: the product-site sheaf morphism exists, its ordered degree2 trace gives exactly the original global residue pairing, and currying gives the actual continuous-dual \(\Psi\). Its diagonal pullback is explicitly computed on sheaves and on every Čech degree. The diagonal is not closed, and the natural global pullback kills the degree2 trace while retaining a distinct degree1 scalar map with kernel RPD7.6. The full multiplicity equations fix the sum of paired numerical weights; they do not establish purity of either factor. This supplies the precise product and diagonal objects for the next geometric calculation, without replacing that calculation by an assumed weight bound.
+
+### The derived diagonal operation restores the original trace
+
+The next calculation is completed in DIAGONAL_EXTRAORDINARY_RETURN.md. Define q:Y^2→Y by q(c+,c+)=c+, q(c-,c-)=c-, and send the other seven points to eta. Its inverse images of the three minimal opens are computed explicitly. The stalk identity Delta_*=q^{-1}, including all restrictions, proves that the derived right adjoint of Delta_* is Rq_*. It is not ordinary diagonal pullback.
+
+For K=j_(eta,eta)!chi C, the full injective complex has terms I_eta, I_eta^4, and I_+ direct-sum I_eta^2 direct-sum I_- in degrees0,1,2. All signs and contractions are retained in the proof. Its cohomology is j_eta!chi C[-1], and derived global sections recover the original chi C[-2] trace with coefficient +1. Thus the degree loss under ordinary pullback is not a general obstruction to a diagonal-derived realization. This follows by the constructed right adjoint, not by an assumed closed immersion or a numerical purity statement. The full global identity RΓ Rq_*=RΓ also retains every other original cohomological degree.
+
+### Full arithmetic correspondence and its derived coefficient return
+
+DERIVED_RETURN_FULL_SOURCE_CORRESPONDENCE.md, FSC0–FSC6, returns the receiving construction to the entire original arithmetic source. FSC2 rules out precisely a continuous single-valued lift of q that fixes the complete arithmetic diagonal. FSC3 immediately constructs the full alternative Z={(x,y,z):fz=q(fx,fy)}, with projections a,b and lifted diagonal x↦(x,x,x). Each nonexceptional a-fibre is the whole Spec Z; the two equal closed-corner fibres are singletons.
+
+FSC6 proves the actual canonical derived comparison Ra_*b^{-1}f^{-1}G ≅ (f×f)^{-1}Delta_*G for bounded complexes of algebraic sheaves of complex vector spaces on Y. It computes the inverse images of all three receiving injectives, their exact direct images, and a functorial injective resolution; no general proper-base-change theorem is assumed. The comparison applies to the full derived input and trace target from DER and to their morphism. Every arithmetic point remains in the correspondence. The coefficient comparison does not assign a numerical weight to primitive Z_1/tau or settle the active numerical weight-separation target.
+
+### The degree-one mixed obstruction has an explicit global equivariant contraction
+
+GLOBAL_MIXED_RETURN_CONTRACTION.md, GMC0–GMC7, follows the generic mixed row into its complete global sheaf complex. The actual section s_+(j)=(Sigma^{-1}j,0,0) is continuous and dilation equivariant, using the already proved summation inverse. It gives S(m_1,m_2)=(-(s_+ tensor1)m_1,(1 tensor s_+)m_2,0,0), with d_M S=id. The exact global cochain map is (id-Sd_M,vartheta), onto K_0 in degree0 and Q tensor Q in degree1, with zero differential. Its entire kernel is [S(M)→iota(M)], contracted by h(iota m)=Sm. Every original prime action intertwines.
+
+Thus the degree-one mixed obstruction is killed by the constructed contraction of ker(F)=[S(M)→iota(M)]. The full mixed subsheaf retains RΓ(Y,N)≃K_0[0], with K_0=(H tensor Q) direct-sum (Q tensor H); it is not asserted to be acyclic. The generic polynomial representative P(L_total)z=iota m becomes the exact global boundary d(Sm). All original endpoint and extra copies remain in K_0=(H tensor Q) direct-sum (Q tensor H); the original residue trace factors through the computed map with coefficient +1. This is a theorem in the specified algebraic tensor/sheaf calculation, with no assumption of completed-tensor cohomology, mirror equivariance of the plus-only section, or numerical purity. The remaining Q operators and all primary nilpotents are retained explicitly in GMC6.3.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

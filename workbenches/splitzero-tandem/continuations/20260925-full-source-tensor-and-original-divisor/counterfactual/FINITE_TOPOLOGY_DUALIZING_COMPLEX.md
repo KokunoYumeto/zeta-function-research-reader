@@ -1,0 +1,407 @@
+# The right-adjoint dualizing complex on the original three-point base
+
+24 September 2026. Independent derivation FTD0–FTD10.
+
+## FTD0. Original source, reading and operation domain
+
+The base here is precisely the original Connes–Consani three-point topology
+\[
+X=\{c_+,c_-,\eta\},\qquad
+U_\pm=\{c_\pm,\eta\},\qquad U_\eta=\{\eta\},
+\]
+whose opens are \(\varnothing,U_\eta,U_+,U_-,X\). All five opens are retained. A sheaf of complex vector spaces is the diagram \(V_+\xrightarrow{r_+}A\xleftarrow{r_-}V_-\), with global sections its fibre product. No arithmetic point of the source fibre \(\operatorname{Spec}\mathbb Z\) is identified with another source point by this calculation.
+
+The complete current [DCP0–DCP12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_CC_DOUBLE_PULLBACK.md) and [CGS0–CGS10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_COEFFICIENT_GLUE.md), including their displayed continuation records, were read. DCP constructs the exact map \(f:X^{\rm dbl}\to X\), its full arithmetic fibre, its inverse-image coefficients, and its faithful scalar extension. The current corpus rules (private construction record; not distributed), the user definitions and complete global arguments retained there remain controlling. Primitive \(Z_1/\tau\) has no addition, parity or numerical weight. The categories below contain receiving vector spaces and their sheaves, not primitive \(\tau\) objects.
+
+The human geometric source is Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). Their original author source, definitions and exact reading coverage are retained in DCP0. Deligne recalls the open/closed gluing category in [*La conjecture de Weil. II*, §3.4.8](https://www.numdam.org/item/PMIHES_1980__52__137_0/), as recorded with source kind and locator in CGS10. The analytic closed-image comparison uses [OMS](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/ORIGINAL_MELLIN_SPECTRAL_SYNTHESIS.md), with its original-zeta formula and Ralf Meyer's [arXiv:math/0412277v3](https://arxiv.org/abs/math/0412277v3) framework.
+
+[ASD](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/ACTUAL_SUPPORTED_DUALITY_INDEPENDENT.md) already calculated the global continuous transpose and the full support row. The new calculation below constructs the actual sheaf-level right adjoint on this original topology, its stalks and restrictions, and the exact comparison to that transpose. It does not assume that a character twist and a global shift are a Verdier identification.
+
+## FTD1. The diagram category, its projectives and its injectives
+
+Let \(k=\mathbb C\), and let \(\mathsf{Sh}(X,k)\) be the abelian category of all sheaves of \(k\)-vector spaces on this finite topology. A sheaf \(F\) is exactly
+\[
+F=(V_+\xrightarrow{r_+}A\xleftarrow{r_-}V_-).
+\tag{FTD1.1}
+\]
+To verify the equivalence, assign these values to the three minimal opens and their restriction maps; assign
+\[
+F(X)=\{(v_+,v_-):r_+v_+=r_-v_-\}.
+\]
+The only nontrivial gluing is the cover \(U_+\cup U_-=X\), whose compatibility is exactly that equality. All remaining covers include a minimal open itself or are empty. Morphisms are triples commuting with the two arrows. Kernels and cokernels are stalkwise, which proves the asserted abelian structure.
+
+Write a diagram by its entries \((V_+,V_-,A)\). The projectives representing the three evaluations are
+\[
+P_+=(k,0,k;\mathrm{id},0),\quad
+P_-=(0,k,k;0,\mathrm{id}),\quad
+P_\eta=(0,0,k;0,0).
+\tag{FTD1.2}
+\]
+Indeed
+\(\operatorname{Hom}(P_+,F)=V_+\),
+\(\operatorname{Hom}(P_-,F)=V_-\),
+and \(\operatorname{Hom}(P_\eta,F)=A\), by evaluating a morphism on the displayed generator. These functors are exact, so the three objects are projective. More generally \(P_x\otimes W\) represents \(\operatorname{Hom}_k(W,F_x)\). Choosing bases gives enough such projectives.
+
+The evaluation-right-adjoint objects are
+\[
+I_+(W)=(W,0,0;0,0),\quad
+I_-(W)=(0,W,0;0,0),\quad
+I_\eta(W)=(W,W,W;\mathrm{id},\mathrm{id}).
+\tag{FTD1.3}
+\]
+They satisfy
+\[
+\operatorname{Hom}(F,I_x(W))=\operatorname{Hom}_k(F_x,W).
+\tag{FTD1.4}
+\]
+For \(x=\eta\), an arbitrary map \(A\to W\) forces the two closed maps to be its compositions with \(r_\pm\), proving the identity. For a closed \(x\), the only nonzero component is the arbitrary map \(V_x\to W\). Since all vector spaces over a field are injective, each right-hand functor is exact: a linear map extends from a subspace by choosing a vector-space complement. Thus every \(I_x(W)\) is injective. These assertions are algebraic; they do not declare every locally convex vector space injective for continuous maps.
+
+## FTD2. Compute \(R\Gamma\) and construct its right adjoint
+
+Let \(k_X=(k,k,k;\mathrm{id},\mathrm{id})\). Then \(\Gamma(X,F)=\operatorname{Hom}(k_X,F)\). The exact projective resolution is
+\[
+0\to P_\eta
+\xrightarrow{(-\mathrm{inc}_+,\mathrm{inc}_-)}
+P_+\oplus P_-
+\xrightarrow{\epsilon}k_X\to0.
+\tag{FTD2.1}
+\]
+At the generic stalk \(\epsilon(a,b)=a+b\), whose kernel consists of \((-a,a)\); at each closed stalk it is identity. This proves exactness on all stalks. Put the two projective terms in degrees \(-1,0\). The Hom differential is \(-f\,d_P\) in degree0, so this resolution gives the original ordered complex
+\[
+R\Gamma(X,F)=
+[\,V_+\oplus V_-\xrightarrow{\,r_+-r_-\,}A\,]
+\quad\text{in degrees }0,1.
+\tag{FTD2.2}
+\]
+This derives the sign from the resolution instead of changing the original ordering.
+
+For a vector space \(W\) in degree0, define
+\[
+\boxed{
+p^!W=
+[\,I_\eta(W)\xrightarrow{(\mathrm{ev}_+,-\mathrm{ev}_-)}
+I_+(W)\oplus I_-(W)\,]
+\quad\text{in degrees }-1,0.}
+\tag{FTD2.3}
+\]
+The two maps are identity on the corresponding closed stalk and zero on the other stalks. Applying \(\operatorname{Hom}(F,-)\) and FTD1.4 gives
+\[
+[\,\operatorname{Hom}_k(A,W)
+\xrightarrow{\lambda\mapsto(\lambda r_+,-\lambda r_-)}
+\operatorname{Hom}_k(V_+\oplus V_-,W)\,].
+\tag{FTD2.4}
+\]
+This is precisely the Hom complex
+\(\operatorname{Hom}_k(R\Gamma(X,F),W)\), with degrees \(-1,0\). The terms of FTD2.3 are injective, so it computes the derived Hom on the sheaf side.
+
+For a bounded complex \(W^\bullet\), the full formula is
+\[
+(p^!W)^n=
+I_\eta(W^{n+1})\oplus I_+(W^n)\oplus I_-(W^n),
+\]
+\[
+d(a,b_+,b_-)=
+(-d_Wa,\ \mathrm{ev}_+a+d_Wb_+,\ -\mathrm{ev}_-a+d_Wb_-).
+\tag{FTD2.5}
+\]
+It is the total complex of FTD2.3 tensored with \(W^\bullet\). Substitution gives \(d^2=0\): the two terms involving each evaluation have opposite signs. The same Hom calculation, with the total-complex signs in FTD2.5, gives for bounded complexes \(F,W\)
+\[
+\boxed{
+R\operatorname{Hom}_X(F,p^!W)
+\simeq R\operatorname{Hom}_k(R\Gamma(X,F),W).}
+\tag{FTD2.6}
+\]
+The complexes on both sides are computed by the projective resolution FTD2.1 and injective terms FTD1.3; their degreewise identifications FTD1.4 commute with the displayed differentials. This proves the right adjoint rather than presupposing it.
+
+## FTD3. The actual dualizing complex and all its restrictions
+
+Set \(\omega_X=p^!k\). Its complete stalk complexes are
+\[
+(\omega_X)_{c_+}=[k\xrightarrow{+1}k],\qquad
+(\omega_X)_{c_-}=[k\xrightarrow{-1}k],\qquad
+(\omega_X)_\eta=k[1],
+\tag{FTD3.1}
+\]
+where the first two occupy degrees \(-1,0\) and \(k[1]\) places \(k\) in degree \(-1\). The restriction from either closed stalk to \(\eta\) is identity in degree \(-1\) and zero in degree0. These are actual sheaf complexes, not just their dimensions.
+
+If \(j:\{\eta\}\hookrightarrow X\), the sheaf \(j_!k\) is the diagram \((0,0,k)\). The map
+\[
+j_!k[1]\longrightarrow\omega_X
+\tag{FTD3.2}
+\]
+is identity at \(\eta\) in degree \(-1\) and zero at both closed stalks. It is a cochain map; it is a quasi-isomorphism at \(\eta\), and at each closed point both the source and the target have zero cohomology. Thus it is a sheaf quasi-isomorphism. The complete injective presentation FTD2.3 is nevertheless retained for the following calculations.
+
+This is the right-adjoint dualizing complex for the stated \(R\Gamma\) functor on this finite topology. It is not the constant sheaf shifted by2. No claim that its restriction to every open is the right adjoint of the unmodified global-section functor on that open is needed: the relevant extension-by-zero calculation is given explicitly in FTD5.
+
+## FTD4. Derived internal dual of the original diagram
+
+Use \(W^*=\operatorname{Hom}_k(W,k)\) for the algebraic dual. For any sheaf \(F\) of the form FTD1.1, define
+\[
+\mathbb D_{\rm alg}F=R\mathcal Hom_X(F,\omega_X).
+\]
+The internal Hom into \(I_\eta(k)\) is \(I_\eta(A^*)\). To check its stalk at \(c_+\), a map of diagrams on \(U_+\) from \(V_+\to A\) to \(k\to k\) is determined by its map \(A\to k\); its closed map is then composition with \(r_+\). The same proof works at \(c_-\), and at \(\eta\) it is simply \(A^*\). Its restrictions are identities. Similarly
+\(\mathcal Hom(F,I_\pm(k))=I_\pm(V_\pm^*)\).
+These Hom functors are exact in \(F\), since algebraic dual over \(k\) is exact; equivalently the restricted target objects are injective on each minimal open. Therefore the complete derived dual is
+\[
+\boxed{
+\mathbb D_{\rm alg}F=
+[\,I_\eta(A^*)\xrightarrow{(r_+^*,-r_-^*)}
+I_+(V_+^*)\oplus I_-(V_-^*)\,]
+\quad(\deg=-1,0).}
+\tag{FTD4.1}
+\]
+In particular
+\[
+(\mathbb D_{\rm alg}F)_{c_+}
+=[A^*\xrightarrow{r_+^*}V_+^*],\qquad
+(\mathbb D_{\rm alg}F)_{c_-}
+=[A^*\xrightarrow{-r_-^*}V_-^*],
+\]
+\[
+(\mathbb D_{\rm alg}F)_\eta=A^*[1].
+\tag{FTD4.2}
+\]
+Both restrictions are identity on the degree-\(-1\) terms and zero in degree0.
+
+Every term in FTD4.1 is injective. Its global derived sections are consequently its ordinary section complex:
+\[
+\boxed{
+R\Gamma(X,\mathbb D_{\rm alg}F)
+=[A^*\xrightarrow{(r_+^*,-r_-^*)}V_+^*\oplus V_-^*]
+=\operatorname{Hom}_k(R\Gamma(X,F),k).}
+\tag{FTD4.3}
+\]
+This gives the exact sheaf-level source of the algebraic global transpose. It contains no character twist and no additional shift.
+
+## FTD5. Local support identities, all signs and contractions
+
+For a closed point \(c_\pm\), the actual support complex is
+\[
+K_\pm(F)=[V_\pm\xrightarrow{r_\pm}A]\quad(\deg=0,1).
+\tag{FTD5.1}
+\]
+It is the mapping fibre of the restriction on its minimal chart. FTD4.2 gives
+\[
+(\mathbb D_{\rm alg}F)_{c_+}=K_+(F)^*.
+\]
+At \(c_-\) the exact comparison
+\[
+(\mathbb D_{\rm alg}F)_{c_-}\longrightarrow K_-(F)^*
+\tag{FTD5.2}
+\]
+is multiplication by \(-1\) on \(A^*\) in degree \(-1\) and identity on \(V_-^*\) in degree0. Indeed \(r_-^*(-\alpha)=-r_-^*\alpha\). Thus the original minus-support orientation is retained.
+
+These same formulas can be obtained from the actual extension-by-zero maps. For \(j_+:U_+\hookrightarrow X\),
+\[
+j_{+!}(F|_{U_+})=(V_+,0,A),\qquad
+R\Gamma(X,j_{+!}(F|_{U_+}))=[V_+\xrightarrow{r_+}A].
+\]
+For \(j_-\), the diagram is \((0,V_-,A)\), and the ordered global differential is \(-r_-\). For the generic open it is \((0,0,A)\), with global complex \(A\) in degree1. The extension-by-zero assertions follow directly from adjunction on diagrams: a map out of the stated diagram has precisely the prescribed components on the open and the zero outside it. Taking algebraic duals gives exactly all three stalks and both restriction maps in FTD4.2. This records which global functor on each open is being dualized.
+
+There is also an exact dual-of-stalk calculation. Let \(\varepsilon_+=1\), \(\varepsilon_-=-1\). The closed costalk of \(\mathbb D_{\rm alg}F\) is the mapping fibre of its restriction to \(\eta\), namely
+\[
+[A^*\xrightarrow{\alpha\mapsto
+(\varepsilon_\pm r_\pm^*\alpha,\alpha)}
+V_\pm^*\oplus A^*]
+\quad(\deg=-1,0).
+\tag{FTD5.3}
+\]
+Its projection to \(V_\pm^*[0]\) is
+\[
+(v,\beta)\longmapsto v-\varepsilon_\pm r_\pm^*\beta,
+\tag{FTD5.4}
+\]
+with section \(v\mapsto(v,0)\). The degree-\(-1\) homotopy sends \((v,\beta)\) to \(\beta\). Its differential followed by that homotopy is \((\varepsilon_\pm r_\pm^*\beta,\beta)\), the difference between identity and section-projection; on the degree-\(-1\) term it is identity. Hence
+\[
+\boxed{R i_\pm^!(\mathbb D_{\rm alg}F)\simeq V_\pm^*[0]}
+\tag{FTD5.5}
+\]
+with a fully specified contraction.
+
+For both closed points, the direct sum of FTD5.1 is the actual complete supported complex \([V_+\oplus V_-\to A\oplus A]\) with differential \((r_+,r_-)\). Its dual identifies with the restriction of \(\mathbb D_{\rm alg}F\) to the two closed points by the degree-\(-1\) sign \((\alpha_+,\alpha_-)\mapsto(\alpha_+,-\alpha_-)\) and identity in degree0. This retains every local support group and its original orientation.
+
+## FTD6. Substitute the original CC sheaf and its faithful source extension
+
+For the original \(\Omega\),
+\[
+V_\pm=S_{00}^{\rm even}\oplus\mathbb C^2,\qquad
+r_+(h,c)=\Sigma h,\qquad r_-(h,d)=R\Sigma h.
+\]
+Keep the original four endpoint labels \(c_0,c_1,d_0,d_1\), Fourier phase \(e^{-2\pi ivt}\), factor2 in \(\Sigma\), and factor \(u^{-1}\) in \(R\). The full Poisson formula is
+\[
+\Sigma\widehat h(u)=u^{-1}\Sigma h(u^{-1})
++u^{-1}h(0)-\int_{\mathbb R}h(v)\,dv.
+\tag{FTD6.1}
+\]
+On the specified \(S_{00}^{\rm even}\) the last two terms vanish by its defining conditions; the separate endpoint coordinates remain in \(V_\pm\).
+
+DCP8–DCP9 proves that the faithful source extension pushes to the exact sheaf
+\[
+\Omega_{\rm full}
+=\Omega\oplus i_{+*}V_+^{\rm extra}\oplus i_{-*}V_-^{\rm extra}.
+\tag{FTD6.2}
+\]
+Write \(W_\pm=V_\pm\oplus V_\pm^{\rm extra}\). Its restrictions are \(r_\pm\) on the first summand and zero on the extra one. In every preceding formula replace \(V_\pm\) by these \(W_\pm\) and use those exact restrictions. In particular
+\[
+\mathbb D_{\rm alg}\Omega_{\rm full}
+=\mathbb D_{\rm alg}\Omega
+\oplus i_{+*}(V_+^{\rm extra})^*
+\oplus i_{-*}(V_-^{\rm extra})^*
+\tag{FTD6.3}
+\]
+with both extra dual terms in degree0. This follows directly from FTD4.1, not from an assumption that pullback commutes with a duality functor on the full arithmetic source. DCP's complete map and arithmetic fibre remain unchanged.
+
+Let \(J=\Sigma S\), \(Q=A/J\). The original image theorem gives \(r_+(W_+)=r_-(W_-)=J\), and
+\[
+E_\pm=\ker r_\pm=\mathbb C^2_{\pm}\oplus V_\pm^{\rm extra}.
+\]
+Algebraic duality of the exact vector-space rows gives the complete cohomology sheaves
+\[
+\mathcal H^{-1}(\mathbb D_{\rm alg}\Omega_{\rm full})
+=(Q^*\xrightarrow{\pi^*}A^*\xleftarrow{\pi^*}Q^*),
+\]
+\[
+\mathcal H^0(\mathbb D_{\rm alg}\Omega_{\rm full})
+=i_{+*}E_+^*\oplus i_{-*}E_-^*,
+\quad \mathcal H^n=0\ (n\ne-1,0).
+\tag{FTD6.4}
+\]
+At both closed stalks the degree-\(-1\) kernel is the annihilator of \(J\); the minus sign does not change that kernel. The degree-zero quotient is \(E_\pm^*\), by restriction to \(\ker r_\pm\). All restrictions on the degree-\(-1\) sheaf are the actual annihilator inclusions.
+
+## FTD7. The continuous dual sheaf and its comparison to the algebraic one
+
+Use \(W'\) exclusively for the actual continuous complex-linear dual. Define the explicit sheaf complex
+\[
+\boxed{
+\mathbb D_c\Omega_{\rm full}
+=[I_\eta(A')\xrightarrow{(r_+',-r_-')}
+I_+(W_+')\oplus I_-(W_-')]
+\quad(\deg=-1,0).}
+\tag{FTD7.1}
+\]
+Give each dual its weak-* topology for exact quotient statements; the displayed transposes are also strong-dual continuous. This is a concrete diagram of the programme's existing continuous duals. It is not asserted to be an abstract Verdier equivalence for arbitrary topological vector spaces.
+
+The natural inclusions of continuous functionals into all algebraic functionals give an injective cochain map
+\[
+\boxed{\mathbb D_c\Omega_{\rm full}
+\longrightarrow\mathbb D_{\rm alg}\Omega_{\rm full}.}
+\tag{FTD7.2}
+\]
+They commute with both restriction maps and differentials because each operation is composition with the same original map. Thus algebraic and continuous duals have a proved comparison rather than being silently interchanged.
+
+For these precise original spaces, the required continuous exactness is proved as follows. The original \(\Sigma:S\to J\) is a topological isomorphism and \(J\) is closed in \(A\). The map \(r_\pm:W_\pm\to J\) has a continuous section obtained from \(\Sigma^{-1}\) and the original Fourier involution, with zero endpoint and extra coordinates. Hence \(W_\pm=E_\pm\oplus W_{\pm,0}\) topologically, with \(W_{\pm,0}\simeq J\). Every continuous functional on \(J\) extends to \(A\) by Hahn–Banach. Therefore
+\[
+\ker r_\pm'=\pi'Q',\qquad
+\operatorname{coker}r_\pm'=E_\pm'
+\tag{FTD7.3}
+\]
+with the exact restriction map to \(E_\pm\). The kernel equality uses the open quotient \(\pi:A\to Q\) to prove continuity of the factor through \(Q\). The cokernel equality uses the stated section and Hahn–Banach, not an algebraic extension of a discontinuous functional.
+
+Consequently FTD6.4 holds for \(\mathbb D_c\) with \(Q',A',E_\pm'\) in place of their algebraic duals. The local support contractions FTD5.2–FTD5.5 also hold word for word with continuous duals: all maps in those explicit finite complexes are continuous. This proves the local identities on the actual programme objects without making a general topological duality claim.
+
+Termwise taking the quotient of FTD7.2 defines a precise sheaf complex measuring discontinuous functionals:
+\[
+\mathbb D_{\rm disc}
+=[I_\eta(A^*/A')\to
+I_+(W_+^*/W_+')\oplus I_-(W_-^*/W_-')].
+\tag{FTD7.4}
+\]
+The maps are those induced by the original restrictions. Its stalk cohomology is
+\[
+\mathcal H^{-1}(\mathbb D_{\rm disc})_{c_\pm}=Q^*/Q',
+\quad
+\mathcal H^0(\mathbb D_{\rm disc})_{c_\pm}=E_\pm^*/E_\pm',
+\]
+\[
+\mathcal H^{-1}(\mathbb D_{\rm disc})_\eta=A^*/A',
+\quad
+\mathcal H^0(\mathbb D_{\rm disc})_\eta=0.
+\tag{FTD7.5}
+\]
+Indeed the kernel/cokernel identifications in FTD6.4 and FTD7.3 make both cohomology maps injective, so the long exact sequence of the termwise quotient gives exactly these quotients. In the original sheaf without extra copies, \(E_\pm=\mathbb C^2\) and its degree-zero discontinuity quotient is zero. The full extra copies retain their actual possibly nonzero quotients.
+
+## FTD8. Global sections and the exact relation to ASD
+
+As underlying algebraic sheaves, the terms \(I_x(W')\) in FTD7.1 are injective by FTD1.4, whatever their additional weak-* topology. Thus their algebraic derived global sections are their displayed section complex. With its retained topology this is exactly
+\[
+\boxed{
+R\Gamma(X,\mathbb D_c\Omega_{\rm full})
+=[A'\xrightarrow{(r_+',-r_-')}W_+'\oplus W_-']
+=(R\Gamma(X,\Omega_{\rm full}))'_c.}
+\tag{FTD8.1}
+\]
+On the right the continuous dual complex uses differential
+\(d(\lambda)=-(-1)^n\lambda d\); at \(n=-1\) the sign is positive, giving the displayed original transpose. Finite direct sums of Fréchet spaces have the corresponding continuous dual direct sums, so no tensor-dual interchange is used.
+
+The original \(d:P\to A\) has closed image \(J\) and a continuous section onto \(J\), for example using only the plus chart and \(\Sigma^{-1}\). Its kernel is the complete Fourier graph \(H\), with endpoints and extra copies. Restriction \(P'\to H'\) is onto by Hahn–Banach (or the explicit Fourier-graph projection), and the annihilator of \(H\) is the image of \(d'\). These facts prove
+\[
+H^{-1}R\Gamma(X,\mathbb D_c\Omega_{\rm full})=Q',
+\qquad
+H^0R\Gamma(X,\mathbb D_c\Omega_{\rm full})=H'.
+\tag{FTD8.2}
+\]
+The algebraic counterpart is \(Q^*,H^*\), and FTD7.2 induces the actual inclusions \(Q'\hookrightarrow Q^*\), \(H'\hookrightarrow H^*\). Its global quotient has cohomology \(Q^*/Q'\), \(H^*/H'\), by the same exact argument as FTD7.5.
+
+In particular the complete ASD receiving target has the precise sheaf presentation
+\[
+\boxed{
+\chi_{\rm dil}\otimes
+(R\Gamma(X,\Omega_{\rm full}))'_c[-2]
+=
+R\Gamma\!\left(X,\chi_{\rm dil}\otimes
+\mathbb D_c\Omega_{\rm full}[-2]\right).}
+\tag{FTD8.3}
+\]
+The character \(\chi_{\rm dil}(a)=a\) and shift \([-2]\) are retained exactly where ASD puts them. They were not part of the right-adjoint complex FTD2.3 and have not been imported into its definition.
+
+## FTD9. A precise same-site nonlift and its actual comparison map
+
+Let
+\[
+\mathcal T=\chi_{\rm dil}\otimes\mathbb D_c\Omega_{\rm full}[-2].
+\]
+Its terms are injective algebraic sheaves in degrees1 and2; there is no term in degree0. Since it is a bounded complex of injectives, derived morphisms from the degree-zero sheaf \(\Omega_{\rm full}\) into \(\mathcal T\) are computed by the ordinary Hom complex. Its degree-zero group is zero. Hence
+\[
+\boxed{
+\operatorname{Hom}_{D(\mathsf{Sh}(X,k))}
+(\Omega_{\rm full},\mathcal T)=0.}
+\tag{FTD9.1}
+\]
+One can also read this directly from the proved degrees: the source has cohomology only in degree0 and the target only in degrees1,2. The injective calculation supplies a complete proof on this specific category without requiring an unproved topological \(t\)-structure.
+
+The existing global residue morphism is
+\[
+\Psi^0=0,\qquad
+\Psi^1=\pi'D_\zeta\pi:
+R\Gamma(X,\Omega_{\rm full})
+\longrightarrow
+\chi_{\rm dil}(R\Gamma(X,\Omega_{\rm full}))'_c[-2].
+\tag{FTD9.2}
+\]
+It is nonzero in the derived category of vector spaces: on degree-one cohomology it is the proved injection \(D_\zeta:Q\to\chi_{\rm dil}Q'\), and \(Q\ne0\), as witnessed by any actual RZ isolated zero jet. Equations FTD8.3 and FTD9.1 therefore prove that this particular nonzero global morphism cannot be the derived global sections of a degree-zero same-site sheaf morphism \(\Omega_{\rm full}\to\mathcal T\).
+
+This is the exact failure of that proposed lifting operation. It does not say the global pairing is unrelated to sheaf geometry: FTD8.3 constructs its exact sheaf-level target and proves the comparison of every term and map. Nor does it rule out a sheaf correspondence on a product base, a different degree or another specified functor. Such operations are not identified with the vanishing Hom group in FTD9.1.
+
+## FTD10. Real actions, source labels and the exact result
+
+The original real action remains
+\[
+T_ab(u)=b(u/a),\qquad
+\rho_+(a)(h,c_0,c_1)=(h(\cdot/a),c_0,ac_1),
+\]
+\[
+\rho_-(a)(h,d_0,d_1)=(a h(a\cdot),ad_0,d_1).
+\]
+The equality \(r_\pm\rho_\pm(a)=T_ar_\pm\) proves equivariance of the sheaf diagram. On \(\mathbb D_{\rm alg}\) and \(\mathbb D_c\), take the actual contragredient actions. Then every differential and restriction in FTD4.1 and FTD7.1 is equivariant by transposition. Twisting by \(\chi_{\rm dil}(a)=a\), when it is explicitly used in FTD8.3–FTD9, gives the exact receiving action \(a(T_{a^{-1}})'\). At an original prime, substitute \(a=p\), retaining every original factor and nilpotent in the induced Mellin jets.
+
+The four original endpoint characters \(1,a,a,1\) become \(1,a^{-1},a^{-1},1\) on the untwisted dual, and \(a,1,1,a\) after the stated twist. The extra dual copies retain their full Schwartz and endpoint actions. The source receiving ring \(\mathbb Z^3\) acts by its original three coordinates: primitive \(\tau\)'s supplied image acts as identity everywhere, while integer \(n\) acts by \(n\) on the original component and zero on both extra components. All maps retain these actions, so the full sheaf and dual continue to distinguish source \(\tau\) from integer1.
+
+Every receiving linear map has the established support-carrier lift \((v,\lambda)\mapsto(f(v),\lambda)\). Zero outputs keep their original labels, and independently labelled factors remain separate. This applies to the stalk restrictions, the algebraic/continuous comparison, and the explicit local support contractions. No supported zero is identified with primitive \(\tau\).
+
+The right adjoint, its full stalk complexes, both restriction maps, the local support duals, the faithful added copies and the continuous/algebraic comparison have all been constructed. The equality FTD8.3 identifies exactly what the earlier global transpose is receiving from this topology. The vanishing FTD9.1 concerns the specified same-site, degree-zero sheaf lift; it neither discards the original global residue pairing nor asserts a Deligne weight or an RH conclusion.
+
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

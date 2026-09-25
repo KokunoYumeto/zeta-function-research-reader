@@ -1,0 +1,48 @@
+from pathlib import Path
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
+
+r=Path(__file__).resolve().parent
+plt.rcParams.update({'font.family':'DejaVu Sans','mathtext.fontset':'dejavusans','font.size':12})
+fig=plt.figure(figsize=(16,12),facecolor='#f8fafc')
+ax=fig.add_axes([0,0,1,1]); ax.set_xlim(0,16); ax.set_ylim(0,12); ax.axis('off')
+def box(x,y,w,h,t,c='#e6eef9',size=13):
+    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0.12',facecolor=c,edgecolor='#52637a',linewidth=1.2))
+    ax.text(x+w/2,y+h/2,t,ha='center',va='center',fontsize=size,linespacing=1.6)
+def arr(x1,y1,x2,y2,t=''):
+    ax.add_patch(FancyArrowPatch((x1,y1),(x2,y2),arrowstyle='->',mutation_scale=16,color='#334155',linewidth=1.5))
+    if t: ax.text((x1+x2)/2,(y1+y2)/2+.27,t,ha='center',fontsize=12)
+ax.text(.55,11.5,'The actual sphere receiver and its normal-direction quotient',fontsize=21,weight='bold',color='#13263d')
+ax.text(.55,11.04,'CSP0–CSP13: full sheaf, cohomological degrees, orientation signs and original-zeta comparison',fontsize=12,color='#46566b')
+ax.add_patch(Circle((2.5,8.9),1.32,facecolor='#edf6ff',edgecolor='#385c83',linewidth=1.6))
+ax.plot([1.18,3.82],[8.9,8.9],linestyle=':',color='#6d8199')
+ax.plot(2.5,10.22,'o',color='#c65252'); ax.plot(2.5,7.58,'o',color='#c65252')
+ax.text(2.5,10.5,r'$0\mapsto x_+$',ha='center',fontsize=13)
+ax.text(2.5,7.22,r'$\infty\mapsto x_-$',ha='center',fontsize=13)
+ax.text(2.5,9.1,r'$Y=\mathbb{P}^1(\mathbb{C})$',ha='center',fontsize=15)
+ax.text(2.5,8.52,r'$\mathbb{C}^{\times}\mapsto\eta$',ha='center',fontsize=14)
+arr(4.25,8.9,5.5,8.9,r'$\pi$')
+box(5.8,8.1,3.25,1.65,r'$X=\{x_+,\eta,x_-\}$'+'\n'+r'$\mathscr{F}=\pi^{-1}\Omega$'+'\nBoth original restrictions retained',size=12)
+box(9.8,8.1,5.3,1.65,r'$H^1(Y,\mathscr{F})=Q=A/J$'+'\n'+r'$H^2(Y,\mathscr{F})=A(-1)$'+'\n'+r'$\mathsf{B}_n:\quad T_n,\quad nT_n$',c='#e5f1e9',size=14)
+ax.text(8,6.72,r'$b_n(z)=z^n,\qquad \int_Y b_n^*\omega_Y=n,\qquad T_n a(u)=a(u/n)$',ha='center',fontsize=15)
+ax.text(8,6.26,'The factor n is the degree of the actual cover. The support η is not a coordinate center on Y.',ha='center',fontsize=12)
+ax.plot([.55,15.45],[5.94,5.94],color='#adb7c5')
+ax.text(.65,5.5,'The map of sheaves produces the precise normal quotient',fontsize=16,weight='bold')
+ax.text(8,4.98,r'$0\longrightarrow\mathscr{F}_J\longrightarrow\mathscr{F}\longrightarrow j_!Q_{\mathrm{const}}\longrightarrow0$',ha='center',fontsize=18)
+ax.text(8,4.55,'Q_const denotes the constant sheaf with fibre Q on the punctured sphere.',ha='center',fontsize=10)
+box(.9,3.55,3.3,.8,r'$J(-1)$',size=17)
+box(5.05,3.55,4.0,.8,r'$A(-1)$',c='#e5f1e9',size=17)
+box(10.0,3.55,5.1,.8,r'$H^2(Y,j_!Q_{\mathrm{const}})=Q(-1)$',size=16)
+arr(4.4,3.95,4.85,3.95); arr(9.2,3.95,9.8,3.95)
+ax.text(8,3.05,r'$\mathfrak{n}(a)=[(1-E_+(s))(\Theta a)(s-1)],\qquad\Theta a=\frac{1}{2}\int_0^\infty a(u)u^s\,du/u$',ha='center',fontsize=14)
+ax.text(8,2.6,'Kernel exactly J(−1); image exactly the shifted-original-zeta kernel in GSL. [CSP11.12]',ha='center',fontsize=12)
+ax.plot([.55,15.45],[2.28,2.28],color='#adb7c5')
+ax.text(.65,1.86,'Positive complex orientation fixes the signs',fontsize=15,weight='bold')
+ax.text(.8,1.3,r'$\partial_{\rm loop}(a)=(-a,a),\qquad k^2(c_+,c_-)=c_++c_-$',fontsize=14)
+ax.text(.8,.84,r'$w(z)=-1/z:\ H^2\mapsto+R;\qquad\alpha(z)=-1/\overline{z}:\ H^2\mapsto-R$',fontsize=14)
+ax.text(.55,.39,'Schematic of derived maps; no metric, coordinate or operation on '+r'$\tau\langle Z_1;\ \mathrm{no}\ Z_2\rangle$'+'.',fontsize=10,color='#46566b')
+ax.text(.55,.14,'Sources: Connes–Consani, arXiv:0903.2024v3 §5; arXiv:2609.00299v1 §§3–4. Full proofs: CSP2–CSP12.',fontsize=10,color='#46566b')
+for ext in ('png','svg'): fig.savefig(r/('sphere_normal_receiver.'+ext),dpi=160,facecolor=fig.get_facecolor())
+plt.close(fig)

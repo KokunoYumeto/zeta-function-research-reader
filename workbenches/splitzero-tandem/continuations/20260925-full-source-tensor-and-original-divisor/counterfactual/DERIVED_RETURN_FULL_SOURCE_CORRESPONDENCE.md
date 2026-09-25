@@ -1,0 +1,200 @@
+# The derived return and the complete arithmetic source correspondence
+
+25 September 2026. Complete derivation FSC0–FSC6.
+
+## FSC0. Why the whole source must be checked
+
+The product pairing and the derived diagonal return have been constructed on the actual Connes–Consani receiving topology in [PRS](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/ORIGINAL_RESIDUE_PRODUCT_SHEAF_PAIRING.md), [RPD](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/RESIDUE_PRODUCT_DIAGONAL_INDEPENDENT.md) and [the derived return](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/counterfactual/DIAGONAL_EXTRAORDINARY_RETURN.md). The user's complete-spectrum argument requires a further check: retain every original arithmetic point when returning from that receiving base. The calculation here performs this check, identifies the exact limit of a single-map return, and constructs the full correspondence with its coefficient maps.
+
+The source definitions remain [B1–B5 and retraction R1](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/foundations/user_definitions_20260924/SOURCE_OPERATIONS_AND_PROOFS.md). The two-chart arithmetic space used here is the specified source-induced construction [DCP1–DCP2](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/original-character-lifting/tau_lifting_weights_20260924/SOURCE_CC_DOUBLE_PULLBACK.md); it is not itself a numerical definition of primitive \(Z_1/\tau\). All integer and prime data used below are in the already supplied arithmetic layer. No counting operation on \(\tau\), source addition, new parity, or source weight is used. The user's whole-spectrum, global-quotient and operation-prerequisite arguments are retained in the complete corpus, in particular USR-9ad1c0a2d09dba92, USR-6152e3bc6302258c and USR-4322be19bff532cd.
+
+Human provenance: Alain Connes and Caterina Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, 0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3), for the receiving base and coefficient geometry. DCP constructs the actual source comparison used here. The full source-return calculation below is a programme derivation, not a claim found verbatim in that paper. The duality target remains Pierre Deligne's [*La conjecture de Weil. II*, §§3.3.11 and 3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/), without importing its finite-field weight assertions.
+
+## FSC1. The exact spaces and the specified return
+
+Put
+\[
+X=U\cup\{\mathfrak m_+,\mathfrak m_-\},\qquad U=\operatorname{Spec}\mathbb Z.
+\]
+The opens of \(X\) are the ordinary opens contained in \(U\), the two full charts \(X_\pm=U\cup\{\mathfrak m_\pm\}\), and \(X\) itself. This is the topology already constructed in DCP; it retains each arithmetic point separately. Let
+\[
+f:X\to Y=\{c_+,c_-,\eta\},\qquad f(U)=\{\eta\},\quad f(\mathfrak m_\pm)=c_\pm.
+\tag{FSC1.1}
+\]
+The receiving map in the derived return is
+\[
+q:Y^2\to Y,\qquad
+q(c_+,c_+)=c_+,\quad q(c_-,c_-)=c_-,\quad
+q(x,y)=\eta\text{ at the other seven points}.
+\tag{FSC1.2}
+\]
+It is continuous: the inverse image of \(U_+\) is the complement of the closed point \((c_-,c_-)\), the inverse image of \(U_-\) is the complement of \((c_+,c_+)\), and the inverse image of \(\{\eta\}\) is the complement of both. Its diagonal section is \(\Delta_Y(y)=(y,y)\).
+
+All squares and products in this note are the indicated topological products and their sheaves. They are not identified with an arithmetic scheme fibre product over an unstated base.
+
+## FSC2. A return map preserving the full arithmetic diagonal cannot lift this q
+
+There is no continuous map \(\widetilde q:X^2\to X\) satisfying both
+\[
+f\widetilde q=q(f\times f),\qquad \widetilde q\Delta_X=\operatorname{id}_X,
+\quad\Delta_X(x)=(x,x).
+\tag{FSC2.1}
+\]
+This is a precise statement about the displayed map \(q\), spaces and two equations, not a nonexistence assertion about the user's source or every geometric return.
+
+To prove it, first calculate the closure of an arithmetic closed point \(p\):
+\[
+\overline{\{p\}}^{\,X}=\{p,\mathfrak m_+,\mathfrak m_-\}.
+\tag{FSC2.2}
+\]
+Inside \(U\), the ordinary prime point is closed. Every neighbourhood of either \(\mathfrak m_\pm\) contains the entire \(U\), hence contains \(p\). No other point lies in the closure, by these same open sets and the ordinary closure in \(U\). In the product topology, the closure of a singleton pair is the product of the two singleton closures: a basic product neighbourhood meets that singleton exactly when its two component neighbourhoods do. Therefore
+\[
+(\mathfrak m_+,\mathfrak m_-)\in\overline{\{(p,p)\}}^{\,X^2}
+\quad\text{for every arithmetic prime }p.
+\]
+Continuity and the second equation of (FSC2.1) force
+\[
+\widetilde q(\mathfrak m_+,\mathfrak m_-)
+\in\bigcap_p\overline{\{p\}}^{\,X}
+=\{\mathfrak m_+,\mathfrak m_-\}.
+\tag{FSC2.3}
+\]
+The last equality already follows from two distinct prime points, and remains the intersection for the entire spectrum. But the first equation of (FSC2.1) gives
+\[
+f\widetilde q(\mathfrak m_+,\mathfrak m_-)=q(c_+,c_-)=\eta,
+\]
+so that same image must belong to \(U=f^{-1}\{\eta\}\). The two specified subsets of \(X\) are disjoint. This proves the claim from the exact topology and map requirements.
+
+The operation prerequisites explain its scope. The diagonal identity was required to keep each recovered arithmetic point, including all prime points, rather than select a constant arithmetic output. The contradiction does not arise from adding primitive \(\tau\) or assigning it a coordinate. It rules out only a continuous single-valued lift of this particular receiving return with that diagonal requirement.
+
+## FSC3. Construct the full return as a correspondence
+
+Define the topological fibre product
+\[
+\mathcal Z=\{(x,y,z)\in X^2\times X:f(z)=q(f(x),f(y))\}
+\tag{FSC3.1}
+\]
+with its subspace topology. It has continuous projections
+\[
+a:\mathcal Z\to X^2,\quad a(x,y,z)=(x,y),\qquad
+b:\mathcal Z\to X,\quad b(x,y,z)=z.
+\tag{FSC3.2}
+\]
+Their exact relation is
+\[
+fb=q(f\times f)a.
+\tag{FSC3.3}
+\]
+Every fibre of \(a\) is explicitly determined:
+\[
+a^{-1}(\mathfrak m_+,\mathfrak m_+)=\{(\mathfrak m_+,\mathfrak m_+,\mathfrak m_+)\},
+\]
+\[
+a^{-1}(\mathfrak m_-,\mathfrak m_-)=\{(\mathfrak m_-,\mathfrak m_-,\mathfrak m_-)\},
+\]
+\[
+a^{-1}(x,y)=\{(x,y,z):z\in U\}\cong U
+\quad\text{for every other pair }(x,y).
+\tag{FSC3.4}
+\]
+These are homeomorphisms onto the indicated subspace fibres, since the first two coordinates are fixed. In particular \(a\) is onto and every arithmetic output point is retained in every nonexceptional fibre; the original primes have not been replaced by their image \(\eta\).
+
+There is a continuous lifted diagonal
+\[
+\delta_X:X\to\mathcal Z,\qquad x\mapsto(x,x,x).
+\tag{FSC3.5}
+\]
+Its image lies in \(\mathcal Z\) because \(q\Delta_Y=\operatorname{id}_Y\). Continuity is that of the ordinary triple diagonal followed by restriction of codomain. The identities
+\[
+a\delta_X=\Delta_X,\qquad b\delta_X=\operatorname{id}_X
+\tag{FSC3.6}
+\]
+are pointwise. Thus the correspondence preserves every point of the full arithmetic diagonal, exactly where a single-valued return in (FSC2.1) fails. No closedness, properness, or scheme structure is asserted for \(\mathcal Z\) without proof.
+
+## FSC4. Exact coefficient morphisms on the correspondence
+
+For every receiving sheaf \(\mathcal G\) on \(Y\), the equality of continuous maps (FSC3.3) induces the canonical isomorphism
+\[
+a^{-1}(f\times f)^{-1}q^{-1}\mathcal G
+\xrightarrow{\ \cong\ }b^{-1}f^{-1}\mathcal G.
+\tag{FSC4.1}
+\]
+Here is its explicit construction. At \((x,y,z)\), the left stalk is \(\mathcal G_{q(f(x),f(y))}\) and the right stalk is \(\mathcal G_{f(z)}\). The defining equality in (FSC3.1) identifies these as the same stalk; the map is its identity. All restriction maps are induced by the same composite continuous map in (FSC3.3). The stalkwise identity maps therefore define mutually inverse sheaf morphisms. This is also the usual composition isomorphism of inverse-image functors, now with every map specified.
+
+The derived-return calculation proves \(q^{-1}\mathcal G=\Delta_{Y*}\mathcal G\), including all receiving restrictions. Substitution in (FSC4.1) proves the exact return of that diagonal direct image through the correspondence:
+\[
+a^{-1}(f\times f)^{-1}\Delta_{Y*}\mathcal G
+\cong b^{-1}f^{-1}\mathcal G.
+\tag{FSC4.2}
+\]
+Likewise the original product morphism
+\(\beta:\mathcal F\boxtimes\mathcal F\to j_{\eta\eta!}\chi_{\rm dil}\mathbb C\)
+pulls back along \((f\times f)a\) to a sheaf morphism on \(\mathcal Z\). Its nonzero-amplitude component is exactly the original contour (PRS1.4); neither its denominator nor any support label changes. Pulling further along \(\delta_X\) gives precisely the ordinary diagonal pullback already calculated, since
+\((f\times f)a\delta_X=\Delta_Yf\).
+
+These identities concern the constructed inverse-image maps. They do not assume a proper-base-change identity for the projections \(a,b\), nor replace \(R\Delta_Y^!\) by ordinary inverse image. They construct an explicit correspondence preserving the complete arithmetic diagonal and every nonexceptional arithmetic fibre. FSC6 computes its derived coefficient return directly.
+
+## FSC5. Result and the next receiving object
+
+The receiver's derived diagonal return is valid and restores its original global trace. FSC2 proves exactly why that receiver map must not be called a continuous single-valued return of the entire arithmetic source satisfying (FSC2.1). FSC3–FSC4 immediately constructs the full alternative: the topological fibre product, both projections, the lifted full diagonal, every fibre and the actual coefficient isomorphisms. This applies the user's whole-spectrum requirement instead of discarding it at the finite receiving base.
+
+The resulting object for source-level duality is \(\mathcal Z\) with \((a,b,\delta_X)\) and the coefficient morphism (FSC4.2). The next calculation is its actual derived direct-image return. It is carried out in FSC6 below, retaining the full arithmetic fibres. This result asserts neither a numerical weight on primitive \(Z_1/\tau\) nor a proof or disproof of RH.
+
+## FSC6. The full correspondence has an exact derived coefficient return
+
+Write \(r=f\times f\), \(v=qr:X^2\to Y\), and \(g=fb=va:\mathcal Z\to Y\). For every sheaf \(\mathcal G\) of complex vector spaces on \(Y\), the canonical unit gives an actual quasi-isomorphism
+\[
+\boxed{v^{-1}\mathcal G\longrightarrow Ra_*g^{-1}\mathcal G
+=Ra_*b^{-1}f^{-1}\mathcal G.}
+\tag{FSC6.1}
+\]
+The same statement holds for bounded sheaf complexes, with their full differentials. This is a derived calculation on the specified correspondence, not an assumed general base-change theorem.
+
+To prove it, let \(o=(0)\in\operatorname{Spec}\mathbb Z\) be the original generic arithmetic point. Every nonempty open of \(X\) contains \(o\). Thus every nonempty open of \(X^2\) contains \((o,o)\). The triple \((o,o,o)\) belongs to \(\mathcal Z\), and every nonempty relative open of \(\mathcal Z\) contains it: that open is an intersection with an ambient open in \(X^3\), all of whose nonempty product neighbourhoods contain the generic triple. Consequently the constant sheaf with value any complex vector space \(V\) is exactly the direct image of \(V\) from that generic point, on each of \(X^2\) and \(\mathcal Z\). This assertion concerns the open-set sections, all equal to \(V\) on nonempty opens with identity restrictions.
+
+Such a sheaf is injective in the algebraic category of sheaves of complex vector spaces. In fact, for any point inclusion \(i_x\),
+\[
+\operatorname{Hom}(\mathcal H,i_{x*}V)=\operatorname{Hom}(\mathcal H_x,V).
+\]
+The stalk functor is exact, and linear maps from a subspace into \(V\) extend by a vector-space complement. Hence the right-hand functor is exact in \(\mathcal H\). This proves injectivity both for the stated generic-point constant sheaves and for the closed-point skyscrapers below; it makes no assertion about injectivity in a category requiring continuous linear maps.
+
+Use the three receiving injectives
+\[
+I_\eta(V)=(V\xrightarrow{1}V\xleftarrow{1}V),\qquad
+I_+(V)=(V\to0\leftarrow0),\qquad I_-(V)=(0\to0\leftarrow V),
+\tag{FSC6.2}
+\]
+where the entries in the last two diagrams are the plus, generic and minus entries in that order. The inverse images of \(I_\eta(V)\) by \(v\) and \(g\) are the constant sheaves just computed. The inverse image of \(I_+(V)\) is the skyscraper at \((\mathfrak m_+,\mathfrak m_+)\) on \(X^2\), respectively at \((\mathfrak m_+,\mathfrak m_+,\mathfrak m_+)\) on \(\mathcal Z\). The minus case has the corresponding minus points. To prove these sheaf identifications, their inverse-image stalks are \(V\) exactly at the indicated fibre points and zero elsewhere. The adjunction map to the skyscraper is identity at that point and an isomorphism on every other zero stalk, and is therefore a sheaf isomorphism.
+
+All of these inverse-image sheaves on \(\mathcal Z\) are injective by the preceding point-inclusion argument. Moreover their direct images along \(a\) are exactly their counterparts on \(X^2\), with the canonical unit equal to identity. For the constant sheaf, \(a^{-1}O\) is nonempty for each nonempty open \(O\subset X^2\) because \(a\) is onto, and it contains the same generic triple. Its sections are \(V\), giving the identity on every nonempty open. For a skyscraper this follows from the literal equality of composites from the indicated point through \(a\). There are no higher derived direct images, since each sheaf on \(\mathcal Z\) is injective.
+
+For completeness every receiving sheaf \(\mathcal G=(V_+\xrightarrow{s_+}B\xleftarrow{s_-}V_-)\) has the following finite, functorial injective resolution:
+\[
+0\to\mathcal G\longrightarrow
+I_\eta(B)\oplus I_+(V_+)\oplus I_-(V_-)
+\longrightarrow I_+(B)\oplus I_-(B)\to0.
+\tag{FSC6.3}
+\]
+At the generic stalk the first map is identity and the last target is zero. At the plus stalk the first map is \(x\mapsto(s_+x,x)\), and the differential is \((b,x)\mapsto b-s_+x\); at the minus stalk it is \(x\mapsto(s_-x,x)\) with differential \((b,x)\mapsto b-s_-x\). These maps commute with the original restrictions. Their kernels and surjectivity prove exactness at all three stalks. Every term is injective by the same evaluation adjunction used in FTD.
+
+Inverse image is exact for these sheaves and sends every term of (FSC6.3) to one of the injectives already computed on \(\mathcal Z\). It is therefore an injective resolution of \(g^{-1}\mathcal G\). Applying \(a_*\) gives term by term the identical resolution obtained by \(v^{-1}\) from (FSC6.3), with the same differentials and unit. This proves (FSC6.1). For a bounded complex, use the functorial resolution (FSC6.3) in each degree and its total complex; it is a bounded complex of injectives after \(g^{-1}\), so the same termwise proof applies without dropping any degree.
+
+Combining (FSC6.1) with the exact receiving identity \(q^{-1}=\Delta_{Y*}\) proves
+\[
+\boxed{Ra_*b^{-1}f^{-1}\mathcal G\cong
+(f\times f)^{-1}\Delta_{Y*}\mathcal G.}
+\tag{FSC6.4}
+\]
+In particular one may substitute the already constructed full complex
+\(\mathcal G=Rq_*K\) or \(\mathcal G=Rq_*(\mathcal F\boxtimes\mathcal F)\), and the actual morphism between them. All are bounded by DER. The isomorphism is natural in \(\mathcal G\), so it retains that morphism, every term and the counit; it does not assert a new scalar equality merely because cohomology dimensions agree. The full arithmetic source return is therefore constructed as a correspondence with an exact derived coefficient comparison. A numerical weight separation is not inserted into that comparison.
+
+### The degree-one mixed obstruction has an explicit global equivariant contraction
+
+GLOBAL_MIXED_RETURN_CONTRACTION.md, GMC0–GMC7, follows the generic mixed row into its complete global sheaf complex. The actual section s_+(j)=(Sigma^{-1}j,0,0) is continuous and dilation equivariant, using the already proved summation inverse. It gives S(m_1,m_2)=(-(s_+ tensor1)m_1,(1 tensor s_+)m_2,0,0), with d_M S=id. The exact global cochain map is (id-Sd_M,vartheta), onto K_0 in degree0 and Q tensor Q in degree1, with zero differential. Its entire kernel is [S(M)→iota(M)], contracted by h(iota m)=Sm. Every original prime action intertwines.
+
+Thus the degree-one mixed obstruction is killed by the constructed contraction of ker(F)=[S(M)→iota(M)]. The full mixed subsheaf retains RΓ(Y,N)≃K_0[0], with K_0=(H tensor Q) direct-sum (Q tensor H); it is not asserted to be acyclic. The generic polynomial representative P(L_total)z=iota m becomes the exact global boundary d(Sm). All original endpoint and extra copies remain in K_0=(H tensor Q) direct-sum (Q tensor H); the original residue trace factors through the computed map with coefficient +1. This is a theorem in the specified algebraic tensor/sheaf calculation, with no assumption of completed-tensor cohomology, mirror equivariance of the plus-only section, or numerical purity. The remaining Q operators and all primary nilpotents are retained explicitly in GMC6.3.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

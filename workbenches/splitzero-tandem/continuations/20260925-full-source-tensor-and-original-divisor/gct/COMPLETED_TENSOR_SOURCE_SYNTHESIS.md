@@ -1,0 +1,203 @@
+# Spectral synthesis on the original completed tensor source
+
+Complete derivation CTS0–CTS6, 25 September 2026. This calculation combines the full-source approximation GSP with the actual tensor maps TWC. It proves statements left open when those calculations were performed separately.
+
+## CTS0. Corrected construction and exact dependencies
+
+The supporting datum is still \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). No addition, coordinate, metric, vector or midpoint is assigned to it. All coefficient spaces and arithmetic operators below occur after the complete-history reconstruction. The separate branch counters and original return measures are unchanged. The full user argument and correction record governs these operations; the new approximation does not supply an alternative definition of arithmetic.
+
+GSP7 proves continuous finite-rank operators \(K_j=\overline K_j:\mathcal R\to\mathcal R\) converging to identity uniformly on bounded sets in the **original** Fréchet quotient topology. Here
+\[
+\mathcal R=\mathcal B/\mathcal B_O=\mathcal Q/N_O,
+\quad \mathcal B_O=\{F\in\mathcal B:F(\lambda)=0\ (\lambda\in\mathscr Z_O)\},
+\tag{CTS0.1}
+\]
+and \(\mathscr Z_O\) is the actual off-critical-line subset of the nontrivial zeros of original \(\zeta\). The original full-jet quotient \(\mathcal Q=\mathcal B/\mathcal I\) remains, with every higher jet in the specified kernel of \(\mathcal Q\to\mathcal R\). GSP does not assume RH, simplicity of zeros, or identification of this quotient topology with a sequence topology.
+
+For the original value isolator \(v_\lambda\in\mathcal R\), the formula is
+\[
+K_jx=\sum_{\substack{\lambda\in\mathscr Z_O\\|\Im\lambda|<T_j}}
+e^{\lambda^2/j}\,\mathrm{ev}_\lambda(x)\,v_\lambda.
+\tag{CTS0.2}
+\]
+The finite sum, its nonzero Gaussian coefficients and the convergence in the original quotient topology are proved in GSP4 and GSP7, rather than postulated here. The heights are GSP's zero-free heights \(T_j\in[j^6,j^6+1]\), with the finitely many initial choices as specified there.
+
+TWC2–3 construct the continuous map
+\[
+b_k:\mathscr R_k=\mathcal R^{\widehat\otimes_\pi k}\longrightarrow\mathscr H_k,
+\quad
+(b_kx)_{\boldsymbol\rho}=\Bigl(\prod_{a=1}^k\delta_{\rho_a}\Bigr)
+\varepsilon_{\boldsymbol\rho^\#}(x),
+\tag{CTS0.3}
+\]
+where \(\varepsilon_{\boldsymbol\lambda}=\mathrm{ev}_{\lambda_1}\widehat\otimes\cdots\widehat\otimes\mathrm{ev}_{\lambda_k}\),
+\(\rho^\#=1-\overline\rho\), and
+\[
+\delta_\rho=e^{i\Im\rho\log r}(r^{\Re\rho}-r^{1-\Re\rho}),\quad r>1.
+\tag{CTS0.4}
+\]
+Every \(\delta_\rho\) on this actual off-line set is nonzero. Its magnitude is not given a positive uniform lower bound. The receiver retains the norms
+\[
+P_N(y)^2=\sum_{\boldsymbol\rho\in\mathscr Z_O^k}
+\Bigl(\prod_a m_{\rho_a}\Bigr)\Bigl(\prod_a(1+|\Im\rho_a|)\Bigr)^{2N}
+|y_{\boldsymbol\rho}|^2.
+\tag{CTS0.5}
+\]
+
+The original source transform remains
+\[
+\Theta a(s)=\tfrac12\int_0^\infty a(u)u^s\frac{du}{u},\qquad
+\Theta^{-1}F(u)=\frac{u^{-1/2}}\pi\int_{\mathbb R}F(1/2+it)u^{-it}\,dt.
+\tag{CTS0.6}
+\]
+Its full source multiplier is
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\quad F_0(0)=F_0(1)=\tfrac18,\quad F_0(-1)=F_0(2)=\tfrac\pi{24},
+\]
+\[
+F_0(-2a)=\frac{a(2a+1)(-1)^a\pi^a}{2a!}\zeta'(-2a)\quad(a\ge1).
+\tag{CTS0.7}
+\]
+At a zero \(\rho\) its full germ is the product in TWC1.5, and every derivative uses TWC1.6's complete Leibniz sum. None of these factors or exceptional values is changed by tensoring the already constructed maps. The original arithmetic stays
+\[
+\zeta(s)=1+\sum_{n\ge2}n^{-s}=\prod_p(1-p^{-s})^{-1},\qquad
+-\frac{\zeta'}\zeta(s)=\sum_p\sum_{a\ge1}(\log p)p^{-as}\quad(\Re s>1).
+\tag{CTS0.8}
+\]
+This proof uses the local GSP and TWC derivations, not a new reading of a human paper. Their pinned CC and Deligne provenance remains in their source ledgers.
+
+## CTS1. Equicontinuity before completed tensoring
+
+Choose increasing continuous seminorms \(p_\ell\) defining the original Fréchet topology of \(\mathcal R\). For each fixed \(p_\ell\), convergence of \(K_jx\) implies \(\sup_jp_\ell(K_jx)<\infty\) for every \(x\). To obtain the needed uniform estimate, consider the closed sets
+\[
+E_m=\{x:\sup_jp_\ell(K_jx)\le m\},\qquad \mathcal R=\bigcup_{m\ge1}E_m.
+\]
+The Baire property gives one set with nonempty interior. Differences of two points in an interior translate give a neighborhood \(V\) of zero on which \(\sup_jp_\ell(K_jx)\le2m\). Choose \(d\) and \(\epsilon>0\) such that \(p_d(x)<\epsilon\) implies \(x\in V\). Rescale \(x\), then let the rescaling approach the boundary, to obtain
+\[
+\sup_jp_\ell(K_jx)\le C p_d(x)\quad(x\in\mathcal R).
+\tag{CTS1.1}
+\]
+If \(p_d(x)=0\), apply the bound to arbitrary scalar multiples of \(x\); it forces the left side to be zero. Enlarging \(d\) and \(C\) also bounds \(p_\ell(x)\). Thus both the identity and all \(K_j\) have a common seminorm bound. This derives the required equicontinuity from the actual Fréchet approximation.
+
+On the algebraic \(k\)-fold tensor product, let \(\pi_\ell\) be the projective seminorm obtained from \(p_\ell\) in every factor. The family is cofinal because any finite set of source seminorms is bounded by one of the increasing family, with constants retained. Taking the infimum over finite tensor representations in (CTS1.1) gives
+\[
+\pi_\ell(K_j^{\otimes k}x)\le C^k\pi_d(x).
+\tag{CTS1.2}
+\]
+These maps therefore extend continuously to the Hausdorff completion \(\mathscr R_k\), uniformly with this estimate. Their ranges remain finite dimensional: each is contained in the finite tensor product of \(\mathrm{im}K_j\), which is a closed finite-dimensional subspace of the Hausdorff completed tensor space. The coordinates \(\varepsilon_{\boldsymbol\lambda}\) separate that finite span, so its embedding and the stated range identification are explicit.
+
+## CTS2. Convergence and the complete source expansion
+
+On a decomposable tensor the telescoping identity is
+\[
+K_j^{\otimes k}(x_1\otimes\cdots\otimes x_k)-x_1\otimes\cdots\otimes x_k
+=\sum_{a=1}^k K_jx_1\otimes\cdots\otimes K_jx_{a-1}
+\otimes(K_jx_a-x_a)\otimes x_{a+1}\otimes\cdots\otimes x_k.
+\tag{CTS2.1}
+\]
+Each summand tends to zero in every projective seminorm: the differing factor tends to zero and every other factor is bounded in the required source seminorm. Hence there is convergence on finite algebraic sums. For an arbitrary completed tensor \(x\), first choose an algebraic tensor \(x_0\) close in \(\pi_d\) for the common bound (CTS1.2) and for the identity. Then
+\[
+\pi_\ell((K_j^{\widehat\otimes k}-1)x)
+\le(C^k+1)\pi_d(x-x_0)+\pi_\ell((K_j^{\otimes k}-1)x_0),
+\tag{CTS2.2}
+\]
+after enlarging the constants if necessary. The second term tends to zero, and the first can be made arbitrarily small. We have proved
+\[
+K_j^{\widehat\otimes k}x\longrightarrow x\quad\hbox{in the original completed projective topology.}
+\tag{CTS2.3}
+\]
+Equicontinuity and finite nets also give uniform convergence on compact subsets. We do not need or infer uniform convergence on every bounded subset of this tensor space.
+
+Tensoring the finite formula (CTS0.2), first on simple tensors and then on the completion by continuity, yields the exact reconstruction
+\[
+K_j^{\widehat\otimes k}x=
+\sum_{\substack{\boldsymbol\lambda\in\mathscr Z_O^k\\|\Im\lambda_a|<T_j\ (1\le a\le k)}}
+\exp\!\left(\frac1j\sum_{a=1}^k\lambda_a^2\right)
+\varepsilon_{\boldsymbol\lambda}(x)
+\,v_{\lambda_1}\otimes\cdots\otimes v_{\lambda_k}.
+\tag{CTS2.4}
+\]
+Every cutoff, factor and evaluation is retained. In particular the linear span of these finite tensor blocks is dense in the original completed source.
+
+## CTS3. The completed tensor map is injective
+
+Suppose \(b_kx=0\). Equation (CTS0.3) and the nonzero factors (CTS0.4) give \(\varepsilon_{\boldsymbol\lambda}(x)=0\) for every actual tuple. Formula (CTS2.4) then gives \(K_j^{\widehat\otimes k}x=0\) for every \(j\). Passing to the actual source limit (CTS2.3) yields \(x=0\). Consequently
+\[
+\boxed{\ker b_k=0\quad\text{on }\mathcal R^{\widehat\otimes_\pi k}.}
+\tag{CTS3.1}
+\]
+This discharges the completed-kernel question explicitly retained in TWC3.2 and TRC3. The older statements did not assert a nonzero kernel; they correctly retained it until this additional convergence theorem was available. No assumption of exactness of arbitrary completed projective tensor products is used.
+
+TWC3 already constructs all finite-coordinate vectors in the image. Thus \(b_k\) is a continuous injective map with dense image into \(\mathscr H_k\). Formula (CTS3.1) alone proves neither surjectivity nor a topological embedding. Its stronger source-weighted receiver from TWC10.10, and the original source topology, are retained.
+
+## CTS4. All positive transfer forms intrinsic to the tensor source
+
+The genuine product pullback and weighted transfer on \(\mathscr R_k\) are
+\[
+U_n=T_n^{\widehat\otimes k},\qquad V_n=(nT_{1/n})^{\widehat\otimes k},\qquad V_nU_n=n^k1.
+\tag{CTS4.1}
+\]
+Both are continuous by the already constructed coefficient action. Consider the family \(\mathcal P_k\) of **all** jointly continuous positive semidefinite Hermitian forms on this original completed source, linear in the first argument, such that
+\[
+B(U_nx,y)=B(x,V_ny)\quad(n\ge1).
+\tag{CTS4.2}
+\]
+For a finite tensor isolator \(v_{\boldsymbol\lambda}=v_{\lambda_1}\otimes\cdots\otimes v_{\lambda_k}\), the eigenvalue is \(n^{\sum_a\lambda_a}\). Apply (CTS4.2) to \((v_{\boldsymbol\lambda},U_nv_{\boldsymbol\lambda})\). The left side is \(n^{2\Re\sum_a\lambda_a}B(v_{\boldsymbol\lambda},v_{\boldsymbol\lambda})\), and the right side is \(n^k B(v_{\boldsymbol\lambda},v_{\boldsymbol\lambda})\). Any recovered integer \(n>1\) therefore shows that
+\[
+\Re\sum_a\lambda_a\ne k/2
+\quad\Longrightarrow\quad B(v_{\boldsymbol\lambda},v_{\boldsymbol\lambda})=0.
+\tag{CTS4.3}
+\]
+Positivity implies Cauchy–Schwarz, proved by expanding \(B(u+tv,u+tv)\ge0\) for arbitrary complex \(t\); a zero-norm vector pairs to zero with every vector. Thus every noncentered finite tensor lies in every such form's radical.
+
+Let
+\[
+\mathscr D_k^{\rm src}=\bigcap_{\substack{\boldsymbol\lambda\in\mathscr Z_O^k\\\Re\sum_a\lambda_a=k/2}}
+\ker\varepsilon_{\boldsymbol\lambda}.
+\tag{CTS4.4}
+\]
+It is closed. If \(x\) lies there, (CTS2.4) uses only noncentered finite tensors, so every approximation lies in every form's radical. Continuity and (CTS2.3) give the same for \(x\).
+
+Conversely TWC10.4 constructs the positive product-transfer form
+\[
+B_0^{\rm src}(x,y)=\sum_{\substack{\boldsymbol\rho\in\mathscr Z_O^k\\\Re\sum_a\rho_a^\#=k/2}}
+\Bigl(\prod_a m_{\rho_a}\Bigr)(b_kx)_{\boldsymbol\rho}
+\overline{(b_ky)_{\boldsymbol\rho}}.
+\tag{CTS4.5}
+\]
+It is jointly continuous on the original source because \(b_k\) is continuous. Its norm is zero precisely when all centered evaluations in (CTS4.4) are zero, since every multiplicity is positive and every product of \(\delta\)'s is nonzero. We conclude
+\[
+\boxed{\bigcap_{B\in\mathcal P_k}\operatorname{rad}B
+=\mathscr D_k^{\rm src}
+=\overline{\operatorname{span}\{v_{\boldsymbol\lambda}:\Re\sum_a\lambda_a\ne k/2\}}^{\,\mathscr R_k}.}
+\tag{CTS4.6}
+\]
+For the last equality, the span is contained in the closed intersection of centered kernels; its Gaussian approximants reconstruct every vector in that intersection. This extends the common-radical theorem to **all continuous forms on the actual tensor source**, including forms not known to factor continuously through the rapid receiver. No assertion about the topology generated by that larger form family is required or inferred.
+
+## CTS5. Retained original pairing and the fixed-base continuation
+
+For \(k=1\), every actual off-line coordinate is noncentered, so (CTS4.6) recovers the zero positive-form family on \(\mathcal R\). For \(k=2\), each pair \((\lambda,\lambda^\#)\) is centered, with exact cover eigenvalue \(n^{1+2i\Im\lambda}\). The two finite tensors
+\[
+u=v_\lambda\otimes v_{\lambda^\#},\qquad v=v_{\lambda^\#}\otimes v_\lambda
+\]
+survive the positive common quotient whenever the actual off-line coordinate is present. Their original complementary Weil tensor pairing remains
+\[
+W_R^{\otimes2}(u\pm v,u\pm v)=\pm2m_\lambda^2,
+\qquad B_0^{\rm src}(u\pm v,u\pm v)=2m_\lambda^2|\delta_\lambda|^4.
+\tag{CTS5.1}
+\]
+These are TWC10.8–12's exact original-source evaluations, not two names for the same form. The completed-source injectivity now proves there is no additional unseen tensor kernel explaining their difference.
+
+The next calculation prompted by this result, using the preceding geometric work as well, is the tensor complex **over the single existing sphere**. Its local terms are TWC8.2–4 with their Koszul signs. Its global angular class carries one sphere-degree factor, while the external product in TWC9 carries a product of those factors. The fixed-base cochain calculation is being performed on that actual complex; no fixed \(+2\) weight is assigned to a coefficient merely to copy Deligne's conclusion. CTS proves exact source reconstruction and detection, not vanishing of the original specialization or its derived connecting class.
+
+## CTS6. Proof-use and propagation record
+
+GSP4 and GSP7 supply the additional hypothesis already proved on the original quotient: finite-rank spectral synthesis in its Fréchet topology. CTS1–3 perform the completed tensor argument, rather than treating TWC's former kernel qualification as a reason to stop. CTS4 uses that reconstruction to remove the earlier restriction to forms continuous on a selected receiver. The remaining differences of topology and of the original Weil pairing are recorded with their exact maps and kernels.
+
+The full proof inputs are [Gaussian spectral synthesis](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/gct/GAUSSIAN_SPECTRAL_SYNTHESIS.md), [its independent derivation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/gct/GAUSSIAN_SPECTRAL_SYNTHESIS_INDEPENDENT.md), [the actual tensor calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/gct/ACTUAL_SPECIALIZATION_TENSOR_WEIGHT_COMPARISON.md), and [the independent tensor receiver proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/gct/TENSOR_RECEIVER_INDEPENDENT_CHECK.md). The cumulative edition retains them in full. Earlier TWC3/TRC3 and TWC10 scopes are strengthened by CTS3 and CTS4, respectively; their earlier text is preserved for provenance. Nothing here claims a new complete reading of CC or Deligne, an arithmetic purity theorem, or a resolution of RH.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

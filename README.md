@@ -1,5 +1,15 @@
 # Split-Zero cohomology and the zeta-function research programme
 
+<!-- three-task-update-20260925 -->
+## Full-source tensor and original-zeta continuation
+
+The shared [edition guide](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor) brings together full-source spectral synthesis and tensor comparison, positive-measure classification and the original-zeta divisor, and derived arithmetic returns with the supported restriction cross. It explains the maps connecting these contributions to the wider Split-Zero cohomology and original-zeta programme, while retaining the earlier estimates, formalization, connected investigations and self-audit below.
+
+Three complete continuation PDF readers are accompanied by their LaTeX, Markdown proofs, reproducible figures, [result/dependency index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/RESULTS.json) and [precise review record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/BUILD_AND_REVIEW.md). The new calculations identify actual source, boundary, duality and quotient maps; they do not establish arithmetic purity or an RH proof. Human sources and the investigator's construction are credited in the edition.
+
+[Zenodo continuation collection](https://doi.org/10.5281/zenodo.22913061) | [Full base collection](https://doi.org/10.5281/zenodo.22678085)
+<!-- /three-task-update-20260925 -->
+
 <!-- frg2-citation-correction-20260925 -->
 ### Point-of-use human-source correction
 

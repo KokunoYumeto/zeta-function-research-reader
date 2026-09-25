@@ -1,0 +1,219 @@
+# Independent verification of WHR3–WHR7
+
+25 September 2026. This private verification concerns only the named receiving-space argument. It assigns no parity, addition, coefficient, or Hilbert structure to primitive source `Z1/tau`. The reviewed manuscript was not edited.
+
+## Task record and reading coverage
+
+This independent mathematical verification checks WHR3–WHR7: the explicit even Schwartz generator, Fourier multiplier annihilator in the weighted dual space, derivative integrability cutoff, convergence of frequency cutoffs, and exact closure and Gram model. All Fourier factors and signs are retained. Primitive Z_1/tau has no parity or addition; these operations occur in the specified receivers.
+
+Read the complete WHR manuscript. Also read the actual RZ5 formulas in [sources/programme_private/source_comparison/ORIGINAL_ZETA_RESOLVENT_AND_PROJECTORS.md](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/gct-weight-control/proofs/ORIGINAL_ZETA_RESOLVENT_AND_PROJECTORS.md), together with its definitions of the shifted Mellin transform and the function space. Read original author TeX [../connes98_intake/math_9811068v1_author.tex](https://arxiv.org/abs/math/9811068v1), source lines 791–931 and 3795–3946, to verify the stated exponent comparison and multiplicity cutoff. This check treats the SSI equality `M_0 J = I` as the named input theorem, rather than claiming to reprove SSI. No numerical zero sample or zero-spacing assumption is used.
+
+## V1. Generator and original Mellin factors
+
+Put
+\[
+p(z)=\frac1{2\sqrt\pi}e^{-z^2/4}.
+\]
+On the positive half-line the proposed generator is exactly
+\[
+h_0(v)=\frac14(\log v-2)p(\log v).
+\]
+Every order-\(k\) derivative is a finite sum of
+\(v^{-k}P(\log v)e^{-(\log v)^2/4}\). After multiplication by \(v^N\), the substitution \(z=\log v\) gives a polynomial times
+\(\exp(-z^2/4+(N-k)z)\), which tends to zero as \(z\to\pm\infty\). In particular every derivative tends to zero at the origin, the extension through the origin is smooth and flat, and the reflected definition is even and Schwartz.
+
+Gaussian integration and differentiation give
+\[
+\int_{\mathbb R}p(z)e^{sz}\,dz=e^{s^2},\qquad
+\int_{\mathbb R}zp(z)e^{sz}\,dz=2s e^{s^2}.
+\]
+Thus the exact Mellin formula is
+\[
+\mathcal M_S h_0(s)=\frac14(2s-2)e^{s^2}
+=\frac{s-1}{2}e^{s^2}.
+\]
+Evenness gives \(\int_{\mathbb R}h_0=2\mathcal M_Sh_0(1)=0\), so \(h_0\in S\). For \(\Re s>1\), absolute convergence permits the substitution \(v=nu\) in every summand:
+\[
+\mathcal M_0(\Sigma h_0)(s)
+=2\sum_{n\ge1}n^{-s}\mathcal M_Sh_0(s)
+=(s-1)\zeta(s)e^{s^2}.
+\]
+The factor two in \(\Sigma\) cancels precisely the displayed denominator two in \(\mathcal M_Sh_0\). The equality extends to all \(s\), retaining the removable value \(\exp(1)\), the real exponential value, at \(s=1\). The factors \(s-1\) and \(e^{s^2}\) have no zeros on \(\Re s=1/2\), so each zero on that line has exactly its original zeta multiplicity. The trivial zeros still occur in the entire Mellin formula.
+
+The standard source summation result already used in WHR1 puts \(b_0=\Sigma h_0\) in \(A\). This membership can also be checked directly: for large \(u\), differentiate the original sum and use Schwartz estimates; for small \(u\), Poisson summation, \(h_0(0)=0\), and \(\widehat h_0(0)=0\) give
+\[
+b_0(u)=u^{-1}\sum_{n\ne0}\widehat h_0(n/u),
+\]
+whose differentiated series has arbitrarily rapid decay at zero. Consequently \(g_0(x)=e^{x/2}b_0(e^x)\) is Schwartz and
+\[
+\widehat g_0(t)=(-\tfrac12+it)\zeta(\tfrac12+it)e^{(1/2+it)^2}.
+\]
+
+## V2. Weighted dual and cutoff topology
+
+Write \(K_{-\delta}=L^2((1+x^2)^{-\delta}dx)\), and use the bilinear dual pairing \(\ell_y(g)=\int gy\). Weighted Cauchy–Schwarz identifies its exact norm with \(\|y\|_{K_{-\delta}}\); surjectivity follows from the Hilbert representation theorem after conjugating the representative and multiplying by the weight. Every such \(y\) is tempered because Schwartz functions belong continuously to \(K_\delta\).
+
+For translation \(\tau_z y(x)=y(x-z)\), changing variables and using
+\[
+1+t^2\leq2(1+(t+z)^2)(1+z^2)
+\]
+give
+\[
+\|\tau_z y\|_{K_{-\delta}}
+\leq2^{\delta/2}(1+z^2)^{\delta/2}\|y\|_{K_{-\delta}}.
+\]
+This is the stated bound, with the correct direction of the negative weight. Smooth compactly supported functions are dense by truncation and smoothing, because the weight and its reciprocal are bounded on compact intervals. The displayed bound and dominated convergence on compactly supported functions therefore imply strong continuity of all translations.
+
+The frequency distribution in WHR4 is
+\[
+T_y=\frac1{2\pi}\mathcal F_-y,
+\qquad \mathcal F_-f(t)=\int f(x)e^{-itx}\,dx.
+\]
+Its inverse is \(y(x)=\langle T_y(t),e^{itx}\rangle\), interpreted in distributions. Accordingly multiplication by \(\chi_R(t)=\chi(t/R)\) gives
+\[
+y_R=k_R*y,\qquad
+k_R(x)=Rk(Rx),\qquad
+k(x)=\frac1{2\pi}\int\chi(t)e^{itx}\,dt.
+\]
+There is no sign reversal in this kernel. Fourier inversion gives \(\int k=\chi(0)=1\). The exact uniform estimate needed for cutoff convergence is
+\[
+\|k_R*y\|_{K_{-\delta}}
+\leq 2^{\delta/2}\|y\|_{K_{-\delta}}
+\int_{\mathbb R}|k(z)|(1+(z/R)^2)^{\delta/2}\,dz
+\leq 2^{\delta/2}\|y\|_{K_{-\delta}}
+\int_{\mathbb R}|k(z)|(1+z^2)^{\delta/2}\,dz.
+\]
+The last integral is finite because \(k\) is Schwartz. Moreover
+\[
+y_R-y=\int k(z)(\tau_{z/R}y-y)\,dz.
+\]
+The norm of the integrand is bounded by
+\[
+|k(z)|\bigl(2^{\delta/2}(1+z^2)^{\delta/2}+1\bigr)
+\|y\|_{K_{-\delta}},
+\]
+an integrable function independent of \(R\ge1\), and tends to zero for every fixed \(z\). This proves convergence in the actual weighted dual norm. The same convolution estimate proves boundedness of every fixed smooth compactly supported frequency multiplier.
+
+## V3. Multiplier equation and every point derivative
+
+The dilation formula is
+\[
+UT_{e^v}b_0(x)=e^{v/2}g_0(x-v).
+\]
+If \(\ell_y\) annihilates \(J\), then
+\(C(v)=\int y(x)g_0(x-v)dx=0\) for all real \(v\). Here
+\(C=y*\check g_0\), with \(\check g_0(x)=g_0(-x)\). Consequently
+\[
+\mathcal F_-C
+=(\mathcal F_-y)(\mathcal F_-\check g_0)
+=(2\pi T_y)m,
+\qquad
+\frac1{2\pi}\mathcal F_-C=mT_y=0.
+\]
+This calculation explicitly verifies both Fourier factors. The convolution identity is valid in tempered distributions: weighted translation bounds make the displayed convolution a smooth function of polynomial growth, and testing it against Schwartz functions justifies the convolution theorem. Equivalently, for every Schwartz \(\psi\),
+\[
+\int C(v)\psi(v)\,dv
+=\langle T_y,m\widehat\psi\rangle.
+\]
+Since the positive-phase Fourier transform maps Schwartz space onto itself, this also proves \(mT_y=0\) directly.
+
+Outside the zeros of \(m\), division of compactly supported test functions by \(m\) proves \(T_y=0\). In a neighborhood of a zero \(\gamma\) of order \(q=m_\rho\), write \(m(t)=(t-\gamma)^qv(t)\) with \(v\) nonzero. Multiplication by the smooth local inverse of \(v\) gives \((t-\gamma)^qT_y=0\). Choose a compactly supported cutoff equal to one on a smaller neighborhood of \(\gamma\). Subtracting this cutoff times the degree-\((q-1)\) Taylor polynomial of an arbitrary test function leaves a multiple of \((t-\gamma)^q\) near the support of the localized distribution. The localized distribution therefore depends only on the derivatives of orders \(0,\ldots,q-1\), and is a linear combination of precisely the point derivatives of those orders.
+
+Choose the local cutoff equal to one near \(\gamma\), with no other zero in its support. V2 ensures that the corresponding function still belongs to \(K_{-\delta}\). Explicit inversion of the point derivatives gives
+\[
+T=\sum_{j=0}^{q-1}a_j\delta_\gamma^{(j)}
+\quad\Longleftrightarrow\quad
+y(x)=e^{i\gamma x}\sum_{j=0}^{q-1}a_j(-ix)^j.
+\]
+If the nonzero polynomial on the right has degree \(d\), then its absolute square is bounded above and below by positive multiples of \(|x|^{2d}\) for all sufficiently large \(|x|\). Thus its weighted square integral converges exactly when
+\(2d-2\delta<-1\), equivalently \(d<\delta-1/2\). At equality it diverges logarithmically. This proves the strict point-derivative cutoff without permitting a cancellation between different zeros.
+
+For the original derivative functional, the point-distribution factor is
+\[
+T_{\rho,j}=i^j\delta_{\gamma_\rho}^{(j)}.
+\]
+Indeed
+\[
+\langle i^j\delta_{\gamma}^{(j)},\widehat g\rangle
+=i^j(-1)^j\int (ix)^jg(x)e^{i\gamma x}\,dx
+=\int x^jg(x)e^{i\gamma x}\,dx.
+\]
+Both factors \(i^j\) are needed, and their product cancels \((-1)^j\) exactly.
+
+Finally \(\chi_RT_y\) has finite support, because the zeros of the nonzero analytic \(m\) are locally finite. It is a finite linear combination of the allowed point derivatives. V2 proves that these finite combinations converge in the weighted dual norm. This is the global converse in WHR5.2; no separation estimate on distinct zero ordinates is needed. The forward inclusion follows from continuity of the original derivatives and their vanishing on every actual \(\Sigma h\). Therefore WHR5.2 is correct globally.
+
+## V4. Closure, derivative count, and the complete sequence space
+
+For a closed subspace of a Hilbert space, separation by the nonzero orthogonal component proves that the common kernel of its continuous annihilator is exactly that subspace. Applying this fact to the norm-closed span just proved gives
+\[
+\overline J^{H_\delta}
+=\bigcap_{(\rho,j)\in\mathscr J_\delta}\ker L_{\rho,j}.
+\]
+The number of nonnegative integers satisfying \(j<\delta-1/2\), capped by \(m_\rho\), is exactly
+\[
+\min\{m_\rho,\max(0,\lceil\delta-1/2\rceil)\}.
+\]
+At a half-integer \(\delta=k+1/2\), only \(j=0,\ldots,k-1\) are included. The count agrees with Connes's original largest integer \(n<(1+\delta_{\rm CC})/2\) after \(\delta_{\rm CC}=2\delta\): its upper threshold is \(\delta+1/2\), and the largest integer strictly below that threshold is \(\lceil\delta-1/2\rceil\). The Connes theorem is stated for \(\delta_{\rm CC}>1\), corresponding to the nonzero-jet range here.
+
+For finitely supported \(c\), the dual element \(\sum c_{\rho,j}L_{\rho,j}\) has exactly the norm \(D_\delta(c)\) displayed in WHR6.4. This norm is nonzero unless \(c=0\). To verify the needed independence, write a finite sum as \(\sum_\gamma e^{i\gamma x}P_\gamma(x)\). For a chosen \(\gamma_0\), apply
+\[
+\prod_{\gamma\ne\gamma_0}(\partial_x-i\gamma)^{d_\gamma+1},
+\qquad d_\gamma=\deg P_\gamma.
+\]
+It kills every summand with \(\gamma\ne\gamma_0\). On the remaining summand it acts as \(e^{i\gamma_0x}\) times
+\[
+\prod_{\gamma\ne\gamma_0}
+(\partial_x+i(\gamma_0-\gamma))^{d_\gamma+1}P_{\gamma_0}.
+\]
+Each factor is invertible on the finite-dimensional polynomial space of degree at most \(\deg P_{\gamma_0}\), because it is a nonzero scalar times the identity plus a nilpotent operator. Hence a vanishing initial sum forces \(P_{\gamma_0}=0\). Applying this to every frequency proves independence.
+
+Let \(E\) denote the annihilator, with the dual norm. Every sequence \(v\) with finite \(N_\delta(v)\) defines a bounded complex-linear functional
+\[
+\sum c_{\rho,j}L_{\rho,j}\longmapsto
+\sum c_{\rho,j}v_{\rho,j}
+\]
+on the dense finite span in \(E\). It extends uniquely to \(E\). Since \(E=(H_\delta/J_\delta)'\) is Hilbert, reflexivity identifies \(E'\) isometrically with \(H_\delta/J_\delta\), through the canonical evaluation map. This proves the claimed surjectivity of the sequence description and its exact norm. No complex conjugate is missing from the numerator of WHR6.5: the pairing there is between a complex-linear functional and its argument, rather than a Hilbert inner product. If the index set is empty, the sole empty sequence has norm zero, agreeing with the zero quotient.
+
+## V5. Gram entries, original quotient map, and exact kernel
+
+Expanding the absolute square in \(D_\delta(c)^2\) gives
+\[
+D_\delta(c)^2
+=\sum_{(\rho,j),(\sigma,k)}
+c_{\rho,j}\overline{c_{\sigma,k}}
+\int x^{j+k}e^{i(\gamma_\rho-\gamma_\sigma)x}
+(1+x^2)^{-\delta}\,dx.
+\]
+Thus the phase difference and complex conjugations in WHR6.7 are correct. Allowed indices obey \(j+k<2\delta-1\), so every integral converges absolutely. For the zeroth derivative, the Gamma integral and Gaussian Fourier integral give exactly
+\[
+\frac{\sqrt\pi}{\Gamma(\delta)}
+\int_0^\infty t^{\delta-3/2}
+\exp\left(-t-\frac{(\gamma_\rho-\gamma_\sigma)^2}{4t}\right)dt.
+\]
+The relevant index set is nonempty only if \(\delta>1/2\), which also justifies absolute Fubini in this calculation. Differentiating with respect to the frequency difference \(j+k\) times produces \((ix)^{j+k}\). The factor needed to recover the stated Gram entry is therefore \(i^{-(j+k)}\), as written. The same strict inequality \(j+k<2\delta-1\) justifies all these derivatives, including when the frequency difference is zero.
+
+Using the specified SSI input \(\mathcal M_0J=I\), the common-kernel formula gives
+\[
+A\cap J_\delta=\mathcal M_0^{-1}I_\delta,
+\qquad
+\ker(A/J\longrightarrow H_\delta/J_\delta)=I_\delta/I.
+\]
+The image is exactly the allowed derivative sequence of a single entire \(F\in\mathcal B\), and is dense because \(A\) is dense in \(H_\delta\). It need not be the full Hilbert sequence space. For fixed derivative order, a Cauchy circle of fixed radius around \(1/2+i\gamma\), together with the vertical-strip seminorms of \(F\), proves its stated rapid decay as \(|\gamma|\to\infty\).
+
+The quotient norm is the infimum over the closure \(J_\delta\). It equals the infimum over \(J\), because the latter is dense in the former and the norm is continuous. This proves both equalities in WHR7.5.
+
+RZ5 defines \(E_{\rho,j}=e_\rho(s)(s-\rho)^j\) with \(e_\rho=1+O((s-\rho)^{m_\rho})\) at \(\rho\), and full required vanishing at every other zero. Its actual derivative is \(j!\) at the selected \(j\)-th coordinate, with all other relevant derivatives zero. Taking the raw inverse Mellin transform exactly as defined in WHR7 therefore preserves this factorial and introduces no factor two. These jets prove that every off-critical primary block lies in the kernel; on a critical block the kernel is precisely the span of the basis elements with \(j\ge r_\delta(\rho)\). This is a statement about each genuine finite-dimensional primary block, with no assertion that the full quotient is an unrestricted product of them.
+
+## Verification result and optional precision edits
+
+WHR3–WHR7 are mathematically valid with their stated SSI input. No substantive correction is required. All displayed factors and signs checked above are correct. Two optional clarifications would make the prose more explicit without changing any formula:
+
+1. In the Fourier-convolution explanation after WHR5.4, write both equalities `F_- C = (2 pi T_y)m` and `(2 pi)^(-1) F_- C = m T_y`. This distinguishes the divided transform used for `T_y` from the undivided transform of `check g_0`.
+2. In the local cutoff argument, specify that the isolating cutoff equals one in a neighborhood of the selected zero. This ensures that its derivative coefficients are the actual local coefficients before applying the weighted integrability cutoff.
+
+All verification work is complete for the delegated range. The root manuscript remains unchanged.
+
+
+## Publication source and dependency links
+
+The source geometry is Alain Connes and Caterina Consani, *Schemes over F1 and zeta functions*, [arXiv:0903.2024v3, §5](https://arxiv.org/abs/0903.2024v3). The weight-control comparison is Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES52 (1980),137-252, [§§3.3.11 and3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/). Deligne material was read through the identified French transcription and separately recorded peer source-page checks, not Deligne-authored TeX. These sources are not asserted to contain the new programme derivations. The [preceding complete proof and reading record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36a82ecca98addb8a98b48204e349737856c7223/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md) records inherited source versions and actual inspection limits. The investigator's corrected construction remains attributed in the original text above.

@@ -1,6 +1,6 @@
 # The detectability argument (owner's M28) in exact form: every failure of RH is detectable
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 10:58 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 10:58 UTC. Refereed in the eighteenth pass (report 22:48 UTC) and revised at 22:52 UTC; §6 lists the changes.
 
 The owner's message M28 (verbatim in the private provenance file) restates an argument that, in the owner's view, an earlier session misread. I have no record of that earlier exchange. This note states the best version of the argument and proves it. The owner asked for exactly this: "at least we'll have the best version of the argument".
 
@@ -17,7 +17,10 @@ The owner's message M28 (verbatim in the private provenance file) restates an ar
 - The mathematical content is that RH is equivalent to a Π₁ sentence: "for every n, a certain decidable check succeeds". Davis, Matiyasevich and Robinson (Proc. Sympos. Pure Math. 28, AMS, 1976, 323–378) showed that RH is equivalent to the unsolvability of an explicit Diophantine equation.
 - So ¬RH is equivalent to the Σ₁ sentence "M halts".
 
-**Proposition 23.1.** Let T be a recursively axiomatized theory that proves every true Σ₁ sentence and proves the equivalence "M halts ↔ ¬RH". ZFC is one example: every extension of Robinson's arithmetic Q is Σ₁-complete, and ZFC proves the equivalence of Theorem 9.
+**Proposition 23.1.** Let T be a recursively axiomatized theory that proves every true Σ₁ sentence and proves the equivalence "M halts ↔ ¬RH".
+- ZFC is one example. Every theory that interprets Robinson's arithmetic Q proves every true Σ₁ sentence, and ZFC interprets Q through ω.
+- ZFC also proves "M halts ↔ ¬RH" for a machine M that searches for a counterexample to a Π₁ form of RH (Davis–Matiyasevich–Robinson). For Aaronson's 744-state machine this equivalence is Theorem 9, which the survey states with a pointer to the compiled program (its footnote 25).
+- The argument below does not depend on the size of M.
 - (a) If RH is false, then T ⊢ ¬RH.
 - (b) Equivalently: if T does not refute RH, then RH is true. In particular, if RH is independent of T, then RH is true.
 - (c) If moreover T proves no false Σ₁ sentence, that is, T is Σ₁-sound, then RH ⟺ T ⊬ ¬RH ⟺ Con(T + RH).
@@ -33,18 +36,23 @@ The owner's message M28 (verbatim in the private provenance file) restates an ar
 - abstractly, the halting computation of M;
 - concretely, an off-line zero ρ₀ can be certified by a finite interval-arithmetic computation of the argument principle on a small rectangle around ρ₀ that does not meet the critical line.
 
-In the language of `22_` Prop. 22.7, a failure is a nonzero bulk count between the two lines, and the bulk count is computed from boundary values.
+In the language of `22_` Prop. 22.7, a failure is a nonzero bulk count between the two lines; the count in any rectangle inside the strip is computed by the argument principle from the values of G on its boundary.
 
 ## 3. What the exact form gives and what it needs
 
-- **It gives an exact target.** Any proof that T + RH is consistent, for instance a model of T in which RH holds (given Σ₁-soundness), is a proof of RH.
-- **It gives no shortcut by itself.** By (c), proving "no detectable failure" is exactly as hard as proving RH.
+- **It gives an exact target, but not one that T can reach.**
+  - Any proof that T + RH is consistent, for instance a model of T in which RH holds, is a proof of RH, by (b). Σ₁-soundness is not needed for this direction.
+  - But Con(T + RH) implies Con(T). So by Gödel's second incompleteness theorem T itself cannot prove Con(T + RH) if T is consistent, while T may prove RH.
+- **It gives no shortcut by itself.** By (c), for Σ₁-sound T, "no detectable failure" is true exactly when RH is true. Proving it is strictly harder than proving RH, since it also proves Con(T).
   - The usual tools for consistency results cannot help here. Forcing does not change arithmetic truth, because a forcing extension has the same natural numbers.
   - A true Σ₁ sentence holds in every model of Q, because every such model extends the standard natural numbers as an initial segment. So if RH were false, no model of T would satisfy RH.
-- **Bounded search does not decide it in practice.** If M has not halted after BB(744) steps, it never halts, which would settle RH. But the busy-beaver function is not computable. By the 2023 figure the owner quoted, a 745-state machine halts if and only if ZF is inconsistent. So, if ZF is consistent, ZF cannot prove the value of BB(745): otherwise it could decide its own consistency, against Gödel's second incompleteness theorem.
+- **Bounded search does not decide it in practice.**
+  - If M has not halted after BB(744) steps, it never halts, which would settle RH. But the busy-beaver function is not computable.
+  - By a 2023 result (see §5), a 745-state machine halts if and only if ZF is inconsistent; later constructions, not formally verified, claim fewer states.
+  - So, if ZF is consistent, ZF cannot prove the value of BB(745): otherwise it would prove its own consistency, against Gödel's second incompleteness theorem.
 - **What it combines with.** A result showing that an off-line zero, if it exists, must appear below an explicit height would turn RH into a finite computation, because Turing's method verifies RH up to any given height.
   - No such bound is known.
-  - The conditional results of the programme (`20_`) and the bulk formulation of `22_` are the places where such a bound would have to come from.
+  - The conditional results of the programme (`20_`) and the bulk formulation of `22_` are two places in this programme where one could look for such a bound.
 
 ## 4. Items for the goals
 
@@ -56,4 +64,17 @@ In the language of `22_` Prop. 22.7, a failure is a nonzero bulk count between t
 - S. Aaronson, *The Busy Beaver Frontier* (2020), §4.2, Theorem 9 (the 744-state machine, with Y. Matiyasevich and S. O'Rear); read through the author's PDF for that theorem.
 - M. Davis, Y. Matiyasevich, J. Robinson, *Hilbert's tenth problem: Diophantine equations: positive aspects of a negative solution*, Proc. Sympos. Pure Math. 28 (1976), 323–378 (RH as a Diophantine statement).
 - A. M. Turing, *Some calculations of the Riemann zeta-function*, Proc. London Math. Soc. (3) 3 (1953) 99–117 (verification up to a given height).
-- The figure of 745 states for the consistency of ZF, and the independence of the busy-beaver values from about that size, are as quoted by the owner from Wikipedia's *Busy beaver* article, which cites Aaronson (July 2023). Not re-checked here.
+- The figure of 745 states for the consistency of ZF, and the independence of the busy-beaver values from about that size, are as quoted by the owner from Wikipedia's *Busy beaver* article, which cites Aaronson (July 2023). Re-checked in the eighteenth referee pass:
+  - the 745-state result is Johannes Riebel's (bachelor thesis, University of Augsburg, 2023), completing S. O'Rear's 748-state construction;
+  - Aaronson reported R. Ridenour's 643 in July 2024;
+  - the bbchallenge wiki lists later claims down to 432 states (August 2025), none formally verified;
+  - ZF and ZFC are equiconsistent, so the difference does not matter here.
+
+## 6. Revision after the eighteenth referee pass
+
+The eighteenth referee pass (report 22:48 UTC) found this note sound. It confirmed Aaronson's §4.2, Theorem 9 from the author's PDF, and the claims about forcing and models of Q. It made four minor findings, all accepted:
+- n1: ZFC interprets Q rather than extending it, and the argument works for any counterexample-search machine.
+- n2: the Σ₁-soundness proviso is superfluous for Con(T + RH) ⇒ RH, and in provability the target is strictly harder than RH (Gödel II).
+- n3: the busy-beaver credits and later claims, and "prove" for "decide".
+- n4: two overstatements (the boundary-value count; where a height bound "would have to" come from).
+

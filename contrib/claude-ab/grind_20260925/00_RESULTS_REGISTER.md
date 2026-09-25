@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 2, 25 September 2026, 04:30 UTC (version 1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 05:30 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 2, 25 September 2026, 04:30 UTC (version 1: 03:30 UTC). Maintained by cl
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`09_`, `checks/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -38,6 +38,9 @@ The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/co
 | S17 | **Two primes suffice for generalized eigenvectors.** Let h/ℓ be irrational. A distribution V on ℝ with (E_h − 1)^r V = 0 = (E_ℓ − 1)^s V is a polynomial of degree < min(r, s). Hence simultaneous generalized p^ρ- and q^ρ-eigenfunctionals are exactly the Mellin jets; one prime alone has the aliases ρ + 2πik/log p | proved; ideal argument checked by hand | programme, MCL3.4 (`07_`) | for continuous V, a case of L. Schwartz's mean-periodic spectral synthesis (Ann. of Math. 48, 1947) |
 | S18 | **Least-order lifting and its obstruction.** At a zero of multiplicity m, the k-th source Mellin jet lifts through the transposed summation map with least generalized-character order m + k + 1, by an explicit formula. The fixed-order obstruction class, read through the residue pairing, is (−1)^j j!/2 · t^{r−1−j} χ_ζ(b+t) mod t^{min(m,r)}, with rank min(m, r) | proved in the programme; verified numerically for m = 1 (ζ) and m = 2 (ζ²) to 1e−39 | programme, MCL5–MCL9, ORE4–ORE5 (`07_`, `checks/mcl_ore_checks.py`) | unchecked; Meyer's framework |
 | S19 | **The even lattice sums at a = 1/q.** Z_{1/q}(s) = ζ(s,1/q) + ζ(s,1−1/q) = q^s Σ_{n≡±1 (q)} n^{−s}. The following are equivalent: the monoid {n ≡ ±1 mod q} is free; φ(q) ≤ 2; its formal log has nonnegative coefficients; there are no zeros in Re s > 1. At q = 5: 36 = 4·9 = 6·6, the log coefficient r_36 = −1/2, and there are 24 zeros with Re s > 0.505 below height 150 (argument principle), the lowest at 0.54307 + 15.70405i | proved (the step (iv) ⇒ (ii) cites Saias–Weingartner, Acta Arith. 140, 2009); numerics verified at 30 digits | claude-ab, `08_` Lemma 2; `checks/monoid_log.py`, `z15_zero_check.py` | the parts are classical; the packaging as a sheet test is new here |
+| S20 | **Source-pairing identity.** Let b_0 ∈ A have Mellin transform vanishing at ρ, and let b_ρ ∈ A solve (L − ρ)b_ρ = b_0 with L = −u∂_u. Then (Re ρ − ½)‖b_ρ‖²_{L²(du)} = −Re⟨b_ρ, b_0⟩. This is the skew-adjointness of L − ½ on L²(du) with a source term; the Hilbert–Pólya mechanism with its obstruction made explicit | proved (one integration by parts); checked on a synthetic off-critical pair to 1e−14 | programme, OPD4.2 (`09_`) | elementary; the framing is new here |
+| S21 | **The harmonic (Poisson-swept) defect, exactly.** For the explicit test b_† = Σh_† ∈ J, the swept zero distribution gives H(b_†) = ∫\|G(½+it)\|²W_off(t)dt = 2Σ_ρ m\|Re ρ − ½\|‖b_ρ‖². This is comparable to Σ m\|Re ρ−½\|/(1+γ²) with explicit constants. So the sweeping descends to Q iff there are no off-critical zeros | proved in the programme; the norm identity is checked on a synthetic pair | programme, HSW5–HSW6B, OPD5 (`09_`) | rational analogue of Connes' §VIII harmonic distribution (arXiv:math/9811068) |
+| S22 | **Positive transfer forms before the quotient** are exactly ∫F(½+iλ)\overline{G(½+iλ)}dμ(λ) with μ positive and tempered. They descend to the zeta quotient iff supp μ lies in the critical zeros | proved in the programme (SPF1–SPF8 not read by me) | programme, SPF0, SPF9–SPF10 (`09_`) | a Bochner-type classification |
 
 ## Goal 1: negative results, with exact scope
 
@@ -99,6 +102,12 @@ The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/co
     - The tensor Weil form is indefinite on the reflected sector.
     - The square's obstruction vanishes exactly when the original one does.
     - Source: programme, TWC6, TWC10–TWC11 and FST3–FST5, published 24–25 September; summarized in `08_` §3.
+24. **Harmonic sweeping does not descend unless RH holds.** Poisson-sweeping the zeros onto the line gives a positive distribution. It descends to Q = A/J iff there are no off-critical zeros. Source: programme, HSW6.
+25. **The L² norm does not descend.**
+    - J is dense in L²(du) (Wiener's L² Tauberian theorem), so the quotient seminorm is zero.
+    - The naive L² completion of Q therefore carries no Hilbert–Pólya argument.
+    - Source: programme, ASD10, OPD3, HSW6B; `09_` §4(a).
+26. **Positivity sees only the critical zeros: a third independent confirmation.** The three constructions agree: CPS (`04_`), TWC10 (`08_`) and SPF9 (`09_`).
 
 ## Goal 2: bridges found or implied
 
@@ -120,7 +129,15 @@ The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/co
     - Deligne's step α ↦ α² (H¹ ⊗ H¹ ↪ H²) has as additive form Kurokawa's tensor product of zeta functions, whose spectral parameters are ρ + ρ′ (Manin, Astérisque 228, 1995, §1.4).
     - Weil's proof uses C̄ × C̄. Connes proposes the square of the arithmetic site as its analogue (arXiv:1509.05576, §§2.3 and 4.3.2).
     - Source: `08_` §§3–4.
-13. **Pending.** The cross-programme reuse the owner reported (Navier–Stokes, Yang–Mills, the S¹/topology work, Erdős–Straus) is not yet examined.
+13. **Nyman–Beurling and Burnol's co-Poisson theory.**
+    - For a_k > 1 with Σc_k/a_k = 0, Σc_k{1/(a_k x)} = −½Σh(x), where h = Σc_k1_{[−1/a_k,1/a_k]}. This h is even, supported in [−1, 1], and has ∫h = 0.
+    - The programme's moment condition is the cancellation of the 1/x tail, that is, of the pole at 1.
+    - One-sided support is the typed morphism: two-sided tests are dense in L²(0,∞) unconditionally, while one-sided density is equivalent to RH (Beurling, PNAS 41, 1955; Báez-Duarte, arXiv:math/0202141; Burnol, arXiv:math/0112254).
+    - Source: claude-ab, `09_` §4(c), checked numerically.
+14. **Wiener's L² Tauberian theorem** (Ann. of Math. 33, 1932) is the reason the summation image is dense in L²(0,∞).
+15. **Connes' trace-formula paper, §VIII.** The harmonic distribution, realized rationally, fails to descend exactly off RH (S21).
+16. **Hilbert–Pólya.** OPD4.2 is the skew-adjointness of L − ½ with the source term that measures off-criticality (S20).
+17. **Pending.** The cross-programme reuse the owner reported (Navier–Stokes, Yang–Mills, the S¹/topology work, Erdős–Straus) is not yet examined. Proposed on the post-office board for claude-b5.
 
 ## Goal 4: F₁ context
 
@@ -144,7 +161,7 @@ The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/co
 
 **Reading:**
 - the Deligne reader outside DB9, DR, DC, DW5–DW11 and MDB9–MDB11;
-- the rest of the 25 September continuations (the counterfactual and identity lanes; GCT beyond FST and TWC);
+- the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation;
 - PTQ, SSI, GDC and AST.
 
 **Verification:**
@@ -155,7 +172,7 @@ The detailed files are in this folder (`01_`–`08_`, `checks/`, `copy_round2/co
 
 The full referee pass on Theorem E is done (`06_`).
 
-**Examination:** the cross-programme reuse (goal 2, item 13).
+**Examination:** the cross-programme reuse (goal 2, item 17).
 
 **Errata:** the FLIP_FABLE Addendum 4 erratum (goal 1, item 4).
 

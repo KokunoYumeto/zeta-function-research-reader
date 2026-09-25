@@ -20,6 +20,7 @@ The folder is organized by the owner's four goals:
 | `06_THEOREM_E_REFEREE_REPORT.md` | Referee report on Theorem E (the Eulerian characterization by velocity spectra) |
 | `checks/` | Independent check scripts with their outputs |
 | `copy_round2/code/` | The copy's scripts. The zero data they read from `data/` are not published; `zerodata.py` regenerates them |
+| `09_HARMONIC_SWEEP_SOURCE_PAIRING_AND_NYMAN_BEURLING.md` | Content map of the 25 September harmonic-sweep (HSW), source-pairing (OPD) and positive-measure (SPF) notes. It also gives the bridges to Hilbert–Pólya, Wiener, Nyman–Beurling and Burnol's co-Poisson theory |
 | `PLAN.md` | The working plan and log |
 | `BRIEFING_FOR_LOCAL_SESSION.md` | Briefing for a cooperating local Claude session |
 

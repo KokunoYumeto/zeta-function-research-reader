@@ -46,6 +46,11 @@ A reminder is scheduled into this session. When it fires: read this file and the
 
 - **GitHub.** Work goes on the branch `claude/claude-ab-grind-20260925` of KokunoYumeto/zeta-function-research-reader, under `contrib/claude-ab/`. `main` is never touched.
   - Pushes run on the owner's computer through its stored git login. The owner's GitHub token is not used; it was declined.
+  - Procedure:
+    1. In the cloud, `scratchpad/prepare_branch.sh "<message>"` builds a sanitized commit.
+    2. `git bundle create` writes it to a new file name each time; the commit tool reuses content cached by path.
+    3. `device_commit_files` copies the bundle to `work/claude_grind_20260925/_push/`.
+    4. Desktop Commander runs `git fetch <bundle>` and `git push` in `%TEMP%/claude-ab-push`, with GIT_TERMINAL_PROMPT=0 and GCM_INTERACTIVE=Never.
   - The session's own git proxy does not authorize the repository.
 - **Zenodo.** The correct record is 22911829. Record 22949437 is not to be used.
   - When the work is mature, prepare it as a pure addition: a new version of 22911829 that keeps every existing file unchanged and adds this folder, with a manifest of the added files and their hashes.
@@ -56,6 +61,12 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - The concise results document is the part readers want. It should become a PDF, possibly the front (preview) PDF.
     - Metadata may only be added to, with a note in the sense of "Claude's edition: added …". No existing field is replaced, and nothing in Codex's lane is changed.
     - A record can be tombstoned; the owner counts that as undoing it.
+
+- **Post office (cooperation with claude-b5).** The owner opened another session, which runs as claude-b5 and wakes through its scheduled task "claude-b5 doorbell (post office)".
+  - The post office is `work/claude_grind_20260925/_postoffice/` on the owner's computer. It contains `README.md`, `BOARD.md` (the task board), `status_claude-ab.md`, `to_claude-ab/` and `to_claude-b5/`. It is local only and never published.
+  - At every wake-up, stage and read new messages in `to_claude-ab/` and the board, act on them, and record the last message read in `status_claude-ab.md`.
+  - Do not ring claude-b5's doorbell early unless the owner asks (the no-pings rule).
+  - The briefing was delivered at 04:45 UTC as `to_claude-b5/20260925T0445Z_claude-ab_briefing-and-cooperation-request.md`.
 
 ## Earlier backlog (from this session's task list)
 
@@ -122,8 +133,19 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - The branch was pushed from the owner's PC with its stored git login: `claude/claude-ab-grind-20260925`, commit f0ca4d9.
   - The owner opened a local Claude session for cooperation. It cannot be reached from here, so `BRIEFING_FOR_LOCAL_SESSION.md` was written for the owner to paste.
   - Timer: 06:31 UTC.
+- 04:50–05:30 UTC: the 25 September continuation, part 1 (the owner: "just keep it up").
+  - Read in full: HSW0–HSW9 and OPD1–OPD6. Read in part: SPF0 and SPF9–SPF11.
+  - Deliverable: `09_HARMONIC_SWEEP_SOURCE_PAIRING_AND_NYMAN_BEURLING.md`, with two check scripts, both passing:
+    - `checks/hsw_opd_checks.py`, a synthetic off-critical pair;
+    - `checks/nyman_beurling_bridge_check.py`.
+  - New bridges:
+    - The Nyman–Beurling functions are the programme's Σ on one-sided step tests with ∫h = 0 (Burnol's co-Poisson theory). One-sided support is where RH enters.
+    - Wiener's L² Tauberian theorem explains why J is dense in L²(du).
+    - OPD4.2 is the Hilbert–Pólya mechanism with its obstruction term.
+  - Register v3: S20–S22, negative results 24–26, bridges 13–17.
+  - The owner downloaded the zip. From now on the work is delivered through the cloud and GitHub.
 - Next block:
   1. Check Codex's even-tensor-power positivity calculation against DP4–DP5 (unless the local session takes it).
-  2. Read the rest of the 25 September continuations: the counterfactual and identity lanes, and GCT beyond FST and TWC.
+  2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.
   3. The FLIP_FABLE Addendum 4 erratum (possibly the local session).
   4. The concise Claude's-edition PDF for Zenodo, once the register stabilizes.

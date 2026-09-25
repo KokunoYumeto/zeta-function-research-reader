@@ -94,7 +94,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 
 **Verdict.** GZR is correct.
 
-The closing paragraph of GZR reports, from PGD and DPL (not read here), that the algebraic cokernel of Q → Q′ is nonzero. It contains the explicit nonzero class c_ζ of the functional G ↦ 𝔅_ζ(1, G); DPL calls it a cokernel generator in the module sense. This is consistent with a direct argument:
+The closing paragraph of GZR reports, from PGD and DPL (not read here), that the algebraic cokernel of Q → Q′ is nonzero. It contains the explicit nonzero class c_ζ of the functional G ↦ 𝔅_ζ(1, G) (PGD4). SCL and DPL prove that every nonzero polynomial in the operator induced by the generator L^t on this cokernel is bijective (SCL5–SCL6; after the χ-twist the operator is one minus it). *Corrected after the sixteenth referee pass (`39_` §7, m9): this sentence said that DPL calls c_ζ a cokernel generator; DPL does not mention c_ζ, and its "cokernel generator" is the operator.* This is consistent with a direct argument:
 - a representing class would need a rapidly decreasing entire function equal to 1 to full order at every zero;
 - the zero heights are unbounded, so no such function exists;
 - this is the argument of ECR1 (`25_` §4.1 item 1).

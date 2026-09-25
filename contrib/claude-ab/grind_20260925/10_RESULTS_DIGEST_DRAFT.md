@@ -8,9 +8,10 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - `17_` had its own referee pass (the fifth; 16 findings, all applied by 08:25 UTC), and §3 item 13 was extended then. `18_` and `19_` added §4 item 15 and §3 item 14 (08:41–08:46 UTC), and `20_` updated §3 item 4 (08:53 UTC).
 - A sixth referee pass, on `18_`–`20_` and this digest, found one major error, in the first version of §4 item 15, and several overstatements and gaps. All were applied at 09:38 UTC; §6 lists them.
 - At 10:59 UTC `21_`–`23_` were added: the cross-programme bridges (part 1, refereed), the owner's anomaly picture made exact, and the detectability argument. The additions are §2 item 13, §3 items 15–17, §4 items 16–18 and §5 item 8. `22_` and `23_` await their referee pass.
+- At 11:54 UTC `24_`–`26_` were added, for board task 8, which the owner gave priority from about 11:03 UTC. They audit GSL, GMS, AST, GDC, PTQ, SSI, ECR, ECI, GZR and OMS, and were refereed in the eighth pass. The additions are §2 items 14–17, §3 items 18–20, §4 item 19 and §5 item 9.
 - This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`23_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`26_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -94,6 +95,18 @@ This digest collects what an audit-and-extension lane established about the owne
     - G(s) = F₀(s)F₀(s+1) satisfies G(−s̄) = conj G(s), and G(it) = |ξ(1+it)|²/16 > 0. So the pair is real and positive on the line of the pole at 0, where neither factor is real.
     - Running the clock u ↦ 1/u with conjugation has Mellin shadow s ↦ −s̄ in the Haar normalisation and s ↦ 1 − s̄ in the Lebesgue normalisation. The two differ by the factor u, and only the second gives Weil's positivity. (claude-ab; `22_` Props. 22.4–22.5)
 
+14. **The separator, for ζ and for every Dirichlet L-function.**
+    - An entire function E of polynomial growth on vertical strips can be 1 at every zero ρ and 0 at every ρ − 1, to full order. Then B/(I ∩ I₋) splits continuously into B/I ⊕ B/I₋.
+    - The construction (∂̄ with a Gaussian Cauchy kernel) works whenever the two-line product has the same exponential rate above, on every strip, and below, in a zero-free corridor.
+    - For ζ this product is s²(s²−1)ζ(1−s)ζ(1+s)/(64 cos(πs/2)), with rate e^{−π|t|/2}. The same holds for every primitive Dirichlet L-function.
+    - (GSL, audited; claude-ab `24_` Lemma 24.1, Prop. 24.4)
+15. **The exact summation image.**
+    - Connes' summation map is a topological isomorphism from even Schwartz functions with f(0) = 0 = ∫f onto the entire functions, rapidly decreasing on strips, that vanish to full order at every nontrivial zero.
+    - The inverse is explicit, and so is a Möbius formula for it. The source's Taylor coefficients at 0 are the values at the trivial zeros divided by 2ζ′(−2r).
+    - On the programme's reading this is Meyer's range theorem, made explicit with a division estimate. (SSI, OMS; `25_` Lemma 25.1)
+16. **Positive adjointness sees the line zeros one coordinate at a time.** A bounded positive form for which pullback and transfer are adjoint is diagonal on the line zeros and zero elsewhere. (PTQ4; `25_` Lemma 25.2)
+17. **The global residue duality.** The contour pairing (2πi)^{−1}(∫_{Re 2} − ∫_{Re −1})F(s)G(1−s)/ζ(s)ds is continuous with an explicit constant and nondegenerate on the zeta quotient. It pairs the jets at ρ with those at 1 − ρ, with local determinant (m!/ζ^{(m)}(ρ))^m. (GZR; `26_` Lemma 26.1)
+
 ## 3. Negative results, with their exact scope
 
 1. **Detection, clock changes and loops.**
@@ -125,6 +138,16 @@ This digest collects what an audit-and-extension lane established about the owne
     - The Davenport–Heilbronn function carries the whole structure, including an off-line zero. It cancels the root-number phase by adding a character sector to its conjugate; ζ-type products cancel it by multiplication and keep the Euler product. (claude-ab; `22_` 22.9–22.11)
 16. **Cross-programme transfers, with scope.** Joint averages do not survive restriction of the Navier–Stokes torus cover to unchanged finite torsion (13 against 4 at p = 13, a = 4); the complete preimage repairs them. The Navier–Stokes profile gives Yang–Mills a zero-quotient sequence only as the coupling tends to 0. (`21_`)
 17. **RH cannot be independent of ZFC and false.** RH is equivalent to the non-halting of an explicit 744-state machine, so a false RH is refutable. Independence would imply truth, but proving non-refutability is as hard as RH. (the owner's M28; `23_`)
+
+18. **The two-line splitting is not an RH criterion, and B does not split along the two lines.**
+    - The splitting holds for every primitive Dirichlet L-function. Its proof never uses where the zeros lie inside the strip.
+    - The separator fixes the original class and its defect.
+    - Only the quotients split: the separator is not an idempotent, and the normal row has no section. (GSL, GMS, ECR6; `24_`)
+19. **The separator proof does not reach the Davenport–Heilbronn function.** That function has zeros with Re s > 1 (Saias–Weingartner), so no vertical line separates its two divisors. Whether the splitting itself fails there is open. (`24_` Prop. 24.6)
+20. **The positive-side constructions restate RH.**
+    - The off-line source, the off-line coordinates, the descent of the Weil form, and two numerical detectors are eight constructions reducing to three conditions. Each vanishes exactly when there are no off-line zeros, by construction.
+    - The detectors are not holomorphic in ρ, so the explicit formula does not directly compute them.
+    - The global duality is nondegenerate but not positive. (AST, GDC, PTQ, ECR, GZR; `25_` §5, `26_`)
 
 ## 4. Bridges between programmes and fields
 
@@ -166,6 +189,8 @@ This digest collects what an audit-and-extension lane established about the owne
     - In these terms RH says that every zero is its own anti-number. (claude-ab, from the owner's M12–M27; `22_`)
 18. **Prime knots and anti-numbers.** In Connes–Consani's knots paper, reversing the orbit of p conjugates the character. The functional equation puts the conjugate character on the other side of τ at the phase W(χ), and W(χ)W(χ̄) = 1. (`22_` Prop. 22.8)
 
+19. **The programme's defect is a zero minus its reflected partner.** d_r(ρ) = conj(r^ρ − r^{1−ρ̄}). It vanishes exactly when ρ is its own partner under s ↦ 1 − s̄, the involution used for the pivot at ½. (claude-ab; `24_` §3.3)
+
 ## 5. The 𝔽₁ context
 
 1. **The support.** The owner's τ〈Z₁; no Z₂〉 is realized at the generic point of Connes–Consani's 𝔽_{1²}-line. "No Z₂" has two exact readings: no exchanged label, which holds at the generic point; and no sign, which holds exactly in characteristic 2. (`01_` for the realization; `00_`, goal 4, item 1 for the two readings)
@@ -177,6 +202,8 @@ This digest collects what an audit-and-extension lane established about the owne
 6. **"Has not moved" is not "absent".** In the programme's generic monoid the winding-zero fibre {τ, J, ε, J³} is present, and absence is the absorbing 0. (PMS M1; `15_`)
 7. **The two centres of reflection differ by one shift.** With A(s) = −s̄ (centre 0) and B(s) = 1 − s̄ (centre ½, the owner's proposed τ), B∘A is the shift s ↦ s + 1. (Reading: this shift is the Tate twist, the character of the pole at 1.) Under the Hurwitz generator sζ(s+1), the residue of ζ at 1 becomes the value 1 at s = 0. Of the two centres, only the ½-centred one makes the explicit-formula pairing real, as in Weil's criterion. (claude-ab; `17_`)
 8. **Four directions from the Bombelli generator.** In the absolute twistor line, J² = ε gives the four rays 1, J, ε, εJ, and the half-turn is the sign. The twistor real structure lifts to the quaternionic structure of the SU(2) doublet (σ² = −1), and two copies make it real. (claude-ab; `22_` Prop. 22.1)
+
+9. **The jet at 0 comes from the trivial zeros.** For a source in the exact image, f^{(2r)}(0)/(2r)! = F(−2r)/(2ζ′(−2r)). The Mellin poles of the local model at −2r (register, goal 4, item 11) are seen here from the source side. (SSI5.6; `25_` §1.2)
 
 ## 6. Corrections recorded
 

@@ -44,7 +44,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - **DW8.11.** The displacement is s_k − (k + 1) = k(2B − 1) (`29_` 29.N4; `08_` I4).
 - **DW8.12.** det(W_p | V_ρ) = p^{2m}, since ρ + ρ̄ + (1 − ρ) + (1 − ρ̄) = 2. So the average weight of the quartet is exactly 1.
   - The constituent characters have weights 2Re ω ∈ {2β, 2(1 − β)}.
-  - So the determinant average does not detect an off-line quartet. This is a negative result (35.N1).
+  - So the average weight does not detect an off-line quartet. This is a negative result (35.N1).
 - **DW9 (= ETR10.5).** On a primary block, W_pNW_p^{−1} = N. So the defect against Deligne's relation FNF^{−1} = p^{−1}N is (1 − p^{−1})W_pN, of rank m − 1.
   - The regraded operator F_p^{geom} = p^ρS_p, with S_pε^j = p^{−j}ε^j, satisfies the relation and is multiplicative in p.
   - But its eigenvalues are p^{ρ−j}, not p^ρ. Satisfying the relation costs exactly a shift of weight by −2j on the j-th jet level.
@@ -63,7 +63,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 
 ## 4. Negative result (goal 1)
 
-- **35.N1. The determinant weight of an off-line quartet is exactly 1** (DW8.12). Determinant or average-weight data therefore cannot see an off-critical zero; only the constituent weights 2β and 2(1 − β) do. This matches `29_` 29.N4: the missing input is a pole bound uniform in the tensor degree, not any averaged weight.
+- **35.N1. The average weight of an off-line quartet is exactly 1** (DW8.12): the weight of det(W_p | V_ρ) divided by the rank is 1. So the determinant of the whole quartet cannot see an off-critical zero; only the constituent weights 2β and 2(1 − β) do. (Corrected after the fourteenth referee pass: in Weil II the determinant weights belong to the constituents (Définition 1.3.5), and for the quartet they are 2β and 2(1 − β); see `37_` §6.) This matches `29_` 29.N4: the missing input is a pole bound uniform in the tensor degree, not any averaged weight.
 
 ## 5. Not checked
 

@@ -234,6 +234,7 @@ The positivity hypothesis matters: for even d, μ and −μ always have the same
   - Nothing inside the Euler data produces a contradiction.
   - The displacement from the geometric position k + 1 is exactly k(2B − 1).
   - So the missing input is the one `08_` named: a bound on the abscissa of the form k + 1 + C, uniform in k. In Weil II §1.5 it comes from a pole-free disc fixed by the H_c² denominator of the curve, uniformly in k (DP5.1 in the programme's numbering, as quoted in `08_` I4).
+  - *Precision added after the fourteenth referee pass (`37_` §6).* In Weil II the disc of Lemme 1.5.2 has radius q^{−(2kr+2)/2}, where r is the largest determinant weight of the constituents (Définition 1.3.5). For the quartet on ℝ the constituents are the four characters, so r = 2B and the pole at 1 + 2kB is exactly on that bound. The bound k + 1 + C needed here is Deligne's bound with r equal to the average weight 1, which he has when the four eigenvalues lie in one constituent.
 
 ## 5. Bridges (goal 2)
 

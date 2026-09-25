@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43 and 06:47 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43, 06:47 and 06:49 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -8,7 +8,7 @@ Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:
 - who produced it: the programme (ChatGPT/Codex lanes), claude-ab, or copy-newresults (the second Claude instance);
 - whether novelty has been checked.
 
-The detailed files are in this folder (`01_`–`15_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
+The detailed files are in this folder (`01_`–`16_`, `checks/`, `figures/`, `copy_round2/code/`) and in the repository. The public copy is on the branch `claude/claude-ab-grind-20260925`, under `contrib/claude-ab/`.
 
 **Abbreviations.**
 - CC: Connes–Consani, arXiv:2609.00299 (the absolute twistor line).
@@ -51,6 +51,7 @@ The detailed files are in this folder (`01_`–`15_`, `checks/`, `figures/`, `co
 | S30 | **The two poles differ in kind.** Split the Mellin integral of the punctured lattice sum at u = 1 and apply Poisson summation. Then 2ζ(s)M_S h(s) = (entire) + ĥ(0)/(s−1) − h(0)/s: the pole at 0 is the lattice's n = 0 term, the pole at 1 the dual lattice's. For the lattice cℤ the residue at 0 is −h(0) for every c, while the residue at 1 is (∫h)/c. So the pole at 0 counts one point and the pole at 1 measures a density. The position of the pole at 0 is set by the local model of h at the origin: h ~ c·v^α puts it at −α | derived; the split identity checked to 10⁻³¹ at four points, with both residues and the cancellation at −2 | claude-ab, `13_` §§1–2; `checks/zero_ledger_check.py` | classical in content (Riemann 1859; Tate 1950); the ledger of which "0" does what is new here |
 | S31 | **Connes' construction on every vertical line.** For 0 < σ < 1, the quotient of L²((0,∞), u^{2σ−1}(1+log²u)^δ du) by the closure of J realizes exactly the zeros on Re s = σ, with jet orders j < δ − ½. The prime dilations there have spectrum on \|z\| = p^σ (pure of weight 2σ). The mirror maps σ to 1 − σ isometrically. The family over all σ and N is jointly faithful on Q. RH ⟺ every receiver with σ ≠ ½ is zero | proved in the programme; jet norms and Λ₊ checked | programme, VWR2–VWR7 (`14_` §1) | Connes treats σ = ½; other lines not checked in the literature |
 | S32 | **The clock stack is Chebyshev's ψ; the completed prime clock is Ẑ.** The joint state set of the clocks ℤ/1, …, ℤ/N is ℤ/lcm(1..N), and log lcm(1..N) = ψ(N), since each prime power adds log p. The closure of p^ℤ in ∏_{q≠p}ℤ_q^× is a copy of Ẑ, because p has exact order d mod p^d − 1. So RH ⟺ log lcm(1..N) = N + O(√N log²N) | proved (elementary, and classical for ψ = log lcm); checked exactly for N ≤ 20000 and d ≤ 30; ψ computed to 10⁶ | programme, PMS M3–M6 (`15_`); `figures/fig_clock_stack_psi.py` | classical in content; the clock-stack reading is the programme's |
+| S33 | **Nyman–Beurling in the Fréchet topology.** For fixed t > 0, the functions e^{ts²}(n − n^{1−s})/s (n ≥ 2) span a dense subspace of ℬ; multiplied by ξ, they span a dense subspace of the zero-jet ideal 𝓘. Any set of n with more than R² elements in log n ≤ R suffices, for example the k-th powers. closure(ξℬ) = 𝓘, although ξℬ ⊊ 𝓘 | proved in the programme; the Jensen step and the test identities checked by hand | programme, NCI2–NCI8, RSS1–RSS2 (`16_`) | unconditional here, while the Hardy-space analogue (Noor, Adv. Math. 350 (2019)) is equivalent to RH; novelty not searched |
 
 ## Goal 1: negative results, with exact scope
 
@@ -157,6 +158,7 @@ The detailed files are in this folder (`01_`–`15_`, `checks/`, `figures/`, `co
     - Q^{⊗k} has infinite-multiplicity eigenvalues for k ≥ 2, from the reflected pairs (ATG9).
     - Source: programme, ATG; `14_` §2. Consistent with negative result 27.
 35. **The off-line defect cannot hide in the generic-point term.** The functional Θ_off = Σ_{Re ρ≠½} m_ρ F(ρ) is continuous on Q and vanishes iff there are no off-line zeros. It is never a nonzero multiple of b ↦ b(1): an explicit b_* ∈ J has b_*(1) = 2 and Θ_off(b_*) = 0. Source: programme, VWR10.5–10.9; `14_` §1.
+36. **Cover invariance cannot locate zeros.** In the Hardy receiver, the largest cover-invariant part of the zero-coordinate slice is exactly the divisor that the chosen residue section inserts: the zeta divisor for ξ, any finite prescribed set of nonzero points for a polynomial section, and nothing for the constant section. So covariance gives recovery, not location. Source: programme, RSS3.2–RSS3.3, RSS6; `16_`.
 
 ## Goal 2: bridges found or implied
 
@@ -186,7 +188,7 @@ The detailed files are in this folder (`01_`–`15_`, `checks/`, `figures/`, `co
     - Its NCI result is the Fréchet-topology case: the discrepancies generate the zero-jet ideal unconditionally.
     - The three settings (Fréchet, L²(0,∞), one-sided L²(0,1)) differ in topology, support and test class, and RH is the statement about the third.
     - The step tests h are not in S.
-    - Source: claude-ab, `09_` §4(c), checked numerically.
+    - Source: claude-ab, `09_` §4(c), checked numerically. The programme's Fréchet proofs (NCI, RSS, NHJ) are now read and mapped in `16_`.
 14. **Wiener's L² Tauberian theorem** (Ann. of Math. 33, 1932) is the reason the summation image is dense in L²(0,∞).
 15. **Connes' trace-formula paper, §VIII.** The harmonic distribution, realized rationally, fails to descend exactly off RH (S21).
 16. **Hilbert–Pólya.** OPD4.2 is the skew-adjointness of L − ½ with the source term that measures off-criticality (S20).

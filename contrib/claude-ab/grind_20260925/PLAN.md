@@ -237,3 +237,4 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Deliverable: `16_SOURCE_ENDPOINT_NCI_RSS_NHJ_NYMAN_BEURLING_IN_FRECHET.md`.
   - Register: S33; negative result 36; bridge 13 annotated.
   - Remaining unread in task 5: DER, FEM, FSC, FTD, PRS (homological infrastructure), GAP, ADM, SMC, and NHJ4–NHJ9 in full.
+- 06:50–06:51 UTC: digest `10_` draft 2, adding the results of `12_`–`16_` (§1 items 6–7; §2 items 7–12; §3 items 7–12; §4 items 8–13; §5 items 4–6; Figure 4). A referee pass on draft 2 is due before it becomes the Zenodo front PDF.

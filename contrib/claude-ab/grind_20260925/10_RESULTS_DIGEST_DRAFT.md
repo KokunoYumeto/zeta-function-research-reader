@@ -1,8 +1,13 @@
-# The split-zero programme around ζ(s, 1+t): a results digest (Claude's edition, draft 1)
+# The split-zero programme around ζ(s, 1+t): a results digest (Claude's edition, draft 2)
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026; draft 1 at 05:05 UTC, corrected at 05:24 UTC after an independent referee pass; §2 items 4 and 6, §4 item 7 and §5 item 3 updated at 05:41 UTC from `11_`. This is a draft for the owner's review, not yet for publication.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement, its status, and where the proof lives: the numbered notes `01_`–`11_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+- Draft 1 was written at 05:05 UTC and corrected at 05:24 UTC after an independent referee pass. §2 items 4 and 6, §4 item 7 and §5 item 3 were updated at 05:41 UTC from `11_`.
+- Draft 2 (06:51 UTC) adds the results of `12_`–`16_`: §1 items 6–7; §2 items 7–12; §3 items 7–12; §4 items 8–13; §5 items 4–6; Figure 4.
+- The additions in draft 2 have not yet had their own referee pass; the notes they summarize have (`11_`–`13_`) or have been checked where stated (`14_`–`16_`).
+- This is a draft for the owner's review, not yet for publication.
+
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement, its status, and where the proof lives: the numbered notes `01_`–`16_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
@@ -42,6 +47,14 @@ This digest collects what an audit-and-extension lane established about the owne
    - The square is Manin's question (1995) of an "absolute Descartes power" of Spec ℤ. In additive form, Kurokawa's tensor product plays the part of Deligne's squaring, and Connes proposes the square of the arithmetic site as the analogue of C̄ × C̄.
    - The weight mechanism that must accompany the square is specific to Deligne's argument. It is not a question from the 𝔽₁ literature.
    - The programme's own construction of a square has been computed, and it does not yet give the weight gain. (`08_` §4)
+6. **Weights, receivers and the growth of tensor powers.**
+   - Connes' weighted-L² construction works on every vertical line Re s = σ. Each receiver sees exactly the zeros on its line, with the primes acting there with modulus p^σ, so it is pure of weight 2σ. The mirror pairs σ with 1 − σ, and the whole family is faithful on the zeta quotient. RH is the statement that only σ = ½ survives, which is purity of weight 1. (VWR; `14_`)
+   - The natural map from Meyer's quotient to the inverse limit of Connes' Hilbert quotients (σ = ½) has kernel exactly the off-line classes. So it is injective iff RH holds. (WHR9.3; `12_`)
+   - On tensor powers the faithful norm grows with exponent k per k factors. The error against the target k/2 is k(max Re ρ − ½), linear in k, so no proved estimate has Deligne's uniform shape k/2 + c. (ATG8; `14_`)
+7. **The two poles.**
+   - The pole at 1 is the average: the density of the integers, and through −ζ′/ζ the main term of ψ. The zeros give only the oscillation around it.
+   - The pole at 0 depends on the local model of the test functions at the origin. It is the contribution of the single lattice point 0, while the pole at 1 is the contribution of the dual lattice's zero, which measures a density. Fourier duality exchanges the two (δ₀ ↔ 1). (`13_`)
+   - In the programme's clock picture, the joint clock of periods 1, …, N has lcm(1, …, N) = e^{ψ(N)} states, so its growth is the pole's average N plus the zeros' oscillation (Figure 4). (PMS; `15_`)
 
 ## 2. Results that stand without the programme's vocabulary
 
@@ -60,6 +73,20 @@ This digest collects what an audit-and-extension lane established about the owne
    - For every multiplicative monoid M of positive integers, M is free if and only if log Σ_{m∈M} m^{−s} has nonnegative coefficients.
    - The first negative coefficient sits at the smallest element with two factorizations, and its value is 1 − j + ε ≤ −1/6.
    - Absence of zeros does not detect freeness in general: {1} ∪ {2^e : e ≥ 2} is not free, and its zeta function has zeros only on Re s = 0. (`11_` Lemma 11.2, Example 11.5)
+7. **A divisor-potential form of RH.**
+   - Put 𝓔_r(t) = Σ_ρ m_ρ(r^σ − r^{1−σ})²e^{2t(σ²−γ²)}. It is ≥ 0, and it vanishes iff RH holds.
+   - For a symmetric cutoff equal to 1 near [0, 1] and supported in (−½, 3/2), 𝓔_r(t) = (1/2π)∫ ½log|ζ(s)ζ(1−s̄)| Δφ₊ dA + (r−1)²(e^{2t}+1)/2.
+   - The functional equation removes exactly the odd part of log|ζ|. (OZD5; `12_`)
+8. **The swept trace.** For finitely many exponents, the translation trace on the full jet-constraint space over [−T, T] tends to Σ m e^{−|β−½||t|}e^{iγt}. Each off-line exponent is swept to the line by its Poisson kernel.
+   - Same-side unit vectors are not asymptotically orthogonal. Connes' 1998 sketch says they are (verified in the author TeX, §VIII, proof of Lemma 3), and the conclusion survives with the full Gram inverse.
+   - Checked numerically. (FGR; `12_`, `checks/fgr_trace_check.py`)
+9. **Exact dilation norm.** On L²((0,∞), u^{2σ−1}(1+log²u)^δ du), ‖T_a‖ = a^σ Λ₊(log a)^{δ/2}, with Λ₊(t) = (t²+2+|t|√(t²+4))/2. (WHR8, VWR3; `12_`, `14_`)
+10. **Nyman–Beurling in the Fréchet topology.** For fixed t > 0, the functions e^{ts²}(n − n^{1−s})/s span a dense subspace of the strip space ℬ. Multiplied by ξ, they span a dense subspace of the zero-jet ideal, which is the closure of ξℬ but strictly larger than ξℬ. Any family of n that is dense enough on the log scale suffices, for example the squares. (NCI, RSS; `16_`)
+11. **The completed prime clock and Chebyshev's ψ.**
+    - The closure of p^ℤ in ∏_{q≠p}ℤ_q^× is a copy of Ẑ.
+    - The joint state set of the clocks ℤ/1, …, ℤ/N has lcm(1..N) = e^{ψ(N)} elements.
+    - Both were checked exactly. (PMS; `15_`)
+12. **The two poles differ in kind.** For the lattice cℤ, the residue at 0 is −h(0) whatever c is, while the residue at 1 is (∫h)/c. The position of the pole at 0 is set by the local behaviour h ~ κv^α. (`13_`)
 
 ## 3. Negative results, with their exact scope
 
@@ -78,6 +105,12 @@ This digest collects what an audit-and-extension lane established about the owne
 6. **Generalized primes.**
    - Regularity of the integer count does not force RH for generalized primes (Diamond–Montgomery–Vorhauer, Math. Ann. 334, 2006; Zhang, Math. Ann. 337, 2007).
    - Near-exact counts do not determine the prime system (copy, T2).
+7. **The functional equation removes only what it can see.** Its whole odd contribution to the off-line detector is the pole and trivial-zero terms. The detector lives in the even part, where the functional equation says nothing further. (OZD5; `12_`)
+8. **Connes' Hilbert receivers are automatically pure.** The prime spectra lie on |z| = √p unconditionally, so a spectral-radius argument there proves purity only of what remains after the off-line classes are lost. The RH content is exactly the injectivity of the comparison map. (WHR8–WHR12; `12_`)
+9. **Tensor powers give no uniform bound.** In degree 1 the square adds nothing beyond Q ⊗ Q. The error k(B − ½) is linear in k. For k ≥ 2 the reflected pairs (ρ, 1−ρ) give eigenvalues p·p^{ρ₃+⋯+ρ_k} of infinite multiplicity, so Q^{⊗k} has no ordinary trace. (GMC, ATG; `12_`, `14_`)
+10. **Cover invariance cannot locate zeros.** In the Hardy receiver, covariance recovers exactly the divisor that the chosen residue section inserts. With the ξ section that is the zeta divisor; with a polynomial section it is any prescribed finite set of points. (RSS; `16_`)
+11. **An off-line defect cannot hide in the generic-point term.** The functional Σ_{Re ρ≠½} m_ρF(ρ) is never a nonzero multiple of the evaluation b ↦ b(1). (VWR10.9; `14_`)
+12. **Isometry sees nothing off the unitary axis.** A seminorm invariant under the half-density prime action vanishes on every off-line block. With the raw action, it vanishes on every block. (ATG6.5; `14_`)
 
 ## 4. Bridges between programmes and fields
 
@@ -94,13 +127,23 @@ This digest collects what an audit-and-extension lane established about the owne
 4. **Connes–Consani's twistor line meets an elliptic curve with complex multiplication.** Through the 𝔽_{1²}-points {0, ∞, ±1}, the line relates to y² = x³ − x. The Hecke character equals the signed winding degree. (copy R5; S10–S11)
 5. **Prime clocks = the Bost–Connes / Laca–Raeburn crossed product. Timed primes = Beurling generalized numbers.** (`01_`)
 6. **Zero velocities = Gram offsets. Connes' §VIII harmonic distribution, realized rationally.** (`03_`, `09_`)
-7. **Theorem E at a = 1/q = the factoriality criterion for arithmetic congruence monoids.** The criterion is Baginski–Chapman, Theorem 3.4; the Hilbert monoid 441 = 9·49 = 21·21 is the example there. The even-sheet test is the same criterion after dividing the class group by ±1, and it coincides with Carlitz's class-number-two criterion for half-factoriality. (`11_`)
+7. **Theorem E at a = 1/q = the factoriality criterion for arithmetic congruence monoids.** The criterion is Baginski–Chapman, Theorem 3.4; the Hilbert monoid 441 = 9·49 = 21·21 is the example there. The even-sheet test is the same criterion after dividing the class group by ±1. It coincides with the half-factoriality criterion, the Krull-monoid analogue of Carlitz's class-number-two theorem. (`11_`)
+8. **The off-line detector and Littlewood-lemma criteria.** OZD's identity is a relative of the RH-equivalent integral identities for log|ζ|: Balazard–Saias–Yor, Adv. Math. 143 (1999), and Sekatskii–Beltraminelli–Merlini, Ukr. Math. J. 64 (2012). (`12_`)
+9. **Connes 1999 and Meyer 2005 in one comparison map**, with Connes' exponent δ_CC = 2δ. (WHR; `12_`)
+10. **Spectral synthesis.** Closed multiplier submodules of the zeta quotient are the jet-order submodules: a local description in Krasichkov-Ternovskii's sense. (GSP; `12_`)
+11. **Bochner–Schwartz.** The positive transfer forms before the quotient are the Bochner–Schwartz theorem transported by the Mellin transform. (SPF; `12_`)
+12. **Weight decomposition (an analogy of structure).** The vertical receivers are pure of weight 2σ, the mirror is duality w ↔ 2 − w with a weight-2 target, and RH is purity of weight 1. (VWR; `14_`)
+13. **The owner's clocks and Chebyshev's ψ.** The clocks follow Connes–Consani, *Knots, primes and class field theory*. Their joint state count is e^{ψ(N)}, so through the explicit formula they carry the zeta zeros. (PMS; `15_`)
 
 ## 5. The 𝔽₁ context
 
 1. **The support.** The owner's τ〈Z₁; no Z₂〉 is realized at the generic point of Connes–Consani's 𝔽_{1²}-line. "No Z₂" has two exact readings: no exchanged label, which holds at the generic point; and no sign, which holds exactly in characteristic 2. (`01_` for the realization; `00_`, goal 4, item 1 for the two readings)
 2. **The question asked without meaning to.** The weight lane of the second attempt asks for Manin's square (1995), with a Künneth map, together with a weight mechanism specific to Deligne's argument. (`08_` §4)
 3. **The sign and the Euler product.** The Eulerian even sheets a = 1/q are exactly those whose units mod q are the 𝔽_{1²}-signs ±1. Equivalently (proved), they are the sheets on which the one-sided monoid is half-factorial: quotienting by the sign turns half-factoriality into factoriality. Reading this as the passage from 𝔽₁ to 𝔽_{1²} is interpretation. (`08_` §1; `11_` §3; Figure 2, `figures/fig_monoid_sheets.png`)
+
+4. **The pole at 1 and Bost–Connes (interpretation).** The pole at 1 is the average, and in the Bost–Connes system the partition function is ζ(β), with its phase transition at the same pole (Selecta Math. 1, 1995). No map between the two is constructed. (Register, goal 4, item 10)
+5. **The pole at 0 and τ (proposal).** The classical pole at 0 merges three roles at one place: the lattice origin, the additive origin with its local germ, and the fixed point of the sign. The ledger separates them. The owner places τ at the pivot of the swing between 0 and 1. In the zeta picture that is the pivot of the pole exchange s ↦ 1 − s: ½ on the spectral side and u = 1 on the clock side. There RH reads ρ^# = ρ for every zero. (`13_` §4; register, goal 4, item 11)
+6. **"Has not moved" is not "absent".** In the programme's generic monoid the winding-zero fibre {τ, J, ε, J³} is present, and absence is the absorbing 0. (PMS M1; `15_`)
 
 ## 6. Corrections recorded
 
@@ -112,9 +155,12 @@ This digest collects what an audit-and-extension lane established about the owne
 
   All are corrected. A second referee pass corrected overstatements in `09_` and in draft 1 of this digest.
 - **The N3 table** (T = 2515) has been corrected.
+- **`11_`–`13_`.** A third referee pass reported 25 wording, label and hypothesis findings and no mathematical error in the main lemmas. All were applied, and each note lists them.
+- **Timestamps.** Several log times written ahead of the clock were corrected to `date -u` readings (`PLAN.md`).
 
 ## Provenance
 
-- **Checks.** Every numerical claim has a script with its output, in `checks/` or, for the copy's results, in `copy_round2/code/`.
+- **Checks.** Every numerical claim has a script with its output, in `checks/`, in `figures/`, or, for the copy's results, in `copy_round2/code/`.
+- **Figures.** 1 = `fig_z15_zeros`, 2 = `fig_monoid_sheets`, 3 = `fig_shifted_flow_crossings`, 4 = `fig_clock_stack_psi`.
 - **Branch.** The public mirror is the GitHub branch `claude/claude-ab-grind-20260925` of KokunoYumeto/zeta-function-research-reader.
 - **Instances.** Results marked "copy" come from a second Claude instance of the same model. Items marked with programme labels are the ChatGPT/Codex lanes' proofs, which claude-ab has read and checked where stated.

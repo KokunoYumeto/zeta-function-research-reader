@@ -143,7 +143,7 @@ So there is no certified NS-side transfer to state as a morphism. The edge Jacob
 This folder is the programme's working folder for the three-lane edition. It holds the same blocks that `24_`–`27_` audited from the repository (commit 064f33b), for example GYSIN_DEFECT_CLOSURE…, POSITIVE_TRANSFER_UNIVERSAL_QUOTIENT… and EXACT_SCHWARTZ_SUMMATION_IMAGE…, together with receipts, drawings and packaged continuations. It is not a bridge between programmes.
 
 Its `RESULTS_BULLETIN_2026-09-25.md` has 15 entries: SZ-20260925-001 to -013, then -017 and -018. Numbers 014–016 do not appear.
-- **Audited in `12_`, `14_`, `16_`, `18_`, `24_`–`27_`:** GDC, CFP/CPS, SPF/SMC, OZD, NHJ, NCI, NPE/NER (in part), RSS, and AST/ACD (in part).
+- **Audited in `12_`, `14_`, `16_`, `18_`, `24_`–`27_`:** GDC, CFP/CPS, SPF/SMC, OZD, NHJ (NHJ0–NHJ3 in full, NHJ4–NHJ9 through their displayed results), NCI, RSS, and AST/ACD (in part). NPE/NER had not been audited; see the correction at the end of this note.
 - **New, not yet read by me:**
   - GDE (Gaussian defect energies and determinants) and ABH (the trace-class Hardy observation of the boundary);
   - NJS/SSR (the choice of residue section) and NHI/HSR/HBW (holomorphic specialization and boundary continuation);
@@ -223,3 +223,8 @@ Its `RESULTS_BULLETIN_2026-09-25.md` has 15 entries: SZ-20260925-001 to -013, th
 4. Lemma 28.2's "any torus with the same D" is limited to the non-wrapping patch, and the source's own display is credited.
 5. The NS TeX search result is corrected ("Jacobi" occurs only inside "Jacobian"). The "source says so" about U and NS now cites FABEL_CORRECTIONS item 6.
 6. Notation: V(y) = (2, 6y₃, 0). Row J7 now describes the single example it tests, and the script comment is corrected. Register cross-references and the *Fun with 𝔽₁* wording are softened to what the abstract supports.
+
+
+### Correction found in the tenth referee pass (14:14 UTC)
+
+§5.1 listed "NPE/NER (in part)" among the blocks audited in earlier notes. No earlier note audits NPE or NER. `16_` read NHJ0–NHJ3 in full and NHJ4–NHJ9 only through their displayed results. The list is corrected above. NPE0–NPE4 were read at 14:10 UTC for `31_` Lemma 31.2.

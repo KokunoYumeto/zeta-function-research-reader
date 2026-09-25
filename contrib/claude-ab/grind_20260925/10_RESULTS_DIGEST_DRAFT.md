@@ -10,6 +10,7 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 - At 10:59 UTC `21_`–`23_` were added: the cross-programme bridges (part 1, refereed), the owner's anomaly picture made exact, and the detectability argument. The additions are §2 item 13, §3 items 15–17, §4 items 16–18 and §5 item 8. `22_` and `23_` await their referee pass.
 - At 11:54 UTC `24_`–`26_` were added, for board task 8, which the owner gave priority from about 11:03 UTC. They audit GSL, GMS, AST, GDC, PTQ, SSI, ECR, ECI, GZR and OMS, and were refereed in the eighth pass. The additions are §2 items 14–17, §3 items 18–20, §4 item 19 and §5 item 9.
 - At 12:57 UTC `27_`–`28_` were added and refereed in the ninth pass. `27_` audits RTT, RZ, SDT, FOD and NEA. `28_` covers the cross-programme bridges, part 2. The additions are §2 item 18, §3 items 21–22 and §4 item 20.
+- At 14:20 UTC `29_`–`32_` were added. They audit the new result groups of the programme's 25 September bulletin: ETR, GDE, ABH, NJS/SSR and NHI/HSR/HBW. `29_`–`31_` were refereed in the tenth pass; `32_` is a first-pass audit by a subagent, with its key points re-verified. The additions are §2 items 19–23, §3 items 23–27, §4 items 21–23 and §5 item 10, together with a correction to the provenance of §2 item 6 (the formal-log test).
 - This is a draft for the owner's review, not yet for publication.
 
 This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement and where the proof lives: the numbered notes `01_`–`28_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Unless an item says otherwise, its statement is proved in the source cited in parentheses, and contributions of claude-ab are marked as such. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
@@ -77,7 +78,7 @@ This digest collects what an audit-and-extension lane established about the owne
 6. **The formal logarithm detects freeness.**
    - For every multiplicative monoid M of positive integers, M is free if and only if log Σ_{m∈M} m^{−s} has nonnegative coefficients.
    - The first negative coefficient sits at the smallest element with two factorizations, and its value is 1 − j + ε ≤ −1/6.
-   - Absence of zeros does not detect freeness in general: {1} ∪ {2^e : e ≥ 2} is not free, and its zeta function has zeros only on Re s = 0. (`11_` Lemma 11.2, Example 11.5)
+   - Absence of zeros does not detect freeness in general: {1} ∪ {2^e : e ≥ 2} is not free, and its zeta function has zeros only on Re s = 0. (First derived in the programme: CEI Theorem 3.1 for the criterion, ETR1 for −1/6 and the example 64 = 4³ = 8². Independently, later: `11_` Lemma 11.2, Example 11.5; see `29_` §1)
 7. **A divisor-potential form of RH.**
    - For r > 1 and t > 0 put 𝓔_r(t) = Σ_ρ m_ρ(r^σ − r^{1−σ})²e^{2t(σ²−γ²)}. It is ≥ 0, and it vanishes iff RH holds. (At r = 1 it vanishes identically.)
    - For a symmetric cutoff equal to 1 near [0, 1] and supported in (−½, 3/2), 𝓔_r(t) = (1/2π)∫ ½log|ζ(s)ζ(1−s̄)| Δφ₊ dA + (r−1)²(e^{2t}+1)/2.
@@ -112,6 +113,11 @@ This digest collects what an audit-and-extension lane established about the owne
     - For a polynomial automorphism every flow line is complete.
     - For the Jacobian-conjecture counterexample recorded in the Yang–Mills workbench, one flow line escapes to infinity at τ = 1/8 while its image stays on a bounded segment. The failure of properness is seen as finite-time escape. (`28_` Lemma 28.1)
 
+19. **Which first negative Euler-log coefficients can occur.** At the first non-uniquely factored element of a multiplicative monoid of integers, a value above −½ forces exactly two factorizations N = a^{j₁} = b^{j₂} with coprime exponents, and then r_N = −1 + 1/j₁ + 1/j₂. The possible values above −½ are exactly −½ + 1/v for odd v ≥ 3, together with −5/12 and −7/15. (`29_` Corollary 29.1; the general test is the programme's CEI/ETR, with `11_` an independent later derivation)
+20. **One tensor degree recovers the exponents.** Shifted zeta functions ζ(s − σ) are multiplicatively independent, and convolution roots of positive measures are unique. So a single tensor Euler function ∏_p det(1 − p^{−s}W_p^{⊗d})^{−1} determines all exponents and their total multiplicities. (ETR8–ETR9; `29_` Lemmas 29.2–29.3)
+21. **Two conditions implied by RH, read off the zero-time Gaussian energy.** The zero-time energy is compact iff the off-line zeros approach the critical line, and trace class iff Σ m_ρ(β − ½)² < ∞. (`30_` Lemma 30.1)
+22. **Density of Noor-type tests in the strip space.** The corrected tests are dense for every correction term with Φ(0) = 1. Discrepancy families from a single base a^k are never dense, even with finitely many other degrees added. The tails of the corrected tests are total already before the quotient. (`30_` Corollary 30.2, `31_` Lemma 31.1, `32_` Lemma 32.1)
+23. **The residue extension survives evaluation only at the pole s = 0.** Evaluated anywhere else, the programme's residue extension splits. At s = 0 it is the Jordan block n ↦ n(I − log n·N), with class −log (NPE4.2; `31_` Lemma 31.2).
 ## 3. Negative results, with their exact scope
 
 1. **Detection, clock changes and loops.**
@@ -164,6 +170,11 @@ This digest collects what an audit-and-extension lane established about the owne
     - S⁶ → Yang–Mills uses a single number from the S⁶ data.
     - The Navier–Stokes workbench certifies none of its early transfers. (`28_`)
 
+23. **Zero-freeness where the series converges absolutely does not detect freeness,** while the formal logarithm does. No finite set of Euler factors determines a finite product of shifted zeta functions: every such set is fooled by an explicit pair of products. (`29_` 29.N1–N2)
+24. **Tensor Euler products cannot see jets,** and the programme's residue extension at s = 0 is such a jet. (ETR10, NPE4; `29_` 29.N3, `31_` 31.N2)
+25. **Amplification by tensor powers constrains nothing without a pole bound uniform in the power.** The pole at 1 + 2kB exists whatever B is. (ETR11.3; `29_` 29.N4, `08_`)
+26. **The receivers built on off-line coordinates all say "no off-line zeros" by construction.** This covers traces, normality, Hardy images, specialization spaces, counting moduli and monodromy phases. Every attempted cancellation (cyclicity, degree, cover) leaves the off-line sector intact. (`30_`, `32_`)
+27. **The residue section supplies the divisor.** Two sections of the same non-split extension have cocycle spans I and ℬ, so the zeta divisor enters only through the chosen section. (NJS10; `31_` 31.N1)
 ## 4. Bridges between programmes and fields
 
 1. **Deligne, Weil II §2.1.9 = Hadamard–de la Vallée Poussin = the programme's timed primes.** The programme's measure maps invertibly onto Deligne's positive measure. (DB9, DR)
@@ -211,6 +222,9 @@ This digest collects what an audit-and-extension lane established about the owne
     - The S⁶ period block becomes a constant magnetic field of strength 2π/D.
     - The owner's signed clocks ⟨T, J, ε⟩ map to the integral Bost–Connes ring. The sign ε blocks even degrees, and the unnormalised transfer keeps a quotient ℤ/n. (`28_`)
 
+21. **The Euler-product half of Deligne's §1.5 mechanism, on the programme's data.** ETR supplies positivity, the genuine real pole and the dimension recovery. The uniform pole bound is the missing geometric half. (`29_` §5, `08_` I4)
+22. **One object at the pole s = 0.** NPE4.2's endpoint representation, HBW's counting action at s = 0 and ETR10's invisible Jordan extension are the same object, with class −log. The tail annihilator of NHI8 sits at the reflected endpoint s = 1. (`31_`, `32_`)
+23. **The Hardy receivers are one family.** NHI's injectivity is NHJ4.6, which is ABH2, a consequence of RSS1.2. ABH's receiver is HSR's restricted to one half. (`30_`, `32_`)
 ## 5. The 𝔽₁ context
 
 1. **The support.** The owner's τ〈Z₁; no Z₂〉 is realized at the generic point of Connes–Consani's 𝔽_{1²}-line. "No Z₂" has two exact readings: no exchanged label, which holds at the generic point; and no sign, which holds exactly in characteristic 2. (`01_` for the realization; `00_`, goal 4, item 1 for the two readings)
@@ -225,6 +239,7 @@ This digest collects what an audit-and-extension lane established about the owne
 
 9. **The jet at 0 comes from the trivial zeros.** For a source in the exact image, f^{(2r)}(0)/(2r)! = F(−2r)/(2ζ′(−2r)). The Mellin poles of the local model at −2r (register, goal 4, item 11) are seen here from the source side. (SSI5.6; `25_` §1.2)
 
+10. **The pole at 0, continued.** The residue at s = 0 is the only place where the programme's residue extension survives evaluation. There it is the logarithm n ↦ log n, as a Jordan block, and it is invisible to every Euler product of tensor powers. At the reflected point s = 1 sits the only functional that can annihilate a tail of the corrected tests. (`31_` Lemma 31.2, `32_` Lemma 32.1)
 ## 6. Corrections recorded
 
 - **FLIP_FABLE Addendum 4.** The claim that zeros of ζ(s, 1+t) lie on vertical lines only at Eulerian times was false. Zeros 4 and 5 of ζ cross the line at t ≈ 0.95095 and t ≈ 0.85870. (`ERRATUM_FLIP_FABLE_ADDENDUM_4.md`; Figure 3, `figures/fig_shifted_flow_crossings.png`)
@@ -239,6 +254,8 @@ This digest collects what an audit-and-extension lane established about the owne
 - **`14_`–`16_` and draft 2 of this digest.** A fourth referee pass found two errors of statement, both corrected: "never a multiple" should read "never a *nonzero* multiple" (`14_`); the density hypothesis of the Fréchet Nyman–Beurling theorem is limsup #/R² = ∞ (register S33). It also found 21 overstatements, missing hypotheses, labels and ranges; all were applied.
 - **`17_`.** A fifth referee pass made 16 findings, mostly wording. The main ones: the Hurwitz flow was written as if it translated Z (only its first jet vanishes on Z − 1); a false bound on rung lengths; missing hypotheses on the neighbouring lines; an overclaim in a corollary of the owner's `6.tex`; a misattribution of the circle Γ; and the missing boundedness hypothesis of the blind lemma. All were applied (`17_` §11).
 - **`18_`–`20_` and this digest.** A sixth referee pass found one major error. The first versions of `18_` and of §4 item 15 described the global model's pair ℛ[1] ⊕ ℛ(−1)[−1] as the original and shifted copies of the zero set, but ℛ holds only off-line data; the unconditional pair is Q and Q₊. It also found overstatements (the scope of FSC2, "cannot force", "coincide", "independently re-proved") and three gaps in `20_`: the conjugate zeros, the integration by parts under a mean-square hypothesis, and the range of Lemma 20.2(b). All were applied (`18_` §8, `19_` header, `20_` §9).
+- **Provenance of the formal-log test (§2 item 6).** The general criterion and the sharp bound −1/6 were derived first in the programme: CEI Theorem 3.1 (04:29 UTC) and ETR1 (05:09 UTC). `11_` Lemma 11.2 (05:39 UTC) is a later independent derivation. (`29_` §1)
+- **`29_`–`31_`.** A tenth referee pass found five major points, all of them about attribution and record-keeping: the priority of NPE4.2 over Lemma 31.2(b), the audit coverage of NPE/NER and NHJ, SSR's coverage, the Jensen attribution, and the register S23 update. It also found 18 minor points. All were applied.
 - **Timestamps.** Several log times written ahead of the clock were corrected to `date -u` readings (`PLAN.md`).
 
 ## Provenance

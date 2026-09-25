@@ -1,0 +1,49 @@
+claude-ab mirror/Hurwitz checks; mpmath 1.3.0, dps = 30
+first zero heights: 14.1347251417, 21.0220396388, 25.0108575801, 30.4248761259, ...
+
+1. Hurwitz first jet  d/dt zeta(s,1+t)|_{t=0} = -s zeta(s+1)
+   s = (2.3 + 1.1j)                  central difference = (-2.60456548663488 - 0.918497294525873j)  -s zeta(s+1) = (-2.60456548663488 - 0.918497294525873j) |diff| = 5.88e-20
+   s = (0.5 + 14.134725j)            central difference = (0.433889054649164 - 7.68757664579356j)   -s zeta(s+1) = (0.433889054649164 - 7.68757664579356j)  |diff| = 1.96e-20
+   s = (-0.5 + 3.0j)                 central difference = (0.0296787952096163 - 1.63765826963562j)  -s zeta(s+1) = (0.0296787952096163 - 1.63765826963562j) |diff| = 1.16e-20
+   s = (0.25 - 7.5j)                 central difference = (1.63498335175758 + 8.31545914431259j)    -s zeta(s+1) = (1.63498335175758 + 8.31545914431259j)   |diff| = 1.97e-20
+   s = 1e-5    s*zeta(1+s) = 1.000005772163930595031789   (1 + euler*s = 1.000005772156649015328606)
+   s = 1e-10   s*zeta(1+s) = 1.000000000057721566490881   (1 + euler*s = 1.000000000057721566490153)
+   s = 1e-20   s*zeta(1+s) = 1.000000000000000000005772   (1 + euler*s = 1.000000000000000000005772)
+   Zero velocity under the Hurwitz shift: rho'(0) = rho zeta(rho+1)/zeta'(rho)  (read on Re s = 3/2)
+   k=1  formula = (0.983582494049 + 9.65780397944j)   (root(t) - root(-t))/2t = (0.983582494049 + 9.65780397944j)
+   k=2  formula = (-0.441793060314 + 12.2751464922j)  (root(t) - root(-t))/2t = (-0.441793060314 + 12.2751464922j)
+   k=3  formula = (1.86075098474 + 13.4498816366j)    (root(t) - root(-t))/2t = (1.86075098474 + 13.4498816366j)
+   At the mirror points s = rho_k - 1:
+   k=1  s = (-0.5 + 14.1347251417j)    |zeta(s)| = 1.2254631    |first jet| = 8.78e-30
+   k=2  s = (-0.5 + 21.0220396388j)    |zeta(s)| = 2.222424     |first jet| = 9.11e-30
+   k=3  s = (-0.5 + 25.0108575801j)    |zeta(s)| = 2.9642947    |first jet| = 3.89e-29
+   m-th jet: (-1)^m (s)_m zeta(s+m) vanishes at s = rho_1 - m:
+   m=2  |jet(rho_1 - m)| = 1.25e-28     generic s0=1.7+0.9i: mp.diff = (4.33663742425 + 3.98175891931j), formula = (4.33663742425 + 3.98175891931j)
+   m=3  |jet(rho_1 - m)| = 1.79e-27     generic s0=1.7+0.9i: mp.diff = (-11.3196902826 - 18.373602816j), formula = (-11.3196902826 - 18.373602816j)
+
+2. A(s) = -conj(s), B(s) = 1 - conj(s)
+   s = (0.3 + 2.0j)      B(A(s)) - s = (1.0 + 0.0j)  A(s) - (s-1) = (0.4 + 0.0j)  (zero iff Re s = 1/2)
+   s = (0.5 + 14.1j)     B(A(s)) - s = (1.0 + 0.0j)  A(s) - (s-1) = (0.0 + 0.0j)  (zero iff Re s = 1/2)
+   s = (-1.2 - 0.7j)     B(A(s)) - s = (1.0 + 0.0j)  A(s) - (s-1) = (3.4 + 0.0j)  (zero iff Re s = 1/2)
+
+3. Equator test |w| = |s - c| / |s| for the shift pairing [s : s - c]
+   c = +1, Re s = +0.5: |w| at t = 0.1, 1, 14.13, 1000: 1.0, 1.0, 1.0, 1.0
+   c = +1, Re s = +0.3: |w| at t = 0.1, 1, 14.13, 1000: 2.236067977, 1.169175982, 1.001000102, 1.0000002
+   c = -1, Re s = -0.5: |w| at t = 0.1, 1, 14.13, 1000: 1.0, 1.0, 1.0, 1.0
+   c = -1, Re s = -0.3: |w| at t = 0.1, 1, 14.13, 1000: 2.236067977, 1.169175982, 1.001000102, 1.0000002
+   Normalized pairs versus Gamma(psi) = (e^{i psi}, -e^{-i psi})/sqrt2:
+   max deviation over sample points (both halves) = 3.12e-31
+   critical half: psi = atan(2t) in (-pi/2, pi/2); mirror half: psi = pi - atan(2t) in (pi/2, 3pi/2)
+
+4. Explicit formula with h = g * g^(centre), g(x) = exp(-(log x)^2/(2w) + i b log x)
+   Weil/Bombieri form: sum_rho H(rho) = H(0) + H(1) - sum_n Lambda(n)[h(n) + h(1/n)/n]
+                       - (log 4pi + gamma) h(1) - int_1^oo [h(x) + h(1/x)/x - 2h(1)/x] dx/(x - 1/x)
+   centre half: Mellin check |int h x^(s-1) - H(s)| at s = 0.3+0.2i: 1.71e-17
+              zero side (first 10 zeros and conjugates) = (6.28318530717959 + 0.0j)
+              prime + archimedean side                  = (6.28318530717958 + 1.77147132361349e-30j)
+              |difference| = 4.24e-15 ; imaginary part of the sum = 1.771471324e-30
+   centre zero: Mellin check |int h x^(s-1) - H(s)| at s = 0.3+0.2i: 4.34e-17
+              zero side (first 10 zeros and conjugates) = (5.51401385870661 + 3.01231950004459j)
+              prime + archimedean side                  = (5.51401385870592 + 3.01231950004606j)
+              |difference| = 1.63e-12 ; imaginary part of the sum = 3.0123195
+   expected, centre zero: 2 pi e^{i/2} = (5.51401385870661 + 3.01231950004459j) (one zero dominates; w = 1, b = 1/2 - gamma_1)

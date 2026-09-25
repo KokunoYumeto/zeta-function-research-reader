@@ -238,3 +238,18 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Register: S33; negative result 36; bridge 13 annotated.
   - Remaining unread in task 5: DER, FEM, FSC, FTD, PRS (homological infrastructure), GAP, ADM, SMC, and NHJ4–NHJ9 in full.
 - 06:50–06:51 UTC: digest `10_` draft 2, adding the results of `12_`–`16_` (§1 items 6–7; §2 items 7–12; §3 items 7–12; §4 items 8–13; §5 items 4–6; Figure 4). A referee pass on draft 2 is due before it becomes the Zenodo front PDF.
+- 07:09–07:12 UTC: owner message M12, proposing a second critical line at Re s = −½ ("the chiral partner place") and suggesting that anomaly cancellation might disprove RH. It came with `giuga_blind_plane_cayley_dickson.tex`, which was read in full.
+- About 07:15 UTC: owner message M13, asking for the line to be mirrored "like a double helix chiral partner", with the entire line shifted as in the Hurwitz-shift work. It came with seventeen uploads (eight distinct files, one of them the giuga note again) and the Hopf-link figure.
+  - The last line of M13 was typed with shifted hands. claude-ab's decoding: "you will see that it is off the critical line - because the whole line is shifted, but in a way that does not contradict RH".
+  - M12, M13, the decoding and the SHA-256 of every file are in the private provenance file (§§1, 2b). The uploads are copied beside it.
+- 07:21–07:28 UTC: `checks/mirror_line_hurwitz_jet_check.py`.
+  - Checked: the Hurwitz jets; the zero velocities ρ′(0) = ρζ(ρ+1)/ζ′(ρ); A(ρ) = ρ − 1 iff Re ρ = ½; the equator and Clifford-torus identities; and the explicit formula computed on both sides with the pairing centred at ½ and at 0 (real 2π against 2πe^{i/2}).
+  - Sources: Bombieri's Clay text (§V) was fetched and supplies the displayed form of the formula. The DLMF 25.11 page did not show eq. 25.11.17, so that citation was replaced by a self-contained argument (joint analyticity and the identity theorem). The chapter 5 abstract of Rosen's GTM 210 was confirmed on Springer's chapter page.
+- About 07:29 UTC: reply to the owner (M12–M13) sent in chat. Correction: the chat reply said "sixteen uploads … seven distinct files"; the correct count is seventeen uploads and eight distinct files, seven of them new.
+- 07:30–07:36 UTC: Figure 17.1 (`figures/fig_mirror_line_double_helix.py`) and note `17_THE_MIRROR_LINE_AT_MINUS_ONE_HALF_AND_THE_HURWITZ_JET.md`.
+  - Register: S34; negative result 37; bridge 26; goal-4 item 13. The "Reading" line was refreshed (referee-2 finding).
+  - `figures/README.md` gains the rows for Figures 15.1 and 17.1; the Figure 15.1 row had been missing.
+  - The zero velocities agree with the saved zero tracks of `fig_shifted_flow_crossings` (digest Figure 3).
+- 07:37 UTC: timer duties.
+  - Post office: no mail from claude-b5 in `to_claude-ab`, after its 07:00 doorbell.
+  - `status_claude-ab.md` and BOARD task 5 updated.

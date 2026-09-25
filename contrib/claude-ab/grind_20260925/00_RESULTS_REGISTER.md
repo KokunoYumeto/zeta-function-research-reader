@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43, 06:47 and 06:49 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02, 05:41, 05:59, 06:05, 06:43, 06:47, 06:49 and 07:35 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);
@@ -52,6 +52,7 @@ The detailed files are in this folder (`01_`–`16_`, `checks/`, `figures/`, `co
 | S31 | **Connes' construction on every vertical line.** For 0 < σ < 1, the quotient of L²((0,∞), u^{2σ−1}(1+log²u)^δ du) by the closure of J realizes exactly the zeros on Re s = σ, with jet orders j < δ − ½. The prime dilations there have spectrum on \|z\| = p^σ (pure of weight 2σ). The mirror maps σ to 1 − σ isometrically. The family over all σ and N is jointly faithful on Q. RH ⟺ every receiver with σ ≠ ½ is zero | proved in the programme; jet norms and Λ₊ checked | programme, VWR2–VWR7 (`14_` §1) | Connes treats σ = ½; other lines not checked in the literature |
 | S32 | **The clock stack is Chebyshev's ψ; the completed prime clock is Ẑ.** The joint state set of the clocks ℤ/1, …, ℤ/N is ℤ/lcm(1..N), and log lcm(1..N) = ψ(N), since each prime power adds log p. The closure of p^ℤ in ∏_{q≠p}ℤ_q^× is a copy of Ẑ, because p has exact order d mod p^d − 1. So RH ⟺ log lcm(1..N) = N + O(√N log²N) | proved (elementary, and classical for ψ = log lcm); checked exactly for N ≤ 20000 and d ≤ 30; ψ computed to 10⁶ | programme, PMS M3–M6 (`15_`); `figures/fig_clock_stack_psi.py` | classical in content; the clock-stack reading is the programme's |
 | S33 | **Nyman–Beurling in the Fréchet topology.** For fixed t > 0, the functions e^{ts²}(n − n^{1−s})/s (n ≥ 2) span a dense subspace of ℬ; multiplied by ξ, they span a dense subspace of the zero-jet ideal 𝓘. Any set of n with more than R² elements in log n ≤ R suffices, for example the k-th powers. closure(ξℬ) = 𝓘, although ξℬ ⊊ 𝓘 | proved in the programme; the Jensen step and the test identities checked by hand | programme, NCI2–NCI8, RSS1–RSS2 (`16_`) | unconditional here, while the Hardy-space analogue (Noor, Adv. Math. 350 (2019)) is equivalent to RH; novelty not searched |
+| S34 | **The mirror line is the Hurwitz one-line shift.** ∂_aζ(s,a)|_{a=1} = −sζ(s+1) is entire, equals 1 at s = 0, and its zeros in −1 < Re s < 0 are exactly Z − 1. The set Z − 1 equals A(Z), with A(s) = −s̄ the reflection through the pole at 0, and ζ does not vanish on it. For a zero ρ, A(ρ) = ρ − 1 iff Re ρ = ½, so RH ⟺ mirror = shift on every zero. Two companion facts. (i) Blind lemma: for σ ≠ σ′, every bounded dilation-equivariant map L²(u^{2σ−1}du) → L²(u^{2σ′−1}du) is 0; the inversion u ↦ 1/u maps σ to −σ isometrically. (ii) In Weil's explicit formula, the partner pairing centred at ½ gives a real sum, while the one centred at 0 does not (2πe^{i/2} for an explicit Gaussian) | proved; the jets, zero velocities, circle picture and both explicit-formula sides checked numerically | claude-ab, `17_` (owner's messages M12–M13); `checks/mirror_line_hurwitz_jet_check.py` | classical ingredients; the assembly and the two-centre comparison are new here, novelty not searched |
 
 ## Goal 1: negative results, with exact scope
 
@@ -159,6 +160,7 @@ The detailed files are in this folder (`01_`–`16_`, `checks/`, `figures/`, `co
     - Source: programme, ATG; `14_` §2. Consistent with negative result 27.
 35. **The off-line defect cannot hide in the generic-point term.** The functional Θ_off = Σ_{Re ρ≠½} m_ρ F(ρ) is continuous on Q and vanishes iff there are no off-line zeros. It is never a nonzero multiple of b ↦ b(1): an explicit b_* ∈ J has b_*(1) = 2 and Θ_off(b_*) = 0. Source: programme, VWR10.5–10.9; `14_` §1.
 36. **Cover invariance cannot locate zeros.** In the Hardy receiver, the largest cover-invariant part of the zero-coordinate slice is exactly the divisor that the chosen residue section inserts: the zeta divisor for ξ, any finite prescribed set of nonzero points for a polynomial section, and nothing for the constant section. So covariance gives recovery, not location. Source: programme, RSS3.2–RSS3.3, RSS6; `16_`.
+37. **The mirror line at −½ does not disprove RH, and a positivity argument cannot be centred at the pole 0.** The owner's second line is exactly A(Z) = Z − 1 (unconditional), and mirror = shift pointwise is equivalent to RH. The properties used (B-symmetry of the zeros, the strip, the shape of the explicit formula) all hold for zeta functions of curves over finite fields, where RH is Weil's theorem, so they cannot imply an off-line zero. The 0-centred partner pairing is not Hermitian, because the Tate-twist factor 1/n is left over. So an 'anomaly' in the only sense the pairing detects is the hyperbolic block of an off-line pair in the ½-centred Weil form. Source: `17_` §§5–6.
 
 ## Goal 2: bridges found or implied
 
@@ -204,6 +206,7 @@ The detailed files are in this folder (`01_`–`16_`, `checks/`, `figures/`, `co
 23. **Bochner–Schwartz.** SPF0 is the Bochner–Schwartz theorem transported by the Mellin transform; SPF9 then adds the descent condition through ξ ∈ 𝓘.
 24. **The vertical receivers as a weight decomposition** (analogy of structure). Each receiver Q_{σ,N} is pure of weight 2σ. The mirror is a duality w ↔ 2 − w with a weight-2 target, and RH is purity of weight 1. This is the zeta-side shape of Deligne's weight argument; the weight-1 exclusion is not proved (VWR9). Source: `14_` §§1, 3.
 25. **The owner's clocks and Chebyshev's ψ.** The joint clock of periods 1, …, N has e^{ψ(N)} states. Through von Mangoldt's explicit formula, its growth is the pole's average N plus the zeros' oscillation (`15_`, Figure 15.1). The clocks follow Connes–Consani, *Knots, primes and class field theory* (arXiv:2501.06560), as used in PMS M2.
+26. **The Hurwitz shift, the mirror through 0, and the two Hopf strands.** On the critical line, the programme's shift flow (thm:gcue-shift-flow) and the reflection through the pole at 0 coincide: the first jet vanishes on A(Z) = Z − 1. The two centres of reflection differ by B∘A = T₁, the Tate twist. The Hopf fibre of `6.tex` (critical line with the pairing (s, 1 − s̄)) is a (1,1) circle. The one-line shift pairing gives a (1,−1) circle whose two halves are the critical line and the line at −½. The two circles meet only at t = ±∞. The equivariant blind-plane and projection-loss theorems of `giuga_blind_plane_cayley_dickson.tex` are the mechanisms of `17_` Propositions 17.4(c) and 17.3(d). The zero velocities ρ′(0) = ρζ(ρ+1)/ζ′(ρ) give the initial tangents of the tracks in Figure 3. Source: `17_`.
 
 ## Goal 4: F₁ context
 
@@ -246,12 +249,14 @@ The detailed files are in this folder (`01_`–`16_`, `checks/`, `figures/`, `co
     - The owner's own placement: τ is the pivot of the swing between 0 and 1, not 0 itself. In the zeta picture this is the pivot of the pole exchange: s ↦ 1 − s about ½, or u ↦ 1/u about u = 1. There RH reads ρ^# = ρ for every zero, with ρ^# = 1 − ρ̄: no exchanged partner (`13_` §2(d), §4; a proposed typed map, not a theorem).
     - Source: claude-ab and the owner, 25 September.
 12. **"Has not moved" is not "absent".** In the programme's generic monoid A_η = {0} ∪ {J^rT^m}, the fibre over winding m = 0 is {τ, J, ε, J³}, which is present, while absence is the absorbing 0 (PMS M1). This is the programme's precise form of the owner's remark (25 September) that zero is "when the thing has not moved" and that τ is not 0. Source: `15_` §1.
+13. **Centring at 0 versus centring at the pivot costs exactly one Tate twist.** B∘A = T₁, where A(s) = −s̄ (centre 0) and B(s) = 1 − s̄ (centre ½, the owner's proposed τ). Under the Hurwitz generator sζ(s+1), the residue at 1 becomes the value 1 at s = 0. Only the ½-centred explicit-formula pairing is real, so the requirement of a real partner pairing picks the pivot and excludes the pole at 0. This is a computation about the two centres, not a theorem about τ. Source: `17_` §§0–1, 5.
 
 ## Open and pending
 
 **Reading:**
 - the Deligne reader outside DB9, DR, DC, DW5–DW11 and MDB9–MDB11;
-- the rest of the 25 September continuations: DER, FSC, VWR, `ALL_TENSOR_DERIVED_RETURN_AND_ACTUAL_GROWTH`, `FULL_SOURCE_RETURN_EQUIVARIANCE_AND_MIXED_TENSOR_CLASS`, `FINITE_TOPOLOGY_DUALIZING_COMPLEX`, `ORIGINAL_RESIDUE_PRODUCT_SHEAF_PAIRING`, GAP, ADM, SMC, and the source-endpoint proofs NCI, RSS and NHJ. OZD, SPF1–SPF8, GSP, CTS, FGR, WHR, HCS and GMC were read in full on 25 September (`12_`);
+- the rest of the 25 September continuations: DER, FEM, FSC, FTD, PRS, GAP, ADM, SMC, and NHJ4–NHJ9 in full. Read in full on 25 September: OZD, SPF1–SPF8, GSP, CTS, FGR, WHR, HCS and GMC (`12_`); VWR0–VWR11 and ATG0–ATG10 (`14_`); PMS M1–M9 (`15_`); NCI0–NCI8, RSS0–RSS6 and NHJ0–NHJ3 (`16_`);
+- the owner's July 2026 files received on 25 September: `16.tex`, `16.1.tex`, `cumulative_nullity_k4_ledger.tex`, `full_noncommutative_k4_operation.tex`, `jt_invariant_exact_lift_supplement.tex`, `matrix_valued_nonunitary_frobenius_toeplitz.tex`, and `6.tex` outside its Hopf section. These are outlined only; `giuga_blind_plane_cayley_dickson.tex` was read in full;
 - PTQ, SSI, GDC and AST.
 
 **Verification:**

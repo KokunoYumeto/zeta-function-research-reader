@@ -1,5 +1,12 @@
 # Split-Zero cohomology and the zeta-function research programme
 
+## One canonical publication
+
+[Permanent project DOI](https://doi.org/10.5281/zenodo.22678085) · [Consolidated edition](https://zenodo.org/records/22950644) · [Full reading and file guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-consolidation/README.md).
+
+The original collection and all later continuation papers are now together in the original DOI family. This includes arithmetic geometry and cohomology, original-zeta sources, spectral and heat calculations, analytic estimates, formalization, connected research routes and the research self-audit. All complete LaTeX, human citations and published mathematical files are retained; no RH resolution is claimed. The cohomology paper remains the preview. Older edition descriptions below retain their mathematical scope; the linked consolidated guide gives the current file inventory.
+
+
 <!-- source-endpoint-update-20260925 -->
 ## Source endpoint and residue-section continuation
 
@@ -7,7 +14,7 @@ The [complete source-endpoint edition](https://github.com/KokunoYumeto/zeta-func
 
 The complete LaTeX and Markdown, human citations, reproducible figures and mathematical reviews accompany the reader. Original zeta, zero multiplicities, endpoint residues and cover factors remain explicit. This is a source and observation comparison, not an RH proof or geometric purity theorem. The wider collection and all earlier editions remain available below.
 
-[Matching Zenodo edition - 10.5281/zenodo.22949437](https://zenodo.org/records/22949437) | [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-source-endpoint-and-section.json). All 33 preceding continuation files are retained.
+[Consolidated Zenodo edition](https://zenodo.org/records/22950644) | [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-source-endpoint-and-section.json). All 33 preceding continuation files are retained.
 <!-- /source-endpoint-update-20260925 -->
 
 <!-- three-task-update-20260925 -->
@@ -17,9 +24,9 @@ The shared [edition guide](https://github.com/KokunoYumeto/zeta-function-researc
 
 Three complete continuation PDF readers are accompanied by their LaTeX, Markdown proofs, reproducible figures, [result/dependency index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/RESULTS.json) and [precise review record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/BUILD_AND_REVIEW.md). The new calculations identify actual source, boundary, duality and quotient maps; they do not establish arithmetic purity or an RH proof. Human sources and the investigator's construction are credited in the edition.
 
-[Zenodo continuation collection](https://doi.org/10.5281/zenodo.22913061) | [Full base collection](https://doi.org/10.5281/zenodo.22678085)
+[Canonical Zenodo collection](https://doi.org/10.5281/zenodo.22678085)
 
-[Matching Zenodo edition - 10.5281/zenodo.22949044](https://zenodo.org/records/22949044) | [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-full-source-tensor-and-original-divisor.json). All 28 preceding continuation files are retained.
+[Consolidated Zenodo edition](https://zenodo.org/records/22950644) | [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-full-source-tensor-and-original-divisor.json). All 28 preceding continuation files are retained.
 <!-- /three-task-update-20260925 -->
 
 <!-- frg2-citation-correction-20260925 -->
@@ -27,7 +34,7 @@ Three complete continuation PDF readers are accompanied by their LaTeX, Markdown
 
 The [FRG2 citation edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/source-corrections/20260925-frg2-human-citation) places the classical Meixner–Pollaczek attribution beside the formula in the cumulative paper and supplement, and carries it into their later source copies. It includes complete corrected LaTeX and rebuilt 837- and 263-page readers. The mathematics is unchanged; historical editions and the full project contents below are preserved.
 
-[Matching Zenodo correction — 10.5281/zenodo.22948252](https://zenodo.org/records/22948252) · [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-frg2-human-citation.json). All 24 preceding continuation files are retained.
+[Consolidated Zenodo edition](https://zenodo.org/records/22950644) · [Publication and byte-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-frg2-human-citation.json). All 24 preceding continuation files are retained.
 <!-- /frg2-citation-correction-20260925 -->
 
 <!-- three-reader-edition-20260924 -->
@@ -37,7 +44,7 @@ The shared [edition guide](https://github.com/KokunoYumeto/zeta-function-researc
 
 Three complete PDF readers are accompanied by their LaTeX, Markdown proofs, reproducible figures, [result/dependency index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/RESULTS.json) and [precise review record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260924-cohomology-weight-and-character-lifts/BUILD_AND_REVIEW.md). The new calculations identify actual source, boundary, duality and quotient maps; they do not establish arithmetic purity or an RH proof. Human sources and the investigator's construction are credited in the edition.
 
-[Matching Zenodo edition — 10.5281/zenodo.22948027](https://zenodo.org/records/22948027) · [Full base collection](https://doi.org/10.5281/zenodo.22678085)
+[Consolidated Zenodo edition](https://zenodo.org/records/22950644) · [Full base collection](https://doi.org/10.5281/zenodo.22678085)
 
 [Publication and file-verification receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/publication-receipts/20260925-cohomology-weight-and-character.json). All 19 preceding continuation downloads are retained.
 <!-- /three-reader-edition-20260924 -->
@@ -47,7 +54,7 @@ Three complete PDF readers are accompanied by their LaTeX, Markdown proofs, repr
 
 This project brings together complete mathematical papers, editable LaTeX proofs, formalization, calculations and human-source literature notes. Its central question is how to study the zeros of the Riemann zeta function through explicit arithmetic cohomology, spectral actions and quantitative metric estimates. The collection also retains the connected fluid, heat-flow, arithmetic-trace, complexity and thermal-geometry investigations that helped motivate the programme.
 
-[Base Zenodo collection](https://doi.org/10.5281/zenodo.22678085) · [Continuation collection](https://zenodo.org/records/22920941) · [Split-Zero mathematical workbench](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/README.md) · [Machine-readable workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json) · [Contribution guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/POLYCLANK_PARTICIPATION.md)
+[Canonical Zenodo collection](https://doi.org/10.5281/zenodo.22678085) · [Current consolidated edition](https://zenodo.org/records/22950644) · [Split-Zero mathematical workbench](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/README.md) · [Machine-readable workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json) · [Contribution guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/POLYCLANK_PARTICIPATION.md)
 
 ## The central construction
 
@@ -91,7 +98,7 @@ The current addition also includes the full supported-zero theta/Weil distributi
 
 The collection also calculates the Connes–Consani prime-circle and character traces inside the complete supported-zero Weil formula, and the class-field character of the full signed eight-state cover. Its explicit example is Q(sqrt(-23)), including conductor 23, prime returns, the integral order correction at 2, and the infinitesimal residue not seen by the character. The earlier programme constructions, human-source record and complete proof sources remain available.
 
-[The base collection](https://zenodo.org/records/22911829) and [the current continuation collection](https://zenodo.org/records/22920941) together retain the Split-Zero cohomology and zeta research programme: arithmetic geometry, cohomology, theta sources, analytic estimates, spectral and heat calculations, formalization, and the connected investigations. The cohomology paper remains the preview. The continuation retains eleven separate papers (208, 385, 37, 21, 10, 34, 7, 24, 403, 16 and 8 pages), complete programme LaTeX, human citations, figures, checks and 16,530 pinned proof locations. All 100 base files, including 98 separate PDFs, and all sixteen preceding continuation downloads remain unchanged. [Reading guide and verified file-publication receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-retained-source-publication/README.md).
+[The consolidated collection](https://zenodo.org/records/22950644) retains the Split-Zero cohomology and zeta research programme: arithmetic geometry, cohomology, theta sources, analytic estimates, spectral and heat calculations, formalization, and the connected investigations. The cohomology paper remains the preview. The historical continuation material includes eleven separate papers (208, 385, 37, 21, 10, 34, 7, 24, 403, 16 and 8 pages), complete programme LaTeX, human citations, figures, checks and 16,530 pinned proof locations. All 100 base files, including 98 separate PDFs, and all sixteen preceding continuation downloads remain unchanged. [Reading guide and verified file-publication receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-retained-source-publication/README.md).
 
 The [full-prime, complete-support and mixed-Weil papers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/README.md) add three separate complete readers and all 46 unchanged owner files. Start with [031's 75-page cohomology paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/02_REBUILT_MATHEMATICS.pdf): the full arithmetic prime space gives relative principal parts, the actual degree-p action and a local weight-one identity. [032](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/032/RECOVERED_PROGRAMME.pdf) recovers mixed information lost by separate support branches and proves the corresponding support/cohomology maps. [033](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.pdf) applies that actual prime operator and proves the complete Weil form positive on its whole three-pulse test family, despite the surviving negative signed mixed trace. Its companion-object map has an explicitly calculated nonzero annulus boundary. Complete LaTeX, exact proof indexes, human sources and reproducible figures accompany every paper. Neither the negative partial trace nor the local weight-one identity settles RH or global cohomological purity; earlier sealed results and the 027 response-coefficient correction remain intact.
 

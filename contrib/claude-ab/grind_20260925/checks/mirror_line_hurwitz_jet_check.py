@@ -54,6 +54,17 @@ for k in range(3):
     jet = -s * mp.zeta(s + 1)
     say("   k=%d  s = %-26s |zeta(s)| = %-12s |first jet| = %s"
         % (k + 1, mp.nstr(s, 12), mp.nstr(abs(mp.zeta(s)), 8), mp.nstr(abs(jet), 3)))
+say("   Direct t-derivative (mpmath diff of t -> zeta(s,1+t)) at the mirror points s = rho_k - 1:")
+for k in range(3):
+    s = mp.mpc(0.5, gam[k]) - 1
+    fdk = mp.diff(lambda t: mp.zeta(s, 1 + t), 0)          # adaptive numerical derivative in t
+    ref = mp.diff(lambda t: mp.zeta(s + mp.mpf("0.3"), 1 + t), 0)
+    say("   k=%d  |d/dt zeta(s,1+t)| at t = 0: %s   (for comparison, at s + 0.3: %s)" % (k + 1, mp.nstr(abs(fdk), 3), mp.nstr(abs(ref), 6)))
+s1 = mp.mpc(-0.6, 8.3)
+for m in (2, 3):
+    fd = mp.diff(lambda t: mp.zeta(s1, 1 + t), 0, m)
+    rhs = (-1) ** m * mp.rf(s1, m) * mp.zeta(s1 + m)
+    say("   m=%d jet formula at s = -0.6+8.3i (Re s < 1): mp.diff = %s, formula = %s" % (m, mp.nstr(fd, 12), mp.nstr(rhs, 12)))
 say("   m-th jet: (-1)^m (s)_m zeta(s+m) vanishes at s = rho_1 - m:")
 for m in [2, 3]:
     s = mp.mpc(0.5, gam[0]) - m
@@ -114,7 +125,7 @@ for p in range(2, NMAX + 1):
         while pk <= NMAX:
             lam[pk] = math.log(p); pk *= p
 
-def run(centre):
+def run(centre, w=w, b=b):
     # Mellin: g^(s) = sqrt(2 pi w) exp(w (s + i b)^2 / 2)
     if centre == "half":      # g*(x) = x^{-1} conj g(1/x);  H(s) = g^(s) conj g^(1 - conj s)
         H = lambda s: 2 * mp.pi * w * mp.e ** (w / 4) * mp.e ** (w * (s + 1j * b - mp.mpf(1) / 2) ** 2)
@@ -144,6 +155,11 @@ for centre in ["half", "zero"]:
     say("              prime + archimedean side                  = %s" % mp.nstr(rhs, 15))
     say("              |difference| = %s ; imaginary part of the sum = %s" % (mp.nstr(abs(zs - rhs), 3), mp.nstr(mp.im(rhs), 10)))
 say("   expected, centre zero: 2 pi e^{i/2} = %s (one zero dominates; w = 1, b = 1/2 - gamma_1)" % mp.nstr(2 * mp.pi * mp.expj(mp.mpf(1) / 2), 15))
+say("   Second test, several zeros contributing: w = 0.1, b = -25")
+for centre in ["half", "zero"]:
+    mel, Ht, zs, rhs = run(centre, w=mp.mpf("0.1"), b=mp.mpf(-25))
+    say("   centre %-4s: zero side = %s ; prime + archimedean side = %s ; |difference| = %s"
+        % (centre, mp.nstr(zs, 15), mp.nstr(rhs, 15), mp.nstr(abs(zs - rhs), 3)))
 
 import os
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mirror_line_hurwitz_jet_check_OUTPUT.txt"), "w") as f:

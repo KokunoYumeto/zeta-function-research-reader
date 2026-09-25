@@ -60,14 +60,14 @@ ax.annotate("", xy=(-b, h + 0.35), xytext=(b, h + 0.35), arrowprops=dict(arrowst
 ax.annotate("", xy=(b - 1, h - 0.35), xytext=(b, h - 0.35), arrowprops=dict(arrowstyle="->", color="0.35", lw=1))
 ax.plot([-b, b - 1], [h + 0.35, h - 0.35], "s", mfc="none", mec="#9b2c2c", ms=4)
 ax.text(-2.95, 3.0, "HYPOTHETICAL off-line zero β + iγ (β = 0.72), for illustration only:\n"
-        "mirror A(ρ) = −β + iγ (dashed) and shift ρ − 1 = β − 1 + iγ (solid) differ;\n"
+        "mirror rung ρ → A(ρ) = −β + iγ (dashed, length 2β) and shift rung ρ → β − 1 + iγ (solid, length 1) differ;\n"
         "A(ρ) is the shift of the partner 1 − ρ̄. None exists below height 3·10¹².",
         fontsize=7, color="#9b2c2c", va="bottom",
         bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#9b2c2c", lw=0.6))
 ax.annotate("", xy=(0.25, h - 0.8), xytext=(-1.2, 7.4), arrowprops=dict(arrowstyle="->", color="#9b2c2c", lw=0.6))
 ax.set_xlim(-3.0, 2.0); ax.set_ylim(-3, ymax)
 ax.set_xlabel("Re s"); ax.set_ylabel("Im s")
-ax.set_title("Mirror through the pole 0 = the Hurwitz one-line shift, exactly on Re s = ½", fontsize=10)
+ax.set_title("The mirror A(s) = −s̄ and the translation T₋₁ agree exactly on Re s = ½;\nZ − 1 is the nodal set of the first Hurwitz jet in −1 < Re s < 0", fontsize=9.5)
 ax.legend(fontsize=7.2, loc="upper left", framealpha=0.95)
 
 # right panel: Clifford torus, stereographic projection from (z1, z2) = (0, i)
@@ -87,7 +87,7 @@ p1 = np.linspace(-np.pi / 2, np.pi / 2, 400)
 p2 = np.linspace(np.pi / 2, 3 * np.pi / 2, 400)
 ax3.plot(*curve(p1, "Gamma"), color="#2b6cb0", lw=2.6, label="Γ, critical half: (s, s−1), Re s = ½")
 ax3.plot(*curve(p2, "Gamma"), color="#c05621", lw=2.6, label="Γ, mirror half: (s, s+1), Re s = −½")
-ax3.plot(*curve(p1, "D"), color="#2b6cb0", lw=1.3, ls="--", label="D, (1,1): critical line with (s, 1−s̄), as in 6.tex")
+ax3.plot(*curve(p1, "D"), color="#2b6cb0", lw=1.3, ls="--", label="D, (1,1): critical line with (s, 1−s̄) (6.tex: this half)")
 ax3.plot(*curve(p2, "D"), color="#c05621", lw=1.3, ls="--", label="D, other half: Re s = −½ with (s, −1−s̄)")
 for psi, lab in [(np.pi / 2, "t = +∞"), (-np.pi / 2, "t = −∞")]:
     P = curve(np.array([psi]), "Gamma")

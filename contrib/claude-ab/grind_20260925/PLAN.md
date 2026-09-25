@@ -284,3 +284,22 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - the von Koch converse is written out, including a corrected constant (+1) in the Mellin identity.
   - `16_`: header time corrected (06:49), NHJ0–NHJ9 disclosure, the ideal ℂF₀ + F₀ℬ with witness sF₀, nontrivial zeros, and the d-th powers k^d with their count.
   - Digest: revised draft 2, with `17_` added (§3.13, §4.14, §5.7, Figure 5).
+- 07:43 UTC: pushed 33b0332 (the referee-2 corrections).
+- About 07:45–08:20 UTC: an independent referee pass on `17_` (one subagent, in its own worktree; it edited nothing outside its scratch folder).
+  - It reproduced the check output byte for byte and confirmed every theorem, with its own explicit-formula tests (w = 0.1, b = −25; and a second test function).
+  - It made 16 findings, mostly wording. The main ones:
+    - the Hurwitz flow was written as if it translated Z (only its first jet vanishes on Z − 1);
+    - "rungs of length at most 1" was false (mirror rungs have length 2Re ρ);
+    - hypotheses were missing on the neighbouring lines;
+    - the corollary in `6.tex` claims the whole fibre;
+    - the circle Γ was misattributed to the owner's files;
+    - the blind lemma needs boundedness.
+  - Web refusal: gallica.bnf.fr returned HTTP 403 for Weil 1948; it was not retried by any route. The publisher (Hermann) rests on search listings only.
+- During the referee pass: owner messages M14–M16 (simultaneity; "there is never not two"; the charitable reading). Recorded verbatim in the private provenance file, which was committed again to `_owner_notes/`.
+- 08:20–08:25 UTC:
+  - `checks/davenport_heilbronn_coexistence_check.py`: the functional equation holds to 2·10⁻³⁰, the zero 0.808517182456637 + 85.6993484853776i is off the line (Spira 1994), its partner is also a zero, and the translate vanishes at the translated zero.
+  - Reply sent to the owner at about 08:21 UTC.
+  - `17_` revised: all 16 referee findings applied; §10 (Propositions 17.6–17.9: the ladder, (R) ⟺ (R′), coexistence does not decide, superposition moves zeros); §11, the findings list.
+  - The check script is strengthened: direct t-derivatives, a jet test at −0.6 + 8.3i, and a second explicit-formula test.
+  - Figure 17.1 titles and labels corrected.
+  - Register negative result 37 and digest §3.13 extended.

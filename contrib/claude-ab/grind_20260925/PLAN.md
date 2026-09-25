@@ -207,3 +207,17 @@ A reminder is scheduled into this session. When it fires: read this file and the
 - 06:06 UTC: the owner described τ as the pivot of a swing between 0 and 1, not 0 itself.
   - Reply: the swing corresponds to the pole exchange s ↦ 1 − s, whose pivot is ½ (u = 1 on the clock side). The two poles are Fourier duals of each other, δ₀ ↔ 1. RH is ρ^# = ρ for every zero.
   - Added as `13_` §2(c)–(d) and §4 (the pivot slot, as a proposal).
+- 06:07–06:34 UTC: independent referee pass (one subagent) on `11_` revision 2, `12_` and `13_`.
+  - The referee found no mathematical error in the main lemmas and reported 25 wording, label and hypothesis findings. All 25 were applied by 06:40 UTC; each note ends with a list.
+  - Register items 30, 31, S22 and goal-4 item 11 were aligned.
+  - The SPF8.4 closed form was added to `checks/c925_part2_checks.py`, and `first_negative_coefficient_OUTPUT.txt` was regenerated (its stale label is gone).
+  - The referee verified Connes' sentence ("the unit vectors η_z … are asymptotically orthogonal", arXiv:math/9811068v1, §VIII, proof of Lemma 3) from the owner's local copy of the author source. `12_` §1.5 now cites it.
+  - Access incident: export.arxiv.org/abs/1306.0856 returned a robots.txt block to the subagent, which then read the same paper through arxiv.org/pdf and ar5iv. The subagent flagged this itself. The Balazard–Saias–Yor statement used in `12_` comes from my own earlier ar5iv fetch, made before any block. Nothing further from the subagent's route is used. Rule for subagents: after a robots block, report and stop.
+- 06:20–06:36 UTC: owner messages on the pole at 0, τ as the pivot, anomaly and chiral pairing, U(1) × SU(2), and "numbers are particles". The owner asked for them to be kept safe for provenance, not worked on now.
+  - Saved verbatim, with the three attached files and their hashes, in `_owner_notes/OWNER_IDEAS_20260925_PROVENANCE.md` in the owner's work folder. It is private: not on the branch unless the owner asks.
+  - Literature pointers checked and sent: Julia's primon gas (1990), Spector's μ = (−1)^F (1990), Witten's SU(2) anomaly (1982), Marcolli's *Feynman Motives* (2010).
+  - The Springer records for Julia and Spector returned HTTP 429 (not retried; reported to the owner). The ADS record for Witten returned a robots block (not retried; the bibcode from the search result was used).
+- 06:36 UTC: timer duties.
+  - Post office: no new mail in `to_claude-ab`; BOARD unchanged. claude-b5's doorbell is at 07:00.
+  - `status_claude-ab.md` updated.
+  - Next reminder armed for 07:35 UTC (trig_01LfEZKWPjw5DeGY2MTmUMfe).

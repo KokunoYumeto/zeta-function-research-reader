@@ -1,10 +1,10 @@
 # A ledger of the zeros and ones in the completed zeta function
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:03 UTC; §2(c)–(d) and the pivot slot in §4 added at 06:06 UTC, after the owner's description of τ as the pivot.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:03 UTC; §2(c)–(d) and the pivot slot in §4 added at 06:06 UTC, after the owner's description of τ as the pivot. Referee corrections applied at 06:39 UTC (list at the end).
 
 The owner asked that the classical "pole at 0" be tracked carefully. The word may cover several objects that the historical development merged, and the programme's τ may sit at that place, not the number 0.
 
-This note separates every object called "0" or "1" in the classical derivation of the poles of the zeta function. For each one it derives which term or pole it produces. §1–§3 are derivations and checks. §4 is a proposal and is labelled as one.
+This note separates the objects called "0" or "1" that produce a pole or a term in the classical derivation of the poles of the zeta function. The −1 in the measure du/u is not listed. For each one it derives which term or pole it produces. §1–§3 are derivations and checks. §4 is a proposal and is labelled as one.
 
 ## 1. The identity with every term kept
 
@@ -18,16 +18,16 @@ Poisson summation over the whole lattice gives Σ_{n∈ℤ}h(nu) = u^{−1}Σ_{n
 
   Σh(u) = u^{−1}Σĥ(1/u) + u^{−1}ĥ(0) − h(0).  (1)
 
-Now split the Mellin integral at u = 1 and use (1) on (0, 1). This is Riemann's second proof of 1859, with the boundary terms kept:
+Now split the Mellin integral at u = 1 and use (1) on (0, 1). This is Riemann's second proof of 1859, which already keeps the boundary terms 1/(s(s−1)) for the Gaussian. The version here allows a general even h, with h(0) and ĥ(0) independent:
 
   2ζ(s)M_S h(s) = ∫₁^∞Σh(u)u^{s−1}du + ∫₁^∞Σĥ(w)w^{−s}dw + ĥ(0)/(s−1) − h(0)/s.  (2)
 
-The two integrals are entire in s. So (2) is the meromorphic continuation, and it has exactly two poles:
+The two integrals are entire in s. So (2) is the meromorphic continuation. It has at most two poles, and exactly two when h(0) ≠ 0 and ∫h ≠ 0:
 
 - at s = 0, the term −h(0)/s, from the lattice's n = 0 term in (1);
 - at s = 1, the term ĥ(0)/(s−1) with ĥ(0) = ∫h, from the dual lattice's n = 0 term in (1).
 
-The exchange (h, s) ↔ (ĥ, 1−s) swaps the two integrals and the two pole terms. For h = ĥ it is the functional equation, and its fixed line is Re s = ½.
+The exchange (h, s) ↔ (ĥ, 1−s) swaps the two integrals and the two pole terms. For h = ĥ it is the functional equation. The map s ↦ 1 − s fixes only the point ½. It leaves the line Re s = ½ invariant, and that line is fixed pointwise by s ↦ 1 − s̄ (§2(d)).
 
 **Check** (`checks/zero_ledger_check.py`). The test function is h(v) = (1+v²)e^{−πv²}, with ĥ(ξ) = (1 + 1/(2π) − ξ²)e^{−πξ²}.
 
@@ -47,7 +47,7 @@ The pole at 0 counts the single excluded point, whatever the spacing. The pole a
 
 **(b) The position of the pole at 0 is set by the local model at the origin.**
 
-- Suppose h(v) = c·v^α + O(v^{α+1}) as v → 0. Then ∫₀¹h(v)v^{s−1}dv = c/(s+α) + (holomorphic near −α).
+- Suppose h(v) = κ·v^α + O(v^{α+1}) as v → 0. Then ∫₀¹h(v)v^{s−1}dv = κ/(s+α) + (holomorphic near −α). So M_S h has a pole at −α with residue κ, and 2ζ(s)M_S h(s) has residue 2ζ(−α)κ there. This is −κ at α = 0, and it vanishes when ζ(−α) = 0. (κ is used here because c denotes the lattice spacing in (a).)
 - The classical smooth even model has α = 0, 2, 4, …. Evenness removes the odd exponents, and the trivial zeros ζ(−2k) = 0 cancel the exponents 2, 4, …. Only the constant term survives, at s = 0.
 - A different local model at the origin moves this pole to −α or removes it.
 - The pole at 1 depends on the behaviour of ĥ at ξ = 0, which is the average ∫h. A smooth local model at v = 0 is not needed for it.
@@ -71,17 +71,17 @@ The pole at 0 counts the single excluded point, whatever the spacing. The pole a
 | # | Object called "0" or "1" | Where it enters (1)–(2) | What it produces | Status in the classical setting |
 |---|---|---|---|---|
 | Z1 | the lattice point 0 ∈ ℤ, the additive identity of the lattice | left out of Σ (n ≥ 1); returns as the term −h(0) in (1) | the pole at s = 0, residue −h(0), independent of spacing | input: the lattice contains its origin |
-| Z2 | the dual-lattice point 0 | the term u^{−1}ĥ(0) in (1) | the pole at s = 1, residue ∫h/(covolume) | derived from Z1 by Poisson summation |
+| Z2 | the dual-lattice point 0, the zero-frequency term of the whole lattice | the term u^{−1}ĥ(0) in (1) | the pole at s = 1, residue ∫h/(covolume) | the Fourier-dual partner of Z1 (§2(c)); its residue depends on the density, not on the single point Z1 |
 | Z3 | the origin v = 0 of the additive line, where h is evaluated | h(0) and its Taylor germ | pole positions 0, −2, −4, … of M_S h | input: the smooth even local model at the origin |
 | Z4 | the value s = 0 of the Mellin variable | position of the pole from Z1 and Z3 | equals −(local exponent at Z3) | derived from the model at Z3 |
 | Z5 | the scalar 0 ∈ ℂ | the conditions h(0) = 0 and ∫h = 0, and the equation ζ(ρ) = 0 | removal of both poles (the programme's source S); the zeros | the coefficient field's zero |
 | Z6 | the fixed point of the sign involution, 0 = −0: the only non-free orbit of ±1 on ℤ and on ℝ | evenness of h at the origin | no poles at odd negative integers; with the trivial zeros, only s = 0 survives | input: the ±1 symmetry, the 𝔽_{1²}-structure |
 | Z7 | absence, 0 = e = ∅ in the owner's notation (Z₀) | nowhere in (1)–(2) | nothing | listed only to keep it separate; never to be identified with τ |
 | O1 | the integer 1, first term of Σ_{n≥1} and multiplicative identity of ℤ | 1^{−s} = 1 in ζ | the term 1 of the Dirichlet series | input |
-| O2 | the exponent 1 in u^{−1}: the dimension of ℝ and the covolume of ℤ | Poisson summation (1) | the position s = 1 of the dual-zero pole, and the reflection s ↦ 1 − s | input: Fourier analysis on a one-dimensional line |
+| O2 | the exponent 1 in u^{−1}: the dimension of ℝ (the covolume enters only the coefficient, row O3) | Poisson summation (1) | the position s = 1 of the dual-zero pole, and the reflection s ↦ 1 − s | input: Fourier analysis on a one-dimensional line |
 | O3 | the residue 1 of ζ at 1 | 2ζ·M_S h at s = 1 | the density of ℤ | derived: 1/covolume |
-| O4 | the unit u = 1 of the multiplicative group ℝ_{>0}, i.e. log u = 0, the start of the clock | where the Mellin integral is split; fixed point of u ↦ 1/u | the symmetric split of (2) | a choice of split point; (2) is independent of it |
-| H1 | the line Re s = ½ | fixed line of (h, s) ↔ (ĥ, 1−s) | the critical line; midpoint of the two pole positions | derived from O2 |
+| O4 | the unit u = 1 of the multiplicative group ℝ_{>0}, i.e. log u = 0, the start of the clock | where the Mellin integral is split; fixed point of u ↦ 1/u | the symmetric split of (2) | a choice of split point; the left side of (2) does not depend on it |
+| H1 | the line Re s = ½ | invariant under (h, s) ↔ (ĥ, 1−s); fixed pointwise by s ↦ 1 − s̄ | the critical line; midpoint of the two pole positions | derived from O2 |
 
 Two remarks on the table:
 
@@ -106,7 +106,7 @@ This is a proposal of a typed map, from the pivot of the owner's swing to the pi
 The other slots, each asking for a different definition:
 
 - **Z1, the excluded lattice point.** An exclusion rule. The programme's Σ already excludes it.
-- **Z3, the local germ at the origin.** A local model of test functions at τ. §2(b) then computes the pole: position −α, residue c.
+- **Z3, the local germ at the origin.** A local model of test functions at τ. §2(b) then computes the pole: position −α, residue κ for M_S h and 2ζ(−α)κ for 2ζ·M_S h.
 - **Z6, the fixed point of the sign.** A statement about the ±1 action at τ, with its two readings in the register (goal 4, item 1): no exchanged label, or no sign at all.
 - **O4, the start of the clock.** A choice of the symmetric split point, which does not change (2). This is the pivot slot on the clock side.
 
@@ -118,4 +118,19 @@ The rule "never identify τ with e" keeps it away from Z7. Which slot τ occupie
 - **Goal 3 (a lemma, classical in content).** For any lattice cℤ, the residue at 0 of the Mellin transform of the punctured lattice sum is −h(0), independent of c, while the residue at 1 is (∫h)/c. The pole at 0 counts a point; the pole at 1 measures a density.
 - **Literature.**
   - Riemann's 1859 memoir (second proof of the functional equation) is the source of (2).
-  - Tate's thesis gives the same structure in adelic form, with local factors (J. Tate, *Fourier analysis in number fields and Hecke's zeta-functions*, thesis 1950, printed in J. W. S. Cassels and A. Fröhlich (eds.), *Algebraic Number Theory*, Academic Press 1967). There the archimedean local factor, Γ(s/2) for the Gaussian, is the local model at Z3.
+  - Tate's thesis gives the same structure in adelic form, with local factors (J. Tate, *Fourier analysis in number fields and Hecke's zeta-functions*, thesis 1950, printed in J. W. S. Cassels and A. Fröhlich (eds.), *Algebraic Number Theory*, Academic Press 1967). There the archimedean local factor, π^{−s/2}Γ(s/2) for the Gaussian, is the local model at Z3.
+
+## Referee corrections (06:39 UTC)
+
+An independent referee pass confirmed identity (2) and its signs, the lattice-spacing residues, the local-exponent statement, the cancellation at −2, the δ₀ ↔ 1 duality, and §2(d). It also confirmed that the placement of τ is labelled a proposal everywhere. Applied:
+
+- s ↦ 1 − s fixes only ½; the line is fixed pointwise by s ↦ 1 − s̄;
+- the exponent in row O2 comes from the dimension only;
+- the residue of 2ζ·M_S h at −α is 2ζ(−α)κ;
+- "at most two poles";
+- row Z2 is the Fourier-dual partner of Z1;
+- the letter κ in §2(b);
+- the Riemann attribution;
+- the scope of the ledger;
+- row O4;
+- the local factor π^{−s/2}Γ(s/2).

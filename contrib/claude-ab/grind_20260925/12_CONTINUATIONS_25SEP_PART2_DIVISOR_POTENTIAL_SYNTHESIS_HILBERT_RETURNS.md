@@ -1,6 +1,6 @@
 # The 25 September continuations, part 2: the divisor potential, positive measures, spectral synthesis and the Hilbert returns
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 05:58 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 05:58 UTC; referee corrections applied at 06:39 UTC (list at the end).
 
 This is a content map of eight proof blocks from the programme's continuation `20260925-full-source-tensor-and-original-divisor`. I read all eight in full:
 
@@ -19,7 +19,7 @@ The explicit formulas I could test are tested in `checks/c925_part2_checks.py` a
 
 - Q = A/J is the programme's quotient, and ℬ is its Mellin picture: entire functions decaying rapidly in vertical strips.
 - 𝓘 is the ideal of all zero-jets.
-- F₀(s) = s(s−1)π^{−s/2}Γ(s/2)ζ(s)/8 = ξ(s)/4 is the programme's generator of 𝓘.
+- F₀(s) = s(s−1)π^{−s/2}Γ(s/2)ζ(s)/8 = ξ(s)/4 is a distinguished element of 𝓘, with F₀ℬ ⊂ 𝓘 (SPF8.8). The programme asserts no equality between 𝓘 and F₀ℬ.
 
 ## 1. Content map
 
@@ -66,7 +66,7 @@ SPF0 classifies the jointly continuous positive forms b on ℬ with b(T_nF, G) =
 
   b(F, G) = ∫ F(½+iλ) \overline{G(½+iλ)} dμ(λ)
 
-with μ positive and tempered (register S22). SPF1–SPF8, read now, prove this without citing Stone's theorem.
+with μ positive and tempered (register S22). SPF1–SPF7, read now, prove this without citing Stone's theorem. They rest on the appendix CFPA.1–CFPA.7 (positive-definite functions and finite-measure Fourier uniqueness, in `gct/CONTINUOUS_POSITIVE_TRANSFER_FORMS.md`), which I have not read. SPF8 supplies the element F₀ used for descent.
 
 1. An exact Laplace transform pair identifies ℬ with the space of smooth functions decaying faster than every exponential (SPF1).
 2. The completed form carries a unitary group V_t (SPF2).
@@ -84,7 +84,7 @@ Checked: the Mellin integral SPF8.2 (numerically exact at s = 2.3 + 1.1i), F₀(
 
 ### 1.3 GSP: spectral synthesis on the zeta quotient, with explicit approximants
 
-The resolvent of multiplication by s on Q = ℬ/𝓘 is written with the correction term F₀F(λ)/F₀(λ) (GSP2.1). It is bounded on the lines Re λ = ±2 by a Hadamard-product lower bound for |F₀| away from small discs (GSP2.3–2.5).
+The resolvent of multiplication by s on Q = ℬ/𝓘 is written with the correction term F₀F(λ)/F₀(λ) (GSP2.1). On the lines Re λ = ±2 its size grows at most like (2+|y|)^N exp(C(|y|+2)^{3/2} log(|y|+2)). This comes from a Hadamard-product lower bound for |F₀| away from small discs (GSP2.3–2.5). The Gaussian factor e^{tλ²} is what makes the contour integrals below converge.
 
 The Cauchy integral of e^{tλ²}R_λ over those lines equals multiplication by e^{ts²} on all of Q (GSP3.4).
 
@@ -107,7 +107,9 @@ Two consequences:
 - The tensor receiver map b_k is injective (CTS3).
 - The common radical of **all** continuous positive transfer forms on the k-th tensor power is the closed span of the tuples with Re Σλ_a ≠ k/2 (CTS4.6).
 
-For k = 2, an off-line zero λ and its reflection λ^# = 1 − λ̄ satisfy λ + λ^# = 1 + 2i Im λ. Their tensors are therefore centred and survive every positive form. On them the programme's Weil tensor pairing takes the values ±2m², so it is indefinite (CTS5.1).
+For k = 2, an off-line zero λ and its reflection λ^# = 1 − λ̄ satisfy λ + λ^# = 1 + 2i Im λ. Their tensors are therefore centred. They lie outside the common radical of all positive transfer forms (CTS4.6): for example, the form B₀^src gives them the value 2m²|δ|⁴ > 0. On them the programme's Weil tensor pairing takes the values ±2m², so it is indefinite (CTS5.1).
+
+CTS works on R = Q/N_O, which keeps only the values at off-line zeros, with tuples drawn from the off-line zeros (CTS0.1).
 
 ### 1.5 FGR: Connes' harmonic-measure trace with the full Gram matrix
 
@@ -119,11 +121,13 @@ So an off-line exponent enters the limiting trace through its Poisson kernel on 
 
 FGR0 says Connes' sketch asserts that the individual same-side exponential vectors become asymptotically orthogonal. FGR2.3 shows that they do not: two unit vectors from the same side have a nonzero limiting inner product. The trace limit survives because the full inverse Gram matrix is kept.
 
-I did not verify the wording of Connes' sketch: the text fetched from arXiv was truncated before §VIII. The mathematics I did verify, numerically, with synthetic exponents including a double one (`checks/fgr_trace_check.py`):
+The wording of Connes' sketch was verified by the referee in the author TeX of arXiv:math/9811068v1, §VIII, proof of Lemma 3. It is set on the discrete window [−N, N] ⊂ ℤ, and states that the unit vectors η_z "are asymptotically orthogonal" before the Poisson-kernel formula (29). The discrete example below refutes that sentence for two exponents on the same side; formula (29) survives with the full Gram inverse.
 
-- The trace converges to the predicted limit with error O(1/T): 0.062, 0.018, 0.0088 and 0.0044 at T = 10, 20, 40, 80.
+The mathematics I verified numerically, with synthetic exponents including a double one (`checks/fgr_trace_check.py`):
+
+- The trace converges to the predicted limit with error O(1/T). At t = 0.7 the errors are 0.062, 0.018, 0.0088 and 0.0044 at T = 10, 20, 40, 80; at t = −1.3 they are 0.041, 0.029, 0.016 and 0.0081.
 - The same-side inner product converges to the predicted modulus 0.13986 (agreement to 12 digits at T = 80).
-- The discrete example 2^n, 3^n, n = −N, …, N gives √24/5, as FGR2.2 states.
+- The discrete example 2^n, 3^n, n = −N, …, N gives √24/5, as stated in the paragraph after FGR2.3.
 
 FGR6 records the price of the sweep. For a reflected pair it replaces e^{d t} + e^{−d t} by 2e^{−d|t|}, a change of exactly 2 sinh(d|t|).
 
@@ -133,8 +137,8 @@ On H_δ = L²((0,∞), (1 + log²u)^δ du), the closure of J is described exactl
 
 - **WHR2.** The jet functional F ↦ F^{(j)}(ρ) is continuous on H_δ iff Re ρ = ½ and j < δ − ½. Its squared norm is Γ(j+½)Γ(δ−j−½)/Γ(δ).
 - **WHR5.** The annihilator of J is the closed span of these functionals.
-- **WHR3.4.** One explicit Schwartz function h₀ generates the whole closure through its dilations. Its sum b₀ = Σh₀ has Mellin transform (s − 1)ζ(s)e^{s²}.
-- **WHR7.** The Hilbert quotient is a weighted sequence space of jets.
+- **WHR3.4, WHR5.5.** One explicit Schwartz function h₀ has sum b₀ = Σh₀ with Mellin transform (s − 1)ζ(s)e^{s²} (WHR3.4), and its dilations generate the whole closure (WHR5.5).
+- **WHR6.4–6.6, WHR7.** The Hilbert quotient is a weighted sequence space of jets (WHR6.4–6.6), and WHR7 computes the kernel and image of Q → 𝓗_δ.
 - **WHR8.3.** The dilation norm is exactly ‖T_a‖ = a^{1/2}Λ₊(log a)^{δ/2}, with Λ₊(t) = (t² + 2 + |t|√(t²+4))/2. Hence the spectrum of each prime dilation on the Hilbert quotient lies on |z| = √p (WHR8.5).
 - **WHR9.3.** The natural map q_∞ : Q → lim_n 𝓗_n has kernel I_c/I, the classes vanishing on all critical-line jets. So q_∞ is injective if and only if RH holds.
 - **WHR10.** The algebraic map Q → H_δ/J is always injective. Every lost class is lost in the Hausdorff quotient.
@@ -163,13 +167,13 @@ In the tensor square, the mixed part of the degree-one boundary is removed globa
 
 an equivariant quasi-isomorphism.
 
-The residue trace factors through Q ⊗ Q. On reflected blocks it has character p (GMC6.3). In GMC7's own words, it supplies no bound on Re ρ by itself.
+The residue trace factors through Q ⊗ Q. On reflected blocks it has character p (GMC6.3). In the words of GMC6, just after GMC6.3, it supplies no bound on Re ρ by itself.
 
 ## 2. Checks
 
 | Script | What it checks | Result |
 |---|---|---|
-| `checks/c925_part2_checks.py` | OZD3.3 (sympy); OZD5.8 (sympy); OZD5.3 (mpmath, 30 digits); SPF8.2 and SPF8.4/GSP1.6; WHR2.4; WHR3.2; WHR8.2 | all agree; output in `c925_part2_checks_OUTPUT.txt` |
+| `checks/c925_part2_checks.py` | OZD3.3 (sympy); OZD5.8 (sympy); OZD5.3 (mpmath, 30 digits); SPF8.2; SPF8.4/GSP1.6: F₀(0), F₀(1), F₀(−1) = F₀(2), F₀(−4) = F₀(5), and the closed form F₀(−2r) = r(2r+1)(−1)^rπ^r ζ′(−2r)/(2·r!) for r = 1, 2, 3; WHR2.4; WHR3.2; WHR8.2 | all agree; output in `c925_part2_checks_OUTPUT.txt` |
 | `checks/fgr_trace_check.py` | FGR4.2 trace limit, FGR2.3 inner product, the discrete √24/5 example | all agree; output in `fgr_trace_check_OUTPUT.txt` |
 
 The divisor of χ (OZD5.4) and the odd-part bookkeeping (OZD5.6) I checked by hand. For OZD5.6, φ₋(1+2k) = −φ₋(−2k) turns the two divisor sums into Σ_{k≥0} φ₋(−2k).
@@ -180,10 +184,10 @@ The GSP estimates, the CTS tensor argument and the HCS/GMC homological algebra I
 
 **Lemmas that stand alone (goal 3).**
 
-1. **The divisor-potential form of RH (OZD5.7).** For fixed r > 1, t > 0 and a symmetric cutoff, RH is equivalent to (1/2π)∫ ½log|ζ(s)ζ(1−s̄)| Δφ₊ dA = −(r−1)²(e^{2t}+1)/2.
+1. **The divisor-potential form of RH (OZD5.7).** Fix r > 1, t > 0 and a symmetric cutoff η, equal to 1 near [0, 1] and supported in (−½, 3/2). Then RH is equivalent to (1/2π)∫ ½log|ζ(s)ζ(1−s̄)| Δφ₊ dA = −(r−1)²(e^{2t}+1)/2. For a wider cutoff, OZD5.7 adds the terms Σ_{k≥1} φ₊(−2k) to the right side.
    - It belongs to the family of RH-equivalent integral identities for log|ζ|. Those identities go back to Littlewood's lemma and include Balazard–Saias–Yor: RH iff ∫_{Re s=½} log|ζ(s)| |s|^{−2}|ds| = 0 (Adv. Math. 143 (1999) 284–287; statement as in Bui–Lester–Milinovich, arXiv:1306.0856).
    - The generalized Littlewood families of Sekatskii–Beltraminelli–Merlini (Ukr. Math. J. 64 (2012) 247–261) unify the earlier equalities of Wang, Volchkov and Balazard–Saias–Yor.
-   - OZD's version is an area integral, with a weight that vanishes to second order on the line. I have not searched for this exact form.
+   - OZD's version is an area integral, with a test function φ₊ that vanishes to second order on the line. I have not searched for this exact form.
 2. **The swept trace (FGR4.2).** For any finite set of exponents with multiplicities, the compressed translation trace tends to Σ m e^{−|β−½||t|}e^{iγt}. This holds although same-side vectors stay non-orthogonal.
 3. **The exact weighted dilation norm (WHR8.3).** On L²(ℝ, (1+x²)^δ dx), translation by t has norm Λ₊(t)^{δ/2}. This is elementary; the constant comes from a 2 × 2 eigenvalue problem.
 4. **Connes against Meyer (WHR9.3).** The natural map from Meyer's Fréchet quotient to the inverse limit of Connes' weighted Hilbert quotients is injective if and only if RH holds. Its kernel is exactly the off-line jet classes. (Meyer: arXiv:math/0412277. Connes: *Selecta Math. (N.S.)* 5 (1999), no. 1, from p. 29; arXiv:math/9811068.)
@@ -193,12 +197,14 @@ The GSP estimates, the CTS tensor argument and the HCS/GMC homological algebra I
 
 - **The functional equation removes only what it can see (OZD5).** The reflection s ↦ 1 − s̄ splits log|ζ| into an odd part, which is exactly ½log|χ|, and an even part. The odd part's contribution to the off-line detector is fully accounted for by the pole and the trivial zeros. The detector itself lives entirely in the even part, where the functional equation says nothing further.
   - My assessment: for fixed (r, t), the Gaussian factor e^{−2tγ²} makes each identity numerically blind above modest heights. Such an identity is an exact equivalence, not a route to a zero-free region.
-- **The Hilbert realization loses exactly the off-line classes (WHR9, WHR10).**
+- **The inverse limit of Connes' Hilbert quotients loses exactly the off-line classes (WHR9, WHR10).**
   - The receiver is automatically pure: its prime spectra lie on |z| = √p (WHR8.5).
-  - The whole question is its kernel, and the kernel is zero iff RH holds.
-  - So a spectral-radius argument in Connes' Hilbert space cannot prove RH; it proves purity of what is left after the off-line classes are lost. This is the programme's statement WHR12, in plain terms.
-- **The square adds nothing beyond Q ⊗ Q (GMC4.4).** Its mixed boundary contracts, and its trace pairs reflected blocks with character p.
-- **Every positive form on the square sees reflected pairs as centred (CTS4–5).** Since ρ + ρ^# = 1 + 2iγ, positivity on the square cannot distinguish an off-line pair from an on-line one.
+  - WHR8.5 holds unconditionally, so by itself it cannot force ker q_∞ = 0. The RH content is exactly injectivity (WHR9.3). This is WHR12.
+  - A single H_δ also loses the critical-line jets of order ≥ δ − ½ (WHR7.3, WHR10.6); only the inverse limit loses exactly the off-line classes.
+  - My assessment: a spectral-radius argument in Connes' Hilbert spaces proves purity of what remains after the loss, and cannot by itself prove RH.
+- **In degree 1 the square adds nothing beyond Q ⊗ Q (GMC4.4).** Its mixed boundary contracts, and in degree 0 it keeps K₀ = (H⊗Q) ⊕ (Q⊗H). Its trace pairs reflected blocks with character p (GMC6).
+- **Reflected pairs are centred on the square (CTS4–5).** Since ρ + ρ^# = 1 + 2iγ, the tensor of an off-line reflected pair is centred, and it lies outside the common radical of the positive transfer forms (CTS4.6).
+  - My assessment: the criterion CTS4.3 tests only Re Σλ_a. So the positivity step cannot separate such a pair from a pair whose product eigenvalue has the same modulus n. CTS itself makes no statement about on-line pairs, since its space R keeps only off-line values.
 - **The restriction cross on the Hilbert defect has no weight gap (HCS11).** Source and target have the same character a^{1−ρ}.
 
 **Bridges (goal 2).**
@@ -209,7 +215,7 @@ The GSP estimates, the CTS tensor argument and the HCS/GMC homological algebra I
 - GSP ↔ Krasichkov-Ternovskii's local description of closed submodules.
 - SPF ↔ the Bochner–Schwartz theorem.
 
-**F1 context (goal 4).** The pole at 1 is the average and the moment condition removes it. This item is now in the register (goal 4, item 10) and connects the summation map to the Bost–Connes phase transition.
+**F1 context (goal 4).** The pole at 1 is the average and the moment condition removes it. This item is now in the register (goal 4, item 10). The link to the Bost–Connes phase transition is an interpretation: both involve the pole of ζ at 1, and no map between the two is constructed.
 
 ## 4. Not yet read
 
@@ -225,3 +231,21 @@ In the same continuation I have not yet read these blocks:
 - the `identity/` blocks GAP, ADM, SMC and PRIME_MONODROMY_STACKED_HISTORY.
 
 The source-endpoint continuation's NCI, RSS and NHJ proofs are also unread. Their summaries are in `09_` §4(c).
+
+## Referee corrections (06:39 UTC)
+
+An independent referee pass rederived OZD3.4 and OZD5.5–5.8 and found the summaries of GSP, FGR, WHR, HCS and GMC faithful. Applied:
+
+- F₀ is a distinguished element of 𝓘, not its generator;
+- the cutoff hypothesis in the OZD equivalence (§3);
+- "test function", not "weight", for the second-order vanishing;
+- the quantifier and the setting in the CTS statements (§1.4, §3);
+- the labelling of claude-ab's own assessments (CTS, WHR);
+- "in degree 1" for GMC, and the GMC6 label;
+- the WHR statement about single H_δ;
+- the growth bound in GSP2 in place of "bounded";
+- labels WHR5.5 and WHR6.4–6.6, the position of the √24/5 example, and the errors at t = −1.3;
+- the CFPA dependency of SPF;
+- the coverage of the SPF8.4 check, now extended by the closed form;
+- the Bost–Connes link labelled as interpretation;
+- the verified wording of Connes' sketch.

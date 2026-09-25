@@ -63,3 +63,9 @@ for tt in [0.3, 1.0, 2.7, -4.2]:
     f = lambda Y: -(1 + (Y + tt) ** 2) / (1 + Y ** 2)
     best = max(-f(Y) for Y in [k / 1000.0 for k in range(-20000, 20001)])
     say("WHR8.2 t=%.1f: grid sup %.9f ; Lambda_+(t) = %.9f" % (tt, best, (tt ** 2 + 2 + abs(tt) * (tt ** 2 + 4) ** 0.5) / 2))
+
+# SPF8.4 closed form: F0(-2r) = r(2r+1)(-1)^r pi^r zeta'(-2r) / (2 r!)   (referee finding 18)
+for rr in (1, 2, 3):
+    lhs = mp.limit(F0, -2 * rr)
+    rhs = rr * (2 * rr + 1) * (-1) ** rr * mp.pi ** rr * mp.zeta(-2 * rr, derivative=1) / (2 * mp.factorial(rr))
+    say("SPF8.4 closed form r=%d: F0(-2r) = %s ; r(2r+1)(-1)^r pi^r zeta'(-2r)/(2 r!) = %s" % (rr, mp.nstr(lhs, 15), mp.nstr(rhs, 15)))

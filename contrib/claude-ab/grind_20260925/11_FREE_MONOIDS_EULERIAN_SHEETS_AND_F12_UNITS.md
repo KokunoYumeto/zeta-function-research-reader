@@ -1,6 +1,6 @@
 # Free monoids, Eulerian sheets and the units of 𝔽_{1²}: Theorem E and Lemma 2 in one picture
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026. Revision 1 at 05:26 UTC. Revision 2 at 05:39 UTC: the observation about the first negative coefficient is now proved in general (Lemma 11.2), half-factoriality is added (Lemma 11.3, Corollary 11.4), and the literature paragraph is corrected (§1.4).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026. Revision 1 at 05:26 UTC. Revision 2 at 05:39 UTC; referee corrections applied at 06:38 UTC (see the end of this note): the observation about the first negative coefficient is now proved in general (Lemma 11.2), half-factoriality is added (Lemma 11.3, Corollary 11.4), and the literature paragraph is corrected (§1.4).
 
 This note joins two results already in the register:
 
@@ -39,7 +39,7 @@ The sum is finite, because T_k(n) = 0 once k exceeds the number of prime factors
 
   r_n = 1 − j + ε,  ε = Σ 1/k,
 
-  where the sum runs over the factorizations of n of the form u^k with u an atom. This number is negative.
+  where the sum runs over the factorizations of n of the form u^k with u an atom. This number is negative. In fact r_n ≤ −1/6, and the bound is attained (Example 11.5).
 
 Consequently, M is free if and only if r_n ≥ 0 for all n. If M is not free, the first negative coefficient sits exactly at the smallest element n₀ with two factorizations. For the congruence monoids M_H of §1.3, r_{n₀} ≤ −½.
 
@@ -50,7 +50,7 @@ Consequently, M is free if and only if r_n ≥ 0 for all n. If M is not free, th
    - Concatenating these factorizations gives a factorization Φ of n. Conversely, a factorization Φ together with an ordered splitting of the multiset Φ into k nonempty sub-multisets gives such a tuple.
    - The two constructions are inverse to each other. An entry m < n determines its sub-multiset, because m has only one factorization.
    - Hence, for k ≥ 2, T_k(n) = Σ_Φ S_k(Φ). Here S_k(Φ) is the number of ordered splittings of Φ into k nonempty sub-multisets. This is the count T_k(n) computed in the free commutative monoid on the atoms occurring in Φ.
-2. **The free value.** In a free monoid the Euler product gives log Σ = Σ_u Σ_k u^{−ks}/k. So Σ_{k≥1} (−1)^{k+1} S_k(Φ)/k equals ρ(Φ), where:
+2. **The free value.** Give each atom u occurring in Φ its own commuting variable x_u. The ordered splittings are counted by the expansion of log ∏_u (1 − x_u)^{−1} = Σ_u Σ_k x_u^k/k in these variables. The atoms themselves need not be multiplicatively independent integers (4 and 8, for instance), which is why the count is taken in the variables and not in the integers. So Σ_{k≥1} (−1)^{k+1} S_k(Φ)/k equals ρ(Φ), where:
    - ρ(Φ) = 1/k if Φ consists of k copies of one atom;
    - ρ(Φ) = 0 otherwise;
    - S_1(Φ) = 1.
@@ -65,7 +65,8 @@ Consequently, M is free if and only if r_n ≥ 0 for all n. If M is not free, th
    - If P ≤ 1: r_n ≤ 1 − 2 + ½ = −½.
    - If P ≥ 2: j ≥ P and Σρ ≤ ½ + (P − 1)/3. So r_n ≤ 1 − P + ½ + (P − 1)/3 = (7 − 4P)/6 < 0.
 6. **The consequence.**
-   - If M is free, (a) applies to every n.
+   - For n ∉ M, r_n = 0, because the formal logarithm is supported on M.
+   - If M is free, (a) applies to every n ∈ M.
    - If M is not free, (a) applies to every n < n₀ and (b) to n₀.
 7. **The bound for M_H.** Suppose u^a = v^b with u ≠ v atoms of M_H.
    - Write g = gcd(a, b), a = g·a′ and b = g·b′. Then u^{a′} = v^{b′}. Comparing prime exponents gives w with u = w^{b′} and v = w^{a′}.
@@ -104,10 +105,10 @@ M_H is closed under multiplication because H is a subgroup. By orthogonality of 
   - If c ∈ G \ H, choose primes p ≠ r with p ≡ r ≡ c, and p′ ≠ r′ with p′ ≡ r′ ≡ c^{−1} (Dirichlet).
   - Then pp′, rr′, pr′ and rp′ lie in M_H. They are atoms, because p, r, p′, r′ ∉ M_H.
   - Yet (pp′)(rr′) = (pr′)(rp′).
-- **(iii) ⇒ (iv).** Nonnegative coefficients give absolute convergence of log D_H on Re s > 1.
+- **(iii) ⇒ (iv).** Let L = log D_H = Σ r_n n^{−s}. If all r_n ≥ 0, then coefficientwise L ≤ e^L − 1 = D_H − 1. So Σ r_n n^{−σ} ≤ D_H(σ) − 1 < ∞ for σ > 1. Hence L converges absolutely on Re s > 1, and D_H = e^L has no zeros there.
 - **(iv) ⇒ (ii).**
   - If H ≠ G, at least two characters are trivial on H: the principal one and a nontrivial one. They are induced by distinct primitive characters.
-  - So D_H lies in no single Saias–Weingartner class E_{q,ψ}, and their Theorem 4 gives zeros in Re s > 1 (Acta Arith. 140 (2009) 335–344). ∎
+  - So, in Saias–Weingartner's decomposition of periodic Dirichlet series into the classes E_{q,ψ}, D_H lies in no single class. Their Theorem 4 then gives zeros in Re s > 1 (Acta Arith. 140 (2009) 335–344). ∎
 
 **Lemma 11.3 (half-factoriality).** M_H is half-factorial if and only if [G : H] ≤ 2.
 
@@ -162,16 +163,20 @@ For H = {1} this is Theorem 3.4(1) of Baginski–Chapman (below). For rings of i
    ζ(s, 1/q) = Σ_{n≥0} (n + 1/q)^{−s} = q^s D_{{1}}(s).
 
    - By Proposition 11.1 with H = {1}, it is Eulerian exactly for q ∈ {1, 2}. This is Theorem E restricted to a = 1/q.
-   - Theorem E's monoid Q_a = {1 + n/a} is, for a = 1/q, exactly M_{{1}}. Its unique-representation condition (`06_`, step 2) is exactly freeness.
+   - Theorem E's monoid Q_a = {1 + n/a} is, for a = 1/q, exactly M_{{1}}.
+   - Its unique-representation condition (`06_`, step 2) is in general weaker than freeness. Example 11.5 satisfies it, with the single frequency log 2, but is not free.
+   - For M_H the two coincide. The atoms are pure with respect to the frequency basis (`06_`, step 2), and two distinct atoms of M_H never have a common power (proof of Lemma 11.2, step 7). So each frequency class contains exactly one atom, and unique representation is freeness.
    - So at the rational points a = 1/q, Theorem E reduces to the classical factoriality criterion for arithmetic congruence monoids (Baginski–Chapman, Theorem 3.4(2)). Its new content lies at all other a.
    - By Lemma 11.3, the one-sided sheet is half-factorial exactly for q ∈ {1, 2, 3, 4, 6}.
 2. **The even family.** This is the Connes–Consani parity sector (`08_` §1), for q ≥ 3:
 
    ζ(s, 1/q) + ζ(s, 1 − 1/q) = q^s D_{{±1}}(s).
 
-   By Proposition 11.1 with H = {±1}, it is Eulerian exactly when (ℤ/q)^× = {±1}, that is, for q ∈ {1, 2, 3, 4, 6}. This is `08_` Lemma 2.
+   By Proposition 11.1 with H = {±1}, it is Eulerian exactly when (ℤ/q)^× = {±1}, that is, for q ∈ {3, 4, 6}. For q ≤ 2, M_{{±1}} = M_G. So the Eulerian set of the family is {1, 2, 3, 4, 6}. This is `08_` Lemma 2.
 
-**Table.** For each monoid that is not free, the table gives the smallest element n₀ with two factorizations and the value r(n₀) of the formal logarithm there. The values come from `checks/first_negative_coefficient.py` (exact rationals, n ≤ 60000) and `checks/n0_factorizations.py`. The same check covers every subgroup H of (ℤ/q)^× for q ≤ 30, with no failures. Every case satisfies r(n₀) = 1 − j + ε exactly, with r_n ≥ 0 before n₀, and Lemma 11.3 holds.
+**Table.** For each monoid that is not free, the table gives the smallest element n₀ with two factorizations and the value r(n₀) of the formal logarithm there. The values come from `checks/first_negative_coefficient.py` (exact rationals, n ≤ 60000) and `checks/n0_factorizations.py`. The same check covers every subgroup H of (ℤ/q)^× for q ≤ 30, with no failures. Every case with n₀ ≤ 60000 satisfies r(n₀) = 1 − j + ε exactly, with r_n ≥ 0 before n₀, and Lemma 11.3 holds in every case.
+
+Two cases lie beyond the search bound: q = 28 and q = 30 with H = {1}. For them the script checks only r_n ≥ 0 up to 12000. The referee computed n₀ = 83049 = 57·1457 = 141·589 and n₀ = 144781 = 91·1591 = 301·481 respectively. Both factorizations check by hand: 3·19·31·47 and 7·13·37·43, with every factor ≡ 1 mod q.
 
 | q | φ(q) | one-sided M_{{1}}: n₀, r(n₀) | even M_{{±1}}: n₀, r(n₀) |
 |---|---|---|---|
@@ -218,6 +223,18 @@ My reading of this, labelled as interpretation: the Connes–Consani summation m
 - **Negative result (goal 1).** Example 11.5: absence of zeros in Re s > 1, or even in Re s > 0, does not imply freeness for general monoids of integers. The zero test works for congruence monoids only through Saias–Weingartner.
 - **Bridge (goal 2).**
   - At the rational points a = 1/q, Theorem E coincides with the factoriality criterion for arithmetic congruence monoids (Baginski–Chapman, Theorem 3.4; the Hilbert monoid).
-  - `08_` Lemma 2 is its 𝔽_{1²} version, and it coincides with the half-factoriality criterion (Theorem 3.4(1)), which is Carlitz's class-number-two theorem for this Krull monoid.
+  - `08_` Lemma 2 is its 𝔽_{1²} version. It coincides with the half-factoriality criterion (Theorem 3.4(1)), the Krull-monoid analogue of Carlitz's class-number-two theorem.
   - This is also the novelty check requested for Theorem E. Its rational case 1/q is classical, and its content at all other a remains to be compared with the literature.
 - **𝔽₁ context (goal 4).** The Eulerian even sheets are exactly the half-factorial one-sided sheets. Passing from 𝔽₁ to 𝔽_{1²} adds exactly q ∈ {3, 4, 6}, the sheets whose one-sided class group has order 2.
+
+## Referee corrections (06:38 UTC)
+
+An independent referee pass found no mathematical error in Lemma 11.2, Lemma 11.3, Corollary 11.4, Proposition 11.1 or Example 11.5. It reproduced every table entry and tested Lemma 11.2 on 190 further non-free monoids, including cases with three factorizations. Applied:
+
+- the justification that Theorem E's unique-representation condition equals freeness for M_H (§2);
+- the Krull-monoid form of the Carlitz attribution (§4);
+- the q-range of the even family (§2);
+- the bound −1/6 in the statement of Lemma 11.2;
+- the commuting-variable form of step 2 and the case n ∉ M;
+- the comparison step for (iii) ⇒ (iv) and the reference to Saias–Weingartner's decomposition;
+- the two cases beyond the search bound.

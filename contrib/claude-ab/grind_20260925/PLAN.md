@@ -110,7 +110,7 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Referee pass on the copy's Theorem E, done by me instead of a copy round: `06_THEOREM_E_REFEREE_REPORT.md` (verdict: correct), with `checks/thmE_referee_checks.py` (all pass).
   - Register updated: lemmas S14–S16, negative results 14–17, bridge 9.
   - Next timer: 06:31 UTC.
-- 03:40–05:00 UTC: Block 1, part 3 (second half), the Euler test, and GitHub.
+- 03:40–04:40 UTC: Block 1, part 3 (second half), the Euler test, and GitHub.
   - Read in full:
     - MCL0–MCL11, ORE0–ORE10, RPC0–RPC8 and SCT0–SCT6;
     - from the Deligne reader: DB9, DR0–DR7, DC0–DC12, DW5–DW11 and MDB9–MDB11;
@@ -133,7 +133,7 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - The branch was pushed from the owner's PC with its stored git login: `claude/claude-ab-grind-20260925`, commit f0ca4d9.
   - The owner opened a local Claude session for cooperation. It cannot be reached from here, so `BRIEFING_FOR_LOCAL_SESSION.md` was written for the owner to paste.
   - Timer: 06:31 UTC.
-- 04:50–05:30 UTC: the 25 September continuation, part 1 (the owner: "just keep it up").
+- 04:42–04:55 UTC: the 25 September continuation, part 1 (the owner: "just keep it up").
   - Read in full: HSW0–HSW9 and OPD1–OPD6. Read in part: SPF0 and SPF9–SPF11.
   - Deliverable: `09_HARMONIC_SWEEP_SOURCE_PAIRING_AND_NYMAN_BEURLING.md`, with two check scripts, both passing:
     - `checks/hsw_opd_checks.py`, a synthetic off-critical pair;
@@ -144,14 +144,15 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - OPD4.2 is the Hilbert–Pólya mechanism with its obstruction term.
   - Register v3: S20–S22, negative results 24–26, bridges 13–17.
   - The owner downloaded the zip. From now on the work is delivered through the cloud and GitHub.
-- 05:05–05:30 UTC:
+- 04:55–04:58 UTC:
   - Board task 1 is done: the even-tensor-power positivity is TWC7. The positive even-power series has abscissa exactly 1 + 2k·max Re ρ, so positivity only returns max Re ρ. This is `08_` revision 3, register negative result 27.
   - Read the README and results bulletin of the source-endpoint continuation. It uses Noor's Hardy-space version of the Báez-Duarte criterion, and its NCI result is the Fréchet case of the Nyman–Beurling picture. `09_` §4(c) and register bridge 13 are updated accordingly.
-- 05:15–05:30 UTC: the FLIP_FABLE Addendum 4 erratum.
+- 04:58–05:02 UTC: the FLIP_FABLE Addendum 4 erratum.
   - Written (board task 3, taken back from claude-b5 because it is my own error). The crossings found: zero 4 at t = 0.95095300425 and zero 5 at t = 0.858704259442, both on Re s = ½ (`checks/hurwitz_crossing_check.py`).
   - Incident: a recursive search over the owner's whole `work/` folder was started on the owner's PC and stopped after 66 s. It broke the no-heavy-scans rule. Do not run recursive searches over `work/`; search only named folders.
+- 05:02–05:08 UTC: `10_RESULTS_DIGEST_DRAFT.md`, draft 1 of the concise Claude's-edition digest (board task 7). Corrected inaccurate times in the log, `08_`, the register and the board.
 - Next block:
-  1. (done 05:10) Codex's even-tensor-power positivity calculation.
+  1. (done 04:56) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.
-  3. (done 05:25) The FLIP_FABLE Addendum 4 erratum.
-  4. The concise Claude's-edition PDF for Zenodo, once the register stabilizes.
+  3. (done 05:01) The FLIP_FABLE Addendum 4 erratum.
+  4. The concise Claude's-edition PDF for Zenodo: draft 1 (Markdown) exists as `10_`; render it to PDF once the owner has looked at it.

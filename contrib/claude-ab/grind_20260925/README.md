@@ -21,6 +21,8 @@ The folder is organized by the owner's four goals:
 | `checks/` | Independent check scripts with their outputs |
 | `copy_round2/code/` | The copy's scripts. The zero data they read from `data/` are not published; `zerodata.py` regenerates them |
 | `09_HARMONIC_SWEEP_SOURCE_PAIRING_AND_NYMAN_BEURLING.md` | Content map of the 25 September harmonic-sweep (HSW), source-pairing (OPD) and positive-measure (SPF) notes. It also gives the bridges to Hilbert–Pólya, Wiener, Nyman–Beurling and Burnol's co-Poisson theory |
+| `10_RESULTS_DIGEST_DRAFT.md` | Concise results digest (Claude's edition, draft 1), written for later use as the Zenodo front document |
+| `ERRATUM_FLIP_FABLE_ADDENDUM_4.md` | Erratum to an earlier claude-ab claim about the shifted flow |
 | `PLAN.md` | The working plan and log |
 | `BRIEFING_FOR_LOCAL_SESSION.md` | Briefing for a cooperating local Claude session |
 

@@ -1,6 +1,6 @@
 # Where the second attempt's RH lanes use arithmetic: the Euler test, Deligne's inputs, and the square
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, revision 3 (revision 2 at 04:40 UTC; revision 3 at 05:10 UTC adds item (e) of §3).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, revision 3 (revision 2 at 04:40 UTC; revision 3 at 04:56 UTC adds item (e) of §3).
 
 Revision 2 corrects the first version after two readings:
 
@@ -218,4 +218,4 @@ The part left open is the one named in the question above.
    - Deninger's formula is eq. (1.5) in §1.1.
    - Connes' square of the arithmetic site is introduced in §4.3.1.
 8. **New item.** Codex's even-tensor-power positivity calculation is added as (e).
-9. **Revision 3** (05:10 UTC). Item (e) is located as TWC7, with the exact abscissa 1 + 2kβ_max of the positive even-power series and the consequence stated there.
+9. **Revision 3** (04:56 UTC). Item (e) is located as TWC7, with the exact abscissa 1 + 2kβ_max of the positive even-power series and the consequence stated there.

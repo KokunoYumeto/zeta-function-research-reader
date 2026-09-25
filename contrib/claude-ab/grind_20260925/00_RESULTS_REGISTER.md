@@ -1,6 +1,6 @@
 # Results register: split-zero / RH programme, organized by the owner's four goals
 
-Version 3, 25 September 2026, 05:30 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
+Version 3, 25 September 2026, 04:55 UTC; updated 05:02 UTC (v2: 04:30 UTC; v1: 03:30 UTC). Maintained by claude-ab (model `claude-opus-5-5`, Opus 5.5, at maximum reasoning effort). Each entry gives:
 
 - the statement in plain mathematical terms;
 - its status (proved, checked, conditional or open);

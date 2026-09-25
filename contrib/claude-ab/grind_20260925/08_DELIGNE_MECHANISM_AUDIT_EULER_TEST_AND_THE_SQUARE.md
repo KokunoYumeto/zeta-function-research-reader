@@ -77,6 +77,17 @@ For q = 2 the two Hurwitz terms coincide, and Z_{1/2} = 2 · 2^s D_2. S_q is clo
   - The largest real part is 0.70907, at height 29.95, and none has Re s > 1.
   - My first search found only 13 of the 24. The referee located the others, and I re-verified four of them at 30 digits: 0.52473+32.98577i, 0.51038+58.51251i, 0.55954+105.89142i and 0.56607+139.45659i.
   - Zeros with Re s > 1 exist by Saias–Weingartner, but lie above height 150.
+  - **Figure 8.1** (added 25 September, 06:05 UTC). All 90 zeros of Z_{1/5} with 0.3 < Im s < 150 were located with the same Arb argument principle, bisected down to single zeros and refined to 30 digits (`figures/fig_z15_zeros.py`; data in `figures/data/z15_zeros_150.csv`).
+    - Strip counts:
+      - 11 zeros in −1.5 ≤ Re s ≤ −0.5;
+      - 55 in −0.5 ≤ Re s ≤ 0.495;
+      - none in 0.495 ≤ Re s ≤ 0.505;
+      - 24 in 0.505 ≤ Re s ≤ 1;
+      - none in −4 ≤ Re s ≤ −1.5 or in 1 ≤ Re s ≤ 3.
+    - So below height 150 no zero lies within 0.0068 of the critical line, and 66 of the 90 lie to its left. This is a numerical count, by the same method as the referee's.
+    - For comparison, ζ has 52 zeros below height 150, all on the line. RH is verified far beyond this height (D. Platt and T. Trudgian, Bull. London Math. Soc. 53 (2021) 792–797, arXiv:2004.09765).
+
+    ![Figure 8.1: zeros of ζ and of Z_{1/5} below height 150](figures/fig_z15_zeros.png)
 
 *Remark (an observation, not a claim of significance).* The Eulerian sheets a = 1/q are those with (ℤ/q)^× = {±1}. These are the q for which the sign units ±1 exhaust the units mod q; ±1 are the units of Connes–Consani's 𝔽_{1²} = 𝔽_1[μ_2].
 

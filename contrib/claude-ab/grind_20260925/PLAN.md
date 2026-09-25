@@ -165,6 +165,17 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - "sought since 1995" for the weight mechanism;
     - missing hypotheses of Theorems C and D.
   - Register items S20, 13 and 26 were aligned. The Titchmarsh check now keeps the next tail term (about 10⁻¹¹).
+- 05:25–05:57 UTC: `11_FREE_MONOIDS_EULERIAN_SHEETS_AND_F12_UNITS.md`.
+  - Revision 1 (05:40) joined Theorem E at a = 1/q and `08_` Lemma 2 as statements about congruence monoids M_H.
+  - Revision 2 (05:50):
+    - The table observation is now Lemma 11.2, for every monoid of integers: log ≥ 0 iff free, with the first negative coefficient 1 − j + ε at n₀.
+    - Lemma 11.3 (half-factorial iff index ≤ 2) and Corollary 11.4 (even free iff one-sided half-factorial) are added.
+    - Example 11.5: zeros do not detect freeness in general.
+    - The literature was checked: Baginski–Chapman Theorem 3.4 (parts 1 and 2, verified against the authors' preprint), Theorem 3.2 (the divisor theory), and Carlitz 1960.
+  - Checks, both exact with 0 failures:
+    - `checks/first_negative_coefficient.py`: all subgroups for q ≤ 30, n ≤ 60000;
+    - `checks/n0_factorizations.py`.
+  - Register: S5 novelty, S19, S23, S24, negative result 28, bridge 18, goal-4 item 9. Digest 10_ updated.
 - Next block:
   1. (done 04:56) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.

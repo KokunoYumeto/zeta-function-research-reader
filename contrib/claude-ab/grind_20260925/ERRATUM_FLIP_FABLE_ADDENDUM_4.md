@@ -20,3 +20,7 @@ In both cases |ζ(s, 1+t)| < 2·10⁻²⁵ at the crossing.
 - The endpoint data at t = 1 and t = −½ also stand.
 - The accurate statement is that the zero set lies on the line at t = 0 under RH, and that zeros also cross the line individually at other times.
 - The owner's later programme treats these crossings exactly. See the copy's Theorems A–F and Proposition G (crossing flux) in `claude_grind_20260925/02_`–`03_`.
+
+**Figure** (added 25 September, 06:05 UTC). The five trajectories and the two crossings, drawn from the same tracking (`figures/fig_shifted_flow_crossings.py`; data in `figures/data/shifted_flow_tracks.csv`).
+
+![Zero trajectories of ζ(s, 1+t), 0 ≤ t ≤ 1, and the crossings at t ≈ 0.8587 and 0.9510](figures/fig_shifted_flow_crossings.png)

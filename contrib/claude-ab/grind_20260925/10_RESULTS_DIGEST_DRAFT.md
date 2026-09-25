@@ -1,15 +1,15 @@
 # The split-zero programme around ζ(s, 1+t): a results digest (Claude's edition, draft 1)
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026; draft 1 at 05:05 UTC, corrected at 05:24 UTC after an independent referee pass. This is a draft for the owner's review, not yet for publication.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026; draft 1 at 05:05 UTC, corrected at 05:24 UTC after an independent referee pass; §2 items 4 and 6, §4 item 7 and §5 item 3 updated at 05:57 UTC from `11_`. This is a draft for the owner's review, not yet for publication.
 
-This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement, its status, and where the proof lives: the numbered notes `01_`–`09_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
+This digest collects what an audit-and-extension lane established about the owner's programme between 22 and 25 September 2026. It covers the programme's own proofs, results of two Claude instances, and independent checks. Each item gives a statement, its status, and where the proof lives: the numbered notes `01_`–`11_` of this folder, and the programme's proof labels such as MCL5 or HSW6. The full index is `00_RESULTS_REGISTER.md`. Nothing here proves or disproves the Riemann hypothesis. The items are judged by what they establish.
 
 ## 1. The overall picture
 
 1. **Where RH can enter.**
    - The Connes–Consani summation map, applied to the shifted lattice ℤ + a, gives the even shadow Z_a = ζ(s,a) + ζ(s,1−a) of the owner's flow. On the sheets a = 1/q, Z_a is q^s times the zeta function of the monoid {n ≡ ±1 mod q}.
    - This monoid factors uniquely exactly when q ∈ {1, 2, 3, 4, 6}. At q = 5, for example, 36 = 4·9 = 6·6.
-   - Exactly for those q the formal logarithm is nonnegative and there are no zeros with Re s > 1. Otherwise there are zeros off the line. At q = 5 there are 24 zeros with Re s > 0.505 below height 150.
+   - Exactly for those q the formal logarithm is nonnegative and there are no zeros with Re s > 1. Otherwise there are zeros off the line. At q = 5 there are 24 zeros with Re s > 0.505 below height 150; of the 90 zeros below that height, none lies within 0.0068 of the line (Figure 1, `figures/fig_z15_zeros.png`).
    - How the programme's results behave on such a sheet:
      - The finite-block lifting algebra holds there word for word (MCL3–MCL7, ORE6.2, ORE6.5).
      - MCL9 and ORE4 hold there in substance.
@@ -54,8 +54,12 @@ This digest collects what an audit-and-extension lane established about the owne
 3. **Least-order lifting.**
    - At a zero of multiplicity m, the k-th source Mellin jet lifts through the summation transpose with least generalized-character order m + k + 1.
    - The obstruction class to lifting at fixed order is the germ of the functional-equation multiplier: (−1)^j j!/2 · t^{r−1−j} χ_ζ(b+t) mod t^{min(m,r)}. It was checked for m = 1 and m = 2, with maximal deviation 1.1·10⁻³⁹. (MCL5–MCL9, ORE5; `07_`)
-4. **Even lattice sheets.** The equivalence in §1.1 is proved; the step (iv) ⇒ (ii) cites Saias–Weingartner. (`08_` Lemma 2)
+4. **Even lattice sheets.** The equivalence in §1.1 is proved; the step (iv) ⇒ (ii) cites Saias–Weingartner. It holds for every congruence monoid {n : n mod q ∈ H}: freeness holds iff H = (ℤ/q)^×. The even monoid {n ≡ ±1 mod q} is free exactly when the one-sided monoid {n ≡ 1 mod q} is half-factorial. (`08_` Lemma 2; `11_` Proposition 11.1, Corollary 11.4)
 5. **Source pairing and harmonic defect.** These are the identities of §1.4, together with two-sided bounds that compare the defect with Σ m|Re ρ − ½|/(1+γ²). (OPD4, HSW6A–6B; `09_`)
+6. **The formal logarithm detects freeness.**
+   - For every multiplicative monoid M of positive integers, M is free if and only if log Σ_{m∈M} m^{−s} has nonnegative coefficients.
+   - The first negative coefficient sits at the smallest element with two factorizations, and its value is 1 − j + ε ≤ −1/6.
+   - Absence of zeros does not detect freeness in general: {1} ∪ {2^e : e ≥ 2} is not free, and its zeta function has zeros only on Re s = 0. (`11_` Lemma 11.2, Example 11.5)
 
 ## 3. Negative results, with their exact scope
 
@@ -90,16 +94,17 @@ This digest collects what an audit-and-extension lane established about the owne
 4. **Connes–Consani's twistor line meets an elliptic curve with complex multiplication.** Through the 𝔽_{1²}-points {0, ∞, ±1}, the line relates to y² = x³ − x. The Hecke character equals the signed winding degree. (copy R5; S10–S11)
 5. **Prime clocks = the Bost–Connes / Laca–Raeburn crossed product. Timed primes = Beurling generalized numbers.** (`01_`)
 6. **Zero velocities = Gram offsets. Connes' §VIII harmonic distribution, realized rationally.** (`03_`, `09_`)
+7. **Theorem E at a = 1/q = the factoriality criterion for arithmetic congruence monoids.** The criterion is Baginski–Chapman, Theorem 3.4; the Hilbert monoid 441 = 9·49 = 21·21 is the example there. The even-sheet test is the same criterion after dividing the class group by ±1, and it coincides with Carlitz's class-number-two criterion for half-factoriality. (`11_`)
 
 ## 5. The 𝔽₁ context
 
 1. **The support.** The owner's τ〈Z₁; no Z₂〉 is realized at the generic point of Connes–Consani's 𝔽_{1²}-line. "No Z₂" has two exact readings: no exchanged label, which holds at the generic point; and no sign, which holds exactly in characteristic 2. (`01_` for the realization; `00_`, goal 4, item 1 for the two readings)
 2. **The question asked without meaning to.** The weight lane of the second attempt asks for Manin's square (1995), with a Künneth map, together with a weight mechanism specific to Deligne's argument. (`08_` §4)
-3. **An observation.** The Eulerian even sheets a = 1/q are exactly those whose units mod q are the 𝔽_{1²}-signs ±1. (`08_` §1)
+3. **The sign and the Euler product.** The Eulerian even sheets a = 1/q are exactly those whose units mod q are the 𝔽_{1²}-signs ±1. Equivalently (proved), they are the sheets on which the one-sided monoid is half-factorial: quotienting by the sign turns half-factoriality into factoriality. Reading this as the passage from 𝔽₁ to 𝔽_{1²} is interpretation. (`08_` §1; `11_` §3; Figure 2, `figures/fig_monoid_sheets.png`)
 
 ## 6. Corrections recorded
 
-- **FLIP_FABLE Addendum 4.** The claim that zeros of ζ(s, 1+t) lie on vertical lines only at Eulerian times was false. Zeros 4 and 5 of ζ cross the line at t ≈ 0.95095 and t ≈ 0.85870. (`ERRATUM_FLIP_FABLE_ADDENDUM_4.md`)
+- **FLIP_FABLE Addendum 4.** The claim that zeros of ζ(s, 1+t) lie on vertical lines only at Eulerian times was false. Zeros 4 and 5 of ζ cross the line at t ≈ 0.95095 and t ≈ 0.85870. (`ERRATUM_FLIP_FABLE_ADDENDUM_4.md`; Figure 3, `figures/fig_shifted_flow_crossings.png`)
 - **`08_`, revision 2.** A referee pass and the Codex reading found:
   - a zero count of 13 that should have been 24;
   - three citation fixes;

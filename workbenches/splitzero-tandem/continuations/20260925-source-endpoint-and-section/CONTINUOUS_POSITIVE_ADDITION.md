@@ -1,0 +1,9 @@
+# Continuous positivity on the full source and the specialization obstruction
+
+The complete receiving sources follow first: ACD identifies the actual continuous dual, ADC its two invariant-cycle crosses, DCA every genuine finite-sheet cover and trace map, and AST the exact specialization quotient with its strong topology. Their full source, endpoints, signs, multiplicities and comparison maps are retained.
+
+The new CFP proof classifies every continuous positive transfer-adjoint form on the actual Fréchet original-zeta source. It proves the required unitary spectral decomposition through an explicit Gaussian-measure argument; no density of finite primal jets or boundedness in the earlier value norm is assumed. The complete original multiplier and all exceptional terms are retained. CPS then constructs the common positive completion and proves that the actual specialization obstruction quotient has only the zero compatible positive form. Its original coefficient and strong dual remain present.
+
+![Exact source and positive-receiver maps. All positive continuous forms are classified in CFP; CPS1–CPS5 give their common radical, completion and the zero positive receiver of the actual specialization obstruction. Both maps into the lower space have dense image for the displayed seminorms. The original Fréchet topologies, source kernels and full original Weil complement remain distinct and explicit. Source quotient and Gysin comparison: AST1–AST8.](continuous_positive_receiver.png){width=100%}
+
+The complete proofs and the precise independent/root review scopes are included. These results close the restriction of the earlier PTQ classification to bounded Hilbert forms. The original Deligne weight-separation target remains active and unfinished; none of the positive receiving maps has been declared faithful on an unproved part of the original source.

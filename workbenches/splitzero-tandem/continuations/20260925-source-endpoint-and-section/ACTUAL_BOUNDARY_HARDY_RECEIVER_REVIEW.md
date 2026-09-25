@@ -1,0 +1,323 @@
+# Independent review and stronger convergence for the actual Hardy boundary receiver
+
+25 September 2026. Complete review and derivation AHR0–AHR9. This is an independent mathematical review of ABH0–ABH8, including its added trace-class statement ABH3.6. The final reviewed ABH SHA256 is `9774d207c15e14e9faac3f314ad662ec04ec8ee6659904c7a99226edd101ff7b`. The source hashes and exact reading coverage are recorded in `argument_reconstruction/ACTUAL_HARDY_REVIEW_RECEIPT.json`. No publication, build or rendering operation is performed by this review.
+
+## AHR0. Scope, prerequisites and the one wording correction
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). All operations in this review are operations on the coefficient spaces after the complete-history arithmetic reconstruction. No addition, coordinate, arithmetic value, midpoint, metric or parity is assigned to that support. Separate branch histories are not pooled. The complete correction-chain record, the corpus/operation rule, and the relevant user statements in the inherited task context were read. This is not a claim to have reread every private corpus occurrence.
+
+The entire proofs ABH0–8, GDE0–13, NHD0–10, NHR0–9 and NHJ0–9 were read. The reviewed human source is S. Waleed Noor, *A Hardy space analysis of the Báez-Duarte criterion for the RH*, [arXiv:1809.09577v4](https://arxiv.org/abs/1809.09577v4), original-author TeX SHA256 `bc3075483547782dce36bf55a6349899a26766fcfc8ae9f265079ec74601f2d3`. The existing canonical routing record identifies unit `PUBUNIT-803463A3EF787AE3E69C519B`. Its author TeX lines 114–387 were read here, including the weighted isometry, cover, density proof and adjoint-domain proof. The external books cited by Noor were not newly read. The complete source topology and full zero ideal remain those of the incoming proofs; this review does not claim to reconstruct the programme's original geometry independently.
+
+One wording correction was requested before acceptance. Each functional \(\lambda_x\) annihilates \(N_O\), which proves descent. Its individual kernel is not generally equal to \(N_O\). Indeed, for the specified left input sector, even the joint kernel is
+\[
+\bigcap_{x\in H_-}\ker\lambda_x
+=\{[F]\in Q:F(\lambda)=0\text{ for every }\lambda\in\mathscr Z_+\}.
+\tag{AHR0.1}
+\]
+To prove this, the coordinate formula in AHR3 tests exactly each right value, with its nonzero factor \(d_r(\lambda)\). Testing the input vector at each reflected coordinate proves the forward implication; the same formula proves the reverse implication. This joint kernel contains \(N_O\), and retains any left off-line values. The final ABH3 now says “annihilates \(N_O\), so it descends to \(R\)” and states the exact restricted joint kernel. Those final edits were read and verified. The injectivity of the map *from* \(H_-\) is unaffected. No equation in ABH requires the stronger, incorrect interpretation of the earlier sentence.
+
+## AHR1. Original Hardy kernels, norms and the raw cover
+
+Use inner products linear in the first variable throughout. Set
+\[
+\phi_0(s)=-1/s,\qquad
+\phi_j(s)=\frac{j^{1-s}-(j+1)^{1-s}}s\quad(j\ge1),
+\quad
+g_s(z)=\sum_{j\ge0}\overline{\phi_j(s)}z^j,
+\quad\tfrac12<\Re s<1.
+\tag{AHR1.1}
+\]
+All positive-integer powers use the real logarithm. Put \(\alpha=\bar s\). On the interval \((1/(j+1),1/j]\), the orthogonal step projection of \(x^{\alpha-1}\) has value
+\[
+a_s(j)=\frac{j(j+1)}\alpha\bigl(j^{-\alpha}-(j+1)^{-\alpha}\bigr).
+\]
+The interval length is \(1/[j(j+1)]\). Noor's isometry \(\Phi=T^{-1}\Psi\), with \(Tf=((1-z)f)'/(1-z)\), sends this sequence to \(g_s\). Here is the direct coefficient check required for the comparison. Write \(q(j)=j^{1-\alpha}/\alpha\), with \(q(0)=0\); the coefficients of \(g_s\) are \(q(j)-q(j+1)\). The coefficient of \(z^{j-1}\) in \(Tg_s\) is
+\[
+(j+1)q(j)-jq(j+1)
+=\frac{j(j+1)}\alpha(j^{-\alpha}-(j+1)^{-\alpha})=a_s(j).
+\]
+The coefficient bound \(O(j^{-\Re s})\) proves membership in \(H^2\) before applying the isometry. Projection is norm-decreasing, so, with no changed Hardy norm,
+\[
+\|g_s\|^2=\sum_{j\ge1}\frac{|a_s(j)|^2}{j(j+1)}
+\le\int_0^1x^{2\Re s-2}\,dx=\frac1{2\Re s-1}.
+\tag{AHR1.2}
+\]
+
+The raw cover \(W_nf=(1+z+\cdots+z^{n-1})f(z^n)\) repeats each coefficient in a block of length \(n\). Its adjoint sums that block. Therefore
+\[
+W_n^*W_n=nI,\qquad W_nW_n^*=nP_n,
+\tag{AHR1.3}
+\]
+where \(P_n\) is block averaging. Telescoping the coefficients in (AHR1.1), including the first block, gives
+\[
+W_n^*g_s=n^{1-\bar s}g_s.
+\tag{AHR1.4}
+\]
+The original zeta pairing is exactly
+\[
+\langle h_k,g_s\rangle=(1-k^{1-s})\zeta(s)/s.
+\tag{AHR1.5}
+\]
+NHR3 derives it by subtracting the two fractional-part Mellin integrals, including the endpoint term \((1-k^{1-s})/(s-1)\). That endpoint cancels in the subtraction; the factor \(1/s\) and the term \(-\log k\) in \(h_k\) remain. In particular \(g_\lambda\in\mathcal N^\perp\) at each actual right-off-line zero. No simplicity assumption is used.
+
+## AHR2. Full-source uniqueness and all original Mellin constants
+
+The source is the Fréchet space of entire functions with
+\(q_{A,N}(F)=\sup_{|\Re s|\le A}(1+|\Im s|)^N|F(s)|\).
+Retain
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad F_0(0)=1/8,
+\quad F_{t,j}(s)=e^{ts^2}\left(\phi_j(s)+\frac{8F_0(s)}s\right).
+\tag{AHR2.1}
+\]
+The residue at zero cancels because \(8F_0(0)=1\); it is not canceled by deleting an original pole. The entire corrected quotient has the bounds
+\(q_{A,N}(F_{t,j})\le C_{A,N,t}(j+1)^{A+3}\).
+Outside a unit disk these follow from the explicit powers and the strip bounds of \(F_0\). Inside, the maximum principle on a radius-two circle bounds the removable quotient. The Gaussian controls all vertical powers.
+
+For \(\Lambda\in\mathcal B'\), suppose every \(\Lambda(F_{t,j})=0\). Then
+\[
+L(w)=\Lambda\left(e^{ts^2}\frac{e^{(1-s)w}-8e^wF_0(s)}s\right)
+\tag{AHR2.2}
+\]
+is an entire function. Source-valued holomorphy follows by differentiating the complete numerator in each seminorm; every derivative adds a polynomial in \(s\), controlled by the Gaussian. For \(s=x+iy,w=a+ib\), its first numerator term has modulus bounded on a strip by
+\[
+e^{tA^2+(1+A)|a|}e^{-ty^2+by}.
+\]
+Completing that quadratic, retaining the removable-division estimate, gives \(|L(w)|\le C\exp(C(1+|w|^2))\). The exact first \(n\) coefficient sum is
+\[
+\sum_{j=0}^{n-1}F_{t,j}(s)
+=e^{ts^2}\frac{-n^{1-s}+8nF_0(s)}s.
+\]
+Thus \(L(\log n)=0\) for all recovered positive integers. If \(L\) were nonzero, Jensen's formula centered at any point where it is nonzero would bound the number of its zeros in a radius-\(R\) disk by \(O(R^2)\). The distinct points \(\log n\), \(n\le e^{R/2}\), are in that disk for all sufficiently large \(R\), contradicting that bound. Thus \(L=0\). Differentiating the full numerator, including its correction, yields
+\[
+(\partial_w-1)L(w)=-\Lambda(e^{ts^2}e^{(1-s)w}),
+\quad\Lambda(e^{ts^2}e^{vs})=0\quad(v\in\mathbb C).
+\tag{AHR2.3}
+\]
+
+For clarity the inverse transform used to pass to every source function has exactly the original constants:
+\[
+a_H(u)=\frac{u^{-1/2}}\pi\int_{\mathbb R}H(1/2+iy)u^{-iy}\,dy,
+\quad H(s)=\frac12\int_0^\infty a_H(u)u^s\frac{du}{u}.
+\tag{AHR2.4}
+\]
+The Fourier transform of \(v\mapsto a_H(e^v)e^{v/2}\), with exponent \(+iyv\), is \(2H(1/2+iy)\). Fourier inversion with inverse coefficient \(1/(2\pi)\) therefore gives exactly the factor \(1/\pi\) in (AHR2.4), and the forward transform has factor \(1/2\). Shifting the integration line between two fixed real coordinates is allowed by the original rapid strip decay; the horizontal boundary integrals tend to zero. Hence the expression for \(a_H(e^v)\) can use any real line \(c\), with the factor \(e^{-cv}/\pi\). Choosing \(c\) of either sign and arbitrarily large absolute value proves decay faster than every exponential in \(|v|\). Differentiation under the integral retains this property because it adds finite powers of \(c+iy\).
+
+Given \(F\in\mathcal B\) and real \(u>t\), take \(H=e^{(u-t)s^2}F\). Formula (AHR2.4) gives in every original seminorm
+\[
+e^{us^2}F(s)=\frac12\int_{\mathbb R}a_H(e^v)e^{ts^2}e^{sv}\,dv.
+\tag{AHR2.5}
+\]
+Indeed \(q_{A,N}(e^{ts^2}e^{vs})\le C_{A,N,t}e^{A|v|}\) for real \(v\), so the source-valued integral is absolutely integrable in every seminorm. Equation (AHR2.3) therefore makes its \(\Lambda\)-value zero. The scalar \(u\mapsto\Lambda(e^{us^2}F)\) is holomorphic for \(\Re u>0\): on every compact parameter set the real part of \(us^2\) is a negative quadratic in \(y\) plus a bounded linear term. Its zeros for real \(u>t\) force it to be zero throughout that half-plane. Finally
+\[
+q_{A,N}((e^{us^2}-1)F)
+\le u e^{A^2}(A^2+1)q_{A,N+2}(F),\qquad 0<u\le1,
+\]
+by integrating \(s^2e^{vs^2}\) from zero to \(u\). Letting \(u\downarrow0\) proves \(\Lambda(F)=0\). This independently verifies ABH2 and NHJ3–4 on the full prequotient dual, without a zero-ideal annihilator hypothesis.
+
+The continuity into disk-holomorphic functions is also in the stated topology: for each compact subdisk the series \(\sum_jF_{t,j}\bar z^j\) is a bounded family in \(\mathcal B\), so its evaluation is a defining strong-dual seminorm. Its transpose restrictions to \(Q'\) and \(R'\) are continuous. No inverse continuity for the compact-open image is inferred.
+
+## AHR3. Every conjugation, multiplicity and source sector
+
+Let \(H=\ell^2(\mathscr Z,m)\), let \(\rho^\#=1-\bar\rho\), and retain \(\beta_r=D_r^*JE\), \(d_r(\rho)=e^{-i\Im\rho\log r}(r^{\Re\rho}-r^{1-\Re\rho})\). Reflection preserves multiplicities and \(d_r(\rho^\#)=-d_r(\rho)\). For \(x\in H_-\),
+\[
+\lambda_x([F])=\sum_{\rho\in\mathscr Z_-}m_\rho
+\overline{d_r(\rho)}F(\rho^\#)\overline{x_\rho}
+=-\sum_{\lambda\in\mathscr Z_+}m_\lambda
+\overline{d_r(\lambda)}F(\lambda)\overline{x_{\lambda^\#}}.
+\tag{AHR3.1}
+\]
+It is conjugate-linear in \(x\) and linear in the source. Cauchy–Schwarz and continuity of \(\beta_r\) prove continuity as a source functional. Quotient continuity follows from its annihilation of \(N_O\). The induced map from the conjugate of \(H_-\) into the strong dual of \(R\) is continuous, since a continuous map sends a bounded source set to a norm-bounded Hilbert set. The original source image under \(\beta_r\) contains all finite off-line value vectors; pairing with each left coordinate shows \(\lambda_x=0\Rightarrow x=0\).
+
+At every actual nontrivial zero the full factor \(F_0/s\) vanishes through order \(m_\lambda-1\). Applying the conjugate-linear analytic receiver to (AHR3.1) gives exactly the linear map
+\[
+\mathcal L_{r,t}x=-\sum_{\lambda\in\mathscr Z_+}
+m_\lambda d_r(\lambda)\overline{e^{t\lambda^2}}x_{\lambda^\#}g_\lambda.
+\tag{AHR3.2}
+\]
+Neither the conjugation on the Gaussian nor the minus sign may be changed. The source quotient is already a value quotient: all higher jets remain in the upstream \(Q\) and its specified kernel. This receiver makes no claim that those higher jets are additional independent coordinates of \(H_-\).
+
+## AHR4. Uniform near-line control, Hilbert–Schmidt norm and trace class
+
+Put \(\delta=\Re\lambda-1/2\in(0,1/2)\) and \(c_r=(r+1)\log r/2\). Differentiating \(\Delta_r(\sigma)=r^\sigma-r^{1-\sigma}\) on \([0,1]\) gives
+\[
+0<\Delta_r(\sigma)\le(r+1)\log r\,\delta,
+\quad\Delta_r(\sigma)^2\|g_\lambda\|^2
+\le(r+1)^2(\log r)^2\delta/2\le c_r^2.
+\tag{AHR4.1}
+\]
+Thus the constant is uniform as the actual right zeros approach the line. The original zero-count estimate with multiplicities implies \(\sum m_\lambda e^{-a(\Im\lambda)^2}<\infty\) for every \(a>0\). This is a complete-divisor estimate, not a bounded-height numerical observation.
+
+The sum of vector norms in (AHR3.2) is bounded by
+\[
+\|x\|_H\left(\sum_{\lambda\in\mathscr Z_+}
+m_\lambda\Delta_r(\Re\lambda)^2
+e^{2t((\Re\lambda)^2-(\Im\lambda)^2)}\|g_\lambda\|^2\right)^{1/2}
+=\|x\|_H C_{r,t}^{1/2}.
+\tag{AHR4.2}
+\]
+This proves absolute vector convergence, boundedness, and agreement with the strong-dual analytic receiver by its continuity. On the orthonormal input basis \(u_{\lambda^\#}=e_{\lambda^\#}/\sqrt{m_\lambda}\),
+\[
+v_\lambda:=\mathcal L_{r,t}u_{\lambda^\#}
+=-\sqrt{m_\lambda}d_r(\lambda)\overline{e^{t\lambda^2}}g_\lambda.
+\tag{AHR4.3}
+\]
+Therefore the Hilbert–Schmidt norm squared is precisely \(\sum\|v_\lambda\|^2=C_{r,t}\), including its single multiplicity factor. It is not the ordinary trace of a diagonal operator on weighted coordinates.
+
+There is a stronger conclusion, now integrated as ABH3.6. The rank-one expansion
+\[
+\mathcal L_{r,t}x=\sum_{\lambda\in\mathscr Z_+}
+\langle x,u_{\lambda^\#}\rangle_Hv_\lambda
+\tag{AHR4.4}
+\]
+converges in trace norm, because the trace norm of each rank-one map is \(\|v_\lambda\|\), and
+\[
+\sum\|v_\lambda\|
+\le c_re^t\sum_{\lambda\in\mathscr Z_+}\sqrt{m_\lambda}e^{-t(\Im\lambda)^2}
+\le c_re^t\sum_{\lambda\in\mathscr Z_+}m_\lambda e^{-t(\Im\lambda)^2}<\infty.
+\tag{AHR4.5}
+\]
+Thus \(\mathcal L_{r,t}:H_-\to H^2\) is trace class. Its source and target differ, so no scalar trace of \(\mathcal L_{r,t}\) itself is assigned. Its square \(K_{r,t}=\mathcal L_{r,t}^*\mathcal L_{r,t}\) is a positive trace-class operator on \(H_-\), with \(\operatorname{Tr}K_{r,t}=C_{r,t}\).
+
+Injectivity follows from AHR2 and injectivity of \(x\mapsto\lambda_x\), so \(\ker\mathcal L_{r,t}=\ker K_{r,t}=0\). Every finite partial sum of (AHR3.2) lies in \(\mathcal N^\perp\) by (AHR1.5), and that subspace is closed; hence the entire image does. This proves positivity and faithfulness on the specified boundary sector without an assumption on its dimension or on existence of off-line zeros.
+
+## AHR5. Exact GDE factor and the off-diagonal Gram terms
+
+From \(B_{r,t}=D_r^*JG_t\) one has \(B_{r,t}^*=G_t^*JD_r\), and therefore, at a right coordinate,
+\[
+(B_{r,t}^*x)_\lambda=-\overline{e^{t\lambda^2}}d_r(\lambda)x_{\lambda^\#}.
+\tag{AHR5.1}
+\]
+Define \(C_+y=\sum m_\lambda y_\lambda g_\lambda\) on exactly the domain
+\(\sum m_\lambda|y_\lambda|\|g_\lambda\|<\infty\).
+Estimate (AHR4.2) proves \(B_{r,t}^*(H_-)\) is in this domain, so
+\[
+\mathcal L_{r,t}=C_+B_{r,t}^*|_{H_-}
+\tag{AHR5.2}
+\]
+is a genuine factorization with specified operands and domain. The corresponding GDE norm is \(\|B_{r,t}^*x\|^2\), hence uses \(BB^*\), with its reflected Gaussian. It is not \(\|B_{r,t}x\|^2\).
+
+For \(K(\lambda,\mu)=\langle g_\lambda,g_\mu\rangle=\sum_j\overline{\phi_j(\lambda)}\phi_j(\mu)\), expansion gives
+\[
+\|\mathcal L_{r,t}x\|^2=
+\sum_{\lambda,\mu}m_\lambda m_\mu
+d_r(\lambda)\overline{d_r(\mu)}
+\overline{e^{t\lambda^2}}e^{t\mu^2}
+x_{\lambda^\#}\overline{x_{\mu^\#}}K(\lambda,\mu).
+\tag{AHR5.3}
+\]
+The absolute double sum is bounded by the square of the absolute vector-norm sum in (AHR4.2). This justifies the exchange and verifies ABH4.3 exactly. The off-diagonal terms are necessary; no equality with the diagonal GDE pairing has been assumed.
+
+## AHR6. Full cover covariance and degree defect
+
+For each recovered integer \(n\ge1\), retain \((T_nx)_\rho=n^\rho x_\rho\) on \(H_-\). It is bounded and has bounded inverse for fixed \(n\). Equations (AHR1.4) and \(\lambda^\#=1-\bar\lambda\) give
+\[
+W_n^*\mathcal L_{r,t}=\mathcal L_{r,t}T_n.
+\tag{AHR6.1}
+\]
+Every exchange with the series is justified by its absolute convergence and boundedness of the operators. On the original source this also follows from \(\beta_rU_n=T_n^*\beta_r\), with \(U_nF=n^{1-s}F\). For clarity, the conjugate-linear functional convention gives
+\(U_n'\lambda_x=\lambda_{T_nx}\); composing with the conjugate-linear receiver yields the same linear covariance.
+
+The representative discrepancy of the prequotient tests is
+\[
+\sum_{a=0}^{n-1}F_{t,nj+a}-U_nF_{t,j}
+=8e^{ts^2}F_0(s)\frac{n-n^{1-s}}s\in I.
+\tag{AHR6.2}
+\]
+The removable value of the quotient at zero is \(n\log n\); its full zero orders lie in \(I\). Thus this comparison retains the endpoint and does not silently identify representatives before quotienting. It is exactly NHD9/NHJ7's source comparison.
+
+Taking bounded adjoints and products of (AHR6.1), using the *reverse* cover product in (AHR1.3), gives
+\[
+nK_{r,t}-T_n^*K_{r,t}T_n
+=n\mathcal L_{r,t}^*(I-P_n)\mathcal L_{r,t}.
+\tag{AHR6.3}
+\]
+On \(u_{\lambda^\#}\) its quadratic form is
+\[
+\bigl(n-n^{2(1-\Re\lambda)}\bigr)
+m_\lambda\Delta_r(\Re\lambda)^2
+e^{2t((\Re\lambda)^2-(\Im\lambda)^2)}\|g_\lambda\|^2.
+\tag{AHR6.4}
+\]
+The first factor is positive for \(n>1\) and an actual right-off-line coordinate; all other factors are positive there as well. No existence of such a coordinate is presumed. Both the sign and the multiplicity in ABH5.3 check. Its comparison with GDE7.6 must use (AHR5.2), not an unproved identity of the two positive forms.
+
+## AHR7. All-scale identities strengthen to trace-norm convergence
+
+Fix a recovered integer \(n\ge2\). Put \(A=\mathcal L_{r,t}^*(I-P_n)\mathcal L_{r,t}\). Iterating (AHR6.3) gives the finite identity
+\[
+K_{r,t}=\sum_{j=0}^{J-1}n^{-j}(T_n^*)^jAT_n^j+R_J,
+\qquad R_J=n^{-J}(T_n^*)^JK_{r,t}T_n^J\ge0.
+\tag{AHR7.1}
+\]
+ABH6 proves its strong convergence correctly. In fact it converges in trace norm. The exact trace of the positive remainder, evaluated on the original orthonormal basis, is
+\[
+\operatorname{Tr}R_J=
+\sum_{\lambda\in\mathscr Z_+}
+m_\lambda\Delta_r(\Re\lambda)^2
+e^{2t((\Re\lambda)^2-(\Im\lambda)^2)}\|g_\lambda\|^2
+n^{J(1-2\Re\lambda)}.
+\tag{AHR7.2}
+\]
+This follows because \(T_n^Ju_{\lambda^\#}=n^{J\lambda^\#}u_{\lambda^\#}\), and (AHR4.3) computes the corresponding Hardy norm. The factors \(n^{J(1-2\Re\lambda)}\) are at most one and tend to zero for each retained coordinate, without a uniform gap from the critical line. The dominating series is exactly \(C_{r,t}\). Dominated convergence therefore proves
+\[
+\|R_J\|_1=\operatorname{Tr}R_J\longrightarrow0.
+\tag{AHR7.3}
+\]
+In particular the complete global norm identity is
+\[
+\|\mathcal L_{r,t}x\|^2
+=\sum_{j\ge0}n^{-j}\|(I-P_n)\mathcal L_{r,t}T_n^jx\|^2,
+\tag{AHR7.4}
+\]
+and simultaneous vanishing of all its observations forces \(x=0\). This is a whole-domain statement, not a finite-coordinate test.
+
+For completeness define on the original Hardy space
+\[
+Q_j=n^{-j}W_n^j(I-P_n)(W_n^*)^j,
+\quad P^{(J)}=n^{-J}W_n^J(W_n^*)^J.
+\tag{AHR7.5}
+\]
+The first are mutually orthogonal projections: \((W_n^*)^jW_n^j=n^jI\) proves idempotence, and \((I-P_n)W_n=0\) gives orthogonality of distinct levels. Finite telescoping gives \(\sum_{j<J}Q_j=I-P^{(J)}\). The latter projection averages blocks of length \(n^J\). Its decreasing range intersection is zero: a sequence in every range has any pair of fixed coordinates equal once both fall in the first sufficiently large block, hence is constant everywhere, and a square-summable constant sequence is zero. The nested projections consequently tend strongly to zero, by Pythagoras and the closed intersection argument.
+
+Applying this exact projection decomposition and (AHR6.1) yields
+\[
+\mathcal L_{r,t}
+=\sum_{j\ge0}n^{-j}W_n^j(I-P_n)\mathcal L_{r,t}T_n^j.
+\tag{AHR7.6}
+\]
+ABH6.3 correctly asserts vector convergence. There is again a stronger conclusion: the series converges in trace norm as operators \(H_-\to H^2\). Its finite remainder is \(P^{(J)}\mathcal L_{r,t}\). The rank-one expansion (AHR4.4) gives
+\[
+\|P^{(J)}\mathcal L_{r,t}\|_1
+\le\sum_{\lambda\in\mathscr Z_+}\|P^{(J)}v_\lambda\|.
+\]
+Each summand tends to zero by strong convergence of \(P^{(J)}\), and is bounded by \(\|v_\lambda\|\), whose sum is finite by (AHR4.5). Dominated convergence proves the asserted trace-norm limit. This retains the full unrescaled cover and all factors \(n^{-j}\); no source topology is replaced.
+
+## AHR8. The precise adjoint domain and its complete-sector pullback
+
+Let \(S\) be the unilateral shift, \(B=I-S\), and \(M=B^{-1}\) on \(\operatorname{ran}B\). The bounded operator \(B\) is injective with dense range, and \(M\) is onto \(H^2\). From the adjoint definition,
+\(y\in\operatorname{dom}M^*\) exactly when there is \(v\in H^2\) such that \(y=B^*v\): apply the defining equality to the vectors \(Bf\) for all \(f\in H^2\). Also
+\[
+(I-S^*)d=d_0+(z-1)S^*d,
+\qquad a+(z-1)u=(I-S^*)(a+zu).
+\]
+Noor's local Dirichlet characterization then identifies this exact domain as
+\[
+\operatorname{dom}M^*=\operatorname{ran}(I-S^*)=\mathcal D_{\delta_1}.
+\tag{AHR8.1}
+\]
+Noor proves unconditionally that \((I-S)\mathcal N\) is dense. His argument retains the Möbius coefficients and uses the prime-number-theorem sums displayed in his proof; it does not assume RH. For \(y\in\mathcal N^\perp\cap\operatorname{dom}M^*\), pair \(M^*y\) with that dense set to get zero. Thus \(M^*y=0\); surjectivity of \(M\) then gives \(y=0\). This is precisely the theorem used by ABH7.
+
+Since \(\mathcal L_{r,t}\) is injective and has image in \(\mathcal N^\perp\), one obtains on its entire actual Hilbert input domain
+\[
+\{x\in H_-:\mathcal L_{r,t}x\in\mathcal D_{\delta_1}\}=\{0\}.
+\tag{AHR8.2}
+\]
+This does not transfer arbitrary Hardy regularity to the source. It computes the pullback of the required regularity exactly. Higher jets, the opposite half, and the line are still in their originally specified upstream spaces; they are not asserted to be embedded by the value map (AHR3.2).
+
+## AHR9. Review result and further calculation actually completed
+
+The final ABH formulas, factorization, topology and domain statements are accepted by this independent review, with the AHR0 wording correction verified in the pinned source. The near-line estimate is uniform, the conjugations and reflected Gaussian are correct, multiplicity is inserted exactly once in the orthonormal-basis norm, and the all-scale proofs do not assume a uniform spectral gap. Original \(F_0\), its exact factor eight, the original \(\zeta\) pairing, endpoint discrepancy and all upstream jets are retained. The review establishes no RH resolution or original weight-separated lifting vanishing.
+
+The search for underclaims yielded actual further calculations rather than prospective assertions: AHR4 proves a trace-class rank-one receiver, and AHR7 proves trace-norm convergence for both the energy reconstruction and vector reconstruction. The first was integrated as ABH3.6 during this review; the latter two strengthen ABH6 without changing any operand or kernel. Thus the whole retained cover defect, at every scale, recovers the entire faithful Hardy observation even in trace norm. This is the exact outcome of the attempted degree-cancellation calculation. An additional geometric relation would have to act on this retained observation or its adjoint regularity; no vanishing of those quantities was inserted as a hypothesis.
+
+The classical Hardy/isometry and local-Dirichlet input remains Noor's cited source. The full-source uniqueness and actual-boundary applications are the supplied programme derivations, independently checked here. The elementary orthogonal projection decomposition is not claimed as a new Hilbert-space theorem.

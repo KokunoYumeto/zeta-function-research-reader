@@ -1,0 +1,119 @@
+# Independent audit of the extension-class involution calculation
+
+24 September 2026. Complete ECI0–ECI13 reviewed initially at SHA256 4a69cc5823e6827f9a464cfc98f835a00e01e700b47efe33cd94845be45a0e16, followed by review of the corrected ECI8 and ECR5 passages and verification of the final hashes recorded below.
+
+All displayed identities checked in this review are correct. One scope qualification was required in ECI8 and in ECR5's inherited geometric-transfer wording: GTR constructs actual geometric covers for recovered positive integers \(n\), whereas the coefficient identities hold for every specified \(a>0\). Root applied this correction, and the revised passages have been checked. No proof source was edited by this independent reviewer.
+
+## Coverage
+
+Read ECI0–ECI13 completely. The complete FOD0–FOD8, NEA0–NEA10, ECR0–ECR7, RTT0–RTT11, GTAH0–GTAH7, GSR0–GSR4 and GIQ9 had been read for the preceding source audit in this same independent review session. Their exact hashes and coverage are recorded in EXTENSION_CLASS_SOURCE_INDEPENDENT_AUDIT.md. The present calculation reuses those checked annihilators, source inclusions, residue convention, strong-dual receiver and value-map estimates.
+
+Additionally read GTR1, GTR4, GTR6, and GTR10 through equation GTR10.8 and its proof in CC_RAMIFIED_TRACE_AND_RESIDUE_ACTION.md, SHA256 6fb23be5d0f869af5c9bf4a5ba8f00584bcf5718079c4c3139b4b88fc3b15f04. These passages specify the integer covers, normal pullback and transfer, full source-to-normal-dual comparison, and the completed residue action. This is bounded programme-proof coverage, not a new complete reading of the remote GMS/SSI/SDT sources or of the human bibliography.
+
+The support and its information layers retain the user's definitions and retractions. None of the following operations is assigned to the support itself.
+
+## Full jets, translation, and the joint source map
+
+The strip estimates and multiplicity-preserving zero permutations make \(\mathsf C,\mathsf K_1,\mathsf K_3\) well defined on their stated rings, ideals and quotients. The factor \((-1)^j\) in ECI1.2 follows by differentiating the reflected Taylor series before truncating at the actual multiplicity. ECI1.5 is the induced semilinear exact operation on the respective rows. It does not require the original involution to preserve the full intersection ideal.
+
+The relations \(L_+V=V(L+1)\), \(D_a^+V=aVD_a\) and \(\mathsf K_3V=V\mathsf K_1\) follow by substitution at \(\lambda-1\). Consequently ECI2.5 retains the distinct factors \(a\) and \(a^3\), with every Taylor term in ECI2.6 present.
+
+The Chinese-remainder description in ECI3 is exactly the one proved by FOD's full separator. Direct expansion gives
+\[
+\mathsf K_1\mathsf K_3F(s)=F(s+2),\qquad
+\mathsf K_3\mathsf K_1F(s)=F(s-2).
+\]
+This verifies both shifted terms and their coefficients in ECI3.4. On the original divisor, \(c=1\) and \(c^{\#_1}=1\) to every required order; on the normal divisor, \(c=0\) and \(c^{\#_3}=0\) to every required order. Thus each cross coefficient and the diagonal coefficient minus one belong to both required vanishing ideals. The conclusion is precisely \(\mathsf A_c^2F-F\in\mathcal K\), not equality before quotient.
+
+## Residue-dual sign and functional-equation unit
+
+The bilinear residue convention is
+\[
+\mathcal R(F,g)=\sum_\rho\operatorname{Res}_{s=\rho}
+\frac{F(s)g(1-s)}{\zeta(s)}\,ds.
+\]
+Conjugating \(\mathcal R(\mathsf K_1F,g)\), reindexing by conjugation, and then substituting \(s=1-z\) gives
+\[
+(\mathsf K_1^\vee\iota g)(F)
+=-\sum_\rho\operatorname{Res}_{z=\rho}
+\frac{F(z)(\mathsf Cg)(z)}{\zeta(1-z)}\,dz
+=-\sum_\rho\operatorname{Res}_{z=\rho}
+\frac{F(z)(\mathsf Cg)(z)\chi(z)}{\zeta(z)}\,dz.
+\]
+The minus sign comes from \(ds=-dz\). To express this again as \(\mathcal R(F,g_{\rm new})\), one must have
+\[
+g_{\rm new}(1-z)=-\chi(z)(\mathsf Cg)(z),
+\qquad
+j_\sigma g_{\rm new}
+=j_\sigma[-\chi(1-s)g^{\#_1}(s)].
+\]
+This proves ECI4.4–ECI4.5 with the asserted sign, reflected argument and full unit derivatives. The unit is only required locally at nontrivial zeros. The completed operator is instead defined by the proved strong dual involution, so no invalid entire multiplier assertion is used.
+
+Its local square multiplies by \(\chi(1-s)\chi(s)=1\), with two minus signs. Differentiating the full original functional equation gives ECI6.6; the term involving \(\chi'\zeta/\chi^2\) vanishes only after passage to the actual full-multiplicity quotient. Translation gives \(-\chi(2-\lambda)Y^{\#_3}\) in ECI8.4.
+
+## Canonical class functionals and their exact kernels
+
+For each fixed \(h\in M\), choose \(k\ge d+2\) from its strip growth exponent \(d\). The weighted Cauchy–Schwarz estimate ECI5.3 then bounds the tail by the convergent full sum of \(m_\rho(1+|\Im\rho|)^{-4}\). The same estimate is uniform over any bounded subset of the actual quotient because \(E_k\) is continuous. This verifies both the original functional and strong convergence of ECI5.5. No arbitrary infinite interpolation or finite-support density in the primal quotient is used.
+
+Global isolators prove exactly the kernel \(\mathfrak r/\mathfrak a\). This is the value-zero ideal; the note correctly refrains from identifying it with a global nilradical. The inverse of \(L\) in ECI6.1 removes its single apparent singularity by the full \(F_0(s)h(0)/F_0(0)\) term. Its two quotient inverse identities and polynomial strip bounds hold, giving the full class-module map \(\mathsf P_M\). ECI6.3 retains rank one and its complete nonzero original-zeta coefficient on each actual multiplicity block.
+
+Evaluation of both sides verifies ECI6.4–ECI6.5. Their translation gives ECI7.1–ECI7.5, including the removed derivative pole at \(\lambda=1\) and its value \(-1\).
+
+## Every degree factor and the required scope repair
+
+For \(b(\lambda)=a^\lambda\),
+\[
+U(b^{\#_3})(s)=a^{2-s}.
+\]
+Thus ECI7.4 is exactly
+\[
+\widehat\iota\,\mathsf S_+D_a^+
+=a^2(T_{1/a})'\widehat\iota\,\mathsf S_+
+=\widehat\iota\,a\widehat T_a\mathsf S_+.
+\]
+The residue product in the normal coordinate is \(a^\lambda a^{3-\lambda}=a^3\), giving ECI8.5. Separately,
+\[
+V(aT_a)U=D_a^+,\qquad
+VT_{1/a}U=aD_{1/a}^+,
+\]
+whose product is \(aI\). Therefore the normal Weil adjoint \(a^3D_{1/a}^+\) is exactly \(a^2\) times the displayed normal transfer operator. No factor is missing.
+
+The initial ECI8 wording called these actual geometric maps for the general positive parameter used in ECI2. GTR1 constructs the covers only for recovered integers \(n\ge1\), and GTR4.2–GTR4.3 then give \(nT_n\) and \(T_{1/n}\) in normal degree. The required qualification was:
+
+> For each recovered positive integer \(a=n\), GTR constructs the actual geometric normal pullback \(nT_n\) and inverse-coefficient transfer \(T_{1/n}\). For general \(a>0\), \(aT_a\) and \(T_{1/a}\) are the corresponding coefficient operators. The following transport identities hold for every \(a>0\); their interpretation as these geometric cover maps is restricted to the recovered positive integers.
+
+Root's revised ECI8 now states this qualification, and also distinguishes the factor \(a^2\) for coefficient operators from \(n^2\) for the actual integer-cover transfer. All displayed formulas remain unchanged and correct. The corresponding old ECR5 phrase, “the actual geometric transfer is preserved,” needed the same qualification. Revised ECR5 now retains the coefficient identities for all \(a>0\) and identifies their geometric realization only at \(a=n\) a positive integer. Both corrected passages were read directly after the update.
+
+## Separator and Gaussian covariance
+
+The exact scalar transport is \(Uc(s)=c(s+1)=1-E(s)\in\mathfrak a\). In contrast, \(c(s)-1\in\mathfrak a\). ECI9.3 therefore compares two different scalar actions by their actual map; normal annihilation does not turn into annihilation of the original trace.
+
+For the Gaussian,
+\[
+g_t^{\#_1}=d_tg_t,\qquad
+d_t=e^{t(1-2s)},\qquad d_t^{\#_1}=d_t^{-1}.
+\]
+Both \(d_t\) and its inverse are strip-polynomial multipliers. Using the already proved covariance gives the full derivation
+\[
+\begin{aligned}
+\widehat\iota\,\mathsf K_{\rm res}\mathsf S_t
+&=\widehat\iota\,\mathsf S\mathsf K_1b_t\\
+&=\widehat\iota\,\mathsf S m_{d_t}b_t\mathsf K_1\\
+&=m_{d_t^{\#_1}}'\widehat\iota\,\mathsf S b_t\mathsf K_1\\
+&=m_{d_t^{-1}}'\widehat\iota\,\mathsf S_t\mathsf K_1.
+\end{aligned}
+\]
+This proves ECI12.5, including its inverse factor and both anti-linear maps. It uses no inverse of \(g_t\). Translation gives \(e^{t(\lambda-1)^2}\) and \(e^{t(3-2\lambda)}\), as stated.
+
+ECI10's isolator test evaluates to \(m_\rho|a^{\overline\rho}-a^{1-\rho}|^2\) with the specified reflected test point; its vanishing is not assumed. ECI11 retains the full original factors and restricts the prime explicit formula to its established test domain. ECI12.6 agrees with ECR's exact product weight rather than its different positive modulus weight. ECI13 accurately describes the result with the geometric parameter qualification now included.
+
+## Final accepted versions and relation to the preceding audit
+
+The corrected proof hashes were read from disk and verified:
+
+| Proof | Accepted SHA256 |
+|---|---|
+| EXTENSION_CLASS_TO_ORIGINAL_RESIDUE.md | 0a4e004a008422f622beeca7af8babc9a9f6527c0d4eb43571ea6443c0975250 |
+| EXTENSION_CLASS_INVOLUTION_INDEPENDENT.md | ba951baf03f04edfeed66f98708e3c3ae5c6b2657b23b569cb108af4316aec31 |
+
+EXTENSION_CLASS_SOURCE_INDEPENDENT_AUDIT.md remains unchanged at SHA256 1deb16eb34459051ba337c1a6c801a19bab506c605353f6d3c749533047c4fd0. It records full coverage of the original ECR proof at SHA256 0da1815f474c5279012a94be8f65fdb8dbf3a178f56e97ff7b543a2d04c82bbd. This present audit supplements its acceptance with the small geometric-parameter scope correction just described. No original factor, map, sum, jet or displayed identity was changed by that correction. Root preserved the previous proof versions under history/before_cover_parameter_scope_20260924.

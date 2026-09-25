@@ -1,0 +1,384 @@
+# The complete cover discrepancy generates the original zero-jet ideal
+
+Independent mathematical derivation, 25 September 2026. Proof locators **NCI0–NCI8**. This is a source-level calculation for the fixed original receiver, with no parameter substitution, bounded zero search or purity assumption. No remote publication is performed here.
+
+## NCI0. Question, construction stage, and source coverage
+
+The question is whether the complete family of prequotient cover discrepancies already found in NHJ7 generates the entire original summation ideal, in its original topology. This asks what the existing defect actually records, rather than replacing the foundational coefficient object by a different receiving space.
+
+The support remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). The scalar operations, logarithms, integers and analytic test spaces below occur after the complete global arithmetic reconstruction. The separate branch counters remain separate. Neither an arithmetic value, parity, midpoint, metric nor the retracted addition is assigned to that support. The current correction chain and the complete relevant user passages were read for NHJ and retained in its source-use receipt; they remain governing here.
+
+Before deriving the ideal identity, the complete programme proof `GLOBAL_MELLIN_SYNTHESIS.md`, S1–S7 and its later exact-image notice, and the complete independent `GLOBAL_MELLIN_SYNTHESIS_REVIEW.md`, R1–R5, were read. The global division estimate used below is their S3/R1–R3, with the corrected fixed-height supremum. GSP0–GSP9 and GAP's exact source comparison and original Gaussian estimate were already read in the preceding independent derivation and were recalled. NHJ's complete coefficient receiver and its exact prequotient cover formula are retained. This is not a claim of new complete reading of all ancestor literature.
+
+Human provenance: S. Waleed Noor, *A Hardy space analysis of the Báez-Duarte criterion for the RH*, [arXiv:1809.09577v4](https://arxiv.org/abs/1809.09577v4), §§1–5, original author TeX read in NHJ. The original source multiplier and Hadamard comparison are those proved in S2 of `GLOBAL_MELLIN_SYNTHESIS.md`, whose author-TeX routing and precise historical source coverage remain in that proof. All new ideal-generation and covariance conclusions are proved below and are not attributed to Noor or Deligne.
+
+## NCI1. The complete original coefficient system and its cover discrepancy
+
+Retain
+\[
+\mathcal B=\left\{F\in\mathcal O(\mathbb C):
+b_{A,N}(F)=\sup_{|\Re s|\le A}(1+|\Im s|)^N|F(s)|<\infty
+\text{ for every integer }A,N\ge0\right\},
+\tag{NCI1.1}
+\]
+with precisely these Fréchet seminorms. The full ideal and quotient are
+\[
+\mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0
+\text{ for every actual nontrivial zero }\rho\text{ of original }\zeta,
+\ 0\le j<m_\rho\},\qquad Q=\mathcal B/\mathcal I.
+\tag{NCI1.2}
+\]
+Each jet is continuous by Cauchy's formula on a small fixed disk. Therefore \(\mathcal I\) is closed. No zero simplicity, zero separation or restriction to finitely many zeros is part of this definition.
+
+The actual source element is
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s)\in\mathcal B,
+\qquad F_0(0)=F_0(1)=\frac18.
+\tag{NCI1.3}
+\]
+Its full zero divisor is exactly NCI1.2's divisor. At its exceptional points,
+\[
+F_0(-1)=F_0(2)=\frac\pi{24},\qquad
+F_0(-2k)=\frac{k(2k+1)(-1)^k\pi^k}{2\,k!}\zeta'(-2k)\ne0.
+\tag{NCI1.4}
+\]
+At every nontrivial zero its local germ remains
+\[
+F_0(\rho+z)=z^{m_\rho}
+\frac{(\rho+z)(\rho+z-1)}8\pi^{-(\rho+z)/2}
+\Gamma((\rho+z)/2)\frac{\zeta(\rho+z)}{z^{m_\rho}}.
+\tag{NCI1.5}
+\]
+These full factors, and all their derivatives, are retained whenever division or multiplicity occurs below. The auxiliary source element is not a working replacement of the original zeta function.
+
+Fix one \(t>0\) throughout, and define
+\[
+g_t(s)=e^{ts^2},\qquad U_nF(s)=n^{1-s}F(s),
+\]
+\[
+\boxed{\delta_{n,t}(s)=8e^{ts^2}F_0(s)
+\frac{n-n^{1-s}}s,\qquad n=2,3,\ldots.}
+\tag{NCI1.6}
+\]
+The entire quotient at zero is \(n\log n\). On each fixed strip, the quotient is bounded outside the unit disk and bounded inside by its entire removable extension. Gaussian multiplication makes it rapidly decreasing on that strip. Consequently
+\[
+\delta_{n,t}\in F_0\mathcal B\subset\mathcal I.
+\tag{NCI1.7}
+\]
+The endpoint values are not zero conditions:
+\[
+\delta_{n,t}(0)=n\log n,\qquad
+\delta_{n,t}(1)=e^t(n-1),
+\]
+\[
+\delta_{n,t}(-2k)=8e^{4tk^2}F_0(-2k)
+\frac{n-n^{1+2k}}{-2k}.
+\tag{NCI1.8}
+\]
+The full expression at each such point is retained. Only the actual nontrivial-zero jets are imposed by membership in \(\mathcal I\).
+
+## NCI2. Global division and the closure of the original principal image
+
+The already proved global source estimates, with multiplicities retained, are
+\[
+F_0(s)=e^{a+bs}\prod_\rho\left(1-\frac{s}{\rho}\right)e^{s/\rho},
+\quad e^a=\frac18,\quad b=\frac{F_0'(0)}{F_0(0)},
+\]
+\[
+\sum_{|\rho|\le R}m_\rho\le C(R+2)^{3/2}.
+\tag{NCI2.1}
+\]
+The product in the first line repeats each zero according to its order; the second line counts distinct locations with those orders. S2 derives these from the full original Mellin kernel and the original genus-one factorization, without changing its exponential factor.
+
+Here is the division estimate, including clusters. For \(F\in\mathcal I\), Taylor division at every actual zero extends
+\(H=F/F_0\) to an entire function. On a large scale \(R\), take the union of open disks of radius \(R^{-2}\) around the zeros of modulus at most \(8R\). Their total radii are at most \(CR^{-1/2}\), by NCI2.1. Each connected component has diameter at most twice the sum of its disk radii, hence less than one for sufficiently large \(R\).
+
+For \(R/2\le|s|\le3R\) outside these disks, the finite Hadamard factors have
+\[
+|1-s/\rho|\ge(8R^3)^{-1}\quad(|\rho|\le8R).
+\tag{NCI2.2}
+\]
+Their logarithms sum to at least \(-CR^{3/2}\log R\). The retained exponentials contribute at least
+\(-3R\sum_{|\rho|\le8R}m_\rho/|\rho|\ge-CR^{3/2}\).
+For the tail, \(|s/\rho|\le3/8\), and
+\(\log|(1-w)e^w|\ge-\frac85|w|^2\).
+Partial summation of NCI2.1 gives
+\(\sum_{|\rho|>8R}m_\rho/|\rho|^2\le CR^{-1/2}\),
+so this tail contributes at least \(-CR^{3/2}\). The leading exponential contributes at least \(-|a|-3|b|R\). Therefore the full product obeys
+\[
+|F_0(s)|^{-1}\le\exp(CR^{3/2}\log R)
+\tag{NCI2.3}
+\]
+on the stated complement. Every factor and multiplicity has been counted.
+
+For \(|\Re s|\le A\), \(R\le|s|\le2R\), outside the disks, multiply NCI2.3 by the strip bound for \(F\). Inside a disk component, its boundary lies in \(|\Re s|\le A+1\) and \(R/2\le|s|\le3R\), and outside the open disk union. Apply that boundary estimate to the entire function \(H\), and then the maximum-modulus principle on the compact component closure. Smoothness or simple connectivity of its boundary is unnecessary. This also handles multiple or arbitrarily close zeros, since all local singularities of \(H\) have already been removed by the full multiplicity hypothesis. Taking dyadic \(R\) and absorbing the remaining compact region proves
+\[
+\sup_{|x|\le A}|H(x+iy)|
+\le C_{A,F}\exp\{C(|y|+2)^{3/2}\log(|y|+2)\}.
+\tag{NCI2.4}
+\]
+The supremum is at a fixed imaginary coordinate, exactly as corrected in the independent source review.
+
+For every \(\varepsilon>0\), the entire quotient
+\[
+H_\varepsilon(s)=e^{\varepsilon s^2}\frac{F(s)}{F_0(s)}
+\tag{NCI2.5}
+\]
+belongs to \(\mathcal B\): on the strip its modulus is bounded by
+\(e^{\varepsilon A^2-\varepsilon y^2}\) times NCI2.4, and the negative quadratic dominates its subquadratic exponent and every polynomial weight. Its exact image under multiplication is
+\[
+F_0H_\varepsilon=e^{\varepsilon s^2}F.
+\tag{NCI2.6}
+\]
+This is the unshifted Gaussian used in NHJ and GAP. The earlier S4 approximation used \(e^{\varepsilon(s-1/2)^2}\); the same proved division bound validates NCI2.5 directly, and no source formula is silently identified with the centered one.
+
+For \(0<\varepsilon\le1\), integrating \(s^2e^{v s^2}\) from zero to \(\varepsilon\) gives the exact source estimate
+\[
+b_{A,N}((e^{\varepsilon s^2}-1)F)
+\le\varepsilon e^{A^2}(A^2+1)b_{A,N+2}(F).
+\tag{NCI2.7}
+\]
+Hence NCI2.6 converges to \(F\) in the original topology. Combining this with NCI1.7 and closedness of \(\mathcal I\) proves
+\[
+\boxed{\overline{F_0\mathcal B}^{\mathcal B}=\mathcal I.}
+\tag{NCI2.8}
+\]
+The algebraic equality is false: \(F_0\in\mathcal I\), but \(F_0=F_0G\), \(G\in\mathcal B\), would force \(G=1\) on the nonzero open set of \(F_0\), hence everywhere. The constant one is not in \(\mathcal B\). Thus
+\[
+F_0\mathcal B\subsetneq\mathcal I,
+\tag{NCI2.9}
+\]
+with an explicit missing element, while the closure is exactly NCI2.8. No principal-ideal equality has been assumed.
+
+## NCI3. The entire parameter family remembers all recovered integers
+
+Let \(\Lambda\in\mathcal B'\) annihilate \(\delta_{n,t}\) for every \(n\ge2\). Define
+\[
+K_{t,w}(s)=8g_t(s)F_0(s)
+\frac{e^w-e^{(1-s)w}}s,
+\qquad L(w)=\Lambda(K_{t,w}).
+\tag{NCI3.1}
+\]
+The numerator vanishes at \(s=0\); its quotient there equals \(we^w\). The exact integral expression
+\[
+K_{t,w}(s)=8we^w g_t(s)F_0(s)\int_0^1e^{-\theta sw}\,d\theta
+\tag{NCI3.1a}
+\]
+follows by integrating the exponential in \(\theta\). It retains the full original expression and verifies directly that \(K_{t,w}(0)=we^w\). Thus this is an entire source function for every \(w\), not a meromorphic test.
+
+It is also an entire \(\mathcal B\)-valued family. For a precise bound, write \(s=x+iy\), \(w=a+ib\). Outside \(|s|<1\) on a fixed real strip, the first numerator term is bounded after Gaussian multiplication by \(e^{tA^2+|a|-ty^2}\). The second is bounded by
+\[
+e^{tA^2+(1+A)|a|}(1+|y|)^N e^{-ty^2+|b||y|}
+\tag{NCI3.2}
+\]
+in its weighted supremum, multiplied by the fixed bounded-strip factor \(8F_0\). The inequality
+\(-ty^2+|b||y|\le-(t/2)y^2+b^2/(2t)\)
+absorbs every polynomial factor. On the inner unit disk the maximum principle for the entire divided function on \(|s|=2\) bounds it by a constant times \(e^{3|w|}\). Therefore
+\[
+b_{A,N}(K_{t,w})\le C_{A,N,t}\exp(C_{A,t}|w|+|w|^2/(2t)).
+\tag{NCI3.3}
+\]
+Parameter derivatives add powers of \(1-s\) and the same type of bound on compact \(w\)-sets; Taylor remainders are controlled as well. This proves source-valued holomorphy and consequently entire scalar holomorphy of \(L\), with \(|L(w)|\le C\exp(C(1+|w|^2))\).
+
+Exactly, with no finite-range approximation,
+\[
+K_{t,\log n}=\delta_{n,t}\quad(n\ge2),\qquad K_{t,0}=0.
+\tag{NCI3.4}
+\]
+Thus \(L\) vanishes at every \(\log n\), \(n\ge1\). If it were nonzero, remove its finite-order zero at zero and apply Jensen's formula. On a disk of radius \(2R\), its quadratic exponential growth permits at most \(O(R^2)\) zeros in radius \(R\), because each such zero contributes at least \(\log2\) to Jensen's sum. But the distinct zeros \(\log2,\ldots,\log\lfloor e^R\rfloor\) give exponentially many. This contradiction proves \(L\equiv0\).
+
+Differentiate the full source expression before taking a quotient:
+\[
+(\partial_w-1)K_{t,w}(s)
+=8g_t(s)F_0(s)e^{(1-s)w}.
+\tag{NCI3.5}
+\]
+The sign is positive: subtracting the undifferentiated second exponential leaves \(s e^{(1-s)w}\) in the numerator. Applying \(\Lambda\), dividing the nonzero scalar \(8e^w\), and putting \(v=-w\) yields
+\[
+\boxed{\Lambda(F_0g_t e^{vs})=0\quad(v\in\mathbb C).}
+\tag{NCI3.6}
+\]
+
+## NCI4. Exact original Mellin synthesis of the annihilator
+
+Multiplication by the fixed \(F_0\) is continuous on \(\mathcal B\), since
+\(b_{A,N}(F_0F)\le b_{A,0}(F_0)b_{A,N}(F)\).
+Therefore \(\ell(F)=\Lambda(F_0F)\) is a continuous functional on the original source. Equation NCI3.6 says it annihilates every translated Gaussian \(g_t e^{vs}\). We now prove that it annihilates all of \(\mathcal B\), with the exact source constants.
+
+The original source is
+\[
+A=\{a\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^j a(u)|<\infty
+\text{ for all }N,j\ge0\},
+\]
+\[
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u},\qquad
+\Theta^{-1}H(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}H(1/2+iy)u^{-iy}\,dy.
+\tag{NCI4.1}
+\]
+These exact inverse topological maps were proved in the source and retained in GAP3/NHJ1. For arbitrary \(F\in\mathcal B\) and real \(u>t\), let \(H=e^{(u-t)s^2}F\in\mathcal B\), \(a_H=\Theta^{-1}H\). Its full half-Mellin integral gives
+\[
+e^{us^2}F(s)=\frac12\int_{\mathbb R}
+a_H(e^v)g_t(s)e^{sv}\,dv.
+\tag{NCI4.2}
+\]
+It converges in every \(\mathcal B\) seminorm: the source kernel has
+\(b_{A,N}(g_t e^{sv})\le C_{A,N,t}e^{A|v|}\) for real \(v\), while \(|a_H(e^v)|\le C_Me^{-M|v|}\) for every \(M\). Choose \(M>A+1\). Continuity permits passing \(\ell\) through this locally convex integral, and NCI3.6 gives
+\(\ell(e^{us^2}F)=0\) for every real \(u>t\).
+
+For fixed \(F\), this scalar expression is holomorphic for \(\Re u>0\). Indeed, writing \(u=p+iq\) and \(s=x+iy\), its Gaussian logarithmic modulus is
+\(p(x^2-y^2)-2qxy\). On compact subsets of that parameter half-plane the negative quadratic uniformly absorbs the linear term and every factor \(s^{2j}\) from parameter derivatives. This proves source-valued holomorphy by dominated Taylor remainders in every source seminorm. The identity theorem extends the zero to the whole half-plane. Finally NCI2.7 and continuity let real \(u\downarrow0\), giving \(\ell(F)=0\). Thus
+\[
+\Lambda(\delta_{n,t})=0\ (\forall n\ge2)
+\quad\Longrightarrow\quad
+\Lambda(F_0\mathcal B)=0.
+\tag{NCI4.3}
+\]
+The converse holds from NCI1.7.
+
+## NCI5. The full closed ideal is generated by the cover discrepancies
+
+Put \(S_t=\operatorname{span}_{\mathbb C}\{\delta_{n,t}:n\ge2\}\), where the span means finite linear combinations before closure. By NCI1.7,
+\(S_t\subset F_0\mathcal B\subset\mathcal I\).
+Equations NCI4.3 and NCI2.8 identify their continuous annihilators:
+\[
+S_t^\perp=(F_0\mathcal B)^\perp=\mathcal I^\perp
+\quad\text{in }\mathcal B'.
+\tag{NCI5.1}
+\]
+If \(\overline{S_t}\) were a proper closed subspace of \(\mathcal I\), choose an element of \(\mathcal I\setminus\overline{S_t}\). Hahn–Banach separation in the Hausdorff locally convex space \(\mathcal B\) gives a continuous functional vanishing on \(\overline{S_t}\) but not on that element. Equation NCI5.1 contradicts this. Therefore
+\[
+\boxed{\overline{\operatorname{span}\{\delta_{n,t}:n\ge2\}}^{\mathcal B}
+=\overline{F_0\mathcal B}^{\mathcal B}
+=\mathcal I\qquad\text{for the fixed }t>0.}
+\tag{NCI5.2}
+\]
+This is the full original zero-jet ideal, not a radical ideal omitting multiplicities, a value-only ideal, or a finite-height assertion. The proof needs the complete family of recovered integers. A single covariance equation has only the single annihilator \(\ker(\Lambda\mapsto\Lambda(\delta_{n,t}))\); it has not been substituted for NCI5.1.
+
+In particular the induced map
+\[
+\mathcal B/\overline{S_t}\longrightarrow Q,
+\qquad [F]_{\overline{S_t}}\longmapsto[F]_{\mathcal I}
+\tag{NCI5.3}
+\]
+is a topological isomorphism with inverse given by the same representative. Well-definedness, injectivity and surjectivity follow from the proved equality of the two kernels; the quotient topologies coincide because their original source map and kernel coincide. Thus the closed covariance discrepancy constructs the already specified source quotient exactly.
+
+The original arithmetic-source version retains the full inverse transform:
+\[
+c_{n,t}(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}\delta_{n,t}(1/2+iy)u^{-iy}\,dy.
+\tag{NCI5.4}
+\]
+Each integral is an element of \(A\), and the proved inverse topological isomorphism gives
+\[
+\overline{\operatorname{span}\{c_{n,t}:n\ge2\}}^A
+=\Theta^{-1}\mathcal I.
+\tag{NCI5.5}
+\]
+The already proved exact-image theorem identifies this last space with the original \(J=\Sigma S\), \(\Sigma f=2\sum_{k\ge1}f(ku)\), including its even-Schwartz endpoint constraints. This invokes that proved source identification rather than claiming a new Schwartz inversion theorem here. Thus the actual original ideal appears in both source presentations with their exact map and constants.
+
+## NCI6. All-cover covariance characterizes precisely the original quotient dual
+
+Retain the original corrected coefficient tests of NHJ:
+\[
+\psi_0=\frac{-1+8F_0}s,\qquad
+\psi_m=\frac{m^{1-s}-(m+1)^{1-s}+8F_0}s\quad(m\ge1),
+\]
+\[
+\mathcal H_t^{\mathcal B}\Lambda(z)
+=\sum_{m\ge0}\overline{\Lambda(g_t\psi_m)}z^m.
+\tag{NCI6.1}
+\]
+All divisions are the entire removable ones already proved. Its continuous injection \(\mathcal B'_\beta\to\mathcal O(\mathbb D)\) is NHJ2–NHJ4. The raw analytic cover adjoint sums consecutive coefficient blocks:
+\((\mathscr W_n^*f)_m=\sum_{a=0}^{n-1}f_{nm+a}\).
+Finite telescoping gives the full prequotient identity
+\[
+\mathscr W_n^*\mathcal H_t^{\mathcal B}\Lambda
+-\mathcal H_t^{\mathcal B}U_n'\Lambda
+=\frac{\overline{\Lambda(\delta_{n,t})}}{1-z}.
+\tag{NCI6.2}
+\]
+No zero or boundary term is omitted. Because \(1/(1-z)\) is a nonzero holomorphic function on the disk, NCI5.1 proves
+\[
+\boxed{
+\mathscr W_n^*\mathcal H_t^{\mathcal B}\Lambda
+=\mathcal H_t^{\mathcal B}U_n'\Lambda\quad\forall n\ge2
+\iff\Lambda\in\mathcal I^\perp
+\iff\Lambda=\lambda\circ q\text{ for a unique }\lambda\in Q'.}
+\tag{NCI6.3}
+\]
+The last equivalence is exact for the original quotient topology: a continuous functional vanishing on the kernel descends continuously by its definition. Thus the original full-jet quotient dual is *derived* as the maximal source subspace on which this fixed receiver intertwines every raw arithmetic cover. It has not been imposed as an extra definition of covariance.
+
+This can also be written as an exact detector of the remaining ideal directions. Restrict a functional to \(\mathcal I\), and then evaluate on the discrepancy family:
+\[
+\mathcal B'\xrightarrow{\mathrm{res}}\mathcal I'
+\xrightarrow{\mathfrak d_t}\mathbb C^{\{2,3,\ldots\}},
+\qquad\mathfrak d_t(\mu)=(\mu(\delta_{n,t}))_{n\ge2}.
+\tag{NCI6.4}
+\]
+Restriction is surjective as a map of vector spaces by continuous Hahn–Banach extension from the closed subspace \(\mathcal I\); it is strongly continuous because bounded subsets of that subspace are bounded in \(\mathcal B\). Its kernel is precisely \(q'Q'\). The second map is injective by NCI5.2 and continuous into the product topology since each coordinate is evaluation on a singleton bounded set. No surjectivity onto arbitrary sequences, openness of restriction in strong topologies, or inverse continuity of this detector is assumed.
+
+## NCI7. Exact all-cover stability of the Hardy domain
+
+The actual prequotient Hilbert domain, with no hidden boundary assumption, is
+\[
+\mathfrak D_t^{\mathcal B}
+=\left\{\Lambda\in\mathcal B'_\beta:
+\sum_{m\ge0}|\Lambda(g_t\psi_m)|^2<\infty\right\}.
+\tag{NCI7.1}
+\]
+Its closed injective graph and complete graph topology were proved in NHJ6. For \(\Lambda\) in this domain, \(\mathscr W_n^*\mathcal H_t^{\mathcal B}\Lambda\) is in \(H^2\), since the restriction is Noor's bounded raw \(W_n^*\). The right side of NCI6.2 belongs to \(H^2\) precisely when its scalar coefficient is zero, because all coefficients of \(1/(1-z)\) equal one. Hence
+\[
+U_n'\Lambda\in\mathfrak D_t^{\mathcal B}
+\iff\Lambda(\delta_{n,t})=0
+\quad(\Lambda\in\mathfrak D_t^{\mathcal B}).
+\tag{NCI7.2}
+\]
+Using all recovered integers and NCI5.1 now proves
+\[
+\boxed{
+\{\Lambda\in\mathfrak D_t^{\mathcal B}:
+U_n'\Lambda\in\mathfrak D_t^{\mathcal B}\ \forall n\ge2\}
+=\mathfrak D_t^{\mathcal B}\cap\mathcal I^\perp
+=q'\mathfrak D_t^Q.}
+\tag{NCI7.3}
+\]
+This answers the all-cover source-domain question exactly. It is stronger than a family of separate sufficient conditions: every vector with the complete raw-cover stability property must annihilate *all* original summation-source modes and every full multiplicity constraint encoded by \(\mathcal I\).
+
+The right side is invariant under every \(U_n'\). To prove this directly, \(U_n\mathcal I\subset\mathcal I\) because its entire multiplier preserves the full zero orders, and NCI7.2 preserves the Hilbert domain; apply both properties. Thus it is the largest linear subspace of \(\mathfrak D_t^{\mathcal B}\) stable under all the raw cover transposes. If another such subspace is given, each of its vectors satisfies the left side of NCI7.3 and therefore lies in this one. No invariance under the inverse source action is inferred.
+
+On this actual quotient domain the degree identities remain
+\[
+W_n^*W_n=nI,\qquad W_nW_n^*=nP_n,
+\tag{NCI7.4}
+\]
+where \(P_n\) averages consecutive coefficient blocks. For the transported positive form of NHJ6, the exact remaining defect is
+\[
+nB_t(\lambda,\mu)-B_t(U_n'\lambda,U_n'\mu)
+=n\langle(I-P_n)\mathcal H_t\mu,(I-P_n)\mathcal H_t\lambda\rangle.
+\tag{NCI7.5}
+\]
+The generation of the source ideal removes the scalar pole in NCI6.2 through its specified quotient. It does not remove this separate projection defect, prove a global inverse of \(W_n^*\), or identify the transported positive form with the original Weil pairing.
+
+## NCI8. The source-level conclusion and its actual scope
+
+The fixed original cover discrepancy generates the complete original zero-jet ideal after closure. Both stages have been proved: global Gaussian division gives \(\overline{F_0\mathcal B}=\mathcal I\), while the full integer-logarithm sampling and original half-Mellin integral give \(\overline{\operatorname{span}\delta_{n,t}}=\overline{F_0\mathcal B}\). The source principal image is strictly smaller algebraically, and its topology is essential.
+
+The next calculation was not left as a possible application. NCI6–NCI7 apply the identity to the actual prequotient receiver, proving that its full cover equivariance, and its full forward-cover Hardy-domain stability, select exactly the original quotient dual. In particular the quotient is recovered from the measured complete defect rather than substituted merely because it is convenient.
+
+The actual specialization \(\mathcal R=Q/N_O\) still has its further source kernel \(N_O\); NCI6.3 selects \(Q'\), not just \(N_O^\perp\). All original nontrivial zero jets are retained at this stage, including off-line and higher jets. Therefore this ideal identity does not prove \(\mathcal R=0\), remove the actual specialization coefficient \(d_r(\rho)\), or supply Deligne's weight-separated vanishing. The additional operation needed is still a proved geometric return on the actual source with its exact degree and adjoint. NCI7.5 supplies the precise remaining receiving defect that such a calculation must actually evaluate, without assuming its vanishing.
+
+One further consequence strengthens the generating-set statement without changing the original receiver or its fixed parameter. Let \(\mathscr S\subset\{2,3,\ldots\}\) be a set of recovered integer cover degrees satisfying
+\[
+\limsup_{R\to\infty}
+\frac{\#\{n\in\mathscr S:\log n\le R\}}{R^2}=\infty.
+\tag{NCI8.1}
+\]
+Then
+\[
+\overline{\operatorname{span}\{\delta_{n,t}:n\in\mathscr S\}}^{\mathcal B}
+=\mathcal I.
+\tag{NCI8.2}
+\]
+To prove this, repeat NCI3 with a functional annihilating that specified family. Its scalar entire function still has the same quadratic growth bound. If nonzero, Jensen bounds its zeros in radius \(R\) by \(CR^2\), contradicting NCI8.1. Every later step NCI4–NCI5 is unchanged. Consequently NCI6.3 and NCI7.3 hold with the family \(n\in\mathscr S\) on their left sides. For a fixed positive integer \(d\), the complete family \(\mathscr S=\{k^d:k\ge2\}\) satisfies the hypothesis because its counting numerator is \(\lfloor e^{R/d}\rfloor-1\). In particular, all square-degree covers already determine this same original ideal and the same all-cover-stable Hardy source domain. This uses an infinite generating family within the completely reconstructed arithmetic; it supplies no construction of the integers from a finite selected spectrum.

@@ -1,0 +1,9 @@
+# Positive transfer quotient and reconstruction of the complete source
+
+The next attempt constructs the maximal positive Hilbert receiver preserving the actual transfer as adjoint, on the complete original value space. Its quotient, universal mapping property and all bounded positive invariant forms are proved. The original indefinite Weil form and the precise data removed by the projection remain explicit.
+
+The source calculation then constructs the corresponding full-jet and value quotients, with every kernel. The complete source is recovered as a fibre product over a calculated compatibility quotient. The topology of that reconstruction, the exact original-zeta arithmetic difference, the existing extension-class maps and the full-jet multiplier problem are all proved. A global heat-operator limit constructs the Hilbert projector without assuming a source interpolation theorem or a zero-height cutoff.
+
+![The positive transfer quotient and the complete source reconstruction. Every actual zero and its multiplicity remains in the two projections and their compatibility data. The original arithmetic form is the sum of both contributions. Proofs PSC1–PSC8 and the independent universal-quotient derivation; full Gamma, endpoint, prime-history and finite trivial-divisor formulas are PSC5.](positive_quotient_source.png)
+
+The complete proofs and mathematical review follow. The construction preserves the original function and its discarded contribution as separate specified data. It does not infer the vanishing of that contribution from positivity of the compressed receiver. The actual Deligne lifting and original-zeta positivity goal remains active.

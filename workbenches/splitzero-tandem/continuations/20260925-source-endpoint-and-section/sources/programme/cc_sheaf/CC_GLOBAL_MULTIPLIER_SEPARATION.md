@@ -1,0 +1,601 @@
+# Global multiplier separation and the full normal source
+
+Complete independent derivation. Stable proof locators GMS0–GMS11.
+
+## GMS0. Stage, sources, and the operation being calculated
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). Every scalar, function, module, and arithmetic action below belongs to the constructed coefficient receiver after complete-history arithmetic reconstruction. No operation below adds, subtracts, measures, or assigns coordinates to \(\tau\). The two branches retain their separately recovered counters and return measures.
+
+The governing construction and correction chain are READ_FIRST_USER_CONSTRUCTION.md, USER_ARGUMENT_RECONSTRUCTION.md, and the retained WU050–WU055, WU061–WU065 passages in USER_CONSTRUCTION_FULL_LOGBOOK.md. In particular, a finite pair of named primes does not initialize this calculation, and an unrelated timing history does not replace the original arithmetic. WU065 asks that a limited result lead to a concrete next calculation using the accumulated findings. Here that calculation is to combine CLP13's finite coherent separation with GSL's already constructed global interpolation multiplier, and then apply it to the complete actual localization row.
+
+The local source proofs used are:
+
+* GLOBAL_SHIFTED_ZETA_LIFT.md, GSL1–GSL6: the actual entire-function space, original source factor, corridor integral, strip estimates, all-multiplicity interpolation, and translated quotient.
+* CC_ACTUAL_WEIGHT_LIFT_COMPARISON.md, CW1–CW8: the original half-Mellin transform, exact source image, actual localization maps and generators, full resolvent, and actual normal extension.
+* CC_LOCALIZATION_POLYNOMIAL_WEIGHTS.md, CLP1–CLP3 and CLP12–CLP13: the simultaneous source complexes, symmetric continuous section, retained nonzero normal extension, and finite coherent comparison.
+
+GSL4–GSL6 and CLP12–CLP13 were read in full for this continuation; the underlying CW and CLP source calculations were previously read in full and the formulas used below were recalled directly. The independent full-source theorem \(\Sigma:S\to J\) and its continuous inverse are the SSI/ESI results used in CW1 and CLP1. These are named proved prerequisites, not new assumptions about a hypothetical source.
+
+The original human-source constructions remain Connes–Consani, [*Schemes over \(\mathbb F_1\) and zeta functions*, §5, arXiv:0903.2024v3](https://arxiv.org/abs/0903.2024v3), and the separately recorded signed-chart source [arXiv:2609.00299v1](https://arxiv.org/abs/2609.00299v1). The lifting comparison is with Deligne, [*La conjecture de Weil. II*, §3.6](https://www.numdam.org/item/PMIHES_1980__52__137_0/), reconstructed in DC with its geometric hypotheses. This note proves the new module and chain maps below. It does not assert a fresh reading of those whole human sources or identify the coefficient category with Deligne's étale category.
+
+## GMS1. The actual multiplier algebra and its complete modules
+
+Let \(\mathscr Z\) denote the actual nontrivial-zero divisor of the original \(\zeta\), and retain each multiplicity \(m_\rho\). The established zero-free boundary lines give
+\[
+0<\Re\rho<1\qquad(\rho\in\mathscr Z).
+\tag{GMS1.1}
+\]
+Define the unital commutative complex algebra
+\[
+M=\left\{h\in\mathcal O(\mathbb C):
+\text{for every }A\ge0\text{ there are }C_A>0,\ N_A\in\mathbb N
+\text{ with }|h(x+it)|\le C_A(1+|t|)^{N_A}
+\text{ whenever }|x|\le A\right\}.
+\tag{GMS1.2}
+\]
+The operations are pointwise. Sums satisfy the estimate with the maximum of the two exponents and the sum of the constants; products satisfy it with the sum of the exponents and product of the constants. The functions \(1\), \(s\), and \(a^s=\exp(s\log a)\) for every recovered real \(a>0\) belong to \(M\). Real translation by \(b\) preserves \(M\), using the bound on the strip of width \(A+|b|\). No topology on the algebra \(M\) is needed for algebraic derived Hom below.
+
+The actual coefficient space and its ideals are
+\[
+\mathcal B=\left\{F\in\mathcal O(\mathbb C):
+b_{A,N}(F)=\sup_{|\Re s|\le A}(1+|\Im s|)^N|F(s)|<\infty
+\text{ for all }A,N\ge0\right\},
+\]
+\[
+\begin{aligned}
+\mathcal I&=\{F\in\mathcal B:F^{(j)}(\rho)=0,
+\ \rho\in\mathscr Z,\ 0\le j<m_\rho\},
+\\
+\mathcal I_+&=\{F\in\mathcal B:F^{(j)}(\rho+1)=0,
+\ \rho\in\mathscr Z,\ 0\le j<m_\rho\},
+\\
+\mathcal Q&=\mathcal B/\mathcal I,\qquad
+\mathcal Q_+=\mathcal B/\mathcal I_+.
+\end{aligned}
+\tag{GMS1.3}
+\]
+These are the full modules, without a finite-support restriction or a replacement by a direct sum of jets. The countable seminorms at integer \(A,N\) make \(\mathcal B\) Fréchet. To check completeness, a Cauchy sequence converges uniformly on every compact set to an entire function; its Cauchy property in each weighted strip supremum then gives convergence in that seminorm to the same function. Evaluations of every fixed derivative are continuous by Cauchy's estimate on a larger strip. Thus both ideals are closed and both quotient spaces are Fréchet with their quotient topology.
+
+For fixed \(h\in M\), multiplication is continuous, with
+\[
+b_{A,N}(hF)\le C_A b_{A,N+N_A}(F).
+\tag{GMS1.4}
+\]
+The full Leibniz formula
+\[
+(hF)^{(j)}(z)=\sum_{k=0}^j\binom jk h^{(k)}(z)F^{(j-k)}(z)
+\tag{GMS1.5}
+\]
+shows that it preserves both ideals. Hence \(\mathcal B,\mathcal I,\mathcal I_+,\mathcal Q,\mathcal Q_+\) are actual \(M\)-modules, and each fixed multiplier acts continuously. We use this last property, together with strict exact sequences of Fréchet spaces, when discussing continuous extensions. We do not infer this structure for an arbitrary continuous module carrying only a generator \(L\).
+
+## GMS2. The normal coordinate and every original source factor
+
+The full original arithmetic is retained:
+\[
+\zeta(s)=1+\sum_{n\ge2}n^{-s}=\prod_p(1-p^{-s})^{-1},
+\qquad
+-\frac{\zeta'}{\zeta}(s)=\sum_p\sum_{k\ge1}(\log p)p^{-ks}
+\quad(\Re s>1).
+\tag{GMS2.1}
+\]
+The half-Mellin source from CW1 and CLP1 is
+\[
+\Theta b(s)=\frac12\int_0^\infty b(u)u^s\frac{du}{u},\qquad
+\Theta^{-1}F(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}F(1/2+it)u^{-it}\,dt.
+\tag{GMS2.2}
+\]
+It is a topological isomorphism \(A\to\mathcal B\) and takes the exact original source \(J=\Sigma S\) onto \(\mathcal I\), where
+\[
+\Sigma f(u)=2\sum_{n\ge1}f(nu),\qquad
+S=\{f\in\mathcal S(\mathbb R):f(-v)=f(v),\ f(0)=0,\ \int_{\mathbb R}f=0\}.
+\tag{GMS2.3}
+\]
+For \(\Re s>1\), absolute summation proves
+\[
+\Theta\Sigma f(s)=\zeta(s)\int_0^\infty f(v)v^s\frac{dv}{v}.
+\tag{GMS2.4}
+\]
+The particular source
+\[
+f_0(v)=\frac\pi2v^2(2\pi v^2-3)e^{-\pi v^2}
+\]
+has the entire transform
+\[
+F_0(s)=\Theta\Sigma f_0(s)
+=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s)
+=C_0(s)\zeta(s).
+\tag{GMS2.5}
+\]
+It belongs to \(\mathcal B\) and has precisely \(\mathscr Z\) as its zero divisor. Formula (GMS2.5) is an exact source comparison; the original \(\zeta\) and the full multiplier \(C_0\) remain in every local comparison.
+
+Define \(VF(\lambda)=F(\lambda-1)\) and \(UF(s)=F(s+1)\). Then
+\[
+b_{A,N}(VF),\ b_{A,N}(UF)\le b_{A+1,N}(F),\qquad
+V\mathcal I=\mathcal I_+.
+\tag{GMS2.6}
+\]
+The actual normal coefficient module before translation has the action
+\[
+h\cdot_{\mathrm{normal}}F(s)=h(s+1)F(s).
+\tag{GMS2.7}
+\]
+This is the \(M\)-action on \(\mathcal B(-1),\mathcal I(-1),\mathcal Q(-1)\). In particular its generator is \(s+1\), and its dilation is \(a^{s+1}\), including the factor \(a\). Direct substitution gives
+\[
+V\bigl(h(s+1)F(s)\bigr)(\lambda)=h(\lambda)VF(\lambda).
+\tag{GMS2.8}
+\]
+Thus \(V\) gives the actual continuous \(M\)-linear isomorphism from the full normal row to
+\[
+0\longrightarrow\mathcal I_+\xrightarrow{\iota}\mathcal B
+\xrightarrow{q_+}\mathcal Q_+\longrightarrow0.
+\tag{GMS2.9}
+\]
+Its kernel is the entire \(\mathcal I_+\). In the original source coordinates it remains the entire \(J(-1)\).
+
+The translated original factor is
+\[
+F_+(\lambda)=VF_0(\lambda)
+=\frac{(\lambda-1)(\lambda-2)}8
+\pi^{-(\lambda-1)/2}\Gamma((\lambda-1)/2)\zeta(\lambda-1).
+\tag{GMS2.10}
+\]
+It has every zero \(\rho+1\) to the original multiplicity. Its exceptional values, including the retained cancellations, are
+\[
+F_+(1)=F_+(2)=\frac18,\qquad F_+(0)=F_0(-1)=\frac\pi{24},
+\]
+\[
+\begin{aligned}
+F_+(1-2r)
+&=\frac{r(2r+1)(-1)^r\pi^r}{2\,r!}\zeta'(-2r)\\
+&=F_+(2+2r)
+=\frac{(1+2r)(2r)}8\pi^{-(1+2r)/2}
+\Gamma((1+2r)/2)\zeta(1+2r)\ne0\quad(r\ge1).
+\end{aligned}
+\tag{GMS2.11}
+\]
+The corresponding unshifted values are \(F_0(0)=F_0(1)=1/8\) and the second displayed formula with arguments \(-2r,1+2r\). All derivatives of the translated entire function satisfy \(F_+^{(j)}(\lambda)=F_0^{(j)}(\lambda-1)\). In particular, at a nontrivial zero the full local unit is
+\[
+F_+(\rho+1+z)=z^{m_\rho}
+C_0(\rho+z)\frac{\zeta(\rho+z)}{z^{m_\rho}},
+\quad
+C_0(\rho)\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\ne0.
+\tag{GMS2.12}
+\]
+
+## GMS3. The already constructed global separator, with its exact scope
+
+GSL4 constructs an entire multiplier \(E\) with polynomial bounds on each vertical strip and with the full jets
+\[
+E-1\in(s-\rho)^{m_\rho}\mathcal O_\rho,\qquad
+E\in(s-(\rho-1))^{m_\rho}\mathcal O_{\rho-1}.
+\tag{GMS3.1}
+\]
+For specificity, the actual construction is \(G(s)=F_0(s)F_0(s+1)\),
+\(r(t)=\varepsilon(1+t^2)^{-3}\), \(\chi(x+it)=\eta(x/r(t))\), with the smooth cutoff \(\eta\) equal to zero on \(( -\infty,-1]\) and one on \([1,\infty)\). The original-zeta zero-free corridor chooses \(\varepsilon>0\) so \(G\) has no zeros on the cutoff-transition corridor. Put
+\[
+v(w)=\frac{\bar\partial\chi(w)}{G(w)}
+\quad\text{on that corridor, and }v=0\text{ off it},\qquad
+u(s)=\frac1\pi\int_{\mathbb C}\frac{e^{(s-w)^2}}{s-w}v(w)\,dA(w),
+\]
+\[
+E(s)=\chi(s)-G(s)u(s).
+\tag{GMS3.2}
+\]
+GSL4.4–GSL4.14 prove absolute convergence, \(\bar\partial u=v\), entire continuation of \(E\), and
+\[
+|E(x+it)|+|1-E(x+it)|\le C_A(1+|t|)^{d_A}
+\quad(|x|\le A).
+\tag{GMS3.3}
+\]
+Those estimates use the full two source factors in \(G\); they are the proved global input here. The full vanishing orders in (GMS3.1) follow from (GMS3.2) at the two divisors. No convergence of a sum of finite spectral projectors supplies this multiplier.
+
+Set
+\[
+c(\lambda)=E_+(\lambda)=1-E(\lambda-1)\in M.
+\tag{GMS3.4}
+\]
+Translating (GMS3.1) gives
+\[
+c-1\in(\lambda-\rho)^{m_\rho}\mathcal O_\rho,\qquad
+c\in(\lambda-(\rho+1))^{m_\rho}\mathcal O_{\rho+1}.
+\tag{GMS3.5}
+\]
+Consequently, with every multiplicity retained,
+\[
+\begin{gathered}
+c\mathcal B\subset\mathcal I_+,\qquad
+(1-c)\mathcal B\subset\mathcal I,\\
+c_{\mathcal Q}=1_{\mathcal Q},\qquad
+c_{\mathcal Q_+}=0_{\mathcal Q_+}.
+\end{gathered}
+\tag{GMS3.6}
+\]
+All inclusions follow by (GMS1.5). These formulas establish both identities on the complete quotient modules, including classes with infinitely many nonzero jets.
+
+The function \(c\) is not asserted to satisfy \(c^2=c\) in \(M\). Indeed it takes both values zero and one and is entire, so it is nonconstant, whereas an entire solution of \(c^2=c\) on \(\mathbb C\) is constant. Thus it is not an idempotent on \(\mathcal B\) or on its nonzero ideal \(\mathcal I_+\). It is an idempotent on \(\mathcal Q\oplus\mathcal Q_+\). No value zero or one at the separate endpoint parameters \(0,1\) is inferred from (GMS3.5).
+
+## GMS4. Full derived separation, with an explicit algebraic contraction
+
+We prove the required derived statements over the actual ring \(M\). The proof uses arbitrary algebraic projective resolutions; it requires no finite generation of the modules and makes no topological projectivity claim.
+
+Choose a projective resolution \(P^\bullet\to X\) in degrees at most zero. Let \(a\in M\) act as zero on \(X\). There is a degree-minus-one \(M\)-linear map \(h:P^\bullet\to P^{\bullet-1}\) with
+\[
+d_Ph+h d_P=a_P.
+\tag{GMS4.1}
+\]
+Here is the full lifting induction. If \(\epsilon:P^0\to X\) is the augmentation, \(aP^0\) lands in \(\ker\epsilon=\operatorname{im}(d_P:P^{-1}\to P^0)\), so projectivity of \(P^0\) lifts \(a_{P^0}\) to \(h^0:P^0\to P^{-1}\). Suppose \(h^{j+1}\) and all higher components have been chosen. On \(P^j\) the map
+\(a_{P^j}-h^{j+1}d_P^j\) lands in \(\ker d_P^j\): applying \(d_P^j\) and the already established equation in degree \(j+1\) gives zero. Exactness gives \(\ker d_P^j=\operatorname{im}d_P^{j-1}\); projectivity of \(P^j\) lifts this map to \(h^j:P^j\to P^{j-1}\). Induction proves (GMS4.1) in every degree. An arbitrary module has a free resolution by successively choosing a free module surjecting onto each kernel, so the construction applies to the actual full modules.
+
+For a module or bounded complex \(N^\bullet\), the Hom differential and its degree-minus-one homotopy are
+\[
+Df=d_Nf-(-1)^n f d_P,\qquad
+(Hf)=(-1)^n f h\quad(f\in\operatorname{Hom}_M(P,N)^n).
+\tag{GMS4.2}
+\]
+Multiplication gives the exact identity
+\[
+D(Hf)+H(Df)=f(hd_P+d_Ph)=f a_P=a_N f.
+\tag{GMS4.3}
+\]
+The two \(d_Nfh\) terms cancel. The last equality uses \(M\)-linearity and centrality. The bounded-above projective resolution computes derived Hom into modules and into the finite coefficient complexes used here. All operations in (GMS4.2) are algebraic compositions; no infinite series or density assertion occurs.
+
+Apply this with \(X=\mathcal Q\), \(a=1-c\), and \(N=\mathcal Q_+\). Equation (GMS3.6) says \(a_X=0\), \(a_N=1\), so (GMS4.3) is a contraction of the full Hom complex. For the reverse direction resolve \(X=\mathcal Q_+\), use \(a=c\), and take \(N=\mathcal Q\). Again \(a_X=0\), \(a_N=1\). Therefore
+\[
+\boxed{
+\operatorname{RHom}_M(\mathcal Q,\mathcal Q_+)\simeq0,
+\qquad
+\operatorname{RHom}_M(\mathcal Q_+,\mathcal Q)\simeq0.
+}
+\tag{GMS4.4}
+\]
+In particular every algebraic \(\operatorname{Ext}^k_M\) in either displayed direction is zero for \(k\ge0\). The proof applies to the whole actual modules in (GMS1.3), without presenting either as a limit of the finite coherent families from CLP13.
+
+There is also a fully specified resolution and homotopy with no choices of projective lifts. For an \(M\)-module \(X\), let
+\[
+P_n(X)=M\otimes_{\mathbb C}M^{\otimes_{\mathbb C}n}\otimes_{\mathbb C}X
+\quad(n\ge0),\qquad
+\epsilon(a_0\otimes x)=a_0x.
+\tag{GMS4.5}
+\]
+The left \(M\)-action is on the first factor. Each term is a free \(M\)-module: its remaining tensor factors are a complex vector space, and a vector-space basis identifies the tensor product with a direct sum of copies of \(M\). The differential is
+\[
+\begin{aligned}
+d_n(a_0\otimes\cdots\otimes a_n\otimes x)
+={}&\sum_{i=0}^{n-1}(-1)^i
+a_0\otimes\cdots\otimes a_i a_{i+1}\otimes\cdots\otimes a_n\otimes x\\
+&+(-1)^n a_0\otimes\cdots\otimes a_{n-1}\otimes a_nx.
+\end{aligned}
+\tag{GMS4.6}
+\]
+In \(d_{n-1}d_n\), the terms performing two disjoint multiplications cancel in opposite orders; the terms multiplying three adjacent factors cancel by associativity; the two final terms cancel by the module law. Hence \(d^2=0\). The complex-linear augmented homotopy inserting \(1\) in front,
+\(s_n(a_0\otimes\cdots\otimes a_n\otimes x)=1\otimes a_0\otimes\cdots\otimes a_n\otimes x\), and \(s_{-1}(x)=1\otimes x\), satisfies \(ds+sd=1\): the first multiplication in \(d s\) is the identity term, and its other terms cancel term by term with \(s d\). Therefore the augmented complex is exact. This proves it is an actual free resolution, although this augmentation contraction is not asserted \(M\)-linear.
+
+Its \(M\)-linear insertion of the specified central multiplier is
+\[
+H_n(a_0\otimes\cdots\otimes a_n\otimes x)
+=\sum_{i=0}^n(-1)^i
+a_0\otimes\cdots\otimes a_i\otimes c\otimes a_{i+1}
+\otimes\cdots\otimes a_n\otimes x.
+\tag{GMS4.7}
+\]
+In \(dH+Hd\), multiplications not involving the inserted \(c\) cancel with the identical insertion after that multiplication, with opposite sign. Multiplication of \(c\) with an interior factor occurs in two adjacent insertion terms, whose signs are opposite; centrality makes their values equal. The two terms left are the first-factor multiplication by \(c\) and minus the last-factor action by \(c\). Thus in every degree
+\[
+d_{n+1}H_n+H_{n-1}d_n=c_{P_n(X)}-P_n(c_X),
+\quad H_{-1}=0.
+\tag{GMS4.8}
+\]
+Here \(P_n(c_X)\) applies \(c_X\) only to the last factor. In the Hom cochain convention \(C^n=\operatorname{Hom}_M(P_n(X),N)\), \(\delta f=f d_{n+1}\), put \(k^n(f)=fH_{n-1}\), with \(k^0=0\). Equations (GMS4.7)–(GMS4.8) give
+\[
+\delta k+k\delta=c_N- (\text{precomposition by }P_\bullet(c_X)).
+\tag{GMS4.9}
+\]
+For \(X=\mathcal Q\), this is \(c_N-1\): consequently \(-k\) contracts the complex when \(N=\mathcal Q_+\), and gives the identity-minus-multiplier homotopies for \(N=\mathcal B,\mathcal I_+\). For \(X=\mathcal Q_+\), \(N=\mathcal Q\), it is the identity, so \(k\) contracts the reverse Hom. This is a concrete alternative realization of every module homotopy used in (GMS4.4) and (GMS5.3). The convention \(\delta f=f d\) is isomorphic to the ordinary cohomological Hom convention (GMS4.2) after multiplication of degree \(n\) by \((-1)^{n(n+1)/2}\). Each insertion sum is finite in its degree; these are algebraic tensor products, with no assertion about completed tensor products or continuous free resolutions.
+
+## GMS5. The exact derived inverse for the entire normal ideal
+
+The separator gives an actual continuous \(M\)-linear map
+\[
+\beta:\mathcal B\longrightarrow\mathcal I_+,\qquad
+\beta(F)=cF.
+\tag{GMS5.1}
+\]
+Its codomain follows from (GMS3.6), its continuity from (GMS1.4), and its \(M\)-linearity from pointwise commutativity. With the actual inclusion \(\iota\) from (GMS2.9),
+\[
+\iota\beta=c_{\mathcal B},\qquad
+\beta\iota=c_{\mathcal I_+}.
+\tag{GMS5.2}
+\]
+These are multiplier identities, not identities of the original modules.
+
+Resolve \(\mathcal Q\) by \(P\), and retain the homotopy (GMS4.1) for \(a=1-c\). For either \(N=\mathcal B\) or \(N=\mathcal I_+\), (GMS4.3) gives
+\[
+DH_N+H_ND=1-c_N
+\quad\text{on }\operatorname{Hom}_M(P,N).
+\tag{GMS5.3}
+\]
+Hence postcomposition by \(\beta\) and by \(\iota\) are explicit chain-homotopy inverses. We have proved
+\[
+\boxed{
+\operatorname{RHom}_M(\mathcal Q,\mathcal I_+)
+\xrightarrow{\ \iota_*\ }
+\operatorname{RHom}_M(\mathcal Q,\mathcal B)
+\text{ is a quasi-isomorphism, with inverse }\beta_*.
+}
+\tag{GMS5.4}
+\]
+The homotopies are (GMS5.3); in particular \(1-\iota_*\beta_*\) and \(1-\beta_*\iota_*\) are the stated Hom differentials of those homotopies. Nothing has quotiented \(\mathcal I_+\) further.
+
+Equivalently, for every integer \(k\), postcomposition with \(\iota[k]\) is a bijection of derived morphism groups
+\[
+\operatorname{Hom}_{D(M)}(\mathcal Q,\mathcal I_+[k])
+\xrightarrow{\sim}
+\operatorname{Hom}_{D(M)}(\mathcal Q,\mathcal B[k]);
+\quad [f]\longmapsto[\iota f],\quad
+[g]\longmapsto[\beta g].
+\tag{GMS5.5}
+\]
+Uniqueness here is uniqueness of the derived morphism class; it is not uniqueness of each cochain representative. In degree zero both groups are in fact zero. For an \(M\)-map \(g:\mathcal Q\to\mathcal B\),
+\((1-c)g(q)=g((1-c)q)=0\). Since \(1-c\) is a nonzero entire function, multiplication by it is injective on \(\mathcal B\): the product identity forces the entire second factor to vanish on its nonempty open nonzero set and hence everywhere. Thus \(g=0\); inclusion proves the same for target \(\mathcal I_+\). This does not assert that the higher groups in (GMS5.5) separately vanish.
+
+The same normal triangle and the reverse separation in (GMS4.4) also give
+\[
+\operatorname{RHom}_M(\mathcal B,\mathcal Q)
+\longrightarrow\operatorname{RHom}_M(\mathcal I_+,\mathcal Q)
+\quad\text{a quasi-isomorphism}.
+\tag{GMS5.6}
+\]
+Indeed applying derived Hom into \(\mathcal Q\) to the exact triangle of (GMS2.9) puts its cone next to \(\operatorname{RHom}_M(\mathcal Q_+,\mathcal Q)\simeq0\). This is a statement about the same full kernel and quotient.
+
+If another GSL cutoff yields \(c'\) satisfying (GMS3.5), its map \(\beta'\) is another chain-homotopy inverse of \(\iota_*\) by the same proof. Therefore \(\beta_*\) and \(\beta'_*\) coincide in the derived category. For example,
+\(\beta_* -\beta'_* =\beta_*(1-\iota_*\beta'_*)+(\beta_*\iota_*-1)\beta'_*\),
+and (GMS5.3) explicitly makes both terms null-homotopic. The derived inverse does not depend on the cutoff choices.
+
+## GMS6. Exact meaning for pullbacks and the surviving normal extension
+
+The normal extension (GMS2.9) has its Yoneda class
+\[
+e_+\in\operatorname{Ext}^1_M(\mathcal Q_+,\mathcal I_+),
+\qquad e_+:\mathcal Q_+\longrightarrow\mathcal I_+[1].
+\tag{GMS6.1}
+\]
+Its domain is \(\mathcal Q_+\). It is not one of the two cross groups in (GMS4.4).
+
+For an ordinary \(M\)-map \(f:\mathcal Q\to\mathcal Q_+\), (GMS4.4) gives \(f=0\). Its actual pullback middle module is therefore
+\[
+\{(b,q)\in\mathcal B\oplus\mathcal Q:q_+(b)=f(q)=0\}
+=\mathcal I_+\oplus\mathcal Q.
+\tag{GMS6.2}
+\]
+The section is \(q\mapsto(0,q)\); it is \(M\)-linear and continuous in the product topology. For any derived morphism \(f:\mathcal Q\to\mathcal Q_+[k]\), all such classes also vanish by (GMS4.4), so the composition with the corresponding shift of \(e_+\) is zero. This is the exact pullback statement supplied by the separation. It does not produce a section \(\mathcal Q_+\to\mathcal B\) of the normal row.
+
+That normal row remains non-split even algebraically over \(M\). Choose an actual \(\rho\in\mathscr Z\), whose existence is the proved original-zeta fact used in CW8. Put \(\lambda_0=\rho+1\). Entire division and the strip estimates give
+\[
+v_\rho(\lambda)=\frac{F_+(\lambda)}{\lambda-\lambda_0}\in\mathcal B,
+\quad [v_\rho]\ne0\text{ in }\mathcal Q_+,\quad
+(\lambda-\lambda_0)[v_\rho]=[F_+]=0.
+\tag{GMS6.3}
+\]
+The nonzero quotient class follows from its exact order \(m_\rho-1\) at \(\lambda_0\); (GMS2.12) retains the local unit. An \(M\)-linear section would send it to an entire function \(F\) satisfying \((\lambda-\lambda_0)F=0\), hence to zero, contradicting its quotient. Thus \(e_+\ne0\). The nonzero class in the polynomial source test is exactly
+\[
+[F_+]\in\mathcal I_+/(\lambda-\lambda_0)\mathcal I_+.
+\tag{GMS6.4}
+\]
+It cannot vanish, since an identity \(F_+=(\lambda-\lambda_0)H\) with \(H\in\mathcal I_+\) would force \(H=v_\rho\), which has insufficient vanishing order at \(\lambda_0\). This is CLP12's positive normal boundary with its whole ideal and full original factor. It coexists with (GMS5.4) because the domains of the two statements are different specified modules.
+
+One can also calculate the actual pushout that the multiplier makes split. Push (GMS2.9) out along \(c:\mathcal I_+\to\mathcal I_+\). Its middle module is
+\[
+\mathcal P_c=(\mathcal I_+\oplus\mathcal B)/
+\{(cj,-j):j\in\mathcal I_+\},
+\quad i_c(i)=[(i,0)],\quad p_c([(i,b)])=q_+(b).
+\tag{GMS6.5}
+\]
+The relation subspace is closed: convergence of \((cj_\nu,-j_\nu)\) implies that \(j_\nu\) converges in the closed subspace \(\mathcal I_+\) to \(-b\), and continuity of multiplication gives the first coordinate \(-cb\). Thus \(\mathcal P_c\) has its actual Fréchet quotient topology. Define
+\[
+\Phi_c:\mathcal P_c\longrightarrow\mathcal I_+\oplus\mathcal Q_+,
+\qquad [(i,b)]\longmapsto(i+cb,q_+(b)).
+\tag{GMS6.6}
+\]
+It kills precisely the displayed relations: if both coordinates are zero, then \(b=j\in\mathcal I_+\) and \(i=-cj\), which is the negative of one relation. It is onto, since for \((i_0,q)\) any lift \(b\) of \(q\) gives the preimage \([(i_0-cb,b)]\). The latter is independent of the lift: changing \(b\) by \(j\) changes the pair by \((-cj,j)\), a relation. Continuity of the inverse follows because the continuous map
+\((i_0,b)\mapsto[(i_0-cb,b)]\) kills \(\{0\}\oplus\mathcal I_+\) and descends through the product quotient \(\mathcal I_+\oplus\mathcal B\to\mathcal I_+\oplus\mathcal Q_+\). Thus \(\Phi_c\) is an explicit continuous \(M\)-linear isomorphism of extensions.
+
+Its section and its Yoneda interpretation are
+\[
+q\longmapsto[(-cb,b)]\quad(q_+(b)=q),\qquad
+c_*e_+=0\ \text{in }\operatorname{Ext}^1_M(\mathcal Q_+,\mathcal I_+).
+\tag{GMS6.7}
+\]
+This constructs the annihilation of the extension class by the central multiplier, while (GMS6.3)–(GMS6.4) retain \(e_+\ne0\) before that pushout. Its kernel is still a copy of the full \(\mathcal I_+\), with the specified changed map into the middle module.
+
+## GMS7. Continuous splitting for actual strict multiplier extensions
+
+There is also a continuous statement that does not use an unconstructed Fréchet projective resolution. Suppose
+\[
+0\longrightarrow\mathcal Q_+\xrightarrow{j}X
+\xrightarrow{\pi}\mathcal Q\longrightarrow0
+\tag{GMS7.1}
+\]
+is a strict exact sequence of Fréchet \(M\)-modules: \(j\) is a topological embedding with closed image, \(\pi\) induces the quotient topology, and every fixed multiplier acts continuously on \(X\). Such an extension is an explicitly specified class of objects; a continuous \(L\)-equivariant extension is not declared to satisfy these additional hypotheses.
+
+For \(q\in\mathcal Q\), take any lift \(x\in X\), and set
+\[
+s(q)=c_Xx.
+\tag{GMS7.2}
+\]
+If the lift changes by \(j(y)\), the result changes by \(j(cy)=0\), proving well-definedness. Moreover \(\pi s(q)=cq=q\) and \(s\pi=c_X\). It is \(M\)-linear because \(c\) is central. Its continuity follows exactly from the quotient topology: \(s\pi=c_X\) is continuous. It is the unique \(M\)-linear section, since the difference of two sections factors through \(j\) as an \(M\)-map \(\mathcal Q\to\mathcal Q_+\), which is zero by (GMS4.4).
+
+There is an actual idempotent on this extension:
+\[
+c_X^2=c_X.
+\tag{GMS7.3}
+\]
+Indeed \((c_X-1)x\in j\mathcal Q_+\), and applying \(c_X\) kills that element. The complete continuous splitting and inverse are
+\[
+\mathcal Q_+\oplus\mathcal Q\longrightarrow X,
+\quad(y,q)\longmapsto j(y)+s(q),
+\]
+\[
+X\longrightarrow\mathcal Q_+\oplus\mathcal Q,
+\quad x\longmapsto\left(j^{-1}((1-c_X)x),\pi x\right).
+\tag{GMS7.4}
+\]
+The first coordinate of the inverse is well-defined since \(\pi(1-c_X)=0\), and is continuous because \(j^{-1}\) is continuous on its image. Direct substitution and (GMS7.3) prove that the maps are inverse.
+
+For the reversed strict extension \(0\to\mathcal Q\to X\to\mathcal Q_+\to0\), the identical proof uses \(1-c\) on a lift to construct its unique continuous \(M\)-linear section. If a second permissible separator \(c'\) is used in (GMS7.2), both resulting maps are sections, so uniqueness makes them equal. More directly, \(c_X-c'_X\) kills the kernel and has image in that kernel, hence factors as an \(M\)-map \(\mathcal Q\to\mathcal Q_+\), which vanishes. This proves cutoff independence on the actual extension.
+
+For example, the existing GSL high row has
+\[
+X=\mathcal B/(\mathcal I\cap\mathcal I_+),\quad
+j([g]_{\mathcal I_+})=[(1-c)g]_{\mathcal I\cap\mathcal I_+},\quad
+\pi([F])=[F]_{\mathcal I}.
+\tag{GMS7.5}
+\]
+The section from (GMS7.2) is exactly \([f]_{\mathcal I}\mapsto[cf]\). Independence of representatives follows from the two full jet conditions. The full inverse of the quotient map to \(\mathcal Q\oplus\mathcal Q_+\) is
+\[
+([f]_{\mathcal I},[g]_{\mathcal I_+})
+\longmapsto[cf+(1-c)g]_{\mathcal I\cap\mathcal I_+}.
+\tag{GMS7.6}
+\]
+Products \(c\mathcal I\) and \((1-c)\mathcal I_+\) lie in the intersection, so this is well-defined. Its two quotient images are \([f]\) and \([g]\); the reverse composition uses \(cF+(1-c)F=F\). The estimates (GMS1.4), with independent infima over both representatives, prove continuity in both directions. Thus the example is strict and realizes the exact hypotheses of (GMS7.1).
+
+## GMS8. The actual original-source map behind the derived inverse
+
+Returning (GMS5.1) through \(V\) gives
+\[
+V^{-1}\beta V(F)(s)=c(s+1)F(s)=(1-E(s))F(s).
+\tag{GMS8.1}
+\]
+The actual map on the full unshifted source spaces with their normal actions is therefore
+\[
+\mathfrak b:A(-1)\longrightarrow J(-1),\qquad
+\mathfrak b(a)=\Theta^{-1}\bigl[(1-E(s))\Theta a(s)\bigr].
+\tag{GMS8.2}
+\]
+Its image is in \(J\) because \((1-E)\mathcal B\subset\mathcal I=\Theta J\). Its exact integral representative is
+\[
+\mathfrak b(a)(u)=\frac{u^{-1/2}}\pi
+\int_{\mathbb R}
+\bigl(1-E(1/2+it)\bigr)\Theta a(1/2+it)u^{-it}\,dt.
+\tag{GMS8.3}
+\]
+The bound (GMS3.3) multiplied by arbitrarily rapid strip decay of \(\Theta a\) proves absolute convergence after any fixed number of \(u\partial_u\) derivatives. The original inverse Mellin estimates in (GMS2.2), applied to the strip seminorm bound (GMS1.4), prove continuity into every seminorm of \(A\). Its image is already in the closed source \(J\), and \(H=\Sigma^{-1}:J\to S\) is the actual continuous source inverse. Consequently
+\[
+a\longmapsto f_a=H\mathfrak b(a)\in S,
+\qquad\Sigma f_a=\mathfrak b(a),
+\tag{GMS8.4}
+\]
+is a continuous original Schwartz-source representative with its value and integral conditions retained.
+
+The two composites with the original inclusion \(J(-1)\hookrightarrow A(-1)\) are multiplication by \(1-E(s)\) under \(\Theta\). The derived identity in (GMS5.4) follows from the action of the same ring element \(c(\lambda)\) on the unshifted source \(\mathcal Q\), where it is the identity. The shift in (GMS8.1) is essential; it is not permission to replace the normal action \(h(s+1)\) by \(h(s)\).
+
+## GMS9. The multiplier action on the complete simultaneous complexes
+
+We construct the action, rather than presuming a general functional calculus for an arbitrary operator. Let
+\[
+V_\pm=S\oplus\mathbb C^2,\quad W=V_+\oplus V_-,\quad
+r_+(f,c_0,c_1)=\Sigma f,\quad
+r_-(g,d_0,d_1)=R\Sigma g=\Sigma\widehat g,
+\]
+\[
+Rb(u)=u^{-1}b(u^{-1}),\qquad
+\widehat g(v)=\int_{\mathbb R}g(x)e^{-2\pi ixv}\,dx.
+\tag{GMS9.1}
+\]
+The full preceding Poisson identity is
+\(\Sigma\widehat g(u)=u^{-1}\Sigma g(u^{-1})+u^{-1}g(0)-\int g\).
+Its last two terms vanish on \(S\); the four separate endpoint coordinates are retained. The source sections are \(s_+(b)=(Hb,0,0)\) and \(s_-(b)=(\widehat{Hb},0,0)\), with \(r_\pm s_\pm=1_J\). Put \(h_J=\Theta^{-1}m_h\Theta\) on \(J\). Define
+\[
+\begin{aligned}
+h_{V_+}(f,c_0,c_1)
+&=s_+\bigl(h_J\Sigma f\bigr)+(0,h(0)c_0,h(1)c_1),\\
+h_{V_-}(g,d_0,d_1)
+&=s_-\bigl(h_JR\Sigma g\bigr)+(0,h(1)d_0,h(0)d_1).
+\end{aligned}
+\tag{GMS9.2}
+\]
+All displayed maps are continuous. On each chart the decomposition into its source summand and endpoint summand is direct. Since \(r_\pm s_\pm=1\), composition of (GMS9.2) for multipliers \(h,k\) is the action for \(hk\), addition is the action for \(h+k\), and \(1\) acts as the identity. This proves an actual \(M\)-module structure on \(W\), with
+\[
+r_\pm h_{V_\pm}=h_Jr_\pm.
+\tag{GMS9.3}
+\]
+For \(h(s)=s\) this is the previously computed generator \(G\) on \(W\), with endpoint eigenvalues \((0,1,1,0)\). For \(h(s)=a^s\), injectivity of the source restrictions and (GMS9.3) identify its source components with \(f(v/a)\) and \(a g(av)\), respectively. Its endpoint components are \((c_0,ac_1,ad_0,d_1)\). Thus it extends the actual coefficient actions, with every factor of \(a\).
+
+The actual simultaneous complexes, in degrees \(0,1,2\), are
+\[
+D_J=(W\xrightarrow{r_+-r_-}J\xrightarrow0J(-1)),\quad
+D_F=(W\xrightarrow{r_+-r_-}A\xrightarrow0A(-1)),\quad
+D_G=(0\to Q\xrightarrow0Q(-1)).
+\tag{GMS9.4}
+\]
+Use (GMS9.2) in degree zero, multiplication by \(h(s)\) under \(\Theta\) in degree one, and multiplication by \(h(s+1)\) in degree two. Equation (GMS9.3) proves compatibility with the first differential; the second is zero. Inclusions, quotients, and the degree-zero identity in the row \(0\to D_J\to D_F\to D_G\to0\) are \(M\)-linear.
+
+The symmetric section, projection, and exact source decomposition are
+\[
+\sigma b=\tfrac12(s_+b,-s_-b),\quad
+d\sigma=1_J,\quad p_Z=1_W-\sigma d,\quad Z=\ker d,
+\]
+\[
+W\xrightarrow{\sim}Z\oplus J,\quad w\mapsto(p_Zw,dw),\qquad
+(z,b)\mapsto z+\sigma b.
+\tag{GMS9.5}
+\]
+They are \(M\)-linear by (GMS9.2)–(GMS9.3). Moreover
+\[
+Z\simeq J\oplus\mathbb C^2_+\oplus\mathbb C^2_-,\quad
+(b,e_+,e_-)\mapsto(s_+b+e_+,s_-b+e_-),
+\tag{GMS9.6}
+\]
+where the endpoint multipliers are exactly \(h(0),h(1),h(1),h(0)\). Thus \(c\) retains the values \(c(0),c(1)\) there; they are not replaced by spectral zero or one values.
+
+Applying this decomposition contracts the \([J\xrightarrow1J]\) summands and gives the simultaneous quasi-isomorphisms of CLP12, now proved \(M\)-linear:
+\[
+\begin{aligned}
+D_J&\simeq Z[0]\oplus J(-1)[-2],\\
+D_F&\simeq Z[0]\oplus Q[-1]\oplus A(-1)[-2],\\
+D_G&=Q[-1]\oplus Q(-1)[-2].
+\end{aligned}
+\tag{GMS9.7}
+\]
+The vertical maps are \(p_Z\) in degree zero, respectively zero or the quotient \(q\) in degree one, and the identity in degree two. Their first two kernels are \([\sigma J\xrightarrow dJ]\), contracted by \(\sigma\). This proves each claim in (GMS9.7), including the retained normal row (GMS2.9). No \(M\)-linear section of \(A\to Q\) has been inserted.
+
+The ring element \(c\) acts as an actual projection on \(D_G\): it is one on \(Q[-1]\) and zero on \(Q(-1)[-2]\), by (GMS2.8) and (GMS3.6). It is not an idempotent on the full \(D_F,D_J\). In particular applying it does not erase their endpoints or replace their normal source ideal.
+
+## GMS10. Full derived localization and its exact geometric action scope
+
+Transport by \(\Theta\), and by \(V\) on the normal terms, identifies \(Q\) with \(\mathcal Q\) and \(Q(-1)\) with \(\mathcal Q_+\). Derived Hom from the complete \(\mathcal Q\) applied to (GMS9.7) gives
+\[
+\operatorname{RHom}_M(\mathcal Q,D_G)
+\simeq\operatorname{RHom}_M(\mathcal Q,\mathcal Q)[-1].
+\tag{GMS10.1}
+\]
+The projection and inclusion of the degree-one summand are inverse up to the explicit contraction of its normal Hom summand from (GMS4.2)–(GMS4.4). This is a full-module statement, not an inference from finite spectral vectors.
+
+The actual connecting morphism in the localization triangle is zero on \(Q[-1]\) and is \(e_+[-2]\) on \(\mathcal Q_+[-2]\), by the simultaneous maps (GMS9.7). Consequently
+\[
+\operatorname{RHom}_M(\mathcal Q,D_G)
+\longrightarrow\operatorname{RHom}_M(\mathcal Q,D_J[1])
+\quad\text{is zero in the derived category}.
+\tag{GMS10.2}
+\]
+Indeed the only nonzero candidate component factors through the contractible complex \(\operatorname{Hom}_M(P,\mathcal Q_+)\). Its contraction was constructed in (GMS4.2). Equivalently, the normal comparison inside the source triangle is precisely the chain-homotopy equivalence (GMS5.4). The \(Z\) term remains; the degree-one component lifts through the identity on \(Q[-1]\) in (GMS9.7). Thus (GMS10.2) describes the actual full localization maps, with the full normal ideal retained.
+
+The underlying source geometry gives the cover action for each integer \(n\ge1\):
+\[
+(\rho_+(n)\oplus\rho_-(n),\ T_n,\ nT_n)
+\tag{GMS10.3}
+\]
+on degrees zero, one, and two. Its last factor is the positive degree of the actual holomorphic cover \(z\mapsto z^n\). These are exactly the actions of \(h(s)=n^s\) from (GMS9.4), since the normal component uses \(n^{s+1}\). The same formulas for real \(a>0\) are coefficient actions; there is no asserted nonintegral holomorphic covering. All maps in (GMS5.1), (GMS8.2), and (GMS9.7) commute with the specified \(M\)-action and hence with these covers' coefficient actions.
+
+Mirror actions retain their degree-dependent semilinearity. Under the actual half-Mellin transform, \(R\) is \(F(s)\mapsto F(1-s)\), since substituting \(u\mapsto u^{-1}\) in (GMS2.2) gives this identity. Thus the low-degree mirror changes \(h(s)\) to \(h(1-s)\). On the normal coordinate \(\lambda=s+1\), the same source reflection changes \(\lambda\) to \(3-\lambda\), so its multiplier is \(h(3-\lambda)\). Both substitutions preserve \(M\) by its strip bounds. The geometric sign is retained separately: the antipodal map \(-1/\overline z\) has degree minus one on the complex-oriented sphere and degree plus one on the equatorial loop; the holomorphic map \(-1/z\) has degree plus one on the sphere and degree minus one on that loop. CSP/CDW compute their corresponding actions \((\text{chart swap},-R,\varepsilon R)\) on the finite model, with \(\varepsilon=-1\) and \(+1\), respectively. Neither geometric sign changes the stated conjugation of the generator.
+
+In particular, a single substitution \(\lambda\mapsto1-\lambda\) is not used in both degrees, and no symmetry of the particular cutoff function \(E\) is presumed. Conjugating a multiplier map by a specified mirror gives the map with its conjugated multiplier and the retained geometric signs. The vanishing in (GMS4.4) and the derived inverse in (GMS5.4) remain statements for the displayed domains and actions.
+
+## GMS11. What the calculation establishes and retains
+
+This continuation constructs the \(M\)-action on the entire actual coefficient row, and proves the two full derived separations (GMS4.4). It then supplies the explicit actual map \(\beta:\mathcal B\to\mathcal I_+\), the full-source representative (GMS8.3)–(GMS8.4), and their chain-homotopy inverse property after derived Hom from the complete original quotient. The same separator constructs the unique continuous splitting of every strict Fréchet \(M\)-extension with these two separated quotient terms. Each operation has its exact domain and topology above.
+
+The normal extension \(e_+\) itself remains nonzero, with the original-factor boundary (GMS6.4). The global conclusion is its zero pullback against the separated original quotient and the full derived comparison (GMS5.4), not deletion of its kernel or a splitting of \(\mathcal B\to\mathcal Q_+\). Likewise, the logarithmic-modulus ranges of the two actual quotient spectra are \((0,2)\) and \((2,4)\), with scalars \(a^\rho\) and \(a^{\rho+1}\) and all nilpotent coefficients. The multiplier argument controls the connecting maps between these specified full modules; it does not alter the original zero positions or assert a common pure weight.
+
+The algebraic derived Hom statements use \(M\)-projective resolutions with algebraic Hom. The continuous splitting and source maps use explicit continuous formulas and quotient topologies. No claim about a general continuous derived category, an unconstructed extension of an arbitrary \(L\)-module to \(M\), or a replacement of Deligne's geometric hypotheses is needed. The new global chain contraction is the completed attempted step beyond CLP13's finite coherent separation.
+
+Two additional comparison boundaries are exact. First, the complete jet identities make \(c\) one on each actual original block of length \(m_\rho\), zero on its translated block, and hence give those identities on the actual kernels \(Q[(L-\rho)^r]\). In CLP13's family stalk the arithmetic variable is \(y=s-\rho\) with \(y^{m_\rho}=0\), so the same identity holds there even though the parameter variable has longer nilpotence. The identities do not make \(c\) one on an arbitrary test module \(\mathbb C[t]/(t-\rho)^r\) when \(r>m_\rho\); its higher Taylor coefficients can act there. Nor does restriction of scalars from \(M\) replace a \(\mathbb C[t]\)-derived Hom calculation by an \(M\)-derived Hom calculation. Second, no cyclicity or algebra unit of \(\mathcal Q=\mathcal B/\mathcal I\) has been used. The entire quotient \(c/F_+\) exists by the vanishing orders, but it has not been declared to belong to \(M\). The proof uses the actual map \(c\mathcal B\subset\mathcal I_+\), not an unproved multiplier Bézout identity or a claim that \(\mathcal I_+=F_+M\).

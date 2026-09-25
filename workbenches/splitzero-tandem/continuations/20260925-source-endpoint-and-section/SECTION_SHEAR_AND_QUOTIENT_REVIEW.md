@@ -1,0 +1,296 @@
+# Exact section shear, quotient section and the full receiver
+
+25 September 2026. Independent derivation SSR0–SSR7. This note reads the complete current NPE0–10 and NER0–11 sources and verifies the proposed replacement of the residue section. It does not edit either source. Its conclusions concern the actual coefficient extension and do not identify it with Deligne's geometric lifting sequence.
+
+## SSR0. Source, construction stage and reading coverage
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). All coefficient operations below follow the complete-history arithmetic reconstruction. They assign no arithmetic value, coordinate, parity, metric or retracted addition to that supporting datum. Separate branch histories remain separate.
+
+Use exactly the original Fréchet source
+\[
+\mathcal B=\{F\in\mathcal O(\mathbb C):q_{A,N}(F)<\infty\},\qquad
+q_{A,N}(F)=\sup_{|\Re s|\le A}(1+|\Im s|)^N|F(s)|,
+\tag{SSR0.1}
+\]
+with all \(A>0\) and integers \(N\ge0\). Its closed ideal \(I\) imposes the complete original nontrivial-zero jets through order \(m_\rho-1\); \(Q=\mathcal B/I\). Keep
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+F_0(0)=\frac18,\qquad g_t(s)=e^{ts^2},\quad t>0.
+\tag{SSR0.2}
+\]
+The equality retains all original factors and exceptional-point contributions in NPE0.2; it does not replace original \(\zeta\). The current comparison uses the already established membership \(F_0\in\mathcal B\), the full original-zero ideal, and NPE1's meromorphic extension
+\[
+h=h_t=8g_tF_0/s,\qquad E=\mathcal B\oplus\mathbb C h,
+\qquad\operatorname{res}_0h=1.
+\tag{SSR0.3}
+\]
+Here and throughout, a product decomposition of \(E\) denotes coordinates on actual meromorphic functions with the transported product topology. It does not assert closure of \(E\) under pointwise multiplication.
+
+Complete source reading in this independent task:
+
+- `NOOR_MEROMORPHIC_ENDPOINT_EXTENSION.md`, NPE0–10, SHA256 `da8a4d25c22391e32fddc44fac98d12de515679f2d5b013ee33639c6200134ed`.
+- `NOOR_ENDPOINT_EXTENSION_INDEPENDENT_REVIEW.md`, NER0–11, SHA256 `c05f47854508143b2aeb3ea42a7e0dbd74fe5c3da9b00923dd0bacc6ad44442e`.
+
+The calculations below are direct comparisons of their exact maps. No additional human-source reading is claimed.
+
+## SSR1. The two residue sections give a continuous shear
+
+Define
+\[
+j=j_t=g_t/s,\qquad
+k=k_t=j-h=\frac{g_t(1-8F_0)}s.
+\tag{SSR1.1}
+\]
+The numerator of \(k\) is an element of \(\mathcal B\): both \(g_t\) and \(8g_tF_0\) are. It vanishes at zero by (SSR0.2), so division by \(s\) is entire. For any \(K\in\mathcal B\) with \(K(0)=0\), the maximum principle on the radius-two disk, together with division outside the unit disk, gives
+\[
+q_{A,N}(K/s)\le q_{A,N}(K)+2^{N-1}q_{2,0}(K).
+\tag{SSR1.2}
+\]
+Indeed outside the unit disk \(|1/s|\le1\); inside it, \(|K(s)/s|\le\tfrac12\sup_{|z|=2}|K(z)|\), and the vertical weight is at most \(2^N\). Thus \(k\in\mathcal B\), and \(j=h+k\in E\) has residue one. Consequently
+\[
+E=\mathcal B\oplus\mathbb C j
+\tag{SSR1.3}
+\]
+as the same meromorphic space, with the same topology. In fact, if
+\[
+f=F+ch=G+cj,
+\]
+then the two coordinate maps are exactly
+\[
+(F,c)_h\longmapsto(G,c)_j=(F-ck,c),\qquad
+(G,c)_j\longmapsto(G+ck,c)_h.
+\tag{SSR1.4}
+\]
+Both maps are continuous linear inverses because \(k\) is a fixed member of \(\mathcal B\).
+
+The endpoint coefficients verify the sign independently:
+\[
+j(s)=s^{-1}+ts+O(s^3),\qquad
+h(s)=s^{-1}+8F_0'(0)+O(s),\qquad k(0)=-8F_0'(0).
+\tag{SSR1.5}
+\]
+Thus the Laurent constant of \(f\) is \(F(0)+8cF_0'(0)=G(0)\). The endpoint datum has been retained under the shear.
+
+## SSR2. Cover cocycles and strong-dual coordinates
+
+For every recovered integer \(n\ge1\), let \(U_nf=n^{1-s}f\). Retain the old cocycle and define the new one:
+\[
+\delta_n=nh-U_nh=8g_tF_0\frac{n-n^{1-s}}s\in I,
+\qquad
+\eta_n=nj-U_nj=g_t\frac{n-n^{1-s}}s\in\mathcal B.
+\tag{SSR2.1}
+\]
+Membership follows from the same removable division estimate as (SSR1.2); the numerator is in \(\mathcal B\) and vanishes at zero. Both have value \(n\log n\) at zero. The exact comparison, including its sign, is
+\[
+\boxed{\eta_n=\delta_n+(n-U_n)k.}
+\tag{SSR2.2}
+\]
+It follows by substituting \(j=h+k\) into \(nj-U_nj\). In the respective coordinates the same actual operator is
+\[
+U_n^E(F,c)_h=(U_nF-c\delta_n,nc)_h,
+\qquad
+U_n^E(G,c)_j=(U_nG-c\eta_n,nc)_j.
+\tag{SSR2.3}
+\]
+Both cocycles satisfy
+\[
+c_{mn}=m c_n+U_n c_m=n c_m+U_m c_n
+\quad(c=\delta\text{ or }\eta).
+\tag{SSR2.4}
+\]
+For example \(m(nj-U_nj)+U_n(mj-U_mj)=mnj-U_{mn}j\). This proves the formula without discarding either summand.
+
+Write an actual continuous complex-linear functional on \(E\) as
+\[
+\widetilde\Lambda(F+ch)=\Lambda(F)+c\alpha,
+\qquad
+\widetilde\Lambda(G+cj)=\Lambda(G)+c\beta.
+\tag{SSR2.5}
+\]
+The restriction \(\Lambda\) to the original entire subspace is unchanged. Since \(\widetilde\Lambda(j)=\widetilde\Lambda(h+k)\), the exact dual shear is
+\[
+\boxed{\beta=\alpha+\Lambda(k),\qquad\alpha=\beta-\Lambda(k).}
+\tag{SSR2.6}
+\]
+It is a strong-dual topological isomorphism. Evaluation at a fixed \(k\) is continuous for the strong topology because \(\{k\}\) is bounded, and the displayed inverse is continuous for the same reason. The underlying product identifications follow because product-bounded sets have bounded projections and bounded factor sets embed in the product.
+
+Transposing (SSR2.3), with no conjugation in the complex-linear transpose, gives
+\[
+(U_n^E)'(\Lambda,\alpha)_h
+  =(U_n'\Lambda,n\alpha-\Lambda(\delta_n))_h,
+\]
+\[
+\boxed{(U_n^E)'(\Lambda,\beta)_j
+  =(U_n'\Lambda,n\beta-\Lambda(\eta_n))_j.}
+\tag{SSR2.7}
+\]
+Substituting (SSR2.6) and then (SSR2.2) gives the second formula from the first: the new final coordinate is
+\(n\alpha-\Lambda(\delta_n)+\Lambda(U_nk)=n\beta-\Lambda(\eta_n)\).
+
+## SSR3. The original full-ideal quotient keeps its unique equivariant section
+
+Because \(I\) is closed in \(\mathcal B\), either product coordinate system gives a topological isomorphism \(E/I\simeq Q\oplus\mathbb C\). The change is the induced shear
+\[
+([F],c)_h\longmapsto([F]-c[k],c)_j.
+\tag{SSR3.1}
+\]
+In old coordinates the quotient action is diagonal, because \(\delta_n\in I\). In new coordinates it is
+\[
+([G],c)\longmapsto([U_nG]-c[\eta_n],nc),
+\qquad [\eta_n]=(n-U_n)[k].
+\tag{SSR3.2}
+\]
+The equivariant residue section furnished by the old coordinates is therefore
+\[
+c\longmapsto c[h]=c[j-k],
+\qquad c\longmapsto(-c[k],c)_j,
+\tag{SSR3.3}
+\]
+where the first expression is understood as \(c[h]\). Direct substitution in (SSR3.2) gives \((-nc[k],nc)\), proving equivariance.
+
+For completeness, this section is unique already for each recovered \(n>1\). Any residue section is \(c\mapsto c([j]+[a])\) for some \([a]\in Q\). Its equivariance is precisely
+\[
+(U_n-n)[a]=[\eta_n],
+\quad\text{equivalently}\quad
+(U_n-n)([a]+[k])=0.
+\tag{SSR3.4}
+\]
+At every actual nontrivial zero \(\rho\), \(0<\Re\rho<1\) gives
+\(|n^{1-\rho}|=n^{1-\Re\rho}<n\). Hence \(n^{1-s}-n\) is a holomorphic unit near that point. If its product with a representative \(a+k\) lies in \(I\), division by this unit preserves all vanishing derivatives through order \(m_\rho-1\), so \(a+k\in I\). Thus \([a]=-[k]\), proving uniqueness with all multiplicities retained.
+
+The new section \([j]\) itself is not equivariant: for every actual nontrivial zero,
+\[
+\eta_n(\rho)=\frac{g_t(\rho)}{\rho}
+                  (n-n^{1-\rho})\ne0\quad(n>1).
+\tag{SSR3.5}
+\]
+The same inequality and \(\rho\ne0\), \(g_t(\rho)\ne0\) prove this exact assertion. In particular \(\eta_n\notin I\) and \([k]\ne0\) in the actual zeta quotient. This uses the actual nonempty nontrivial divisor already present in the source, not a conjectured off-line zero.
+
+There is no equivariant residue section in \(E\) itself, whether written using \(h\) or \(j\): its new-coordinate equation would be \((U_n-n)a=\eta_n\), whose left side vanishes at zero whereas the right side has value \(n\log n\ne0\). The unique section in (SSR3.3) is specifically a section in \(E/I\).
+
+## SSR4. Full jets and the old zero-coordinate lift after the shear
+
+For an original nontrivial zero \(\rho\), and \(0\le d<m_\rho\), the complete zero order of \(h\) gives
+\[
+k^{(d)}(\rho)=j^{(d)}(\rho)
+=\sum_{a=0}^d\binom da g_t^{(a)}(\rho)
+       (-1)^{d-a}(d-a)!\rho^{-(d-a+1)}.
+\tag{SSR4.1}
+\]
+This is the full Leibniz formula; no derivative is replaced by its value component. Consequently the actual derivative functional \(\operatorname{ev}_\rho^{(d)}\) on \(E\) has coordinates
+\[
+(\operatorname{ev}_\rho^{(d)}|_{\mathcal B},0)_h
+\longleftrightarrow
+(\operatorname{ev}_\rho^{(d)}|_{\mathcal B},k^{(d)}(\rho))_j.
+\tag{SSR4.2}
+\]
+In particular the zeroth new coordinate is \(g_t(\rho)/\rho\ne0\), even though the old coordinate is zero.
+
+More generally, the old lift \(\sigma_h\Lambda=(\Lambda,0)_h\) becomes
+\[
+\sigma_h\Lambda=(\Lambda,\Lambda(k))_j.
+\tag{SSR4.3}
+\]
+It is the graph of evaluation on \(k\), not the new zero-coordinate slice. For \(\Lambda\in I^\perp\), (SSR2.2) gives
+\[
+n\Lambda(k)-\Lambda(\eta_n)
+=\Lambda(U_nk)=(U_n'\Lambda)(k),
+\tag{SSR4.4}
+\]
+because \(\Lambda(\delta_n)=0\). Thus this tilted graph is invariant on the full original quotient dual. Conversely, for a vector on that graph its transformed failure to stay on the graph is exactly \(-\Lambda(\delta_n)\), directly by (SSR2.2). This preserves the old complete ideal criterion; no statement about the distinct new zero-coordinate slice follows merely by renaming coordinates.
+
+## SSR5. The full uncorrected receiver in the new coordinates
+
+Retain the original meromorphic tests, including the exceptional zeroth coefficient:
+\[
+\phi_0(s)=-1/s,\qquad
+\phi_m(s)=\frac{m^{1-s}-(m+1)^{1-s}}s\ (m\ge1),
+\qquad G_m=g_t\phi_m.
+\tag{SSR5.1}
+\]
+Each has residue \(-1\). Define the two entire representatives
+\[
+F_m^h=G_m+h,\qquad F_m^j=G_m+j=F_m^h+k.
+\tag{SSR5.2}
+\]
+They belong to \(\mathcal B\) by NPE5 and SSR1, with the same polynomial-in-\(m\) seminorm estimates up to a fixed added term. The zeroth term changes explicitly:
+\[
+F_0^h=-k,\qquad F_0^j=0,
+\]
+\[
+F_m^j=\frac{g_t(s)}s
+\bigl(m^{1-s}-(m+1)^{1-s}+1\bigr)\quad(m\ge1).
+\tag{SSR5.3}
+\]
+For \(\Lambda\in\mathcal B'\), the corresponding disk-holomorphic receivers obey
+\[
+H_j\Lambda(z)=\sum_{m\ge0}\overline{\Lambda(F_m^j)}z^m
+=H_h\Lambda(z)+\frac{\overline{\Lambda(k)}}{1-z}.
+\tag{SSR5.4}
+\]
+These are conjugate-linear receiver maps; this conjugation is distinct from the unconjugated transpose in SSR2. The geometric series converges on every compact subdisk. The full uncorrected receiver is therefore exactly
+\[
+\boxed{M_t\widetilde\Lambda
+=H_h\Lambda-\frac{\overline\alpha}{1-z}
+=H_j\Lambda-\frac{\overline\beta}{1-z}.}
+\tag{SSR5.5}
+\]
+The last equality uses \(\beta=\alpha+\Lambda(k)\). The new tests' zeroth value gives the useful exact identity
+\[
+H_j\Lambda(0)=0,\qquad
+M_t\widetilde\Lambda(0)=-\overline\beta,
+\qquad\beta=-\overline{M_t\widetilde\Lambda(0)}.
+\tag{SSR5.6}
+\]
+Thus the new scalar coordinate is recovered from the full receiver's constant coefficient. In particular, the added boundary term has not disappeared.
+
+For the original quotient dual lift, substitute (SSR4.3) into (SSR5.5):
+\[
+M_t\sigma_h\Lambda
+=H_j\Lambda-\frac{\overline{\Lambda(k)}}{1-z}
+=H_h\Lambda\qquad(\Lambda\in I^\perp).
+\tag{SSR5.7}
+\]
+All old received functions are retained exactly. Setting \(\beta=0\) instead would omit the generally nonzero term shown in (SSR5.7).
+
+## SSR6. Cover identity and maximal Hardy domain under the shear
+
+Telescoping the complete tests in (SSR5.1), including \(m=0\), gives
+\[
+\sum_{a=0}^{n-1}G_{nm+a}=U_nG_m,
+\quad
+\sum_{a=0}^{n-1}F_{nm+a}^j=U_nF_m^j+\eta_n.
+\tag{SSR6.1}
+\]
+The second follows by adding \(nj\) and using \(nj-U_nj=\eta_n\); its first block also gives
+\[
+\sum_{a=0}^{n-1}F_a^j=\eta_n
+\tag{SSR6.2}
+\]
+because \(F_0^j=0\). Let \(\mathscr W_n^*\) denote the original coefficient-block sum on disk-holomorphic functions. Taking the functionals with the conjugations of (SSR5.4) proves
+\[
+\mathscr W_n^*H_j\Lambda-H_jU_n'\Lambda
+=\frac{\overline{\Lambda(\eta_n)}}{1-z}.
+\tag{SSR6.3}
+\]
+Since \(\mathscr W_n^*(1-z)^{-1}=n(1-z)^{-1}\), the complete (SSR5.5) and (SSR2.7) give
+\[
+\mathscr W_n^*M_t=M_t(U_n^E)'
+\tag{SSR6.4}
+\]
+in the new coordinates too. Both terms in the last expression of (SSR5.5) are retained in this exact covariance calculation.
+
+The same maximal Hardy graph is transported by the shear as
+\[
+\{(\Lambda,\alpha):H_h\Lambda-\overline\alpha/(1-z)\in H^2\}
+\longleftrightarrow
+\{(\Lambda,\beta):H_j\Lambda-\overline\beta/(1-z)\in H^2\}.
+\tag{SSR6.5}
+\]
+This is equality of actual received functions under the continuous dual shear, so it is a homeomorphism for the graph topologies as well. It changes neither injectivity nor the retained raw-cover degree identity in NPE7.3. In particular, it gives no permission to assert Hardy membership for \(H_j\Lambda\) alone when only the difference in (SSR6.5) is known to belong to \(H^2\).
+
+## SSR7. Review conclusion and exact extension of the calculation
+
+All shear formulas hold more generally for any two continuous residue sections differing by a fixed \(k\in\mathcal B\): the primal shear is subtraction of \(ck\), the dual shear is addition of \(\Lambda(k)\), and the cocycles differ by \((n-U_n)k\). Their proofs are exactly the substitutions in SSR1–2 and do not require Gaussian or zeta factors. For the specific sections examined here, SSR3–6 additionally retain the complete original zero jets and full uncorrected receiver. These extra conclusions use the actual original ideal and cannot be inferred for an arbitrary quotient.
+
+No mathematical error was found in the supplied proposed section change once the two coordinate systems are kept distinct. The sign of the dual shear is positive; the cover transpose contains the negative cocycle evaluation. The equivariant residue section is unique in the full-ideal pushout and is \([h]=[j-k]\); it is not \([j]\) and it is not an equivariant section in \(E\). The existing original quotient-dual lift is the graph \(\beta=\Lambda(k)\) in the new coordinates. These are exact comparisons of the same source and action, not a deletion of its endpoint or original-zeta data.

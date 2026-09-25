@@ -1,0 +1,469 @@
+# Two residue sections in the same source: exact shear and full discrepancy ideals
+
+25 September 2026. Complete source-level derivation NJS0–NJS10. This compares two continuous residue sections in the same actual meromorphic space. It does not alter the accepted NPE/NER sources. Source hashes and independent checking coverage are recorded separately in `argument_reconstruction/NOOR_RESIDUE_SECTION_SOURCE_USE.json`.
+
+## NJS0. Objects and construction stage
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\). All arithmetic labels, scalar functions, logarithms, vector spaces and operations below occur after complete-history arithmetic reconstruction. No parity, coordinate, arithmetic value, midpoint, metric or addition is assigned to the support. Separate branch counters are not pooled. The endpoint \(s=0\) belongs to the recovered coefficient variable and is not identified with \(\tau\).
+
+Retain exactly
+\[
+\mathcal B=\{F\in\mathcal O(\mathbb C):q_{A,N}(F)<\infty\text{ for every }A>0,N\ge0\},
+\quad q_{A,N}(F)=\sup_{|\Re s|\le A}(1+|\Im s|)^N|F(s)|,
+\tag{NJS0.1}
+\]
+the original full nontrivial-zero jet ideal \(I\), and \(Q=\mathcal B/I\). At each actual original nontrivial zero \(\rho\), the conditions defining \(I\) impose every derivative through order \(m_\rho-1\). Retain the complete function
+\[
+F_0(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\quad F_0(0)=F_0(1)=\frac18,
+\quad F_0(-1)=F_0(2)=\frac\pi{24},
+\]
+\[
+F_0(-2a)=\frac{a(2a+1)(-1)^a\pi^a}{2a!}\zeta'(-2a)\quad(a\ge1).
+\tag{NJS0.2}
+\]
+This source multiplier retains its exact comparison with original \(\zeta\), including the pole, trivial zeros, Gamma factor, powers of pi and endpoints. Original \(\zeta\) is not replaced by it.
+
+Fix the same positive real \(t\) in both sections and put \(g_t(s)=e^{ts^2}\). The original meromorphic extension and two actual meromorphic functions are
+\[
+E=\mathcal B+\mathbb C h_t,
+\qquad h_t=\frac{8g_tF_0}s,
+\qquad j_t=\frac{g_t}s.
+\tag{NJS0.3}
+\]
+The topology on \(E\) is the complete product topology of its original unique coordinates \(F+ch_t\). Its residue at zero is \(c\). The original cover action is \(U_nf(s)=n^{1-s}f(s)\), for recovered integers \(n\ge1\). These are the exact NPE1–2 objects.
+
+The foundation question is whether the zero-coordinate condition used to recover \(Q'\) is independent of the residue section. Every comparison below is performed in this same \(E\), with its full source and receiver retained.
+
+## NJS1. Primal and strong-dual coordinate shears
+
+Define the entire difference
+\[
+k_t=j_t-h_t=\frac{g_t(s)(1-8F_0(s))}s.
+\tag{NJS1.1}
+\]
+Its numerator vanishes at zero because \(8F_0(0)=1\). Outside a unit disk its quotient is bounded in each source seminorm by the Gaussian times the bounded-strip factors; inside, removable division and the maximum principle on a radius-two disk give finite bounds. Thus \(k_t\in\mathcal B\). Its exact value at zero is
+\[
+k_t(0)=-8F_0'(0),
+\tag{NJS1.2}
+\]
+since \(g_t'(0)=0\). Both \(h_t\) and \(j_t\) have residue one, and
+\[
+E=\mathcal B\oplus\mathbb C h_t=\mathcal B\oplus\mathbb C j_t
+\tag{NJS1.3}
+\]
+as transported topological vector spaces of actual functions. If
+\(f=F_h+ch_t=F_j+cj_t\), then
+\[
+F_j=F_h-ck_t,\qquad F_h=F_j+ck_t.
+\tag{NJS1.4}
+\]
+These continuous linear shears are inverse, so no function or topology is lost.
+
+For a continuous complex-linear functional \(\widetilde\Lambda\in E'\), let \(\Lambda\) be its restriction to \(\mathcal B\), \(\alpha=\widetilde\Lambda(h_t)\), and \(\beta=\widetilde\Lambda(j_t)\). Its two coordinates satisfy
+\[
+\widetilde\Lambda(F_h+ch_t)=\Lambda(F_h)+c\alpha,
+\quad\widetilde\Lambda(F_j+cj_t)=\Lambda(F_j)+c\beta,
+\]
+\[
+\boxed{\beta=\alpha+\Lambda(k_t),\qquad\alpha=\beta-\Lambda(k_t).}
+\tag{NJS1.5}
+\]
+The restriction \(\Lambda\) is unchanged. Evaluation on the fixed \(k_t\) is continuous in the strong dual, and the product decompositions of \(E\) identify its strong dual with \(\mathcal B'_\beta\oplus\mathbb C\). Hence this is also a strong-dual topological isomorphism.
+
+The two zero-coordinate sections of dual restriction are different maps:
+\[
+\sigma_h\Lambda=(\Lambda,0)_h=(\Lambda,\Lambda(k_t))_j,
+\qquad
+\sigma_j\Lambda=(\Lambda,0)_j=(\Lambda,-\Lambda(k_t))_h.
+\tag{NJS1.6}
+\]
+The subscript identifies the coordinates. Equating these maps would discard their displayed residue-functional difference.
+
+## NJS2. Full cocycle and transpose calculation
+
+The discrepancy for \(h_t\) is the original one,
+\[
+\delta_{n,t}=nh_t-U_nh_t
+=8g_tF_0\frac{n-n^{1-s}}s\in I.
+\]
+For \(j_t\) the corresponding actual discrepancy is
+\[
+\eta_{n,t}=nj_t-U_nj_t
+=g_t\frac{n-n^{1-s}}s\in\mathcal B.
+\tag{NJS2.1}
+\]
+The divided numerator has removable value \(n\log n\); Gaussian strip decay proves the stated source membership. Every factor remains in the exact comparisons
+\[
+\boxed{\delta_{n,t}=8F_0\eta_{n,t},\qquad
+\eta_{n,t}=\delta_{n,t}+(n-U_n)k_t.}
+\tag{NJS2.2}
+\]
+Both discrepancies have value \(n\log n\) at zero. Their difference has value zero there, exactly as the coboundary formula requires. Each obeys the same complete cocycle law, for example
+\[
+\eta_{mn,t}=m\eta_{n,t}+U_n\eta_{m,t}
+=n\eta_{m,t}+U_m\eta_{n,t},
+\tag{NJS2.3}
+\]
+by expanding \(nj_t-U_nj_t\). The corresponding formulas for \(\delta\) follow from the same computation with \(h_t\).
+
+In the new product coordinates,
+\[
+U_n^E(F_j,c)=(U_nF_j-c\eta_{n,t},nc),
+\qquad
+(U_n^E)'(\Lambda,\beta)_j
+=(U_n'\Lambda,n\beta-\Lambda(\eta_{n,t}))_j.
+\tag{NJS2.4}
+\]
+There is no conjugation in this complex-linear transpose. Applying (NJS1.5) to the old transpose gives the same formula: its second component is
+\[
+n\alpha-\Lambda(\delta_{n,t})+(U_n'\Lambda)(k_t)
+=n\beta-\Lambda\bigl(\delta_{n,t}+nk_t-U_nk_t\bigr).
+\]
+Equation (NJS2.2) identifies the bracket as \(\eta_{n,t}\). Thus the two coordinate actions are conjugate by the displayed shear on the complete dual, rather than separate actions on different extensions.
+
+Neither residue section is equivariant in the full \(E\): a putative correction by an entire function would require \((U_n-n)F\) to have value \(n\log n\) at zero, whereas its value there is zero. The same nonsplit extension is being written with two different cocycle representatives.
+
+## NJS3. The new discrepancies are dense in the entire source
+
+The statement proved here is closure of the finite complex-linear span in the original \(\mathcal B\) topology:
+\[
+\boxed{\overline{\operatorname{span}_{\mathbb C}
+\{\eta_{n,t}:n\ge2\}}^{\mathcal B}=\mathcal B.}
+\tag{NJS3.1}
+\]
+There is no zero-divisor hypothesis in this proof. Let \(\Lambda\in\mathcal B'\) annihilate every \(\eta_{n,t}\), and define
+\[
+K_w(s)=g_t(s)\frac{e^w-e^{(1-s)w}}s
+=we^wg_t(s)\int_0^1e^{-\theta sw}\,d\theta,
+\qquad L(w)=\Lambda(K_w).
+\tag{NJS3.2}
+\]
+Both expressions agree by integrating in \(\theta\); the first has removable value \(K_w(0)=we^w\). For each \(w\), it is in \(\mathcal B\).
+
+Here are the full growth and continuity details for the sampling argument. Write \(s=x+iy,w=a+ib\). On \(|x|\le A\), outside \(|s|<1\), the first numerator term after Gaussian multiplication has modulus at most \(e^{tA^2+|a|-ty^2}\). The second is at most
+\[
+e^{tA^2+(1+A)|a|}e^{-ty^2+by}.
+\]
+After multiplying by \((1+|y|)^N\), the inequality
+\(-ty^2+|b||y|\le-(t/2)y^2+b^2/(2t)\)
+bounds its supremum by \(C_{N,t}e^{b^2/(2t)}\). Inside the unit disk, the entire divided expression is bounded by its values on \(|s|=2\), whose modulus is at most a fixed constant times \(e^{C|w|}\). Combining the estimates gives
+\[
+q_{A,N}(K_w)\le C_{A,N,t}
+\exp\{C_{A,t}|w|+|w|^2/(2t)\}.
+\tag{NJS3.3}
+\]
+Each parameter derivative adds a finite power of \(1-s\), still controlled in every source seminorm by the Gaussian; the same estimates bound Taylor remainders uniformly on compact parameter sets. Thus \(K_w\) is an entire \(\mathcal B\)-valued function and \(L\) is entire with \(|L(w)|\le Ce^{C(1+|w|^2)}\).
+
+Exactly \(K_{\log n}=\eta_{n,t}\) for \(n\ge2\), and \(K_0=0\). Therefore \(L(\log n)=0\) for all recovered positive integers. If \(L\) were nonzero, choose a point \(w_0\) where it is nonzero. Jensen's formula on a circle of radius \(2R\) centered there bounds the number of zeros in radius \(R\) by \(O(R^2)\): each contributes at least \(\log2\) and the displayed growth bounds the circle maximum by \(Ce^{CR^2}\). The distinct points \(\log n\), \(n\le e^{R/2}\), lie in that disk for all sufficiently large \(R\) and contradict this bound. Thus \(L=0\).
+
+The derivative before applying any quotient is
+\[
+(\partial_w-1)K_w=g_t(s)e^{(1-s)w}.
+\tag{NJS3.4}
+\]
+Its sign is positive: differentiating the second numerator exponential and subtracting the original numerator leaves \(s e^{(1-s)w}\). Consequently
+\[
+\Lambda(g_te^{vs})=0\qquad(v\in\mathbb C).
+\tag{NJS3.5}
+\]
+
+## NJS4. Exact half-Mellin continuation and the closure conclusion
+
+For completeness, the continuation from (NJS3.5) to the full source retains the original transform constants. Given \(F\in\mathcal B\) and real \(u>t\), set \(H=e^{(u-t)s^2}F\). Its inverse and forward formulas are
+\[
+a_H(x)=\frac{x^{-1/2}}\pi\int_{\mathbb R}H(1/2+iy)x^{-iy}\,dy,
+\quad
+H(s)=\frac12\int_{\mathbb R}a_H(e^v)e^{sv}\,dv.
+\tag{NJS4.1}
+\]
+Their constants follow from Fourier inversion: the Fourier transform with exponent \(+iyv\) of \(a_H(e^v)e^{v/2}\) is \(2H(1/2+iy)\), and its inverse coefficient is \(1/(2\pi)\). Rapid strip decay makes the horizontal edges vanish when the first integration line is moved to any fixed real coordinate. The resulting factor is \(e^{-cv}\); choosing \(c\) arbitrarily large with either sign proves that \(a_H(e^v)\) decreases faster than every exponential in \(|v|\). Derivatives are controlled by the same estimates with additional powers of \(c+iy\).
+
+Multiplying the second formula by \(g_t\) gives the actual source integral
+\[
+e^{us^2}F(s)=\frac12\int_{\mathbb R}a_H(e^v)g_t(s)e^{sv}\,dv.
+\tag{NJS4.2}
+\]
+It converges in every original seminorm because for real \(v\),
+\(q_{A,N}(g_te^{sv})\le C_{A,N,t}e^{A|v|}\),
+and the other factor has all the exponential-decay bounds just proved. Finite-interval Riemann sums and their tails converge in the complete source; a continuous functional may therefore pass through the integral. Equation (NJS3.5) yields \(\Lambda(e^{us^2}F)=0\) for every real \(u>t\).
+
+For fixed \(F\), this scalar function of \(u\) is holomorphic on \(\Re u>0\). Indeed, for \(u=p+iq\) and \(s=x+iy\),
+\[
+\Re(us^2)=p(x^2-y^2)-2qxy.
+\]
+On a compact parameter set in that half-plane, \(p\) has a positive lower bound and \(|q|\) a finite upper bound. This uniformly negative vertical quadratic controls all derivative factors and Taylor remainders in every source seminorm. The identity theorem extends the scalar vanishing to the whole half-plane. Finally the exact exponential integral remainder gives
+\[
+q_{A,N}((e^{us^2}-1)F)
+\le ue^{A^2}(A^2+1)q_{A,N+2}(F),\qquad0<u\le1.
+\tag{NJS4.3}
+\]
+Letting \(u\downarrow0\) proves \(\Lambda(F)=0\). Thus the discrepancy span has zero continuous annihilator; Hahn–Banach separation proves (NJS3.1).
+
+If “span over \(\mathcal B\)” is intended to mean the \(\mathcal B\)-module generated by the discrepancies instead of their complex-linear span, its closure is also \(\mathcal B\). For each fixed \(\eta_{n,t}\), the elements \(e^{\varepsilon s^2}\eta_{n,t}\) belong to that module, and (NJS4.3) makes them converge to \(\eta_{n,t}\). Its closed module span therefore contains the already dense linear span. This states both meanings without treating the nonunital source algebra as if it contained the constant one.
+
+The factor relation in (NJS2.2) now gives a direct comparison with the old discrepancy ideal. Multiplication by \(8F_0\) is continuous on \(\mathcal B\), and applying it to approximating sequences in the dense new span shows
+\[
+\overline{\operatorname{span}\{\delta_{n,t}\}}^{\mathcal B}
+=\overline{8F_0\mathcal B}^{\mathcal B}
+=\overline{F_0\mathcal B}^{\mathcal B}=I.
+\tag{NJS4.4}
+\]
+The last equality is the completely proved NCI2 Gaussian-division theorem, also checked in NER11 with its retained full Hadamard product and all zero multiplicities. The factor eight is retained in the actual maps; the equality of linear subspaces follows because multiplication of coefficients by eight is a bijection, not because that factor was deleted from either discrepancy.
+
+The same conclusion already follows from every square-degree cover, without using all integer degrees:
+\[
+\overline{\operatorname{span}\{\eta_{k^2,t}:k\ge2\}}^{\mathcal B}=\mathcal B,
+\qquad
+\overline{\operatorname{span}\{\delta_{k^2,t}:k\ge2\}}^{\mathcal B}=I.
+\tag{NJS4.5}
+\]
+Indeed, a continuous annihilator of the first family gives the same entire function \(L\) and the same bound (NJS3.3), but now with zeros at every \(2\log k\). For any fixed center \(w_0\) at which a putative nonzero \(L\) does not vanish, all \(2\le k\le\lfloor e^{R/4}\rfloor\) satisfy \(|2\log k-w_0|\le R\) for sufficiently large \(R\). Their number grows exponentially, again contradicting Jensen's \(O(R^2)\) bound. Thus \(L=0\); (NJS3.4) and the complete half-Mellin and parameter-continuation proof (NJS4.1)–(NJS4.3) force the annihilator to vanish on all \(\mathcal B\). Hahn–Banach proves the first closure identity, and continuous multiplication by the retained \(8F_0\), followed by the same NCI2 division theorem, proves the second. The square degrees are used only after complete-history arithmetic reconstruction, and form an infinite family; this is not a finite-stage reconstruction.
+
+## NJS5. The unchanged original-ideal pushout in both coordinates
+
+In the old coordinates, the original quotient is the diagonal representation
+\[
+E/I\simeq Q\oplus\mathbb C_\chi,
+\qquad [F_h+ch_t]\longmapsto([F_h],c).
+\tag{NJS5.1}
+\]
+In the new product coordinates, its immediate quotient map is
+\([F_j+cj_t]\mapsto([F_j],c)\), but the action is
+\[
+([F_j],c)\longmapsto([U_nF_j-c\eta_{n,t}],nc).
+\tag{NJS5.2}
+\]
+It is related to (NJS5.1) by the exact continuous quotient shear
+\[
+([F_j],c)\longmapsto([F_j]+c[k_t],c).
+\tag{NJS5.3}
+\]
+The inverse subtracts \(c[k_t]\). Modulo \(I\), equation (NJS2.2) becomes
+\([\eta_{n,t}]=(n-U_n)[k_t]\), and direct substitution proves that (NJS5.3) intertwines (NJS5.2) with the diagonal action. The equivariant residue section in new coordinates is therefore
+\[
+c\longmapsto(-c[k_t],c),
+\quad\text{whose actual class is }c[j_t-k_t]=c[h_t].
+\tag{NJS5.4}
+\]
+Its uniqueness is the NPE3 proof: \((n^{1-s}-n)\) is a nonzero holomorphic unit at every actual nontrivial zero because \(0<\Re\rho<1\), so an eigenclass in \(Q\) with eigenvalue \(n\) must have every full jet zero. That proof is unchanged by the quotient shear.
+
+The new uncorrected section \(c\mapsto c[j_t]\) is not this section. At every actual nontrivial zero,
+\[
+k_t(\rho)=\frac{g_t(\rho)}\rho\ne0,
+\quad
+\eta_{n,t}(\rho)=\frac{g_t(\rho)}\rho
+\bigl(n-n^{1-\rho}\bigr)\ne0\qquad(n>1).
+\tag{NJS5.5}
+\]
+Thus their classes are nonzero in \(Q\). Existence of a nontrivial zero here is already a consequence of the retained source product: if \(F_0\) had no zeros, its genus-one product would be \(e^{a+bs}\); the source symmetry \(F_0(s)=F_0(1-s)\) would force \(b=0\). This would contradict \(F_0(0)=1/8\) and \(F_0(2)=\pi/24\), since \(\pi\ne3\). This observation makes no claim of any off-line zero. Therefore \([j_t]\) fails equivariance for every recovered \(n>1\), with the exact discrepancy in (NJS5.5), while the same quotient still splits by (NJS5.4).
+
+Every jet in these comparisons is retained. For \(0\le a<m_\rho\),
+\[
+k_t^{(a)}(\rho)=j_t^{(a)}(\rho)
+=\sum_{b=0}^a\binom ab g_t^{(b)}(\rho)
+(-1)^{a-b}(a-b)!\rho^{-(a-b+1)}.
+\tag{NJS5.6}
+\]
+This follows because \(h_t\) has the full zero order \(m_\rho\). No assertion of a scalar-only action replaces these higher derivatives.
+
+## NJS6. The same full receiver and two corrected observations
+
+Retain Noor's original meromorphic coefficients
+\[
+\phi_0(s)=-1/s,\quad
+\phi_m(s)=\frac{m^{1-s}-(m+1)^{1-s}}s\quad(m\ge1),
+\qquad G_{t,m}=g_t\phi_m\in E.
+\tag{NJS6.1}
+\]
+They have residue \(-1\). The two entire corrected families are
+\[
+F^h_{t,m}=G_{t,m}+h_t,
+\qquad F^j_{t,m}=G_{t,m}+j_t=F^h_{t,m}+k_t.
+\tag{NJS6.2}
+\]
+Both are in \(\mathcal B\); the new family explicitly has
+\[
+F^j_{t,0}=0,\qquad
+F^j_{t,m}=g_t(s)\frac{m^{1-s}-(m+1)^{1-s}+1}s\quad(m\ge1).
+\tag{NJS6.3}
+\]
+The numerator at zero is zero. Gaussian strip and removable-division estimates give the same polynomial-in-\(m\) bounds as NHJ1; adding the fixed \(k_t\) to the old family also proves them immediately.
+
+Define the two conjugate-linear entire-source observations by their actual coefficients:
+\[
+\mathcal H_t^h\Lambda(z)=\sum_{m\ge0}\overline{\Lambda(F^h_{t,m})}z^m,
+\qquad\mathcal H_t^j\Lambda(z)=\sum_{m\ge0}\overline{\Lambda(F^j_{t,m})}z^m.
+\]
+Their exact difference is
+\[
+\boxed{\mathcal H_t^j\Lambda
+=\mathcal H_t^h\Lambda+\frac{\overline{\Lambda(k_t)}}{1-z}.}
+\tag{NJS6.4}
+\]
+Both are continuous from the strong dual to holomorphic disk functions: the corresponding series of source tests is bounded in every source seminorm on each compact subdisk. The new observation has zero constant coefficient by (NJS6.3); this is not a statement about the full receiver.
+
+The actual full receiver uses the unchanged meromorphic tests:
+\[
+\mathcal M_t\widetilde\Lambda(z)
+=\sum_{m\ge0}\overline{\widetilde\Lambda(G_{t,m})}z^m
+=\mathcal H_t^h\Lambda-\frac{\overline\alpha}{1-z}
+=\mathcal H_t^j\Lambda-\frac{\overline\beta}{1-z}.
+\tag{NJS6.5}
+\]
+The last equality follows from (NJS1.5) and (NJS6.4). Hence the full function, its injectivity on \(E'_\beta\), its Hardy graph where defined, and its exact cover covariance are unchanged. NPE6/NER7 prove that injectivity by the complete meromorphic Jensen family and half-Mellin continuation; no coordinate deletion is used here.
+
+The new boundary coordinate is itself recoverable from the full receiver, with its exact conjugation:
+\[
+\mathcal M_t\widetilde\Lambda(0)=-\overline\beta,
+\qquad \beta=-\overline{\mathcal M_t\widetilde\Lambda(0)}.
+\tag{NJS6.5a}
+\]
+This follows directly from \(G_{t,0}=-j_t\). Also the initial corrected block satisfies
+\[
+\sum_{a=0}^{n-1}F^j_{t,a}=\eta_{n,t}.
+\tag{NJS6.5b}
+\]
+For its proof, the uncorrected sum telescopes to \(-g_t n^{1-s}/s\), including the \(a=0\) term, and its correction is \(nj_t=ng_t/s\). Thus the full coefficient sequence retains the boundary coordinate and every exact discrepancy, rather than hiding them in the coordinate change.
+
+The corrected entire-source observations have their respective discrepancies:
+\[
+\mathscr W_n^*\mathcal H_t^h\Lambda-\mathcal H_t^hU_n'\Lambda
+=\frac{\overline{\Lambda(\delta_{n,t})}}{1-z},
+\]
+\[
+\mathscr W_n^*\mathcal H_t^j\Lambda-\mathcal H_t^jU_n'\Lambda
+=\frac{\overline{\Lambda(\eta_{n,t})}}{1-z}.
+\tag{NJS6.6}
+\]
+To prove the second directly, telescope the uncorrected tests: \(\sum_{a=0}^{n-1}G_{t,nm+a}=U_nG_{t,m}\). Adding \(j_t\) to all \(n\) summands and comparing with \(U_nj_t\) leaves exactly \(nj_t-U_nj_t=\eta_{n,t}\). The same calculation with \(h_t\) gives the first formula. The full receiver instead obeys \(\mathscr W_n^*\mathcal M_t=\mathcal M_t(U_n^E)'\) before any quotient, exactly as (NJS2.4) requires.
+
+## NJS7. The two largest invariant zero-coordinate slices
+
+Consider first the zero-\(j_t\)-coordinate slice \(\sigma_j\mathcal B'\subset E'\). A vector \((\Lambda,0)_j\) has all its cover images in that same slice precisely when
+\[
+\Lambda(\eta_{n,t})=0\quad\text{for all }n\ge2,
+\tag{NJS7.1}
+\]
+by (NJS2.4). The density theorem (NJS3.1) forces \(\Lambda=0\). Conversely zero has this property. In particular
+\[
+\boxed{\text{the largest all-cover-invariant linear subspace of }
+\sigma_j\mathcal B'\text{ is }\{0\}.}
+\tag{NJS7.2}
+\]
+This also proves the stronger pointwise statement just used: requiring every first cover image to remain in the slice already forces zero.
+
+For the zero-\(h_t\)-coordinate slice the corresponding requirement is \(\Lambda(\delta_{n,t})=0\) for all \(n\). Equation (NJS4.4) gives exactly \(\Lambda\in I^\perp\). This set is invariant because \(U_nI\subset I\). Thus the original maximal slice is
+\[
+\boxed{\sigma_h(I^\perp),}
+\tag{NJS7.3}
+\]
+as NPE10 established. In the new coordinates this very same subspace is
+\[
+\boxed{\{(\Lambda,\beta)_j:\Lambda\in I^\perp, \beta=\Lambda(k_t)\}.}
+\tag{NJS7.4}
+\]
+It remains invariant. Indeed for such a vector, its new boundary coordinate after the cover is
+\[
+n\Lambda(k_t)-\Lambda(\eta_{n,t})
+=\Lambda(U_nk_t)=(U_n'\Lambda)(k_t),
+\]
+using (NJS2.2) and \(\Lambda(\delta_{n,t})=0\). The transformed restriction \(U_n'\Lambda\) still annihilates \(I\). Thus the discrepancy between (NJS7.2) and (NJS7.3) is entirely accounted for by changing which actual subspace of \(E'\) is called the zero-coordinate slice.
+
+The entire quotient dual \((E/I)'\) has the same intrinsic description in either coordinate system: \(\Lambda\in I^\perp\), with the additional scalar coordinate arbitrary. Its split \(Q'\) summand is (NJS7.3), whose new-coordinate graph is (NJS7.4). The residue-functional summand is \((0,\beta)\), unchanged by the shear. These formulas retain every quotient and every boundary summand; no zero conclusion about full \(E'\) follows from (NJS7.2).
+
+Both largest-invariant-slice conclusions also hold when invariance is required only under all square-degree covers. In the new slice the condition is exactly \(\Lambda(\eta_{k^2,t})=0\) for every \(k\ge2\), and the first equality of (NJS4.5) forces zero. In the old slice it is exactly \(\Lambda(\delta_{k^2,t})=0\), and the second equality gives \(I^\perp\). This old subspace is preserved by every cover because \(U_nI\subset I\), so it is also preserved by the square-degree family. This proves necessity, sufficiency and maximality in both cases.
+
+## NJS8. Exact Hardy-domain comparison and the retained degree
+
+Let the old and new corrected-source Hardy domains be
+\[
+\mathfrak D_h=\{\Lambda\in\mathcal B':\mathcal H_t^h\Lambda\in H^2\},
+\qquad
+\mathfrak D_j=\{\Lambda\in\mathcal B':\mathcal H_t^j\Lambda\in H^2\}.
+\tag{NJS8.1}
+\]
+Their difference is governed by the exact pole in (NJS6.4), not by a presumed shared Hilbert norm. On their intersection, \(\Lambda(k_t)=0\), since a nonzero constant coefficient sequence is not square summable. Conversely any member of either domain satisfying this scalar equality is in the other, with identical Hardy image. Thus
+\[
+\mathfrak D_h\cap\mathfrak D_j
+=\mathfrak D_h\cap\ker\operatorname{ev}_{k_t}
+=\mathfrak D_j\cap\ker\operatorname{ev}_{k_t}.
+\tag{NJS8.2}
+\]
+
+For \(\Lambda\in\mathfrak D_j\), the bounded raw cover \(W_n^*\) preserves Hardy membership of the first term in (NJS6.6). The second term belongs to \(H^2\) exactly when \(\Lambda(\eta_{n,t})=0\). Therefore
+\[
+\{\Lambda\in\mathfrak D_j:U_n'\Lambda\in\mathfrak D_j\text{ for all }n\ge2\}
+=\{0\}.
+\tag{NJS8.3}
+\]
+For the old domain the corresponding exact set is \(\mathfrak D_h\cap I^\perp=q'\mathfrak D_t^Q\), by the same argument using \(\delta\). In the full extended Hardy graph, this tilted graph remains exactly
+\(\{(\Lambda,\Lambda(k_t))_j:\Lambda\in\mathfrak D_h\cap I^\perp\}\).
+No claim about whether the specialization quotient vanishes is used.
+
+These two Hardy-domain identities also hold with all \(n\ge2\) replaced by all \(n=k^2\), \(k\ge2\). The same bounded-cover and nonsquare-summable-boundary calculation forces annihilation of the corresponding square-degree discrepancies. Equation (NJS4.5) gives zero for the new domain and \(\mathfrak D_h\cap I^\perp\) for the old one. Conversely an old-domain functional annihilating \(I\) has zero discrepancy under every cover by (NJS6.6), and the bounded cover then keeps its image in \(H^2\). Hence no closure or invariance step is omitted in the restricted-family conclusion.
+
+The maximal Hardy graph on full \(E'\) is unchanged under the shear because the actual function \(\mathcal M_t\widetilde\Lambda\) is unchanged. It remains closed, injective and cover-invariant by NPE7. It is not the new zero-coordinate slice. Every element of that graph retains the exact raw degree identity
+\[
+n\|\mathcal M_t\widetilde\Lambda\|^2
+-\|\mathcal M_t(U_n^E)'\widetilde\Lambda\|^2
+=n\|(I-P_n)\mathcal M_t\widetilde\Lambda\|^2,
+\tag{NJS8.4}
+\]
+where \(W_n^*W_n=nI\) and \(W_nW_n^*=nP_n\). It follows directly from exact covariance of the full receiver. The coordinate change removes neither this projection nor its degree factor.
+
+## NJS9. Actual zero evaluations exhibit where the divisor is retained
+
+For every \(s\ne0\), evaluation on the actual meromorphic function is the same functional in either coordinate system. Its coordinates are
+\[
+\operatorname{ev}_s=(\operatorname{ev}_s|_{\mathcal B},h_t(s))_h
+=(\operatorname{ev}_s|_{\mathcal B},j_t(s))_j,
+\qquad j_t(s)=e^{ts^2}/s\ne0.
+\tag{NJS9.1}
+\]
+In particular at an actual nontrivial zero \(\rho\), \(h_t(\rho)=0\) but \(j_t(\rho)\ne0\). Their difference is exactly \(k_t(\rho)\) in (NJS5.5). Thus the same actual evaluation lies in the old zero-coordinate slice and in the new graph (NJS7.4), not in the new zero-coordinate slice.
+
+For \(1/2<\Re s<1\), the unchanged full receiver is
+\[
+\mathcal M_t\operatorname{ev}_s=\overline{g_t(s)}g_s,
+\quad
+\langle h_k,\mathcal M_t\operatorname{ev}_s\rangle
+=g_t(s)(1-k^{1-s})\frac{\zeta(s)}s.
+\tag{NJS9.2}
+\]
+This is Noor's exact original pairing, with the complete Gaussian and inner-product conjugation retained. Its cover factor has modulus condition \(|k^{1-s}|>1\), so the right side vanishes for all \(k\ge2\) exactly at original zeta zeros. This analytic orthogonality is independent of the residue coordinate choice.
+
+At every actual right-off-line zero, the old corrected-source image of its restriction is the Hardy vector \(\overline{g_t(\rho)}g_\rho\), while the new corrected-source image is
+\[
+\mathcal H_t^j(\operatorname{ev}_\rho|_{\mathcal B})
+=\overline{g_t(\rho)}g_\rho
++\frac{\overline{j_t(\rho)}}{1-z}.
+\tag{NJS9.3}
+\]
+The second term is nonzero and is not in \(H^2\); the actual full receiver subtracts it through its nonzero \(j_t\)-coordinate and returns precisely the old Hardy vector. This statement is for each such actual coordinate and does not assume that off-line zeros exist. It shows why imposing a new zero-coordinate condition would select a different functional, rather than reveal disappearance of the original one.
+
+For all original zero jets, (NJS5.6) gives the full boundary-coordinate shear. Applying the receiver to derivative evaluation retains the complete coefficients
+\[
+\overline{(g_t\phi_m)^{(a)}(\rho)}
+=\overline{\sum_{b=0}^a\binom ab
+g_t^{(b)}(\rho)\phi_m^{(a-b)}(\rho)},\qquad a<m_\rho.
+\tag{NJS9.4}
+\]
+No multiplicity or lower derivative is removed. The original pole, trivial-zero comparisons and all factors of (NJS0.2) remain in the maps that define the old section and its quotient; none is attributed to \(\tau\).
+
+## NJS10. Consequence for the foundation audit
+
+Both residue sections are valid in the same complete meromorphic source and represent the same nonsplit equivariant residue extension. Their cocycles differ by the explicit coboundary (NJS2.2). Nevertheless the closed linear spans of their cocycle values are different:
+\[
+\overline{\operatorname{span}\delta_{n,t}}=I,
+\qquad
+\overline{\operatorname{span}\eta_{n,t}}=\mathcal B.
+\tag{NJS10.1}
+\]
+Consequently that span, and the largest invariant subspace of the associated zero-coordinate slice, are not invariants of the bare extension independent of a chosen residue section. Equations (NJS1.5), (NJS5.3), (NJS6.5) and (NJS7.4) prove the full comparison; the difference is not a loss of information in \(E\).
+
+The divisor enters the old slice through the actual full factor \(8F_0\) in \(h_t\). It vanishes through every original zero order, and multiplies the dense new discrepancy family by that same factor. The NCI division theorem then recovers exactly the original closed full-jet ideal. This is a rigorous reconstruction from the specified section and observation. It is not a section-independent derivation of that divisor from the residue character and covers alone. The new section retains the same residue character and covers, but its discrepancy family detects every continuous source functional instead of selecting \(I^\perp\).
+
+The complete receiver still detects original-zeta orthogonality by (NJS9.2), regardless of section. The original-ideal pushout still splits uniquely by the corrected section (NJS5.4), the endpoint extension remains nonsplit before that pushout, and the full Hardy degree defect remains (NJS8.4). These are proved consequences of examining the foundational section choice itself. They establish no disappearance of the actual specialization class, no geometric purity theorem and no RH resolution.
+
+Programme source use: NPE0–10 and NER0–11 were read completely in the preceding derivation/review; NCI0–8 was read completely there, with NCI3–7 reread for this calculation. NHJ's full-source injection and exact raw-cover discrepancy were also completely read previously. The original Hardy coefficients and pairing remain S. Waleed Noor, [arXiv:1809.09577v4](https://arxiv.org/abs/1809.09577v4), author TeX SHA256 `bc3075483547782dce36bf55a6349899a26766fcfc8ae9f265079ec74601f2d3`, canonical ID `PUBUNIT-803463A3EF787AE3E69C519B`, lines 114–387 previously read in this reviewer task. No new whole-paper reading or novelty of the general change-of-section mechanism is claimed.

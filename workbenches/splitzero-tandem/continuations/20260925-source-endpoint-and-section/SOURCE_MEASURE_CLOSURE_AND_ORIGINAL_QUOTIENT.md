@@ -1,0 +1,373 @@
+# The complete source image in every positive measure receiver
+
+25 September 2026. Full calculation SMC0–SMC10. Hermitian forms are linear in the first argument. No numerical zero sample enters the proof.
+
+## SMC0. Original objects and operation prerequisites
+
+The supporting datum remains \(\tau\langle Z_1;\mathrm{no}\ Z_2\rangle\), with the user's \(Z_n\) information layers and separate branch histories. Addition at tau remains retracted. Every number, vector operation, integral, real parameter and coefficient field below belongs to the already reconstructed complete arithmetic. No coordinate, parity, value or metric is assigned to tau. The complete correction chains and the direct global quotientability arguments were reread before this calculation.
+
+Retain the original spaces
+\[
+S=\{f\in\mathcal S(\mathbb R):f(-v)=f(v),\ f(0)=0,\ \int_{\mathbb R}f=0\},
+\]
+\[
+A=\{a\in C^\infty(\mathbb R_{>0}):
+\sup_{u>0}(u^N+u^{-N})|(u\partial_u)^ja(u)|<\infty\quad\forall N,j\ge0\},
+\]
+\[
+\Sigma f(u)=2\sum_{n\ge1}f(nu),\qquad J=\Sigma S,\qquad
+\Theta a(s)=\frac12\int_0^\infty a(u)u^s\frac{du}{u}.
+\tag{SMC0.1}
+\]
+The factor2 retains both signs of the original even summation. Let
+\[
+\mathcal B=\{F\text{ entire}:b_{a,M}(F)=
+\sup_{|\Re s|\le a}(1+|\Im s|)^M|F(s)|<\infty\quad\forall a,M\ge0\},
+\]
+\[
+\mathcal I=\{F\in\mathcal B:F^{(j)}(\rho)=0\quad
+\forall\rho\in\mathscr Z,\ 0\le j<m_\rho\}.
+\tag{SMC0.2}
+\]
+Here \(\mathscr Z\) is the complete actual nontrivial zero set of original \(\zeta\), with original multiplicities \(m_\rho\). SSI1–SSI8 prove that \(\Theta:A\to\mathcal B\) is a topological isomorphism, \(\Theta J=\mathcal I\), and
+\[
+Q=A/J\xrightarrow{\sim}\mathcal B/\mathcal I.
+\tag{SMC0.3}
+\]
+The factor1/2 changes neither the set \(\mathcal I\) nor the equality of images, and remains in every norm below. These are actual images and original Fréchet quotients.
+
+Let \(\mu\) range over all positive locally finite Borel measures on \(\mathbb R\) such that
+\[
+\mu([j,j+1])\le C(1+|j|)^d\quad(j\in\mathbb Z)
+\tag{SMC0.4}
+\]
+for some finite constants \(C,d\). Put
+\[
+H_\mu=L^2(\mathbb R,\mu),\quad
+j_\mu F(\lambda)=F(1/2+i\lambda),\quad
+\Gamma=\{\gamma\in\mathbb R:\zeta(1/2+i\gamma)=0\}.
+\tag{SMC0.5}
+\]
+SPF0–SPF11 proves that these are exactly the scalar measure receivers of all continuous positive transfer-adjoint forms on the original prequotient source. The closure theorem below has its own direct density proof and does not assume SPF's cyclicity or any density of primal zero jets.
+
+## SMC1. Continuous source maps and a globally dense Gaussian orbit
+
+For \(2M>d+2\), partitioning into unit intervals gives
+\[
+\|j_\mu F\|_{H_\mu}^2
+\le b_{1,M}(F)^2\int(1+|\lambda|)^{-2M}d\mu(\lambda)<\infty.
+\tag{SMC1.1}
+\]
+Thus the map is continuous. The zero measure is allowed throughout. Consider
+\[
+g(s)=e^{(s-1/2)^2},\qquad
+g_t(s)=e^{t(s-1/2)}g(s)\quad(t\in\mathbb R).
+\tag{SMC1.2}
+\]
+Both functions belong to \(\mathcal B\), since their modulus on a bounded real strip is bounded by a strip-dependent constant times \(e^{-\lambda^2}\). Their actual line values are
+\[
+j_\mu g_t(\lambda)=e^{it\lambda}e^{-\lambda^2}.
+\tag{SMC1.3}
+\]
+Suppose \(h\in H_\mu\) is orthogonal to every vector (SMC1.3). The complex measure
+\[
+d\nu(\lambda)=h(\lambda)e^{-\lambda^2}d\mu(\lambda)
+\tag{SMC1.4}
+\]
+has finite total variation by Cauchy–Schwarz and the Gaussian integrability following from (SMC0.4). Its Fourier transform \(\int e^{-it\lambda}d\nu\) vanishes for every real \(t\). To spell out uniqueness in precisely this domain, convolve \(\nu\) with \(\eta_\varepsilon(x)=(4\pi\varepsilon)^{-1/2}e^{-x^2/(4\varepsilon)}\). Fourier inversion of the Gaussian and Fubini for the finite measure show \(\eta_\varepsilon*\nu=0\). For each continuous compactly supported \(\varphi\), Fubini gives \(\int(\eta_\varepsilon*\varphi)d\nu=0\). Gaussian approximation converges uniformly to \(\varphi\); finite total variation permits its limit in this integral. Thus \(\int\varphi\,d\nu=0\), so \(\nu=0\). Since the Gaussian is everywhere positive, \(h=0\) almost everywhere. Orthogonal-complement characterization of a closed subspace proves
+\[
+\overline{\operatorname{span}\{j_\mu g_t:t\in\mathbb R\}}^{H_\mu}
+=\overline{j_\mu\mathcal B}^{H_\mu}=H_\mu.
+\tag{SMC1.5}
+\]
+The continuous orbit and all of its parameters are retained. This is a global proof for every measure (SMC0.4).
+
+## SMC2. The actual original-zeta multiplier and every exceptional value
+
+The original Schwartz source vector and its exact transform are
+\[
+f_0(v)=\frac\pi2v^2(2\pi v^2-3)e^{-\pi v^2},
+\qquad
+F_0(s)=\Theta\Sigma f_0(s)
+=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\tag{SMC2.1}
+\]
+CFP3 and SPF8 prove this from actual summation, the Gaussian Fourier transform and Poisson summation. In its original convergence half-plane the two Gaussian summands are separately
+\[
+\int_0^\infty f_0(v)v^s\frac{dv}{v}
+=\frac12\pi^{-s/2}\Gamma((s+4)/2)
+-\frac34\pi^{-s/2}\Gamma((s+2)/2).
+\tag{SMC2.2}
+\]
+The Gamma recurrence gives their exact product in (SMC2.1). The source function \(k_0(t)=\tfrac12 e^{t/2}\Sigma f_0(e^t)\) is even and, together with every derivative, decreases faster than every exponential in both directions. Its entire transform is (SMC2.1), hence \(F_0\in\mathcal B\). In particular, its line restriction is bounded. The full exceptional values are
+\[
+F_0(0)=F_0(1)=\frac18,\qquad F_0(-1)=F_0(2)=\frac\pi{24},
+\]
+\[
+F_0(-2r)=\frac{r(2r+1)(-1)^r\pi^r}{2r!}\zeta'(-2r)
+=\frac{(1+2r)(2r)}8\pi^{-(1+2r)/2}
+\Gamma((1+2r)/2)\zeta(1+2r)\ne0\quad(r\ge1).
+\tag{SMC2.3}
+\]
+They use respectively \(\zeta(0)=-1/2\), its residue1 at1, and the Gamma residue \(2(-1)^r/r!\) at \(-2r\). The original functional equation
+\[
+\zeta(s)=2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)\zeta(1-s)
+\tag{SMC2.4}
+\]
+gives the simple trivial-zero derivative and the reflected equality in (SMC2.3). At a nontrivial zero, with \(\zeta(\rho+z)=z^{m_\rho}u_\rho(z)\), the exact local expression is
+\[
+F_0(\rho+z)=z^{m_\rho}\frac{(\rho+z)(\rho+z-1)}8
+\pi^{-(\rho+z)/2}\Gamma((\rho+z)/2)u_\rho(z),
+\qquad u_\rho(0)\ne0.
+\tag{SMC2.5}
+\]
+All its derivatives retain the full Leibniz sum
+\[
+F_0^{(j)}(s)=\sum_{k_0+k_1+k_2+k_3=j}
+\frac{j!}{k_0!k_1!k_2!k_3!}
+\left(\frac{s(s-1)}8\right)^{(k_0)}
+\left(-\frac{\log\pi}{2}\right)^{k_1}\pi^{-s/2}
+2^{-k_2}\Gamma^{(k_2)}(s/2)\zeta^{(k_3)}(s).
+\tag{SMC2.6}
+\]
+At exceptional points its entire value is supplied by differentiating the convergent source integral. Thus
+\[
+F_0\mathcal B\subset\mathcal I,
+\qquad\{\lambda:F_0(1/2+i\lambda)=0\}=\Gamma.
+\tag{SMC2.7}
+\]
+No assertion \(F_0\mathcal B=\mathcal I\) is needed. Original \(\zeta\) has not been replaced by \(F_0\).
+
+## SMC3. Exact closure of the full original source image
+
+Identify \(L^2(\mathbb R\setminus\Gamma,\mu)\) with the closed subspace of \(H_\mu\) of functions zero almost everywhere on \(\Gamma\). Every member of \(\mathcal I\) has zero value at every point of \(\Gamma\), so
+\[
+\overline{j_\mu\mathcal I}^{H_\mu}
+\subset L^2(\mathbb R\setminus\Gamma,\mu).
+\tag{SMC3.1}
+\]
+Let \(M_{F_0}\) be bounded multiplication by the full line restriction (SMC2.1). Source density (SMC1.5) and boundedness show that the closures of \(M_{F_0}j_\mu\mathcal B\) and \(\operatorname{Ran}M_{F_0}\) agree: approximate each input in \(H_\mu\) by source images and apply the bounded multiplier. This first range is contained in \(j_\mu\mathcal I\).
+
+For an arbitrary \(h\in L^2(\mathbb R\setminus\Gamma,\mu)\), put
+\[
+h_k=h\,1_{\{|F_0(1/2+i\lambda)|\ge1/k\}},\qquad
+v_k=\frac{h_k}{F_0(1/2+i\lambda)},
+\tag{SMC3.2}
+\]
+where the ratio is assigned0 outside the indicated set. Then \(v_k\in H_\mu\), \(\|v_k\|\le k\|h\|\), and \(M_{F_0}v_k=h_k\to h\) in \(H_\mu\) by dominated convergence. This proves the reverse inclusion in (SMC3.1) and the full identity
+\[
+\boxed{\overline{j_\mu\mathcal I}^{H_\mu}
+=\overline{j_\mu\Theta J}^{H_\mu}
+=L^2(\mathbb R\setminus\Gamma,\mu).}
+\tag{SMC3.3}
+\]
+The exact orthogonal quotient map is restriction to \(\Gamma\):
+\[
+H_\mu/\overline{j_\mu\mathcal I}
+\xrightarrow{\sim}L^2(\Gamma,\mu|_\Gamma),
+\qquad[h]\longmapsto h|_\Gamma.
+\tag{SMC3.4}
+\]
+Its inverse extends a function by0 and takes its quotient class. Both are isometries. The orthogonal projection before taking the quotient is multiplication by \(1_\Gamma\).
+
+## SMC4. The quotient seminorm, all source jets and the exact kernel
+
+For \([F]\in Q\), the norm induced by the completed quotient is exactly
+\[
+\boxed{\inf_{G\in\mathcal I}\|j_\mu(F-G)\|_{H_\mu}^2
+=\int_\Gamma|F(1/2+i\gamma)|^2d\mu(\gamma).}
+\tag{SMC4.1}
+\]
+The distance to a subspace equals its distance to its closure, and (SMC3.3) makes the latter the squared norm of the orthogonal projection. These facts prove the equality, including the infimum rather than an unproved minimizing source vector.
+
+The set \(\Gamma\) is closed and discrete, with finitely many points in each compact interval, since \(F_0\) is nonzero entire. Thus its restricted measure is
+\[
+\mu|_\Gamma=\sum_{\rho=1/2+i\gamma}w_\rho\delta_\gamma,
+\quad w_\rho=\mu(\{\gamma\})=m_\rho c_\rho,
+\quad c_\rho=w_\rho/m_\rho\ge0.
+\tag{SMC4.2}
+\]
+The original multiplicity is retained rather than absorbed into the value coordinate. The source-to-quotient map is continuous with dense image and has exact kernel
+\[
+N_\mu=\{[F]\in Q:F(\rho)=0
+\text{ for every line zero with }w_\rho>0\}.
+\tag{SMC4.3}
+\]
+Continuity follows from (SMC1.1), density from the dense original image followed by the surjective orthogonal projection, and the kernel follows from the nonnegative sum in (SMC4.1).
+
+The actual full-jet isolators realize, for each original block, the map
+\[
+\mathbb C[z]/(z^{m_\rho})\longrightarrow L^2(\Gamma,\mu|_\Gamma),
+\qquad \sum_{j=0}^{m_\rho-1}a_jz^j\longmapsto
+\begin{cases}
+a_0\,1_{\{\gamma\}},&\rho=1/2+i\gamma,\\
+0,&\Re\rho\ne1/2.
+\end{cases}
+\tag{SMC4.4}
+\]
+The indicator has squared norm \(m_\rho c_\rho\); it is0 as an \(L^2\) class precisely when its atom has zero mass. The higher jets, the possible off-line blocks and the zero-mass line values remain in the explicit source kernel. Their disappearance in this receiver is not their disappearance in \(Q\).
+
+The original source form itself descends without this projection exactly when \(\mu(\mathbb R\setminus\Gamma)=0\). Indeed its vanishing on \(\mathcal I\), hence on its closure (SMC3.3), is equivalent to that closed subspace being zero. This recovers SPF9 and distinguishes direct descent from the universally available projected quotient (SMC3.4).
+
+## SMC5. Original transfer and the full Fourier involution
+
+The original dilation on \(A\) is \(T_a b(u)=b(u/a)\), and
+\[
+\Theta T_a b(s)=a^s\Theta b(s),\qquad
+\widetilde T_a h(\lambda)=a^{1/2+i\lambda}h(\lambda),
+\qquad\|\widetilde T_a h\|^2=a\|h\|^2.
+\tag{SMC5.1}
+\]
+This follows by the substitution \(u=av\) and the absolute value of the displayed character. The integer transfer is \(n\widetilde T_{1/n}\), with multiplier \(n^{1/2-i\lambda}\), exactly the adjoint of \(\widetilde T_n\). Restriction to \(\Gamma\) intertwines these operators. The factor \(a^{1/2}\) and integer degree have not been removed.
+
+For the full source involution retain
+\[
+\mathcal R b(u)=u^{-1}b(u^{-1}),\qquad
+\jmath F(s)=F(1-s),\qquad\Theta\mathcal R=\jmath\Theta.
+\tag{SMC5.2}
+\]
+The equality follows by substituting \(v=u^{-1}\) with reversed integration endpoints. SSI7 proves \(\mathcal R\Sigma f=\Sigma\widehat f\), using the complete Poisson identity and the two stated endpoint conditions on \(S\). Define \(\mu^-\) as the image of \(\mu\) by \(\lambda\mapsto-\lambda\). Then
+\[
+U_-:H_\mu\xrightarrow{\sim}H_{\mu^-},\quad
+(U_-h)(\lambda)=h(-\lambda),\qquad
+U_-j_\mu F=j_{\mu^-}\jmath F.
+\tag{SMC5.3}
+\]
+Change of variables in the measure proves it is an isometry with inverse of the same formula. Original conjugation symmetry gives \(-\Gamma=\Gamma\), including multiplicities. Hence restriction of measures to \(\Gamma\) commutes with this reflected-measure map, and (SMC5.3) induces the exact involution on the completed quotient as well.
+
+In particular the positive form for \(\mu\) is invariant under \(\jmath\) if and only if \(\mu=\mu^-\). Sufficiency follows from (SMC5.3). For necessity, equality of the two forms identifies, on the Gaussian orbit of (SMC1.2), the Fourier transforms of the finite measures \(e^{-2\lambda^2}\mu\) and \(e^{-2\lambda^2}\mu^-\). The finite-measure uniqueness argument of SMC1 gives equality, and the strictly positive Gaussian can be cancelled as a measure density. Thus imposing the actual source involution imposes a proved symmetry condition on the entire measure, not an arbitrary equality of weights.
+
+## SMC6. Exact comparison maps between different positive receivers
+
+For two measures \(\mu,\nu\) satisfying (SMC0.4), the source identity extends to a bounded map
+\[
+K_{\mu\nu}:H_\mu\longrightarrow H_\nu,
+\qquad K_{\mu\nu}j_\mu F=j_\nu F
+\tag{SMC6.1}
+\]
+if and only if \(\nu\le C\mu\) for some finite \(C\). When this measure inequality holds, the map is the same measurable function viewed in \(L^2(\nu)\); it is well defined and has norm at most \(\sqrt C\). Density gives uniqueness.
+
+Conversely, a map of norm at most \(\sqrt C\) implies the norm inequality on \(\mathcal B\). The measure \(\omega=\mu+\nu\) still satisfies (SMC0.4). SMC1 shows \(j_\omega\mathcal B\) is dense in \(H_\omega\), so this inequality extends by simultaneous norm convergence to every vector of \(H_\omega\). For a bounded Borel set \(E\), its indicator belongs to \(H_\omega\), giving \(\nu(E)\le C\mu(E)\). Exhaustion by bounded sets proves the inequality for all Borel sets. Thus the exact squared operator norm is the least such \(C\), equivalently the essential supremum of \(d\nu/d\mu\) when finite.
+
+The maps commute with every original dilation and with the projection to \(\Gamma\). On the completed quotients their measures become \(\mu|_\Gamma,\nu|_\Gamma\), so the same criterion applies there. This is the precise comparison between positive receivers; a change of measure is not automatically an isomorphism or a bounded change of source topology.
+
+## SMC7. The original Mellin norm and its previously proved density
+
+For \(a\in A\), put \(a_{\log}(x)=e^{x/2}a(e^x)\). Then
+\[
+\|a_{\log}\|_{L^2(dx)}^2=\int_0^\infty|a(u)|^2du,
+\qquad
+\Theta a(1/2+it)=\frac12\int_{\mathbb R}a_{\log}(x)e^{itx}dx.
+\tag{SMC7.1}
+\]
+Fourier Plancherel with this sign and factor gives
+\[
+\int_{\mathbb R}|\Theta a(1/2+it)|^2dt
+=\frac\pi2\int_0^\infty|a(u)|^2du.
+\tag{SMC7.2}
+\]
+Thus \(\mu_0=(2/\pi)dt\) is the exact measure whose source pairing is the original \(L^2(du)\) norm. The logarithmic change and Fourier inversion give an onto isometry of the completed spaces.
+
+The centered convention used in M9 was \(\mathcal M k(s)=\int k(u)u^{s-1/2}du/u\), \(\mathcal E f=u^{1/2}\sum_{n\ge1}f(nu)\). Its exact comparison is
+\[
+\mathcal T k(u)=2u^{-1/2}k(u),\qquad
+\Sigma=\mathcal T\mathcal E,\qquad
+\Theta\mathcal T=\mathcal M,\qquad
+\|\mathcal T k\|_{L^2(du)}^2=4\|k\|_{L^2(du/u)}^2.
+\tag{SMC7.3}
+\]
+All factors are retained. M9 already proved density of \(\mathcal E S\) in its original Hilbert space. Accordingly the following is its proved exact transport and also the \(\mu_0\) case of SMC3, not a newly discovered density theorem:
+\[
+\overline J^{L^2(du)}=L^2(du),\qquad
+L^2(du)/\overline J^{L^2(du)}=0.
+\tag{SMC7.4}
+\]
+Here \(\Gamma\) has Lebesgue measure0, since it is discrete. In contrast, the original Fréchet quotient is still \(Q\) with all original jets. No nonzero positive descended form can be bounded by this ambient \(L^2(du)\) norm: SMC6 would require its atomic measure on \(\Gamma\) to be dominated by \((2/\pi)dt\), forcing every atom to vanish.
+
+## SMC8. A simultaneous receiver retaining the exact change of topology
+
+The actual multiplicity measure on the original line divisor is
+\[
+\mu_L=\sum_{\rho=1/2+i\gamma}m_\rho\delta_\gamma.
+\tag{SMC8.1}
+\]
+It has polynomial interval growth by the unconditional full zero count. It is singular with respect to \(\mu_0\), and \(\mu_0(\Gamma)=0\). For \(\omega=\mu_0+\mu_L\), restriction to the two disjoint measurable pieces gives the explicit isometry
+\[
+H_\omega\xrightarrow{\sim}H_{\mu_0}\oplus H_{\mu_L},
+\qquad h\longmapsto(h|_{\mathbb R\setminus\Gamma},h|_\Gamma).
+\tag{SMC8.2}
+\]
+The inverse joins the two functions on the displayed pieces. SMC1 proves that the original source, mapping to its two simultaneous observations, is dense in this full direct sum. SMC3 proves that its actual ideal has precisely closure \(H_{\mu_0}\oplus0\). Therefore its completed quotient is exactly \(H_{\mu_L}\), not a presumed quotient of \(H_{\mu_0}\) alone.
+
+Its full source norm is
+\[
+\|j_\omega\Theta a\|^2
+=\int_0^\infty|a(u)|^2du
++\sum_{\rho=1/2+i\gamma}m_\rho|\Theta a(\rho)|^2.
+\tag{SMC8.3}
+\]
+This constructs an exact simultaneous comparison, preserving the continuous and atomic observations separately. It does not derive the atomic measure from the Lebesgue measure or identify the resulting quotient with the full original divisor. The comparison kernel on \(Q\) is precisely \(N_L\) from CPS0.
+
+## SMC9. Receiving the actual specialization row and the entire Weil form
+
+Retain AST's original strict source row
+\[
+0\longrightarrow N_O\longrightarrow Q\longrightarrow R=Q/N_O\longrightarrow0,
+\quad N_O=\{[F]:F(\rho)=0\quad\forall\rho\in\mathscr Z_O\}.
+\tag{SMC9.1}
+\]
+For each positive source measure \(\mu\), the inherited quotient seminorm (SMC4.1) on \(N_O\) has the same completed receiver as on \(Q\). Indeed every finite line-value vector is realized by the original full-jet isolators, all of which lie in \(N_O\); their finite sequences are dense in the weighted atomic \(L^2\) space by convergence of its nonnegative norm sum. The kernel is exactly \(N_O\cap N_\mu\). Thus the source inclusion induces an isometry between these specified completions, with their precise kernels. This does not assert extension of every form intrinsic to \(N_O\).
+
+The induced seminorm on \(R\) is0: for any \(F\), approximate its weighted line-value sequence by those finite sequences from \(N_O\), making its distance to \(N_O\) arbitrarily small. This proves by the actual measure quotient the same zero-positive-receiver result as CPS4. The original strict row and its strong dual remain intact; it does not prove that \(R=0\).
+
+To keep the entire original trace, write
+\[
+W(F,G)=\sum_{\rho\in\mathscr Z}m_\rho F(\rho)\overline{G(1-\overline\rho)}
+=W_L(F,G)+W_O(F,G),
+\]
+\[
+W_L(F,G)=\int_\Gamma F(1/2+i\gamma)\overline{G(1/2+i\gamma)}d\mu_L(\gamma),
+\]
+\[
+W_O(F,G)=\sum_{\rho\in\mathscr Z_O}m_\rho F(\rho)\overline{G(1-\overline\rho)}.
+\tag{SMC9.2}
+\]
+Every sum is absolutely convergent by rapid strip decrease and the full zero count. The positive source quotient constructed here gives exactly \(W_L\). Its difference from the original form is the complete displayed \(W_O\), not an omitted contribution.
+
+For the full arithmetic identity put
+\[
+A_{F,G}(s)=F(s)\overline{G(1-\overline s)}
+=\int_{\mathbb R}h(v)e^{-(s-1/2)v}dv,
+\quad\widehat h(t)=\int_{\mathbb R}h(v)e^{-itv}dv.
+\]
+The established original formula remains
+\[
+W=A_{F,G}(0)+A_{F,G}(1)+A_\infty(h)-P_{\rm hist}(h),
+\]
+\[
+A_\infty(h)=\frac1{2\pi}\int_{\mathbb R}\widehat h(t)
+\left(\Re\frac{\Gamma'(1/4+it/2)}{\Gamma(1/4+it/2)}-\log\pi\right)dt,
+\]
+\[
+P_{\rm hist}(h)=\sum_{n\ge2}\frac{\log L_n-\log L_{n-1}}{\sqrt n}
+\bigl(h(\log n)+h(-\log n)\bigr),\qquad L_n=\operatorname{lcm}(1,\ldots,n).
+\tag{SMC9.3}
+\]
+The counting coefficient is exactly the original \(\Lambda(n)\), including every prime-power repetition. For every finite trivial-zero cutoff \(R_0\), retain
+\[
+V_{\zeta,R_0}=W+\sum_{r=1}^{R_0}A_{F,G}(-2r)-A_{F,G}(1),
+\]
+\[
+G_{R_0}=A_\infty(h)+A_{F,G}(0)+\sum_{r=1}^{R_0}A_{F,G}(-2r),
+\qquad V_{\zeta,R_0}=G_{R_0}-P_{\rm hist}(h).
+\tag{SMC9.4}
+\]
+This is an exact finite-cutoff identity for the original divisor, not a numerical test or a divergent infinite trivial-zero sum. Substituting \(W=W_L+W_O\) in these identities retains the entire complement. No measure selected above is declared to reproduce that complement through a positive norm.
+
+## SMC10. Completed next step and its remaining geometric receiver
+
+The previous calculation classified positive forms after the original quotient. The present calculation works before it, computes the full source image closure for every permitted positive measure, and proves its exact quotient, seminorm, kernels, involution and measure-change morphisms. The special Lebesgue density is an earlier theorem; the arbitrary-measure closure and all receiving maps are proved here. SPF independently derives why these measures exhaust all continuous positive source forms.
+
+In response to the question what advances the weight argument, the candidate ambient Mellin pairing has now been calculated, its original summation image completed, and its singular comparison to all nonzero descended forms proved. Adding the actual line-divisor observation constructs (SMC8.2), whose effect on the actual specialization row is fully computed in SMC9. The arithmetic complement \(W_O\) remains the explicit receiving term. Thus the next source-geometric calculation must act on that original term or on AST's original boundary map; selecting another positive source measure cannot hide its kernel, because all such kernels have now been calculated. This statement is the result of the completed measure construction, not an assumed lifting or positivity theorem.
+
+Complete proof dependencies retained alongside this note: SSI0–SSI10, M9, CFP0–CFP12 and CFPA, CPS0–CPS8, SPF0–SPF11, and AST's original strict source and strong-dual rows. Their precise reading and version hashes are recorded in the source-use ledger. The human coefficient source remains Connes–Consani, *Schemes over F1 and zeta functions*, arXiv:0903.2024v3 §5; this calculation uses the previously read author-source construction through SSI and AST and makes no claim of a new whole-paper reading. The original Deligne §3.6 lifting target remains governed by its recorded full source reading and geometric hypotheses.

@@ -1,5 +1,13 @@
 # Split-Zero cohomology: complete mathematical workbench
 
+<!-- source-endpoint-update-20260925 -->
+## Source endpoint and residue-section continuation
+
+The [complete source-endpoint edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/continuations/20260925-source-endpoint-and-section) extends the existing Split-Zero cohomology and original-zeta programme with its 647-page cumulative identity-absorption reader. It retains the preceding geometry, original divisor and positive-form work, and adds full-dual Hardy observations, the retained meromorphic endpoint, all-cover discrepancy generation and the precise residue-section comparison. The [result index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260925-source-endpoint-and-section/RESULTS.json) identifies the proved maps, their motivation, scope and source proofs.
+
+The complete LaTeX and Markdown, human citations, reproducible figures and mathematical reviews accompany the reader. Original zeta, zero multiplicities, endpoint residues and cover factors remain explicit. This is a source and observation comparison, not an RH proof or geometric purity theorem. The wider collection and all earlier editions remain available below.
+<!-- /source-endpoint-update-20260925 -->
+
 <!-- three-task-update-20260925 -->
 ## Full-source tensor and original-zeta continuation
 

@@ -48,7 +48,7 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - Pushes run on the owner's computer through its stored git login. The owner's GitHub token is not used; it was declined.
   - Procedure:
     1. In the cloud, `scratchpad/prepare_branch.sh "<message>"` builds a sanitized commit.
-    2. `git bundle create` writes it to a new file name each time; the commit tool reuses content cached by path.
+    2. `git bundle create` writes it to a new file name each time. The commit tool can send stale content when the same staged path is committed twice, as happened with the bundle and with BOARD.md, so any re-committed file is first copied to a unique staged name.
     3. `device_commit_files` copies the bundle to `work/claude_grind_20260925/_push/`.
     4. Desktop Commander runs `git fetch <bundle>` and `git push` in `%TEMP%/claude-ab-push`, with GIT_TERMINAL_PROMPT=0 and GCM_INTERACTIVE=Never.
   - The session's own git proxy does not authorize the repository.
@@ -147,8 +147,11 @@ A reminder is scheduled into this session. When it fires: read this file and the
 - 05:05–05:30 UTC:
   - Board task 1 is done: the even-tensor-power positivity is TWC7. The positive even-power series has abscissa exactly 1 + 2k·max Re ρ, so positivity only returns max Re ρ. This is `08_` revision 3, register negative result 27.
   - Read the README and results bulletin of the source-endpoint continuation. It uses Noor's Hardy-space version of the Báez-Duarte criterion, and its NCI result is the Fréchet case of the Nyman–Beurling picture. `09_` §4(c) and register bridge 13 are updated accordingly.
+- 05:15–05:30 UTC: the FLIP_FABLE Addendum 4 erratum.
+  - Written (board task 3, taken back from claude-b5 because it is my own error). The crossings found: zero 4 at t = 0.95095300425 and zero 5 at t = 0.858704259442, both on Re s = ½ (`checks/hurwitz_crossing_check.py`).
+  - Incident: a recursive search over the owner's whole `work/` folder was started on the owner's PC and stopped after 66 s. It broke the no-heavy-scans rule. Do not run recursive searches over `work/`; search only named folders.
 - Next block:
   1. (done 05:10) Codex's even-tensor-power positivity calculation.
   2. Read the rest of the 25 September continuations: OZD, FGR, WHR, HCS, GMC, GSP, CTS, SPF1–SPF8, and the source-endpoint continuation.
-  3. The FLIP_FABLE Addendum 4 erratum (possibly the local session).
+  3. (done 05:25) The FLIP_FABLE Addendum 4 erratum.
   4. The concise Claude's-edition PDF for Zenodo, once the register stabilizes.

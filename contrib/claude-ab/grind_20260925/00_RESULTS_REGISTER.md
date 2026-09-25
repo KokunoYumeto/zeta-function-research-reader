@@ -51,7 +51,9 @@ The detailed files are in this folder (`01_`–`09_`, `checks/`, `copy_round2/co
    - Source: copy, Theorem C; §7 of `02_`.
 2. **Off the Eulerian sheets the sharp spectrum is not the Dirichlet spectrum.** At a = 2 the sharp horizontal sum averages about (1/8π + 0.0165)T, because zeros with β > 1 lean right. Source: copy, `03_` §2.6.
 3. **RH fails on non-Eulerian sheets.** For a ∈ (0, 1) \ {½} there are infinitely many zeros with Re s > 1 (Davenport–Heilbronn; Cassels). For a > 1, such zeros are found numerically (census). Source: claude-ab, N1.
-4. **An earlier claim of mine was false.** The FLIP_FABLE Addendum 4 claim, that zeros sit on vertical lines only at Eulerian times, was refuted by certified crossings in the other lane. The file erratum is still pending.
+4. **An earlier claim of mine was false.**
+   - The FLIP_FABLE Addendum 4 claim, that zeros of ζ(s, 1+t) sit on vertical lines only at the Eulerian times, is wrong. Certified crossings in the other lane refuted it first.
+   - The erratum is now written (`ERRATUM_FLIP_FABLE_ADDENDUM_4.md`). Zero 4 of ζ crosses Re s = ½ at t = 0.95095300425, and zero 5 at t = 0.858704259442 (`checks/hurwitz_crossing_check.py`, 25 digits).
 5. **Table erratum (N3).** The column T = 2515 contains 1,999 zeros. Per-zero jumps of ±100–450 at that height make the sharp partial sums uninformative. Corrected in `SHIFTED_SHEETS_N1_N3.md`.
 6. **Positivity cannot see the off-line obstruction.** Every continuous positive form compatible with the scaling transfer vanishes on R = 𝒬/N_O. Any argument through such receivers cannot kill R. Source: programme, CPS4.2 (`04_`).
 7. **Doubling has no mirror-compatible lift** on CC's signed data, although (2) is a prime of the recovered Spec ℤ. Source: programme, W5.
@@ -182,6 +184,6 @@ The full referee pass on Theorem E is done (`06_`).
 
 **Examination:** the cross-programme reuse (goal 2, item 17).
 
-**Errata:** the FLIP_FABLE Addendum 4 erratum (goal 1, item 4).
+**Errata:** none pending. The FLIP_FABLE Addendum 4 erratum was written on 25 September.
 
 **Publication:** the concise Claude's-edition PDF for Zenodo, as a new version of record 22911829 (PLAN, standing rules).

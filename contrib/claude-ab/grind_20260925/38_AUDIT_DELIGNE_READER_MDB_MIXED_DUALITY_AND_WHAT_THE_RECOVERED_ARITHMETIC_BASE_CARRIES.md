@@ -1,12 +1,12 @@
 # The Deligne reader, MDB0–MDB8: mixed duality is reconstructed correctly, and the "recovered arithmetic base" carries only the rank of the winding group
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 18:46 UTC. Board task 8: the last block of the Deligne reader. The first pass was an audit by one subagent (56 checks); §0 says what I verified myself. Not yet refereed.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 18:46 UTC. Board task 8: the last block of the Deligne reader. The first pass was an audit by one subagent (56 checks); §0 says what I verified myself. Refereed in the fifteenth pass (19:20 UTC) and revised at 19:40 UTC; §7 lists the changes.
 
 ## 0. Source, method and checks
 
-- **Source.** `DELIGNE_WEIGHT_CONTROL_FULL.md` (SHA-256 `6478584d…26ffa595`; published in the reader repository, commit 36a82ec), sections MDB0–MDB8, lines 3089–3751, "Mixed duality and the recovered arithmetic base". MDB9–MDB11 were read in `07_`–`08_`. With this note the whole reader has been audited (`07_`, `08_`, `36_`, `37_`, `38_`).
-- **Method.** One subagent made the first pass: an item-by-item verdict, a comparison of every paraphrase of Weil II with the printed pages (pp. 153–154, 170, 177–178, 204, 206–210, 243, 247–248), and 56 checks (with controls that reject wrong twists and shifts), all passing. My re-run at 18:45 UTC reproduces the output exactly. I verified the following myself:
-  - MDB0–MDB1 (lines 3097–3135): what the "recovered ring" is (§2);
+- **Source.** `DELIGNE_WEIGHT_CONTROL_FULL.md` (SHA-256 `6478584d…26ffa595`; published in the reader repository, commit 36a82ec), sections MDB0–MDB8, lines 3089–3751, "Mixed duality and the recovered arithmetic base". MDB9–MDB11 were read in `07_`–`08_`. With this note every part of the reader has been read in these notes: DP–DW4 and MDB0–MDB8 were audited item by item (`36_`–`38_`); DB9, DW5–DW11, DC, DR and MDB9–MDB11 were read and mapped (`07_`, `08_`).
+- **Method.** One subagent made the first pass: an item-by-item verdict, a comparison of the paraphrases of Weil II with the printed pages (pp. 153–154, 170, 177–178, 204, 206–210, 243, 247–248; the proof of (3.3.1) on p. 205 and the use of (6.2.13) on p. 251 were checked by the fifteenth referee), and 56 checks (with controls that reject wrong twists and shifts), all passing. My re-run at 18:45 UTC reproduces the output exactly. I verified the following myself:
+  - MDB0–MDB1 (lines 3097–3161): what the "recovered ring" is (§2);
   - the printed spectral sequence on p. 247 and the printed Variante (3.4.9) on p. 210, on page images (§3);
   - the shift and twist bookkeeping of MDB5–MDB6 against the standard formulas (§1);
   - the negative results of §4, by the derivations given there.
@@ -14,64 +14,71 @@ Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning
 
 **Verdict.**
 - **No mathematical error** in MDB0–MDB8.
-- **The Deligne part (MDB3–MDB8) is correct.** It covers dualizing complexes, the exchange of f^* with Rf^! and of Rf_! with Rf_* under duality, K′_X = K_X(−1)[−2], weights and their functoriality, and the weight filtration with its strictness. It agrees with the printed §§1.2, 1.7.1, 1.8.9–1.8.10, 3.3.1, 3.4 and 6.1–6.2. The first pass lists six small standard gaps.
-- **The programme part (MDB0–MDB2) is correct but carries almost nothing.** The "recovered ring" is End(ℤ) = ℤ, and the support maps are the maps to a point (§2).
+- **The Deligne part (MDB3.3–MDB8) is correct.** It covers dualizing complexes, the exchange of f^* with Rf^! and of Rf_! with Rf_* under duality, K′_X = K_X(−1)[−2], weights and their functoriality, and the weight filtration with its strictness. It agrees with the printed §§1.2, 1.7.1, 1.8.9–1.8.10, 3.3.1, 3.4 and 6.1–6.2. The first pass lists six small standard gaps.
+- **The programme part (MDB0–MDB3.2) is correct but carries almost nothing.** The "recovered ring" is End(ℤ) = ℤ, and the support maps are the maps to a point (§2).
 - **No claim about ζ or its zeros** is made or needed. The only ζ statement is the Euler product for Re s > 1.
 
 ## 1. What MDB3–MDB8 prove
 
 - **Weights and duality (MDB4–MDB6).** For X of finite type over a finite field, or over S = Spec ℤ[1/ℓ]:
-  - the dualizing complexes, with K_X = E(d)[2d] for smooth X of dimension d over F_q, and the relative version K′_X = K_X(−1)[−2] (Weil II (6.2.1), (6.2.7), pp. 247–248);
+  - the dualizing complexes: K_X = E(d)[2d] for smooth X of dimension d over F_q; relative to S, K′_X = Ra^!E, and for X of finite type over F_p viewed over S, K′_X = K_X(−1)[−2] (Weil II (6.2.1), (6.2.7), pp. 247–248);
   - D exchanges f^* with Rf^! and Rf_! with Rf_*;
   - for a closed point i_p: s_p → S, Ri_p^!E = E(−1)[−2], proved from the tame inertia of the strict henselization, (1.7.1), and the Kummer class of p;
   - D(K(r)[m]) = (DK)(−r)[−m]; E(r) has weight −2r; K ∈ D_{≤w} iff K(r)[m] ∈ D_{≤w+m−2r} (checks A01–A12, with controls rejecting the wrong signs).
 - **Functoriality of weights (MDB7).** Rf_! and f^* preserve "weights ≤ w" (via (3.3.1), stated over ℤ, p. 204); D exchanges the two bounds, so Rf_* and Rf^! preserve "weights ≥ w"; for f proper, Rf_* preserves purity (6.2.6). The first pass's point counts on G_m and on the Legendre family show that no direction can be dropped (checks B04, B06).
-- **The weight filtration (MDB8).** For lisse mixed sheaves: existence and uniqueness (3.4.1), the Ext sequence (3.4.2), strictness h(W_nV) = im h ∩ W_nV′ for Frobenius-equivariant h (checks E02–E03), gluing along a closed–open decomposition, and geometric semisimplicity of pure lisse sheaves on normal X₀ (3.4.1)(iii).
+- **The weight filtration (MDB8).** The decomposition by weights mod ℤ of every ι-mixed sheaf (3.4.1)(i), glued along a closed–open decomposition (3.4.8); for lisse ι-mixed sheaves with integral weights, existence and uniqueness of the weight filtration (3.4.1)(ii), the Ext sequence (3.4.2) and strictness h(W_nV) = im h ∩ W_nV′ for Frobenius-equivariant h (checks E02–E03); and geometric semisimplicity of pure lisse sheaves on normal X₀ (3.4.1)(iii).
 
 ## 2. What the "recovered arithmetic base" is (MDB0–MDB2)
 
 - **The input** (MDB0.1): L = G/H with G ≅ ℤ × C₄ (the programme's winding group, generated by T and J with J² = ε) and H = {0} × C₄. So L is infinite cyclic.
 - **The ring** (MDB1.1–MDB1.2): R = End(L). Every endomorphism of an infinite cyclic group is u ↦ u^n for a unique n, so n ↦ [n] is a ring isomorphism ℤ → R. The reader proves exactly this.
 - **Consequences.**
-  - Σ = Spec R ≅ Spec ℤ, and the primes, residue fields F_p, Frobenius elements and norms N(s_p) = p on Σ are those of Spec ℤ, carried across this isomorphism (MDB1.3–MDB1.5).
-  - R depends only on L ≅ ℤ. It is the same for G = ℤ × C₄, ℤ × C₆, ℤ × C₂ × C₂ or ℤ (check C10). The torsion C₄, the chart twist J ↦ εJ, the involution and the support τ do not reach R: every automorphism of L acts trivially on R (checks C06–C08).
-  - The support maps c_Σ: |Σ| → T and π_τ: S_ét → Sh(T) are the maps to a point (MDB2.6–MDB3.2). Their pullbacks are constant sheaves and their pushforwards are global sections (check C04). The reader itself notes that no residue norm or Frobenius exists at the support (line 3233).
+  - Σ = Spec R ≅ Spec ℤ. The primes, residue fields F_p and norms N(s_p) = p (MDB1.3–MDB1.5), and the Frobenius elements at the closed points of S (MDB3.5), are those of Spec ℤ, carried across this isomorphism.
+  - R depends only on L ≅ ℤ. It is the same for G = ℤ × C₄, ℤ × C₆, ℤ × C₂ × C₂ or ℤ (check C10). The torsion C₄ is removed by the quotient G → L, and τ is not an input of R. The chart twist J ↦ εJ induces the identity on L and the involution induces inversion, and every automorphism of L acts trivially on R = End(L) ≅ ℤ, since R is commutative (checks C06–C08).
+  - The support maps c_Σ: |Σ| → T and π_τ: S_ét → Sh(T) are the maps to a point (MDB2.6–MDB3.2). Their pullbacks are constant sheaves and their pushforwards are global sections (MDB2.7, MDB3.2; check C04 verifies continuity and the full preimages). The reader itself notes that its construction supplies no residue norm or arithmetic Frobenius at the support (line 3233), and it leaves other, enriched constructions on the support open (lines 3862, 3891).
 - **So the whole arithmetic on Σ is the standard arithmetic of Spec ℤ.** Its only programme input is "L is infinite cyclic". The reader is accurate about what it proves. Its introduction (line 16) speaks of "actual maps from the CC stalk through its recovered arithmetic to étale fibres". What is built is a chain of constructions of different types: a group, a ring, a scheme, a point and its geometric point. It is not a composite morphism, and no map from the CC stalk to an étale fibre is constructed (first pass, §9).
 
 ## 3. Printed-text points
 
 - **p. 247.** The spectral sequence in the proof that Rf_! preserves weights is printed "E₁^{pq} = R^p f_! ℋ^q K ⇒ ℋ^{p+q} Rf_! K" (I read the page image). The reader (MDB7, line 3533) says that "the transcription writes" E₁. The label is Deligne's own; the conventional name is E₂. The weight argument does not depend on the index, as the reader says.
-- **p. 210, Variante (3.4.9).** It states that every pure sheaf is geometrically semisimple, without repeating the hypotheses of (3.4.1)(iii) (X₀ normal, F₀ lisse). I read the page image. The first pass gives two counterexamples to the literal reading:
-  - the constant sheaf on A¹ contains j_!E, which has no complement;
-  - on a nodal cubic, a unipotent rank-2 local system around the loop is pure of weight 0 but not semisimple (check E05).
+- **p. 210, Variante (3.4.9).** Its second clause says that every pure sheaf is geometrically semisimple, without repeating the hypothesis "X₀ normal" of (3.4.1)(iii). Lisseness is implicit: Weil II defines "simple" and "semi-simple" only for lisse sheaves, through lisse subsheaves ((1.1.6), p. 150). The Variante is introduced as an immediate consequence of (3.4.1), and the introduction states the result with both hypotheses (p. 143), so the sentence is elliptical rather than a misstatement. I read p. 210 on the page image and the other two passages in the text of the scan. Read literally, without normality, it fails:
+  - on a nodal cubic with split node, the rank-2 lisse sheaf on which the loop acts by a unipotent Jordan block and Frobenius acts trivially has all Frobenius eigenvalues equal to 1, so it is pure of weight 0, but it is not geometrically semisimple (first pass; check E05).
 
-  MDB8 uses the form with hypotheses (line 3713). This is an observation about the printed text, not an error of the reader.
+  The first pass's second example, the constant sheaf on A¹ with its subsheaf j_!E, is not a counterexample: E is lisse on a normal curve and simple as a lisse sheaf. That j_!E has no complement shows only that semisimplicity is not meant in the category of all constructible sheaves, where (3.4.1)(iii) itself would fail. MDB8 uses the form with hypotheses (line 3713). This is an observation about the printed text, not an error of the reader.
 - **Provenance.** MDB0's link for the French transcription points to the numdam page of the paper, not to a transcription file.
 
 ## 4. Negative results (goal 1)
 
 - **38.N1. The recovered ring sees only the free rank of the winding group.** R = End(G/G_tors) ≅ ℤ for every G with G/G_tors infinite cyclic, and every automorphism of L acts trivially on R. So nothing of the torsion, the chart twist, the involution or the support τ reaches Σ, S, their étale topoi or any Deligne-type statement on them (§2; checks C06–C10).
-- **38.N2. No weight statement passes through the support.** The support maps are the maps to a point; Sh(point) has no Frobenius and no norm. Pullback gives constant sheaves, of weight 0 (check C04).
-- **38.N3. No object built on the recovered base has weight 1.**
-  - Every Frobenius eigenvalue of E_S, its Tate twists E(r), i_{p*}E and the costalks Ri_p^!E = E(−1)[−2] is an integral power of p. So every weight there is even.
-  - The "purity circle" |a|² = p of MDB9 needs weight 1, as in H¹ of a curve over F_p (check F06), and no such object is constructed from programme data.
-  - The symmetry a ↦ p/ā (ρ ↦ 1 − ρ̄) of the zero set holds unconditionally, by the functional equation, and a symmetry does not move points onto its fixed circle (first pass, N6–N7; check F08).
+- **38.N2. No weight statement passes through the constructed support maps.** They are the maps to a point; Sh(point) has no Frobenius and no norm. Pullback gives constant sheaves, whose ℓ-adic versions have all Frobenius eigenvalues equal to 1, hence weight 0 (MDB2.7, MDB3.2).
+- **38.N3. No object that the reader builds from programme data has a Frobenius eigenvalue of weight 1.**
+  - Every Frobenius eigenvalue of E_S, its Tate twists E(r), i_{p*}E and the costalks Ri_p^!E = E(−1)[−2] is an integral power of the residue characteristic, so all these pointwise weights are even. A shift changes the weight of a complex but not its eigenvalues: E(r)[m] is pure of weight m − 2r (MDB6), for example E_S[1] of weight 1.
+  - The "purity circle" |a|² = p of MDB9 needs eigenvalues of weight 1. Deligne's theory supplies them on the same base, for example H¹ of an elliptic curve over F_p, i.e. R¹f_*E for f: C → s_p proper, the setting of MDB9.3–MDB9.7 (check F06). No such object is constructed from programme data.
+  - The symmetry a ↦ p/ā (ρ ↦ 1 − ρ̄) of the nontrivial zeros holds unconditionally, by the functional equation together with ζ(s̄) = conj ζ(s), and a symmetry does not move points onto its fixed circle (first pass, N6–N7; check F08).
 - **38.N4. Directions of weight functoriality cannot be dropped** (Deligne's theory, illustrated). Rf_* does not preserve "weights ≤ w": H¹(G_m) has weight 2 in degree 1. Rf_! does not preserve "weights ≥ w": H¹_c(G_m) has weight 0. i^* does not preserve "weights ≥ w": the nodal fibre of the Legendre family (checks B04, B06).
 
 ## 5. Bridges (goal 2)
 
 - **Constructed:** the ring isomorphism ℤ → R and Σ ≅ Spec ℤ (for L infinite cyclic); the closed points s_p with N(s_p) = p; Deligne's functors on S. These are standard.
 - **Not constructed**, in MDB0–MDB8 or in MDB9–MDB11 (first pass):
-  - a morphism of ringed spaces or topoi between the CC geometry and Σ or S;
+  - a morphism of ringed spaces or ringed topoi between the CC geometry (with its structure sheaf) and Σ or S; the only maps constructed are the continuous map |Σ| → T ↪ X and the topos morphism S_ét → Sh(T), both constant at the generic point η;
   - a map from the CC stalk to an ℓ-adic sheaf on S;
   - an ℓ-adic object whose Frobenius eigenvalues are related to zeros of ζ;
   - a map from the programme's zero-jet receiver to an ℓ-adic complex.
 - **Typed obstructions for the programme's operators**, from earlier notes, which MDB does not change:
-  - An operator commuting with a nilpotent N ≠ 0 cannot be the Frobenius of a Weil–Deligne pair, since the relation FNF^{−1} = q^{−1}N would force q = 1 (`36_` 36.N3).
-  - The ramification operator has no eigenvectors on Ẽ. So no nonzero P_b-equivariant map goes from a finite-dimensional Frobenius module (a stalk, costalk or cohomology group over a finite field) into Ẽ: the image would be a finite-dimensional P_b-stable subspace, which would contain an eigenvector (`36_` 36.N4; check G02).
+  - An operator F commuting with a nilpotent N ≠ 0 cannot form a Weil–Deligne pair (F, N) with that N as its monodromy: the relation FNF^{−1} = q^{−1}N would force q = 1 (first pass O1, check G01). Equivalently, F cannot carry Deligne's local weights, because N^i: Gr_i → Gr_{−i} is F-equivariant (`36_` 36.N3).
+  - For b ≥ 2 the ramification operator P_b has no eigenvector on Ẽ (`36_` 36.N4). Hence, after fixing ι: Q̄_ℓ ≅ ℂ, no nonzero ℂ-linear map h with h∘F = P_b∘h goes from a finite-dimensional Frobenius module (a stalk, costalk or cohomology group over a finite field) into Ẽ: its image would be a nonzero finite-dimensional P_b-stable subspace, which contains an eigenvector of P_b because ℂ is algebraically closed (first pass O2; check G02).
 
 ## 6. Not checked
 
 - The Connes–Consani paper's line ranges cited in MDB0, and the programme reconstructions CG1–CG4 imported in MDB2.
 - The six standard gaps the first pass lists (G1–G6: lattice independence of the ℓ-adic stalk; local cohomology of the strict henselization; the dual of a complex with lisse cohomology; mixedness of subquotients (1.2.5)(iii); biduality over ℤ[1/ℓ]; normality of the strict henselization). I did not re-derive them.
 - The external theorems: the six operations and biduality (SGA 4, SGA 4½, SGA 5), absolute purity in codimension one, and Deligne's (3.3.1).
+
+## 7. Revision after the fifteenth referee pass (19:40 UTC)
+
+One referee (a subagent) re-derived every formula of §1 on exact models, checked the Weil II statements on page images (pp. 143, 150, 153–154, 170, 177–178, 204–210, 243, 247–248, 251), re-ran the check script (identical output) and wrote its own (60 items: 42 PASS and 18 expected fails documenting findings). It confirms §2 (the recovered ring is exactly End(L) ≅ ℤ; the support maps are the maps to a point), the E₁ label on p. 247, and the eigenvector argument of §5. I checked its two major findings and applied them:
+- **38.N3.** "No object built on the recovered base has weight 1" was false as written: E_S[1] is pure of weight 1 as a complex, and H¹ of an elliptic curve over F_p has pointwise weight 1 on the same base. The claim is now restricted to what the reader builds from programme data and to Frobenius eigenvalues. Register negative result 68 and digest §3 item 38 are corrected in the same way.
+- **§3, Variante (3.4.9).** The constant sheaf on A¹ is not a counterexample: it is lisse on a normal curve, and Weil II defines semisimplicity for lisse sheaves through lisse subsheaves ((1.1.6), p. 150). The introduction (p. 143) states the result with both hypotheses. Only normality is dropped in (3.4.9), and only the nodal cubic tests it.
+
+Minor findings applied: the scope of the audit (§0; digest header); the page list (§0); the line range (§0); the split between the Deligne and programme parts (MDB3.3–MDB8 against MDB0–MDB3.2); K′_X = K_X(−1)[−2] only over F_p (§1); the scope of the weight-filtration bullet (§1); the Frobenius elements (MDB3.5) and the reason why the torsion and the twists do not reach R (§2); the reader's words at line 3233 and the heading of 38.N2; the "not constructed" list (the constant topos morphisms are constructed); the symmetry holds for the nontrivial zeros; the Weil–Deligne obstruction for the pair (F, N) and its attribution; b ≥ 2 and complex scalars in the eigenvector obstruction.

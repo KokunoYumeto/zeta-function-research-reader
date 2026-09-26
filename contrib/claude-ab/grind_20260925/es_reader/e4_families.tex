@@ -1,0 +1,121 @@
+\section{Least classes, record primes, explicit families, and the carrier census}\label{sec:families}
+
+\subsection{The least-class function and its record primes}\label{ssec:records}
+
+The archive (§17.4 and §19, pp.~131 and 148--157) puts, for $i\ge1$, following Ionascu and Wilson \cite{IonascuWilson},
+\[
+\mathcal C_i=\Bigl\{n\ge2:\ \frac4n=\frac1x+\frac1y+\frac1z\ \text{with } x\le\frac{n+4i-1}4\Bigr\},\qquad h(n)=\min\{i:n\in\mathcal C_i\}.
+\]
+An odd prime $p$ is a \emph{strict record} if $h(q)<h(p)$ for every prime $q<p$.
+
+\begin{lemma}\label{lem:leastclass}
+Let $p\equiv1\pmod4$. The least denominator occurring in any solution at $p$ is the least occupied shell $a$. With $R=4a-p$ one has $h(p)=(R+1)/4$. For $p\equiv3\pmod4$, $h(p)=1$, and $h(2)=1$.
+\end{lemma}
+\status{Proved here.}
+\begin{proof}
+If $a$ is occupied, some solution has $a$ as a denominator, so the least denominator of that solution is at most $a$. Conversely, the least denominator $x$ of a solution is itself an occupied shell: it exceeds $p/4$ (Theorem~\ref{thm:shell}(a)) and is completed by the other two denominators. So the least occupied shell equals the least denominator over all solutions. A solution lies in $\mathcal C_i$ exactly when $4x-p\le4i-1$. For $p\equiv1\pmod4$ the residual $4x-p$ is $\equiv3\pmod4$, so the least $i$ is $(R+1)/4$. For $p\equiv3\pmod4$ the shell $(p+1)/4$ is occupied (Theorem~\ref{thm:shell}(c)). For $p=2$, take $4/2=1/1+1/2+1/2$ with $x=1\le5/4$.
+\end{proof}
+
+\begin{proposition}[the record primes up to $8{,}803{,}369$]\label{prop:records}
+The strict records $p\le8{,}803{,}369$, with $h(p)$ and $R=4h(p)-1$, are exactly
+\[
+(2,1,3),\ (73,2,7),\ (1129,3,11),\ (1201,6,23),\ (21169,8,31),\ (118801,15,59),\ (8803369,27,107).
+\]
+Moreover $h(806521)=h(118801)=15$, so $806{,}521$ is not a strict record.
+\end{proposition}
+\status{Reproduced here: every prime up to $8{,}803{,}369$ was computed by Lemma~\ref{lem:leastclass} and Theorem~\ref{thm:shell}, using the residues of the divisors of $a^2$ modulo $R$ (script \note{esr\_records.py}, under three seconds). This agrees with the archive's table (§19.2, p.~152) and with its value $1201\in\mathcal C_6\setminus\mathcal C_5$ (§17.4, p.~132), which the archive records without claiming it as new. At $p_*=8{,}803{,}369$ the least occupied shell has $R=107$, the shell of archive §3.}
+
+For the five records whose residual $R$ is a safe prime ($R=2m+1$ with $m$ prime), and whose shell $a=(p+R)/4$ has exactly one non-residue prime factor modulo $R$, to exponent one, the archive defines a \emph{deficit} set $D\subset\ZZ/m$ from the discrete logarithms of the prime factors of $a$ (§19.1). It states the \emph{strict-record deficit-box conjecture} (§19.2): at such a record with non-empty deficit, $D$ is a difference-proper generalised arithmetic progression of rank at most two, and two induced ``odd sheets'' cover $\ZZ/m$.
+The deficits of the first three rows are empty. The two non-empty ones are proved to be a rank-two rectangle $\{11,14,15,18\}\subset\ZZ/29$ at $(118801,59)$ and the progression $\{23+42j:0\le j\le9\}\subset\ZZ/53$ at $(8803369,107)$.
+The boundary example $p=806{,}521$ satisfies every hypothesis except strict recordness, and both conclusions fail there. So the hypothesis cannot be dropped.
+
+\status{The conjecture is open, as the archive says. Its finite evidence is \textsf{reproduced} here from the definitions (script \note{esr\_deficits.py}, with the primitive root $g=2$ that the archive uses for $R=59$ and $R=107$):
+\begin{itemize}
+\item the deficits of the rows $p=73$, $1129$ and $1201$ are empty, and the row $p=21169$ is outside the domain because $m=15$ is composite;
+\item at $p=118{,}801$: $a=29715=3\cdot5\cdot7\cdot283$, $D=\{11,14,15,18\}$, $D-D=\{3r+4s:|r|,|s|\le1\}$ with nine elements, offsets $u=11$ and $v=17$, and the two odd sheets cover $\ZZ/29$;
+\item at $p=8{,}803{,}369$: $a=2{,}200{,}869=3^2\cdot11^2\cdot43\cdot47$, $D=\{23+42j:0\le j\le9\}$, $D-D=\{42k:|k|\le9\}$ with nineteen elements, offsets $29$ and $23$, and the sheets cover $\ZZ/53$; also the corollary of archive §16, that the middle target $-1$ is reached by exactly two exponent vectors and the exterior target not at all;
+\item at $p=806{,}521$: $a=201{,}645=3^2\cdot5\cdot4481$, a deficit of $14$ points with $D-D=\ZZ/29$, and the odd sheets miss exactly $\{1,4,8,12,16,20,24,27\}$.
+\end{itemize}
+Another primitive root multiplies $D$ by a unit of $\ZZ/m$ (archive §19.1). The script confirms that the sizes of $D$ and $D-D$, and the number of missed points, do not change.
+The failure of conclusion (i) at $806{,}521$ follows from $D-D=\ZZ/29$ by the archive's counting argument. A difference-proper progression of rank one with $14$ terms has exactly $27$ differences. A proper one of rank two has side lengths $\{2,7\}$, so a difference-proper one would have $3\cdot13=39>29$ distinct differences. That argument was read and is correct.
+By Theorem~\ref{thm:shell}(b), the counts at $p_*=8{,}803{,}369$ ($|E_a|=0$, $|M_a|=2$) mean that exactly one unordered solution has least denominator $2{,}200{,}869$, namely
+\[
+\frac4{8803369}=\frac1{2200869}+\frac1{181085300330}+\frac1{3293760527702370}.
+\]
+The archive's Lean module covers the $R=107$ row only, as the archive states.}
+
+\subsection{Four progressions on which the equation is solved}\label{ssec:families}
+
+\begin{theorem}[four unconditional families]\label{thm:families}
+For $k\ge0$ put $g_1=31k+30$, $g_2=31k+15$, $m_3=23k+15$, $m_4=23k+19$, $w_3=1116k+727$ and $w_4=4464k+3683$. Then $4/n_i=1/a_i+1/b_i+1/c_i$ with positive integers
+\begin{center}\small
+\begin{tabular}{@{}cllll@{}}
+\toprule
+$i$ & $n_i$ & $a_i$ & $b_i$ & $c_i$\\
+\midrule
+1 & $248k+209$ & $2g_1$ & $2n_1(k+1)$ & $2n_1g_1(k+1)$\\
+2 & $248k+89$ & $2g_2$ & $n_2(2k+1)$ & $2n_2g_2(2k+1)$\\
+3 & $17112k+11137$ & $186m_3$ & $12n_3m_3w_3$ & $124m_3w_3$\\
+4 & $17112k+14113$ & $186m_4$ & $6n_4m_4w_4$ & $31m_4w_4$\\
+\bottomrule
+\end{tabular}
+\end{center}
+No primality of $n_i$ is needed.
+\end{theorem}
+\status{Proved here by direct expansion: $4a_ib_ic_i-n_i(b_ic_i+a_ic_i+a_ib_i)$ is the zero polynomial in $k$ for each $i$ (sympy), and the entries are positive for $k\ge0$; exact fractions agree for $k\le200$ (script \note{esr\_families.py}). Archive §24, p.~423. The archive shows that these triples are specialisations of Rosati's two 1954 parametrisations and claims no independence from the classical parametrisations (archive abstract, p.~2, and §13.1). That comparison is located, not checked.}
+\begin{proof}
+All displayed linear factors have positive constant terms, so every entry is a positive integer for $k\ge0$. The identity $4a_ib_ic_i=n_i(b_ic_i+a_ic_i+a_ib_i)$ is a polynomial identity in $k$, verified by expanding both sides. Dividing by $n_ia_ib_ic_i$ gives the decomposition.
+\end{proof}
+
+Each progression meets all six hard classes modulo $840$. Since $\gcd(248,840)=8$ and $\gcd(17112,840)=24$, the numbers $n_1,n_2$ run through every class $\equiv1\pmod8$ modulo $840$, and $n_3,n_4$ through every class $\equiv1\pmod{24}$. Every hard class is $\equiv1\pmod{24}$, being the square of a unit.
+Each $n_i(0)$ is prime to the step of its progression, so by Dirichlet's theorem every progression contains infinitely many primes in each hard class. Examples are the strict records $1201=n_1(4)\equiv361$ and $21169=n_2(85)\equiv169\pmod{840}$.
+So the families solve the equation at infinitely many primes in every class that the reduction modulo $840$ leaves open (script \note{esr\_families.py} lists the least prime for each family and class).
+This does not conflict with the obstruction to polynomial identities recalled in Section~\ref{sec:problem}. That obstruction is modulo $q$, and it applies only when $r$ is a square modulo $q$: here $11137\equiv5\pmod{23}$, and $5$ is not a square modulo $23$. The same holds for the other rows, since $14113\equiv14\pmod{23}$, $209\equiv23\pmod{31}$ and $89\equiv27\pmod{31}$ are non-squares.
+
+\subsection{The carrier census}\label{ssec:census}
+
+The largest part of the archive's arithmetic (§18 and the second half of §24, about 170 pages) is a sequence of \emph{sufficient-carrier censuses}.
+\begin{itemize}
+\item \emph{Rows.} For the hard primes in fixed branches, the archive considers residue data of $p$ modulo a growing product of moduli. We call each such datum a \emph{row}. The moduli are $11088$, $5$, $19$, $23$, $31$ and $47$, then $71$, $191$, $83$, $167$ and $239$.
+\item \emph{Forced rows.} A row is \emph{forced} when an explicit construction shows that, for every prime $p$ in the branch with that row, one of a finite list of shells is occupied. An example is the implication~(2272) on p.~431: for a prime $p\equiv25\pmod{72}$ whose shells $R=7$ and $R=11$ are empty and whose row lies in the domain but outside the survivor set, some shell with $R\in\{15,19,23,31,47\}$ is occupied.
+\item \emph{Survivors.} The remaining rows are \emph{survivors}. Nothing is concluded for them.
+\end{itemize}
+The archive's front section (pp.~3--5) reports the following chain.
+\begin{center}\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\linewidth}rrr@{}}
+\toprule
+Step & Domain (rows) & Forced & Survivors\\
+\midrule
+six shells after the unit lift mod $71$ & $4{,}590{,}432{,}000$ & $4{,}212{,}008{,}640$ & $378{,}423{,}360$\\
+$R=191$ & $71{,}900{,}438{,}400$ & $24{,}762{,}018{,}720$ & $47{,}138{,}419{,}680$\\
+$Q=83$ & $3{,}865{,}350{,}413{,}760$ & $934{,}648{,}428{,}742$ & $2{,}930{,}701{,}985{,}018$\\
+$R=167$ & $486{,}496{,}529{,}512{,}988$ & $115{,}851{,}891{,}806{,}170$ & $370{,}644{,}637{,}706{,}818$\\
+$R=239$ & $88{,}213{,}423{,}774{,}222{,}684$ & $20{,}524{,}419{,}041{,}579{,}843$ & $67{,}689{,}004{,}732{,}642{,}841$\\
+refresh of the $R=167$ coefficient & & $39{,}025{,}685{,}947{,}842$ & $67{,}649{,}979{,}046{,}694{,}999$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Cumulatively $2{,}757{,}919{,}929{,}517{,}785{,}001$ of the $2{,}825{,}569{,}908{,}564{,}480{,000}$ rows of the final hard domain are forced, a proportion of $0.97606\ldots$.
+The table is internally consistent (checked here):
+\begin{itemize}
+\item each domain is the previous survivor count times $q-1$, for the next modulus $q=191,83,167,239$;
+\item the final domain is $4{,}590{,}432{,}000\cdot190\cdot82\cdot166\cdot238$;
+\item forced plus survivors equals the domain in every row;
+\item the fractions $69643/75900$ and $6257/75900$ of the first row are exact.
+\end{itemize}
+
+\status{Located. The arithmetic consistency of the reported numbers was checked here; the carrier theorems and the enumerations behind them were not re-run.
+The archive states the following about its own checks.
+\begin{itemize}
+\item The enumerations are replayed by independent Python programs.
+\item Bounded Lean modules check the literal census rows, totals, fractions, target residues and candidate orders, but not the affine and gcd reconstructions, carrier membership or the positive-denominator witnesses (pp.~3--5).
+\item The ranking that selected $239$ after $167$ was corrected: on the full ten-coordinate object, $59$ ranks first and $239$ second. The $R=239$ step is kept as a valid non-greedy continuation, not as an optimal one (p.~4).
+\end{itemize}
+The archive calls these ``bounded sufficient-carrier censuses'' and states that they are not shell-exhaustion, density, endpoint or optimality theorems (p.~2). A survivor row is only outside the carriers' images; it is not shown to be shell-empty.}
+
+Two remarks help a reader place the census.
+\begin{itemize}
+\item It is a covering argument of the same general kind as Mordell's identities, refined by factor and gcd data. Each forced row is certified by explicit divisor constructions, not by polynomial identities alone.
+\item The survivors make up $2.39\%$ of the final domain. Each of the four lifts forced between $23\%$ and $35\%$ of its domain ($R=191$: $34.4\%$; $Q=83$: $24.2\%$; $R=167$: $23.8\%$; $R=239$: $23.3\%$). By Proposition~\ref{prop:jacobi}, a single shell $R$ can be occupied at $p$ only if $(p+R)/4$ has a prime factor that is a non-residue modulo $R$, which is not a condition on residues of $p$ alone.
+\end{itemize}
+Whether the survivors can be removed in this way is the open global obligation named by the archive itself (p.~4).

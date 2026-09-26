@@ -1,0 +1,59 @@
+\section{How this reader was checked}\label{app:verification}
+
+\paragraph{Sources.}
+\begin{itemize}
+\item The repository \texttt{KokunoYumeto/erdos-straus-foundation} at commit \texttt{d20b32e}, read-only.
+\item The 619-page archive and its source archive, downloaded on 26 September 2026 from the Zenodo record 10.5281/zenodo.22678971:\\[2pt]
+{\footnotesize\begin{tabular}{@{}ll@{}}
+\texttt{00\_ERDOS\_STRAUSS\_Project\_Reader.pdf} & MD5 \texttt{c1ee553967e0e6f12d4976e171c11b15}\\
+\texttt{01\_ERDOS\_STRAUSS\_Source\_Verification\_and\_Machine\_Memory.zip} & MD5 \texttt{4129ec50d0c02ff7daf61fde6c589de4}
+\end{tabular}}\\[2pt]
+The main source file of the archive (60{,}561 lines) and its fourteen satellite files were read where they are cited.
+\item The supplement's source, in the repository folder\newline \texttt{research/expanded-2026-09-08/exact\_bounded\_transport\_72/}.
+\end{itemize}
+
+\paragraph{What was refereed earlier.}
+Theorem~\ref{thm:shell} and Propositions~\ref{prop:r3}--\ref{prop:mod840}, the audited items of Section~\ref{sec:items}, and Section~\ref{ssec:es-s6} come from the Erdős--Straus section of the reader of four workbenches. There they went through five stages:
+\begin{enumerate}[label=\arabic*.]
+\item a first-pass audit by a separate Claude instance, which read the workbench and wrote independent checks (\note{43a\_});
+\item a referee pass on the notes \note{43\_}--\note{47\_}, by an instance that had written none of them; it found, among other things, that the orbit statements of Section~\ref{ssec:es-s6} fail at even levels;
+\item a referee pass on that reader;
+\item two further passes that read it for understatement and missed generality as well as for overstatement.
+\end{enumerate}
+These passes produced the range $x<p/2$ in Theorem~\ref{thm:shell}, its extension to all odd primes, Propositions~\ref{prop:survivors} and~\ref{prop:mod840}, and the corrected count of Proposition~\ref{prop:r3} at $p\equiv5\pmod{12}$. The checks are \note{checks/\allowbreak workbenches/\allowbreak workbench\_reader\_claims\_checks.py} and \note{checks/\allowbreak workbenches/\allowbreak generality\_checks.py}; the referee reports are in \note{checks/workbenches/}.
+
+\paragraph{What is new in this reader, and has been checked only by its author.}
+\begin{itemize}
+\item Proposition~\ref{prop:jacobi};
+\item Lemma~\ref{lem:leastclass} and Proposition~\ref{prop:records}, with the reproduction of the deficit data in §\ref{ssec:records};
+\item Theorem~\ref{thm:families}, and the statement that each family meets every hard class;
+\item Proposition~\ref{prop:twoshears};
+\item Proposition~\ref{prop:quartic}, whose relation was also checked in \note{21\_};
+\item the map of the archive (§\ref{ssec:archive}), the consistency of the census counts (§\ref{ssec:census}), and the three new rows of the overlap table (Section~\ref{sec:overlaps}).
+\end{itemize}
+
+\paragraph{The scripts of this reader.}
+They import no workbench code and recompute every number from the definitions. They are in \note{checks/es\_reader/} on the branch named below.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.13\linewidth}@{}}
+\toprule
+Script & What it checks & Time, result\\
+\midrule
+\note{esr\_records.py} & $h(p)$ for every prime up to $8{,}803{,}369$ through Lemma~\ref{lem:leastclass} and Theorem~\ref{thm:shell}; the strict records; $h(806521)=h(118801)=15$ & 3 s; as stated\\
+\note{esr\_lemma\_checks.py} & Proposition~\ref{prop:jacobi} on all $47{,}210$ shells meeting its hypothesis at odd primes below $3000$ (none occupied), and the failure of its converse; Lemma~\ref{lem:leastclass} against a brute-force enumeration of all solutions at the odd primes below $700$ & 25 s; all pass\\
+\note{esr\_deficits.py} & the deficit data of §\ref{ssec:records} at $73$, $1129$, $1201$, $21169$, $118{,}801$, $8{,}803{,}369$ and $806{,}521$, their independence of the primitive root, the corollary of archive §16, and the counts $|E_a|=0$, $|M_a|=2$ at $p_*$ (22 checks) & 1 s; all pass\\
+\note{esr\_families.py} & the four identities of Theorem~\ref{thm:families} as polynomial identities, exact fractions for $k\le200$, the hard classes met and the least prime in each & 1 s; all pass\\
+\note{esr\_twoshears.py} & Proposition~\ref{prop:twoshears}: the full shear graph of every prime below $2000$, and a complete search for two-edge paths up to $10^7$ & 23 s; all pass\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{A partial second pass.}
+A second-pass audit of the supplement was started with a separate Claude instance and was stopped by a usage limit before it wrote its report. Its scripts and outputs are kept in \note{checks/es\_reader/second\_pass\_partial/}, and §\ref{ssec:supplement} reports what they show. The one reported mismatch was traced to the script's own expectation (§\ref{ssec:supplement}).
+
+\paragraph{What has not been done.}
+This version has not had an independent referee pass of its own. The earlier readers of this audit each had at least one, by a Claude instance that had written none of the text; the most recent of these passes read for understatement and missed generality as well as for overstatement. Such instances were unavailable when this version was written, because of a usage limit that ends on 30 September 2026. A referee pass of the same kind is planned after that date, and its findings will be applied before this reader is deposited with the workbench's Zenodo collection. Until then, the statements listed above as new rest on this author's proofs and scripts alone.
+
+\paragraph{Where everything is.}
+This reader, its sources and its scripts are on the branch \texttt{claude/claude-ab-grind-20260925} of \texttt{KokunoYumeto/zeta-function-research-reader}, in \texttt{contrib/claude-ab/grind\_20260925/}: the reader in \note{es\_reader/}, the scripts in \note{checks/es\_reader/}, and the audit notes \note{21\_}, \note{43\_}, \note{43a\_}, \note{47\_} and \note{47a\_} at the top level.

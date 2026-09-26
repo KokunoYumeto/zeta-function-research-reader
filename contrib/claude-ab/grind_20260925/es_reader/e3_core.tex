@@ -1,0 +1,100 @@
+\section{The core arithmetic, with proofs}\label{sec:core}
+
+Throughout, $p$ is an odd prime and a \emph{solution} is a triple of positive integers with $4/p=1/x+1/y+1/z$. The workbench mostly works with $p=12h+1$ ($h\ge1$). The results of this section, except Proposition~\ref{prop:jacobi}, were first stated in the reader of four workbenches \cite{WorkbenchReader}, whose Erdős--Straus section was refereed three times (Appendix~\ref{app:verification}); the audit note is \note{43\_} and the first-pass report \note{43a\_}.
+
+\subsection{The shell criterion}
+
+For an integer $a>p/4$ not divisible by $p$ put $R_a=4a-p$, $S_a=pa$ and
+\[
+E_a=\{u: u\mid a^2,\ R_a\mid 4u+1\},\qquad M_a=\{u: u\mid a^2,\ R_a\mid u+a\}.
+\]
+A \emph{shell} $a$ is \emph{occupied} if $E_a\cup M_a\neq\emptyset$.
+
+\begin{theorem}[shell criterion]\label{thm:shell}
+\begin{enumerate}[label=(\alph*)]
+\item If $x\le y\le z$ is a solution, then $p/4<x\le3p/4$. More precisely, $x<p/2$ and $x<y$, unless $p\equiv3\pmod4$ and $(x,y,z)=\bigl(\frac{p+1}2,\frac{p+1}2,\frac{p(p+1)}4\bigr)$. For $p=12h+1$ this gives $3h+1\le x\le 6h$.
+\item For each integer $a>p/4$ not divisible by $p$ (in particular each $a$ with $p/4<a<p$), the ordered pairs $(y,z)$ of positive integers with $1/a+1/y+1/z=4/p$ number exactly $2|E_a|+|M_a|$. A pair with $y=z$ occurs if and only if $R_a=1$ (possible only for $p\equiv3\pmod4$ and $a=(p+1)/4$); otherwise $|M_a|$ is even and the unordered pairs number $|E_a|+\tfrac12|M_a|$. For $p\equiv1\pmod4$ this is always the case.
+\item Hence the equation is solvable at $p$ if and only if some shell $a$ with $p/4<a<p/2$ is occupied.
+\end{enumerate}
+\end{theorem}
+\status{Proved here, and generalised: the workbench's ES-01/ES-02 (supplement §1; archive §9, ``Exact divisor-shell bijection'', p.~38), audited, state it for $p=12h+1$ and $a\in[3h+1,9h]$; the proof below gives every odd prime, every $a>p/4$ with $p\nmid a$, and the halved range $x<p/2$ ($a\in[3h+1,6h]$ for $p=12h+1$). The halved range at $p\equiv1\pmod{12}$, with $x$ unique, is already a reduction step of the workbench's item~22, checked by reading in the first pass (\note{43a\_} §2.22), and items 6 and 7 work in it; the workbench's later packages attribute these coordinates to Elsholtz and Tao \cite{ElsholtzTao}, §2. Checked against a brute-force count of the ordered pairs on all $4{,}726$ pairs $(p,a)$ with $p<260$ an odd prime and $p/4<a<p$ (a pair with $y=z$ exactly in the $29$ cases with $R_a=1$) and on all $4{,}303$ pairs with $p<120$, $p/4<a\le3p$ and $p\nmid a$; on all $4{,}398$ shells of the primes \mbox{$p\equiv1\pmod{12}$} below $700$, and in the first pass on all $8{,}124$ shells below $1000$; (a) against all $2{,}259$ solutions at the odd primes below $400$; every prime \mbox{$p\equiv1\pmod{12}$} below $30{,}000$ has an occupied shell.}
+
+\begin{proof}
+(a) The other two terms are positive, so $1/x<4/p$; and $x$ is the least denominator, so $4/p\le3/x$. Hence $p/4<x\le3p/4$.
+Suppose $x>p/2$, so $x\ge(p+1)/2$ as $p$ is odd, and $x<p$. Then $2/y\ge1/y+1/z=4/p-1/x>2/p$, so $y<p$. From $4xyz=p(xy+yz+zx)$ the prime $p$ divides $xyz$, and as $0<x\le y<p$ it divides $z=pz'$; then $xy(4z'-1)=pz'(x+y)$ with $p\nmid xy$, so $4z'-1=pk$ with $k\ge1$. Put $N=pk+1=4z'$; then $1/x+1/y=4k/N$, that is, $(4kx-N)(4ky-N)=N^2$ with both factors positive. But $4kx-N\ge2k(p+1)-N=N+2(k-1)$, and likewise for $y$; so $k=1$ and $x=y=N/2=(p+1)/2$, with $z=p(p+1)/4$, which needs $p\equiv3\pmod4$. Finally, if $x<p/2$ and $y=x$, then $1/x+1/y>4/p$, which is impossible. For $p=12h+1$ the integers in $(p/4,p/2)$ are $3h+1,\dots,6h$.
+
+(b) Write $R=R_a$, $S=S_a$. Then $R\ge1$ is odd, because $p$ is. Since $p\nmid a$, $\gcd(a,R)=\gcd(a,p)=1$ and $\gcd(p,R)=\gcd(p,4a)=1$, so $S$ is a unit modulo $R$.
+The equation $1/y+1/z=R/S$ is equivalent to $(Ry-S)(Rz-S)=S^2$, and both factors are positive because $1/y$ and $1/z$ are smaller than $R/S$. So the ordered pairs correspond bijectively to ordered factorisations $S^2=dd'$ into positive divisors with $d\equiv d'\equiv-S\pmod R$, through $y=(d+S)/R$, $z=(d'+S)/R$. If $d\mid S^2$ and $d\equiv-S$, then $d$ is a unit and $d'=S^2/d\equiv S^2(-S)^{-1}=-S$; so the pairs are counted by $\#\{d\mid S^2: d\equiv-S\pmod R\}$.
+Since $\gcd(p,a)=1$, each divisor of $S^2=p^2a^2$ is uniquely $d=p^iv$ with $i\in\{0,1,2\}$ and $v\mid a^2$. Using $4a\equiv p\pmod R$:
+for $i=2$, $p^2v\equiv-pa\iff pv\equiv-a\iff 4pv\equiv-p\iff R\mid 4v+1$, so these $v$ form $E_a$;
+for $i=1$, $pv\equiv-pa\iff R\mid v+a$, so these $v$ form $M_a$;
+and $d\mapsto S^2/d$ maps the layer $i=2$ bijectively onto the layer $i=0$ while preserving the congruence. The total is $2|E_a|+|M_a|$.
+The swap $(y,z)\mapsto(z,y)$ is $d\mapsto S^2/d$; it maps each layer $i$ to the layer $2-i$, so a fixed point lies in the layer $i=1$, where it is $v\mapsto a^2/v$ with only possible fixed point $v=a$. That needs $R\mid 2a$, i.e. $R\mid2$ (as $\gcd(R,a)=1$), i.e. $R=1$. If $R\ne1$ the swap has no fixed point, $|M_a|$ is even, $y\ne z$, and the unordered pairs number $|E_a|+\tfrac12|M_a|$. For $p\equiv1\pmod4$, $R\equiv-p\equiv3\pmod4$, so $R\ne1$.
+
+(c) For $p\equiv1\pmod4$ it follows from (a) and (b). For $p\equiv3\pmod4$ both sides hold: the shell $a=(p+1)/4$ lies in $(p/4,p/2)$ and has $R_a=1$, so $u=a$ lies in $M_a$.
+\end{proof}
+
+The workbench also gives the exact bookkeeping around this criterion for $p=12h+1$: an explicit bijection between a tagged set and the ordered solutions, its inverse read off from the $p$-adic valuation of $Ry-S$, and the global statement that a counterexample prime would satisfy the finite, computable condition $E_a=M_a=\emptyset$ for every $a$ (\note{43a\_} §1.2; re-derived there).
+
+\subsection{The first two shells}
+
+\begin{proposition}[the residual-3 shell]\label{prop:r3}
+Let $a=3h+1=(p+3)/4$, so $R_a=3$. Let $P_1=\prod(2v_\ell(a)+1)$ over the primes $\ell\equiv1\pmod3$ dividing $a$, and $P_2$ the same product over the primes $\ell\equiv2\pmod3$. Then $E_a=M_a=\{u\mid a^2: u\equiv2\pmod3\}$ and $|E_a|=|M_a|=P_1(P_2-1)/2$. So a solution with least denominator $a$ exists if and only if $a$ has a prime factor $\equiv2\pmod3$, and there are then exactly $3P_1(P_2-1)/4$ unordered solutions with least denominator $a$.
+\end{proposition}
+\status{Proved here; the workbench's residual-3 sieve (supplement §1, \texttt{first\_two\_shell\_sieve.tex}; archive §10, ``Exact $R=3$ factor criterion''), audited. Checked on all 4{,}472 primes $p\equiv1\pmod{12}$ below $2\cdot10^5$, and in the first pass on all 19{,}564 below $10^6$.}
+
+\begin{proof}
+Since $a\equiv1\pmod3$, $3\nmid a$. Modulo $3$ both $4u+1$ and $u+a$ are $\equiv u+1$, so both conditions say $u\equiv2\pmod3$. A divisor $u=\prod\ell^{e_\ell}$ of $a^2$ has $u\equiv(-1)^{\sum e_\ell}\pmod3$, the sum over the primes $\ell\equiv2\pmod3$. Their exponent vectors ($0\le e_\ell\le2v_\ell(a)$) number $P_2$, and the difference between the numbers with even and with odd sum is $\prod_\ell\sum_{e=0}^{2v_\ell}(-1)^e=1$; so $(P_2-1)/2$ have odd sum, and the other primes contribute the factor $P_1$. By Theorem~\ref{thm:shell}(b) the unordered solutions containing $a$ number $\tfrac32P_1(P_2-1)/2$, and $a=3h+1$ is the least denominator of each of them because it is the smallest possible one. Finally $P_2>1$ exactly when $a$ has a prime factor $\equiv2\pmod3$. (The count is an integer: $a\equiv1\pmod 3$ makes the total exponent of those primes even, so $P_2\equiv1\pmod4$.)
+\end{proof}
+
+\begin{proposition}[the residual-7 shell]\label{prop:r7}
+Let $a=3h+2=(p+7)/4$, so $R_a=7$ and $7\nmid a$. Let $n_3$ be the total exponent in $a$ of the primes $\equiv3\pmod7$ and $n_{24}$ that of the primes $\equiv2$ or $4\pmod 7$. The shell is occupied if and only if $a$ has a prime factor $\equiv5$ or $6\pmod7$, or $n_3\ge3$, or $n_3\ge1$ and $n_{24}\ge1$.
+\end{proposition}
+\status{Proved here; the workbench's residual-7 sieve, audited, together with its count as coefficients of $\prod_\ell\sum_{e=0}^{2v_\ell(a)}T^{\lambda(\ell)e}$ in $\ZZ[T]/(T^6-1)$. Checked on all 4{,}472 primes $p\equiv1\pmod{12}$ below $2\cdot10^5$ (and below $10^6$ in the first pass).}
+
+\begin{proof}
+The exterior condition $7\mid4u+1$ is $u\equiv-4^{-1}\equiv5=3^5$, and the middle condition is $u/a\equiv-1=3^3\pmod7$; in base $3$ the discrete logarithms of $1,\dots,6$ are $0,2,1,4,5,3$.
+\emph{Sufficiency.} A prime $\ell\equiv5$ dividing $a$ gives $u=\ell$; a prime $\ell\equiv6$ gives $u=a\ell$. If $n_3\ge3$, a product of primes $\equiv3$ dividing $a^2$ with total exponent $5$ gives $u\equiv3^5$. If primes $t\equiv3$ and $\ell\in\{2,4\}\pmod 7$ divide $a$, then $u=a\ell t$ (when $\ell\equiv2=3^2$) or $u=a\ell/t$ (when $\ell\equiv4=3^4$) divides $a^2$ and has $u/a\equiv3^3$.
+\emph{Necessity.} If none of the conditions holds, every prime factor of $a$ is $\equiv1,2,3$ or $4$, and either $n_3=0$ or ($1\le n_3\le2$ and $n_{24}=0$). If $n_3=0$, $a$ and all divisors of $a^2$ lie in the subgroup $\{1,2,4\}$ of squares, which contains neither $5$ nor $-1$. Otherwise $a\equiv3^{n_3}$ and a divisor of $a^2$ is $\equiv3^e$ with $0\le e\le2n_3\le4$; the exterior target needs $e\equiv5\pmod6$ and the middle one $e-n_3\equiv3\pmod6$ with $|e-n_3|\le2$, both impossible.
+\end{proof}
+
+The shells with $R=3$ and $R=7$ exist exactly for the primes $p\equiv1\pmod4$, with $a=(p+3)/4$ and $a=(p+7)/4$ (\textsf{Generalised here}; checked on all $1{,}611$ such primes below $3\cdot10^4$). Proposition~\ref{prop:r7} holds for all of them, since its proof never uses $p\equiv1\pmod3$. Proposition~\ref{prop:r3} holds as stated for $p\equiv1\pmod{12}$ only. For $p\equiv5\pmod{12}$, $a=(p+3)/4\equiv2\pmod3$, so modulo $3$ the middle condition reads $u\equiv1$; then $E_a=\{u\mid a^2:u\equiv2\}$ and $M_a=\{u\mid a^2:u\equiv1\}$, with $|E_a|=P_1(P_2-1)/2$ and $|M_a|=P_1(P_2+1)/2$ by the parity count of the proof above, and there are exactly $|E_a|+\frac12|M_a|=P_1(3P_2-1)/4$ unordered solutions with least denominator $a$ (an integer: the total exponent in $a$ of the primes $\equiv2\pmod3$ is odd, so $P_2\equiv3\pmod4$). That shell is always occupied ($1\in M_a$), and its occupancy criterion holds trivially, since $a\equiv2\pmod3$ has a prime factor $\equiv2\pmod3$; those primes are solvable anyway, since $p\equiv2\pmod3$.
+
+\begin{proposition}[the two-shell survivors]\label{prop:survivors}
+Let $p\equiv1\pmod{12}$ be prime. Both shells $a=(p+3)/4$ and $a=(p+7)/4$ are unoccupied if and only if $p\equiv1\pmod{24}$, every prime factor of $(p+3)/4$ is $\equiv1\pmod3$, and every prime factor of $(p+7)/4$ is $\equiv1,2$ or $4\pmod7$. Every such $p$ is a square modulo $7$, so $p\equiv1$, $25$ or $121\pmod{168}$.
+\end{proposition}
+\status{Proved here; the first pass stated the congruence mod $24$ as an observation on its computation. Checked on all primes $p\equiv1\pmod{12}$ below $2\cdot10^5$.}
+\begin{proof}
+If $p\equiv13\pmod{24}$, then $(p+3)/4$ is even and $2\equiv2\pmod3$, so the first shell is occupied (Proposition~\ref{prop:r3}). If $p\equiv1\pmod{24}$, the first shell is unoccupied exactly when every prime factor of $(p+3)/4$ is $\equiv1\pmod3$; and $(p+7)/4$ is even, so $n_{24}\ge1$ and Proposition~\ref{prop:r7} says that the second shell is occupied exactly when $(p+7)/4$ has a prime factor $\equiv3$, $5$ or $6\pmod7$, a non-residue. If it has none, $(p+7)/4$ is a square modulo $7$, and so is $p\equiv4\cdot\frac{p+7}4$. Among the classes $\equiv1\pmod{24}$ modulo $168$, the squares modulo $7$ are $1$, $25$ and $121$.
+\end{proof}
+Of the primes $p\equiv1\pmod{12}$ below $10^6$, exactly $989$ have both shells unoccupied, the first being $1129$, $1201$, $2521$ (first pass).
+
+\subsection{Which primes remain}
+
+The workbench proves solvability for $p\equiv2\pmod 3$, $p\equiv3\pmod4$ and $p\equiv13\pmod{24}$ (scope identities that it does not advertise as new) by the families $(p,\frac{p+1}3,\frac{p(p+1)}3)$, $(\frac{p+1}4,\frac{p(p+1)}2,\frac{p(p+1)}2)$ and $(a,\frac{pa}2,pa)$ with $a=\frac{p+3}4$ (even when $p\equiv13\pmod{24}$); so its own reduction leaves the primes $p\equiv1\pmod{24}$. Its later packages restrict to the \emph{hard} primes $p\equiv1,121,169,289,361,529\pmod{840}$, which are exactly the unit squares modulo $840$ (a group of order $1\cdot1\cdot2\cdot3=6$). The reduction to them is classical (Obláth and Mordell; see Elsholtz--Tao \cite{ElsholtzTao} and Mordell \cite{Mordell}). The 22 September packages use it without proof; the archive proves it (§10, ``Non-square modulo 840 theorem'', p.~95). Five identities prove it.
+
+\begin{proposition}[the reduction modulo $840$]\label{prop:mod840}
+Let $p\equiv1\pmod{24}$ be prime, and let $(A,B,R)$ be $(1,2,7)$, $(2,1,7)$, $(1,1,7)$, $(1,2,15)$ or $(2,1,15)$ according as $p\equiv3$, $5$, $6\pmod7$ or $p\equiv2$, $3\pmod5$. Then $D=(p+R)/(4AB)$ and $C=(A+pB)/R$ are positive integers and
+\[
+\frac4p=\frac1{ABD}+\frac1{ACD}+\frac1{pBCD}.
+\]
+So the equation is solvable at every prime $p\equiv1\pmod{24}$ that is not a square modulo $840$.
+\end{proposition}
+\status{Proved here (the reduction is classical); the first pass covered the $18$ non-square unit classes $\equiv1\pmod{24}$ by the same kind of families. Checked on all primes $p\equiv1\pmod{24}$ below $3\cdot10^5$.}
+\begin{proof}
+With $RC=A+pB$ and $4ABD=p+R$: $\frac1{ABD}+\frac1{ACD}+\frac1{pBCD}=\frac{pC+pB+A}{pABCD}=\frac{C(p+R)}{pABCD}=\frac{p+R}{pABD}=\frac4p$. Since $p\equiv1\pmod8$, $8$ divides $p+7$ and $p+15$, so $4AB\mid p+R$; $R\mid A+pB$ is the stated congruence modulo $7$ or $5$, together with $A+pB\equiv A+B\equiv0\pmod3$ when $R=15$. The primes $p\equiv1\pmod{24}$ left over have $p\equiv1,2,4\pmod7$ and $p\equiv\pm1\pmod5$, which are exactly the unit squares modulo $840$.
+\end{proof}
+
+
+\subsection{The Jacobi-symbol barrier}\label{ssec:jacobi}
+
+\begin{proposition}[the Jacobi-symbol barrier]\label{prop:jacobi}
+Let $p$ be an odd prime, $R\equiv3\pmod4$, $a=(p+R)/4$ an integer, and $\gcd(R,pa)=1$. If the Jacobi symbol $(q/R)$ equals $1$ for every prime $q\mid a$, then the shell $a$ is unoccupied. The converse is false: at $p=5$, $R=7$, $a=3$ the only prime factor of $a$ is a non-residue modulo $7$, and yet the shell is unoccupied.
+\end{proposition}
+\status{Proved here; archive §10, ``Jacobi-symbol barrier'' and ``The Jacobi barrier has no converse'' (p.~96), whose proofs are correct as read.}
+\begin{proof}
+By the proof of Theorem~\ref{thm:shell}(b), the shell is occupied exactly when some divisor $d$ of $S^2=p^2a^2$ satisfies $d\equiv-pa\pmod R$. Let $\chi=(\cdot/R)$ be the Jacobi symbol, a character on the units modulo $R$. The hypothesis gives $\chi(a)=1$, and $p\equiv4a\pmod R$ gives $\chi(p)=\chi(4)\chi(a)=1$. So $\chi(d)=1$ for every divisor $d$ of $p^2a^2$, while $\chi(-pa)=\chi(-1)=(-1)^{(R-1)/2}=-1$ because $R\equiv3\pmod4$. So no divisor lies in the target class.
+For the converse: the squares modulo $7$ are $1,2,4$, so $(3/7)=-1$; the divisors of $15^2=225$ are $\equiv1,2,3,4,5\pmod7$, and the target $-15\equiv6$ is not among them.
+\end{proof}
+
+So at a prime $p\equiv1\pmod4$, a shell with residual $R$ can be occupied only if $a=(p+R)/4$ has a prime factor that is a non-residue modulo $R$ in the Jacobi sense. The argument is a quadratic-character argument: every divisor inherits the residue condition. This is the kind of mechanism behind the obstruction to polynomial identities recalled in Section~\ref{sec:problem}. The barrier explains why the workbench's occupancy criteria, such as Propositions~\ref{prop:r3} and~\ref{prop:r7}, are phrased through non-residue prime factors of $a$.

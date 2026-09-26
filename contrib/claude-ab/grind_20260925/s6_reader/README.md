@@ -2,7 +2,7 @@
 
 Prepared by Claude (Anthropic), model `claude-opus-5-5` (Opus 5.5), at maximum reasoning effort, 26 September 2026.
 
-`s6reader.pdf` (21 pages) is a dedicated reader of the Zenodo record 10.5281/zenodo.22678442, *Verification and Reconstruction of a Claimed Complex Structure on S⁶: An AI-Produced Validate/Repair/Disprove Record*. The record audits a manuscript circulated by Levent Alpöge, which claims that a family of complex two-dimensional tori over the projective line, completed at three special fibres, is a complex structure on the six-sphere.
+`s6reader.pdf` (22 pages) is a dedicated reader of the Zenodo record 10.5281/zenodo.22678442, *Verification and Reconstruction of a Claimed Complex Structure on S⁶: An AI-Produced Validate/Repair/Disprove Record*. The record audits a manuscript circulated by Levent Alpöge, which claims that a family of complex two-dimensional tori over the projective line, completed at three special fibres, is a complex structure on the six-sphere.
 
 The reader:
 

@@ -133,6 +133,32 @@ sol = sp.solve(sp.Poly(sp.expand(deg3 - (Aa*c1**3 + Bb*c1*c2 + Cc*c3)), ra, rb, 
 check("HRR: [ch(T) td(T)]_3 = A c1^3 + B c1 c2 + c3/2, so chi(T_X) = c3/2 when c1 = c2 = 0", len(sol) == 1 and sol[0][Cc] == sp.Rational(1, 2), sol)
 
 
+# (h) the whole torsion of Omega^2_{R/C{t}} at t = xyz: kernel of dt^ on Omega^2 is free on zeta1 = (z, y, 0), zeta3 = (0, y, x)
+kerform = lambda v: sp.expand(x*y*v[0] - x*z*v[1] + y*z*v[2])   # dt ^ (a e1 + b e2 + c e3) = (xy a - xz b + yz c) dx^dy^dz
+z1, z3 = sp.Matrix([z, y, 0]), sp.Matrix([0, y, x])
+check("t = xyz: zeta1 = z e1 + y e2 and zeta3 = y e2 + x e3 lie in the kernel of dt ^ on Omega^2", kerform(z1) == 0 and kerform(z3) == 0)
+rx, ry, rz = gxyz
+check("t = xyz: in the basis (zeta1, zeta3) the relations are -x zeta1, y zeta1 - y zeta3, z zeta3",
+      sp.expand(rx + x*z1) == sp.zeros(3, 1) and sp.expand(ry - (y*z1 - y*z3)) == sp.zeros(3, 1) and sp.expand(rz - z*z3) == sp.zeros(3, 1))
+# the torsion T = R^2/<(x,0),(y,-y),(0,z)> is killed by J = (yz, xz, xy): check yz, xz, xy times each generator lie in the relation module
+Rel = sp.Matrix([[x, y, 0], [0, -y, z]])   # columns are the relations in the basis (zeta1, zeta3)
+aa_, bb_, cc_ = sp.symbols('aa bb cc')
+def in_rel(vec):
+    # solve Rel * (aa, bb, cc)^T = vec with polynomial coefficients by a degree-bounded ansatz (degree <= 2)
+    mons = [sp.Integer(1), x, y, z, x*x, y*y, z*z, x*y, x*z, y*z]
+    cs = sp.symbols('k0:30')
+    A = sum(cs[i]*mons[i] for i in range(10)); B = sum(cs[10+i]*mons[i] for i in range(10)); Cc2 = sum(cs[20+i]*mons[i] for i in range(10))
+    eqs = sp.expand(Rel*sp.Matrix([A, B, Cc2]) - vec)
+    coeffs = []
+    for e in eqs:
+        coeffs += sp.Poly(e, x, y, z).coeffs()
+    return len(sp.solve(coeffs, cs, dict=True)) > 0
+gens = [sp.Matrix([1, 0]), sp.Matrix([0, 1])]
+check("t = xyz: the torsion R^2/<(x,0),(y,-y),(0,z)> is killed by yz, xz and xy",
+      all(in_rel(f*g) for f in (y*z, x*z, x*y) for g in gens))
+check("t = xyz: Hilbert-Burch: the 2x2 minors of [[x,0],[-y,y],[0,-z]] are xy, -xz, yz",
+      [sp.expand(sp.Matrix([[x, 0], [-y, y], [0, -z]]).extract(r, [0, 1]).det()) for r in ([0, 1], [0, 2], [1, 2])] == [x*y, -x*z, y*z])
+
 # ---- additions for Section 6 of the reader (later supplements; key advances) ----
 mr, mi, br, bi, tr, ti = sp.symbols('mr mi br bi tr ti', real=True)
 PiR = sp.Matrix([[6*mr, tr, 1, 0], [6*mi, ti, 0, 0], [br, mr, 0, 1], [bi, mi, 0, 0]])

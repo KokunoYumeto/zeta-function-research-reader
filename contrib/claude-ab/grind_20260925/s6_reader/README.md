@@ -11,7 +11,7 @@ The reader:
 - audits the record's eleven-page correction note on the singular-fibre step of that paper in full, and adds three results, each proved:
   - the torsion of the differentials of a reduced hypersurface vanishes exactly where the singular locus has codimension at least two, so the published step is valid on such fibres. The normal case is in the source manuscript's Remark 10.4.
   - in the note's test family, the connecting map that the step overlooks is zero because its target vanishes, and the group that should vanish is exactly one-dimensional.
-  - the relative one-forms of a function on a smooth germ have torsion R/(gcd ∂ᵢt). So the record's correction of the manuscript is right for one-forms, but relative two-forms do have torsion at the cusp fibre.
+  - the relative one-forms of a function on a smooth germ have torsion R/(gcd ∂ᵢt). So the record's correction of the manuscript is right for one-forms, but relative two-forms do have torsion at the cusp fibre: along the double curves it is the structure sheaf of the curve, and at a triple point the canonical module of the three branches.
 - checks that the derived global criterion (the note's Theorem 5.2) needs only a nonzero effective divisor, not algebraic dimension one;
 - maps the topology supplement of 5 September and the key-advances reader of 6 September, reproduces their finite statements, and proves the arithmetic of S6-5 together with its formula for the cubic;
 - lists the overlaps with the Erdős–Straus and Yang–Mills workbenches.
@@ -20,5 +20,5 @@ The reader:
 
 **Build.** Run `lualatex s6reader.tex` twice. The scripts are in `../checks/s6_reader/`:
 
-- `s6r_checks.py`: 43 checks, all pass.
+- `s6r_checks.py`: 47 checks, all pass.
 - `s6r_record_inventory.py`: the record's files against downloaded copies, by MD5.

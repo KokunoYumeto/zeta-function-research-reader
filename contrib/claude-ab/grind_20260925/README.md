@@ -78,7 +78,7 @@ It also maps the later supplements and proves the arithmetic of S6-5 with the fo
 | `ym_reader/` | The Yang–Mills reader (25 pages; LaTeX source and PDF); not yet refereed independently |
 | `checks/ym_reader/` | Its scripts and outputs (`ymr_heat_constants.py`, 30 checks, all pass; `ymr_record_inventory.py`, the record's 43 files against the repository and the downloads) |
 | `s6_reader/` | The S⁶ reader (21 pages; LaTeX source and PDF); not yet refereed independently |
-| `checks/s6_reader/` | Its scripts and outputs (`s6r_checks.py`, 43 checks, all pass; `s6r_record_inventory.py`, the record's 33 files against the downloads) |
+| `checks/s6_reader/` | Its scripts and outputs (`s6r_checks.py`, 47 checks, all pass; `s6r_record_inventory.py`, the record's 33 files against the downloads) |
 | `figures/` | Illustrations, each with the script that draws it from the checked data (see `figures/README.md`): the zeros of the even sheet Z_{1/5}, the factorial and half-factorial sheets, the shifted-flow crossings, the clock stack, and the mirror line with the chiral pair of circles |
 | `copy_round2/code/` | The copy's scripts. They read the zero data from the folder named by the environment variable `ZERO_DATA_DIR` (default `data/`); the data are not published, and `zerodata.py` and `onepoints2.py` regenerate them |
 | `09_HARMONIC_SWEEP_SOURCE_PAIRING_AND_NYMAN_BEURLING.md` | Content map of the 25 September harmonic-sweep (HSW), source-pairing (OPD) and positive-measure (SPF) notes. It also gives the bridges to Hilbert–Pólya, Wiener, Nyman–Beurling and Burnol's co-Poisson theory Refereed (second pass). |

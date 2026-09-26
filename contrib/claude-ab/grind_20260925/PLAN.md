@@ -553,3 +553,4 @@ A reminder is scheduled into this session. When it fires: read this file and the
     - the manuscript's two titles (summary and main text) are both given;
     - the S6-5 proposition now states the general mod-9 form and credits the reader of four workbenches (Prop. 4.7), whose formula for the cubic is now checked by quaternion arithmetic.
   - Register W22–W27; README rows; `checks/s6_reader/` (`s6r_checks.py`, 43 checks; `s6r_record_inventory.py`).
+- 19:21–19:25 UTC: S⁶ reader, a refinement before the referee pass. The whole torsion of Ω²_{R/ℂ{t}} at t = xyz is now computed: R²/⟨(x,0),(y,−y),(0,z)⟩ on two explicit two-forms, which is Ext²_R(R/J, R) for the ideal J of the three coordinate axes (their canonical module); along the double curves it is O_D. Open question 4 of the reader is narrowed to the global form and the direct images. Checks 44–47 added (47 in all, all pass); register W25 updated.

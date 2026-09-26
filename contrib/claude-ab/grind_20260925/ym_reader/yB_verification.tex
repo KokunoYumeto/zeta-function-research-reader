@@ -1,0 +1,44 @@
+\section{How this reader was checked}\label{app:verification}
+
+\paragraph{Sources.}
+\begin{itemize}
+\item The repository \texttt{KokunoYumeto/yang-mills-interacting-workbench} at commit \texttt{fa79faf}, read-only.
+\item The record 10.5281/zenodo.22883643. Its file list and MD5 checksums, and the files added by each of its five versions, were read from the record's public metadata on 26 September 2026. Twenty-three of its 43 files are byte-identical to files of the repository at \texttt{fa79faf}. Nineteen of the other twenty were downloaded from the record, with the owner's permission, and their MD5 checksums equal the record's. The 87~MB Overleaf archive was not downloaded. The script \note{ymr\_record\_inventory.py} reproduces this inventory.
+\end{itemize}
+
+\paragraph{What was refereed earlier.}
+Section~\ref{sec:gap} and Proposition~\ref{prop:neumann} come from the Yang--Mills section of the reader of four workbenches \cite{WorkbenchReader}, in which they went through five stages:
+\begin{enumerate}[label=\arabic*.]
+\item a first-pass audit by a separate Claude instance (\note{46a\_}). It recomputed the closed-form arithmetic of the theorem from the ten rationals of (F26), recomputed the order-2 inputs from explicit $SU(2)$ coefficient tensors, and checked order 1 by hand. It also re-ran the workbench's order-5 producer (662 rows, 51 seconds) and its polynomial and dual-certificate auditor (20 seconds): both outputs were byte-identical to the published ones, a replay which the workbench had not made at publication;
+\item a referee pass on the notes \note{43\_}--\note{47\_}, by an instance that had written none of them;
+\item a referee pass on that reader;
+\item two further passes that read it for understatement and missed generality as well as for overstatement. They produced the girth form of Lemma~\ref{lem:casimir}, Corollary~\ref{cor:ym-orderN} and the physical-space part of Proposition~\ref{prop:neumann}, and corrected the credit for the order-1 and order-2 theorems of the 14--16 September edition.
+\end{enumerate}
+The checks are in \note{checks/\allowbreak workbenches/}: the first pass in \note{audit46\_ym/}, then \note{workbench\_reader\_claims\_checks.py} and \note{generality\_checks.py}.
+
+\paragraph{What is new in this reader, and has been checked only by its author.}
+\begin{itemize}
+\item the map of the record and its five versions (Section~\ref{sec:corpus});
+\item Section~\ref{sec:heat}: Theorem~\ref{thm:heat} with its proof, and Propositions~\ref{prop:heatconst}, \ref{prop:relax} and~\ref{prop:bench};
+\item Propositions~\ref{prop:path} and~\ref{prop:firstgap};
+\item the Navier--Stokes and $S^6$ parts of Section~\ref{sec:side}, and the table of Section~\ref{sec:negative}.
+\end{itemize}
+
+\paragraph{The scripts of this reader.}
+They import no workbench code. They are in \note{checks/ym\_reader/} on the branch named below.
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.13\linewidth}@{}}
+\toprule
+Script & What it checks & Time, result\\
+\midrule
+\note{ymr\_heat\_constants.py} & the constants of (H9)--(H13) from the rationals of (F26), including $d_5(1/55)>13/8$ in exact arithmetic; the centre map on all $240$ faces of $L=2$; the signed-weight integral (H17) and $C_J$ (H18); the widths and the benchmark table (H19)--(H30) at five couplings, with the workbench's diagnostics at $g^2=13$ reproduced to eleven digits; the constants on other radii (30 checks) & 1 s; all pass\\
+\note{ymr\_record\_inventory.py} & the 43 files of the record against the repository and the downloaded copies, by MD5 & under 1 s; 23 + 19, one not local\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{What has not been done.}
+This version has not had an independent referee pass of its own. The earlier readers of this audit each had at least one, by a Claude instance that had written none of the text; the most recent of these passes read for understatement and missed generality as well as for overstatement. Such instances were unavailable when this version was written, because of a usage limit that ends on 30 September 2026. A referee pass of the same kind is planned after that date, and its findings will be applied before this reader is deposited with the record. Until then, the statements listed above as new rest on this author's proofs and scripts alone.
+
+\paragraph{Where everything is.}
+This reader, its sources and its scripts are on the branch \texttt{claude/claude-ab-grind-20260925} of \texttt{KokunoYumeto/zeta-function-research-reader}, in \texttt{contrib/claude-ab/grind\_20260925/}: the reader in \note{ym\_reader/}, the scripts in \note{checks/ym\_reader/}, and the audit notes at the top level.

@@ -1,0 +1,42 @@
+\section{The problem, the setting, and what the workbench claims}\label{sec:problem}
+
+\subsection{The continuum problem}
+
+The Clay Mathematics Institute's problem, described by Jaffe and Witten \cite{JaffeWitten}, asks for a proof that for every compact simple gauge group a nontrivial quantum Yang--Mills theory exists on $\R^4$ and has a mass gap $\Delta>0$. The existence part asks for a continuum theory satisfying axioms at least as strong as the Wightman or Osterwalder--Schrader axioms (\cite{JaffeWitten}, §4); estimates for a model at fixed lattice spacing do not by themselves answer it.
+
+\subsection{The lattice setting of the workbench}
+
+The workbench works with a spatial lattice and continuous time, in the Hamiltonian formulation of Kogut and Susskind \cite{KogutSusskind}, for the group $SU(2)$.
+\begin{itemize}
+\item \emph{Box.} The vertices form the open box $\{-L,\dots,L\}^3$, $L\ge2$. The links $e$ are the positively oriented nearest-neighbour edges inside the box, and the plaquettes $p$ are the elementary faces inside it; there are $M_L=12L^2(2L+1)$ of them.
+\item \emph{Space.} Each link carries a matrix $U_e\in SU(2)$, and the configuration space carries the product Haar probability measure. The \emph{physical} Hilbert space is the subspace of $L^2$ invariant under the gauge transformations at every vertex, boundary vertices included.
+\item \emph{Hamiltonian} (the workbench's normalisation):
+\[
+H_L=\kappa K+\kappa\xi(2M_L-S),\qquad K=-\sum_{e,a}X_{e,a}^2,\quad S=\sum_pW_p,\quad \kappa=\frac{2g^2}a,\quad \xi=\frac1{4g^4}.
+\]
+Here $X_{e,a}$ differentiates $U_e$ along $e^{tT_a}$ with $T_a=-i\sigma_a/2$, so $K$ is the sum of the link Casimirs; $W_p$ is the trace of the ordered product of the four links around $p$; $a>0$ is the lattice spacing and $g>0$ the bare coupling. The plaquette term equals $(2g^2a)^{-1}\sum_p(2-W_p)\ge0$.
+\item \emph{Gap.} $\Delta_L$ is the distance from the ground energy $E_0$ to the rest of the spectrum of $H_L$ on the physical space. At $\xi=0$ it equals $3\kappa$: one plaquette in the fundamental representation, four links of Casimir $\frac34$.
+\end{itemize}
+Large $g$ is strong coupling, where $\xi$ is small; the continuum limit needs $a\to0$ with $g\to0$, the opposite regime. The workbench records the conversion to the convention of Schütte, Zheng and Hamer \cite{SchutteZhengHamer}: $g_C=2^{3/4}g$, and the Hamiltonians differ by the factor $\sqrt2$ and a constant. Numerical thresholds below are in the workbench's normalisation.
+
+\subsection{What is known}
+
+\begin{itemize}
+\item \emph{Strong coupling.} Mass gaps at strong coupling are classical for lattice gauge theories in the Euclidean setting (Osterwalder and Seiler \cite{OsterwalderSeiler}; cited, not re-read here).
+\item \emph{The exponential vacuum.} Writing the ground state as $e^v$ and solving for $v$ order by order in the coupling is the coupled-cluster method of Hamiltonian lattice field theory; the workbench credits it, with the character and Casimir calculus it uses, to Schütte, Zheng and Hamer \cite{SchutteZhengHamer}.
+\end{itemize}
+Whether an explicit bound of the kind proved in Section~\ref{sec:gap} (uniform in the box, on the whole physical space, with a closed coupling threshold) is in the literature was not searched.
+
+\subsection{What the workbench claims, and what it does not}
+
+The workbench's front pages are explicit (repository \texttt{README.md}; the readers of 21 September):
+\begin{itemize}
+\item its results are finite-regulator statements, at fixed lattice spacing and on stated coupling domains;
+\item it does not claim a solution of the four-dimensional continuum mass-gap problem, nor independent certification of the $S^6$ or Navier--Stokes constructions it uses;
+\item it separates written analytic arguments from finite exact-arithmetic certificates and from numerical diagnostics, and claims no Lean or independent external analytical certification.
+\end{itemize}
+The latest edition also records that its standing continuum path, $a_n=a_02^{-n}$ with $g_n^2=1/c_n$ and $c_n=g_0^{-2}+\beta n\log2$, eventually leaves the domain of its estimates when $\beta>0$ (Proposition~\ref{prop:path}). In the parts read here these scope statements are accurate. Where a statement of the workbench was found to be stronger or weaker than its proof, this reader says so.
+
+\subsection{The approach in one paragraph}
+
+The ground state of $H_L$ is positive, so it can be written $\psi=e^v/\|e^v\|$. Inserting this into the eigenvalue equation gives a nonlinear equation for $v$, namely $v=\xi v_1+B(v,v)$ with $v_1=S/3$, whose formal solution is a power series $\sum_n\xi^nv_n$ (Lemma~\ref{lem:gst}). The workbench computes the first five coefficients exactly, bounds them in weighted Fourier-algebra norms that are local, so that nothing grows with the box, and solves for the remainder by a contraction argument. Returning to the eigenvalue equation then gives a lower bound for every excitation energy (Proposition~\ref{prop:return}). The same control of the vacuum gives box-independent bounds for heat correlations of plaquettes, and bounds for how much the plaquette family mixes with the rest of the physical space (Section~\ref{sec:heat}).

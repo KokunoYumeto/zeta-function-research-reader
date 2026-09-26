@@ -162,13 +162,13 @@ Points (a)–(e) of the I4 row:
   - The DP5 half would be an independent bound on this abscissa of the form k + 1 + C, with C independent of k and S. Letting k → ∞, such a bound is equivalent to β_max ≤ ½. In Deligne's proof that bound comes from the H_c² of a fixed curve (DP5.1).
   - Codex says it is checking this against its newer boundary construction. It reports a ramified map with the exact factor n^{−1} in the nilpotent relation, which the ordinary counting map lacks.
 
-**What I1 and I2 are used for.** In the programme's proved separations (TL, TL7, ORE6), I1 and I2 are used to produce the strip 0 < Re ρ < 1. In Deligne's scheme, the step from the boundary to the middle uses I3 and I4 together: a discreteness gain on an auxiliary object, transported through the square. Alternatively, in §1.5 form, it uses positivity of even tensor powers together with a pole bound uniform in k. In the files I have read, the programme supplies I1, I2 and positivity of tensor powers. It has not yet supplied I3 or the uniform pole bound. Whether its constructions can supply them is open; IH5 and TWC9 both say so.
+**What I1 and I2 are used for.** In the programme's proved separations (TL, TL7, ORE6), I1 and I2 are used to produce the strip 0 < Re ρ < 1. In Deligne's proof for H¹ of a curve (Weil II §3.2), the step from the boundary to the middle uses I3 and I4 together: a discreteness gain on an auxiliary object, transported through the square. The §1.5 argument, positivity of even tensor powers with a pole bound uniform in k, is one step inside it, applied to the fibre cohomology of the pencil (`37_` §6). On the programme's finite exponent data, where the zeros enter as local eigenvalues n^ρ, the §1.5 form would suffice by itself: by (e), a pole bound k + 1 + C uniform in k is equivalent to β_max ≤ ½. So this route needs no square as a logical matter, but as a target it restates RH on these data; in Weil II the bound comes from the H_c² of a fixed curve, which for eigenvalues on H¹ Deligne reaches only through the square and its pencil. In the files I have read, the programme supplies I1, I2 and positivity of tensor powers. It has not yet supplied I3 or the uniform pole bound. Whether its constructions can supply them is open; IH5 and TWC9 both say so. (Revised in the final referee pass, part B.)
 
 ## 4. The F1 framing of the question
 
 Stated without the programme's vocabulary, the weight lane has arrived at this question:
 
-> Over the reconstructed arithmetic, construct a square with a Künneth-type map from H¹ ⊗ H¹ into its H², together with either (a) an auxiliary object whose weights are discrete, or (b) a pole bound for the positive even tensor powers that is uniform in the power.
+> Over the reconstructed arithmetic, supply either (a) a square with a Künneth-type map from H¹ ⊗ H¹ into its H², together with an auxiliary object whose weights are discrete, or (b) a cohomological source for a pole bound on the positive even tensor powers that is uniform in the power. Route (b) needs no square logically (on the programme's finite data the bound is equivalent to β_max ≤ ½, §3(e)); in Deligne's proof its source, for eigenvalues on H¹ of a curve, is again the square with its pencil (`37_` §6).
 
 **The literature on its first ingredient, the square:**
 
@@ -179,7 +179,7 @@ Stated without the programme's vocabulary, the weight lane has arrived at this q
   - Deninger's regularized-determinant formula for the completed zeta, an alternating product over the H^i, is Manin's eq. (1.5) in §1.1.
 - **Connes 2016.** Weil's proof for curves uses Riemann–Roch on C̄ × C̄ (A. Connes, *An essay on the Riemann Hypothesis*, [arXiv:1509.05576](https://arxiv.org/abs/1509.05576), §2.3). Connes introduces the square of the arithmetic site in §4.3.1. Table 1 in §4.3.2 pairs X = C̄ × C̄ with Â × Â, where Â is the scaling site.
 
-The second ingredient, either (a) or (b), is specific to Deligne's argument. It is not a question from the F1 literature.
+The weight input, discrete weights in (a) or the uniform pole bound in (b), is specific to Deligne's argument. It is not a question from the F1 literature.
 
 **Assessment.** The second attempt reaches this question from the owner's side: the τ-supported source, its winding ring, the timed primes, and the lifting through the Connes–Consani summation map. What its proved results provide:
 

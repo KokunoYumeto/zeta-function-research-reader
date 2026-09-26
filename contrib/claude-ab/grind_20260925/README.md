@@ -11,7 +11,7 @@ The folder is organized by the owner's four goals:
 
 `00_RESULTS_REGISTER.md` is the index. Each other file states its own scope and verification status.
 
-**The reader.** `reader/` holds the LaTeX source and the compiled PDF (`reader/reader.pdf`, 50 pages) of *The split-zero programme around the Riemann zeta function: a reader of its results, with proofs*, compiled from these notes and refereed on 26 September 2026. It states the proved results (the central ones with full proofs), the routes that provably do not decide the location of the zeros, each within its exact scope, the connections with other fields and with the author's other workbenches, and the open questions. Build with `lualatex reader.tex` twice.
+**The reader.** `reader/` holds the LaTeX source and the compiled PDF (`reader/reader.pdf`, 50 pages) of *The split-zero programme around the Riemann zeta function: a reader of its results, with proofs*, compiled from these notes and refereed on 26 September 2026, and published on Zenodo as version [10.5281/zenodo.22970703](https://doi.org/10.5281/zenodo.22970703) of the programme's record (concept DOI 10.5281/zenodo.22678085). It states the proved results (the central ones with full proofs), the routes that provably do not decide the location of the zeros, each within its exact scope, the connections with other fields and with the author's other workbenches, and the open questions. Build with `lualatex reader.tex` twice.
 
 | File | Content |
 |---|---|

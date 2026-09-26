@@ -394,4 +394,4 @@ The full referee pass on Theorem E is done (`06_`).
 - whether the leading-coefficient condition (k = 0) suffices for convergence of the primary decomposition when zeros are multiple (`40_` Prop. 40.5);
 - the continuation questions left open in `42_` (the examination line above).
 
-**Publication:** a reader of the programme (LaTeX/PDF) for Zenodo, as a new version under the concept DOI 10.5281/zenodo.22678085, additive only, built on its latest version 22950644 (the owner's decision, 26 September; `41_` §4).
+**Publication:** the reader of the programme (LaTeX/PDF, 50 pages, `reader/`) is published on Zenodo as version 10.5281/zenodo.22970703 (26 September 2026) under the concept DOI 10.5281/zenodo.22678085: a new version of 22950644, additive only (all 68 earlier files and all earlier metadata kept; the reader PDF, its LaTeX source and these notes with the checks added, the reader as the default preview; a contributor entry and a purpose paragraph added). The owner pressed Publish, since the session's permission check did not allow claude-ab to confirm the publication.

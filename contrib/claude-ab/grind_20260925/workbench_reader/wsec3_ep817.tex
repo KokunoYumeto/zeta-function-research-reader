@@ -1,0 +1,132 @@
+\section{The Erdős Problem 817 workbench}\label{sec:ep817}
+
+For a finite set $A$ of distinct positive integers let $H(A)=\{\sum_{a\in A}\varepsilon_aa:\varepsilon_a\in\{0,1\}\}$ (the empty sum included) and $S(A)=\sum_{a\in A}a$. $A$ is \emph{$k$-admissible} if $H(A)$ contains no $k$-term arithmetic progression with nonzero step, and $g_k(n)$ is the least $N$ such that some $n$-element $A\subseteq\{1,\dots,N\}$ is $k$-admissible. Erdős Problem~817, a problem of Erdős and Sárközy, asks for estimates of $g_k(n)$, in particular whether $g_3(n)\gg3^n$; Erdős and Sárközy proved $g_3(n)\gg3^n/n^{O(1)}$ \cite{ErdosSarkozy}. The problem was listed as open on \texttt{erdosproblems.com/817} when read on 26 September 2026. The workbench reports that Costa's preprint \cite{Costa} proves $\liminf g_3(n)/3^n=0$, a negative answer to that question; this reader did not check it, and the workbench's own results concern $k\ge4$.
+Admissibility is hereditary, since $H(B)\subseteq H(A)$ for $B\subseteq A$; so $g_k$ is strictly increasing in $n$.
+
+\emph{Credit, as the workbench records it.} The $k=4$ proof is due to a contributor on the subreddit r/LLMmathematics whose account was later deleted. The Clankers reconstructed the argument, made its compressed steps explicit, checked it and formalised its central algebraic and base-19 components in Lean; sneed-and-feed formalised the finite upper bound in Lean (pull request~\#1). The workbench makes no novelty or priority claim for the $k=4$ theorem, which it describes as a result about the $k=4$ exponential-rate subproblem, not a solution of every part of Problem~817.
+Audit note: \note{45\_}; first-pass report \note{45a\_}.
+
+\subsection{The rate \texorpdfstring{$19^{1/3}$}{19\^{}(1/3)} for four-term progressions}
+
+\begin{theorem}\label{thm:ep817}
+For every $n\ge1$, $\dfrac{19^{n/3}-1}{2n}\le g_4(n)\le8\cdot19^{\lceil n/3\rceil-1}$. Hence $\lim_n g_4(n)^{1/n}=19^{1/3}\approx2.6684$.
+\end{theorem}
+\status{Proved here; the workbench's paper \texttt{ep817\_k4\_rate.tex}, audited: complete and correct as written. The workbench reports the upper half as Lean-checked (\texttt{Extended.lean}); the Lean files were read, not built. The lower bound is not in Lean; only the algebra of Lemma~\ref{lem:split} is (\texttt{Core.lean}). Lemmas~\ref{lem:split}--\ref{lem:ternary} and Corollary~\ref{cor:clankers} have the same status.}
+
+Let $A=\{a_1,\dots,a_n\}$ be 4-admissible. A \emph{relation} is $c\in\{-2,\dots,2\}^n$, $c\ne0$, with $\sum c_ia_i=0$; a \emph{$\pm1$-relation} has $c\in\{-1,0,1\}^n$.
+
+\begin{lemma}[relation splitting]\label{lem:split}
+If $c$ is a relation, then with $P_j=\sum_{c_i=j}a_i$ and $N_j=\sum_{c_i=-j}a_i$ one has $P_1=N_1$ and $P_2=N_2$: the $\pm1$ part and the $\pm2$ part of $c$ are each a relation or zero.
+\end{lemma}
+\begin{proof}
+$X_0=P_1+N_2$, $X_1=P_1+P_2$, $X_2=N_1+N_2$, $X_3=N_1+P_2$ are subset sums, since the four index classes are disjoint. With $d=P_2-N_2$ the relation $P_1+2P_2=N_1+2N_2$ gives $N_1-P_1=2d$, and then $X_1-X_0=X_2-X_1=X_3-X_2=d$. Admissibility forces $d=0$, and then $P_1=N_1$.
+\end{proof}
+
+\begin{lemma}[blocks and the short kernel]\label{lem:blocks}
+Call a $\pm1$-relation \emph{minimal} if its support is inclusion-minimal. Two minimal relations have disjoint supports or are equal up to sign. Every relation is $\sum_jt_jr^{(j)}$ with $t_j\in\{-2,\dots,2\}$, where the $r^{(j)}$ are the minimal relations (the \emph{blocks}), which have pairwise disjoint supports of size at least $3$.
+\end{lemma}
+\begin{proof}
+For minimal $r,s$, the vectors $r+s$ and $r-s$ have entries in $\{-2,\dots,2\}$ and their $\pm2$ layers are $r\mathbf 1_{E_+}$ and $r\mathbf 1_{E_-}$, where $E_\pm=\{i:r_i=\pm s_i\ne0\}$. By Lemma~\ref{lem:split} each is a relation or zero. If the supports meet, one of $E_\pm$ is nonempty, minimality of $r$ gives $E_\pm=\operatorname{supp}r$, so $s=\pm r$ on $\operatorname{supp}r$, and minimality of $s$ gives equality. Every $\pm1$-relation $u$ is a sum of blocks with disjoint supports: a relation $r$ with inclusion-minimal support inside $\operatorname{supp}u$ is minimal, the argument just given applied to $u\pm r$ shows $u=\pm r$ on $\operatorname{supp}r$, and $u\mp r$ is then a $\pm1$-relation or zero that vanishes on $\operatorname{supp}r$; induction on the support finishes. For a relation $c$, the $\pm1$ part $u$ and half the $\pm2$ part $v$ are $\pm1$-relations with disjoint supports (Lemma~\ref{lem:split}), each a sum of whole blocks, so $c=u+2v=\sum(\alpha_j+2\beta_j)r^{(j)}$ with $\alpha_j\beta_j=0$. A block of size $1$ would be a zero element, one of size $2$ two equal elements.
+\end{proof}
+
+\begin{lemma}[the ternary count]\label{lem:ternary}
+Let $T(A)=\{\sum x_ia_i:x\in\{0,1,2\}^n\}$, let the blocks have sizes $m_1,\dots,m_h$ and let $t=n-\sum m_j$. Then $|T(A)|=3^t\prod_j(3^{m_j}-2^{m_j})$.
+\end{lemma}
+\begin{proof}
+Two vectors in $\{0,1,2\}^n$ have the same value iff their difference is a relation, iff it is $\sum t_jr^{(j)}$ (Lemma~\ref{lem:blocks}). So the fibres are products over the blocks, and the coordinates outside the blocks are fixed. On a block, reflecting $x_i\mapsto2-x_i$ where $r_i=-1$ turns the equivalence into translation by $(1,\dots,1)$, and each translation class in $\{0,1,2\}^m$ has exactly one representative with minimum $0$; these number $3^m-2^m$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:ep817}]
+\emph{Lower bound.} $f_m=3^m-2^m$ has $f_3=19$ and $f_{m+1}=3f_m+2^m>3f_m\ge19^{1/3}f_m$, so $f_m\ge19^{m/3}$ for $m\ge3$; also $3\ge19^{1/3}$. By Lemma~\ref{lem:ternary} $|T(A)|\ge19^{n/3}$, and $T(A)\subseteq[0,2S(A)]\subseteq[0,2nN]$.
+\emph{Upper bound.} $D=H(\{1,7,8\})=\{0,1,7,8,9,15,16\}$ contains no nonconstant $4$-term progression modulo $19$ (all $19\cdot18$ progressions checked). For $A_m=\{19^jw:j<m,\ w\in\{1,7,8\}\}$, $H(A_m)$ is the set of integers whose base-19 digits lie in $D$, without carries since $16<19$. If $x+id$ ($0\le i\le3$) lie in $H(A_m)$ with $d=19^re$, $19\nmid e$, then $r<m$, the lowest $r$ digits agree, and the $r$-th digits $\delta_i\in D$ satisfy $\delta_i\equiv\delta_0+ie\pmod{19}$, a nonconstant progression in $D$ modulo $19$. So $A_m$ is 4-admissible with $3m$ elements and maximum $8\cdot19^{m-1}$; for general $n$ take $m=\lceil n/3\rceil$ and delete elements.
+\end{proof}
+
+The top level of this construction needs only to be admissible, not to satisfy a modular condition.
+
+\begin{proposition}[lifting]\label{prop:lift}
+Let each $W_j$ be $\{1,7,8\}$ or $\{2,3,5\}$. For every $4$-admissible set $B$ and every $q\ge0$, the set $\{19^jw:j<q,\ w\in W_j\}\cup19^q\cdot B$ is $4$-admissible. Hence:
+\begin{enumerate}[label=(\alph*)]
+\item $g_4(n+3q)\le19^q\,g_4(n)$ for all $n\ge1$, $q\ge0$;
+\item $g_4(n)\le c\cdot19^{\lceil n/3\rceil-1}$ with $c=1,3,5$ for $n\equiv1,2,0\pmod3$ (top levels $\{1\}$, $\{2,3\}$, $\{2,3,5\}$);
+\item with Proposition~\ref{prop:smallg4}: $g_4(3q)\le79\cdot19^{q-2}$ and $g_4(3q+1)\le246\cdot19^{q-2}$ for $q\ge2$, and $g_4(3q+2)\le40\cdot19^{q-1}$ for $q\ge1$; that is, at most $0.219$, $0.256$ and $0.296$ times $19^{n/3}$, against $0.421$, $3.00$ and $1.12$ times $19^{n/3}$ in Theorem~\ref{thm:ep817};
+\item for every certificate $(q,B)$ of Theorem~\ref{thm:genk}, $g_k(m|B|+n)\le q^m g_k(n)$; for example $g_6(10m+n)\le1651^m g_6(n)$, which sharpens Theorem~\ref{thm:cert56}(b) when $10\nmid n$.
+\end{enumerate}
+The sets $\{1,7,8\}$ and $\{2,3,5\}=3\cdot\{1,7,8\}\bmod 19$ are the only $3$-element sets $B$ with $S(B)<19$ and $H(B)$ free of nonconstant $4$-term progressions modulo $19$.
+\end{proposition}
+\status{Generalised here; (c) uses only the upper bounds $g_4(5)\le40$, $g_4(6)\le79$, $g_4(7)\le246$, given by the admissible sets $\{1,13,35,39,40\}$, $\{2,29,45,74,77,79\}$ and $\{1,3,39,180,219,243,246\}$, not the exhaustive searches. Checked: the lifted sets for $q=1,2$, both digit sets and seven admissible top levels ($28$ sets); all $3$-element digit sets modulo $19$; for $k=6$, $A^\sharp\cup1651\cdot B$ for four $6$-admissible $B$, with a non-admissible $B$ as a negative control.}
+\begin{proof}
+$H$ of the lifted set is $H(A)+19^q\cdot H(B)$, where $H(A)$ is the set of integers below $19^q$ whose $j$-th base-$19$ digit lies in $D_j=H(W_j)$, without carries since $S(W_j)\le16$. Let $x_i=y_i+19^qz_i$ ($0\le i\le3$) be a progression in it with step $d\ne0$. If $19^q\mid d$, then $y_i\equiv y_0\pmod{19^q}$ with $0\le y_i<19^q$, so $y_i=y_0$ and $(z_i)$ is a progression with nonzero step in $H(B)$, which is impossible. Otherwise $d=19^re$ with $r<q$ and $19\nmid e$, and, as in the proof of Theorem~\ref{thm:ep817}, the $r$-th digits give a nonconstant progression in $D_r$ modulo $19$; $H(\{2,3,5\})=3\cdot D\bmod19$ with $3$ a unit, so neither digit set contains one. (a) follows with an optimal $B$, (b) with the admissible top levels named (their sums of subsets are $\{0,1\}$, $\{0,2,3,5\}$ and $\{0,2,3,5,7,8,10\}$), and (c) with the three sets named in the status line. (d) is the same argument with $q$ in place of $19$: the $r$-th digits then form a $k$-term progression with nonzero step modulo $q$ in $H(B)$, which a certificate excludes. The last statement is a finite search.
+\end{proof}
+
+\begin{corollary}[The Clankers]\label{cor:clankers}
+$g_4(n)\ge\lceil(19^{n/3}+n(n-1)-1)/(2n)\rceil$, since distinct elements give $S(A)\le nN-n(n-1)/2$.
+\end{corollary}
+
+\subsection{The variance refinement}
+
+\begin{theorem}[EP-03]\label{thm:variance}
+Write $n=3q+r$ ($0\le r\le2$) and $M_n=19^q3^r$. Every 4-admissible $A$ has $|T(A)|\ge M_n$ and $19(|T(A)|^2-1)\le192\sum a_i^2$. Hence $g_4(n)\ge\lceil\sqrt{19(M_n^2-1)/(192n)}\rceil$, about $c_r19^{n/3}/\sqrt n$ with $c_r=0.315,0.354,0.398$ for $n\equiv0,1,2\pmod3$; and, as $T(A)\subseteq[0,2S(A)]$ with $S(A)\le nN-n(n-1)/2$, $g_4(n)\ge\lceil(M_n+n(n-1)-1)/(2n)\rceil$.
+\end{theorem}
+\status{Proved here (the variance computation derived independently for this reader; it agrees with the workbench's); the workbench's note, audited; labelled there as not Lean-checked. It rests on the anonymous contributor's Lemmas~\ref{lem:blocks}--\ref{lem:ternary}. The last bound is the workbench's (its §6, audited); it improves Corollary~\ref{cor:clankers} by replacing $19^{n/3}$ with $M_n$, a factor $(3/19^{1/3})^{n\bmod3}\le1.264$, and the variance bound is stronger for every $n\ge3$.}
+\begin{proof}
+\emph{$|T|\ge M_n$.} $f_3=19$, $f_4=65\ge57$, $f_5=211\ge171$ and $f_{m+3}-19f_m=8\cdot3^m+11\cdot2^m>0$ give $f_m\ge19^{\lfloor m/3\rfloor}3^{m\bmod3}$; the product in Lemma~\ref{lem:ternary} is then at least $19^\alpha3^\beta$ with $3\alpha+\beta=n$, and since $3^3>19$ the least such value is $M_n$.
+\emph{Variance.} By Lemma~\ref{lem:ternary} the uniform law on $T(A)$ is the law of a sum of independent components: a free coordinate contributes uniformly from $\{0,a_i,2a_i\}$ (variance $\frac23a_i^2$), a block uniformly from its class values. After the reflection, a block with coefficients $b_i=\pm a_i$, $\sum b_i=0$, has class values $\langle b,y\rangle$ for $y\in R=\{y\in\{0,1,2\}^m:\min y=0\}$. The map $y\mapsto2-y$ permutes classes and negates values, so the mean is $0$. Since $\{0,1,2\}^m=R\sqcup(\mathbf1+\{0,1\}^m)$ and values are translation invariant, $\sum_{y\in R}\langle b,y\rangle^2=3^m\cdot\frac23Q-2^m\cdot\frac Q4$ with $Q=\sum b_i^2$ (the second moments of $\sum b_iY_i$ for $Y_i$ uniform on $\{0,1,2\}$ and on $\{0,1\}$). Dividing by $3^m-2^m$ gives the variance $\kappa_mQ$, $\kappa_m=\frac{8\cdot3^m-3\cdot2^m}{12(3^m-2^m)}$, and $\frac{16}{19}-\kappa_m=\frac{5(8\cdot3^m-27\cdot2^m)}{228(3^m-2^m)}\ge0$ for $m\ge3$, with $\kappa_3=\frac{16}{19}>\frac23$. So the variance is at most $\frac{16}{19}\sum a_i^2\le\frac{16}{19}nN^2$, while $M$ distinct integers have uniform variance at least $(M^2-1)/12$.
+\end{proof}
+
+\subsection{General \texorpdfstring{$k$}{k}}
+
+\begin{theorem}[EP-04]\label{thm:genk}
+For every $k\ge3$, $\Lambda_k=\lim_ng_k(n)^{1/n}$ exists and equals $\inf q^{1/|B|}$ over the pairs $(q,B)$ with $S(B)<q$ and $H(B)$ modulo $q$ free of $k$-term progressions with nonzero step ($q$ need not be prime).
+\end{theorem}
+\status{Proved here; the workbench's general-$k$ note, audited, together with its bound $\Lambda_k\ge(k-1)/(k-2)$, the monotonicity $\Lambda_{k+1}\le\Lambda_k$ and its Theorem~2: whether base-$q$ numbers with digits from a finite set avoid $k$-term progressions at every length is decided by a finite carry graph. For $k=3$: the certificate $(3,\{1\})$ (the powers of $3$, whose sums of subsets are the integers with ternary digits $0$ and $1$) gives $\Lambda_3\le3$. Conversely, a $3$-admissible $A$ has no relation with coefficients in $[-2,2]$: in the notation of Lemma~\ref{lem:split}, $X_0,X_1,X_2$ is a $3$-term progression with step $P_2-N_2$, so $P_2=N_2$ and $P_1=N_1$, and a nonzero $\pm1$ or $\pm2$ layer would give the progression $0,P_j,2P_j$. So the $3^n$ ternary sums are distinct, $3^n\le2S(A)+1\le2nN+1$, and $\Lambda_3\ge3$. Hence $\Lambda_3=3>\Lambda_4=19^{1/3}>97^{1/6}\ge\Lambda_5$: the sequence $(\Lambda_k)$ decreases strictly at its first two steps (\textsf{Proved here}; the workbench's located chapters~22 and~24 state the injectivity and $\Lambda_3=3$ in their notation, and the bound $g_3(n)\ge(3^n-1)/(2n)$ is of the form of Erdős and Sárközy's $3^n/n^{O(1)}$).}
+\begin{proof}
+If $A$ and $B$ are $k$-admissible and $R=2S(A)+1$, then $C=A\cup R\cdot B$ is $k$-admissible and $2S(C)+1=(2S(A)+1)(2S(B)+1)$: $H(C)=H(A)+R\cdot H(B)$ bijectively, and a progression $x_i=\alpha_i+R\beta_i$ in $H(C)$ has second differences $\Delta^2\alpha+R\Delta^2\beta=0$ with $|\Delta^2\alpha|\le2S(A)<R$, so $\alpha$ and $\beta$ are progressions and one is nonconstant. Hence $F_k(n)=\min(2S(A)+1)$ over $k$-admissible $n$-sets is submultiplicative, $\lim F_k(n)^{1/n}=\inf F_k(n)^{1/n}$ by Fekete's lemma, and $2g_k(n)+1\le F_k(n)\le2ng_k(n)+1$. For a certificate $(q,B)$ the sets $\{q^jb:b\in B,\,j<m\}$ are $k$-admissible, by the argument of the upper bound in Theorem~\ref{thm:ep817} with $q$ in place of $19$ ($q\nmid e$ suffices); so $\Lambda_k\le q^{1/|B|}$. Conversely every $k$-admissible $B$ gives the certificate $(2S(B)+1,B)$, because elements of $[0,S(B)]$ whose consecutive differences agree modulo $2S(B)+1$ have equal integer differences.
+\end{proof}
+
+\begin{theorem}[certificates for $k=5,6$]\label{thm:cert56}
+\begin{enumerate}[label=(\alph*)]
+\item $B^*=\{1,4,5,17,21,22\}$ has $S(B^*)=70$, $|H(B^*)|=38$, and $H(B^*)$ is free of nonzero-step $5$-term progressions modulo $97$ and of $6$-term progressions modulo $93$. Hence $\Lambda_5\le97^{1/6}\approx2.1435$ and $\Lambda_6\le93^{1/6}\approx2.1285$ (EP-04, Theorem~3).
+\item $A^\sharp=\{3,4,7,34,37,41,216,250,253,257\}$, the ten pairwise distances of the marks $0,4,7,41,257$, has $S(A^\sharp)=1102<1651=13\cdot127$, $|H(A^\sharp)|=291$, and $H(A^\sharp)$ is free of nonzero-step $6$-term progressions modulo $1651$. Hence $g_6(n)\le257\cdot1651^{\lceil n/10\rceil-1}$ and $\Lambda_6\le1651^{1/10}\approx2.0979$ (EP-05, labelled by the workbench as awaiting independent review).
+\end{enumerate}
+\end{theorem}
+\status{Audited (certificate): each modular condition recomputed in the first pass and again for this reader; the lifting is Theorem~\ref{thm:genk}.}
+
+\begin{proposition}[distance rulers; EP-05]\label{prop:rulers}
+If a set $A$ of positive integers contains $r$ pairwise disjoint subsets each summing to $L$, then $H(A)$ contains the $(r+1)$-term progression $0,L,\dots,rL$. In particular, for marks $0=t_0<\dots<t_{m-1}=L$ whose $2m-3$ distances $L$, $t_i$, $L-t_i$ ($1\le i\le m-2$) are pairwise distinct (for example, when all $\binom m2$ pairwise distances are distinct), the subset sums of any set containing these distances contain $0,L,\dots,(m-1)L$.
+\end{proposition}
+\begin{proof}
+Sums of $j$ of the disjoint subsets give $jL$. For the marks, the $m-1$ sets $\{L\}$ and $\{t_i,L-t_i\}$ are pairwise disjoint and each sums to $L$.
+\end{proof}
+\status{The first statement is the case of $0/1$ vectors of the workbench's EP-05 Theorem~3.1, which allows signed vectors with pairwise disjoint supports and a common nonzero observed boundary (audited); the ruler statement is \textsf{Generalised here} from its corollary, which assumes all $\binom m2$ distances distinct. For $A^\sharp$ it gives $0,257,514,771,1028$, so $A^\sharp$ is 6-admissible and not 5-admissible.}
+
+\emph{Comparison with the literature, as far as read.} Korsky's preprint \cite{Korsky} (read in its arXiv HTML version, Theorems~1.2--1.3 and (1.8)) proves, for fixed $k\ge4$, $g_k(n)\gg_k((k-1)/(k-2))^nn^{-\log_2((k-1)/(k-2))}$, and upper bounds whose exponential rate is $\min_pp^{2/(\min\{p,k\}-1)}$ over primes $p\ge3$: $5^{2/3}\approx2.924$ for $k=4$, $\sqrt5\approx2.236$ for $k=5$, $7^{2/5}\approx2.178$ for $k=6$ (this reader's arithmetic). Against these, Theorem~\ref{thm:ep817} determines the $k=4$ rate, which lies between Korsky's $3/2$ and $5^{2/3}$, and Theorem~\ref{thm:cert56} lowers the upper rates for $k=5,6$; the workbench presents the latter as improvements on Korsky's rates and disclaims priority for the former. No wider search was made.
+
+\subsection{Exact small values}
+
+\begin{proposition}[computed for this audit]\label{prop:smallg4}
+$g_4(1),\dots,g_4(6)=1,3,5,14,40,79$, and $176\le g_4(7)\le246$.
+\end{proposition}
+\status{Computed for $n\le6$ by three independent exhaustive searches (two in the first pass, one by the author of this reader using heredity pruning only and no lemma of the paper) and a fourth by the referee of this reader; they agree, including the numbers of optimal sets $1,2,2,2,7,1$. The unique optimal $6$-set is $\{2,29,45,74,77,79\}$: two blocks ($29+45=74$, $2+77=79$), and $|T|=361=M_6$, the least value Theorem~\ref{thm:variance} allows. $g_4(7)\le246$ by the admissible set $\{1,3,39,180,219,243,246\}$; the lower bound $176$ is conditional on the first-pass search program, which excluded maxima in $[132,175]$ by pruning derived from Lemma~\ref{lem:ternary} and Theorem~\ref{thm:variance}; maxima below $132$ are excluded by the refined form of Theorem~\ref{thm:variance}, with $\sum a_i^2\le\sum_{j<7}(N-j)^2$. The values are not in the workbench or in the sources read for this reader; OEIS could not be consulted. No claim of novelty.}
+
+\subsection{The continuation notes}
+
+The workbench's 29 continuation notes are described as ordinary proofs with exact finite certificates, submitted for independent review, without new Lean. Beyond Theorems~\ref{thm:genk}--\ref{thm:cert56} and Proposition~\ref{prop:rulers}:
+\begin{itemize}
+\item \emph{Finite-period approximation} (EP-08; audited in part): for a finite dictionary $D$ of levels, the best lower-limit growth rate $\delta_q(D)$ of the $q$-ary images satisfies $0\le\log U_m-\log\delta_q(D)\le\log(q-1)/(m\,n_{\min})$, where $U_m=\min_{w\in D^m}F_q(w)^{1/N(w)}$ is the least per-generator image rate over words of $m$ levels ($F_q(w)$ the image size and $N(w)$ the number of generators of the word) and $n_{\min}$ the least block size; the radix-ten example has minima $a_1=13$, $a_{3r}=893^r$, $a_{3r+1}=93^2\cdot893^{r-1}$ ($r\ge1$), $a_{3r+2}=93\cdot893^r$ (verified for $m\le16$ by an independently built automaton). This is an image-count rate, and the workbench says $893^{1/6}$ is not a record.
+\item \emph{A published correction} (audited): in the seven-observable note the independence test $Y_P=P\cup(L-P)$ with $P\subseteq[0,Q]$ needs $L>3Q$, not the older $L>2Q$.
+\item \emph{Recurrence control} R1 (audited): if $a_j>S_{j-1}+S_{j-r}$ for all $j$, the subset sums contain no $(2^r+1)$-term progression; for $r=2$ this covers the Pell numbers $1,2,5,12,29,\dots$.
+\item The outer control, the cone dual (except its statement that image counts do not decide admissibility, audited), the rest of the recurrence notes and the all-block image theorem are located.
+\end{itemize}
+
+\subsection{Negative results, with exact scope}
+
+\begin{enumerate}
+\item The ``19 classes per 3-block'' count needs admissibility: $\{1,2,3\}$ has $|T|=13<19$.
+\item Admissible classes are strictly nested: $\{1,2\}$ is 5-admissible but not 4-admissible.
+\item Modular certificates are sufficient, not necessary, for all-length admissibility ($B=\{2,7\}$, $q=11$, $k=3$); Theorem~\ref{thm:genk} is unaffected.
+\item For $B^*$ every base $71$--$96$ fails at $k=5$ and every base $71$--$92$ at $k=6$ (the two-level language already contains a $5$-term, respectively $6$-term, progression): a statement about this block only.
+\item Every distinct-distance ruler with $m$ marks has an $m$-term progression (Proposition~\ref{prop:rulers}); the ruler $(0,1,5,22)$ has no 6-admissible extension by one further mark with distinct distances.
+\item For $A^\sharp$ no canonical schedule with radix in $[1103,1650]$ is admissible; smaller radices and other blocks are outside this statement.
+\item Image counts do not determine admissibility.
+\end{enumerate}
+None of these bears on the unrestricted $\Lambda_k$ for $k\ge5$, which the workbench leaves open.

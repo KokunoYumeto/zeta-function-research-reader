@@ -1,0 +1,142 @@
+\section{The Yang--Mills workbench, with the Navier--Stokes, \texorpdfstring{$S^6$}{S6} and Jacobian-map material}\label{sec:ym}
+
+The workbench \texttt{yang-mills-interacting-workbench} is an open, AI-assisted workbench of the owner's, with work done with ChatGPT~5.6 Sol and GPT-6 Astra (README); the source results it imports keep their own attribution (\texttt{ATTRIBUTION.md}). It does not claim a solution of the interacting four-dimensional problem, says that the continuum mass-gap question remains unresolved in the collection, and claims no Lean or independent external analytical certification.
+Audit notes: \note{46\_} (and \note{21\_}, \note{28\_}, \note{34\_}); first-pass report \note{46a\_}.
+
+\subsection{The Hamiltonian and the gap}
+
+\emph{Box and space.} The vertices form the open box $\{-L,\dots,L\}^3$, $L\ge2$; the links $e$ are the positively oriented nearest-neighbour edges; the plaquettes $p$ are the elementary faces, $M_L=12L^2(2L+1)$ of them. The configuration space carries one $SU(2)$ matrix $U_e$ per link, with the product Haar probability measure; the \emph{physical} space is the subspace of $L^2$ invariant under the gauge transformations at every vertex, boundary vertices included.
+
+\emph{Hamiltonian} (the workbench's normalisation). $H_L=\kappa K+\kappa\xi(2M_L-S)$ with $\kappa=2g^2/a$, $\xi=1/(4g^4)$, $a>0$ the spacing and $g>0$ the bare coupling. $K=-\sum_{e,a}X_{e,a}^2$ is the sum of the link Casimirs; on the Peter--Weyl block with link spins $j=(j_e)$ it acts as $c_j=\sum_ej_e(j_e+1)$. $S=\sum_pW_p$ with $W_p$ the trace of the ordered product around $p$, so $\kappa\xi(2M_L-S)=(2g^2a)^{-1}\sum_p(2-W_p)\ge0$. This is the Kogut--Susskind Hamiltonian \cite{KogutSusskind}; the workbench records the conversion to the convention of Schütte, Zheng and Hamer \cite{SchutteZhengHamer}, so thresholds such as $g^2\ge3.68$ below are in the workbench's normalisation.
+
+\emph{Gap.} $\Delta_L$ is the distance from the ground energy $E_0$ to the rest of the spectrum of $H_L$ on the physical space. At $\xi=0$ it equals $3\kappa$: one plaquette excited in the fundamental representation, four links of Casimir $3/4$.
+
+\begin{theorem}[YM-01]\label{thm:ym01}
+Let $(m_i,t_i)$, $i=1,\dots,5$, be the ten rational numbers of the workbench's F26, $\ell_5(x)=\sum(m_i+4t_i)x^i$, $\delta_5(x)=\sum_{i,j\le5,\ i+j\ge6}3(m_it_j+m_jt_i)x^{i+j}$, $\mathcal D_5=(1-\ell_5)^2-\frac83\delta_5$, $\alpha_5$ the first positive root of $\mathcal D_5$, and
+\[
+d_5(x)=\tfrac32\bigl(1+\sqrt{\mathcal D_5(x)}\bigr)+\textstyle\sum_{i=1}^5\bigl(\tfrac32m_i-6t_i\bigr)x^i.
+\]
+If the $(m_i,t_i)$ bound the local norms of the vacuum coefficients as the workbench's computations assert, then for every $L\ge2$, every $a>0$ and every $0<\xi\le\alpha_5$,
+\[
+\Delta_L\ge\kappa\,d_5(\xi).
+\]
+In the coupling,
+\[
+\xi\le\alpha_5\iff g^2\ge\frac1{2\sqrt{\alpha_5}}=3.6835519839857273\ldots,\qquad\alpha_5=0.0184249535761176166818\ldots;
+\]
+$d_5$ decreases on $[0,\alpha_5]$ from $d_5(0)=3$ (at $\xi=0$, $\Delta_L=3\kappa$) to $d_5(\alpha_5)=1.5453\ldots$; so $\Delta_L\ge1.5453\,\kappa$ for all $g^2\ge3.6836$, and, as $d_5(1/64)=1.9068301567\ldots$, $\Delta_L>1.9068\,\kappa$ for all $g^2\ge4$, uniformly in the box and the spacing. Equivalently, $q_{H_L-E_0}(\psi f)\ge\kappa\,d_5(\xi)\Var_{\psi^2}(f)$ for $f$ in the physical form domain, $\psi$ the normalised ground state (the workbench's form, F37).
+\end{theorem}
+\status{Conditional on the computed coefficient bounds of orders 3, 4 and 5 for the threshold $3.6836$ and the constants $d_5$; its qualitative content, a gap on the whole physical space, uniform in the box and the spacing, above an explicit coupling, holds with audited inputs only for $g^2\ge4.0187$ (Corollary~\ref{cor:ym-orderN}). Order 1 is verified by hand; order 2 was recomputed independently in the first pass from explicit $SU(2)$ coefficient tensors (the exact values $m(v_2)=134.07\ldots$, $t(v_2)=19.80\ldots$ lie below the workbench's $5834/39$ and $137/6$); order 5 (662 representatives, 124{,}864 anchored multisets, 5{,}726 rational primal/dual certificates) was reproduced by re-running the workbench's producer and auditor with byte-identical output, which the workbench had not done at publication, and its logic was read, not re-implemented; orders 3--4 are inherited from earlier continuations and pinned by hash. The analytic argument is audited. $\alpha_5$, the threshold and $d_5$ were recomputed by exact bisection and by root isolation, and the monotonicity of $d_5$ on a $401$-point grid.}
+
+\subsection{The proof: three lemmas and the analytic core}
+
+\begin{lemma}[gauge-invariance Casimir inequality]\label{lem:casimir}
+Let the links form a finite graph without loops (parallel links allowed) in which every cycle has length at least $g$; the cubic box has $g=4$. On every Peter--Weyl block $j$ that contains a nonzero gauge-invariant vector, $\sum_fj_f\ge g\,j_e$ for every link $e$. Hence $c_j\ge\frac{3g}2j_e$ for every $e$, $\sum_ej_e\le\frac23c_j$, and $c_j\ge\frac{3g}4$ on the nonconstant physical space; for the box, $c_j\ge6j_e$ and $c_j\ge3$. The first inequality holds for all real weights $j_f\ge0$ that satisfy the vertex inequalities $j_f\le\sum_{f'\ni v,\,f'\ne f}j_{f'}$, and it is an equality for $j=\frac12$ on a cycle of length $g$ through $e$ and $0$ elsewhere.
+\end{lemma}
+\status{Generalised here: the workbench's F7 (audited) is the case $g=4$ on the cubic lattice, proved there from the absence of triangles; the sharp constant on any graph is its girth. Checked exhaustively over half-integer spins with vertex singlets on the cube graph ($1{,}012$ nonzero assignments with every $j_e\le1$; constant $4$), $K_{3,3}$ ($4$), the $5$-cycle and the Petersen graph ($5$), the $6$-cycle ($6$) and a triangle ($3$); and by linear programming over real weights with the vertex inequalities only, on $13$ graphs of girth $3$ to $8$ (among them the Petersen, Heawood, McGee and Tutte--Coxeter graphs, the dodecahedron and the box $\{-1,0,1\}^3$), where the optimum is the girth on every link, on three parallel links ($2$), and on the bridge between two triangles, where it is $4$: the constant is the girth of the graph, not the length of the shortest cycle through $e$.}
+\begin{proof}
+A block contains a nonzero invariant exactly when, at every vertex $v$, the tensor product of the representations of spins $j_f$ ($f\ni v$) contains the trivial representation; by the Clebsch--Gordan rule this gives the vertex inequalities, which are all that is used.
+\emph{A matching at each vertex.} At $v$, the inequalities say that no $j_f$ exceeds half of $J_v=\sum_{f\ni v}j_f$. That is the condition for a transport plan between the links at $v$, with supplies and demands $j_f$ and the diagonal forbidden, by Gale's supply--demand theorem: a set of two or more columns can be served by every row, and a single column $f$ by the rows $f'\ne f$, which carry $J_v-j_f\ge j_f$. Symmetrising the plan gives a symmetric $M^v\ge0$ with zero diagonal and row sums $j_f$.
+\emph{A circulation.} Give each orientation (dart) of a link $f$ the weight $j_f/2$, and let the dart arriving at $v$ along $f$ pass to the dart leaving $v$ along $f'\ne f$ with weight $M^v_{ff'}/2$. The row and column sums of $M^v$ make this a circulation on the darts, which is therefore a nonnegative combination $\sum_Cw_C[C]$ of cyclic dart sequences $C$, that is, closed walks in which consecutive links (cyclically) differ. Counting weights, $\sum_Cw_C|C|=\sum_fj_f$ and $\sum_Cw_Cn_e(C)=j_e$, where $n_e(C)$ is the number of traversals of $e$ by $C$.
+\emph{Each walk.} Cut a walk $C$ with $n_e(C)\ge1$ at its traversals of $e=uw$. Each piece avoids $e$ and is nonempty, since two traversals of $e$ are never consecutive and $u\ne w$. A piece that ends at the endpoint of $e$ where it started is a closed walk in which consecutive links differ, so it contains a cycle and has length at least $g$; a piece joining $u$ and $w$ contains a path, which with $e$ forms a cycle, so it has length at least $g-1$. Hence $|C|\ge g\,n_e(C)$, and summing, $\sum_fj_f\ge g\,j_e$.
+\emph{The Casimir.} Every nonzero spin is at least $\frac12$, so $j_f(j_f+1)\ge\frac32j_f$; hence $c_j\ge\frac32\sum_fj_f$, which is $\sum_fj_f\le\frac23c_j$, and $c_j\ge\frac{3g}2j_e$. On a nonconstant physical block some $j_e\ge\frac12$, so $c_j\ge\frac{3g}4$. For the equality case, $j=\frac12$ on a cycle of length $g$ satisfies every vertex inequality and has $\sum_fj_f=\frac g2=g\,j_e$.
+\end{proof}
+
+\begin{lemma}[ground-state transform]\label{lem:gst}
+Let $\Gamma(f,h)=\sum_{e,a}(X_{e,a}f)(X_{e,a}h)$, $P_H$ the Haar mean and $Q_H=I-P_H$. For real $v$, $e^v$ is an eigenfunction of $H_L$ with eigenvalue $E$ iff $Kv=\xi S+Q_H\Gamma(v,v)$ and $E=\kappa(2M_L\xi-P_H\Gamma(v,v))$; then $(H_L-E)(e^vh)=\kappa e^v(Kh-2\Gamma(v,h))$ for every $h$.
+\end{lemma}
+\status{Proved here; the workbench's F33--F36, audited.}
+\begin{proof}
+From $X^2(e^vh)=e^v(h(Xv)^2+2(Xv)(Xh)+hX^2v+X^2h)$ one gets $K(e^vh)=e^v\bigl(h(Kv-\Gamma(v,v))-2\Gamma(v,h)+Kh\bigr)$. With $h=1$, $H_Le^v=\kappa e^v(Kv-\Gamma(v,v)+\xi(2M_L-S))$, which equals $Ee^v$ exactly when $Kv-\Gamma(v,v)-\xi S$ is the constant $E/\kappa-2M_L\xi$; taking Haar means ($P_HKv=0$, $P_HS=0$) identifies the constant as $-P_H\Gamma(v,v)$. Inserting this into the formula for $K(e^vh)$ gives the last identity.
+\end{proof}
+
+The ground state is unique and positive, so a solution $v$ of the vacuum equation gives the ground state $e^v/\|e^v\|$. With $v_1=S/3$ (each $W_p$ has Casimir $3$) and $B=K^{-1}Q_H\Gamma$ the equation is $v=\xi v_1+B(v,v)$, whose formal solution is $\sum\xi^nv_n$ with $v_n=\sum_{i+j=n}B(v_i,v_j)$; this exponential (coupled-cluster) ansatz is the one the workbench credits, for Hamiltonian lattice field theory, to Schütte, Zheng and Hamer \cite{SchutteZhengHamer}.
+
+\emph{The analytic core} (the workbench's F4--F32; audited). In the Fourier-algebra norm $\|f\|_X=\sum_j\|A_j(f)\|_1$, which is submultiplicative (Eymard \cite{Eymard}), and in local weighted norms $m(\cdot)$, $t(\cdot)$, $\|\cdot\|_{\mathrm{loc}}$ anchored at a link, $\|B(f,h)\|_{\mathrm{loc}}\le3(m(f)t(h)+m(h)t(f))\le\frac23\|f\|_{\mathrm{loc}}\|h\|_{\mathrm{loc}}$, by Lemma~\ref{lem:casimir}. With $q_5=\sum_{i\le5}\xi^iv_i$, the residual $\xi v_1+B(q_5,q_5)-q_5$ has exactly the degrees $6$--$10$ and local norm at most $\delta_5(\xi)$, and $J_5=2B(q_5,\cdot)$ has norm at most $\ell_5(\xi)$. For $0<\xi\le\alpha_5$ a Neumann inverse and a binary-tree majorant give $v=q_5+w$ with $\|w\|_{\mathrm{loc}}\le w_*=\frac34(1-\ell_5-\sqrt{\mathcal D_5})$, the small root of $\frac23w^2-(1-\ell_5)w+\delta_5=0$, endpoint included. The bounds are uniform in the box: each $v_n$ is a sum of universal cluster functions over plaquette multisets, so the anchored sums of the infinite lattice bound every box; the orientation dependence of the Fourier-algebra norm is handled by taking the maximum over the eight axis reflections.
+
+\begin{proposition}[spectral return]\label{prop:return}
+Under the analytic core, every eigenvalue $\lambda>0$ of $H_L-E_0$ on the physical space satisfies $\lambda\ge\kappa d_5(\xi)$.
+\end{proposition}
+\status{Proved here, given the analytic core; the workbench's F35--F37, audited.}
+\begin{proof}
+Let $\varphi$ be a physical eigenvector, $h=\varphi/\psi$ (gauge invariant) and $h'=Q_Hh\neq0$ (as $\lambda\neq0$, $h$ is not constant). By Lemma~\ref{lem:gst} and $\Gamma(v,1)=0$, $(K-\lambda/\kappa)h'=2Q_H\Gamma(v,h')$. If $\lambda/\kappa\ge3$ there is nothing to prove, since $d_5\le3$. Otherwise $c_j\ge3$ on every nonconstant physical block (Lemma~\ref{lem:casimir}), so $c_j-\lambda/\kappa\ge c_j(1-\lambda/(3\kappa))$ and $\|(K-\lambda/\kappa)h'\|_X\ge(1-\lambda/(3\kappa))\|Kh'\|_X$. The core gives $\|2\Gamma(v,h')\|_X\le4t(v)\|Kh'\|_X\le\chi\|Kh'\|_X$ with $\chi=4\sum t_i\xi^i+\frac23w_*$, and $Q_H$ does not increase $\|\cdot\|_X$. Hence $\lambda\ge3\kappa(1-\chi)$, and substituting $w_*$ shows $3(1-\chi)=d_5(\xi)$.
+\end{proof}
+
+Nothing in this argument uses the truncation order.
+
+\begin{corollary}[the gap at every truncation order]\label{cor:ym-orderN}
+For $1\le N\le5$ let $\ell_N(x)=\sum_{i\le N}(m_i+4t_i)x^i$, $\delta_N(x)=\sum_{i,j\le N,\ i+j\ge N+1}3(m_it_j+m_jt_i)x^{i+j}$, $\mathcal D_N=(1-\ell_N)^2-\frac83\delta_N$, $\alpha_N$ the first positive root of $\mathcal D_N$ and $d_N(x)=\frac32(1+\sqrt{\mathcal D_N(x)})+\sum_{i\le N}(\frac32m_i-6t_i)x^i$. If $(m_i,t_i)$, $i\le N$, bound the local norms of the first $N$ vacuum coefficients, then $\Delta_L\ge\kappa\,d_N(\xi)$ for every $L\ge2$, $a>0$ and $0<\xi\le\alpha_N$, and $d_N$ decreases on $[0,\alpha_N]$. In particular:
+\begin{enumerate}[label=(\alph*)]
+\item ($N=1$) $\mathcal D_1(\xi)=1-256\xi/3$ exactly and $\frac32m_1-6t_1=0$, so
+\[
+\Delta_L\ge\tfrac32\kappa\Bigl(1+\sqrt{1-\tfrac{64}{3g^4}}\Bigr)\qquad\text{for all }g^2\ge8/\sqrt3\approx4.6188;
+\]
+so $\Delta_L\ge\frac32\kappa$ there, with $2.0745\kappa$ at $g^2=5$ and $2.8304\kappa$ at $g^2=10$.
+\item ($N=2$) $\alpha_2=0.0154800849822\ldots$, that is $g^2\ge4.0186791538833\ldots$, and $\Delta_L\ge\kappa\,d_2(\xi)\ge\kappa\,d_2(\alpha_2)=1.52094\,\kappa$ on that range ($1.7665\kappa$ at $g^2=4.1$, $2.3033\kappa$ at $g^2=5$).
+\item ($N=4$) $\alpha_4=0.0181049722316\ldots$, that is $g^2\ge3.7159603625\ldots$, with $d_4(1/64)=1.898118$ and $d_4(4/225)=1.658436$.
+\end{enumerate}
+\end{corollary}
+\status{Proved here from the audited core. (a) is the workbench's own order-1 theorem, in its 14--16~September continuation YM-06 (\texttt{consolidation/20260916}, equations G22 and G26--G29, with $\Delta_L>2.07445\kappa$ at $g^2\ge5$), whose own proof was not read; its input, order~1, is verified by hand. (b) is \textsf{Generalised here} relative to the workbench's single-norm order-2 theorem in the same continuation (R10: $\Delta_L\ge\frac32\kappa\bigl(1+\sqrt{1-\frac{256}3\xi+\frac{10720}9\xi^2}\bigr)$ for $g^2\ge\sqrt{(32+\sqrt{354})/3}\approx4.1156$): with the audited two-norm pair $(m_2,t_2)$ and no further input, the threshold falls to $4.0187$ and the endpoint constant rises from $\frac32$ to $1.52094$. The same continuation reaches $g^2\ge3.8260$ at order~2 (its L17) by a sharper computed bound for the cubic term of the residual ($944984/351$ in its L10, against the generic $6(m_1t_2+m_2t_1)=300672/39$), which was not audited. So the qualitative content of Theorem~\ref{thm:ym01} holds with audited inputs only for $g^2\ge4.0187$, and orders 3--5 lower the threshold to $3.6836$ and raise the constants. (c) is conditional on the order-3 and order-4 inputs and does not use order~5. $\alpha_N$, the thresholds and the values of $d_N$ computed here from the exact rationals of F26 by root isolation; the monotonicity checked on a $401$-point grid for $N=1,\dots,5$. The workbench's YM-03 edition uses the radius $3/256=\alpha_1$ for its row remainder.}
+\begin{proof}
+Replace $q_5$ by $q_N=\sum_{i\le N}\xi^iv_i$ in the analytic core. By $v_n=\sum_{i+j=n}B(v_i,v_j)$ for $2\le n\le N$, the residual is $\xi v_1+B(q_N,q_N)-q_N=\sum_{i,j\le N,\,i+j\ge N+1}\xi^{i+j}B(v_i,v_j)$, of local norm at most $\delta_N(\xi)$, and $\|2B(q_N,\cdot)\|\le\ell_N(\xi)$. On $[0,\alpha_N]$, $\ell_N<1$: $\ell_N(0)=0$, and $\ell_N(\xi_1)=1$ with $0<\xi_1\le\alpha_N$ would give $\mathcal D_N(\xi_1)=-\frac83\delta_N(\xi_1)<0$. So the Neumann inverse and the tree majorant give $\|w\|_{\mathrm{loc}}\le w_*=\frac34(1-\ell_N-\sqrt{\mathcal D_N})$, and Proposition~\ref{prop:return} with $\chi=4\sum_{i\le N}t_i\xi^i+\frac23w_*$ gives $\lambda\ge3\kappa(1-\chi)=\kappa\,d_N(\xi)$. Differentiating $\frac23w_*^2-(1-\ell_N)w_*+\delta_N=0$ gives $w_*'\sqrt{\mathcal D_N}=\delta_N'+\ell_N'w_*>0$ on $(0,\alpha_N)$, so $\chi$ increases and $d_N$ decreases. For $N=1$, $(m_1,t_1)=(\frac{64}3,\frac{16}3)$ gives $\ell_1=\frac{128}3\xi$, $\delta_1=6m_1t_1\xi^2=\frac{2048}3\xi^2$ and $\mathcal D_1=1-\frac{256}3\xi+(\frac{16384}9-\frac{16384}9)\xi^2$; with $\xi=1/(4g^4)$, $\frac{256}3\xi=\frac{64}{3g^4}$. For $N=2$, $\frac32m_2-6t_2=\frac{3408}{39}>0$, so $d_2>\frac32$ on the whole range even before the value $d_2(\alpha_2)$ is computed.
+\end{proof}
+
+\emph{What the theorem is and is not.} It is a finite-regulator, strong-coupling statement: fixed spacing, any box, bare coupling above a threshold. The continuum limit needs $a\to0$ with $g\to0$, the opposite regime, and the workbench records that its standing continuum path eventually leaves the domain. Nothing about the continuum mass gap follows, and the workbench claims nothing. Mass gaps at strong coupling are classical for lattice gauge theories in the Euclidean setting (Osterwalder--Seiler \cite{OsterwalderSeiler}; cited, not re-read); the workbench's statement is an explicit bound, uniform in the box, on the whole physical space of the Kogut--Susskind $SU(2)$ Hamiltonian on open boxes, with a closed coupling threshold; whether a bound of this form is in the literature was not searched. If $m_5$ and $t_5$ were both underestimated by a factor $2$, the threshold would move to $g^2\approx3.737$ and $d_5(1/64)$ to $1.8946$; by Corollary~\ref{cor:ym-orderN}(b), errors of any size in the order-3 to order-5 inputs leave a gap above $1.52\kappa$ for $g^2\ge4.0187$. The Riemann, Jacobian and $S^6$ material plays no role in this theorem.
+
+\subsection{The other results of the workbench}
+
+\begin{itemize}
+\item \emph{YM-05} (17 September; $\Delta_L>1.6584\kappa$ for $g^2\ge15/4$, by the same method with four orders). It is Corollary~\ref{cor:ym-orderN}(c) at $\xi=4/225$: conditional on the order-3 and order-4 inputs, not on order 5. Theorem~\ref{thm:ym01} gives $d_5>1.6993$ at $g^2=15/4$.
+\item \emph{YM-02} (21 September; audited in part). The connected plaquette heat correlations equal their $\xi^0,\xi^2,\xi^4$ terms up to $\frac{67896}{169}e^{-13\tau/8}(55|\xi|)^6/(1-(55|\xi|)^2)$ for $|\xi|<1/55$, uniformly in $L$ (the parity step checked by hand: a staggered centre map multiplies every $W_p$ by $-1$, so the two-point function is even in $\xi$); for $g^2\ge13$, relaxing the whole complementary physical space changes the plaquette-family energy by less than $1/2000$ (less than $1/25000$ for $g^2\ge16$), uniformly in $L$ and $a$; a fixed-spacing infinite-volume limit (an outline).
+\item \emph{YM-03} (21 September): the same kind of statements with weaker constants; superseded by YM-02; located.
+\item \emph{YM-06} (14--16 September; located, proofs not read): the gauge-native order-1 gap theorem (G22, G26--G29), which is Corollary~\ref{cor:ym-orderN}(a); the single-norm order-2 theorem R10 ($g^2\ge4.1156$); and the order-2 theorem L17 ($g^2\ge3.8260$) with a computed cubic-residual bound.
+\end{itemize}
+
+\begin{proposition}[a method obstruction; YM-07 §27]\label{prop:neumann}
+Write $H=(2g^2/a)(H_0-\xi W_L)+\mathrm{const}$ on the full space (no gauge projection), with $H_0=\sum_eE_e$ the sum of the link Casimirs $E_e$ and $W_L=\sum_pW_p$. The operator-norm Neumann series certifies the isolated rank-one ground-state projection on the circle $|z|=3/8$ exactly for $|\xi|<3/(16M_L)=1/(64L^2(2L+1))$, and on no contour separating $0$ from the rest of the spectrum does the norm-product criterion give more. On the physical space the same route gives exactly $|\xi|<3/(4M_L)$, on the circle $|z|=3/2$.
+\end{proposition}
+\status{Proved here; the full-space statement audited (YM-07 §27); the physical-space radius and the optimality over contours are \textsf{Generalised here}.}
+\begin{proof}
+$|W_p|\le2$ with equality at $U\equiv I$, so $\|\xi W_L\|=2|\xi|M_L$; the same holds on the physical space, since for every $\varepsilon>0$ the indicator of the nonempty open gauge-invariant set $\{W_L>2M_L-\varepsilon\}$ is a physical vector. The spectrum of $H_0$ is contained in $\{0\}\cup[3/4,\infty)$, so $\|(H_0-z)^{-1}\|\le8/3$ on $|z|=3/8$, and the series converges when $2|\xi|M_L\cdot\frac83<1$. Both factors are attained ($\|(H_0-z)^{-1}\|=8/3$ at $z=\pm3/8$), so the norm-product criterion fails beyond this radius. Any contour separating $0$ from the rest of the spectrum crosses $(0,\frac34)$, since the eigenvalue $\frac34$ must have winding number $0$; at a crossing point $x$ the resolvent norm is $\max\{1/x,1/(\frac34-x)\}\ge\frac83$. On the physical space the spectrum of $H_0$ lies in $\{0\}\cup[3,\infty)$ by Lemma~\ref{lem:casimir}, with $3$ attained by one plaquette in spin $\frac12$, and the same two arguments give the resolvent norm $\frac23$ on $|z|=\frac32$ and the radius $3/(4M_L)$.
+\end{proof}
+The radius shrinks with the box, so at any fixed coupling this route eventually fails; it does not show that the true analyticity radius is small, and it proves neither a gap nor its absence. It explains why Theorem~\ref{thm:ym01} needs local norms: at $L=2$ ($M_2=240$) the global route certifies only $|\xi|<1/1280$ on the full space and $|\xi|<1/320$ on the physical space, both far inside $\xi\le\alpha_5\approx1/54.3$. (``Weak-coupling disk'' in the source means small $|\xi|$, that is large $g$: the regime of Theorem~\ref{thm:ym01}.)
+
+\subsection{The Jacobian map and the low-mode theorem}
+
+The map
+\[
+F(x,y,w)=\bigl((1+xy)^3w+y^2(1+xy)(4+3xy),\ y+3x(1+xy)^2w+3xy^2(4+3xy),\ 2x-3x^2y-x^3w\bigr)
+\]
+has $\det DF=-2$ and three preimages of $(-\frac14,0,0)$, namely $(0,0,-\frac14)$ and $(\pm1,\mp\frac32,\frac{13}2)$ (checked symbolically). The workbench's attribution file identifies it with the counterexample to the Jacobian conjecture announced by Levent Alpöge on 20 July 2026, whose announcement, as the file records, credits Akhil for the question and Fable for the work; it notes that the $S^6$ construction is a different object. That Keller maps give incompressible polynomial flows, and that the curve $\gamma(\tau)=(z^{-1},-3z/2,13z^2/2)$, $z=\sqrt{1-8\tau}$, escapes at $\tau=1/8$, is proved in the zeta reader (Lemma ``Keller maps give incompressible polynomial flows'').
+The workbench's chain $F\to$ incompressible flow $\to$ material tensor $\to$ lattice local-energy weights $\to$ trial states ends in its Theorem~14.2, audited in \note{34\_}: it is a valid diagonal argument, conditional on fixed-box weak-coupling limits that the file only sketches, and its energy quotients equal, up to a factor $1\pm1/(10j)$, the lowest free two-gluon colour-singlet energy of an open box of side $j/50$ at couplings $g_j<1/j$. It bears on the mass gap in neither direction, and the data of $F$ move the quotients only inside a window that does not depend on them.
+
+\subsection{Navier--Stokes}
+
+\begin{itemize}
+\item \emph{The imported theorem} (not audited). The workbench records OpenAI's manuscript \emph{Finite Time Blowup for Navier--Stokes} \cite{OpenAINS}, Theorem~1.1 (a compactly supported smooth force and zero initial velocity giving a smooth solution on $[0,1)$ with bounded energy and $\limsup\|u(t)\|_\infty=\infty$, for every viscosity), holds a transcription and a reconstruction reader, and records that complete independent analytic and Lean validation remains unfinished. Every use of it below or elsewhere is conditional on it.
+\item \emph{Exact constraint data} (NS-04(a); audited in part: the encoding, the decoder and the barrier inequalities checked symbolically; the existence of the Lichnerowicz solution by the standard barrier method read, not re-checked). Every compactly supported smooth divergence-free $V$ on $\R^3$ gives exact vacuum constraint data in four spatial dimensions with $\Lambda=-6/L^2$, through a Lichnerowicz equation with barrier solutions, and an explicit decoder returns $V$ on marked data. It is an encoding of a velocity snapshot, not a dynamical correspondence: inserting the Navier--Stokes time as Einstein time gives a nonzero defect, as the workbench says.
+\item \emph{Strain and Kasner exponents} (NS-04(b); proved here). For a tracefree symmetric $3\times3$ matrix $B$ put $\chi=\sqrt{1+\frac43\tr B^2}$, $P_w=\frac14-\frac3{4\chi}$ and $P_\perp=\frac I4+(\frac I4+B)/\chi$. Then $P_w+\tr P_\perp=1$ and $P_w^2+\tr P_\perp^2=1$, $B=(3P_\perp+(P_w-1)I)/(1-4P_w)$, and $B\mapsto(P_w,P_\perp)$ is a bijection onto the block-Kasner data with $P_w\in[-\frac12,\frac14)$. \emph{Proof.} $\tr P_\perp=\frac34+\frac3{4\chi}$ gives the first identity; $\tr P_\perp^2=\frac3{16}(1+\frac1\chi)^2+\tr B^2/\chi^2$ gives the second after $\frac34(1+\frac43\tr B^2)=\frac34\chi^2$; the inverse formula is direct ($3P_\perp+(P_w-1)I=3B/\chi$ and $1-4P_w=3/\chi$); and on the Kasner set $1+\frac43\tr B^2=9/(1-4P_w)^2$. (In the workbench $B=-2\nu S/c^2$ for a strain $S$.)
+\item \emph{A modified equation} (NS-04(d); audited in part). The Navier--Stokes equation with an added positive Fourier multiplier from an elliptic slab extension, whose total damping is at least $c_*|k|^3$ at high frequency, has global smooth solutions: the standard hyperdissipative mechanism (dissipation of order $|k|^{2\alpha}$ with $\alpha\ge5/4$ \cite{Lions}), cited by the workbench through Tao \cite{TaoHyper} without priority. It concerns a modified equation, not Navier--Stokes.
+\end{itemize}
+
+\subsection{\texorpdfstring{$S^6$}{S6}}
+
+The workbench's \texttt{s6/} folder holds a five-page reader of five results of the $S^6$ project, whose proofs are in the Zenodo archive 10.5281/zenodo.22678442 and not in the repository. The construction is the manuscript \cite{AlpogeS6}: a compact complex threefold fibred by tori over the projective line, which the manuscript states is diffeomorphic to $S^6$. That statement was not checked here, and the workbench does not certify a global complex structure on $S^6$; it draws no mass-gap conclusion. The workbench's \texttt{ATTRIBUTION.md}, which it designates as the clarification, says that the manuscript was circulated by Levent Alpöge and produced with Claude (older files say ``with Fable'').
+
+\begin{proposition}[S6-5, arithmetic part]\label{prop:s65}
+For $a\in\ZZ^4$ let $P(a)=a_0(a_0^2-3(a_1^2+a_2^2+a_3^2))$, the real part of $a^3$ for $a$ read as a quaternion. If $3\mid P(a)$ then $9\mid P(a)$; so $P$ never takes a value $3k$ with $3\nmid k$. On $D_4=\{a\in\ZZ^4:\sum a_i\text{ even}\}$ the values of $P$ are even and generate $2\ZZ$, so they avoid every $6k$ with $3\nmid k$ (in particular $\pm6$). The lattice $\{\sqrt2(a,a,a):a\in D_4\}$ has Gram matrix $6G_{D_4}$, determinant $6^4\cdot4=5184$ and minimum $12$.
+\end{proposition}
+\status{Generalised here: the workbench's S6-5 states that $12\sqrt2$ is not attained; the argument (the workbench's own mod-3 step) excludes every $12\sqrt2\,k$ with $3\nmid k$ and needs no parity for the mod-9 statement. Given the source's identification of the octonionic cubic on this lattice as $2\sqrt2P(a)$ (not checked here), its values generate $4\sqrt2\ZZ$ and never equal $12\sqrt2\,k$ with $3\nmid k$. Checked for $|a_i|\le12$. The literal intersection with Wilson's Leech lattice and the results S6-1 to S6-4 are located.}
+\begin{proof}
+Modulo $3$, $P\equiv a_0^3$, so $3\mid P$ forces $3\mid a_0$, and then $P=9b(3b^2-a_1^2-a_2^2-a_3^2)$ with $a_0=3b$. On $D_4$: if $a_0$ is odd, $a_1+a_2+a_3$ is odd, so $a_1^2+a_2^2+a_3^2$ is odd and $a_0^2-3(\cdots)$ is even; if $a_0$ is even, so is $P$; and $P(1,1,0,0)=-2$. An even value divisible by $3$ is divisible by $18$, so no value is $6k$ with $3\nmid k$. The Gram matrix of $\sqrt2(a,a,a)$ is $6$ times that of $a$.
+\end{proof}
+
+\subsection{Negative results, with exact scope}
+
+\begin{itemize}
+\item The global operator-norm route certifies analyticity only in a disk that shrinks with the box, on the full and on the physical space and for every contour (Proposition~\ref{prop:neumann}); a limit of one method.
+\item The Jacobian $\to$ Yang--Mills chain reproduces the free two-gluon threshold of a shrinking-coupling box (\note{34\_}); no bearing on the mass gap.
+\item The Navier--Stokes $\to$ Yang--Mills map (\note{21\_} §2): the zero-quotient sequence exists only along a path whose coupling tends to $0$; at fixed coupling nothing follows, and whether a different state with vanishing quotient exists is open.
+\item Theorem~\ref{thm:ym01} and Corollary~\ref{cor:ym-orderN} hold only at strong bare coupling (with audited inputs from $g^2\ge4.0187$, conditionally from $g^2\ge3.6836$), and the standing continuum path leaves that domain.
+\item The constraint-data encoding is not a dynamical correspondence.
+\end{itemize}

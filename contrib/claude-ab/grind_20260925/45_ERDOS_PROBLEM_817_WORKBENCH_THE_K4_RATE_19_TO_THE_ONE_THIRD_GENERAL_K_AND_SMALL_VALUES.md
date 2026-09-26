@@ -1,6 +1,6 @@
 # The Erdős Problem 817 workbench: the rate 19^{1/3} for four-term progressions, the general-k capacity, certificates for k = 5, 6, and exact small values
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 05:37 UTC; revised 06:39 UTC after the twentieth referee pass (§10).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 05:37 UTC; revised 06:39 UTC after the twentieth referee pass (§10) 09:05 UTC after the twenty-second pass (§12) and 10:01 UTC after the twenty-third (§13).
 
 Third note of board task 10, part 2. Subject: `KokunoYumeto/erdos-problem-817-workbench` at commit `dbd0a93f2cf935103e88e5c2b2b71fe85ae7537b` (16 September 2026).
 
@@ -129,3 +129,30 @@ Lean builds and the 44 axiom reports (no toolchain); the workbench's own verifie
 A referee (a Claude instance that did not write this note) re-derived Lemmas 45.2–45.4, Theorems 45.1, 45.6, 45.7 and Proposition 45.9 and found no error; it reproduced the small values, the certificates and the negative results 3–5. Its findings, each verified before being applied:
 - **Major.** §7 generalised from the one interface note that was read (the finite-period receiving map) to all ten. Corrected: the other nine are located.
 - **Minor, applied.** 93^{1/6} ≈ 2.1285 (not 2.1277); the k = 3 question and Costa's reported answer; Korsky's lower bound is for fixed k ≥ 4; the workbench's own novelty statements; the Lean claims marked as the workbench's (not rebuilt here) and The Clankers' `Core.lean` credited; the constant c_r by residue class; the dependency on Lemma 45.4; the status of negative result 7; the re-run statements; the heading of §4 and the name of the g₃ source; my check script now tests 60 blocks with nonzero entries (it had tested 45).
+
+## 11. Generalisation (at the owner's request, 26 September: look for understatement and missed generality)
+
+**Proposition 45.9, general form.** If a set A of positive integers contains r pairwise disjoint subsets each summing to L, then H(A) contains 0, L, …, rL. For marks 0 = t₀ < … < t_{m−1} = L it suffices that the 2m − 3 distances L, t_i, L − t_i (1 ≤ i ≤ m − 2) be pairwise distinct (the workbench's corollary assumes all C(m, 2) distances distinct). The proof is the one given.
+
+## 12. Second generalisation pass (09:05 UTC): the twenty-second referee pass, verified and applied
+
+A further Claude instance, which wrote none of the reader or of these notes, read the workbench reader for understatement and missed generality as well as for overstatement (`checks/workbenches/referee22/UNDERSTATEMENT_REPORT_WBREADER.md`). I re-derived each stronger statement and checked it with my own code (`generality_checks.py`, G12, G21, G22, G24) before applying it here and in the reader.
+
+**Proposition 45.11 (lifting).** Let each W_j be {1, 7, 8} or {2, 3, 5}. For every 4-admissible set B and every q ≥ 0, {19^j·w : j < q, w ∈ W_j} ∪ 19^q·B is 4-admissible. Hence:
+- (a) g₄(n + 3q) ≤ 19^q·g₄(n) for all n ≥ 1, q ≥ 0;
+- (b) g₄(n) ≤ c·19^{⌈n/3⌉−1} with c = 1, 3, 5 for n ≡ 1, 2, 0 (mod 3) (top levels {1}, {2,3}, {2,3,5}; Theorem 45.1 has c = 8);
+- (c) with Proposition 45.10: g₄(3q) ≤ 79·19^{q−2}, g₄(3q+1) ≤ 246·19^{q−2} (q ≥ 2), g₄(3q+2) ≤ 40·19^{q−1} (q ≥ 1), i.e. at most 0.219, 0.256, 0.296 times 19^{n/3} (Theorem 45.1: 0.421, 3.00, 1.12);
+- (d) for every certificate (q, B) of Theorem 45.7, g_k(m|B| + n) ≤ q^m·g_k(n); e.g. g₆(10m + n) ≤ 1651^m·g₆(n), sharper than Theorem 45.8(b) when 10 ∤ n.
+
+{1, 7, 8} and {2, 3, 5} = 3·{1, 7, 8} mod 19 are the only 3-element sets B with S(B) < 19 and H(B) free of nonconstant 4-term progressions mod 19 (finite search).
+*Proof.* H of the lifted set is H(A) + 19^q·H(B), with H(A) the integers below 19^q whose j-th base-19 digit lies in D_j = H(W_j) (no carries: S(W_j) ≤ 16). For a progression x_i = y_i + 19^q z_i with step d ≠ 0: if 19^q | d then y_i = y₀ (0 ≤ y_i < 19^q) and (z_i) is a nonzero-step progression in H(B), impossible; otherwise d = 19^r e, r < q, 19 ∤ e, and the r-th digits form a nonconstant progression in D_r mod 19, impossible for D and for 3·D (3 a unit). (d): the same with q for 19; the r-th digits form a k-term progression with nonzero step mod q in H(B), which a certificate excludes. ∎ The top level needs only integer admissibility; that is the whole change from the proof of Theorem 45.1. *Check:* 28 lifted sets (q = 1, 2; both digit sets; seven admissible top levels, G12); all 3-element digit sets mod 19 (G24); A♯ ∪ 1651·B 6-admissible for four 6-admissible B, with a negative control (G24).
+
+**Λ₃ = 3.** The certificate (3, {1}) (powers of 3; their subset sums are the integers with ternary digits 0, 1, which contain no 3-term progression) gives Λ₃ ≤ 3, and Erdős–Sárközy's g₃(n) ≫ 3^n/n^{O(1)} gives Λ₃ ≥ 3. So Λ₃ = 3 > Λ₄ = 19^{1/3} > 97^{1/6} ≥ Λ₅: (Λ_k) decreases strictly at its first two steps (given the cited bound; G21).
+
+**The M_n lower bound.** *(Corrected in §13: this bound is in the workbench's variance note, §6, in a stronger form.)* Theorem 45.6's |T(A)| ≥ M_n with T(A) ⊆ [0, 2nN] gives g₄(n) ≥ (M_n − 1)/(2n), improving Theorem 45.1's lower bound and Corollary 45.5 by the factor (3/19^{1/3})^{n mod 3} ≤ 1.264; Theorem 45.6's variance bound is stronger for every n ≥ 3 (G22).
+
+## 13. Revision after the twenty-third referee pass (10:01 UTC)
+
+Findings of the twenty-third pass on this note (`checks/workbenches/referee23/`), each checked against the sources before being applied:
+- **Major (credit).** The workbench's variance note (`notes/ternary-variance-lower-bound.md`, §6 "Distinctness-aware, integer-only finite bound") states 2nN ≥ M_n + n(n − 1) − 1, i.e. g₄(n) ≥ ⌈(M_n + n(n − 1) − 1)/(2n)⌉, stronger than the (M_n − 1)/(2n) of §12, which was labelled a generalisation. The reader now states the workbench's bound (audited).
+- **Minor, applied.** (1) Λ₃ = 3 needs no citation: in a 3-admissible set, X₀, X₁, X₂ of Lemma 45.2 form a 3-term progression with step P₂ − N₂, so P₂ = N₂, P₁ = N₁, and a nonzero ±j layer would give the progression 0, P_j, 2P_j; so there is no relation with coefficients in [−2, 2], the 3ⁿ ternary sums are distinct, and g₃(n) ≥ (3ⁿ − 1)/(2n). The workbench's located chapters 22 and 24 state the injectivity and "ρ = 3 = λ₃" (G29: all 18,757 3-admissible subsets of [1, 40] with at most 4 elements). (2) Proposition 45.11(c) uses only the upper bounds g₄(5) ≤ 40, g₄(6) ≤ 79, g₄(7) ≤ 246, given by explicit admissible sets, not the exhaustive searches. (3) The first sentence of Proposition 45.9 is the 0/1 case of the workbench's EP-05 Theorem 3.1 (cumulative ch. 08), which allows signed vectors with pairwise disjoint supports and a common nonzero observed boundary; only the ruler statement (2m − 3 distinct distances) is a generalisation. (4) The small values rest on four independent searches, not three.

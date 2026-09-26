@@ -1,6 +1,6 @@
 # Intersections of the workbenches: the typed morphisms, the shared identities, and three patterns that recur
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 05:42 UTC; revised 06:39 UTC after the twentieth referee pass (§7).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 05:42 UTC; revised 06:39 UTC after the twentieth referee pass (§7) 09:05 UTC after the twenty-second pass (§8) and 10:01 UTC after the twenty-third (§9).
 
 Fifth note of board task 10, part 2. The owner asked for the readers of the other workbenches to be "not too siloed", with their intersections, "without necessarily needing to make them all duplicates". This note collects the intersections found in the inventory and the four audits, states each as a typed morphism (domain, codomain, what crosses, what does not), and gives its audit status. It draws on the inventory (`47a` §8, edges OV-01 to OV-28), the four first-pass reports (`43a`–`46a`, their overlap sections), the notes `21_`, `28_`, `34_`, `43_`–`46_`, and the zeta reader (DOI 10.5281/zenodo.22970703, "the zeta reader").
 
@@ -126,7 +126,7 @@ The Collatz, 817 and NS sources say this of their own restatements. The ES-09 pa
 A method obstruction shows that a proposed method or certificate family cannot establish a property P, usually by an explicit instance where P holds but the method fails. Instances:
 - ES items 2, 3, 6, 14, 21, 26 and the bounded-transport and first-two-shell examples (`43_` §4): every certificate prime is itself solvable.
 - Collatz Theorem 44.2(c), of a different form: a limit on what the geometric model can describe (the full word law of N consecutive starts is far from geometric above (½ + δ)log₂N); nothing is claimed about orbits.
-- YM §27 (`46_` Prop. 46.5): the global Neumann radius shrinks with the box, while YM-01 proves a box-uniform statement by local norms — the method fails where the property holds.
+- YM §27 (`46_` Prop. 46.5): the global Neumann radius shrinks with the box (on the full and on the physical space, and for every contour; `46_` §13), while YM-01 and its order-N corollary (`46_` Cor. 46.7) prove a box-uniform statement by local norms, with audited inputs for g² ≥ 4.0187 — the method fails where the property holds.
 - 817 negative results 3, 4, 6 (`45_` §6): modular certificates are sufficient but not necessary; the bases 71–96 fail for B*; the fixed-block optimum for A♯ (and 7, read and found plausible in 45a).
 - In the zeta programme, the same form is the zeta reader's list N-* of negative results, each stated within the scope of what failed.
 The scope of each is the method; none is evidence against the conjecture or problem concerned.
@@ -149,6 +149,9 @@ In each case the workbench states the regime correctly.
 | 817 small values | exhaustive searches | three independent programs for n ≤ 6 |
 | YM-01 order 5 | 5,726 rational primal/dual certificates from a 662-row producer | producer and auditor re-run, byte-identical; logic read, not re-implemented |
 | Collatz Thm 44.9 | all odd n ≤ 330,749 reach 1 (the workbench's database) | recomputed here (0.2 s); the inequalities re-derived and recomputed |
+| Collatz, `44_` §14 | all n < 2³³ reach 1 | computed here (`descent_2e33.c`, 38 s) |
+| Collatz, `44_` §§13–14 | all n < 2.17·10²⁰ reach 1 (Barina: 2⁶⁸ by 2020, published 2021; 2⁷¹ by 2025) | not re-run (published) |
+| ES item 3 | primality of 7510085481569082811681 | Pocklington chain computed here (`43_` §10) |
 | ES item 4 | 1,381,117,764 rooted profiles (5,922,259 range-compatible) | not re-run (direct test below 40,000 only) |
 
 ## 3. Intersections with the zeta reader, and corrections to its overlaps table
@@ -183,3 +186,11 @@ No new script: every identity above is checked in the script of the note cited (
 A referee (a Claude instance that did not write this note) checked each edge's type and status against the sources and against `21_`, `28_`, `34_`, `43_`–`46_`. Its findings, each verified before being applied:
 - **Major.** (1) The ES–S⁶ covers need odd D (as in `43_`). (2) What crosses on edge 1 is the zeta programme's reconstruction theorem, which the Collatz note cites, not the zeta reader's jet theorem. (3) Edge 16 was labelled audited although only one of ten interface notes was read. (4) "Every intersection" was false: edges 1a (Split-Zero support modules into Collatz) and 26a (YM's summary of the zeta routes) were missing. (5) §2.1 attributed to ES a self-assessment it does not make. (6) The Pell constant is approached, not attained, and the directions are unnormalised. (7) §2 said every instance is proved in the note cited; the statuses are now given. (8) §1.1 called the split-zero note the one place the Collatz workbench uses the Hurwitz flow.
 - **Minor, applied.** The Collatz side of edge 18; the file-usage sentence; a phrase shown as a quotation that is not in the zeta reader; the description of the zeta reader's jet and mirror results; the 817 item removed from §2.3; the pattern of §2.2 stated less strictly; the status column made uniform; the enumeration size; the 44.9 row; §3 extended; the R05 credit.
+
+## 8. Revision after the twenty-second pass (09:05 UTC)
+
+The understatement review of the reader (`checks/workbenches/referee22/`) changes no edge type. It strengthens three instance statuses used above, each verified before being applied: the YM gap theorem holds with audited inputs for g² ≥ 4.0187 (`46_` Corollary 46.7), so the "method obstructions" pattern's YM instance compares a failing method with an unconditional theorem; the Neumann radius is now stated on the physical space too (1/320 at L = 2, against 1/1280 on the full space) and shown optimal over contours; and the Collatz cycle bound needs only Barina's 2021 range (`44_` §14). The certificate table above has three new rows. The Casimir lemma's girth form (`46_` §13) and the ES range x < p/2 (`43_` §10) do not touch an intersection edge.
+
+## 9. Revision after the twenty-third referee pass (10:01 UTC)
+
+The twenty-third pass (`checks/workbenches/referee23/`) changes no edge. Two instance statuses of §2 are refined: the YM gap theorem's order-1 case is the workbench's own YM-06 theorem (`46_` §14), and the published Collatz cycle bound (Hercher 2023 with Barina's verification: more than 1.375·10¹¹ odd steps, cycle length at least 355,504,839,929) is about 1.9 times the Eliahou-type bound of `44_` §§13–14 (`44_` §15). In §2.4 the row for `44_` §§13–14 is the Eliahou-type bound; the published bound needs Hercher's Corollary 29 with the verification to 3·2⁶⁹ (Barina, November 2023).

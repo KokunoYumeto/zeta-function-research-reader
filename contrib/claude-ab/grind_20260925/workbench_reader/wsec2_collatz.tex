@@ -1,0 +1,137 @@
+\section{The Collatz workbench}\label{sec:collatz}
+
+The workbench \texttt{collatz-workbench} states in every note that it does not claim the Collatz conjecture; its chapters describe themselves as written proofs with exact finite checks, not externally reviewed. Its public collaboration name is Kokuno Yumeto, and its contributions were developed with ChatGPT~5.6 Sol (in Codex) and GPT-6 Astra (README). An early tree of the workbench is quarantined by the owner's directive; the quarantine withdraws those statements from use and does not show any of them false.
+Audit note: \note{44\_}; first-pass report \note{44a\_}.
+
+\emph{Notation.} $X$ is the set of positive odd integers and $T(n)=(3n+1)/2^{\nu_2(3n+1)}$ on $X$. The exponent word of $n$ of length $m$ is $(a_1,\dots,a_m)$ with $a_i=\nu_2(3x_{i-1}+1)$, $x_0=n$, $x_i=T(x_{i-1})$; $A=a_1+\dots+a_m$.
+
+\subsection{History laws}
+
+\begin{proposition}[cylinders]\label{prop:cyl}
+For every exponent word $w$ of length $m$ and sum $A$ there is a residue $h_w$ modulo $2^A$ such that an odd $n=2k+1$ has exponent word $w$ exactly when $k\equiv h_w\pmod{2^A}$. Among the $N$ consecutive odd starts $2k+1$, $b\le k\le b+N-1$, the number with word $w$ is $\lfloor(b+N-1-h_w)/2^A\rfloor-\lfloor(b-1-h_w)/2^A\rfloor$, which is $\lfloor N/2^A\rfloor$ or $\lceil N/2^A\rceil$; so the empirical frequency $P(w)$ satisfies $|P(w)-2^{-A}|\le(1-2^{-A})/N<1/N$.
+\end{proposition}
+\status{Audited; classical (Terras \cite{Terras}, Everett \cite{Everett}); the workbench credits the mechanism to Tao's Proposition~1.9 \cite{TaoCollatz} and claims no priority.}
+
+\begin{theorem}[the full-history threshold]\label{thm:threshold}
+Let $P$ be the empirical law of the first $m$ exponents over the $N$ starts of Proposition~\ref{prop:cyl}, $G_m(w)=2^{-A(w)}$ (independent exponents with $\Pr(a=j)=2^{-j}$), $L=\log_2N$, $\Delta=\TV(P,G_m)$, and $\Phi$ the standard normal distribution function.
+\begin{enumerate}[label=(\alph*)]
+\item For every $H\ge0$, $\max\{0,Q_m(H)-N2^{-H-1}\}\le\Delta\le\min\{1,Q_m(H)+\binom Hm/N\}$, where $Q_m(H)=\Pr(\mathrm{Bin}(H,\frac12)\le m-1)$ (so $Q_m(H)=1$ and $\binom Hm=0$ for $H<m$).
+\item If $m=\lfloor L/2+c\sqrt L\rfloor$, then $\sup_b|\Delta-\Phi(2c)|\to0$ as $N\to\infty$.
+\item If $0<\delta<\frac12$ and $1\le m\le(\frac12-\delta)L$, then $\Delta\le N^{-\delta}+N^{-\delta^2/(2\ln2)}$. If $m\ge(\frac12+\delta)L$ and $\delta L>1$, then, with $H=\lceil(1+\delta)L\rceil$, $1-\Delta\le\frac12N^{-\delta}+\exp\bigl(-2(\frac{\delta L}2-\frac12)^2/H\bigr)$. So $\Delta\to0$, respectively $\Delta\to1$, at a polynomial rate in $N$.
+\end{enumerate}
+All statements are uniform in $b$.
+\end{theorem}
+\status{Proved here; the workbench's history-law note, audited, which states the uniformity in $b$ and gives (c) as its explicit estimates (4.3)--(4.4) (the first ``for sufficiently large $N$''; the proof below needs no such condition). Checked: 2{,}952 sandwich checks in the first pass; here the exact $\Delta$ for $N=2^{10},2^{12},2^{14}$ at three offsets $b$ against (a) for every $0\le H\le2L+2$ and against (c); at $N=2^{20}$ the TV values are $0.004,0.044,0.342,0.668,0.895$ for $c=-1,-\frac12,0,\frac12,1$, against $\Phi(2c)=0.023,0.159,0.5,0.841,0.977$ (slow convergence, as the note warns). No literature search on the threshold was made.}
+
+\begin{proof}
+Under $G_m$ the sum $A$ is the waiting time for the $m$-th success in fair coin flips, so $G_m(A>H)=Q_m(H)$, and the words with $A\le H$ number $\binom Hm$.
+Upper bound: $\Delta=1-\sum_w\min(P(w),G(w))$, and by Proposition~\ref{prop:cyl} the words with $A\le H$ contribute at least $\sum_{A\le H}(2^{-A}-1/N)=1-Q_m(H)-\binom Hm/N$.
+Lower bound: $P$ is carried by at most $N$ words, each word with $A>H$ has $G$-mass at most $2^{-H-1}$, so $\sum_{A>H}\min(P,G)\le N2^{-H-1}$, while $\sum_{A\le H}\min(P,G)\le1-Q_m(H)$. Nothing here needs $H\ge m$: for $H<m$ no word has $A\le H$, and every word has $G$-mass at most $2^{-m}\le2^{-H-1}$.
+(b) Take $H_+=L+L^{1/4}$ in the lower bound and $H_-=L-L^{1/4}$ in the upper bound: $N2^{-H_+-1}\to0$ and $\binom{H_-}m/N\le2^{H_--L}\to0$. By the central limit theorem for $\mathrm{Bin}(H,\frac12)$, uniform in the argument with error $O(H^{-1/2})$, $Q_m(H_\pm)=\Phi((2m-2-H_\pm)/\sqrt{H_\pm})+o(1)$, and $(2m-2-H_\pm)/\sqrt{H_\pm}\to2c$.
+(c) Let $X\sim\mathrm{Bin}(H,\frac12)$; Hoeffding's inequality gives $\Pr(X\le\frac H2-u)$ and $\Pr(X\ge\frac H2+u)$ at most $e^{-2u^2/H}$ for $u\ge0$. First let $m\le(\frac12-\delta)L$ and $H=\lfloor(1-\delta)L\rfloor$, which is at least $1$ since $L\ge1/(\frac12-\delta)>2$. Then $\binom Hm/N\le2^H/N\le N^{-\delta}$, and $u=\frac H2-(m-1)\ge\frac{\delta L}2+\frac12$, so $Q_m(H)\le e^{-2(\delta L/2)^2/H}\le e^{-\delta^2L/2}=N^{-\delta^2/(2\ln2)}$ as $H\le L$. Next let $m\ge(\frac12+\delta)L$, $\delta L>1$ and $H=\lceil(1+\delta)L\rceil$. Then $N2^{-H-1}\le\frac12N^{-\delta}$, and $1-Q_m(H)=\Pr(X\ge m)$, which is $0$ if $m>H$ and otherwise at most $e^{-2u^2/H}$ with $u=m-\frac H2\ge\frac{\delta L}2-\frac12>0$. Both cases follow from (a), and neither bound involves $b$.
+\end{proof}
+
+Part (c) is an obstruction: above $(\frac12+\delta)\log_2N$ halving counts, the whole word law of $N$ consecutive starts is far from the geometric model. It says nothing about coarser observables or about individual orbits.
+
+\subsection{Merging families}
+
+\begin{lemma}\label{lem:nu3}
+For even $e\ge2$, $h_e=(2^e+2)/3$ is an integer with $h_e\equiv2\pmod4$ and $\nu_3(h_e)=\nu_3(e-1)$.
+\end{lemma}
+\status{Proved here; the workbench's Lemma~1 of the all-even join extension, audited; checked for all even $e\le3000$.}
+\begin{proof}
+$2^e\equiv1\pmod3$ gives integrality; $2^e+2\equiv2\pmod 4$ and $3$ is odd. With $k=e-1$ odd, $2^e+2=2(2^k+1)$ and the lifting-the-exponent lemma gives $\nu_3(2^k+1)=\nu_3(3)+\nu_3(k)$, so $\nu_3(h_e)=\nu_3(k)$.
+\end{proof}
+
+\begin{theorem}[explicit merging families]\label{thm:merge}
+Fix an even $e\ge2$, $b\ge1$ and $\sigma\in\{0,1\}$. Let $a$ be the least $a\ge1$ with $2^{a+e+2b-\sigma}<3^{a+b}$, and put $J=2^{e+2b-\sigma}$, $Q=3^{a+b}$, $K=2^aJ$, $(d,r)=(4,3)$ if $\sigma=0$ and $(32,27)$ if $\sigma=1$. Let $n_0\in(0,dQ)$ solve $n_0\equiv r\pmod d$ and $Jn_0+h_e3^b\equiv0\pmod Q$, and $m_0=(Kn_0+2^ah_e3^b)/Q-1$. For every $v\ge0$, $n=n_0+dQv$ and $m=m_0+dKv$ are odd, $0<m<n$, $\nu_3(n)=b+\nu_3(e-1)$, and the exponent words of $n$ and $m$ begin with $(1)$ and $(1^a,e,2^{b-1},3)$ if $\sigma=0$, and with $(1,2,1)$ and $(1^a,e,2^{b-1},1,1,3)$ if $\sigma=1$, and end at the same odd number.
+\end{theorem}
+\status{Proved here; the workbench's Theorem~2 of the all-even join extension (16 September), audited, together with its converse (the endpoint equality forces this progression). Checked from the definitions on 600 pairs ($e\le20$, $b\le6$, both $\sigma$, including $v=10^{12}+3$), and by the referee of the notes on 1{,}200 further pairs.}
+
+\begin{proof}
+\emph{Range of $a$.} At $a=b+2e-2\sigma$, $K/Q=(8/9)^{b+e-\sigma}<1$, so $a\le b+2e-2\sigma$; and $K<Q$ needs $(3/2)^a>2^{e-\sigma}(4/3)^b\ge2^{e-1}$, so $a\ge e>\nu_3(e-1)$.
+\emph{The 3-adic part.} $J$ is a unit mod $3$, so $n\equiv-h_e3^bJ^{-1}\pmod{3^{a+b}}$, and since $\nu_3(h_e3^b)=b+\nu_3(e-1)<a+b$, $\nu_3(n)=b+\nu_3(e-1)$. Put $z=n/3^b$ and $W=(Jz+h_e)/3^a\in\ZZ$; as $4\mid J$ and $h_e\equiv2\pmod4$, $\nu_2(W)=1$, and $m=2^aW-1$.
+\emph{The right path.} Since $m+1=2^{a+1}(W/2)$ with $W/2$ odd, the first $a$ steps from $m$ have exponent $1$, through $x_j=3^j2^{a-j}W-1$, ending at $x_a=3^aW-1=Jz+h_e-1$, which is odd. By $3h_e-2=2^e$, $3x_a+1=2^e(3\cdot2^{2b-\sigma}z+1)$ with $2b-\sigma\ge1$, so the next exponent is exactly $e$. The next $b-1$ steps have exponent $2$ (the factor $3\cdot2^{2b-\sigma}$ loses a factor $4$ and gains a $3$ at each step) and end at $4n+1$ ($\sigma=0$) or $2n+1$ ($\sigma=1$).
+\emph{The meeting point.} If $\sigma=0$, $n\equiv3\pmod4$, so $T(n)=(3n+1)/2$ with exponent $1$, and $3(4n+1)+1=4(3n+1)=8\cdot\frac{3n+1}2$ gives exponent $3$ and the same value. If $\sigma=1$, $n\equiv27\pmod{32}$ gives $n\to\frac{3n+1}2\to\frac{9n+5}8\to\frac{27n+23}{16}$ with exponents $1,2,1$, and $2n+1\to3n+2\to\frac{9n+7}2\to\frac{27n+23}{16}$ with exponents $1,1,3$.
+\emph{Height.} $m=\frac KQn+h_e(\frac23)^a-1$ with $K<Q$, and $h_e(\frac23)^a<\frac{h_e3^b}J=\frac{2+2^{2-e}}3\,2^{\sigma-1}(\frac34)^b<1$.
+\end{proof}
+
+For example ($e=8$, $b=2$, $\sigma=0$, $a=16$): $n=20{,}241{,}207+1{,}549{,}681{,}956\,v$ and $m=14{,}024{,}703+2^{30}v$ reach $30{,}361{,}811+2{,}324{,}522{,}934\,v$ for every $v\ge0$.
+The workbench also proves (its Theorem~3; audited) that whether an odd $n>1$ is the larger member of such a pair is decided by a finite search at $n$: $e\le\lfloor\log_2(n-1)\rfloor-1$, $b=\nu_3(n)-\nu_3(e-1)$, and the admitted smaller members are $m_{a'}=2^{a'}(J(n/3^b)+h_e)/3^{a'}-1$ for $a\le a'\le\nu_3(J(n/3^b)+h_e)$. Only $367$ of the odd $n<400{,}000$ admit a template. The workbench notes that the search does not show that a template applies to every retained source; no convergence statement follows.
+
+\subsection{Descent, and a contraction in a model}
+
+\begin{proposition}\label{prop:ref3}
+Let $F_m(x)=(3^mx+C_m)/2^{A_m}$ be the affine map of the first $m$ odd steps of an exponent word ($C_m\ge1$), and $n_0$ the least odd $n\ge3$ whose word begins with this one (its cylinder is a residue class modulo $2^{A_m+1}$). Then every odd $n\ge3$ whose word begins with this one satisfies $T^m(n)<n$ if and only if $F_m(n_0)<n_0$. In particular this holds if $F_m(3)<3$. More precisely, a member $n$ satisfies $T^m(n)<n$ if and only if $D=2^{A_m}-3^m>0$ and $n>C_m/D$.
+\end{proposition}
+\status{Generalised here: the workbench's Chapter~2, Theorem~2.1 (audited; 1{,}601 leaves and 9{,}605 starts checked in the first pass) assumes $F_j(3)\ge3$ for $j<m$ and $F_m(3)<3$, which makes the word a first stopping leaf; the descent needs only $F_m(n_0)<n_0$, and that condition is also necessary. Checked on $36{,}267$ cases with $n<2^{14}$, $m\le8$ (the condition $F_m(3)<3$), and on all $637$ words with $m\le5$ and $A_m\le10$ against the actual descent of every member below $2^{15}$ (the equivalence). For example, the word $(1,1,1,1,4)$ has $F_5(3)=235/64>3$, but $n_0=95$ and every member descends.}
+\begin{proof}
+With $D=2^{A_m}-3^m$ and $C=C_m$, $F_m(x)-x=(C-Dx)/2^{A_m}$, and $T^m(n)=F_m(n)$ for every member $n$; so a member descends exactly when $Dn>C$, which, as $C>0<n$, means $D>0$ and $n>C/D$. If $F_m(n_0)<n_0$, then $C<Dn_0$, so $D>0$ (as $C>0$), and every member $n\ge3$ has $n\ge n_0$ and $Dn\ge Dn_0>C$. The converse is the case $n=n_0$. If $F_m(3)<3$, then $C<3D$, so $D>0$ and $Dn_0\ge3D>C$.
+\end{proof}
+
+\begin{proposition}\label{prop:sqrt15}
+For $x\ge2$, $\tfrac12\bigl(\sqrt{(x-2)/2}+\sqrt{(3x-1)/2}\bigr)\le\tfrac{\sqrt{15}}4\sqrt{x-1}$, with equality exactly at $x=7$.
+\end{proposition}
+\status{Generalised here: the workbench's Chapter~2, Theorem~7.1 (audited) states it for $x\ge3$; the proof gives $x\ge2$.}
+\begin{proof}
+With $u=(x-2)/2$, $v=(3x-1)/2$: $\sqrt u+\sqrt v=\sqrt{2u}\sqrt{1/2}+\sqrt v\cdot1\le\sqrt{2u+v}\sqrt{3/2}$ and $2u+v=\frac52(x-1)$. Equality needs $4u=v$, that is $x=7$.
+\end{proof}
+In the fair-coin model, where $x$ moves to $x/2$ or $(3x+1)/2$ with probability $\frac12$ each, this says that $\mathbb E\sqrt{X_{\mathrm{next}}-1}\le\frac{\sqrt{15}}4\sqrt{x-1}$, also when branches that fall below $3$ are killed. Started at $X_0=3$ with the first step odd ($X_1=5$), and with $\tau$ the first time below $3$, iteration gives $\Pr(\tau>h)\le\mathbb E[\sqrt{X_h-1};\tau>h]/\sqrt2\le\sqrt2(\frac{\sqrt{15}}4)^{h-1}\le\frac32(\frac{31}{32})^h$ for $h\ge1$, so the killed process dies almost surely; and the completed stopping word, whose tail $t_H$ satisfies $t_0=1$ and $t_H=\frac12(t_{H-1}+\Pr(\tau>H))$, has $t_H\le\frac{31}{20}(\frac{31}{32})^H$ by induction, since $\frac12(\frac{31}{20}\cdot\frac{32}{31}+\frac32)=\frac{31}{20}$ (the workbench's (7.9)--(7.16), audited in \note{44a\_} §2.4). These are statements about the model, not about orbits, as the workbench says.
+
+\subsection{Cycles}
+
+\begin{proposition}\label{prop:onestep}
+No nontrivial positive cycle of $T$ has at most one step with exponent $1$.
+\end{proposition}
+\status{Proved here; the workbench's Chapter~3, audited. Weaker than the published cycle results, as the chapter says.}
+\begin{proof}
+Let $n>1$ be the least element of the cycle. A step from $x>1$ with exponent at least $2$ gives $T(x)\le(3x+1)/4<x$; so some step has exponent $1$, and if only one does, it is the step from $n$. Then $x_1=(3n+1)/2$ and every later step decreases; a later exponent $\ge3$ would give a value at most $(3x_1+1)/8=(9n+5)/16<n$. So the word is $(1,2,\dots,2)$ with $m-1$ twos, and $x_{j+1}-1=\frac34(x_j-1)$ along the twos. Closing the cycle, $n-1=(\frac34)^{m-1}\frac{3n-1}2$, i.e. $nD=2\cdot4^{m-1}-3^{m-1}$ with $D=2\cdot4^{m-1}-3^m$, and $n-1=2\cdot3^{m-1}/D$. $D$ is odd and prime to $3$, so $D=\pm1$; but $D=-1$ for $m=1,2$ (the negative cycles $-1$ and $-5$) and $D_{m+1}=4D_m+3^m\ge5$ for $m\ge2$.
+\end{proof}
+
+\begin{theorem}\label{thm:678}
+Every nontrivial positive cycle of $T$ has at least $1636$ odd steps, at least $2593$ halvings, and more than $678$ steps with exponent $1$.
+\end{theorem}
+\status{Proved here; the workbench's Chapter~6, Theorem~9, audited, states the bound on steps with exponent $1$; the bounds on $m$ and $A$ come out of the same proof. Its hypothesis, that every odd $n\le330{,}749$ reaches $1$ (the workbench's Theorem~8, from its own database), was recomputed for this reader: every odd $n$ in that range falls below itself under $T$.}
+\begin{proof}
+Let the cycle have $m$ odd steps, $k$ of them with exponent $1$, total exponent $A$ and least element $s$; since no element of the cycle reaches $1$, $s\ge330{,}751$. Multiplying $T(x_i)/x_i=(3+1/x_i)/2^{a_i}$ around the cycle gives $2^A=\prod(3+1/x_i)\in(3^m,(3+1/s)^m]$, and $A\ge2m-k$ gives $(4s)^m\le2^k(3s+1)^m$. The least $m$ for which a power of $2$ lies in $(3^m,(3+1/s)^m]$ is $m=1636$ (exact integer arithmetic), so $A>1636\log_23=2592.998\ldots$; and $(4s/(3s+1))^m$ increases with $m$; at $m=1636$ the inequality needs $k\ge679$.
+\end{proof}
+The count $k$ differs from the number of local minima used in the published cycle bounds (Simons--de Weger \cite{SimonsdeWeger}; Hercher \cite{Hercher}, no $m$-cycles for $m\le91$), and the workbench labels the result internal. The argument is Eliahou's \cite{Eliahou}: a cycle whose elements all exceed $s$ has $2^A\in(3^m,(3+1/s)^m]$, so $A/m$ lies in $(\log_23,\log_2(3+1/s)]$ and $m$ is at least the least denominator of a fraction in that interval. Run with a larger verification range, it gives far more. A verification made for this reader (\note{descent\_2e33.c}; 38~seconds on two cores, $128$-bit arithmetic, largest value met $9.07\cdot10^{18}$) shows that every odd $n$ with $3\le n<2^{33}$ falls below itself under $n\mapsto(3n+1)/2$, $n\mapsto n/2$; so every $n<2^{33}$ reaches $1$, and with no external input the same argument gives $m\ge190{,}537$, $A\ge301{,}994$ and $k\ge79{,}080$ (the least denominator is that of $301994/190537$; \textsf{Computed}: the verification was repeated by two programs written independently by the referees of this reader, both with the odd-to-odd map). A published verification range gives more still.
+
+\begin{corollary}\label{cor:barina}
+Assume that every $n<2.17\cdot10^{20}$ reaches $1$. This holds: Barina verified every $n<2^{68}$ (2020, published in 2021 \cite{Barina2021}) and every $n<2^{71}$ \cite{Barina}. Then every nontrivial positive cycle of $T$ has at least $72{,}057{,}431{,}991$ odd steps, at least $114{,}208{,}327{,}604$ halvings (so at least $186{,}265{,}759{,}595$ steps of $n\mapsto n/2$, $n\mapsto3n+1$), and at least $29{,}906{,}536{,}378$ steps with exponent $1$.
+\end{corollary}
+\status{Conditional on Barina's published computation, and its 2021 range $2^{68}$ already suffices (the 2025 paper, §1, attributes that range to the 2021 paper; the project page dates it 7~May 2020). The derivation is proved here (and is Eliahou's method). The fraction $114208327604/72057431991$ is the fraction of least denominator in $(\log_23,\log_2(3+1/s)]$ exactly for $s_{\mathrm{lo}}<s\le s_{\mathrm{hi}}$, with $s_{\mathrm{lo}}=1/(2^{10439860591/6586818670}-3)=2.1689015534\cdot10^{20}\approx2^{67.556}$ (from the previous best upper approximation of $\log_23$) and $s_{\mathrm{hi}}=1/(2^{114208327604/72057431991}-3)=4.3585\cdot10^{21}\approx2^{71.884}$; so, by this argument, any verified range between $2^{67.56}$ and $2^{71.88}$ gives the same bounds. The published bound, stated after the proof, is stronger. The fraction was found by the continued-fraction algorithm for the simplest fraction in an interval (80-digit arithmetic) and confirmed by an independent Stern--Brocot descent (120-digit arithmetic). The same computation returns $m=1636$, $k\ge679$ at $s=330{,}751$ (Theorem~\ref{thm:678}) and $A=17{,}087{,}915$ at $s=2^{40}$, which is Eliahou's published bound \cite{Eliahou}.}
+\begin{proof}
+The least element $s$ of a nontrivial cycle exceeds $s_{\mathrm{lo}}$. As in the proof of Theorem~\ref{thm:678}, $A/m\in(\log_23,\log_2(3+1/s)]\subseteq(\log_23,\log_2(3+1/s_{\mathrm{lo}}))$. That interval excludes $10439860591/6586818670$, and every fraction in $(\log_23,10439860591/6586818670)$ has denominator at least $72{,}057{,}431{,}991$, the denominator of the next best upper approximation; so $m\ge72{,}057{,}431{,}991$. Then $A>m\log_23\ge72{,}057{,}431{,}991\log_23=114{,}208{,}327{,}603.99999999999\ldots$, so $A\ge114{,}208{,}327{,}604$; and $k\ge m\log_2(4s/(3s+1))\ge72{,}057{,}431{,}991\cdot\bigl(2-\log_2(3+1/s_{\mathrm{lo}})\bigr)=29{,}906{,}536{,}377.99\ldots$.
+\end{proof}
+Corollary~\ref{cor:barina} records what Eliahou's argument alone gives from Barina's 2021 range; the published bound is stronger. Hercher \cite[Corollary~29]{Hercher} proves, by a finer argument, that if every $n\le1536\cdot2^{60}=3\cdot2^{69}$ reaches $1$, then every nontrivial cycle contains more than $1.375\cdot10^{11}$ odd numbers. Barina's verification passed that range on 3~November 2023 (\cite{Barina}, Table~10), and his 2025 paper (§6) states that at $2^{71}$ the length of a nontrivial cycle rises to $355{,}504{,}839{,}929$. That number is $m+A$ for $m=137{,}528{,}045{,}312$ and $A=217{,}976{,}794{,}617$, the denominator and numerator of the next best upper approximation of $\log_23$ after the fraction above (computed here); so the length is counted in steps of $n\mapsto n/2$, $n\mapsto3n+1$. With $m>1.375\cdot10^{11}$, the argument of Corollary~\ref{cor:barina} gives $A>m\log_23>2.179\cdot10^{11}$ halvings and $k\ge m\bigl(2-\log_2(3+2^{-71})\bigr)>5.706\cdot10^{10}$ steps with exponent $1$ (\textsf{Conditional} on Hercher's theorem, whose proof was not read, and on Barina's computation).
+
+\subsection{Restatements, and the Tao-clock deduction}
+
+The workbench states, with a proof in Chapter~9 (located; the statement re-derived from the overview in \note{44a\_} §2.6), that $\ker(H^1(K_\varepsilon)\to H^1(K))$ for the orbit-graph complex $K$ and its first-jet thickening $K_\varepsilon$ is $\bigoplus_{C}\ZZ/m_C\oplus\bigoplus\ZZ$, over the nontrivial cycles $C$ of lengths $m_C$ and the components without a cycle, so that the conjecture is equivalent to its vanishing; and (Chapter~3, audited) that it is equivalent to $H_0=0$ for a relative orbit-graph homology. These are exact restatements, and the workbench says that the vanishing is not established.
+
+Its Tao-clock preprint (status: conditional on Tao's Proposition~1.11 \cite{TaoCollatz}, which it cites; the deduction audited, the preprint's repairs to Tao's §§5--6 not audited) deduces from Tao's theorem that the laws of the first entry of an orbit into $[1,x]$, started from the logarithmic law on $[t_{j+1},t_{j+1}^{\alpha}]$ with $t_j=b^{\alpha^j}$, $\alpha=1001/1000$, converge in $\ell^1$ as $j\to\infty$, at the rate $\|\lambda_{x,j}-\lambda_x^\infty\|\le L_c(\log t_j)^{-c}$ for $x\le t_j$ with $L_c=B'/(1-\alpha^{-c})$, where $c>0$ and $B'$ are the constants of Tao's Proposition~1.11; coherently in $x$; and with joint laws for several thresholds converging with the same error, independent of their number (\note{44\_} Theorem~44.11). The steps (nested first passage, $\ell^1$ contraction, a geometric sum of Tao's adjacent-scale errors, completeness) were checked; the preprint proves no stronger orbit-minimum bound, as it says.
+
+\subsection{The Hurwitz zero-cluster encoding}\label{ssec:hurwitz-encoding}
+
+The workbench uses the Hurwitz zeta function in three places: its split-zero history note, its Chapter~1 §5 (the same reconstruction applied to the history law) and its Chapter~2 §10 (Hurwitz values at nonpositive integers). The first treats the motion of a zero under $\zeta(s,1+t)$ in full.
+
+Fix $(m,A)$; the $K$ odd-return words, that is the exponent words $w=(a_1,\dots,a_m)$ with all $a_i\ge1$ and $a_1+\dots+a_m=A$, have residues $r_w$ (the classes of Proposition~\ref{prop:cyl}, read modulo $2^{A+1}$) that are pairwise distinct. For a probability vector $\lambda$ on these words put $Z_\lambda(s,t)=\sum_w\lambda_w\zeta(s,1+tr_w)$ for $|t|(2^{A+1}-1)<1$.
+
+\begin{theorem}\label{thm:encoding}
+Let $\rho$ be a nontrivial zero of $\zeta$. The $t$-jet of order $J$ of the zeros of $Z_\lambda(\cdot,t)$ near $\rho$ (of their monic cluster polynomial, if $\rho$ is multiple) determines the moments $M_i=\sum_w\lambda_wr_w^i$, $i\le J$, and conversely. Hence the jet of order $K-1$ determines $\lambda$, and for $K\ge2$ the jet of order $K-2$ determines $\lambda$ at no interior point of the simplex: its fibre through every such point contains a segment.
+\end{theorem}
+\status{Proved here for simple zeros; audited in general. The reconstruction is the zeta programme's (\texttt{historical\_hurwitz\_jets.tex}, equations H10--H13), which the Collatz note cites and re-proves in the part it uses; checked numerically at $\rho=\frac12+14.1347\ldots i$ (the weights $(0.5,0.2,0.3)$ at $(m,A)=(2,4)$ are recovered).}
+\begin{proof}[Proof for a simple zero]
+By the zeta reader's jet theorem (Theorem ``the first Hurwitz jet'', (a); \cite[25.11.10]{DLMF}), $\zeta(s,1+u)=\sum_jb_j(s)u^j$ with $b_j(s)=(-1)^j(s)_j\zeta(s+j)/j!$, so $Z_\lambda(s,t)=\sum_jb_j(s)M_jt^j$ with $M_0=1$. For $j\ge1$, $b_j(\rho)\ne0$, since $\rho$ is not a nonpositive integer and $\re(\rho+j)>1$. Writing the zero as $\rho(t)=\rho+c_1t+c_2t^2+\cdots$, the coefficient of $t^J$ in $Z_\lambda(\rho(t),t)=0$ is $\zeta'(\rho)c_J+b_J(\rho)M_J$ plus a polynomial in $c_1,\dots,c_{J-1}$ and $M_1,\dots,M_{J-1}$ whose coefficients are derivatives at $\rho$ of $\zeta$ and of the $b_j$; so $(c_1,\dots,c_J)$ and $(M_1,\dots,M_J)$ determine each other triangularly. The $K$ distinct nodes $r_w$ make $M_0,\dots,M_{K-1}$ determine $\lambda$ (Vandermonde). With $h_w=1/\prod_{v\ne w}(r_w-r_v)$, which is nonzero for every $w$, $\sum_wh_wr_w^i=0$ for $i\le K-2$ (in particular $\sum_wh_w=0$); so for every $\lambda$ with all $\lambda_w>0$ and all small $\varepsilon$, $\lambda+\varepsilon h$ is a probability vector with the moments of $\lambda$ up to order $K-2$.
+\end{proof}
+This is an exact, invertible encoding of a probability vector into the motion of a zeta zero. The family is built from the weights and any nontrivial zero works, so it carries no information about Collatz orbits beyond the residues, and none about the location of the zeros; the note says so. The same note gives three information-loss witnesses: two parity words of length $5$ whose affine constant terms $\frac12+\frac q{32}$ and $\frac18+\frac q{16}+\frac{q^2}{32}$ differ by $(q-3)(q+4)/32$ and agree at $q=3$; the eigenvalues of the affine matrix forget bit order; and $(K-2)$-jets do not separate weights.
+
+\subsection{Negative results, with exact scope}
+
+\begin{itemize}
+\item The full-history obstruction (Theorem~\ref{thm:threshold}(c)): it bounds no coarser observable and says nothing about orbits.
+\item The encoding losses of §\ref{ssec:hurwitz-encoding}: they do not show that no faithful spectral encoding exists; the order-$(K-1)$ encoding is faithful.
+\item The formal inverse $(I-tP)^{-1}$ of Chapter~3 is not a finite integral chain on cycles or divergent rays, and the signed primitive of the unit cochain is unbounded below on an acyclic component: these name inputs a global proof would need, not obstructions to the conjecture.
+\item The finite template search of Chapter~20 does not show that a template applies at every retained source.
+\end{itemize}

@@ -1,6 +1,6 @@
 # The second attempt, part 5: harmonic sweeping, the source pairing, positive measures, and Nyman–Beurling
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026. Refereed in the second pass (05:08–05:25 UTC, with the digest); its findings were applied then (`PLAN.md`).
 
 This is a content map of three notes from the continuation published on 25 September (`workbenches/splitzero-tandem/continuations/20260925-full-source-tensor-and-original-divisor/`). It follows the style of `01_`, `04_`, `05_` and `07_`, and ends with my reading of what the notes add up to.
 

@@ -1,6 +1,6 @@
 # NHI, HSR and HBW: the holomorphic receiver, the specialization transpose and the boundary winding
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 14:18 UTC. Board task 8, the fifth of the eight new result groups of the 25 September bulletin (NHI/HSR/HBW). The first pass was an audit by one subagent (13:30–14:08 UTC); §0 says which parts I verified myself. Not yet refereed.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 14:18 UTC. Board task 8, the fifth of the eight new result groups of the 25 September bulletin (NHI/HSR/HBW). The first pass was an audit by one subagent (13:30–14:08 UTC); §0 says which parts I verified myself. Refereed in the eleventh pass; the changes are listed at the end of this note.
 
 ## 0. Sources, method and checks
 

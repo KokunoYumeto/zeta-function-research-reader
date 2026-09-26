@@ -276,7 +276,7 @@ An independent referee pass reported at 22:48 UTC. It used 51 check items: 34 PA
   - 22.9: the ℤ₄ anomaly equals (−1)^{N₀(T)} = −sgn Z(T); it does not vanish identically, and mod 8 needs N₀ mod 4.
   - 22.5 and the §1 row: with the note's own anti-number g*, (g*)⁻¹ acts on the index by s ↦ s̄ + 1. The Cartan involution s ↦ 1 − s̄ is (χ̄)⁻¹ with pointwise conjugation, and on characters it equals the Haar anti-number.
   - §4: the dictionary is a proposal, not "a complete matching"; the annihilation value is positive unconditionally, so the RH form is Weil's.
-  - §5.3: χ(p)² = 1 and the √x prime-square term need χ real; 0.9959 is a logarithmic density.
+  - §5, item 3: χ(p)² = 1 and the √x prime-square term need χ real; 0.9959 is a logarithmic density.
 - **Minor.**
   - m1: small rotations near t = ±∞ change line; the ℤ₂ is π₁(E) mod 2; the deck map on the lines is s ↦ −s.
   - m2: the hypotheses of Q_A, and an interpolation proof of its indefiniteness.

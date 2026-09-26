@@ -134,7 +134,7 @@ Dilation acts on all three terms. Its generalized eigenvalues on Q′ are exactl
 ## 3. Checks by claude-ab
 
 - **`checks/mcl_ore_checks.py` (ALL PASS).** The checks run at the first zero ρ₁, with m = 1 using ζ and m = 2 using ζ². The second case exercises every sign and factorial that depends on m; there the reflection multiplier is χ_ζ².
-  - All of the following agree to at least 1e-39:
+  - All of the following agree to within 1.2·10⁻³⁹:
     - the germ identity u_b(t) = (−1)^m χ(b+t) u_ρ(−t) (ORE5.4);
     - the recursion for v_k (ORE4.5);
     - the key germ identity u_b(t) Σ v_k(−t)^k = (−1)^m χ(b+t)/2 behind item 7 (ORE5.6);

@@ -67,7 +67,7 @@ and Q_A(f_k) = 2Σ_ρ m_ρ U(ρ)·conj U(1 − ρ̄) with U = F_*(s + 1)F_*(s �
 - **⇒.** Under RH, Ω(u) = Σ m|u|² ≥ 0. ∎ (Checks B′1–B′3 at the first zero: Q_A(f_k) = 2|f_k(ρ₁)|² for the T-even f_k, and −2|f_k(ρ₁)|² for the T-odd variant with a minus sign.)
 
 **Reading and scope.**
-- **The answer to the question of `22_` §5.2.** RH is equivalent to a positivity statement for a subspace of the two-line space: the chiral cross form is nonnegative on the diagonal of T-even data, and then that diagonal is a maximal positive subspace.
+- **The answer to the question of `22_` §5, item 2.** RH is equivalent to a positivity statement for a subspace of the two-line space: the chiral cross form is nonnegative on the diagonal of T-even data, and then that diagonal is a maximal positive subspace.
   - The chiral form adds no information beyond Weil's pairing: on the diagonal it is twice Weil's form, and on the anti-diagonal minus twice it.
   - As a form on all data it is blind to RH (a).
   - This is the functional form of the holonomy identity T⁻¹A = # of `22_` Prop. 22.6. The chiral mirror A through the pole at 0, followed by the translation back between the lines, is Weil's reflection through ½.
@@ -92,7 +92,7 @@ and Q_A(f_k) = 2Σ_ρ m_ρ U(ρ)·conj U(1 − ρ̄) with U = F_*(s + 1)F_*(s �
   - For the counting race with π_G(x; q, a) = Σ_{p≤x, p≡a} (1 + 1/p): the difference from the one-line race is −Σ_{p≤x} χ₋₄(p)/p, which converges. After Rubinstein–Sarnak's normalization log x/√x it tends to 0.
   - So each two-line race has a limiting logarithmic distribution whenever its one-line counterpart has one, and then the same one.
   - Under GRH, Rubinstein–Sarnak show that the counting race has a limiting logarithmic distribution (their Theorem 1.1). Under GRH and their Grand Simplicity Hypothesis (linear independence over ℚ of the nonnegative ordinates), this distribution is absolutely continuous, and the primes 3 mod 4 lead on a set of logarithmic density δ(4; 3, 1) ≈ 0.9959 (*Chebyshev's bias*, Experiment. Math. 3 (1994) 173–197; the value as quoted by Devin, arXiv:1706.06394v4, p. 1; the hypotheses of Theorem 1.1 as described in Devin's Remark 3(1)). The two-line counting race therefore has the same limiting distribution under GRH, and the same density under GRH and the Grand Simplicity Hypothesis. (Check R4g recomputes δ(4; 3, 1) = 0.99593 under these hypotheses from the zeros of L(s, χ₋₄) up to height 100.)
-- (c) For real χ, the prime squares contribute θ(√x) + O(log q) ~ √x to both races. For complex χ the corresponding term is o(√x) (`22_` §5.3, as revised).
+- (c) For real χ, the prime squares contribute θ(√x) + O(log q) ~ √x to both races. For complex χ the corresponding term is o(√x) (`22_` §5, item 3, as revised).
 
 *Proof.*
 - (a) Partial summation gives Σ_{p≤x} χ(p) log p/p = θ(x, χ)/x + ∫_2^x θ(t, χ)t^{−2}dt. For a fixed modulus q, θ(t, χ) = O(t·exp(−c√log t)) (the prime number theorem for progressions; Davenport, *Multiplicative Number Theory*, ch. 20). So the integral converges.
@@ -129,7 +129,7 @@ So I(T) ≥ 0, and I(T) = 0 exactly when every zero with 0 < γ ≤ T is on the 
   - The counting identity holds on 200 random configurations (D4 computes V by the formula under test, so it checks only m − (m mod 2) = 2⌊m/2⌋; check R5b computes V exactly, from square-free parts and Sturm counts, on 25 random symmetric configurations).
 
 **Reading.**
-- **Boundary data.** N(T) is determined by the values of ζ on the boundary of a rectangle: N(T) = θ(T)/π + 1 + S(T) by the argument principle. V(T) is determined by the values on the critical line. Both lines of the two-line picture carry the same data, by translation. So I(T) is computed from boundary data. It is not the index asked for in `22_` §5.4, which should count off-line zeros alone and come from a map on the strip. I(T) also counts Σ⌊m_ρ/2⌋, and no such map is constructed here.
+- **Boundary data.** N(T) is determined by the values of ζ on the boundary of a rectangle: N(T) = θ(T)/π + 1 + S(T) by the argument principle. V(T) is determined by the values on the critical line. Both lines of the two-line picture carry the same data, by translation. So I(T) is computed from boundary data. It is not the index asked for in `22_` §5, item 4, which should count off-line zeros alone and come from a map on the strip. I(T) also counts Σ⌊m_ρ/2⌋, and no such map is constructed here.
 - **It counts the nontrivial holonomies P(T),** plus ⌊m_ρ/2⌋ for each on-line zero, the number of pairs in its multiplicity.
 - **It is Turing's index.** Verifications of RH to a height T locate the sign changes of Z and confirm with Turing's method that none are missing, that is, that N(T) equals their number. This is I(T) = 0 (A. M. Turing, Proc. London Math. Soc. (3) 3 (1953) 99–117).
 - **What is missing.** The statement I(T) = 0 for all T is RH together with the simplicity of all zeros. No finite computation gives it.
@@ -190,7 +190,7 @@ An independent referee pass (report written by about 00:02 UTC on 26 September) 
   - m1: Z is the set of distinct zeros, and the weights m are written out.
   - m2: Proposition 42.2 now covers data from ℬ (absolutely convergent sums), which Corollary 42.3 uses. OMS6's sections are classes; the functions in ℬ are their test representatives ℛ_ρ(P).
   - m3: Rubinstein–Sarnak's existence theorem needs GRH only; absolute continuity and the density need GRH and linear independence. Devin and Platt are added to §8.
-  - m4: I(T) is not the index asked for in `22_` §5.4; ⌊m_ρ/2⌋ replaces "half the excess multiplicities"; "I(T) = 0 for all T" is RH with simplicity; a positive index cannot always be certified by finite-precision computation (check R5d).
+  - m4: I(T) is not the index asked for in `22_` §5, item 4; ⌊m_ρ/2⌋ replaces "half the excess multiplicities"; "I(T) = 0 for all T" is RH with simplicity; a positive index cannot always be certified by finite-precision computation (check R5d).
   - m5: the invariance hypothesis of 42.1 (χ and χ̄ equally often; check R2b); the rational terms −1/s − 1/(s + 1) of a trivial factor (check R2c); the polar terms in the explicit formula for Q_A (checks R3f–R3g); the operative reason in 42.N1 is that G_Λ and its explicit formula are functions of Λ.
   - m6: the introduction and §§5–6 now agree on which directions are negative.
   - m7: the checks that cannot fail are named in §7, and the bound on E_G − E is the one verified at every prime (0.0018).

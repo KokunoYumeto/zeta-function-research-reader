@@ -2,7 +2,8 @@ import numpy as np
 from scipy.special import ndtr  # standard normal CDF (real)
 import mpmath as mp
 
-SP = 'data/'
+import os
+SP = os.path.join(os.environ.get('ZERO_DATA_DIR', 'data'), '')  # folder with the zero data (not published; zerodata.py regenerates it)
 
 def load_zeros(files=('zeros_A.npz', 'zeros_B.npz')):
     G, ZP, Z1 = [], [], []

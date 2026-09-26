@@ -1,6 +1,6 @@
 # NJS, SSR and RSR: two residue sections of one extension, and what survives at the pole s = 0
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:29 UTC. Board task 8 (programme audit and lemma extraction), the fourth of the eight new result groups of the 25 September bulletin (NJS/SSR, with the RSS review RSR). Not yet refereed.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:29 UTC. Board task 8 (programme audit and lemma extraction), the fourth of the eight new result groups of the 25 September bulletin (NJS/SSR, with the RSS review RSR). Refereed in the tenth pass; the changes are listed at the end of this note.
 
 ## 0. Sources, scope and checks
 
@@ -38,7 +38,7 @@ All four files are in `quantum_tau_programme_bridge_20260924/next_edition_after_
    - Both obey the cocycle law η_{mn} = mη_n + U_nη_m, and both have the value n log n at s = 0 (item 2).
 3. **Neither section is equivariant in E.** A correction F ∈ ℬ would need (U_n − n)F = η_n. The left side vanishes at 0 and the right side has value n log n there (NJS2, SSR3). I verified this argument by hand.
 4. **Density.** The closed span of the η_n is all of ℬ (NJS3–NJS4).
-   - This is RSS1.2, audited in `16_`, and it is the case Φ ≡ 1 of `30_` Lemma 30.2. The proof is the same Jensen argument.
+   - This is RSS1.2, audited in `16_`, and it is the case Φ ≡ 1 of `30_` Corollary 30.2. The proof is the same Jensen argument.
    - The closed span of the δ_n is the full zero-jet ideal I (NJS4.4, by NCI2). The squares n = k² already suffice (NJS4.5), a special case of register S33.
 5. **In the quotient.** E/I ≅ Q ⊕ ℂ equivariantly, through the class [h_t] (NJS5, SSR3).
    - This equivariant section is unique, because n^{1−s} − n is a unit at every nontrivial zero (0 < Re ρ < 1).
@@ -143,7 +143,7 @@ All four files are in `quantum_tau_programme_bridge_20260924/next_edition_after_
 ## 4. Bridges (goal 2)
 
 - **`29_` (ETR10) ↔ NPE/NJS.** Lemma 31.2 identifies the abstract Jordan extension J = ℂ[ε]/(ε²), with exponent ω = 1, as the pushout of the programme's residue extension at the pole s = 0.
-- **`30_` Lemma 30.2 ↔ NJS3.** They are one density statement; the correction term Φ is 1 for j_t and 8F₀ for ABH's ψ_j.
+- **`30_` Corollary 30.2 ↔ NJS3.** They are one density statement; the correction term Φ is 1 for j_t and 8F₀ for ABH's ψ_j.
 - **`16_` (RSS, NCI; register S33) ↔ NJS4.5 and Lemma 31.1.**
   - The squares suffice, as NJS4.5 shows and as a special case of S33.
   - Single-base powers never suffice, even with finitely many other degrees added (Lemma 31.1).

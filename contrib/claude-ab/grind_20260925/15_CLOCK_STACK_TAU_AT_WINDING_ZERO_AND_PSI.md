@@ -1,6 +1,6 @@
 # The clock stack: τ at winding zero, the completed prime clock, and ψ(N) = log lcm(1, …, N)
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:47 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:47 UTC. Refereed in the fourth pass (on `14_`–`16_` and digest draft 2); its findings were applied at 07:39–07:43 UTC (`PLAN.md`).
 
 This is a content map of the programme's `identity/PRIME_MONODROMY_STACKED_HISTORY.md` (M1–M9, 24 September), read in full, with independent checks and one illustration. The block builds the owner's clock picture from Connes–Consani, *Knots, primes and class field theory* (arXiv:2501.06560; the programme reports reading the author TeX, and I have not read it). It speaks directly to the owner's remarks of 25 September that τ is not 0, and that zero is "when the thing has not moved".
 
@@ -62,4 +62,4 @@ This is a content map of the programme's `identity/PRIME_MONODROMY_STACKED_HISTO
 - **Bridge (goal 2).** The owner's clock stack is Chebyshev's ψ:
   - the joint state count of the clocks ℤ/1, …, ℤ/N is lcm(1, …, N) = e^{ψ(N)};
   - through the explicit formula, the clock stack's growth carries the zeta zeros.
-- **For the owner's provenance file.** M1 is the programme's precise form of "zero is when the thing has not moved" (the winding-zero fibre contains τ), as distinct from absence. This is recorded as a pointer only.
+- **Remark.** M1 is the programme's precise form of the statement that the winding-zero fibre contains τ ("zero is when the thing has not moved"), as distinct from absence. This is recorded as a pointer only.

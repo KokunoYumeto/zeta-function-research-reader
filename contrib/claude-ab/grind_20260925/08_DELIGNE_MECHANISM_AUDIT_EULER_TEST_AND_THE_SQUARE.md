@@ -71,7 +71,7 @@ For q = 2 the two Hurwitz terms coincide, and Z_{1/2} = 2 · 2^s D_2. S_q is clo
 - **Logarithm.** Computed in exact rational arithmetic (`checks/monoid_log.py`, confirmed by the referee with an independent recursion).
   - The irreducibles of S_5 begin 4, 6, 9, 11, 14, 19, 21, 26, …, and 36 = 4·9 = 6·6.
   - The formal logarithm has r_36 = −1/2, its first negative coefficient. Among n ≤ 3000, 105 have r_n < 0.
-- **Zeros.** Off-line zeros of Z_{1/5} appear from height 15.70 on.
+- **Zeros.** Zeros of Z_{1/5} to the right of the critical line appear from height 15.70 on (the lowest is 0.54307 + 15.70405i). Zeros to the left of the line occur lower, for example at −0.158 + 6.614i and 0.288 + 12.138i (corrected in the final referee pass, 26 September).
   - The lowest has s = 0.54306884072582709337 + 15.704048267909062575i.
   - The referee counted zeros by the argument principle in python-flint/Arb, with an adaptive step that cannot skip a phase jump. Below height 150 there are exactly 24 zeros with Re s > 0.505. Of these, 21 have Re s > 0.52, 14 have Re s > 0.55 and 8 have Re s > 0.6.
   - The largest real part is 0.70907, at height 29.95, and none has Re s > 1.

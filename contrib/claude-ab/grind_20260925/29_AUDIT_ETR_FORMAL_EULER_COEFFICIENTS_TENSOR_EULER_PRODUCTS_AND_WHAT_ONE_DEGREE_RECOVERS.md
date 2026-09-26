@@ -1,6 +1,6 @@
 # The Euler tensor review ETR0–ETR12: formal Euler coefficients, tensor Euler products, and what one tensor degree recovers
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:14 UTC. Board task 8 (programme audit and lemma extraction); the first of the eight new result groups of the programme's 25 September bulletin. Not yet refereed.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:14 UTC. Board task 8 (programme audit and lemma extraction); the first of the eight new result groups of the programme's 25 September bulletin. Refereed in the tenth pass; the changes are listed at the end of this note.
 
 ## 0. Source, scope and checks
 

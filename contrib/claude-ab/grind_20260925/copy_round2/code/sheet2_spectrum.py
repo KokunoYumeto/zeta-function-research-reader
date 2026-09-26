@@ -4,7 +4,8 @@ import numpy as np
 from fractions import Fraction as Fr
 from scipy.special import erfc
 from beta_coeffs import coeffs
-SP = 'data/'
+import os
+SP = os.path.join(os.environ.get('ZERO_DATA_DIR', 'data'), '')  # folder with the zero data (not published; zerodata.py regenerates it)
 R, ZP, Z1 = [], [], []
 for f in ['onepoints_1100.npz', 'onepoints_1100_4600.npz', 'onepoints_4600_8000.npz']:
     d = np.load(SP + f); R.append(d['rho']); ZP.append(d['zp']); Z1.append(d['z1'])

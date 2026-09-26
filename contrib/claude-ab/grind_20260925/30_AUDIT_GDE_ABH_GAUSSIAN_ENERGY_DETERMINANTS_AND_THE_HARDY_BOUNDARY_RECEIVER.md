@@ -1,6 +1,6 @@
 # GDE and ABH: the Gaussian energy of the boundary, its determinants, and the boundary in Noor's Hardy space
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:23 UTC. Board task 8 (programme audit and lemma extraction), the second and third of the eight new result groups of the 25 September bulletin. Not yet refereed.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, written at 13:23 UTC. Board task 8 (programme audit and lemma extraction), the second and third of the eight new result groups of the 25 September bulletin. Refereed in the tenth pass; the changes are listed at the end of this note.
 
 ## 0. Sources, scope and checks
 

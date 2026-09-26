@@ -126,7 +126,7 @@ This is the uniqueness argument of GSL6, with D = Z and D′ = Z ∓ 1. It needs
 2. G(0) = F₀(0)F₀(1) = (1/8)(1/8) = 1/64.
 3. For real t, F₀(it) = F₀(1−it), which is the complex conjugate of F₀(1+it), because F₀ is real on the real axis. F₀(1+it) ≠ 0 because ζ does not vanish on Re s = 1 (check 2). ∎
 
-The separator switches from 0 to 1 across the line Re s = 0. That line passes through s = 0, where the pole at 0 of the register (goal 4, item 11) sits. On that line, G is built only from values of ζ on Re s = 1, where the Euler product's boundary nonvanishing holds. The positivity G(it) > 0 is also `22_` Prop. 22.4 (S37); `22_` has not yet been refereed.
+The separator switches from 0 to 1 across the line Re s = 0. That line passes through s = 0, where the pole at 0 of the register (goal 4, item 11) sits. On that line, G is built only from values of ζ on Re s = 1, where the Euler product's boundary nonvanishing holds. The positivity G(it) > 0 is also `22_` Prop. 22.4 (S37); `22_` was refereed in the eighteenth pass.
 
 ## 2. GMS: the derived separation
 
@@ -216,7 +216,7 @@ So the two lines are separated only after passing to the quotients Q and Q₊. T
 
 *Proof.* conj(r^ρ − r^{1−ρ̄}) = r^{ρ̄} − r^{1−ρ} (check 8). ∎
 
-So the ACD/AST defect at scale r is the difference between the scaling eigenvalue of a zero and that of its partner under s ↦ 1 − s̄. It vanishes exactly when the zero is its own partner. In the dictionary of `22_` this partner is the owner's anti-number. That note is not yet refereed, and following up this correspondence belongs to board task 9, which is deferred.
+So the ACD/AST defect at scale r is the difference between the scaling eigenvalue of a zero and that of its partner under s ↦ 1 − s̄. It vanishes exactly when the zero is its own partner. In the dictionary of `22_` this partner is the owner's anti-number. That note was refereed in the eighteenth pass; this correspondence is not followed up here (`42_` treats the continuation directions of `22_` §5).
 
 ### 3.4 Lemma 24.5 (the exact range of the defect ratio)
 
@@ -310,7 +310,7 @@ The Gamma factor is the same for f and for L(s,χ), so it does not distinguish t
   - B does not split along the two lines: the normal row has no M-linear section, and the separator is not an idempotent (§2.4).
   - This proof of the splitting does not reach the Davenport–Heilbronn function, whose divisors Z and Z − 1 are not separated by any vertical line (Prop. 24.6).
   - AST's ℛ vanishes if and only if RH holds, and AST does not decide which (AST9; `18_` confirmed).
-- **Goal 2 (bridges).** The ACD/AST defect is d_r(ρ) = conj(r^ρ − r^{ρ^#}) (§3.3). It is the same involution ρ ↦ 1 − ρ̄ that `13_` and `17_` use for the pivot at ½. The correspondence with `22_`'s anti-numbers is deferred with board task 9.
+- **Goal 2 (bridges).** The ACD/AST defect is d_r(ρ) = conj(r^ρ − r^{ρ^#}) (§3.3). It is the same involution ρ ↦ 1 − ρ̄ that `13_` and `17_` use for the pivot at ½. The correspondence with `22_`'s anti-numbers is not followed up here; `42_` treats the continuation directions of `22_` §5.
 - **Reading status.** GSL, GMS and AST have now been read in full. The remaining unread blocks of board task 8 are GDC, PTQ, SSI, ECI and ECR, and on the character-lifting side GZR, OMS, DCP and CGS.
 
 ## 6. Checks (`checks/gsl_gms_ast_audit_checks.py`, mpmath at 40 digits)

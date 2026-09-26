@@ -1,6 +1,6 @@
 # The 25 September continuations, part 3: the vertical weight receivers and the growth of tensor powers
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:43 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:43 UTC. Refereed in the fourth pass (on `14_`–`16_` and digest draft 2); its findings were applied at 07:39–07:43 UTC (`PLAN.md`).
 
 This is a content map of two further proof blocks from the continuation `20260925-full-source-tensor-and-original-divisor/counterfactual/`, both read in full:
 
@@ -59,7 +59,7 @@ WHR (`12_` §1.6) is the case σ = ½. VWR proves the following.
 ## 3. Items for the goals
 
 - **Lemma (goal 3).**
-  - For every σ ∈ (0,1), Connes' construction in L²(u^{2σ−1}(1 + log²u)^δ du) realizes exactly the zeros on the line Re s = σ, with the multiplicity cutoff j < δ − ½. The prime dilations there have spectrum on |z| = p^σ. The family over all σ and N is jointly faithful on Meyer's quotient.
+  - For every σ ∈ (0,1), Connes' construction in L²(u^{2σ−1}(1 + log²u)^δ du) realizes exactly the zeros on the line Re s = σ, with the multiplicity cutoff j < min(m_ρ, δ − ½). The prime dilations there have spectrum on |z| = p^σ. The family over all σ and N is jointly faithful on Meyer's quotient.
   - Status: proved in the programme (VWR); the jet norms and Λ₊ are checked.
   - Novelty: Connes' paper treats σ = ½. I have not checked whether the other lines appear there or elsewhere.
 - **Negative results (goal 1).**
@@ -72,4 +72,4 @@ WHR (`12_` §1.6) is the case σ = ½. VWR proves the following.
   - RH is purity of weight 1.
 
   This is an analogy of structure, and the programme itself states that the weight-1 exclusion is not proved (VWR9).
-- **For the owner's note of 25 September (private provenance file).** VWR10.9 proves one precise form of the owner's remark that a hidden off-line zero could not hide inside the "pure state". The off-line defect functional is never a *nonzero* multiple of the generic-point evaluation b ↦ b(1). This is recorded as a pointer, not as a result about τ.
+- **Remark.** VWR10.9 proves that the off-line defect functional is never a *nonzero* multiple of the generic-point evaluation b ↦ b(1). This is one precise form of the remark that a hidden off-line zero could not hide inside the "pure state". It is recorded as a pointer, not as a result about τ.

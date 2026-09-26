@@ -1,6 +1,6 @@
 # The source-endpoint proofs NCI, RSS and NHJ: Nyman–Beurling in the Fréchet topology, and what the section selects
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:49 UTC (the header first said 06:51, ahead of the clock; corrected at 07:41 UTC).
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 25 September 2026, 06:49 UTC (the header first said 06:51, ahead of the clock; corrected at 07:41 UTC). Refereed in the fourth pass (on `14_`–`16_` and digest draft 2); its findings were applied at 07:39–07:43 UTC (`PLAN.md`).
 
 This is a content map of three proof blocks from the continuation `20260925-source-endpoint-and-section`:
 

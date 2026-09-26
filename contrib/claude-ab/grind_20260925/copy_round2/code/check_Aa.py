@@ -5,7 +5,8 @@ import numpy as np
 from scipy.special import erfc
 from flint import acb, ctx
 ctx.prec = 64
-SP = 'data/'
+import os
+SP = os.path.join(os.environ.get('ZERO_DATA_DIR', 'data'), '')  # folder with the zero data (not published; zerodata.py regenerates it)
 Phi = lambda z: 0.5 * erfc(-z / np.sqrt(2))
 def h(u, T1, T2, D): return Phi((u - T1) / D) - Phi((u - T2) / D)
 def Fa(s, a):

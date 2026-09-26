@@ -6,7 +6,8 @@ import numpy as np
 from scipy.special import erfc
 from flint import acb, ctx
 ctx.prec = 64
-SP = 'data/'
+import os
+SP = os.path.join(os.environ.get('ZERO_DATA_DIR', 'data'), '')  # folder with the zero data (not published; zerodata.py regenerates it)
 d = np.load(SP + 'onepoints_1100.npz'); rho = d['rho']; zp = d['zp']; z1 = d['z1']
 a = 2.0
 c = rho * z1 / zp

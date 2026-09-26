@@ -43,7 +43,7 @@ The functional equation is then split into its even and odd parts under s ↦ 1 
 - Its divisor consists only of the Gamma poles and zeros (OZD5.4).
 - Its whole contribution is therefore the pole and trivial-zero terms (OZD5.6).
 
-What survives, for a symmetric cutoff supported in (−½, 3/2), is (OZD5.7–5.8):
+What survives, for a symmetric cutoff equal to 1 near [0, 1] and supported in (−½, 3/2), is (OZD5.7–5.8):
 
   𝓔_r(t) = (1/2π)∫ L₊ Δφ₊ dA + (r−1)²(e^{2t} + 1)/2,  L₊(s) = ½ log|ζ(s)ζ(1−s̄)|.
 
@@ -66,7 +66,7 @@ SPF0 classifies the jointly continuous positive forms b on ℬ with b(T_nF, G) =
 
   b(F, G) = ∫ F(½+iλ) \overline{G(½+iλ)} dμ(λ)
 
-with μ positive and tempered (register S22). SPF1–SPF7, read now, prove this without citing Stone's theorem. They rest on the appendix CFPA.1–CFPA.7 (positive-definite functions and finite-measure Fourier uniqueness, in `gct/CONTINUOUS_POSITIVE_TRANSFER_FORMS.md`), which I have not read. SPF8 supplies the element F₀ used for descent.
+with μ positive and tempered (register S22). SPF1–SPF7, read now, prove this without citing Stone's theorem. They rest on the appendix CFPA.1–CFPA.7 (positive-definite functions and finite-measure Fourier uniqueness, in `gct/CONTINUOUS_POSITIVE_TRANSFER_FORMS.md`), which `04_` read without re-deriving every estimate and which I did not re-read here. SPF8 supplies the element F₀ used for descent.
 
 1. An exact Laplace transform pair identifies ℬ with the space of smooth functions decaying faster than every exponential (SPF1).
 2. The completed form carries a unitary group V_t (SPF2).

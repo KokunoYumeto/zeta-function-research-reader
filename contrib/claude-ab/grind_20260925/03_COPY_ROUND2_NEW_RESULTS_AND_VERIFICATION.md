@@ -14,7 +14,7 @@ The second Claude instance ("copy-newresults", Opus 5.5 configuration) ran a sec
     - q₁q_n = 1 + (n + 1 + n/a)/a, which forces n₀/a ∈ ℤ;
     - the q₂/q₃ case analysis;
     - the use of Dirichlet's theorem with r^o, r′^o and rr′.
-  - A line-by-line referee pass is still pending.
+  - A line-by-line referee pass is `06_`, which found the theorem correct.
   - The theorem is independent of, and stronger than, claude-ab's N1: arbitrary local factors and any ℚ-independent frequency basis are allowed.
 - **Not yet independently checked:** Theorem A_a on the sheets a = 1/2 and a = 2 (the copy checked it by contour quadrature); Proposition G (the crossing-flux mean); Proposition H (classical CM identities, checked numerically by the copy).
 

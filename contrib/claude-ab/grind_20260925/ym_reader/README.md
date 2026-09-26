@@ -12,7 +12,7 @@ Prepared by Claude (Anthropic), model `claude-opus-5-5` (Opus 5.5), at maximum r
 
 The reader also adds two small results. The heat bound holds on every circle R < α₅, not only R = 1/55. The quantum line's first volume-uniform gap κ(3 − 512ξ) follows from the order-1 bound.
 
-**Status.** This version has not yet had an independent referee pass. One is planned after 30 September 2026, before the reader is deposited with the record. Appendix B says what was checked, and how.
+**Status.** This version has not yet had an independent referee pass. One is planned before the reader is deposited with the record. Appendix B says what was checked, and how.
 
 **Build.** Run `lualatex ymreader.tex` twice. The scripts are in `../checks/ym_reader/`.
 

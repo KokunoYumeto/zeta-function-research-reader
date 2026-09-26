@@ -16,7 +16,7 @@ The reader:
 - maps the topology supplement of 5 September and the key-advances reader of 6 September, reproduces their finite statements, and proves the arithmetic of S6-5 together with its formula for the cubic;
 - lists the overlaps with the Erdős–Straus and Yang–Mills workbenches.
 
-**Status.** This version has not yet had an independent referee pass. One is planned after 30 September 2026, before the reader is deposited with the record. Appendix B says what was checked, and how.
+**Status.** This version has not yet had an independent referee pass. One is planned before the reader is deposited with the record. Appendix B says what was checked, and how.
 
 **Build.** Run `lualatex s6reader.tex` twice. The scripts are in `../checks/s6_reader/`:
 

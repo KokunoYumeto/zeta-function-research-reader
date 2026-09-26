@@ -14,7 +14,7 @@ Two statements go beyond the workbench:
 - each of the four families meets all six classes modulo 840 that the classical reduction leaves open;
 - the supplement's no-two-shears theorem holds for every prime p ≢ 2 (mod 3), not only p ≡ 1 (mod 12), and fails for some p ≡ 2 (mod 3).
 
-**Status.** This version has not yet had an independent referee pass. One is planned after 30 September 2026, before the reader is deposited with the workbench's Zenodo collection. Appendix B says what was checked, and how.
+**Status.** This version has not yet had an independent referee pass. One is planned before the reader is deposited with the workbench's Zenodo collection. Appendix B says what was checked, and how.
 
 Build: `lualatex esreader.tex`, twice. The scripts are in `../checks/es_reader/`; each runs in under 30 seconds with Python 3 and sympy.
 

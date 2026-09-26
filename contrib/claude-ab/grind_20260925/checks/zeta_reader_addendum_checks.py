@@ -7,7 +7,9 @@ Z3 (F3) the Carleman sum for S = {2^a 3^b}: sum_{log n < R}(1/log n - log n/R^2)
     threshold t* = log2 log3 / (2 pi); the growth quadratic coefficient 1/(4t) via sup_tau (1+|tau|)^M e^{-t tau^2 + tau v}.
 Z4 (F4) r_n = 1 - j + eps at divisor-minimal elements (all proper M-divisors uniquely factored) of the Hilbert monoid 1 mod 4.
 Z5 (F5) the abscissa example: k = 3, S = {0.7 +- 10i, 0.3 +- 10i}: all c_w > 0, no real w with Re w = 3*beta_max.
-Z6 (O1) det(W_p | V_rho) for an on-line zero: rank 2m, det = p^m, average weight 1."""
+Z6 (O1) det(W_p | V_rho) for an on-line zero: rank 2m, det = p^m, average weight 1.
+Z7 (section 7.1) the angle |arg w| < pi/4: sector identity, constants, lattice sum 2 kappa log X + O(1).
+Z8 (section 7.2) composite moduli in Prop. 2.8: the decomposition of Phi_{1/8}; zeros of Z_{1/8}, Z_{1/12} left of the line."""
 import itertools, math
 from fractions import Fraction as Fr
 from collections import Counter, defaultdict
@@ -124,4 +126,36 @@ rho = mp.mpc(0.5, gam)
 eig = [mp.power(p, rho)] * m + [mp.power(p, mp.conj(rho))] * m
 det = mp.fprod(eig)
 ok("Z6 on-line zero: rank 2m, det(W_p | V_rho) = p^m, average weight 1", abs(det - p**m) < 1e-20 and abs(2 * mp.log(abs(det)) / mp.log(p) / (2 * m) - 1) < 1e-20)
+
+# Z7 (section 7.1): the angle |arg w| < pi/4 step, the sector identity, and the lattice sum
+def sector_identity(kv):
+    al = mp.pi/(2*kv)
+    I1 = mp.quad(lambda ph: mp.sin(ph)**2*mp.cos(kv*ph), [-al, al])
+    return (4 - kv**2)*I1 + 2*kv*mp.sin(al)**2 - 4/kv
+idres = max(abs(sector_identity(mp.mpf(kv))) for kv in ('0.5', '1', '1.5', '1.9', '2'))
+arc = mp.quad(lambda ps: mp.sin(ps/2)**2*mp.cos(ps), [-mp.pi/2, mp.pi/2])
+def S2(X):
+    tot = 0.0
+    for a in range(0, int(X/math.log(2)) + 2):
+        for b in range(0, int(X/math.log(3)) + 2):
+            if a + b == 0: continue
+            x = a*math.log(2) + b*math.log(3)
+            if x < X: tot += x**-2 - x**2/X**4
+    return tot
+lat = [S2(X) - 2*kappa*math.log(X) for X in (100.0, 400.0, 800.0)]
+t2 = math.log(2)*math.log(3)/(4*math.pi)
+ok("Z7 sector identity (4-k^2)int sin^2 cos k + 2k sin^2(pi/2k) = 4/k (k = 0.5..2); arc constant 1 - pi/4; the angle sum is 2 kappa log X + O(1); threshold (log2)(log3)/(4 pi) = 0.060598",
+   idres < 1e-25 and abs(arc - (1 - mp.pi/4)) < 1e-25 and abs(lat[-1] - lat[-2]) < 0.02 and abs(t2 - 0.060598) < 1e-6, f"identity residual {mp.nstr(idres, 3)}, S2 - 2 kappa log X = {[round(v, 4) for v in lat]}, t = {t2:.6f}")
+
+# Z8 (section 7.2): composite moduli in Prop. 2.8
+def PhiA(a, s): return mp.polylog(s, mp.exp(2j*mp.pi*a)) + mp.polylog(s, mp.exp(-2j*mp.pi*a))
+chi8 = [0, 1, 0, -1, 0, -1, 0, 1]
+dec = max(abs(PhiA(mp.mpf(1)/8, s) - (mp.sqrt(2)*mp.dirichlet(s, chi8) - 2*mp.power(4, -s)*(1 - mp.power(2, 1 - s))*mp.zeta(s)))/abs(PhiA(mp.mpf(1)/8, s)) for s in (mp.mpc(2.5, 1), mp.mpc(3, -7)))
+Za = lambda s, a: mp.zeta(s, a) + mp.zeta(s, 1 - a)
+zs = []
+for (a, g) in ((mp.mpf(1)/8, mp.mpc('0.2527', '-7.8196')), (mp.mpf(1)/12, mp.mpc('0.2285', '-6.5307'))):
+    s0 = mp.findroot(lambda s: Za(s, a), g); zs.append((s0, abs(PhiA(a, 1 - s0))))
+ok("Z8 Phi_{1/8} = sqrt2 L(s, chi_8) - 2*4^-s(1 - 2^{1-s}) zeta(s); zeros of Z_{1/8} and Z_{1/12} in 0 < Re s < 1/2 reflected from zeros of Phi",
+   dec < 1e-25 and all(0 < z.real < 0.5 and ph < 1e-15 for z, ph in zs), f"decomposition error {mp.nstr(dec, 3)}; zeros {[mp.nstr(z, 10) for z, _ in zs]}")
+
 print("ALL PASS" if all(res) else "FAILURES")

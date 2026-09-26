@@ -1,0 +1,134 @@
+\section{Weights: Deligne's mechanism against the programme}\label{sec:deligne}
+
+A large part of the programme, including a full reader of Deligne's \emph{La conjecture de Weil.~II} \cite{DeligneWeilII} written in its lanes, asks which steps of Deligne's proof have analogues for $\zeta$.
+This section states what the audit established: exactly what positivity of tensor powers gives on the programme's data, what is missing and in which precise sense, an algebraic purity criterion at the core of Weil~II~1.8.4, three elementary lemmas from Weil~II~§2 with their corrected forms, and the misprints found in the printed original.
+In this section the weight of a nonzero complex number $\alpha$ relative to a prime $p$ is $w(\alpha)=2\log|\alpha|/\log p$; a zero $\rho$ enters the programme's local data as the eigenvalue $p^\rho$, of weight $2\re\rho$.
+
+\subsection{Positivity of even tensor powers}
+
+For a finite set $S$ of zeros, stable under $\rho\mapsto\bar\rho$, let $J_S$ be the span of the jet blocks at the zeros in $S$, on which the dilation $T_n$ has the eigenvalues $n^\rho$ with multiplicities $m_\rho$. The programme's tensor-power trace is $\operatorname{Tr}(T_n^{\otimes k}\mid J_S^{\otimes k})=(\sum_{\rho\in S}m_\rho n^\rho)^k$ (\lbl{TWC7}). It is real, so its even powers are nonnegative; this is Deligne's step (Weil~II 1.5; \lbl{DP4} of the programme's Deligne reader).
+
+\begin{proposition}[the exponent data return the largest real part]\label{prop:abscissa}
+Let $S$ be a finite set of complex numbers with positive integer weights $m_\rho$, put $\beta_{\max}=\max_{\rho\in S}\re\rho$, let $k\ge1$ and $D_S^{(k)}(s)=\sum_{n\ge1}\big(\sum_{\rho\in S}m_\rho n^\rho\big)^{k}n^{-s}$. Then $D_S^{(k)}(s)=\sum_wc_w\zeta(s-w)$, where $w$ runs over the distinct sums of $k$ elements of $S$ and every $c_w>0$, and its abscissa of convergence (and of absolute convergence) is exactly $1+k\beta_{\max}$. If $k$ is even and $S$ is stable under $\rho\mapsto\bar\rho$ with $m_{\bar\rho}=m_\rho$, the coefficients are nonnegative and the real point $1+k\beta_{\max}$ is a pole with positive residue. Consequently a bound $1+k/2+C$ on the abscissa, with $C$ independent of $k$ (for $D_S^{(2k)}$: $k+1+C$), holds if and only if $\beta_{\max}\le\tfrac12$.
+\end{proposition}
+\status{Proved here (claude-ab, \note{08\_} §3 item (e), revision~3, for even degree and conjugation-stable $S$; that section was checked in the final referee pass, part B). Register negative result 27. The form for every degree $k$ and every finite $S$, with no positivity, is the review's (version~2; \note{48\_} §2.5, re-derived by claude-ab; check Z5).}
+
+\begin{proof}
+Expanding the power, $D_S^{(k)}(s)=\sum_{(\rho_1,\dots,\rho_{k})\in S^{k}}\big(\prod_jm_{\rho_j}\big)\zeta\big(s-\sum_j\rho_j\big)$; grouping the tuples by their sum $w$ gives $c_w>0$. Each term converges absolutely for $\re s>1+\re w$, so the series converges absolutely for $\re s>1+k\beta_{\max}$.
+If it converged at a point with real part $\sigma_1<1+k\beta_{\max}$, it would define a holomorphic function on $\re s>\sigma_1$ equal to $\sum_wc_w\zeta(s-w)$; but this function has a simple pole with residue $c_w>0$ at each $1+w$, the $w$ being distinct so that no two poles cancel, among them $1+k\rho$ with $\re\rho=\beta_{\max}$. So the abscissa is exactly $1+k\beta_{\max}$.
+For even $k$ and conjugation-stable $S$, $\sum_\rho m_\rho n^\rho$ is real, so the coefficients are nonnegative, and $k\beta_{\max}$ is the sum of $k/2$ copies each of $\rho$ and $\bar\rho$ with $\re\rho=\beta_{\max}$, so the real point is a pole with residue $c_{k\beta_{\max}}>0$.
+Finally $1+k\beta_{\max}\le1+k/2+C$ for all $k$ if and only if $\beta_{\max}\le\tfrac12$.
+\end{proof}
+
+So the exponent data return $\max\re\rho$ in every tensor degree, whether or not the coefficients are positive, and cannot bound it by themselves; positivity of even tensor powers (Landau's theorem) only places a pole at the real point. For odd $k$ the real point need not be a pole: for $S=\{0.7\pm10i,\,0.3\pm10i\}$ and $k=3$ the rightmost poles are $3.1\pm10i$ and $3.1\pm30i$, and $3.1$ is not a pole, while the abscissa is $3.1$.
+
+Deligne's next step (Weil~II 1.5; \lbl{DP5} of the programme's Deligne reader) is exactly an independent bound of the form $k+1+C$; in Weil~II it comes from the $H^2_c$ of a fixed curve. The programme's own computations of the tensor Euler products (register S57; Section~\ref{sec:sheets}) have the same structure: for conjugation-stable data the real pole of the even tensor Euler function sits at $1+2kB$, whatever $B$ is.
+
+\begin{proposition}[the average weight of an off-line quartet]\label{prop:avgweight}
+Let $\rho$ be a zero of multiplicity $m$ and $V_\rho$ the span of the jet blocks of the distinct points among $\rho,\bar\rho,1-\rho,1-\bar\rho$. If $\rho$ is off the line, the four points are distinct, $W_p$ has the eigenvalues $p^\rho,p^{\bar\rho},p^{1-\rho},p^{1-\bar\rho}$ on $V_\rho$, each with multiplicity $m$, $V_\rho$ has rank $4m$ and $\det(W_p\mid V_\rho)=p^{2m}$. If $\rho$ is on the line, then $1-\rho=\bar\rho$, $V_\rho$ is the span of the blocks of $\rho$ and $\bar\rho$, of rank $2m$, and $\det(W_p\mid V_\rho)=p^{m}$. In both cases the weight of the determinant divided by the rank is $1$, whatever $\re\rho$ is. Only the constituent weights $2\re\rho$ and $2(1-\re\rho)$ see an off-line zero.
+\end{proposition}
+\status{Proved in the programme (\lbl{DW8.12}); audited (\note{35\_} 35.N1, wording corrected in the fourteenth pass). Version~1 stated the rank $4m$ and the determinant $p^{2m}$ for every zero; at an on-line zero the four points are two, and version~2 corrects this (\note{48\_} §1, O1; check Z6). The conclusion is unchanged.}
+
+\begin{proof}
+Off the line, $\det=(p^{\rho+\bar\rho+(1-\rho)+(1-\bar\rho)})^m=p^{2m}$ and $w(p^{2m})=4m$. On the line, $\rho+\bar\rho=1$, so $\det=(p^{\rho+\bar\rho})^m=p^m$ and $w(p^m)=2m$.
+\end{proof}
+
+Deligne's Théorème~1.5.1 turns a pure \emph{determinant weight} of each constituent (Définition~1.3.5) into purity. For the quartet on the abelian group $\R$ the four characters are separate constituents, with determinant weights $2\re\rho$ (twice) and $2(1-\re\rho)$ (twice); the reality hypothesis holds, and the pole bound holds with $r=2\max(\re\rho,1-\re\rho)$ (Proposition~\ref{prop:abscissa}), so 1.5.1 applies and gives nothing (\note{37\_} §6). If the four eigenvalues formed one $\iota$-real constituent of rank~4, its determinant weight would be the average $1$ and 1.5.1 would force $\re\rho=\tfrac12$. What is missing is therefore an input forcing the four constituents onto the average weight $1$, equivalently a pole bound at $k+1+C$ uniform in $k$.
+
+\paragraph{Two routes, and what each needs.}
+Over the programme's reconstructed arithmetic one would need either (a) a square with a Künneth-type map $H^1\otimes H^1\to H^2$ together with an auxiliary object whose weights are discrete, or (b) a cohomological source for a pole bound on positive even tensor powers that is uniform in the power.
+Route (b) needs no square as a matter of logic. On the programme's finite exponent data, however, a bound of type (b) is equivalent to $\max\re\rho\le\tfrac12$ (Proposition~\ref{prop:abscissa}), so it restates RH unless it comes from an independent source; in Weil~II that source, for eigenvalues on $H^1$ of a curve, is the $H^2_c$ of a fixed curve, reached through the square and its Lefschetz pencil (Weil~II §3.2; \note{08\_} §3, \note{37\_} §6).
+The programme's own constructions of a square and of all tensor powers (\lbl{TWC}, \lbl{FST}) have computed outcomes, recorded in Section~\ref{sec:negative}; \lbl{TWC9} and \lbl{TWC11} state that no construction has yet been assigned the fixed-curve cohomological denominator and that the computation does not rule one out.
+
+\subsection{An algebraic purity criterion}
+
+Let $V$ be a finite-dimensional complex vector space, $N$ nilpotent and $F$ invertible with $FNF^{-1}=Q^{-1}N$, where $Q\in\C$, $|Q|\ne1$, and put $w(\alpha)=2\log|\alpha|/\log|Q|$. Let $M$ be the monodromy filtration of $N$, and on $V^\vee$ put $F^\vee=(F^{-1})^t$, $N^\vee=-N^t$, which satisfy the same relation.
+
+\begin{proposition}[the core of Weil~II~1.8.4]\label{prop:purity}
+The following are equivalent:
+(a) for every $i$, all eigenvalues of $F$ on $\Gr^M_iV$ have weight $\beta+i$;
+(b) all eigenvalues of $F\otimes F$ on $\ker(N\otimes1+1\otimes N)\subset V\otimes V$ have weight $\le2\beta$, and all eigenvalues of $F^\vee\otimes F^\vee$ on $\ker(N^\vee\otimes1+1\otimes N^\vee)$ have weight $\le-2\beta$.
+The bounds on $\ker N$ for $V$ and $V^\vee$ alone do not suffice.
+\end{proposition}
+\status{Proved here (claude-ab, \note{36\_} Lemma 36.2 and 36.N2; the implication (b)$\Rightarrow$(a) is the algebra of Deligne's proof on p.~176, the converse is added; the equivalence is not claimed to be new). First pass by a subagent (40 random models), refereed in the thirteenth pass (102 further models).}
+
+\begin{proof}
+The inputs are Weil~II (1.6.6), (1.6.9) and (1.6.14) (pp.~166--170), with the twist of (1.6.14.3) read as $-(i+j)/2$ (Section~\ref{ssec:misprints}).
+(a)$\Rightarrow$(b): by (1.6.9)(i) the monodromy filtration of $N\otimes1+1\otimes N$ is $\sum_{a+b=k}M_a\otimes M_b$, so its $\Gr_k$ has weight $2\beta+k$; $N$ is injective on $\Gr_k$ for $k\ge1$, so the kernel lies in $M_0$, of weights $\le2\beta$. By (1.6.9)(ii), $\Gr_i(V^\vee)\cong(\Gr_{-i}V)^\vee$ has weight $-\beta+i$, and the same argument applies.
+(b)$\Rightarrow$(a): let $\alpha$ be an eigenvalue on the primitive part $P_{-j}=\ker(N:\Gr_{-j}\to\Gr_{-j-2})$, $j\ge0$, with eigenvector $x=N^jy$, $y\in\Gr_j$; then $Fy=\alpha Q^jy$. The vector $z=\sum_{s=0}^j(-1)^sN^sy\otimes N^{j-s}y\in\Gr_0(V\otimes V)$ is nonzero, is killed by $N\otimes1+1\otimes N$ (the sum telescopes to $(-1)^jN^{j+1}y\otimes y+y\otimes N^{j+1}y=0$), and has eigenvalue $\alpha^2Q^j$; by (1.6.6) it gives an eigenvalue on $\ker(N\otimes1+1\otimes N)$, so $2w(\alpha)+2j\le2\beta$. On $V^\vee$, $P_{-j}(V^\vee)\cong P_{-j}(V)^\vee(j)$ carries $\alpha^{-1}Q^{-j}$, which gives $w(\alpha)\ge\beta-j$. So every eigenvalue on $P_{-j}$ has weight $\beta-j$, and $\Gr_i\cong\bigoplus_jP_{-j}(-(i+j)/2)$ has weight $\beta+i$.
+For the last assertion take $V=\langle v\rangle\oplus\langle v_1,v_0\rangle$ with $Nv_1=v_0$, $Nv_0=Nv=0$, $Fv=av$, $Fv_1=bv_1$, $Fv_0=(b/Q)v_0$, $w(a)=\beta$, $w(b)=c+1$. The bounds on $\ker N=\langle v,v_0\rangle$ and $\ker N^\vee$ hold exactly when $\beta-1\le c\le\beta+1$, while (a) holds exactly when $c=\beta$; the vector $v_1\otimes v_0-v_0\otimes v_1$ in the kernel of the tensor square has weight $2c$ and detects the difference.
+\end{proof}
+
+In Weil~II condition (b) is supplied by geometry (Lemme~1.8.1 for $F_0\otimes F_0$ and its dual). For the programme's operators the criterion does not apply: an operator commuting with $N$ (the programme's counting operators $W_p$ and $C_b$) has the same eigenvalues on $\Gr_i$ and $\Gr_{-i}$, since $N^i:\Gr_i\to\Gr_{-i}$ is then equivariant, so it cannot carry Deligne's local weights unless $N=0$; and the programme's ramification operator $P_b$, which does satisfy a relation of Deligne's form ($NP_b=bP_bN$), has no eigenvector on its space, because it moves every block $\lambda$ to $b\lambda$ (\note{36\_} 36.N3--36.N4, \note{35\_} §3).
+
+\subsection{Three lemmas from Weil~II~§2}
+
+\begin{lemma}[concentration, with the outside term]\label{lem:concentration}
+Let $K$ be a compact group with normalised Haar measure, $\tau$ an irreducible character of degree $d_\tau$, $V\subset K$ measurable with $\re\chi_\tau\ge(1-e_1)d_\tau$ on $V$ ($0\le e_1\le1$), and $\rho_0\ne0$ an integer combination of irreducible characters with $\int_{K\setminus V}|\rho_0|^2\le e_2\int|\rho_0|^2$. Write $\rho_0=\rho^+-\rho^-$ with $\rho^\pm$ genuine and without common constituents, and $\rho=\rho^++\rho^-$. Then
+\[
+[\rho\bar\rho:\tau]\ \ge\ \big((1-e_1)(1-e_2)-e_2\big)\,d_\tau\,[\rho\bar\rho:1],\qquad[\rho\bar\rho:1]=\int|\rho_0|^2 .
+\]
+The constant is sharp in $e_2$. The printed choice $\varepsilon_1+\varepsilon_2<\varepsilon$ in the proof of Weil~II~2.1.7 does not give Deligne's inequality; $\varepsilon_1+2\varepsilon_2<\varepsilon$ does.
+\end{lemma}
+\status{Proved here (claude-ab, \note{37\_} Lemma 37.1; the repair is the programme's Deligne reader's, \lbl{DB0}, \lbl{DB5}). Checks B1--B4 on $\ZZ/2$, $U(1)$, $SU(2)$. Refereed (fourteenth pass).}
+
+\begin{proof}
+$\rho\bar\rho=\rho_0\bar\rho_0+2(\rho^+\bar\rho^-+\rho^-\bar\rho^+)$, the second term genuine with $[\rho^+\bar\rho^-:1]=\langle\rho^+,\rho^-\rangle=0$. The integer $[\rho_0\bar\rho_0:\tau]=\int|\rho_0|^2\bar\chi_\tau$ is real, so it equals $\int|\rho_0|^2\re\chi_\tau$; the part over $V$ is at least $(1-e_1)(1-e_2)d_\tau\int|\rho_0|^2$ and the part off $V$ at least $-e_2d_\tau\int|\rho_0|^2$.
+Sharpness and the counterexample: on $K=\ZZ/2$, $\tau=\operatorname{sgn}$, $V=\{e\}$, $\rho_0=23+9\operatorname{sgn}$ gives $\int|\rho_0|^2=(32^2+14^2)/2=610$ and off-$V$ fraction $98/610<0.18$; with $\varepsilon_1=0.01$, $\varepsilon_2=0.18$, $\varepsilon=0.2$ one has $\varepsilon_1+\varepsilon_2<\varepsilon$, but $[\rho\bar\rho:\operatorname{sgn}]=2\cdot23\cdot9=414<0.8\cdot610=488$. With $\varepsilon_1+2\varepsilon_2<\varepsilon$, $(1-\varepsilon_1)(1-\varepsilon_2)-\varepsilon_2\ge1-\varepsilon_1-2\varepsilon_2>1-\varepsilon$.
+\end{proof}
+
+\begin{lemma}[integer positivity; Weil~II~2.1.5--2.1.6]\label{lem:intpos}
+Let $K$ be compact and $\nu:\widehat K\to\R$, extended additively, with $\nu(1)=1$, $\nu(\tau)\le0$ for $\tau\ne1$ and $\nu(\rho\bar\rho)\ge0$ for every genuine $\rho$. Then $\sum_{\tau\ne1}d_\tau(-\nu(\tau))\le1$. If moreover $\nu$ is integer-valued and $\nu(\bar\tau)=\nu(\tau)$, at most one $\tau\ne1$ has $\nu(\tau)<0$, and it is a quadratic character with $\nu(\tau)=-1$. The exception cannot be excluded by positivity alone: on $\ZZ/2$, $\nu(\operatorname{sgn})=-1$ satisfies every hypothesis. For real-valued $\nu$ the bound is sharp and the dichotomy fails: on $\ZZ/3$ with $\nu(\tau)=\nu(\tau^2)=-x$, positivity holds if and only if $x\le\tfrac12$.
+\end{lemma}
+\status{Proved here (claude-ab, \note{37\_} Lemma 37.2, for integer-valued $\nu$). Refereed (fourteenth pass). The real-valued inequality and the $\ZZ/3$ example are version~2's (\note{48\_} §3, F21).}
+
+\begin{proof}
+For a finite $T\subset\widehat K\setminus\{1\}$ and $e>0$, choose $e_1+2e_2\le e$ and a neighbourhood $V$ of the identity on which $\re\chi_\tau\ge(1-e_1)d_\tau$ for $\tau\in T$; by Peter--Weyl there is an integer combination $\rho_0\ne0$ with off-$V$ fraction at most $e_2$. Lemma~\ref{lem:concentration} gives $[\rho\bar\rho:\tau]\ge(1-e)d_\tau M$ with $M=[\rho\bar\rho:1]>0$, so $0\le\nu(\rho\bar\rho)\le M+\sum_{\tau\in T}(1-e)d_\tau M\nu(\tau)$. Divide by $M$ and let $e\to0$; only $\nu(1)=1$ and $\nu(\tau)\le0$ for $\tau\ne1$ were used. For integer-valued $\nu$, a $\tau$ with $\nu(\tau)<0$ contributes $d_\tau|\nu(\tau)|\ge1$, so $d_\tau=1$ and $\nu(\tau)=-1$, and $\bar\tau=\tau$ because $\bar\tau$ would contribute as much. On $\ZZ/2$, $\nu((a+b\operatorname{sgn})\overline{(a+b\operatorname{sgn})})=(a-b)^2\ge0$. On $\ZZ/3$, $\rho=a+b\tau+c\tau^2$ gives $\rho\bar\rho=a^2+b^2+c^2+(ab+bc+ca)(\tau+\tau^2)$, so $\nu(\rho\bar\rho)=a^2+b^2+c^2-2x(ab+bc+ca)$, which is $\ge0$ for all $a,b,c\ge0$ if and only if $x\le\tfrac12$ (take $a=b=c=1$, and use $a^2+b^2+c^2\ge ab+bc+ca$).
+\end{proof}
+
+In Weil~II~§2.2 the quadratic exception is removed with a double cover; for $\zeta$ (the case $G=\R$, $K=\{0\}$, Deligne's example~2.1.9) there is no nontrivial quadratic character, and the method gives exactly $\zeta(1+it)\ne0$.
+
+\begin{lemma}[nonnegative power sums]\label{lem:powersums}
+Let $a_1,\dots,a_r\in\C^\times$, $D>0$ and real $\delta_n$ with $\limsup_n\max(\delta_n,0)^{1/n}\le D$ (for example $\delta_n\le CD^n$), such that $\delta_n-\sum_ja_j^n$ is real and $\ge0$ for every $n\ge1$. Then $\max_j|a_j|\le D$. In particular a constant $\delta_n=\delta$ gives $\max_j|a_j|\le1$, and for a curve over $\Ff_q$ the inequalities $\#X(\Ff_{q^n})\ge0$ alone give $|\alpha_j|\le q$ (the trivial bound).
+\end{lemma}
+\status{Proved here (claude-ab, \note{37\_} Lemma 37.3, for constant $\delta$; the core of \lbl{DBC7} of the programme's Deligne reader). Refereed (fourteenth pass). The form with growing $\delta_n$ is version~2's (\note{48\_} §3, F21; the $\limsup$ form from the version-2 referee). No novelty claimed.}
+
+\begin{proof}
+Suppose $R=\max|a_j|>D$ and let $J$ be the set of $j$ with $|a_j|=R$. By Dirichlet's simultaneous approximation, infinitely many $n$ have $|(a_j/R)^n-1|<\tfrac12$ for all $j\in J$ (either the approximating $n\le Q^{|J|}$ are unbounded as $Q$ grows, or some $n$ has all $(a_j/R)^n=1$ and its multiples serve). For those $n$, $\re\sum_{j\in J}a_j^n\ge|J|R^n/2$, while the other terms are $O(R'^n)$ with $R'<R$, so, since $\delta_n\le(D+\varepsilon)^n$ for large $n$ with $D+\varepsilon<R$, $\delta_n-\re\sum_ja_j^n\le(D+\varepsilon)^n-|J|R^n/2+O(R'^n)\to-\infty$. For a curve, $\#X(\Ff_{q^n})=1+q^n-\sum_j\alpha_j^n$ and $1+q^n\le2q^n$.
+\end{proof}
+
+\begin{corollary}
+The zeta function of a smooth projective geometrically connected curve $X_0$ over $\mathbb{F}_q$ has a simple pole at $s=1$, by the trace formula and the point counts alone, without the Riemann hypothesis for curves.
+\end{corollary}
+\status{Proved in the programme's Deligne reader (\lbl{DBC7}); re-derived here (claude-ab, \note{37\_} §4). No novelty claimed.}
+
+\begin{proof}
+If an eigenvalue of Frobenius on $H^1$ equalled $q$, then $\#X_0(\mathbb{F}_{q^n})=1-\sum_{j\ge2}\alpha_j^n\ge0$ for all $n$ (the eigenvalue $q$ cancels the $q^n$ from $H^2$), so by the lemma the counts would be bounded; but $X_0$ has infinitely many closed points, and for $n$ a common multiple of the degrees of $C+1$ of them the count is at least $C+1$. So $P_1(q^{-1})\ne0$ and $Z(X_0,t)=P_1(t)/((1-t)(1-qt))$ has a simple pole at $t=q^{-1}$.
+\end{proof}
+
+\subsection{Misprints in the printed Weil~II}\label{ssec:misprints}
+
+The programme's Deligne reader flagged a number of displays as defects of its transcription. The audit read the printed pages (the numdam scan) and found that the following are in print. None affects a conclusion of Weil~II.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth} l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+Display & Page & Printed & Meant\\
+\midrule
+(1.3.10)(iv) & 160 & the centre maps onto a finite subgroup of $\ZZ$ & a subgroup of finite index\\
+(1.6.7) & 166 & exception $i\ne d$ & $i\ne-d$\\
+(1.6.13) & 169 & $k-2i-2\ge k\ge2j-k$ & $k-2i-2\ge-k\ge2j-k$\\
+(1.6.14.3) & 170 & $P_{-j}((i+j)/2)$ & $P_{-j}(-(i+j)/2)$\\
+(1.7.5), filtration & 171 & $M'_i=\prod_{j<i}V'_j$ & $j\le i$\\
+(1.7.5), coefficient & 171 & $\lambda\in\mathbb{Q}_\ell(-1)$, $\mu=\lambda/(1-q^n)$ & with (1.1.7), (1.7.2): $\mu=\lambda/(1-q^{-n})$\\
+(2.1.1) & 187 & period $2\pi i\log q$ & $2\pi i/\log q$\\
+proof of 2.1.7 & 191 & $\varepsilon_1+\varepsilon_2<\varepsilon$ & $\varepsilon_1+2\varepsilon_2<\varepsilon$ (a slip)\\
+2.2.8(i) & 195 & weight $2\mathcal{R}(\tau)$ & $-2\mathcal{R}(\tau)$\\
+(3.1.3.3), unused remark & 199 & Kummer class of $uv^{-1}$ a generator & it is twice a branch class\\
+proof of 3.2.1 & 200 & $F^\vee(-1)$ & $F^\vee(1)$\\
+(3.2.7.1) & 202 & $H^1$ & $H^1_c$\\
+proof of 3.2.12 & 203 & $w\le\beta+i$ inside a weight-$0$ proof & $w\le i$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\status{Checked against the printed pages (claude-ab and referees, \note{35\_} §§1, 5; \note{36\_} §2; \note{37\_} §2; twelfth to fourteenth passes). The programme's Deligne reader and its reading log found them first. A quick errata search, for the displays of §1, found none published; no novelty is claimed. The audits found a few further harmless printed slips (\note{36\_} §2, \note{37\_} §3).}

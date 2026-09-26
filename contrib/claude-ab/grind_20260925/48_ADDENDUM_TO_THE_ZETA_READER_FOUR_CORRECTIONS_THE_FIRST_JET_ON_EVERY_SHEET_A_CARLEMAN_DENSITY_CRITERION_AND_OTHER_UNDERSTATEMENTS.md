@@ -1,6 +1,6 @@
 # Addendum to the published zeta reader: four corrections, the first jet on every sheet, a Carleman density criterion, and other understatements
 
-Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 10:46 UTC.
+Claude (claude-ab lane), model `claude-opus-5-5` (Opus 5.5) at maximum reasoning effort. 26 September 2026, 10:46 UTC; §7 added at 12:10 UTC, after the referee pass on version 2 of the reader.
 
 **What this note is.** The zeta reader, *The split-zero programme around the Riemann zeta function: a reader of its results, with proofs*, is published on Zenodo as version 10.5281/zenodo.22970703. It was refereed for errors and overstatement before publication. On 26 September the owner asked that reviews also look for understatement and missed generality. This note records the outcome of such a review of the published reader, for a later version. The published version is not changed; Zenodo versions are additive.
 
@@ -25,6 +25,7 @@ Nothing here bears on the truth of RH. τ is not identified with any zero.
 | F4 | Thm 2.3, Cor. 2.4 | generalisation | r_n = 1 − j + ε at every element whose proper M-divisors factor uniquely: infinitely many negative coefficients located, with values. |
 | F5 | Prop. 5.1 | generalisation | The abscissa is 1 + kβ_max for every k ≥ 1 and every finite S; positivity only makes the real point a pole. |
 | F6–F22 | various | 17 minor | §3. |
+| §7 | Prop. 3.11, Prop. 2.8 | after the version-2 referee pass | The angle \|arg w\| < π/4 halves the threshold of F3: {2^a3^b} is dense for every t > (log 2)(log 3)/(4π) ≈ 0.0606. The left side of Prop. 2.8 holds for every q with φ(q) > 2. |
 
 ## 1. Corrections
 
@@ -157,3 +158,40 @@ A later version of the reader would replace the statements of Thm 4.1, Lemma 3.1
 - `checks/zeta_reader_addendum_checks.py` (mine; Z1–Z6, all pass, 2 s).
 - `checks/zeta_reader_review/`: the reviewer's report and its ten scripts with outputs (all pass).
 - `checks/zeta_reader_review/verify_minors/`: the verifier's report and its eleven scripts with outputs (all pass).
+
+## 7. After the referee pass on version 2 of the reader
+
+Version 2 of the reader (`reader_v2/`) applies §§1–3. It was refereed in both directions by a further independent Claude instance (report and sixteen scripts in `checks/zeta_reader_review/referee_v2/`). That pass found no false theorem and no missing hypothesis, and reported two new mathematical items and one credit issue. I re-derived both items before applying them (checks Z7–Z8 in `checks/zeta_reader_addendum_checks.py`).
+
+**7.1 The angle |arg w| < π/4 (Prop. 3.11; open question 5).** With L as in §2.3, apply Carleman's formula to F(z) = L(z^{1/2}) (principal branch) on ρ₀ ≤ |z| ≤ R = X², Re z ≥ 0. The zeros (log n)², n ∈ S, lie on the positive axis.
+- *Arc.* F(Re^{iψ}) = L(Xe^{iψ/2}) and v² = X² sin²(ψ/2). By §2.3 step 2 the arc term is at most (1/(4πt))∫_{−π/2}^{π/2} sin²(ψ/2)cos ψ dψ + o(1) = (1 − π/4)/(4πt) + o(1).
+- *Imaginary axis.* F(±iy) = L(y^{1/2}e^{±iπ/4}) and v² = y/2. The axis term is at most (1/2π)∫_{ρ₀}^{R}(y^{−2} − R^{−2})(y/(4t))dy + O(1) = (log X)/(4πt) + O(1).
+- *The other terms.* The linear and logarithmic terms of step 2 give O(1).
+- *Consequence.* If L ≢ 0, then Σ_{n∈S, log n<X}((log n)^{−2} − (log n)²X^{−4}) ≤ (log X)/(4πt) + O(1). So (C2) below forces L ≡ 0, and steps 4–8 of §2.3 apply unchanged:
+
+  (C2) limsup_X (log X)^{−1}Σ_{n∈S, log n<X}((log n)^{−2} − (log n)²X^{−4}) > 1/(4πt).
+
+- *Sets of quadratic counting.* If ν_S(x) ∼ κx², partial summation gives Σ = ∫ν_S(x)(2x^{−3} + 2xX^{−4})dx = 2κ log X + o(log X). So (C2) holds exactly when t > 1/(8πκ), and the half-plane condition of §2.3 exactly when t > 1/(4πκ).
+- *{2^a3^b}.* Here κ = 1/(2 log 2 log 3). The family is dense for every t > (log 2)(log 3)/(4π) = 0.060598….
+- *Narrower sectors give no more.* For the sector |arg w| < π/(2k), with L(z^{1/k}), the same computation gives the threshold 1/(4πκk) for 0 < k ≤ 2. It rests on the identity (4 − k²)∫_{−α}^{α}sin²φ cos kφ dφ + 2k sin²α = 4/k, α = π/(2k). For k > 2 the zero sum converges.
+- *What stays open.* Open question 5 of the reader is now answered for t > 0.0606 and open for 0 < t ≤ 0.0606.
+- *Credit and checks.* The step is the version-2 referee's; I re-derived it. Check Z7 verifies the identity symbolically, the constants 1 − π/4 and (log R)/(8πt), and Σ − 2κ log X → 3.196 on the lattice.
+
+**7.2 Composite moduli in Prop. 2.8.** The left side (zeros of Z_{1/q} in 0 < Re s < ½ and in Re s < 0) holds for every q with φ(q) > 2, not only for prime q ≥ 5. The proof:
+- *Decomposition.* Group k by d = gcd(k, q) and expand cos(2πc/e) in the even characters mod e. This writes Φ_{1/q} = Σ_ψ P_ψ L(s, ψ), with Dirichlet polynomials P_ψ and distinct primitive ψ.
+- *Uniqueness.* Such a representation is unique. Look at the coefficient at d₀p, where d₀ is the least integer in the supports and p is a large prime; the ψ are linearly independent on the primes.
+- *The ζ-component is nonzero.* Its coefficient at q^{−s} is 2Σ_{e|q squarefree} 1/φ(e) > 0.
+- *Some other component is nonzero.* Otherwise cos(2πp/q) = cos(2π/q) for all large primes p, and so φ(q) ≤ 2.
+- *Conclusion.* Φ_{1/q} is therefore not of the form P·L(s, χ), and Saias–Weingartner applies.
+
+Check Z8 verifies Φ_{1/8} = √2 L(s, χ₈) − 2·4^{−s}(1 − 2^{1−s})ζ(s) to 10⁻³¹. It also finds the zeros 0.25274 − 7.81965i of Z_{1/8} and 0.22855 − 6.53071i of Z_{1/12}, each reflected from a zero of Φ_{1/q}.
+
+**7.3 Credit.** The stronger forms F1–F22 were found and proved in the review of version 1. The verifier of F6–F22 corrected six wordings. I re-derived O1–O4 and F1–F5. Version 2 of the reader and the register now credit them in this way.
+
+**7.4 Smaller corrections applied in version 2 of the reader.**
+- The proof of Lemma 3.6 now uses the constant (1 + γ₁)/(½ + γ₁) = 1.03417…; the old 15.14/14.64 was a slip, and the stated bound 1.0342 was right.
+- Part (d) of Thm 4.1 holds at a = ½. Only Thm 4.2 fails to extend.
+- Lemma 5.6 holds under limsup max(δ_n, 0)^{1/n} ≤ D.
+- Thm 2.3 now states that divisor-minimal elements with negative coefficients are infinite in number.
+- "Not re-read" caveats were added for the L-function inputs and for Titchmarsh's statement of Carleman's formula.
+

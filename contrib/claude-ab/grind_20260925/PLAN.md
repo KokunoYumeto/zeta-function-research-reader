@@ -571,3 +571,10 @@ A reminder is scheduled into this session. When it fires: read this file and the
       - the monograph's §14 and item 21 were re-read.
     - The referee's missed results were verified and adopted with credit: the kernel sheaf (Prop 5.5); the global torsion of relative one-forms; the b₁ = b₂ = 0 form of Theorem 5.8 with its consequence for rational homology six-spheres; the exact value set of S6-5 (numerically checked to |n| ≤ 3000).
     - Register W28–W31. The referee's report and its 22 checks (all pass) are in `checks/s6_reader/referee/`.
+- 03:49–05:33 UTC (27 September): the owner said again in chat that I have tokens; work continued without questions.
+  - The Yang–Mills referee pass was rerun by an independent instance (about 58 minutes). It reported 2 major and 14 minor findings and results A–K, and found no error that invalidates a stated result. Its report is saved in `checks/ym_reader/referee/` (to be verified and applied next).
+  - Erdős–Straus reader version 2 (36 pages). Every finding of its referee pass was verified before it was applied:
+    - against the 619-page archive text: Theorems 9.1, 9.64, 10.3, 10.6, 10.9; Corollaries 10.7, 18.17; Propositions 10.10, 17.6, 24.222; Lemma 24.218; Theorems 24.100, 24.219, 24.228; the census sets (2268)–(2269) and the coefficients c_Q; the §24 page ranges; the satellite files;
+    - by independent scripts: the survivors below 10⁶; the census domain below 3·10⁶; the shell at 12289; the base rows mod 11088; the barriers; the shear graph to 10⁷; the even levels of ES-09; h(p) for all primes below 3·10⁹ by a segmented C program.
+  - The check found that the count 2|E_a|+|M_a| is also the archive's (Theorem 9.64), which the referee had credited to the reader, and corrected the referee's least length-5 shear prime (1,183,451, not 3,533,141). One referee remark (an Ionascu–Wilson observation mod 9240) could not be checked and was left out.
+  - Register W32–W41; W1's attribution corrected. The referee's report and programs are in `checks/es_reader/referee/`, the verification scripts in `checks/es_reader/referee_verify/` and `checks/es_reader/esr_referee_checks.py`.

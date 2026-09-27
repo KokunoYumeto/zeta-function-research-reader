@@ -10,6 +10,7 @@
 \end{tabular}}\\[2pt]
 The main source file of the archive (60{,}561 lines) and its fourteen satellite files were read where they are cited.
 \item The supplement's source, in the repository folder\newline \texttt{research/expanded-2026-09-08/exact\_bounded\_transport\_72/}.
+\item For the literature statements of §1: the source of Elsholtz and Tao's paper (arXiv 1107.1010v6), which the repository holds in its literature folders.
 \end{itemize}
 
 \paragraph{What was refereed earlier.}
@@ -20,17 +21,44 @@ Theorem~\ref{thm:shell} and Propositions~\ref{prop:r3}--\ref{prop:mod840}, the a
 \item a referee pass on that reader;
 \item two further passes that read it for understatement and missed generality as well as for overstatement.
 \end{enumerate}
-These passes produced the range $x<p/2$ in Theorem~\ref{thm:shell}, its extension to all odd primes, Propositions~\ref{prop:survivors} and~\ref{prop:mod840}, and the corrected count of Proposition~\ref{prop:r3} at $p\equiv5\pmod{12}$. The checks are \note{checks/\allowbreak workbenches/\allowbreak workbench\_reader\_claims\_checks.py} and \note{checks/\allowbreak workbenches/\allowbreak generality\_checks.py}; the referee reports are in \note{checks/workbenches/}.
+These passes produced the range $x<p/2$ in Theorem~\ref{thm:shell}, the first form of Proposition~\ref{prop:survivors}, Proposition~\ref{prop:mod840}, and the extension of the count of Proposition~\ref{prop:r3} to $p\equiv5\pmod{12}$. The checks are \note{checks/\allowbreak workbenches/\allowbreak workbench\_reader\_claims\_checks.py} and \note{checks/\allowbreak workbenches/\allowbreak generality\_checks.py}; the referee reports are in \note{checks/workbenches/}.
 
-\paragraph{What is new in this reader, and has been checked only by its author.}
+\paragraph{What this reader adds to the reader of four workbenches.}
+``New'' here means new relative to that earlier reader, not new mathematics. Where the archive already has a statement, the reader cites it.
 \begin{itemize}
-\item Proposition~\ref{prop:jacobi};
+\item Proposition~\ref{prop:jacobi}, which is the archive's Theorem~10.9 and Proposition~10.10, re-proved;
 \item Lemma~\ref{lem:leastclass} and Proposition~\ref{prop:records}, with the reproduction of the deficit data in §\ref{ssec:records};
 \item Theorem~\ref{thm:families}, and the statement that each family meets every hard class;
 \item Proposition~\ref{prop:twoshears};
-\item Proposition~\ref{prop:quartic}, whose relation was also checked in \note{21\_};
+\item Proposition~\ref{prop:quartic}(a), whose relation was also checked in \note{21\_};
 \item the map of the archive (§\ref{ssec:archive}), the consistency of the census counts (§\ref{ssec:census}), and the three new rows of the overlap table (Section~\ref{sec:overlaps}).
 \end{itemize}
+These went through the referee pass described next.
+
+\paragraph{The referee pass of this reader.}
+An independent Claude instance (\texttt{claude-opus-5-5}), which wrote none of the text, refereed version~1 of this reader on 27 September 2026. It read in both directions, as the owner asked: for statements stronger than their proofs or sources, and for understatement, missed generality and missed or implied results. It reran the reader's five scripts, whose outputs were identical, and wrote its own checks. It found every proof correct as written and every recomputed number in agreement. It reported five major and ten minor findings, and seven results that the reader's material implies. Every finding was verified here before it was applied: by reading the archive at the cited page, or by an independent script.
+\begin{itemize}
+\item \emph{Attributions.} Theorem~\ref{thm:shell}(b) is not a generalisation of the archive. The archive's Theorems~9.1 and~9.64 already hold for every odd prime; the reader now says so. The check here also found that the count $2|E_a|+|M_a|$ is in the archive's Theorem~9.64, which the referee had credited to the reader.
+\item \emph{Understatements.} Proposition~\ref{prop:survivors} now concludes that the survivors lie in the hard classes modulo $840$, as the archive's Corollary~10.7 does. The census domain is stated. The page map of §24 is split, and the page counts are made consistent.
+\item \emph{Two misdescriptions.}
+\begin{itemize}
+\item The remark that the census carriers are ``not polynomial identities alone'' was wrong. They are polynomial identities on their rows, and Proposition~\ref{prop:nosquare} and Corollary~\ref{cor:censuslimit} replace it.
+\item Proposition~\ref{prop:twoshears}(b) had suggested that the theorem fails for every $p\equiv2\pmod3$. It fails only on a minority of them, and Proposition~\ref{prop:sheargraph} and Remark~\ref{rem:sheardensity} now describe that set.
+\end{itemize}
+\item \emph{Minor findings.} Among them:
+\begin{itemize}
+\item the residual $R=2$ at $p=2$;
+\item the archive's correction of Ionascu and Wilson's label for $1201$;
+\item the count of \texttt{.lean} files ($67$, not $84$);
+\item the title-page date ($30$ August);
+\item Elsholtz and Tao's definition of solvability by polynomials;
+\item the full citation of Vaughan's paper.
+\end{itemize}
+\item \emph{Results adopted.} After verification, these are Corollary~\ref{cor:hle2}, Propositions~\ref{prop:groupbarrier}, \ref{prop:groupconverse}, \ref{prop:sheargraph}, \ref{prop:fixeddivisor} and~\ref{prop:nosquare}, Corollary~\ref{cor:censuslimit}, Proposition~\ref{prop:quartic}(b), the records to $3\cdot10^9$, and the even levels of §\ref{ssec:es-s6}.
+\item \emph{A correction to the referee.} It gave $3{,}533{,}141$ as the prime with a shear path of length $5$. A complete enumeration here shows that the least such prime is $1{,}183{,}451$.
+\item \emph{Not adopted.} The referee also reported an observation of Ionascu and Wilson on residues modulo $9240$. It could not be checked against their paper here, and is omitted.
+\end{itemize}
+The referee's report and its check programs are in \note{checks/es\_reader/referee/}; the verification scripts of this reader are in \note{checks/es\_reader/referee\_verify/}.
 
 \paragraph{The scripts of this reader.}
 They import no workbench code and recompute every number from the definitions. They are in \note{checks/es\_reader/} on the branch named below.
@@ -45,6 +73,10 @@ Script & What it checks & Time, result\\
 \note{esr\_deficits.py} & the deficit data of §\ref{ssec:records} at $73$, $1129$, $1201$, $21169$, $118{,}801$, $8{,}803{,}369$ and $806{,}521$, their independence of the primitive root, the corollary of archive §16, and the counts $|E_a|=0$, $|M_a|=2$ at $p_*$ (22 checks) & 1 s; all pass\\
 \note{esr\_families.py} & the four identities of Theorem~\ref{thm:families} as polynomial identities, exact fractions for $k\le200$, the hard classes met and the least prime in each & 1 s; all pass\\
 \note{esr\_twoshears.py} & Proposition~\ref{prop:twoshears}: the full shear graph of every prime below $2000$, and a complete search for two-edge paths up to $10^7$ & 23 s; all pass\\
+\note{referee\_verify/\allowbreak shears\_independent.py} & Proposition~\ref{prop:sheargraph}: degrees on the full graph below $1200$; complete enumeration of paths of length $2$ to $5$ below $10^7$; the class $131\bmod180$ & 21 s; as stated\\
+\note{referee\_verify/\allowbreak shears\_density\_\allowbreak bound.py} & the bound $\sum_R\delta_R<0.335$ of Remark~\ref{rem:sheardensity} & 5 s; as stated\\
+\note{referee\_verify/\allowbreak hsegment.c}, \note{hsegment\_A.c} & $h(p)$ for all primes below $3\cdot10^9$ by a segmented sieve; the records, the primes with $h\ge19$, and Corollary~\ref{cor:hle2} & 2 min; as stated\\
+\note{esr\_referee\_checks.py} & Propositions~\ref{prop:survivors}, \ref{prop:groupbarrier}, \ref{prop:groupconverse}; the census domain; the base rows and the square-row count of Corollary~\ref{cor:censuslimit}; the shell at $p=12289$; the even levels of §\ref{ssec:es-s6} & 2 min; all pass\\
 \bottomrule
 \end{tabularx}
 \end{center}
@@ -53,7 +85,7 @@ Script & What it checks & Time, result\\
 A second-pass audit of the supplement was started with a separate Claude instance and was stopped by a usage limit before it wrote its report. Its scripts and outputs are kept in \note{checks/es\_reader/second\_pass\_partial/}, and §\ref{ssec:supplement} reports what they show. The one reported mismatch was traced to the script's own expectation (§\ref{ssec:supplement}).
 
 \paragraph{What has not been done.}
-This version has not had an independent referee pass of its own. The earlier readers of this audit each had at least one, by a Claude instance that had written none of the text; the most recent of these passes read for understatement and missed generality as well as for overstatement. Such instances were unavailable when this version was written, because of a usage limit at the time. A referee pass of the same kind is planned, and its findings will be applied before this reader is deposited with the workbench's Zenodo collection. Until then, the statements listed above as new rest on this author's proofs and scripts alone.
+This version has had one independent referee pass. The results adopted from it were proved by the referee and checked here, but they have not had a second independent reading. Nothing in this reader has been reviewed by a human specialist. The parts of the workbench marked \textsf{located} were not checked, and §\ref{sec:open} lists what else was left out.
 
 \paragraph{Where everything is.}
 This reader, its sources and its scripts are on the branch \texttt{claude/claude-ab-grind-20260925} of \texttt{KokunoYumeto/zeta-function-research-reader}, in \texttt{contrib/claude-ab/grind\_20260925/}: the reader in \note{es\_reader/}, the scripts in \note{checks/es\_reader/}, and the audit notes \note{21\_}, \note{43\_}, \note{43a\_}, \note{47\_} and \note{47a\_} at the top level.

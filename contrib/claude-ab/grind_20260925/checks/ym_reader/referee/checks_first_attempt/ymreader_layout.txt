@@ -1,0 +1,1320 @@
+                           The Yang–Mills workbench
+                           a reader of its results, with proofs
+SU(2) lattice Yang–Mills: vacuum, energy, spectral bounds and continuum investigations
+                      (Zenodo record 10.5281/zenodo.22883643)
+
+              An audit and reading prepared by Claude (Anthropic),
+           model claude-opus-5-5 (Opus 5.5), at maximum reasoning effort
+    Workbench: KokunoYumeto, with the AI contributors and the sources credited below
+               26 September 2026       (version before its independent referee pass)
+ Companion to the reader of the split-zero zeta programme, version 2, DOI 10.5281/zenodo.22977243
+
+                                                Abstract
+     The Zenodo record 10.5281/zenodo.22883643, SU(2) lattice Yang–Mills: vacuum, energy, spectral
+     bounds and continuum investigations, is the Yang–Mills part of the owner’s research work-
+     bench (KokunoYumeto/yang-mills-interacting-workbench). It holds 43 files from five edi-
+     tions, dated 8 to 21 September 2026. The record’s front file, README.md, is still the one written
+     for the first edition of 8 September.
+         This reader says:
+     • which of the 43 files is current and which are superseded;
+     • what each document claims, and on which regime;
+     • what is proved, with proofs;
+     • how far each statement was checked.
+        The central result (Section 3) concerns the Kogut–Susskind Hamiltonian of 𝑆𝑈(2) lattice
+     gauge theory on open cubic boxes. It is an explicit lower bound on the spectral gap above
+     the ground state, on the whole gauge-invariant space, uniform in the box size and the lattice
+     spacing, for bare coupling 𝑔2 ≥ 3.6836 in the workbench’s normalisation. The threshold rests
+     on computed coefficient bounds of orders 3 to 5; with inputs checked independently here, the
+     same argument gives a gap for 𝑔2 ≥ 4.0187.
+        Section 4 states the heat-flow results of the latest edition:
+     • every constant of the box-independent heat remainder is re-derived here;
+     • the benchmark table for relaxation into the whole complementary physical space is recom-
+       puted exactly from the stated inputs.
+     Sections 5–6 map the earlier editions and the Jacobian-map, Navier–Stokes and 𝑆6 material,
+     and Section 7 states the obstructions with their exact scope.
+         All results hold at fixed lattice spacing and strong bare coupling. The workbench does not
+     claim a continuum mass gap, and nothing here bears on that problem.
+
+
+About this reader
+The workbench, and who made it.
+• The record’s README.md (“Source history, corrections and attribution”) says that the human
+  participant proposed the research directions and possible connections, and that Codex devel-
+  oped, checked and corrected the written constructions. It attributes the public stewardship to
+  KokunoYumeto, the owner of the workbench.
+• The repository’s README describes the workbench as open and AI-assisted, including work
+  with ChatGPT 5.6 Sol and GPT-6 Astra.
+• The exponential form of the vacuum and its character and Casimir framework are credited by
+  the workbench to Schütte, Zheng and Hamer [8]; the Fourier-algebra estimates to Eymard [2];
+  semigroup generation to Lumer and Phillips [5].
+
+                                                    1
+The Yang–Mills workbench: a reader                                                                2
+
+
+• Two inputs of side branches are credited to Levent Alpöge by the workbench’s attribution file
+  (ATTRIBUTION.md; record file ALPOGE_ATTRIBUTION_20260921.md). One is a polynomial map
+  that the file identifies with the counterexample to the Jacobian conjecture announced by Alpöge
+  on 20 July 2026, whose announcement, as the file records, credits Akhil for the question and
+  Fable for the work. The other is the construction of a complex threefold, circulated by Alpöge
+  and, as the file says, produced with Claude [1]. The file says that neither is a hypothesis of the
+  latest results.
+• The Navier–Stokes material rests on OpenAI’s manuscript Finite Time Blowup for Navier–Stokes
+  [6], which the workbench cites and does not claim to have verified.
+
+
+What was read.
+• The repository at commit fa79faf (21 September 2026), the head of origin/main on 26 Septem-
+  ber.
+• The record’s 43 files. Twenty-three of them are byte-identical to files of that commit (checked
+  by MD5). The other twenty were downloaded from the record on 26 September, except the
+  87 MB Overleaf archive (file 08_), and their MD5 checksums equal the record’s.
+• The two proof manuscripts of the latest edition in full: FIFTH_REFERENCE.md (F1–F42) and
+  HEAT_AND_COMPLEMENT.md (H1–H34).
+
+• For the other documents, their scope and conclusion sections, and the passages cited below.
+The audit notes 21_, 28_, 34_, 46_, 46a_ and 47_, and the reader of four workbenches [9], are on the
+branch claude/claude-ab-grind-20260925 of KokunoYumeto/zeta-function-research-reader,
+in contrib/claude-ab/grind_20260925/.
+
+
+How it was checked.
+• Section 3 comes from the Yang–Mills section of the reader of four workbenches, which was
+  refereed three times, after a referee pass on its notes (Appendix B).
+• The new material of Section 4 was checked by this reader’s author, with a new script that
+  recomputes every constant from the definitions and the stated inputs.
+• Everything else carries a status label.
+This version has not yet had an independent referee pass of its own; Appendix B says why, and
+what is planned.
+
+
+Status labels.
+• Proved here: the proof is given in full in this reader.
+• Audited: the workbench’s proof was read in full, every step was checked, and independent
+  checks were run.
+• Audited in part: the parts named were checked; the rest is located.
+• Reproduced: the finite content of a statement (its constants, tables or counts) was recomputed
+  by an independent script from the stated inputs; the general argument was not re-derived.
+• Conditional: proved, given inputs that were not checked here; the inputs are named.
+• Located: the statement and its proof were found and are described; nothing was checked.
+The Yang–Mills workbench: a reader                                                                         3
+
+
+The workbench itself separates written analytic arguments from finite exact-arithmetic certificates
+and from numerical diagnostics, and says so at each result; its own qualifications are quoted
+where they matter.
+
+Contents
+
+About this reader                                                                                          1
+
+1 The problem, the setting, and what the workbench claims                                                  5
+    1.1   The continuum problem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+    1.2   The lattice setting of the workbench . . . . . . . . . . . . . . . . . . . . . . . . . . .       5
+    1.3   What is known . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    5
+    1.4   What the workbench claims, and what it does not . . . . . . . . . . . . . . . . . . .            5
+    1.5   The approach in one paragraph . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        6
+
+2 The record, and what each document contains                                                              6
+    2.1   Five editions under one concept DOI . . . . . . . . . . . . . . . . . . . . . . . . . . .        6
+    2.2   The documents, line by line . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+    2.3   How the documents describe their own scope . . . . . . . . . . . . . . . . . . . . . .           8
+
+3 The strong-coupling gap                                                                                  8
+    3.1   The statement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    8
+    3.2   The proof: two lemmas and the analytic core . . . . . . . . . . . . . . . . . . . . . .          9
+    3.3   The coupling domain and the continuum path . . . . . . . . . . . . . . . . . . . . . 11
+
+4   Heat flow and the complementary physical space                                                        12
+    4.1   Objects . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+    4.2   A heat remainder independent of the box . . . . . . . . . . . . . . . . . . . . . . . . 12
+    4.3   Relaxation into the whole complementary space . . . . . . . . . . . . . . . . . . . . 14
+    4.4   Heat horizons, support quotients and the spatial limit . . . . . . . . . . . . . . . . . 15
+
+5 The earlier editions                                                                                    15
+    5.1   The continuations of 14–21 September . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+    5.2   The foundations of 8–9 September . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+6 The side branches: the Jacobian map, Navier–Stokes and 𝑆6                                               17
+    6.1   The Jacobian map and the low-mode theorem . . . . . . . . . . . . . . . . . . . . . . 17
+    6.2   Navier–Stokes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+    6.3   𝑆6 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+
+7   Negative results, with exact scope                                                                    18
+    7.1   The global perturbative route . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+    7.2   The other obstructions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+
+8 Where the workbench meets the author’s other workbenches                                                20
+The Yang–Mills workbench: a reader                                                                    4
+
+
+9 What remains open, and what was not checked                                                        21
+   9.1   Open questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+   9.2   What this reader did not check . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+
+A Catalogue of statements                                                                            21
+
+B How this reader was checked                                                                        23
+
+References                                                                                           24
+The Yang–Mills workbench: a reader                                                                   5
+
+
+
+1 The problem, the setting, and what the workbench claims
+1.1 The continuum problem
+The Clay Mathematics Institute’s problem, described by Jaffe and Witten [3], asks for a proof that
+for every compact simple gauge group a nontrivial quantum Yang–Mills theory exists on ℝ4 and
+has a mass gap Δ > 0. The existence part asks for a continuum theory satisfying axioms at least
+as strong as the Wightman or Osterwalder–Schrader axioms ([3], §4); estimates for a model at
+fixed lattice spacing do not by themselves answer it.
+
+1.2 The lattice setting of the workbench
+The workbench works with a spatial lattice and continuous time, in the Hamiltonian formulation
+of Kogut and Susskind [4], for the group 𝑆𝑈(2).
+• Box. The vertices form the open box {−𝐿, … , 𝐿}3 , 𝐿 ≥ 2. The links 𝑒 are the positively oriented
+  nearest-neighbour edges inside the box, and the plaquettes 𝑝 are the elementary faces inside it;
+  there are 𝑀𝐿 = 12𝐿2 (2𝐿 + 1) of them.
+• Space. Each link carries a matrix 𝑈𝑒 ∈ 𝑆𝑈(2), and the configuration space carries the product
+  Haar probability measure. The physical Hilbert space is the subspace of 𝐿2 invariant under the
+  gauge transformations at every vertex, boundary vertices included.
+• Hamiltonian (the workbench’s normalisation):
+
+                                                  2 ,                          2𝑔2           1
+         𝐻𝐿 = 𝜅𝐾 + 𝜅𝜉 (2𝑀𝐿 − 𝑆),         𝐾 = − ∑ 𝑋𝑒,𝑎      𝑆 = ∑ 𝑊𝑝 ,     𝜅=       ,   𝜉=       .
+                                                𝑒,𝑎              𝑝              𝑎           4𝑔4
+
+  Here 𝑋𝑒,𝑎 differentiates 𝑈𝑒 along 𝑒𝑡𝑇𝑎 with 𝑇𝑎 = −𝑖𝜎𝑎 /2, so 𝐾 is the sum of the link Casimirs;
+  𝑊𝑝 is the trace of the ordered product of the four links around 𝑝; 𝑎 > 0 is the lattice spacing
+  and 𝑔 > 0 the bare coupling. The plaquette term equals (2𝑔2 𝑎)−1 ∑𝑝 (2 − 𝑊𝑝 ) ≥ 0.
+• Gap. Δ𝐿 is the distance from the ground energy 𝐸0 to the rest of the spectrum of 𝐻𝐿 on the
+  physical space. At 𝜉 = 0 it equals 3𝜅: one plaquette in the fundamental representation, four
+  links of Casimir 34 .
+Large 𝑔 is strong coupling, where 𝜉 is small; the continuum limit needs 𝑎 → 0 with 𝑔 → 0, the
+opposite regime. The workbench records the conversion to the convention of Schütte, Zheng and
+Hamer [8]: 𝑔𝐶 = 23/4 𝑔, and the Hamiltonians differ by the factor √2 and a constant. Numerical
+thresholds below are in the workbench’s normalisation.
+
+1.3 What is known
+• Strong coupling. Mass gaps at strong coupling are classical for lattice gauge theories in the
+  Euclidean setting (Osterwalder and Seiler [7]; cited, not re-read here).
+• The exponential vacuum. Writing the ground state as 𝑒𝑣 and solving for 𝑣 order by order in the
+  coupling is the coupled-cluster method of Hamiltonian lattice field theory; the workbench
+  credits it, with the character and Casimir calculus it uses, to Schütte, Zheng and Hamer [8].
+
+Whether an explicit bound of the kind proved in Section 3 (uniform in the box, on the whole
+physical space, with a closed coupling threshold) is in the literature was not searched.
+
+1.4 What the workbench claims, and what it does not
+The workbench’s front pages are explicit (repository README.md; the readers of 21 September):
+• its results are finite-regulator statements, at fixed lattice spacing and on stated coupling domains;
+The Yang–Mills workbench: a reader                                                                        6
+
+
+• it does not claim a solution of the four-dimensional continuum mass-gap problem, nor inde-
+  pendent certification of the 𝑆6 or Navier–Stokes constructions it uses;
+• it separates written analytic arguments from finite exact-arithmetic certificates and from nu-
+  merical diagnostics, and claims no Lean or independent external analytical certification.
+The latest edition also records that its standing continuum path, 𝑎𝑛 = 𝑎0 2−𝑛 with 𝑔𝑛2 = 1/𝑐𝑛 and
+𝑐𝑛 = 𝑔0−2 + 𝛽𝑛 log 2, eventually leaves the domain of its estimates when 𝛽 > 0 (Proposition 3.6).
+In the parts read here these scope statements are accurate. Where a statement of the workbench
+was found to be stronger or weaker than its proof, this reader says so.
+
+1.5 The approach in one paragraph
+The ground state of 𝐻𝐿 is positive, so it can be written 𝜓 = 𝑒𝑣 /‖𝑒𝑣 ‖. Inserting this into the eigenvalue
+equation gives a nonlinear equation for 𝑣, namely 𝑣 = 𝜉 𝑣1 + 𝐵(𝑣, 𝑣) with 𝑣1 = 𝑆/3, whose formal
+solution is a power series ∑𝑛 𝜉 𝑛 𝑣𝑛 (Lemma 3.3). The workbench computes the first five coefficients
+exactly, bounds them in weighted Fourier-algebra norms that are local, so that nothing grows
+with the box, and solves for the remainder by a contraction argument. Returning to the eigenvalue
+equation then gives a lower bound for every excitation energy (Proposition 3.4). The same control
+of the vacuum gives box-independent bounds for heat correlations of plaquettes, and bounds for
+how much the plaquette family mixes with the rest of the physical space (Section 4).
+
+2 The record, and what each document contains
+2.1 Five editions under one concept DOI
+The record 10.5281/zenodo.22883643 is the latest of five versions of the concept record 10.5281/zen-
+odo.22666540. Each version kept the files of the one before and added new ones, so the latest
+version holds all 43 files. The version history, read from the record’s public metadata on 26
+September 2026:
+
+Version (DOI            Files        What was added
+10.5281/zenodo.…)       added
+22666541, 8 Sept.       6            The first checkpoint: a 46-page quantum manuscript (01_), a 72-page
+(“2026.09.08”)                       spatial manuscript (02_), their sources (03_), a sealed author packet
+                                     (04_), the record’s README.md and a manifest
+22667605, 8 Sept.       7            Later snapshots of the quantum and spatial lines (05_, 53 pp.; 06_, 108
+(“full-workbench”)                   pp.) and the first volume manuscript (07_, 62 pp.); the whole Overleaf
+                                     workbench (08_, 87 MB); a reading map, an edition guide and a
+                                     manifest (09_–11_)
+22678364, 9 Sept.       10           The five foundation readers (§2.2); the sources of 9 September; an
+(“consolidated”)                     index for machine reading; manifests; a reading guide
+22803564, 21 Sept.      14           The 297-page reader of the 14–16 September continuation; the 49-page
+(“heat-volume”)                      reader of 17 September; the 46-page heat and volume reader of 21
+                                     September with its sources; two cumulative archives; reading guides;
+                                     the attribution clarification
+22883643, 21 Sept.      6            The 24-page fifth-reference reader, its LaTeX, Markdown and sources, a
+(“fifth-reference”)                  cumulative archive, and its reading guide
+
+
+Two facts matter for a visitor.
+• The record’s front file README.md was written for the first version, and it describes the 8 Septem-
+  ber checkpoint. The current guide is YM_READING_GUIDE_20260921_FIFTH.md, and the current
+  reader is yang_mills_fifth_reference_20260921.pdf.
+The Yang–Mills workbench: a reader                                                                         7
+
+
+• Twenty-three of the files are byte-identical to files in the repository at commit fa79faf; the other
+  twenty are only on Zenodo (checked by MD5, Appendix B).
+
+2.2 The documents, line by line
+The mathematical documents form three lines of manuscripts from 8–9 September, each with
+several dated snapshots, followed by four readers of later continuations. In each line the section
+list of the latest snapshot contains those of the earlier ones, and the 9 September guide says that
+the quantum reader is cumulative.
+
+
+Document                       Files in the record     Content, in the document’s own terms
+Quantum line. “Extensive       01_ (46 pp.), 05_ (53   Exact blocking maps of the finite interacting
+true-vacuum quantum            pp.), quantum_          Hamiltonian; a uniform single-link estimate for the
+blocking in the full spatial   nonabelian_vertex       actual vacuum; zero-shift reconstruction and
+Wilson box” (8–9 Sept.)        (63 pp.), quantum_      comparison of low-energy states; the scope of the
+                               interacting_            spectral conclusion (§11); the material-tensor
+                               tensor_band (71         transfer of the Jacobian map into local-energy states
+                               pp.), quantum_          (§§13–16, with Theorems 13.1 and 14.2); a nonzero
+                               coarse_graining         non-Abelian vertex (§17); the Navier–Stokes
+                               (79 pp., cumulative)    curvature-state map (§§20–22)
+Spatial line. “The retained    02_ (72 pp.), 06_       Joint geometric and coupling sequences built from
+cusp, spatial refinement,      (108 pp.), spatial_     the 𝑆6 period data; spectral escape and its failure
+and the spectral measure       continuum (129 pp.)     modes; weak-coupling variational bounds; exact
+of the actual magnetic                                 plaquette-to-loop maps and a pure-gauge
+vacuum translation” (8–9                               configuration limit; covariance and magnetic-mass
+Sept.)                                                 lower bounds; a fluid-to-curvature map; §27, the
+                                                       collapse of the finite-box weak-coupling disk
+                                                       (Proposition 7.1); §28, the current conclusion
+Volume line.                   07_ (62 pp.),           Local projections and comparison operators; local
+“Volume-independent            volume_uniform_         electric moments at every positive coupling;
+local estimates in the full    vacuum (81 pp.)         uniform local Wilson and electric covariances;
+SU(2) Wilson vacuum”                                   cluster coordinates; the gauge-restricted free
+(8–9 Sept.)                                            threshold 3𝜅; negative-period collapse; the product
+                                                       remainder on the cusp at 0 < 𝜉 ≤ 10−16 ; the
+                                                       logarithmic coupling path
+Web continuation, 14–16        yang_mills_web_         The source equations, gauge-coordinate maps, cubic
+Sept.                          continuation (297       calculation and spectral return; the first gap
+                               pp.) and its sources    theorems (order 1 and order 2; Section 5)
+Quartic cube reader, 17        yang_mills_             The fourth-order vacuum source in two
+Sept.                          quartic_cube_           presentations, equal as polynomials; the sixth-order
+                               reader (49 pp.) and     energy with the cube contribution −83/1944; a gap
+                               its sources             bound for 𝑔2 ≥ 15/4
+Heat and volume reader,        yang_mills_heat_        Fourth-order heat correlations; a box-independent
+21 Sept.                       volume_20260921 (46     heat remainder on the circle |𝜉 | < 3/256; a
+                               pp.) and archives       fixed-spacing spatial limit; the plaquette family’s
+                                                       coupling to the whole complementary space
+Fifth-reference reader, 21     yang_mills_fifth_       The latest results: the gap bound of Section 3 and
+Sept.                          reference_20260921      the heat and complement bounds of Section 4, with
+                               (24 pp.) and archive    both proof manuscripts (F1–F42, H1–H34)
+
+
+
+
+Bold marks the current document of each line. The cumulative archives of 21 September also hold
+the continuation of 18–19 September (sixth source, eighth energy, a 240-face response; directory
+20260918-sixth-source); the workbench says that its new spatial tables and final execution
+package were not delivered (repository README.md).
+The Yang–Mills workbench: a reader                                                                           8
+
+
+2.3 How the documents describe their own scope
+• The 9 September readers are finite-regulator calculations. The spatial reader’s conclusion (§28)
+  says that the actual interacting continuum construction, and nonzero low-energy spectral weight
+  outside its proved exclusions, remain unresolved, and that no missing covariance, tightness or
+  convergence statement was assumed.
+• The quantum reader’s §11 records that rewriting a coarse kinetic coefficient at a “running
+  coupling” is only a coefficient dictionary, not a renormalisation of the original Hamiltonian.
+• The volume reader’s cusp estimates hold at fixed coupling 0 < 𝜉 ≤ 10−16 , that is 𝑔2 ≥ 5 ⋅ 107 ;
+  its §24 treats the logarithmic coupling path without a small-𝜉 gap.
+• Every reader of 17 and 21 September states that no four-dimensional continuum mass gap is
+  claimed.
+
+These statements were checked against the documents where this reader cites them. The results
+of the 8–9 September lines were not otherwise audited here; Section 5 lists the few that were.
+
+3 The strong-coupling gap
+This section states the central result of the record, from the fifth-reference manuscript
+FIFTH_REFERENCE.md (equations F1–F42; reproduced as Appendix A of the fifth-reference reader),
+with its proof. It was first stated in the reader of four workbenches [9], where it had three referee
+passes (Appendix B).
+
+3.1 The statement
+Theorem 3.1 (the fifth-reference gap bound; F26–F42). Let (𝑚𝑖 , 𝑡𝑖 ), 𝑖 = 1, … , 5, be the ten rational
+numbers of the workbench’s F26, ℓ5 (𝑥) = ∑(𝑚𝑖 + 4𝑡𝑖 )𝑥𝑖 , 𝛿5 (𝑥) = ∑𝑖,𝑗≤5, 𝑖+𝑗≥6 3(𝑚𝑖 𝑡𝑗 + 𝑚𝑗 𝑡𝑖 )𝑥𝑖+𝑗 ,
+𝒟5 = (1 − ℓ5 )2 − 83 𝛿5 , 𝛼5 the first positive root of 𝒟5 , and
+
+                                                               5
+                               𝑑5 (𝑥) = 32 (1 + √𝒟5 (𝑥)) + ∑𝑖=1 ( 32 𝑚𝑖 − 6𝑡𝑖 )𝑥𝑖 .
+
+If the (𝑚𝑖 , 𝑡𝑖 ) bound the local norms of the vacuum coefficients as the workbench’s computations assert, then
+for every 𝐿 ≥ 2, every 𝑎 > 0 and every 0 < 𝜉 ≤ 𝛼5 ,
+
+                                                 Δ𝐿 ≥ 𝜅 𝑑5 (𝜉 ).
+
+In the coupling,
+
+                           1
+   𝜉 ≤ 𝛼5 ⟺ 𝑔 2 ≥               = 3.6835519839857273 … ,            𝛼5 = 0.0184249535761176166818 … ;
+                        2√𝛼5
+
+𝑑5 decreases on [0, 𝛼5 ] from 𝑑5 (0) = 3 (at 𝜉 = 0, Δ𝐿 = 3𝜅) to 𝑑5 (𝛼5 ) = 1.5453 …; so Δ𝐿 ≥ 1.5453 𝜅 for
+all 𝑔2 ≥ 3.6836, and, as 𝑑5 (1/64) = 1.9068301567 …, Δ𝐿 > 1.9068 𝜅 for all 𝑔2 ≥ 4, uniformly in the box
+and the spacing. Equivalently, 𝑞𝐻𝐿−𝐸0 (𝜓𝑓 ) ≥ 𝜅 𝑑5 (𝜉 ) Var𝜓2 (𝑓 ) for 𝑓 in the physical form domain, 𝜓 the
+normalised ground state (the workbench’s form, F37).
+
+Status. Conditional on the computed coefficient bounds of orders 3, 4 and 5 for the threshold 3.6836 and the
+constants 𝑑5 (the audit’s inventory label is YM-01); its qualitative content, a gap on the whole physical
+space, uniform in the box and the spacing, above an explicit coupling, holds with audited inputs only for
+𝑔2 ≥ 4.0187 (Corollary 3.5). Order 1 is verified by hand; order 2 was recomputed independently in the
+first pass from explicit 𝑆𝑈(2) coefficient tensors (the exact values 𝑚(𝑣2 ) = 134.07 …, 𝑡(𝑣2 ) = 19.80 … lie
+below the workbench’s 5834/39 and 137/6); order 5 (662 representatives, 124,864 anchored multisets, 5,726
+The Yang–Mills workbench: a reader                                                                                 9
+
+
+rational primal/dual certificates) was reproduced by re-running the workbench’s producer and auditor
+with byte-identical output, which the workbench had not done at publication, and its logic was read, not
+re-implemented; orders 3–4 are inherited from earlier continuations and pinned by hash. The analytic
+argument is audited. 𝛼5 , the threshold and 𝑑5 were recomputed by exact bisection and by root isolation,
+and the monotonicity of 𝑑5 on a 401-point grid.
+
+3.2 The proof: two lemmas and the analytic core
+Lemma 3.2 (gauge-invariance Casimir inequality). Let the links form a finite graph without loops
+(parallel links allowed) in which every cycle has length at least 𝑔; the cubic box has 𝑔 = 4. On every Peter–
+                                                                                                         3𝑔
+Weyl block 𝑗 that contains a nonzero gauge-invariant vector, ∑𝑓 𝑗𝑓 ≥ 𝑔 𝑗𝑒 for every link 𝑒. Hence 𝑐𝑗 ≥ 2 𝑗𝑒
+                                      3𝑔
+for every 𝑒, ∑𝑒 𝑗𝑒 ≤ 23 𝑐𝑗 , and 𝑐𝑗 ≥ 4 on the nonconstant physical space; for the box, 𝑐𝑗 ≥ 6𝑗𝑒 and 𝑐𝑗 ≥ 3.
+The first inequality holds for all real weights 𝑗𝑓 ≥ 0 that satisfy the vertex inequalities 𝑗𝑓 ≤ ∑𝑓 ′∋𝑣, 𝑓 ′≠𝑓 𝑗𝑓 ′ ,
+and it is an equality for 𝑗 = 12 on a cycle of length 𝑔 through 𝑒 and 0 elsewhere.
+
+Status. Generalised here: the workbench’s F7 (audited) is the case 𝑔 = 4 on the cubic lattice, proved there
+from the absence of triangles; the sharp constant on any graph is its girth. Checked exhaustively over
+half-integer spins with vertex singlets on the cube graph (1,012 nonzero assignments with every 𝑗𝑒 ≤ 1;
+constant 4), 𝐾3,3 (4), the 5-cycle and the Petersen graph (5), the 6-cycle (6) and a triangle (3); and by
+linear programming over real weights with the vertex inequalities only, on 13 graphs of girth 3 to 8 (among
+them the Petersen, Heawood, McGee and Tutte–Coxeter graphs, the dodecahedron and the box {−1, 0, 1}3 ),
+where the optimum is the girth on every link, on three parallel links (2), and on the bridge between two
+triangles, where it is 4: the constant is the girth of the graph, not the length of the shortest cycle through 𝑒.
+
+Proof. A block contains a nonzero invariant exactly when, at every vertex 𝑣, the tensor product of
+the representations of spins 𝑗𝑓 (𝑓 ∋ 𝑣) contains the trivial representation; by the Clebsch–Gordan
+rule this gives the vertex inequalities, which are all that is used. A matching at each vertex. At 𝑣, the
+inequalities say that no 𝑗𝑓 exceeds half of 𝐽𝑣 = ∑𝑓 ∋𝑣 𝑗𝑓 . That is the condition for a transport plan
+between the links at 𝑣, with supplies and demands 𝑗𝑓 and the diagonal forbidden, by Gale’s supply–
+demand theorem: a set of two or more columns can be served by every row, and a single column
+𝑓 by the rows 𝑓 ′ ≠ 𝑓, which carry 𝐽𝑣 − 𝑗𝑓 ≥ 𝑗𝑓 . Symmetrising the plan gives a symmetric 𝑀𝑣 ≥ 0
+with zero diagonal and row sums 𝑗𝑓 . A circulation. Give each orientation (dart) of a link 𝑓 the
+weight 𝑗𝑓 /2, and let the dart arriving at 𝑣 along 𝑓 pass to the dart leaving 𝑣 along 𝑓 ′ ≠ 𝑓 with weight
+𝑀𝑓𝑣𝑓 ′ /2. The row and column sums of 𝑀𝑣 make this a circulation on the darts, which is therefore
+a nonnegative combination ∑𝐶 𝑤𝐶 [𝐶] of cyclic dart sequences 𝐶, that is, closed walks in which
+consecutive links (cyclically) differ. Counting weights, ∑𝐶 𝑤𝐶 |𝐶| = ∑𝑓 𝑗𝑓 and ∑𝐶 𝑤𝐶 𝑛𝑒 (𝐶) = 𝑗𝑒 ,
+where 𝑛𝑒 (𝐶) is the number of traversals of 𝑒 by 𝐶. Each walk. Cut a walk 𝐶 with 𝑛𝑒 (𝐶) ≥ 1 at its
+traversals of 𝑒 = 𝑢𝑤. Each piece avoids 𝑒 and is nonempty, since two traversals of 𝑒 are never
+consecutive and 𝑢 ≠ 𝑤. A piece that ends at the endpoint of 𝑒 where it started is a closed walk in
+which consecutive links differ, so it contains a cycle and has length at least 𝑔; a piece joining 𝑢 and
+𝑤 contains a path, which with 𝑒 forms a cycle, so it has length at least 𝑔 − 1. Hence |𝐶| ≥ 𝑔 𝑛𝑒 (𝐶),
+and summing, ∑𝑓 𝑗𝑓 ≥ 𝑔 𝑗𝑒 . The Casimir. Every nonzero spin is at least 12 , so 𝑗𝑓 (𝑗𝑓 + 1) ≥ 32 𝑗𝑓 ; hence
+                                                   3𝑔
+𝑐𝑗 ≥ 32 ∑𝑓 𝑗𝑓 , which is ∑𝑓 𝑗𝑓 ≤ 23 𝑐𝑗 , and 𝑐𝑗 ≥ 2 𝑗𝑒 . On a nonconstant physical block some 𝑗𝑒 ≥ 12 , so
+      3𝑔
+𝑐𝑗 ≥ 4 . For the equality case, 𝑗 = 12 on a cycle of length 𝑔 satisfies every vertex inequality and has
+         𝑔
+∑ 𝑓 𝑗𝑓 = 2 = 𝑔 𝑗 𝑒 .
+
+Lemma 3.3 (ground-state transform). Let Γ(𝑓 , ℎ) = ∑𝑒,𝑎 (𝑋𝑒,𝑎 𝑓 )(𝑋𝑒,𝑎 ℎ), 𝑃𝐻 the Haar mean and
+𝑄𝐻 = 𝐼 − 𝑃𝐻 . For real 𝑣, 𝑒𝑣 is an eigenfunction of 𝐻𝐿 with eigenvalue 𝐸 iff 𝐾𝑣 = 𝜉 𝑆 + 𝑄𝐻 Γ(𝑣, 𝑣) and
+𝐸 = 𝜅(2𝑀𝐿 𝜉 − 𝑃𝐻 Γ(𝑣, 𝑣)); then (𝐻𝐿 − 𝐸)(𝑒𝑣 ℎ) = 𝜅𝑒𝑣 (𝐾ℎ − 2Γ(𝑣, ℎ)) for every ℎ.
+The Yang–Mills workbench: a reader                                                                            10
+
+
+Status. Proved here; the workbench’s F33–F36, audited.
+
+
+Proof. From 𝑋 2 (𝑒𝑣 ℎ) = 𝑒𝑣 (ℎ(𝑋𝑣)2 + 2(𝑋𝑣)(𝑋ℎ) + ℎ𝑋 2 𝑣 + 𝑋 2 ℎ) one gets 𝐾(𝑒𝑣 ℎ) = 𝑒𝑣 (ℎ(𝐾𝑣 −
+Γ(𝑣, 𝑣)) − 2Γ(𝑣, ℎ) + 𝐾ℎ). With ℎ = 1, 𝐻𝐿 𝑒𝑣 = 𝜅𝑒𝑣 (𝐾𝑣 − Γ(𝑣, 𝑣) + 𝜉 (2𝑀𝐿 − 𝑆)), which equals
+𝐸𝑒𝑣 exactly when 𝐾𝑣 − Γ(𝑣, 𝑣) − 𝜉 𝑆 is the constant 𝐸/𝜅 − 2𝑀𝐿 𝜉; taking Haar means (𝑃𝐻 𝐾𝑣 = 0,
+𝑃𝐻 𝑆 = 0) identifies the constant as −𝑃𝐻 Γ(𝑣, 𝑣). Inserting this into the formula for 𝐾(𝑒𝑣 ℎ) gives
+the last identity.
+
+The ground state is unique and positive, so a solution 𝑣 of the vacuum equation gives the ground
+state 𝑒𝑣 /‖𝑒𝑣 ‖. With 𝑣1 = 𝑆/3 (each 𝑊𝑝 has Casimir 3) and 𝐵 = 𝐾 −1 𝑄𝐻 Γ the equation is 𝑣 = 𝜉 𝑣1 +
+𝐵(𝑣, 𝑣), whose formal solution is ∑ 𝜉 𝑛 𝑣𝑛 with 𝑣𝑛 = ∑𝑖+𝑗=𝑛 𝐵(𝑣𝑖 , 𝑣𝑗 ); this exponential (coupled-
+cluster) ansatz is the one the workbench credits, for Hamiltonian lattice field theory, to Schütte,
+Zheng and Hamer [8].
+The analytic core (the workbench’s F4–F32; audited). In the Fourier-algebra norm ‖𝑓 ‖𝑋 =
+∑𝑗 ‖𝐴𝑗 (𝑓 )‖1 , which is submultiplicative (Eymard [2]), and in local weighted norms 𝑚(⋅), 𝑡(⋅),
+‖ ⋅ ‖loc anchored at a link, ‖𝐵(𝑓 , ℎ)‖loc ≤ 3(𝑚(𝑓 )𝑡(ℎ) + 𝑚(ℎ)𝑡(𝑓 )) ≤ 23 ‖𝑓 ‖loc ‖ℎ‖loc , by Lemma 3.2. With
+𝑞5 = ∑𝑖≤5 𝜉 𝑖 𝑣𝑖 , the residual 𝜉 𝑣1 + 𝐵(𝑞5 , 𝑞5 ) − 𝑞5 has exactly the degrees 6–10 and local norm at
+most 𝛿5 (𝜉 ), and 𝐽5 = 2𝐵(𝑞5 , ⋅) has norm at most ℓ5 (𝜉 ). For 0 < 𝜉 ≤ 𝛼5 a Neumann inverse and
+a binary-tree majorant give 𝑣 = 𝑞5 + 𝑤 with ‖𝑤‖loc ≤ 𝑤∗ = 34 (1 − ℓ5 − √𝒟5 ), the small root of
+2 2
+3
+  𝑤 − (1 − ℓ5 )𝑤 + 𝛿5 = 0, endpoint included. The bounds are uniform in the box: each 𝑣𝑛 is a
+sum of universal cluster functions over plaquette multisets, so the anchored sums of the infinite
+lattice bound every box; the orientation dependence of the Fourier-algebra norm is handled by
+taking the maximum over the eight axis reflections.
+Proposition 3.4 (spectral return). Under the analytic core, every eigenvalue 𝜆 > 0 of 𝐻𝐿 − 𝐸0 on the
+physical space satisfies 𝜆 ≥ 𝜅𝑑5 (𝜉 ).
+
+Status. Proved here, given the analytic core; the workbench’s F35–F37, audited.
+
+
+Proof. Let 𝜑 be a physical eigenvector, ℎ = 𝜑/𝜓 (gauge invariant) and ℎ′ = 𝑄𝐻 ℎ ≠ 0 (as 𝜆 ≠ 0,
+ℎ is not constant). By Lemma 3.3 and Γ(𝑣, 1) = 0, (𝐾 − 𝜆/𝜅)ℎ′ = 2𝑄𝐻 Γ(𝑣, ℎ′ ). If 𝜆/𝜅 ≥ 3
+there is nothing to prove, since 𝑑5 ≤ 3. Otherwise 𝑐𝑗 ≥ 3 on every nonconstant physical block
+(Lemma 3.2), so 𝑐𝑗 − 𝜆/𝜅 ≥ 𝑐𝑗 (1 − 𝜆/(3𝜅)) and ‖(𝐾 − 𝜆/𝜅)ℎ′ ‖𝑋 ≥ (1 − 𝜆/(3𝜅))‖𝐾ℎ′ ‖𝑋 . The core
+gives ‖2Γ(𝑣, ℎ′ )‖𝑋 ≤ 4𝑡(𝑣)‖𝐾ℎ′ ‖𝑋 ≤ 𝜒‖𝐾ℎ′ ‖𝑋 with 𝜒 = 4 ∑ 𝑡𝑖 𝜉 𝑖 + 23 𝑤∗ , and 𝑄𝐻 does not increase
+‖ ⋅ ‖𝑋 . Hence 𝜆 ≥ 3𝜅(1 − 𝜒), and substituting 𝑤∗ shows 3(1 − 𝜒) = 𝑑5 (𝜉 ).
+
+Nothing in this argument uses the truncation order.
+Corollary 3.5 (the gap at every truncation order). For 1 ≤ 𝑁 ≤ 5 let ℓ𝑁 (𝑥) = ∑𝑖≤𝑁 (𝑚𝑖 + 4𝑡𝑖 )𝑥𝑖 ,
+𝛿𝑁 (𝑥) = ∑𝑖,𝑗≤𝑁, 𝑖+𝑗≥𝑁+1 3(𝑚𝑖 𝑡𝑗 + 𝑚𝑗 𝑡𝑖 )𝑥𝑖+𝑗 , 𝒟𝑁 = (1 − ℓ𝑁 )2 − 83 𝛿𝑁 , 𝛼𝑁 the first positive root of 𝒟𝑁
+and 𝑑𝑁 (𝑥) = 32 (1 + √𝒟𝑁 (𝑥)) + ∑𝑖≤𝑁 ( 32 𝑚𝑖 − 6𝑡𝑖 )𝑥𝑖 . If (𝑚𝑖 , 𝑡𝑖 ), 𝑖 ≤ 𝑁, bound the local norms of the first
+𝑁 vacuum coefficients, then Δ𝐿 ≥ 𝜅 𝑑𝑁 (𝜉 ) for every 𝐿 ≥ 2, 𝑎 > 0 and 0 < 𝜉 ≤ 𝛼𝑁 , and 𝑑𝑁 decreases on
+[0, 𝛼𝑁 ]. In particular:
+(a) (𝑁 = 1) 𝒟1 (𝜉 ) = 1 − 256𝜉 /3 exactly and 32 𝑚1 − 6𝑡1 = 0, so
+
+                           Δ𝐿 ≥ 32 𝜅(1 + √1 − 644 )         for all 𝑔2 ≥ 8/√3 ≈ 4.6188;
+                                                  3𝑔
+
+     so Δ𝐿 ≥ 32 𝜅 there, with 2.0745𝜅 at 𝑔2 = 5 and 2.8304𝜅 at 𝑔2 = 10.
+(b) (𝑁 = 2) 𝛼2 = 0.0154800849822 …, that is 𝑔2 ≥ 4.0186791538833 …, and Δ𝐿 ≥ 𝜅 𝑑2 (𝜉 ) ≥
+    𝜅 𝑑2 (𝛼2 ) = 1.52094 𝜅 on that range (1.7665𝜅 at 𝑔2 = 4.1, 2.3033𝜅 at 𝑔2 = 5).
+The Yang–Mills workbench: a reader                                                                        11
+
+
+ (c) (𝑁 = 4) 𝛼4 = 0.0181049722316 …, that is 𝑔2 ≥ 3.7159603625 …, with 𝑑4 (1/64) = 1.898118 and
+     𝑑4 (4/225) = 1.658436.
+
+Status. Proved here from the audited core. (a) is the workbench’s own order-1 theorem, in its 14–16 Septem-
+ber continuation YM-06 (consolidation/20260916, equations G22 and G26–G29, with Δ𝐿 > 2.07445𝜅
+at 𝑔2 ≥ 5), whose own proof was not read; its input, order 1, is verified by hand. (b) is Generalised
+here relative to the workbench’s single-norm order-2 theorem in the same continuation (R10: Δ𝐿 ≥
+3
+2
+  𝜅(1 + √1 − 256
+              3
+                 𝜉 + 10720
+                       9
+                           𝜉 2 ) for 𝑔2 ≥ √(32 + √354)/3 ≈ 4.1156): with the audited two-norm pair (𝑚2 , 𝑡2 )
+and no further input, the threshold falls to 4.0187 and the endpoint constant rises from 32 to 1.52094. The
+                                2
+same continuation reaches 𝑔 ≥ 3.8260 at order 2 (its L17) by a sharper computed bound for the cubic
+term of the residual (944984/351 in its L10, against the generic 6(𝑚1 𝑡2 + 𝑚2 𝑡1 ) = 300672/39), which was
+not audited. So the qualitative content of Theorem 3.1 holds with audited inputs only for 𝑔2 ≥ 4.0187,
+and orders 3–5 lower the threshold to 3.6836 and raise the constants. (c) is conditional on the order-3 and
+order-4 inputs and does not use order 5. 𝛼𝑁 , the thresholds and the values of 𝑑𝑁 computed here from the
+exact rationals of F26 by root isolation; the monotonicity checked on a 401-point grid for 𝑁 = 1, … , 5. The
+workbench’s YM-03 edition uses the radius 3/256 = 𝛼1 for its row remainder.
+
+Proof. Replace 𝑞5 by 𝑞𝑁 = ∑𝑖≤𝑁 𝜉 𝑖 𝑣𝑖 in the analytic core. By 𝑣𝑛 = ∑𝑖+𝑗=𝑛 𝐵(𝑣𝑖 , 𝑣𝑗 ) for 2 ≤ 𝑛 ≤ 𝑁,
+the residual is 𝜉 𝑣1 + 𝐵(𝑞𝑁 , 𝑞𝑁 ) − 𝑞𝑁 = ∑𝑖,𝑗≤𝑁, 𝑖+𝑗≥𝑁+1 𝜉 𝑖+𝑗 𝐵(𝑣𝑖 , 𝑣𝑗 ), of local norm at most 𝛿𝑁 (𝜉 ),
+and ‖2𝐵(𝑞𝑁 , ⋅)‖ ≤ ℓ𝑁 (𝜉 ). On [0, 𝛼𝑁 ], ℓ𝑁 < 1: ℓ𝑁 (0) = 0, and ℓ𝑁 (𝜉1 ) = 1 with 0 < 𝜉1 ≤ 𝛼𝑁 would
+give 𝒟𝑁 (𝜉1 ) = − 83 𝛿𝑁 (𝜉1 ) < 0. So the Neumann inverse and the tree majorant give ‖𝑤‖loc ≤ 𝑤∗ =
+3
+4
+  (1 − ℓ𝑁 − √𝒟𝑁 ), and Proposition 3.4 with 𝜒 = 4 ∑𝑖≤𝑁 𝑡𝑖 𝜉 𝑖 + 23 𝑤∗ gives 𝜆 ≥ 3𝜅(1 − 𝜒) = 𝜅 𝑑𝑁 (𝜉 ).
+Differentiating 23 𝑤∗2 −(1−ℓ𝑁 )𝑤∗ +𝛿𝑁 = 0 gives 𝑤∗′ √𝒟𝑁 = 𝛿𝑁 ′ +ℓ′ 𝑤 > 0 on (0, 𝛼 ), so 𝜒 increases
+                                                                   𝑁 ∗             𝑁
+and 𝑑𝑁 decreases. For 𝑁 = 1, (𝑚1 , 𝑡1 ) = ( 3 , 3 ) gives ℓ1 = 3 𝜉, 𝛿1 = 6𝑚1 𝑡1 𝜉 2 = 2048
+                                             64 16                128
+                                                                                          3
+                                                                                              𝜉 2 and
+           256      16384  16384 2                    256      64              3            3408
+𝒟1 = 1− 3 𝜉 +( 9 − 9 )𝜉 ; with 𝜉 = 1/(4𝑔4 ), 3 𝜉 = 4 . For 𝑁 = 2, 2 𝑚2 −6𝑡2 = 39 > 0,
+                                                               3𝑔
+         3
+so 𝑑2 > 2 on the whole range even before the value 𝑑2 (𝛼2 ) is computed.
+
+What the theorem is and is not. It is a finite-regulator, strong-coupling statement: fixed spacing, any
+box, bare coupling above a threshold. The continuum limit needs 𝑎 → 0 with 𝑔 → 0, the opposite
+regime, and the workbench records that its standing continuum path eventually leaves the domain.
+Nothing about the continuum mass gap follows, and the workbench claims nothing. Mass gaps at
+strong coupling are classical for lattice gauge theories in the Euclidean setting (Osterwalder–Seiler
+[7]; cited, not re-read); the workbench’s statement is an explicit bound, uniform in the box, on the
+whole physical space of the Kogut–Susskind 𝑆𝑈(2) Hamiltonian on open boxes, with a closed
+coupling threshold; whether a bound of this form is in the literature was not searched. If 𝑚5 and
+𝑡5 were both underestimated by a factor 2, the threshold would move to 𝑔2 ≈ 3.737 and 𝑑5 (1/64)
+to 1.8946; by Corollary 3.5(b), errors of any size in the order-3 to order-5 inputs leave a gap above
+1.52𝜅 for 𝑔2 ≥ 4.0187. The Riemann, Jacobian and 𝑆6 material plays no role in this theorem.
+
+3.3 The coupling domain and the continuum path
+Proposition 3.6 (the standing continuum path leaves the domain). Write 𝑐 = 1/𝑔2 . Then 𝜉 = 𝑐2 /4,
+so 𝜉 ≤ 𝛼5 exactly when 𝑐 ≤ 2√𝛼5 = 0.27147 …, and |𝜉 | < 1/55 exactly when 𝑐 < 2/√55 = 0.26968 ….
+On the workbench’s standing path 𝑎𝑛 = 𝑎0 2−𝑛 , 𝑐𝑛 = 𝑔0−2 + 𝛽𝑛 log 2 with 𝛽 > 0, the first condition fails
+for every 𝑛 > (2√𝛼5 − 𝑔0−2 )/(𝛽 log 2) and the second for every 𝑛 ≥ (2/√55 − 𝑔0−2 )/(𝛽 log 2).
+
+Status. Proved here; the workbench states it (H7, and the fifth-reference README.md).
+
+
+Proof. 𝜉 = 1/(4𝑔4 ) = 𝑐2 /4, and 𝑐 ↦ 𝑐2 /4 is increasing on 𝑐 > 0. Along the path 𝑐𝑛 increases
+linearly without bound.
+The Yang–Mills workbench: a reader                                                                         12
+
+
+So Theorem 3.1 and the heat results of Section 4 say nothing about the regime of the continuum
+limit, as the workbench says. This limits what the results are about; it does not affect them at a
+fixed regulator.
+
+4 Heat flow and the complementary physical space
+The second manuscript of the latest edition, HEAT_AND_COMPLEMENT.md (H1–H34; Appendix B of
+the fifth-reference reader), uses the control of the vacuum from Section 3 for two further purposes:
+box-independent bounds on the heat correlations of plaquettes, and bounds on how much the
+plaquette family mixes with the rest of the physical space. This section states both, with proofs of
+the steps that carry the constants.
+
+4.1 Objects
+Let 𝐴 = 𝐻𝐿 − 𝐸0 on the centred physical space and 𝜌 = 𝜓2 . Every statement below holds for every
+𝐿 ≥ 2 and 𝑎 > 0.
+• Centred plaquette states and their heat correlations:
+
+                   𝑟𝑝 = (𝑊𝑝 − ⟨𝑊𝑝 ⟩𝜌 )𝜓,         ̂𝑝𝑞 (𝜏; 𝜉 ) = ⟨𝑟𝑝 , 𝑒−𝜏𝐴/𝜅 𝑟𝑞 ⟩,
+                                                 𝐶                                  𝜏 = 𝜅𝑡.
+
+• Row norm: ‖𝐵‖row = max𝑝 ∑𝑞 |𝐵𝑝𝑞 |.
+                                                                               ̂ the workbench computed them
+• Taylor coefficients: 𝐶0 , 𝐶2 , 𝐶4 are the coefficients of 𝜉 0 , 𝜉 2 , 𝜉 4 in 𝐶;
+  in its 21 September heat edition.
+• The transformed generator: in the coordinates 𝑓 ↦ 𝜓𝑓, Lemma 3.3 turns 𝐴/𝜅 into 𝐾 − 𝐷𝑣 with
+  𝐷𝑣 ℎ = 2Γ(𝑣, ℎ).
+• The Fourier-algebra norm is ‖ ⋅ ‖𝑋 of Section 3, and 𝜒 = 4 ∑𝑖 𝑡𝑖 𝜉 𝑖 + 23 𝑤∗ is the number from the
+  proof of Proposition 3.4, so 3(1 − 𝜒) = 𝑑5 (𝜉 ) and ‖𝐷𝑣 ℎ‖𝑋 ≤ 𝜒‖𝐾ℎ‖𝑋 .
+
+4.2 A heat remainder independent of the box
+Theorem 4.1 (heat remainder; H13). For every 𝐿 ≥ 2, every 𝜏 ≥ 0 and every |𝜉 | < 1/55,
+
+                                                                  67896 −13𝜏/8 (55|𝜉 |)6
+              ̂ 𝜉 ) − 𝐶0 (𝜏) − 𝜉 2 𝐶2 (𝜏) − 𝜉 4 𝐶4 (𝜏)∥
+             ∥𝐶(𝜏;                                      row ≤          𝑒                    .
+                                                                   169        1 − (55|𝜉 |)2
+
+Status. Audited, given the analytic core of Theorem 3.1, on which it rests; it is therefore conditional on the
+same order-3 to order-5 inputs. Every constant is re-derived below. The semigroup construction (H5–H7)
+and the analytic continuation to complex 𝜉 were read and are standard; the evenness and the Cauchy step
+are proved below. The inherited matrices 𝐶0 , 𝐶2 , 𝐶4 are not needed for the truth of the bound, only for its
+use. The earlier edition’s bound, on the circle 3/256 with prefactor 512 and rate 3/2, is superseded.
+The proof is in four steps; the constants are collected in Proposition 4.2.
+(i) The mean and the semigroup (H1–H7). Put 𝑇 = 𝑄𝐻 𝐷𝑣 𝐾 −1 and 𝑝 = 𝑃𝐻 𝐷𝑣 𝐾 −1 on the nonconstant
+physical coefficients. Since the norm ‖ ⋅ ‖𝑋 adds the scalar and the nonconstant parts, |𝑝𝑦| + ‖𝑇𝑦‖𝑋 ≤
+𝜒‖𝑦‖𝑋 . So 𝑆 = (𝐼−𝑇)−1 exists with ‖𝑆‖ ≤ 1/(1−𝜒), and 𝜇(𝐹) = 𝑃𝐻 𝐹+𝑝𝑆𝑄𝐻 𝐹 satisfies |(𝜇−𝑃𝐻 )𝐹| ≤
+𝜒‖𝑄𝐻 𝐹‖𝑋 /(1 − 𝜒). For 𝐿0 = (𝐼 − 𝑇)𝐾 and ℎ > 0, coefficientwise ‖(𝐼 + ℎ𝐾)𝑓 ‖𝑋 = ‖𝑓 ‖𝑋 + ℎ‖𝐾𝑓 ‖𝑋 .
+Hence
+                   ‖(𝐼 + ℎ𝐿0 )𝑓 ‖𝑋 ≥ ‖𝑓 ‖𝑋 + ℎ(1 − 𝜒)‖𝐾𝑓 ‖𝑋 ≥ (1 + 3ℎ(1 − 𝜒))‖𝑓 ‖𝑋 ,
+using 𝑐𝑗 ≥ 3 on nonconstant physical blocks (Lemma 3.2). With the range condition (H5), the
+Lumer–Phillips theorem [5] gives a semigroup 𝐸(𝜏) = 𝑒−𝜏𝐿0 with ‖𝐸(𝜏)‖ ≤ 𝑒−3(1−𝜒)𝜏 .
+The Yang–Mills workbench: a reader                                                                     13
+
+
+                                                                                          ̂𝑝𝑞 (𝜏) =
+(ii) A formula for the correlations. Let 𝒯 (𝜏) be the transformed heat semigroup, so that 𝐶
+𝜇[(𝒯 (𝜏)𝐹𝑝 )𝑊𝑞 ] with 𝐹𝑝 = 𝑊𝑝 − 𝜇𝑊𝑝 ; here 𝜇[𝒯 (𝜏)𝐹𝑝 ] = 𝜇[𝐹𝑝 ] = 0 removes the second mean.
+Let ℎ𝜏 = 𝐾 −1 𝑆𝐸(𝜏)𝑊𝑝 and 𝐺𝑧 = ∑𝑞 𝑧𝑞 𝑊𝑞 with |𝑧𝑞 | ≤ 1. Since 𝑊𝑝 has Haar mean 0, the Poisson
+equation (H3) gives (𝐾 − 𝐷𝑣 )ℎ𝜏 = 𝐸(𝜏)𝑊𝑝 − 𝜇(𝐸(𝜏)𝑊𝑝 ) = 𝒯 (𝜏)𝐹𝑝 . For any ℎ and 𝐺,
+
+                             ∫ 𝑒2𝑣 (𝐾ℎ − 2Γ(𝑣, ℎ))𝐺 𝑑𝑈 = ∫ 𝑒2𝑣 Γ(ℎ, 𝐺) 𝑑𝑈,
+
+                                                                        ̂𝑝𝑞 (𝜏) = 𝜇Γ(ℎ𝜏 , 𝐺𝑧 ), and
+by moving one derivative 𝑋𝑒,𝑎 onto 𝑒2𝑣 𝐺. Dividing by ∫ 𝑒2𝑣 gives ∑𝑞 𝑧𝑞 𝐶
+                               8 −3(1−𝜒)𝜏
+‖𝐾ℎ𝜏 ‖𝑋 ≤ ‖𝑆‖ ‖𝐸(𝜏)‖ ‖𝑊𝑝 ‖𝑋 ≤ 1−𝜒 𝑒       .
+
+Proposition 4.2 (the constants of the heat bound; H9–H12). In this setting:
+ (a) ‖Γ(ℎ, 𝐺𝑧 )‖𝑋 ≤ 32‖𝐾ℎ‖𝑋 ;
+ (b) |𝑃𝐻 Γ(ℎ, 𝐺𝑧 )| ≤ 18 ‖𝐾ℎ‖𝑋 ;
+                    1 + 255𝜒 −3(1−𝜒)𝜏
+      ̂
+ (c) ‖𝐶(𝜏)‖ row ≤            𝑒        ;
+                    (1 − 𝜒)2
+(d) at |𝜉 | = 1/55 one has 1/55 < 𝛼5 and 𝑑5 (1/55) = 1.637 … > 13/8, so 𝜒 < 11/24, the prefactor is at
+            1+255⋅11/24
+    most (13/24)2 = 67896  169
+                               , and the rate is at least 13
+                                                          8
+                                                             .
+
+Status. Proved here. The workbench’s (H9)–(H12) state the same; the factor 255 is derived here. The
+inequalities of (d) are checked in exact rational arithmetic (script ymr_heat_constants.py).
+
+Proof. (a) By (F10), ‖Γ(ℎ, 𝐺)‖𝑋 ≤ 2𝑡(𝐺)‖𝐾ℎ‖𝑋 . The function 𝑊𝑞 has one Fourier block, with spin 12
+on the four links of 𝑞, and its coefficient matrix has trace norm 24−1 = 8 by (F12): four fundamental
+occurrences, two cyclic sign changes. A link lies on at most four plaquettes, so 𝑡(𝐺𝑧 ) ≤ 4 ⋅ 12 ⋅ 8 = 16.
+(b) Integration by parts gives 𝑃𝐻 Γ(ℎ, 𝐺𝑧 ) = ∫ ℎ 𝐾𝐺𝑧 𝑑𝑈 = 3 ∑𝑞 𝑧𝑞 ∫ ℎ𝑊𝑞 𝑑𝑈, since each 𝑊𝑞 has
+Casimir 4 ⋅ 34 = 3. The gauge-invariant functions whose Fourier support is spin 12 on the four
+links of 𝑞 and spin 0 elsewhere form the line ℂ𝑊𝑞 : at each corner two spin- 12 links meet, and
+ 1
+ 2
+   ⊗ 12 contains the trivial representation once. Write 𝑎𝑞 for the component of ℎ on this line. By
+Haar orthogonality and ∫ 𝑊𝑞2 = 1, ∫ ℎ𝑊𝑞 = 𝑎𝑞 . The block of 𝑎𝑞 𝑊𝑞 contributes 3 ⋅ 8|𝑎𝑞 | to ‖𝐾ℎ‖𝑋 , so
+|𝑃𝐻 Γ| ≤ 3 ∑ |𝑎𝑞 | ≤ 18 ‖𝐾ℎ‖𝑋 . (c) 𝜇Γ = 𝑃𝐻 Γ + (𝜇 − 𝑃𝐻 )𝑄𝐻 Γ, so by (b), step (i) and (a),
+
+                          1  32𝜒             1  32𝜒 8𝑒−3(1−𝜒)𝜏   1 + 255𝜒 −3(1−𝜒)𝜏
+        |𝜇Γ(ℎ𝜏 , 𝐺𝑧 )| ≤ ( +     )‖𝐾ℎ𝜏 ‖𝑋 ≤ ( +    )           =          𝑒        .
+                          8 1−𝜒              8 1−𝜒    1−𝜒        (1 − 𝜒)2
+
+The row norm is the maximum over the phases 𝑧𝑞 of the left side. (d) The value 𝑑5 (1/55) is
+computed from the rationals of (F26), and 𝑑5 > 13/8 is equivalent to 𝜒 < 11/24 since 𝑑5 = 3(1−𝜒).
+The prefactor increases with 𝜒, and 3(1 − 𝜒) > 3 ⋅ 13
+                                                   24
+                                                      = 13
+                                                         8
+                                                           .
+
+(iii) Evenness. The map 𝑈(𝑛,𝑖) ↦ (−1)∑𝑘<𝑖 𝑛𝑘 𝑈(𝑛,𝑖) multiplies each link by a central element. It
+preserves the Haar measure, 𝐾 and the gauge action, and it sends every 𝑊𝑝 to −𝑊𝑝 : for 𝑝 = (𝑛; 𝑖, 𝑗)
+with 𝑖 < 𝑗 the four signs multiply to −1. It therefore conjugates 𝐻𝐿 (𝜉 ) to 𝐻𝐿 (−𝜉 ) plus a constant,
+and maps each 𝑟𝑝 to −𝑟𝑝 at the opposite coupling. So 𝐶(𝜏;̂ −𝜉 ) = 𝐶(𝜏;
+                                                                     ̂ 𝜉 ), and only even powers
+of 𝜉 occur. (Checked on all 240 faces of the box 𝐿 = 2.)
+(iv) Cauchy’s estimate. By (c) and (d), on the circle |𝜁 | = 1/55 every phase-weighted row sum of
+ ̂ 𝜁 ) is at most 𝐶𝑒−13𝜏/8 with 𝐶 = 67896/169. So the coefficient of 𝜁 2𝑛 has row norm at most
+𝐶(𝜏;
+𝐶𝑒−13𝜏/8 552𝑛 , and summing over 𝑛 ≥ 3 gives the stated tail ∑𝑛≥3 (55|𝜉 |)2𝑛 = (55|𝜉 |)6 /(1−(55|𝜉 |)2 ).
+This proves Theorem 4.1.
+The Yang–Mills workbench: a reader                                                                          14
+
+
+Other radii (Generalised here). Nothing in steps (i)–(iv) uses 𝑅 = 1/55 except the numbers of
+Proposition 4.2(d). For every 0 < 𝑅 < 𝛼5 the same proof gives the bound of Theorem 4.1
+with 55|𝜉 | replaced by |𝜉 |/𝑅, the prefactor replaced by 𝐶(𝑅) = (1 + 255𝜒𝑅 )/(1 − 𝜒𝑅 )2 and the
+rate 13/8 replaced by 𝑑5 (𝑅) = 3(1 − 𝜒𝑅 ), where 𝜒𝑅 = 1 − 𝑑5 (𝑅)/3. The radius can therefore
+approach 𝛼5 ≈ 1/54.27. For example 𝑅 = 0.0184 gives 𝐶(𝑅) = 443.37 … and rate 1.5746 …. At
+𝑅 = 1/55 itself the exact 𝜒𝑅 = 0.45412 … gives the prefactor 391.98 … and the rate 1.6376 …; the
+workbench’s rational rounding 𝜒 < 11/24 costs little. (Computed from the rationals of (F26);
+these are floating-point values, not rational certificates.)
+
+4.3 Relaxation into the whole complementary space
+Let 𝑅 be the map with columns 𝑟𝑝 and Φ = 𝜅𝐴−1 𝑅. The original Grams and the energy of the
+family are
+
+                 𝐺0 = 𝑅∗ 𝑅,    𝐺1 = 𝑅∗ Φ,     𝐺2 = Φ∗ Φ,      𝐸 = 𝜅𝐺1 ,     𝐾𝑜 = 𝜅 −1 𝑅∗ 𝐴𝑅.
+
+Put 𝑃 = Φ𝐺−1    ∗
+            2 Φ , 𝑄 = 𝐼 − 𝑃, 𝐵Φ = 𝑄𝑅 and 𝐷𝑄 = 𝑄𝐴𝑄 on 𝑄ℋ0 . Allowing the family Φ𝑐 to relax
+into every ℎ ∈ 𝑄ℋ0 gives the relaxed energy and Gram
+
+                       𝐸full = 𝐸 − 𝜅 2 𝐵∗Φ 𝐷−1
+                                            𝑄 𝐵Φ ,       𝐺full = 𝐺2 + 𝜅 2 𝐵∗Φ 𝐷−2
+                                                                               𝑄 𝐵Φ .
+
+Proposition 4.3 (relaxation bounds; H20–H29). Suppose that, for numbers 𝑤0 , 𝑤1 , 𝑤2 , 𝑤𝐾 , 𝛽 ≥ 0 and
+𝑑ph > 0,
+
+‖𝐺𝑘 −3−𝑘 𝐼‖ ≤ 𝑤𝑘 (𝑘 = 0, 1, 2),       ‖𝐾𝑜 −3𝐼‖ ≤ 𝑤𝐾 ,        0 ⪯ 𝐽 = 𝐺0 −6𝐺1 +9𝐺2 ⪯ 𝛽𝐼,            𝐴 ≥ 𝜅𝑑ph .
+
+Put 𝑙𝑘 = 3−𝑘 − 𝑤𝑘 > 0, 𝑢𝑘 = 3−𝑘 + 𝑤𝑘 and 𝑢𝐾 = 3 + 𝑤𝐾 . Then:
+(a) the fraction of each Φ𝑐 seen by the plaquette states, ‖𝑃𝑅 Φ𝑐‖2 /‖Φ𝑐‖2 , is at least 𝑙21 /(𝑢0 𝑢2 ), where 𝑃𝑅
+    is the orthogonal projection onto the span of the 𝑟𝑝 ;
+                                                                                             2 𝑙 );
+(b) (1 − 𝜂𝐸 )𝐸 ⪯ 𝐸full ⪯ 𝐸 and 𝐺2 ⪯ 𝐺full ⪯ (1 + 𝜂𝐺 )𝐺2 , with 𝜂𝐸 = 𝛽/(𝑑ph 𝑙1 ) and 𝜂𝐺 = 𝛽/(𝑑ph 2
+
+ (c) the energy of (𝐼 − 𝑃𝑅 )Φ𝑐 is at most (𝑢1 𝑢𝐾 /𝑙20 − 1) times 𝑐∗ 𝐸𝑐.
+
+Status. Proved here; the workbench’s (H21), (H23), (H26)–(H29). The domain statement for 𝐷𝑄 (H25) is
+the workbench’s and was read.
+
+Proof. (a) ‖𝑃𝑅 Φ𝑐‖2 = 𝑐∗ 𝐺1 𝐺−1            −1 ∗ 2        2        2         2    ∗           2
+                                 0 𝐺1 𝑐 ≥ 𝑢0 𝑐 𝐺1 𝑐 ≥ (𝑙1 /𝑢0 )|𝑐| and ‖Φ𝑐‖ = 𝑐 𝐺2 𝑐 ≤ 𝑢2 |𝑐| . (b)
+ ∗                     −1                                      ∗
+𝐵Φ 𝐵Φ = 𝐺0 − 𝐺1 𝐺2 𝐺1 is the least value of (𝑅 − Φ𝑋) (𝑅 − Φ𝑋) over coefficient matrices
+𝑋, and 𝑋 = 3𝐼 gives 𝐽; so 𝐵∗Φ 𝐵Φ ⪯ 𝐽 ⪯ 𝛽𝐼. Since 𝐷𝑄 ⪰ 𝜅𝑑ph , 𝜅 2 𝐵∗Φ 𝐷−1      𝑄 𝐵Φ ⪯ (𝜅/𝑑ph )𝛽𝐼 ⪯
+(𝛽/(𝑑ph 𝑙1 ))𝜅𝐺1 , and 𝜅 2 𝐵∗Φ 𝐷−2
+                                𝑄 Φ𝐵 ⪯  (𝛽/𝑑 2 )𝐼 ⪯ (𝛽/(𝑑2 𝑙 ))𝐺 . (c) Since 𝐴Φ = 𝜅𝑅 and 𝑃 𝑅 = 𝑅,
+                                             ph          ph 2     2                       𝑅
+the mixed energy is 𝑞𝐴 (Φ𝑐, 𝑃𝑅 Φ𝑐) = 𝜅⟨𝑅𝑐, Φ𝑐⟩ = 𝜅𝑐∗ 𝐺1 𝑐 = 𝑞𝐴 (Φ𝑐), and 𝑃𝑅 Φ𝑐 = 𝑅𝐺−1
+                                                                                   0 𝐺1 𝑐 has
+energy 𝜅𝑐∗ 𝐺1 𝐺−1
+               0  𝐾 𝐺
+                   𝑜 0
+                      −1 𝐺 𝑐. Expanding 𝑞 ((𝐼 − 𝑃 )Φ𝑐) gives 𝜅𝑐∗ (𝐺 𝐺−1 𝐾 𝐺−1 𝐺 − 𝐺 )𝑐, the
+                          1               𝐴        𝑅                   1 0 𝑜 0   1    1
+workbench’s (H29). Now 𝐺1 𝐺−1        −1           2   2            2
+                               0 𝐾𝑜 𝐺0 𝐺1 ⪯ (𝑢𝐾 /𝑙0 )𝐺1 ⪯ (𝑢𝐾 𝑢1 /𝑙0 )𝐺1 .
+
+The workbench obtains the numbers 𝑤𝑘 , 𝑤𝐾 and 𝛽 from Theorem 4.1. The time-integral formula
+       ∞      ̂
+𝐺𝑘 = ∫0 𝜏 𝑘−1 𝐶(𝜏) 𝑑𝜏/(𝑘 − 1)! (𝑘 ≥ 1) gives the remainder factors 𝐶/𝑑𝑘 with 𝑑 = 13/8. For
+    ̂ + ∫∞ (9𝜏 − 6)𝐶(𝜏)
+𝐽 = 𝐶(0)              ̂                                  ∞
+                          𝑑𝜏 the signed weight is kept: ∫ |9𝜏 − 6|𝑒−𝑑𝜏 𝑑𝜏 = 6 − 92 + 182 𝑒−2𝑑/3 ,
+             0                                                     0                      𝑑    𝑑     𝑑
+                     339
+and with 𝑒−13/12 < 1000  the prefactor is 𝐶𝐽 = 5156090136/3570125 (H17–H18). The degree-2 and
+degree-4 parts are the workbench’s inherited row bounds (the table after H18), which come from
+199 supports and 559 marked contributions of its earlier volume edition.
+Proposition 4.4 (the benchmark table; H5). From the stated inherited row bounds and the constants 𝐶,
+𝐶𝐽 and 606, the widths and Proposition 4.3 give, for every 𝐿 ≥ 2 and 𝑎 > 0:
+The Yang–Mills workbench: a reader                                                                         15
+
+
+
+                     Coupling     Observed fraction   Energy loss 𝜂𝐸   Gram increase 𝜂𝐺
+                      2
+                     𝑔 ≥ 10          > 0.9778           < 0.01057         < 0.01123
+                     𝑔2 ≥ 12         > 0.9975           < 0.00115         < 0.00120
+                     𝑔2 ≥ 25/2       > 0.9984           < 0.00071         < 0.00073
+                     𝑔2 ≥ 13         > 0.99904         < 0.000436        < 0.000451
+                     𝑔2 ≥ 16         > 0.99991         < 0.0000357       < 0.0000364
+
+
+In particular the workbench’s table holds: at 𝑔2 ≥ 13 the energy loss and the Gram increase are below
+1/2000, and at 𝑔2 ≥ 16 below 1/25000.
+
+Status. Reproduced: recomputed in exact rational arithmetic from the stated inputs (script ymr_heat_
+constants.py); at 𝑔 2 = 13, with the workbench’s 𝑑ph = 29047/10000, the three values agree with its
+diagnostics to eleven digits. At the other couplings the script uses 𝑑ph equal to 𝑑5 (𝜉 ) rounded down to four
+digits. Conditional on the inherited degree-2 and degree-4 row bounds and on the kinetic-row constants 30
+and 48 of (H14), which were not re-derived, and on the inputs of Theorem 3.1. The widths are monotone
+in 𝜉 and 𝑑5 decreases in 𝜉, so each row holds for all larger 𝑔2 , as the workbench says.
+
+4.4 Heat horizons, support quotients and the spatial limit
+• Finite heat time (H33; the Gram comparison is the workbench’s, the choice of 𝑇 is checked
+  here). Replacing Φ by Φ𝑇 = (𝐼 − 𝑒−𝑇𝐴 )Φ changes the Grams by factors between (1 − 𝜀)2
+                     −𝜅𝑑 𝑇
+  and 1, with 𝜀 = 𝑒 ph . For a signed sum of log det terms of total rank 𝐵 the error is at
+  most 2𝐵(− log(1 − 𝜀)) ≤ 2𝐵𝜀/(1 − 𝜀), and the choice 𝑇 = (𝜅𝑑ph )−1 log(1 + 2𝐵/𝜂) makes
+  𝜀/(1 − 𝜀) = 𝜂/(2𝐵), so the error is at most 𝜂.
+• Support quotients (H31–H32; located). An exact isomorphism between quotients of inverse-
+  energy spans and kernels, and the attained minimum of the family energy over changes of
+  support.
+• The spatial limit at fixed spacing (H34; located, an outline). Heat coefficients through degree 𝑁
+  agree on two boxes containing the same 𝑁-neighbourhood of the marks, so Theorem 4.1 makes
+  the correlations converge as 𝐿 → ∞; the workbench then builds the infinite-volume semigroup,
+  its invariant state and the relaxation bounds. This is a limit at fixed 𝑎 and 𝑔, not a continuum
+  limit, as the workbench says.
+
+5 The earlier editions
+5.1 The continuations of 14–21 September
+Their gap and heat bounds are superseded by Sections 3 and 4; their other calculations remain in
+the record as dated editions.
+• 14–16 September (the 297-page web-continuation reader). The first gap theorems of the same
+  architecture:
+
+  – a gauge-native order-1 theorem (equations G22 and G26–G29), with Δ𝐿 > 2.07445𝜅 at 𝑔2 ≥ 5;
+
+  – a single-norm order-2 theorem (R10), for 𝑔2 ≥ √(32 + √354)/3 ≈ 4.1156;
+  – an order-2 theorem (L17) for 𝑔2 ≥ 3.8260, which uses a computed bound 944984/351 for the
+    cubic term of the residual.
+
+  Status. Located; the proofs were not read. The order-1 theorem is Corollary 3.5(a), proved there; R10 is
+  strengthened by Corollary 3.5(b) (threshold 4.0187, endpoint constant 1.52094); L17’s computed bound
+  was not checked.
+The Yang–Mills workbench: a reader                                                                       16
+
+
+• 17 September (the 49-page quartic cube reader). The fourth-order vacuum source in two presen-
+  tations, equal as polynomials (78 representatives, 8,621 anchored multisets); the sixth-order
+  vacuum energy, with the contribution −83/1944 of the elementary cube; and the gap bound
+  Δ𝐿 > 1.6584𝜅 for 𝑔2 ≥ 15/4.
+  Status. The gap bound is Corollary 3.5(c) at 𝜉 = 4/225, conditional on the order-3 and order-4 inputs;
+  Theorem 3.1 gives 𝑑5 (4/225) > 1.6993 there. The rest located. The workbench records that this edition
+  keeps its earlier review qualification and that the 21 September heat proof does not recertify the earlier
+  interval (yang-mills/README.md).
+
+• 18–19 September (inside the cumulative archives). The sixth vacuum source, the eighth-order
+  energy, and a finite response estimate on the 240 faces of the box 𝐿 = 2.
+  Status. Located. The workbench says that the new spatial tables and the final execution package were
+  not supplied, so their completeness is reported by the source, not replayed.
+
+• 21 September, heat and volume (the 46-page reader). The fourth-order heat coefficients (84 time
+  functions over 17 geometric cases); a box-independent heat remainder on the circle |𝜉 | < 3/256;
+  the fixed-spacing spatial limit; and the full-complement energy retained above 999/1000 at
+  𝑔2 ≥ 16.
+  Status. Superseded quantitatively by Section 4: radius 1/55 > 3/256, and a loss below 1/25000 against
+  1/1000. The five proof manuscripts are located. One of them receives the zeta programme’s Gram-
+  sandwich lemma; its steps T1–T3 were checked in 21_ (Section 8).
+
+5.2 The foundations of 8–9 September
+The three manuscript lines of §2.2 contain the workbench’s first results. They are stated for the
+full finite Hamiltonian, with its scalar constant, open boundaries and all gauge constraints, and
+they say what they do not prove (§2.3).
+
+• Quantum line (79 pages).
+
+  – Exact extensive blocking maps, and volume-independent lower bounds on the high-energy
+    spectral weight of selected dressed Wilson-loop channels, at every positive coupling (§11).
+  – A first volume-uniform gap, Δ ≥ 𝜅(3 − 512𝜉 ) for 0 < 𝜉 ≤ 1/49152, uniform in the box and the
+    block size (§10). The spatial line uses it for its fixed-coupling results (spatial §28: 𝑔04 ≥ 12288,
+    which is the same condition).
+  – A nonzero non-Abelian vertex on the box 𝐿 = 2 (§17).
+  – A seven-dimensional lowest-band map that is a bijection for small coupling 𝑔, at a fixed box.
+  – The Jacobian-map and Navier–Stokes branches (Section 6).
+
+• Spatial line (129 pages). Sequences in which the box, the spacing and the coupling vary together;
+  its conclusion (§28) states what they prove.
+
+  – Along a fixed-coupling diagonal with 𝑔04 ≥ 12288, the magnetic excitation probability even-
+    tually has zero weight on every bounded energy interval.
+  – For fixed Wilson-loop states, a positive high-energy mass and a failure of strong continuity.
+  – On a selected weak-coupling diagonal, the finite gaps close while the corrected magnetic
+    probability escapes to high energy.
+  – The collapse of the finite-box analyticity disk (§27; Proposition 7.1).
+
+• Volume line (81 pages). Volume-independent local estimates for the actual vacuum. They
+  include:
+The Yang–Mills workbench: a reader                                                                         17
+
+
+  – local electric moments at every coupling;
+  – the exact free physical threshold 3𝜅 (§15);
+  – estimates on the 𝑆6 -derived cusp at 0 < 𝜉 ≤ 10−16 ;
+  – §26: along the logarithmic coupling path, the upper end of its certified spectral window
+    diverges. The document calls this a limitation of its own estimate, not a statement about the
+    spectrum.
+
+Status. Located, apart from the items proved or audited elsewhere in this reader: §10’s gap (Proposition 5.1),
+§27 (Proposition 7.1), and Theorems 13.1 and 14.2 of the quantum line (Section 6).
+
+Proposition 5.1 (the first volume-uniform gap is implied). For 0 < 𝜉 ≤ 3/256 the order-1 bound of
+Corollary 3.5(a) satisfies 𝑑1 (𝜉 ) ≥ 3 − 128𝜉. So the quantum line’s Δ ≥ 𝜅(3 − 512𝜉 ) on 0 < 𝜉 ≤ 1/49152
+follows from Corollary 3.5(a), which holds on the larger range 𝜉 ≤ 3/256 (𝑔2 ≥ 8/√3).
+
+Status. Proved here.
+
+
+Proof. With 𝑦 = 256𝜉 /3 ∈ (0, 1], 𝑑1 (𝜉 ) = 32 (1 + √1 − 𝑦) ≥ 32 (2 − 𝑦) = 3 − 128𝜉, since √𝑠 ≥ 𝑠 for
+0 ≤ 𝑠 ≤ 1. And 1/49152 < 3/256.
+
+6 The side branches: the Jacobian map, Navier–Stokes and 𝑆6
+Three branches of the record use material from outside lattice gauge theory. None of them enters
+the results of Sections 3 and 4, as the attribution file of 21 September says and as the proofs above
+confirm: they use only the Hamiltonian, its Fourier calculus and the computed coefficients. This
+section states what each branch proves in this record and how far it was checked. The statements
+and statuses come from the reader of four workbenches [9], where they were refereed, and from
+the notes cited.
+
+6.1 The Jacobian map and the low-mode theorem
+The map
+
+𝐹(𝑥, 𝑦, 𝑤) = ((1 + 𝑥𝑦)3 𝑤 + 𝑦2 (1 + 𝑥𝑦)(4 + 3𝑥𝑦), 𝑦 + 3𝑥(1 + 𝑥𝑦)2 𝑤 + 3𝑥𝑦2 (4 + 3𝑥𝑦), 2𝑥 − 3𝑥2 𝑦 − 𝑥3 𝑤)
+
+has det 𝐷𝐹 = −2 and three preimages of (− 14 , 0, 0), namely (0, 0, − 14 ) and (±1, ∓ 32 , 13
+                                                                                            2
+                                                                                              ) (checked
+symbolically). The workbench’s attribution file identifies it with the counterexample to the
+Jacobian conjecture announced by Levent Alpöge on 20 July 2026, whose announcement, as the
+file records, credits Akhil for the question and Fable for the work; it notes that the 𝑆6 construction
+is a different object. That Keller maps give incompressible polynomial flows, and that the curve
+𝛾(𝜏) = (𝑧−1 , −3𝑧/2, 13𝑧2 /2), 𝑧 = √1 − 8𝜏, escapes at 𝜏 = 1/8, is proved in the zeta reader [10]
+(Lemma 6.6, “Keller maps give incompressible polynomial flows”). The workbench’s chain 𝐹 →
+incompressible flow → material tensor → lattice local-energy weights → trial states ends in its
+Theorem 14.2, audited in 34_: it is a valid diagonal argument, conditional on fixed-box weak-
+coupling limits that the file only sketches, and its energy quotients equal, up to a factor 1 ± 1/(10𝑗),
+the lowest free two-gluon colour-singlet energy of an open box of side 𝑗/50 at couplings 𝑔𝑗 < 1/𝑗.
+It bears on the mass gap in neither direction, and the data of 𝐹 move the quotients only inside a
+window that does not depend on them.
+
+6.2 Navier–Stokes
+In this record the Navier–Stokes material enters through the quantum line’s §§20–22: the velocity
+field of a solution becomes a reducible 𝑆𝑈(2) connection 𝐴𝑖 = 𝜆𝑢𝑖 𝑇, with curvature density
+The Yang–Mills workbench: a reader                                                                   18
+
+
+−2 ∑𝑖<𝑗 tr 𝐹𝑖𝑗2 = 𝜆2 | curl 𝑢|2 , and gauge-invariant curvature states built from it are followed along
+a weak-coupling diagonal.
+• The imported theorem (not audited). The source is OpenAI’s manuscript Finite Time Blowup for
+  Navier–Stokes [6], Theorem 1.1: for every viscosity, a compactly supported smooth force and zero
+  initial velocity give a smooth solution on [0, 1) with bounded energy and lim sup ‖𝑢(𝑡)‖∞ = ∞.
+  The record’s first README.md says that source statements and targeted derivations were inspected,
+  and that no full independent analytic or Lean verification of the external existence proof is
+  claimed. Every use of it is conditional on it.
+• The map to Yang–Mills (audited, conditional; 21_ §2). The identity above and the constants of
+  the curvature masses were checked. The zero-quotient diagonal exists only along couplings
+  𝑔 → 0, and it rests on imported rate bounds for the Navier–Stokes solution and a dissipation
+  bound, which were not checked. The source calls it “a rigorous weak-coupling counterexample
+  candidate, not a completed Millennium disproof”.
+The workbench’s separate Navier–Stokes collection (the repository’s navier-stokes/, with its
+own Zenodo record 10.5281/zenodo.22678406) is not part of this record; its results are stated in
+the reader of four workbenches [9].
+
+6.3 𝑆6
+The 𝑆6 construction is the manuscript [1]: a compact complex threefold fibred by tori over the
+projective line, which the manuscript states is diffeomorphic to 𝑆6 . That statement was not checked
+here, and the workbench does not certify a global complex structure on 𝑆6 ; it draws no mass-gap
+conclusion. Its attribution file, which it designates as the clarification, says that the manuscript
+was circulated by Levent Alpöge and produced with Claude (older files say “with Fable”).
+In this record the construction enters only through its regular-fibre period matrix. The spatial
+and volume lines use its imaginary-period block to build a magnetic background, magnetic link
+transports and a gauge-covariant map into the Wilson Hilbert space (the attribution file’s “period-
+dependent magnetic branch”; volume line §1 and §19). On the patch that these lines use, only the
+combination 𝐷 = 𝐿𝑇 𝑞𝑇 + 6𝑚2𝑇 of the imaginary periods enters, with 𝐿𝑇 = Im 𝜏𝑇 , 𝑞𝑇 = − Im 𝛽𝑇 and
+𝑚𝑇 = Im 𝜇𝑇 (28_, Lemma 28.2), through the angle 𝜃 = 2𝜋𝑎2 /𝐷. So the Yang–Mills calculations
+need one positive number from the 𝑆6 data, and nothing about 𝑆6 itself; the attribution file says
+the same about its hypotheses.
+The 𝑆6 project’s own results, and the record in which they are published (10.5281/zen-
+odo.22678442), are the subject of a separate reader.
+
+7 Negative results, with exact scope
+The record contains several obstructions: proved limits of particular methods, and sequences
+shown not to give what was sought. Each is stated here with what it does not show. None bears
+on whether the continuum theory has a mass gap.
+
+7.1 The global perturbative route
+Proposition 7.1 (the collapse of the global analyticity disk; spatial line §27). Write 𝐻 =
+(2𝑔2 /𝑎)(𝐻0 − 𝜉 𝑊𝐿 ) + const on the full space (no gauge projection), with 𝐻0 = ∑𝑒 𝐸𝑒 the sum of the
+link Casimirs 𝐸𝑒 and 𝑊𝐿 = ∑𝑝 𝑊𝑝 . The operator-norm Neumann series certifies the isolated rank-one
+ground-state projection on the circle |𝑧| = 3/8 exactly for |𝜉 | < 3/(16𝑀𝐿 ) = 1/(64𝐿2 (2𝐿 + 1)), and on
+no contour separating 0 from the rest of the spectrum does the norm-product criterion give more. On the
+physical space the same route gives exactly |𝜉 | < 3/(4𝑀𝐿 ), on the circle |𝑧| = 3/2.
+
+Status. Proved here; the full-space statement audited (YM-07 §27); the physical-space radius and the
+The Yang–Mills workbench: a reader                                                                      19
+
+
+optimality over contours are Generalised here.
+
+Proof. |𝑊𝑝 | ≤ 2 with equality at 𝑈 ≡ 𝐼, so ‖𝜉 𝑊𝐿 ‖ = 2|𝜉 |𝑀𝐿 ; the same holds on the physical space,
+since for every 𝜀 > 0 the indicator of the nonempty open gauge-invariant set {𝑊𝐿 > 2𝑀𝐿 − 𝜀} is
+a physical vector. The spectrum of 𝐻0 is contained in {0} ∪ [3/4, ∞), so ‖(𝐻0 − 𝑧)−1 ‖ ≤ 8/3 on
+|𝑧| = 3/8, and the series converges when 2|𝜉 |𝑀𝐿 ⋅ 83 < 1. Both factors are attained (‖(𝐻0 −𝑧)−1 ‖ = 8/3
+at 𝑧 = ±3/8), so the norm-product criterion fails beyond this radius. Any contour separating 0
+from the rest of the spectrum crosses (0, 34 ), since the eigenvalue 34 must have winding number 0;
+at a crossing point 𝑥 the resolvent norm is max{1/𝑥, 1/( 34 − 𝑥)} ≥ 83 . On the physical space the
+spectrum of 𝐻0 lies in {0} ∪ [3, ∞) by Lemma 3.2, with 3 attained by one plaquette in spin 12 , and
+the same two arguments give the resolvent norm 23 on |𝑧| = 32 and the radius 3/(4𝑀𝐿 ).
+
+The radius shrinks with the box, so at any fixed coupling this route eventually fails; it does not
+show that the true analyticity radius is small, and it proves neither a gap nor its absence. It
+explains why Theorem 3.1 needs local norms: at 𝐿 = 2 (𝑀2 = 240) the global route certifies only
+|𝜉 | < 1/1280 on the full space and |𝜉 | < 1/320 on the physical space, both far inside 𝜉 ≤ 𝛼5 ≈ 1/54.3.
+(“Weak-coupling disk” in the source means small |𝜉 |, that is large 𝑔: the regime of Theorem 3.1.)
+
+7.2 The other obstructions
+
+Source                  What fails                         Status                 What it does not
+                                                                                  show
+fifth reference (H7),   the strong-coupling estimates      proved here            anything about the
+and Proposition 3.6     along the standing continuum                              continuum regime,
+                        path                                                      in either direction
+fifth reference (H7)    re-centring the elementary         located (the           that other routes fail;
+                        norm inequality to extend the      workbench’s            the workbench
+                        source domain: it returns the      ROUTE_ASSESSMENT       names the next
+                        old endpoint                       calculation)           candidate
+quantum line §11        lower bounds for dressed           the document’s own     anything about the
+                        channels as bounds for the         statement              gap
+                        whole spectral measure or for
+                        all physical states
+volume line §26         the certified spectral window      located                that the covariance
+                        of the weighted covariance                                has no weight in a
+                        stays bounded along the                                   fixed window
+                        logarithmic path: its upper
+                        end diverges
+spatial line §§17–18    a selected weak-coupling           located                the prescribed
+                        diagonal as the sought                                    logarithmic and
+                        interacting continuum: the                                fixed-electric-
+                        finite gaps close while the                               coefficient paths, or
+                        magnetic probability escapes                              other continuations
+spatial line §20        a unique-vacuum realisation        located                anything beyond
+                        of a selected macroscopic limit                           that selected limit
+                        of a second observable (𝑑𝛿0 ,
+                        𝑑 = 1 − 2−3/2 )
+quantum line,           a mass-gap conclusion from         audited in 34_         anything about the
+Theorem 14.2            the trial states: their energies   (Section 6)            mass gap
+(Jacobian branch)       are the free two-gluon
+                        threshold of a
+                        shrinking-coupling box
+The Yang–Mills workbench: a reader                                                                       20
+
+
+
+Source                 What fails                        Status                       What it does not
+                                                                                      show
+quantum line           a zero energy quotient at fixed   checked in 21_ §2,           whether another
+§§20–22                coupling: the zero-quotient       conditional on the           state with vanishing
+(Navier–Stokes         sequence exists only along        imported rate bounds         quotient exists
+branch)                couplings tending to 0
+
+
+
+
+All of these concern methods, sequences or observables. The workbench states each of them itself,
+in the passages cited; in the passages read, no negative result of the record is stated more broadly
+than its proof.
+
+8 Where the workbench meets the author’s other workbenches
+The note 47_ records every crossing between the owner’s workbenches that the audit found, as
+typed edges: P, a proof-level import; D, a dependency or citation; I, the same identity or object on
+both sides; A, an analogy only; R, a regression fixture; M, shared methodology. The edges that
+touch this record are these.
+
+
+Edge             What crosses                                     Type      Status
+𝑆6 → YM          The imaginary period block of the                P         audited (28_, Lemma 28.2)
+                 construction’s period matrix, as a magnetic
+                 background; only 𝐷 = 𝐿𝑇 𝑞𝑇 + 6𝑚2𝑇 enters
+𝐹 → NS →         The Jacobian map’s incompressible flow, its      P         audited (28_, 34_);
+YM               material tensor, and Theorem 14.2                          conditional on fixed-box
+                                                                            limits
+zeta → YM        The Gram sandwich                                P         audited (21_ §3; the
+                 (1 − 𝛿)2 Φ∗ Φ ⪯ Φ∗𝐽 Φ𝐽 ⪯ (1 + 𝛿)2 Φ∗ Φ when                condition 𝛿 ≤ 1 is necessary
+                 ‖(Φ𝐽 − Φ)𝑥‖ ≤ 𝛿‖Φ𝑥‖, 𝛿 ≤ 1; the YM instance                for the lower bound)
+                 takes 𝛿 = 𝑒−𝑇𝑎0 from the heat semigroup
+zeta → YM        Inverse-power observability, and the             P (pat-   arithmetic and algebra
+                 composed minimum-lift identity                   terns)    checked (46a_)
+NS → YM          The velocity field as a reducible 𝑆𝑈(2)          P; D on   audited, conditional (21_ §2)
+                 connection, −2 ∑ tr 𝐹𝑖𝑗2 = 𝜆2 | curl 𝑢|2         the im-
+                                                                  ported
+                                                                  rate
+                                                                  bounds
+Collatz →        The identity 𝑋𝑣 − 𝑋𝑢 = (𝑞 − 3)(𝑞 + 4)/32,        R         verified (46a_)
+YM               used as a regression fixture only
+ES ↔ YM          The word “gap”, and a proposed success           A         no mathematical content
+                 projector
+YM ↔ zeta        The workbench’s own summary of the zeta          A         located
+                 routes, with one transcription error
+                 (2.098 … ⋅ 10−11 written as 10−19 , in
+                 ATTEMPTS.md and research-attempts.json)
+
+
+
+
+None of these crossings enters Theorem 3.1, Theorem 4.1 or Proposition 4.3: their proofs use only
+the Hamiltonian, its Fourier calculus and the computed coefficients. The zeta programme’s Gram
+lemma is used in the 21 September heat edition (Section 5), not in the fifth reference, whose own
+manuscript says that no arithmetic input is imported (H8).
+The Yang–Mills workbench: a reader                                                                   21
+
+
+
+9 What remains open, and what was not checked
+9.1 Open questions
+1. The continuum. Every result of the record holds at a fixed lattice spacing and at strong bare
+   coupling (Proposition 3.6). A continuum theory, and its mass gap, are outside what the record
+   addresses; the spatial line’s conclusion names the interacting local continuum and a nonzero
+   low-energy spectral weight as its unresolved target (§28).
+2. Lower thresholds. The workbench records that re-centring its norm inequality cannot move the
+   source domain past 𝛼5 . It names the next candidate, the same-support linearized action 𝐽5
+   with a preconditioned residual, and records that the sixth-source catalogue is missing from
+   the delivered sources (H7).
+3. Independent confirmation of the inputs. The threshold 𝑔2 ≥ 3.6836 rests on computed coefficient
+   bounds of orders 3 to 5. An implementation independent of the workbench’s programs would
+   remove the condition; with the inputs checked here the threshold is 4.0187 (Corollary 3.5(b)).
+
+9.2 What this reader did not check
+• The computed inputs. The coefficient logic of orders 3 to 5 (F14–F25) was not re-implemented.
+  The first-pass audit re-ran the workbench’s producer and auditor, and their output was byte-
+  identical to the published rows (Appendix B).
+• The inherited heat data. The matrices 𝐶0 , 𝐶2 , 𝐶4 , the degree-2 and degree-4 row bounds, and the
+  kinetic-row constants 30 and 48 were not re-derived (Proposition 4.4).
+• The spatial limit. The domain argument (H25) was read. The spatial limit (H34) is an outline
+  and is located.
+• The earlier editions. The 8–9 September lines were read only in the passages cited, and the 14–19
+  September continuations were not read beyond their statements (Section 5).
+• The Overleaf archive. The 87 MB archive 08_ was not downloaded.
+• The side branches. The Navier–Stokes theorem imported from [6], and the global statement of
+  [1], were not checked; neither is used by the results of Sections 3–4.
+• The literature cited above (Osterwalder–Seiler, Schütte–Zheng–Hamer, Eymard, Lumer–Phillips)
+  was not re-read. No literature search for novelty was made.
+
+A Catalogue of statements
+Every statement of the record that this reader states, proves, reproduces or locates, with where
+it is in the record and how far it was checked, in the labels defined in “About this reader”. “F”
+and “H” refer to the two manuscripts of the fifth-reference edition; the audit’s inventory labels
+(YM-01 and so on, from 47a_) are given where earlier notes use them.
+
+
+Statement                                   Where in the record   Status here              Here
+The strong-coupling gap (fifth reference)
+Δ𝐿 ≥ 𝜅𝑑5 (𝜉 ) for all 𝐿 ≥ 2, 𝑎 > 0,         F26–F42               Conditional on the       Thm 3.1
+𝑔2 ≥ 3.6836 (YM-01)                                               order-3 to order-5
+                                                                  inputs; the argument
+                                                                  audited
+Gauge-invariance Casimir inequality         F7 (girth 4)          Proved here, for every   Lemma 3.2
+                                                                  girth
+The Yang–Mills workbench: a reader                                                                         22
+
+
+
+Statement                                  Where in the record       Status here               Here
+Ground-state transform                     F33–F36                   Proved here               Lemma 3.3
+Spectral return                            F35–F37                   Proved here, given the    Prop. 3.4
+                                                                     core
+The gap at truncation orders 1, 2, 4       14–17 Sept. editions; F   Proved here from the      Cor. 3.5
+                                                                     audited core
+The standing continuum path leaves         H7                        Proved here               Prop. 3.6
+the domains
+Heat flow and the complementary space (fifth reference)
+Box-independent heat remainder on          H1–H13                    Audited, given the core   Thm 4.1
+|𝜉 | < 1/55 (YM-02)
+                       1+255𝜒
+Its constants 32, 18 , (1−𝜒)2 , 67896
+                                 169
+                                      , 13
+                                        8
+                                           H9–H12                    Proved here               Prop. 4.2
+Evenness of the connected                  H12–H13                   Proved here               §4
+correlations
+Relaxation bounds and observed             H20–H29                   Proved here               Prop. 4.3
+fraction
+Benchmark table (1/2000 at 𝑔2 ≥ 13;        H5                        Reproduced;               Prop. 4.4
+1/25000 at 𝑔2 ≥ 16)                                                  conditional on the
+                                                                     inherited row bounds
+Finite heat time                           H33                       The choice of time        §4
+                                                                     checked
+Support quotients; the spatial limit at    H31–H32; H34              Located (H34 an           §4
+fixed spacing                                                        outline)
+Earlier editions
+Order-1 and order-2 gap theorems           14–16 Sept. reader        Order 1 proved here;      §5
+(G22, G26–G29; R10; L17)                                             R10 strengthened; L17
+                                                                     located
+Fourth-order source, sixth energy          17 Sept. reader           Gap implied               §5
+(−83/1944), gap for 𝑔2 ≥ 15/4                                        (Cor. 3.5(c)); rest
+(YM-05)                                                              located
+Sixth source, eighth energy, 240-face      18–19 Sept., in the       Located                   §5
+response (YM-04)                           archives
+Heat on |𝜉 | < 3/256; spatial limit;       21 Sept. heat reader      Superseded; located       §5
+complement at 1/1000 (YM-03)
+First volume-uniform gap 𝜅(3 − 512𝜉 ),     quantum line §10          Implied                   Prop. 5.1
+𝜉 ≤ 1/49152
+Channel bounds, blocking maps,             quantum line              Located                   §5
+non-Abelian vertex, band bijection
+(YM-07)
+Spectral escape, loop states, selected     spatial line §§1–26, 28   Located                   §5
+diagonals, pure-gauge limit
+Volume-independent local estimates;        volume line               Located                   §5
+free threshold 3𝜅; cusp estimates
+Side branches
+det 𝐷𝐹 = −2 and the three-point fibre      quantum line;             Checked symbolically      §6
+over (− 14 , 0, 0)                         attribution file
+Material-tensor sectors (Theorem           quantum line              Endpoint coefficients     §6
+13.1)                                                                recomputed (28_); the
+                                                                     rest located
+Trial states at the free two-gluon         quantum line              Audited (34_),            §6
+threshold (Theorem 14.2)                                             conditional on
+                                                                     fixed-box limits
+Navier–Stokes blowup theorem               quantum line §§20–22      Not audited               §6
+(imported)
+Velocity field as an 𝑆𝑈(2) connection;     quantum line §§20–22      Audited, conditional      §6
+zero-quotient diagonal                                               (21_)
+The Yang–Mills workbench: a reader                                                                        23
+
+
+
+Statement                                Where in the record        Status here               Here
+  6
+𝑆 period data enter only through 𝐷       spatial and volume         Audited (28_)             §6
+                                         lines
+Negative results
+The global analyticity disk shrinks      spatial line §27           Proved here (full space   Prop. 7.1
+with the box (full and physical space,                              audited; the rest
+every contour)                                                      generalised here)
+Re-centring returns the old endpoint     H7                         Located                   §7
+Channel bounds are not bounds on         quantum line §11           The document’s own        §7
+the whole measure                                                   statement
+Certified window diverges on the         volume line §26            Located                   §7
+logarithmic path
+Gaps close on a selected diagonal; no    spatial line §§17–18, 20   Located                   §7
+unique vacuum for a selected limit
+
+
+
+
+B How this reader was checked
+Sources.
+• The repository KokunoYumeto/yang-mills-interacting-workbench at commit fa79faf, read-
+  only.
+• The record 10.5281/zenodo.22883643. Its file list and MD5 checksums, and the files added by
+  each of its five versions, were read from the record’s public metadata on 26 September 2026.
+  Twenty-three of its 43 files are byte-identical to files of the repository at fa79faf. Nineteen of
+  the other twenty were downloaded from the record, with the owner’s permission, and their
+  MD5 checksums equal the record’s. The 87 MB Overleaf archive was not downloaded. The
+  script ymr_record_inventory.py reproduces this inventory.
+
+
+What was refereed earlier. Section 3 and Proposition 7.1 come from the Yang–Mills section of
+the reader of four workbenches [9], in which they went through five stages:
+1. a first-pass audit by a separate Claude instance (46a_). It recomputed the closed-form arith-
+   metic of the theorem from the ten rationals of (F26), recomputed the order-2 inputs from
+   explicit 𝑆𝑈(2) coefficient tensors, and checked order 1 by hand. It also re-ran the workbench’s
+   order-5 producer (662 rows, 51 seconds) and its polynomial and dual-certificate auditor (20 sec-
+   onds): both outputs were byte-identical to the published ones, a replay which the workbench
+   had not made at publication;
+2. a referee pass on the notes 43_–47_, by an instance that had written none of them;
+3. a referee pass on that reader;
+4. two further passes that read it for understatement and missed generality as well as for over-
+   statement. They produced the girth form of Lemma 3.2, Corollary 3.5 and the physical-space
+   part of Proposition 7.1, and corrected the credit for the order-1 and order-2 theorems of the
+   14–16 September edition.
+The checks are in checks/workbenches/: the first pass in audit46_ym/, then workbench_reader_
+claims_checks.py and generality_checks.py.
+
+
+What is new in this reader, and has been checked only by its author.
+The Yang–Mills workbench: a reader                                                                                 24
+
+
+• the map of the record and its five versions (Section 2);
+• Section 4: Theorem 4.1 with its proof, and Propositions 4.2, 4.3 and 4.4;
+• Propositions 3.6 and 5.1;
+• the Navier–Stokes and 𝑆6 parts of Section 6, and the table of Section 7.
+
+
+The scripts of this reader. They import no workbench code. They are in checks/ym_reader/ on
+the branch named below.
+
+Script                           What it checks                                                    Time, result
+ymr_heat_constants.py            the constants of (H9)–(H13) from the rationals of (F26),          1 s; all pass
+                                 including 𝑑5 (1/55) > 13/8 in exact arithmetic; the centre
+                                 map on all 240 faces of 𝐿 = 2; the signed-weight integral
+                                 (H17) and 𝐶𝐽 (H18); the widths and the benchmark table
+                                 (H19)–(H30) at five couplings, with the workbench’s
+                                 diagnostics at 𝑔2 = 13 reproduced to eleven digits; the
+                                 constants on other radii (30 checks)
+ymr_record_inventory.py          the 43 files of the record against the repository and the         under 1 s; 23
+                                 downloaded copies, by MD5                                         + 19, one not
+                                                                                                   local
+
+
+What has not been done. This version has not had an independent referee pass of its own. The
+earlier readers of this audit each had at least one, by a Claude instance that had written none of
+the text; the most recent of these passes read for understatement and missed generality as well
+as for overstatement. Such instances were unavailable when this version was written, because
+of a usage limit at the time. A referee pass of the same kind is planned, and its findings will be
+applied before this reader is deposited with the record. Until then, the statements listed above as
+new rest on this author’s proofs and scripts alone.
+
+
+Where everything is. This reader, its sources and its scripts are on the branch claude/claude-
+ab-grind-20260925 of KokunoYumeto/zeta-function-research-reader, in contrib/claude-
+ab/grind_20260925/: the reader in ym_reader/, the scripts in checks/ym_reader/, and the audit
+notes at the top level.
+
+References
+ [1] A compact complex threefold fibred by tori over the projective line, and the six-sphere, manuscript circulated
+     by L. Alpöge, 2026, https://alpo.ge/s6.pdf.
+
+ [2] P. Eymard, L’algèbre de Fourier d’un groupe localement compact, Bull. Soc. Math. France 92 (1964),
+     181–236.
+
+ [3] A. Jaffe, E. Witten, Quantum Yang–Mills theory, official problem description, Clay Mathematics Institute,
+     https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf.
+
+ [4] J. Kogut, L. Susskind, Hamiltonian formulation of Wilson’s lattice gauge theories, Phys. Rev. D 11 (1975),
+     395–408.
+
+ [5] G. Lumer, R. S. Phillips, Dissipative operators in a Banach space, Pacific J. Math. 11 (1961), 679–698.
+
+ [6] OpenAI, Finite Time Blowup for Navier–Stokes, manuscript, 2026, published on cdn.openai.com.
+
+ [7] K. Osterwalder, E. Seiler, Gauge field theories on a lattice, Ann. Physics 110 (1978), 440–471.
+The Yang–Mills workbench: a reader                                                                         25
+
+
+ [8] D. Schütte, Zheng Weihong, C. J. Hamer, Coupled cluster method in Hamiltonian lattice field theory, Phys.
+     Rev. D 55 (1997), 2974; arXiv:hep-lat/9603026.
+
+ [9] Claude (Anthropic), Four workbenches and where they meet: a reader of the Erdős–Straus, Collatz,
+     Erdős Problem 817 and Yang–Mills workbenches, 2026, file 00-claude-opus-5-5-workbench-reader.pdf
+     of the Zenodo record DOI 10.5281/zenodo.22977243; source on the branch claude/claude-
+     ab-grind-20260925 of KokunoYumeto/zeta-function-research-reader, folder contrib/claude-
+     ab/grind_20260925/workbench_reader/.
+
+[10] Claude (Anthropic), The split-zero programme around the Riemann zeta function: a reader of its results,
+     with proofs, version 2, Zenodo, 2026, DOI 10.5281/zenodo.22977243 (version 1: DOI 10.5281/zen-
+     odo.22970703; Lemma 6.6 has the same number in both).
+

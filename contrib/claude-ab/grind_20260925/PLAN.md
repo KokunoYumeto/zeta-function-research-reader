@@ -610,3 +610,29 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - An independent referee pass (06:50–07:21) found 2 major errors in my additions, both verified and corrected: the Witt-vector relation V_pF_p = p holds exactly when pA = 0, and my deck-group explanation was reversed. It also found 8 minor points and 7 missed results (M1–M7), all verified and applied. Its report and 16 checks are in `checks/audit49/referee/`.
   - Register: S80–S84, negative results 75–76, goal 4 item 16. `41_` has a correction: BQC0–BQC6 are only cited on main.
   - The owner's messages during this work: three Zenodo drafts had to be opened in separate tabs (done at 07:22). The priority for the rest of the week is the owner's notes (Chatnotes.zip; Erdős–Straus results not yet recorded), then Navier–Stokes, S⁶ and the Jacobian material, with connections to known mathematics.
+- 07:31–12:56 UTC (27 September): the author's Erdős–Straus notes (task #87–#90), note `50_` and version 3 of the Erdős–Straus reader.
+  - **Read.** Chatnotes.zip (20 TeX notes, the 52-page "Terminal residual coordinates" PDF, the June replacement package, the S₅ addendum, the rar archive "Further drafts") and the Erdős–Straus part of BEAVERSHINE.zip (about 55 TeX notes, among them the source note of the terminal core, "Finite Central-Cover Reductions").
+    - Six reading passes by separate Claude instances (A1, B1, C, D, E, F; at most two at a time) tabulated every numbered statement and ran checks. Their reports stay on the working machine, under `chatnotes/inv_*`.
+    - Not opened: the two ChatGPT logs, and the folder the author labelled as drafts that overstated results.
+  - **Verified here.**
+    - The author's semigroup closure was re-run (4951 → 2970, 5 min 41 s) and re-implemented independently (`checks/es50/es50_support_core.py`, 4 s).
+    - The Salez-family count at M₂₃ (3520 = 2970 + 550) and Salez's published 147,348 at G₇ were reproduced with pass B1's enumerator (`checks/es50/salez/`).
+    - `checks/es50/es50_checks.py`: 25 items, all pass, 49 s.
+    - Salez's paper was fetched (arXiv PDF) for his count and completeness statement. The Cheng–Ferrari–Sgroi paper (arXiv:1912.07997) was fetched for eq. (3.20), which corrected the authors that pass D had given.
+  - **Results.**
+    - The terminal core is the support-zero core, not the residual locus (Thm 50.1).
+    - Nine quadratic-residue conditions (p+2 and 2p+1 certify p*); the visible-box principle; µ = 17.
+    - The width-one barrier; non-coprime and ramified shells.
+    - Locks and types; twelve errors; the connections.
+    - Register S85–S89, negative results 77–78.
+  - **ES reader, version 3.** New Section 6 (`e5b_notes.tex`), Proposition groupbarrier(c), and updates to the front matter, corpus, negative results, open questions, catalogue, verification and references. 47 pages, no overfull boxes.
+  - **Referee (11:37–12:42 UTC)**, on `50_` and Section 6, by an independent instance.
+    - 3 major findings (a misattributed note, the false lock-universality question at 409, the verification status stated too broadly), 15 minor, and implied results (the eight further shifts; equality of the barriers when all prime factors of R are ≡ 3 (mod 4)). All verified and applied (12:45–12:55); its extra-shift script was re-run with identical output.
+    - One quotation from the author's notes in its report was shortened to under 15 words before packaging.
+  - **Zenodo.** The owner had already published the three drafts. They were checked through the API at 12:51 UTC: ES 10.5281/zenodo.22987519, YM 10.5281/zenodo.22987531, S⁶ 10.5281/zenodo.22987553, reader files identical by MD5 to the local packages.
+    - ES reader v3 is staged as the new-version draft 22996928 (new tab 1696341902), with the 15 non-reader files imported unchanged and the three reader files replaced (PDF c1db32c3…, source 5a53a5b1…, notes and checks 4add6ba6…).
+    - Only the version label and the last paragraph of the description differ from 22987519 (compared field by field). The default preview is set, and the page was reloaded.
+    - The owner presses Publish.
+  - **Navigator notes for the next tasks.**
+    - A Navier–Stokes first pass is done: `ns/inv_NS/INVENTORY_NS.md` on the working machine. 256 identities re-derived, all pass; the Rindler pole collision was interval-certified; the bridges are classified.
+    - Note `51_` follows. S⁶/Jacobian and the rest of BEAVERSHINE (mass gap, Koide, anomaly, Cayley–Dickson, zeta notes) come after it.

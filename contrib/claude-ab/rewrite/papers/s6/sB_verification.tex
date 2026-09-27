@@ -1,0 +1,82 @@
+\section{How this paper was checked}\label{app:verification}
+
+\paragraph{Sources.}
+The record 10.5281/zenodo.22678442. Its file list and MD5 checksums, and the files added by each of its four versions, were read from the record's public metadata on 26 September 2026. Thirty-two of its 33 files were downloaded, with the owner's permission, and their MD5 checksums and sizes equal the record's; the 174~MB archive \fn{28\_} was not downloaded. The script \note{s6r\_record\_inventory.py} reproduces this. The parts of the record read, and those only mapped, are listed in Appendix~\ref{app:catalogue}.
+
+\paragraph{What was refereed earlier.}
+The overlap edges of Section~\ref{sec:overlaps} other than the one marked ``new'' come from the audit notes \note{28\_} and \note{47\_}. These were refereed (the ninth referee pass, and the referee pass on the notes \note{43\_}--\note{47\_}) and entered the paper on four workbenches \cite{WorkbenchReader}.
+
+\paragraph{The first referee pass.}
+On 27 September 2026 an independent Claude instance that had written none of the text refereed version~1 of 26 September. It read in both directions: for overstatement, and for understatement, missed generality and missed or implied results. It reran both scripts of version~1 and wrote its own checks, 22 of them, all passing; they are included as \note{referee/s6r\_referee\_checks.py}. It found no mathematical error. It made 2 major and 12 minor findings.
+\begin{itemize}
+\item \emph{Major findings.}
+\begin{itemize}
+\item The abstract listed as new that the step is valid on normal fibres, which is the source manuscript's Remark~10.4.
+\item The record's two \textsf{OPEN} rows were misreported.
+\end{itemize}
+\item \emph{Minor findings.} Among them:
+\begin{itemize}
+\item the classical results of Vetter and Lebelt were not cited;
+\item the phrase ``on any fibre'' should read ``on any reduced fibre'';
+\item the example gluing triple was the paper's own, not the record's;
+\item the description of the monograph's §14 was inaccurate;
+\item Engel's citation is of the 1998 paper;
+\item S6-1 to S6-4 were labelled ``located'' although their proofs were not seen.
+\end{itemize}
+\end{itemize}
+Every finding was checked by the author against the sources before it was applied. For example, the claim ledger's two open rows were read in the evidence archive, and Engel's text and the bibliographic data of Vetter, Lebelt and Miller--Vassiliadou were read online. All findings were applied.
+
+The pass also proposed missed or implied results, each with a proof. The author verified each proof, and each result is in this version with its credit:
+\begin{itemize}
+\item Proposition~\ref{prop:kernel};
+\item the global form of the torsion of relative one-forms;
+\item the extension of Theorem~\ref{thm:derived} to $b_1=b_2=0$, with its consequence for rational homology six-spheres;
+\item the exact value set in Proposition~\ref{prop:s65}(d), checked numerically for $|n|\le3000$;
+\item two open questions (Section~\ref{sec:open}).
+\end{itemize}
+Two further proposals were not adopted. A reflexivity criterion was left out as outside the paper's topic. A sketched global form of the torsion of relative two-forms was left out because only a sketch was given.
+
+\paragraph{The referee pass of the monodromy computations.}
+The results of Section~\ref{sec:monodromy} were first written in the audit note \note{52\_}. On 27 September 2026 an independent Claude instance that had written none of the note refereed it in both directions. It re-derived every proof, found no error that invalidates a stated theorem, and found that the first version said much less than its own data prove. The sharpened statements, among them Theorem~\ref{thm:mono} in its present form, Propositions~\ref{prop:heis} and~\ref{prop:twist}, and the orbit classification, come from that report. Each was re-derived by claude-ab and checked with code written separately from the referee's (\note{ver52\_referee\_claims.py}) before it was adopted. The referee's reading that $\Phi$ is the restriction of the character $\chi_3\chi_4^{-1}$ of Gritsenko and Hulek depends on a normalisation that was not read in full, and it is stated here as Question~\ref{q:paramodular}.
+
+\paragraph{What rests on this author and one referee pass.}
+\begin{itemize}
+\item the map of the record (Sections~\ref{sec:record}, \ref{sec:ledger} and~\ref{sec:later});
+\item the audit of the correction note (Section~\ref{sec:correction});
+\item Lemma~\ref{lem:onerel}, Propositions~\ref{prop:normal}, \ref{prop:kernel}, \ref{prop:sharp}, \ref{prop:torsion} and~\ref{prop:s65}, and Corollary~\ref{cor:normal};
+\item the generalizations of Theorem~\ref{thm:derived} and the remark on its citation;
+\item the new overlap edge;
+\item Section~\ref{sec:monodromy} and Section~\ref{ssec:theories}.
+\end{itemize}
+
+\paragraph{The scripts.}
+They import no code from the record. They are in the folder \texttt{contrib/\allowbreak claude-ab/\allowbreak rewrite/\allowbreak checks/\allowbreak s6/} on the branch named below.
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.13\linewidth}@{}}
+\toprule
+Script & What it checks & Time, result\\
+\midrule
+\note{s6r\_checks.py} &
+\begin{minipage}[t]{\linewidth}\raggedright
+47 symbolic and exact checks, in four groups:
+\begin{itemize}[leftmargin=1em]
+\item \emph{the test family}: smoothness of the total space, the discriminant, the normalization and the local model at the node, the sections $O,P$ and the multiplier $1/3$, $H^0(A_\lambda)=0$, the relations $u\tau=v\tau=0$, the map $\mu$ of Proposition~\ref{prop:sharp}, and the independence of $dU,dV$;
+\item \emph{the local modules}: the gcd formula on nine monomials with unit factors, the torsion of relative one- and two-forms at $t=xy$, $xyz$, $s^m$, and the presentation of the torsion at $t=xyz$;
+\item \emph{the derived criterion}: the Riemann--Roch coefficient $\tfrac12$ of $c_3$;
+\item \emph{the finite statements}: $1199$; the Arf invariant; $\Psi_H$; the Euler characteristic; $\det_{\R}\Pi=\operatorname{Im}\tau\cdot D$; the numbers of S6-1, S6-2, S6-4 and S6-5, including the quaternion formula for $\tau$.
+\end{itemize}
+\end{minipage} & 2 s; all pass\\
+\note{s6r\_record\_inventory.py} & the 33 files of the record against the downloaded copies, by MD5 and size & under 1 s; 32 match, one not local\\
+\note{referee/s6r\_referee\_checks.py} & the first referee's own checks: the kernel sheaf at a triple point, Hilbert functions of the relative forms at $t=xy$, $xyz$, $x^2y$ and two quadrics, the value set of S6-5, the source's matrices, the gluing triples and the claim-ledger counts & 7 s; 22 checks, all pass\\
+\note{s6\_monodromy\_checks.py} & the relations $T_1^3=T_2^4=I$, $N^2=0$; the invariance of $Q_0$, its uniqueness up to scale and its elementary divisors; Lemma~\ref{lem:stab} symbolically; the generation of $SL_2(\ZZ)$ by $R$ and $S$; $c=h(1,0,-6)$; the refinements and the coset representatives; the indices of $G\bmod D$ for $D=2,3,4,6,8,9,12$ by breadth-first enumeration; the level-$12$ image; the orbits for $D\le9$ & 49 s; 24 checks, all pass\\
+\note{ver52\_referee\_claims.py} & that $S\mapsto9$, $T\mapsto1$ defines a homomorphism on all $1152$ elements of $SL_2(\ZZ/12)$; the decompositions of Theorem~\ref{thm:mono}(b); $\Phi$ multiplicative on random products and zero on random words in $T_1,T_2$; $\Phi=0$ on all $165{,}888$ elements of $G\bmod12$; $H'=\langle c,c'\rangle$; the subgroups $N_k$; the non-splitting computation; the dual action; Theorem~\ref{thm:orbitsS6} for all $D\le14$ as full partitions; Theorem~\ref{thm:periph}; Proposition~\ref{prop:heis}(d) & 5 s; 22 checks, all pass\\
+\note{referee/ref52\_partB\_group.py}, \note{referee/ref52\_connections.py} & the second referee's checks: a constructive membership algorithm for $G=\ker\Phi$, the orbits for $D\le24$, and the checks behind Section~\ref{ssec:theories}; its reruns of the two scripts above also pass & 14 s and under 1 s; 26 and 10 checks, all pass\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{What has not been done.}
+The new results of versions~2 and~3, Proposition~\ref{prop:kernel} and Theorem~\ref{thm:mono} among them, have been checked by the author and by the one referee pass that proposed or read them, but not by a second independent pass. The paper \cite{CDP20} itself, the record's construction, and the archive \fn{28\_} were not read (Section~\ref{sec:open}).
+
+\paragraph{Where everything is.}
+This paper, its sources and its scripts are on the branch \texttt{claude/claude-ab-grind-20260925} of \texttt{KokunoYumeto/zeta-function-research-reader}: the paper in \texttt{contrib/\allowbreak claude-ab/\allowbreak rewrite/\allowbreak papers/\allowbreak s6/}, the scripts in \texttt{contrib/\allowbreak claude-ab/\allowbreak rewrite/\allowbreak checks/\allowbreak s6/} (the referees' in its folder \texttt{referee/}). Version~2 and the audit notes remain in the branch's history at commit \texttt{a90d9e5b}.

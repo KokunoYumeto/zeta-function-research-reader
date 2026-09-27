@@ -1,0 +1,118 @@
+\begin{abstract}
+\noindent
+The split-zero programme of KokunoYumeto studies the nontrivial zeros of the Riemann zeta function in three ways: through the Hurwitz sheets $\zeta(s,1+t)$, along which the zeros move; through quotient modules of entire functions attached to the zeros, above all Meyer's quotient $\B/I_\zeta$; and through arithmetic, cohomological and positivity constructions modelled on Weil's explicit formula and on Deligne's proof of the Weil conjectures.
+This record sets out what the programme and an audit of it have established, with proofs, and how the programme connects with other parts of mathematics.
+
+The central result on Meyer's quotient is that its primary decomposition converges for every class exactly when the principal parts of $1/\zeta$ at the zeros are polynomially bounded. Around it stand an unconditional Nyman--Beurling density theorem in the Fréchet topology; a classification of the Hermitian forms compatible with the scaling transfer, in which positivity forces a form to vanish at the off-line zeros; a two-line system in which Weil's quadratic form sits on the diagonal of a hyperbolic chiral form and the holonomy index is Turing's index; a formal logarithm that detects freeness of monoids of integers; and an account of how far the mechanism of Deligne's Weil~II transfers to the programme's data, with an algebraic purity criterion and thirteen misprints of the printed Weil~II.
+
+The bridges to Bost--Connes systems, Beurling's generalised integers, Krull monoids, the work of Connes and of Connes and Consani, interpolation theory, Turing's method and the $\mathbb{F}_1$ programme are each described with what is established about them. The negative results are stated with their exact scope and, where it is known, with the input the construction would need.
+The record does not contain a proof of the Riemann hypothesis; where a statement is equivalent to it or conditional on it, this is said at the statement.
+\end{abstract}
+
+\section*{Introduction}\phantomsection\label{sec:about}
+\addcontentsline{toc}{section}{Introduction}
+
+\subsection*{The programme and this record}
+
+The Riemann hypothesis (RH) asserts that every nontrivial zero of $\zeta$ has real part $\tfrac12$. Some of its best-known reformulations are analytic: Weil's criterion, that a quadratic functional built from the explicit formula is nonnegative \cite{Weil,Bombieri}, and the Nyman--Beurling criterion, that certain dilated fractional-part functions are dense in $L^2(0,1)$ \cite{Beurling,BaezDuarte}. Another is geometric. For curves over finite fields the analogue of RH is Weil's theorem \cite{Weil1948,Rosen}, and Deligne's proof of its higher-dimensional form \cite{DeligneWeilII} is the model for many attempts to find the cohomology that would do the same for $\zeta$.
+The split-zero programme builds constructions around all three, and around one object of its own: the flow of the Hurwitz sheets $t\mapsto\zeta(s,1+t)$, which starts at $\zeta$ and moves its zeros off the critical line.
+It consists of several hundred numbered statements with proofs, carrying labels such as \lbl{MCL5}, \lbl{OMS6} or \lbl{GSL4}. They are published in the Zenodo record \emph{Split-Zero cohomology and the zeta-function research programme} (concept DOI \href{https://doi.org/10.5281/zenodo.22678085}{10.5281/zenodo.22678085}) and in the repository \href{https://github.com/KokunoYumeto/zeta-function-research-reader}{\texttt{KokunoYumeto/\allowbreak zeta-function-\allowbreak research-reader}}.
+
+The programme is research carried out with AI systems. Its author used them to formulate and test a large number of hypotheses quickly, across several fields at once, and it reads accordingly: some directions are finished theorems, some are programmes with proved parts, and some are proposals.
+Not every direction is expected to hold. An unfinished programme is still mathematics, however, and its proved parts stand on their proofs whatever becomes of the rest.
+This record is meant to let a reader see all of this without working through the files. It states what holds, with proofs or the exact location of a proof, what fails and in which scope, and how the programme connects with other areas. The audit behind it had limited compute and did not test every direction. Each direction is described on its own merit and for its bearing on the zeros of $\zeta$, and where the record gives a view rather than a proof, the view is labelled as mine and its reasons are given.
+
+\subsection*{Main results}
+
+The programme's central object is Meyer's quotient $Q=\B/I_\zeta$ of the Fréchet space $\B$ of entire functions of rapid decay in vertical strips by the ideal of functions vanishing on the nontrivial zeros with full multiplicity (Section~\ref{sec:setting}). Multiplication by $s$ acts on $Q$ with spectrum the zeros, one Jordan block at each, and every zero $\rho$ has a primary projector $\Pi_\rho$ onto its block. The programme uses only finite sums of these projectors. The first theorem, found in the audit, reduces the question whether $Q$ is the convergent sum of its blocks to a condition on $1/\zeta$ at the zeros.
+
+\begin{introthm}[Theorem~\ref{thm:primary}]
+The following are equivalent.
+(i) For every $x\in Q$ the series $\sum_\rho\Pi_\rho x$ converges absolutely to $x$.
+(ii) There are constants $C,K$ with $|c_{\rho,k}|\le C(1+|\gamma|)^K$ for every zero $\rho=\beta+i\gamma$ and every $k<m_\rho$, where $\sum_kc_{\rho,k}(s-\rho)^{k-m_\rho}$ is the principal part of $1/\zeta$ at $\rho$.
+(iii) The jet map is an isomorphism of Fréchet spaces from $Q$ onto the space of rapidly decreasing jet tuples.
+If all zeros are simple, (ii) reads $|\zeta'(\rho)|\ge c(1+|\gamma|)^{-K}$. These conditions are (b), (c) and (d) of Theorem~\ref{thm:primary}, which adds two further equivalent forms and an unconditional consequence.
+\end{introthm}
+
+Whether (ii) holds is open. If all zeros are simple it reads $|\zeta'(\rho)|\ge c(1+|\gamma|)^{-K}$, and a bound of that form at every zero would itself imply that every zero is simple, which is open. Condition (ii) asks pointwise what the Gonek--Hejhal conjectures ask on average. The theorem and its proof carry over, in outline, to the zeros of every primitive Dirichlet $L$-function.
+
+Around $Q$ the programme studies families of test functions and positive forms. In the Fréchet topology of $\B$ the Nyman--Beurling family is dense without any hypothesis, in contrast with $L^2(0,1)$, where density is equivalent to RH.
+
+\begin{introthm}[Proposition~\ref{prop:NB}]
+Let $t>0$ and $g_t(s)=e^{ts^2}$. The functions $g_t(s)(n-n^{1-s})/s$, $n\ge2$, span a dense subspace of $\B$, and their products with $\xi$ span a dense subspace of $I_\zeta$. If $n$ is restricted to the numbers $2^a3^b$, the same holds whenever $t>(\log2)(\log3)/(4\pi)=0.060598\ldots$
+\end{introthm}
+
+On the positive side, the bounded Hermitian forms on $\ell^2(\Zs,m)$ that are compatible with the scaling transfer for $n=2$ and $n=3$ are classified (Lemma~\ref{lem:PTQ}). They pair each zero with its reflection $1-\bar\rho$, and such a form is positive exactly when it vanishes at the off-line zeros and is nonnegative on the line. So positivity removes the off-line zeros, and an off-line pair on which a form does not vanish enters it as a hyperbolic block.
+
+The author proposed a second line at $\re s=-\tfrac12$, mirroring the critical line, and asked for it to be built by shifting the whole line, as in the programme's Hurwitz shift. The Hurwitz flow does not translate the zeros, but its first jet vanishes exactly on the translated zero set, and the audit found the exact objects.
+
+\begin{introthm}[Theorems~\ref{thm:jet} and~\ref{thm:mirror}, Propositions~\ref{prop:chiral} and~\ref{prop:index}]
+(a) For every $a>0$ the first Hurwitz jet $\partial_a\zeta(s,a)=-s\zeta(s+1,a)$ vanishes exactly on the zero divisor of $\zeta(\cdot,a)$ translated by $-1$. At $a=1$ the translate $\Zs-1$ of the nontrivial zeros is their mirror image under $A(s)=-\bar s$: $A(\Zs)=\Zs-1$ with multiplicities, and $A(\rho)=\rho-1$ for every zero exactly when RH holds.
+(b) For finitely supported data $f$ on $\Zs\sqcup(\Zs-1)$ (or the restriction of an element of $\B$), with parts $u$ and $v$ even and odd under the translation, the chiral cross form satisfies $Q_A(f)=2\Omega(u)-2\Omega(v)$, where $\Omega$ is Weil's pairing. The form $Q_A$ is hyperbolic whether or not RH holds, while $\Omega\ge0$ on all finitely supported data exactly when RH holds.
+(c) The holonomy index of the two-line system is Turing's: $(N(T)-V(T))/2=P(T)+\sum\lfloor m_\rho/2\rfloor$, the sum over the zeros on the line with $0<\gamma\le T$, where $P(T)$ counts, with multiplicity, the zeros with $0<\gamma\le T$ and $\re\rho<\tfrac12$.
+\end{introthm}
+
+The two-line quotient also splits into its two lines for every primitive Dirichlet $L$-function (Proposition~\ref{prop:separatorL}), by a $\bar\partial$ construction in which the rates of the two lines match.
+
+On the arithmetic side, the Hurwitz sheets at rational points lead to monoids of integers, and the programme's formal logarithm turns out to be a complete test for unique factorisation.
+
+\begin{introthm}[Theorem~\ref{thm:formallog}, Corollary~\ref{cor:firstneg}]
+Let $M$ be a multiplicative monoid of positive integers and write $\log\sum_{m\in M}m^{-s}=\sum_nr_nn^{-s}$. Then $M$ is free if and only if $r_n\ge0$ for every $n$. If $M$ is not free, the first negative coefficient sits at the least element with two factorisations and is at most $-\tfrac16$, and its possible values in $(-\tfrac12,0)$ are exactly $-\tfrac12+1/v$ for odd $v\ge3$, together with $-\tfrac5{12}$ and $-\tfrac7{15}$.
+\end{introthm}
+
+Applied to the Hurwitz sheets, the criteria of Section~\ref{sec:sheets} show that for $q\ge3$ the even lattice sum $Z_{1/q}$ is Eulerian exactly when $q\in\{3,4,6\}$ (Proposition~\ref{prop:evensheets}), and that for $\varphi(q)>2$ it has infinitely many zeros on both sides of the critical line (Proposition~\ref{prop:SWzeros}, which uses the theorem of Saias and Weingartner as stated in its abstract).
+
+The last group of results measures how far the mechanism of Weil~II transfers to the programme's data.
+
+\begin{introthm}[Propositions~\ref{prop:abscissa} and~\ref{prop:purity}]
+(a) For a finite set $S$ of complex numbers with positive integer weights and every $k\ge1$, the Dirichlet series $\sum_n(\sum_{\rho\in S}m_\rho n^\rho)^kn^{-s}$ has abscissa of convergence exactly $1+k\max_{\rho\in S}\re\rho$. If $k$ is even and $S$ is stable under conjugation, its coefficients are nonnegative and the real point $1+k\max\re\rho$ is a pole. So a pole bound $1+k/2+C$ uniform in $k$ holds if and only if $\max\re\rho\le\tfrac12$.
+(b) Let $N$ be nilpotent and $F$ invertible on a finite-dimensional complex space $V$ with $FNF^{-1}=Q^{-1}N$, $|Q|\ne1$, and let the weight of $\alpha\ne0$ be $2\log|\alpha|/\log|Q|$. The graded pieces $\Gr^M_iV$ of the monodromy filtration are pure of weight $\beta+i$ if and only if the eigenvalues of $F\otimes F$ on the kernel of $N\otimes1+1\otimes N$ have weight at most $2\beta$ and the corresponding eigenvalues for the dual have weight at most $-2\beta$. The bounds on $\ker N$ for $V$ and its dual alone do not suffice.
+\end{introthm}
+
+Part (a) says two things about Deligne's step in Weil~II~§1.5. On the programme's data the positivity in that step holds, because even tensor powers have nonnegative coefficients. The other half of the step, a pole bound uniform in the tensor degree, is equivalent to $\max\re\rho\le\tfrac12$. It therefore has to come from a source independent of these data, as the $H^2_c$ of a fixed curve does in Weil~II. Part (b) isolates the algebra at the core of Weil~II~1.8.4. Section~\ref{sec:deligne} adds three lemmas from Weil~II~§2, one of them with a corrected constant, and thirteen misprints of the printed text.
+
+\subsection*{What the results mean}
+
+Section~\ref{sec:quotient} describes the structure of $Q$ as a module under multiplication by $s$: its spectrum and Jordan blocks, its jets, its dense families and its positive forms. Theorem~I reduces the question whether $Q$ is the sum of its primary parts to a classical question about $1/\zeta$ at the zeros.
+The positivity results and the two-line system say the same thing from two sides. A positive form compatible with the transfer vanishes at the off-line zeros, and in the two-line system Weil's form is the diagonal part of a form whose signature is the same for every configuration of zeros. In that system RH is the statement that the chiral form is nonnegative on an explicit diagonal family of test data with an explicit prime side (Corollary~\ref{cor:chiral}). Whether that family is easier to control than Weil's own is open.
+
+The results also show where the Euler product is used. The Eulerian sheets are $a=1$ and $a=\tfrac12$. The even lattice sums with $\varphi(q)>2$ have zeros off the line. The Davenport--Heilbronn function has a functional equation of the same kind as $\zeta$, its two lines coexist as those of $\zeta$ do, and it has a zero off the line. A construction whose proof uses only properties shared with these functions therefore has conclusions that hold for them too. For such constructions Section~\ref{sec:negative} records, where it is known, the input that would distinguish $\zeta$; for the sheets and the two-line constructions this is a property such as the Euler product. These are negative results with a precise scope. They do not say that the constructions have no bearing on RH; they say what they would need.
+
+\subsection*{The bridges}
+
+In the author's view the connections the programme makes between the zeta function and other areas are among its most valuable outcomes, and several of them are theorems. Section~\ref{sec:bridges} treats them at length. For each bridge it gives the typed map, that is, what is mapped to what and what crosses; what is established about it; what it suggests on both sides; and my assessment.
+
+Several bridges are theorems. The programme's clocks satisfy the Bost--Connes relations, so its global quotient of all prime clocks is the Bost--Connes space. Its timed primes are Beurling's construction applied to the actual primes, and at the rational sheets $a=1/q$ its Eulerian tests are the factoriality criteria for Krull monoids. Connes' weighted Hilbert quotients and Meyer's Fréchet quotient are compared by a single map whose kernel consists exactly of the classes whose jets vanish at every zero on the critical line, so that the map is injective if and only if RH holds. For sheaves pulled back from Connes and Consani's three-point base, the programme's doubled source has the same cohomology as the base. The holonomy count of the two-line system is Turing's index.
+Others are proposals, stated as such, like the term-by-term dictionary between the author's physical language (anti-numbers, chirality, anomalies, inflow) and exact objects, in which RH takes three exact forms.
+The bridges to the author's other workbenches (Erdős--Straus, Yang--Mills with the Navier--Stokes, $S^6$ and Jacobian material, Erdős problem 817 and Collatz) are listed with their status, and the companion records in the same folder treat the other sides.
+
+\subsection*{How this record was made}
+
+This record is an audit, carried out between 22 and 26 September 2026, of the programme's published work: the second attempt's proofs, the continuation bulletins of 24--25 September, the programme's reconstruction of Weil~II and its Deligne reader, and the final reports of its working sessions of 24--25 September. Appendix~\ref{app:verification} lists what was read, and Section~\ref{sec:open} what was not.
+The programme, its constructions and most of its theorems are the work of its author, KokunoYumeto, developed with ChatGPT and Codex (OpenAI).
+Results found in the audit are credited in their status lines:
+\begin{itemize}
+\item \emph{claude-ab}, the Claude instance (Anthropic, model \texttt{claude-opus-5-5}) that carried out the audit and prepared this record;
+\item \emph{the copy}, a second instance of the same model, whose Theorems A--F on the Hurwitz sheets (lettered as in its reports) are reported in Section~\ref{sec:sheets};
+\item \emph{the review}, an independent review of version~1, whose items F1--F22 are recorded in note \note{48\_}, and the independent \emph{verifier} of its minor items;
+\item the \emph{referees}: of the audit notes, where a pass sharpened a result (for example the seventeenth, for Theorem~\ref{thm:primary} at all multiplicities), and of version~2.
+\end{itemize}
+A form marked \emph{version~2's} was found in the review or in the referee pass of version~2, and re-derived by claude-ab before it was applied.
+Every block was read against its own proofs. The audit notes \note{08\_}--\note{42\_} were each refereed by an instance that had not written them, in nineteen passes, followed by a two-part final pass over the summaries; the content maps and the copy's reports had no separate pass (Appendix~\ref{app:verification}). Version~1 of this record had its own referee pass, and the review looked for understatement and missed generality as well as for overstatement.
+
+Every statement has one of four statuses:
+\begin{itemize}
+\item \emph{verified};
+\item \emph{not verified here}, which implies nothing in either direction;
+\item \emph{my assessment}, a view in the first person with its reasons, introduced by those words;
+\item \emph{proved negative}, collected in Section~\ref{sec:negative} with the counterexample or derivation.
+\end{itemize}
+The status lines under the results make the first status precise. \textsf{Proved here} means the proof is given in full. \textsf{Proved in the programme} means the proof is in the programme's files at the label given and was checked in the audit, which says which steps were re-derived. \textsf{Proved by the copy} means the proof is in the copy's reports and was checked as stated. \textsf{Checked numerically} marks a statement supported by computation only, which is never presented as proved. Inputs that were not re-read are said to be so at the result, and Section~\ref{sec:open} lists what was not read. A matching between the author's terms and exact objects is labelled as a proposal or a reading: the objects and the facts about them are proved, and the matching is not a theorem. Novelty is reported only as the audit recorded it, from \emph{not found in the literature searched} to \emph{classical}.
+
+The audit notes cited as \note{NN\_} were withdrawn from the branch \texttt{claude/claude-ab-grind-20260925} on 27 September 2026 because of their framing. Their mathematics is unchanged, and they remain in the branch's history at commit \texttt{a90d9e5b} (folder \texttt{contrib/claude-ab/grind\_20260925/}), where a proof cited from them can be read. The check scripts are republished in \texttt{contrib/claude-ab/rewrite/checks/zeta/} on the same branch. Programme statements are cited by their own labels, which the programme's reading guide \note{181-reading-guide-and-file-locations.md} and its index \note{182-complete-file-and-migration-index.json} locate.
+
+This is version~3. It keeps the theorems, proofs, figures and citations of version~2 and corrects its framing. Where version~2 turned a scoped negative result into a general verdict, version~3 states the scoped result and, where it is known, the input the construction would need, and the bridges now come with what is established about each. It also updates the status of three edges to the author's other workbenches from the companion records and corrects two decimal renderings. Appendix~\ref{app:corrections} lists the changes.
+
+\subsection*{Organization}
+
+Section~\ref{sec:setting} fixes the setting. Sections~\ref{sec:sheets}--\ref{sec:other} contain the results: sheets and monoids, Meyer's quotient, the two lines, weights, and further results. Section~\ref{sec:negative} collects the proved negative results with their scope, Section~\ref{sec:bridges} the bridges and the directions they open, and Section~\ref{sec:open} the questions. The appendices give the catalogue of standalone results, the corrections, and the verification.

@@ -27,9 +27,9 @@ Part B collects exact statements, most of them limits, about fifteen specific me
 
 ### 0.3 What the results mean
 
-Taken together, the results locate the difficulty of the conjecture precisely. Everything that depends only on the residue of p modulo a fixed modulus reaches every non-square class and no square class: this is the obstruction to polynomial identities, and Proposition 6.3 and Corollary 6.4 show that the workbench's carrier census meets it exactly. What does decide the square classes is the factorization of the numbers (p+R)/4: by the width-one barrier a shell can be occupied only if the prime factors of (p+R)/4 generate −1 or −4 modulo R, and under an exponent condition this is also sufficient (Proposition 4.3). A proof of the conjecture therefore has to control, for some R, the multiplicative structure of (p+R)/4, which is Question 1.
+My assessment is that, taken together, the results locate the difficulty of the conjecture precisely, for the following reasons. No polynomial identity solves the equation on a residue class that is a square [ET], and no fixed-divisor certificate reaches such a class (Proposition 6.3). The workbench's carrier census runs into this obstruction: its carriers force 97.606% of its final domain and never a square row (Corollary 6.4). What does decide the square classes is the factorization of the numbers (p+R)/4: by the width-one barrier a shell can be occupied only if the prime factors of (p+R)/4 generate −1 or −4 modulo R, and under an exponent condition this is also sufficient (Proposition 4.3). A proof of the conjecture therefore has to control, for some R, the multiplicative structure of (p+R)/4, which is Question 1.
 
-The quadratic-residue sieve shows how restrictive this already is in practice. A counterexample must be a quadratic residue modulo every odd prime factor of eight shifted forms and several more; only 23 primes below 10⁷ pass all conditions, and the survivors have density zero. Whether infinitely many survive is Question 3.
+The quadratic-residue sieve shows how restrictive this already is in practice. A counterexample must be a quadratic residue modulo every odd prime factor of eight shifted forms and several more; only 23 primes p ≡ 1 (mod 24) below 10⁷ have no certificate of the kinds considered, and the primes that satisfy the first condition alone have density zero. Whether infinitely many survive is Question 3.
 
 The bridges are a second kind of outcome. A hard problem is valuable in part for the mathematics that its study produces, and several of the bridges explored here now say something precise about the areas they connect, whatever their eventual bearing on the equation.
 
@@ -207,7 +207,7 @@ These are instances of Proposition 6.1, with (R, c, s) = (31, 2, 2), (31, 1, 1),
 
 The census's reported counts are internally consistent: each domain is the previous survivor count times q − 1, and forced plus survivors equals the domain in every row.
 
-Proposition 6.3 and Corollary 6.4 give a precise account of what the census achieves and of what remains. Carriers whose applicability depends only on the residue of p modulo a fixed modulus reach every non-square row and no square row. The square rows are reached by mechanisms that use more than residues, for instance the factorization of (p+R)/4, as in §4. This is the dividing line that recurs throughout the record: residue-level structure organizes the problem completely up to the square classes, and the square classes need arithmetic input of a different type.
+Proposition 6.3 and Corollary 6.4 give a precise account of what the census achieves and of what remains. Every carrier of the census is a fixed-divisor certificate, and no fixed-divisor certificate reaches a row that is a square, so the census can never force its square rows. Whether the square rows can be reached depends on more than residues, for instance on the factorization of (p+R)/4, as in §4.
 
 ## 7. The shear graph
 
@@ -568,7 +568,7 @@ Some drafts in the collections state the conjecture as a theorem. They are super
 
 ### 12.6 Additive combinatorics: Kneser's theorem
 
-The notes apply Kneser's theorem on sumsets in abelian groups [Kn] to the residues of divisors, producing Star–Kneser forcing: a per-shell sufficient condition for occupancy (archive Theorems 15.6 and 20.7). It is correct as a sufficient condition; its converse fails at p∗, R = 107, as the archive records (Proposition 15.7). The notes cite Kneser's theorem as of 1953; the finite-group theorem is Kneser, *Math. Z.* 61 (1955).
+The notes apply Kneser's theorem on sumsets in abelian groups [Kn] to the residues of divisors, producing Star–Kneser forcing, which the archive states as a per-shell sufficient condition for occupancy (archive Theorems 15.6 and 20.7; located, not verified here). Its converse fails at p∗, R = 107, as the archive records (Proposition 15.7). The notes cite Kneser's theorem as of 1953; the finite-group theorem is Kneser, *Math. Z.* 61 (1955).
 
 My assessment: I think additive combinatorics is a natural toolset for the size reason of §12.1, where the target lies in H\_a but may not be reached, because sumset growth is exactly what decides whether the divisors of a² fill H\_a.
 

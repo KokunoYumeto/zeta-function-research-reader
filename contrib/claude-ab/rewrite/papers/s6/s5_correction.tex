@@ -1,0 +1,289 @@
+\section{The correction note on the singular-fibre step, audited}\label{sec:correction}
+
+The correction note (file \fn{00\_}, eleven pages, dated 1 September 2026, added in version 1.1) isolates one step in the singular-fibre part of the proof in \cite{CDP20} and records what survives without it. Its scope statement is narrow: it does not infer that Theorem~2.2 of \cite{CDP20} is false, and it credits the source manuscript for the conductor-supported differential on which it builds (the manuscript's §10.2, Lemma~10.3). The source manuscript had already located the failure of this step at its own cusp fibre (its remark on \cite{CDP20} after the main theorem, and its Theorem~10.5). In its Remark~10.4 it had also recorded that the step is valid when the fibre is normal.
+
+This section states the note's results and reports the audit. It adds four things, each proved here:
+\begin{itemize}
+\item the exact condition for the torsion that makes the step fail: it is present exactly at the non-normal points (Proposition~\ref{prop:normal});
+\item a description of the kernel sheaf on which the step depends. At a reduced fibre with normal crossings, the group that the step asserts to vanish is the space of sections of the line bundle pulled back to the normalization (Proposition~\ref{prop:kernel}). This was found in the first referee pass.
+\item the exact size of the failure in the note's test family (Propositions~\ref{prop:sharp} and~\ref{prop:kernel});
+\item the general form of the note's local computation of relative differentials, including second exterior powers (Proposition~\ref{prop:torsion}).
+\end{itemize}
+\status{\textsf{Audited}. Every proof in the note was read in full and every step checked, and the finite and symbolic content was recomputed (\fn{s6r\_checks.py}, Appendix~\ref{app:verification}). No mathematical error was found.}
+
+\subsection{The filtration and the exact criterion}
+
+Let $X$ be a complex manifold and $S\subset X$ a reduced effective Cartier divisor, with smooth locus $j:S_{\mathrm{reg}}\hookrightarrow S$ and conormal sheaf $N^*=N^*_{S/X}$. Put
+\[
+T_S:=\ker\bigl(\Omega^1_S\to j_*\Omega^1_{S_{\mathrm{reg}}}\bigr),\qquad \widetilde\Omega^1_S:=\Omega^1_S/T_S,\qquad K_S:=\ker\bigl(\Omega^1_X|_S\to\widetilde\Omega^1_S\bigr).
+\]
+By the note's Lemma~1.1, $T_S$ is the torsion subsheaf of $\Omega^1_S$.
+
+\begin{proposition}[the note's Lemma 2.1 and Propositions 2.2--2.3]\label{prop:filtration}
+\leavevmode
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The conormal sequence $0\to N^*\to\Omega^1_X|_S\to\Omega^1_S\to0$ is exact on the left.
+\item There are exact sequences $0\to N^*\to K_S\to T_S\to0$ and $0\to K_S\to\Omega^1_X|_S\to\widetilde\Omega^1_S\to0$.
+\item Let $A$ be a vector bundle on $S$ with $H^0(S,\widetilde\Omega^1_S\otimes A)=0$ and $H^0(S,N^*\otimes A)=0$. Then
+\[
+H^0(S,\Omega^1_X|_S\otimes A)\;\cong\;\ker\Bigl(\delta_A:H^0(S,T_S\otimes A)\to H^1(S,N^*\otimes A)\Bigr),
+\]
+where $\delta_A$ is the connecting map of the first sequence in \textup{(b)} tensored with $A$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Locally $S=\{g=0\}$ with $g$ reduced in a regular local ring, and the map is $\bar h\mapsto h\,dg$. The differential $dg$ is nonzero at the general point of every component of $S$, since each component is generically smooth and $g$ generates its ideal there. So $h\,dg\in g\,\Omega^1$ forces $h$ to vanish on every component, and $h\in(g)$ because $(g)$ is radical.
+(b) $K_S$ is the preimage of $T_S$ under the surjection $\Omega^1_X|_S\to\Omega^1_S$, whose kernel is $N^*$ by (a).
+(c) Tensor both sequences of (b) with $A$ and take cohomology. The second gives $H^0(\Omega^1_X|_S\otimes A)\cong H^0(K_S\otimes A)$, and the first gives $H^0(K_S\otimes A)\cong\ker\delta_A$.
+\end{proof}
+
+\status{\textsf{Audited}. The note states (c) for a line bundle on a threefold; the proof uses neither restriction. Reducedness is needed in (a): for $g=g_0^2$, the class of $g_0\cdot g$ in $N^*$ is nonzero, and it maps to $g_0\,dg=2g\,dg_0$, which is zero in $\Omega^1_X|_S$.}
+
+Thus the implication at issue,
+\[
+H^0(S,N^*\otimes A)=0\ \text{ and }\ H^0(S,\widetilde\Omega^1_S\otimes A)=0\quad\Longrightarrow\quad H^0(S,\Omega^1_X|_S\otimes A)=0,
+\]
+holds whenever $T_S=0$, since then $K_S=N^*$. In general it holds exactly when $\delta_A$ is injective (under its two hypotheses).
+
+\subsection{Where the torsion lives}
+
+\begin{lemma}[modules with one relation]\label{lem:onerel}
+Let $R$ be a Noetherian ring with total ring of fractions $Q$, and let $v\in R^n$ be a vector whose entries generate an ideal $J$ containing a nonzerodivisor. Then $\varphi\mapsto[\varphi v]$ induces an isomorphism
+\[
+(R:_QJ)/R\;\xrightarrow{\ \sim\ }\;\operatorname{Tors}\bigl(R^n/Rv\bigr),\qquad\text{and}\qquad (R:_QJ)/R\;\cong\;\operatorname{Ext}^1_R(R/J,R).
+\]
+In particular, when $J\neq R$, the module $R^n/Rv$ is torsion-free if and only if $J$ has grade at least $2$; when $J=R$ it is free.
+\end{lemma}
+
+\begin{proof}
+For $\varphi\in(R:_QJ)$ the vector $\varphi v$ lies in $R^n$. If $f$ is a nonzerodivisor with $f\varphi\in R$, then $f[\varphi v]=[(f\varphi)v]=0$, so the class is torsion. It is zero iff $\varphi v=cv$ for some $c\in R$, that is, iff $(\varphi-c)J=0$ in $Q$; since $J$ contains a unit of $Q$, this means $\varphi=c\in R$. Conversely, if $f[a]=0$ for a nonzerodivisor $f$, then $fa=hv$ with $h\in R$; then $\varphi=h/f$ satisfies $\varphi v=a\in R^n$, so $\varphi\in(R:_QJ)$ and $[a]$ is its image.
+
+For the second isomorphism, apply $\operatorname{Hom}_R(-,R)$ to $0\to J\to R\to R/J\to0$. Here $\operatorname{Hom}(R/J,R)=0$, since $J$ contains a nonzerodivisor, and $\operatorname{Ext}^1(R,R)=0$. Every homomorphism $\psi:J\to R$ is multiplication by $\psi(f_0)/f_0\in Q$ for any nonzerodivisor $f_0\in J$. So $\operatorname{Hom}(J,R)=(R:_QJ)$, and the sequence gives $(R:_QJ)/R\cong\operatorname{Ext}^1(R/J,R)$. By Rees's theorem \cite[Thm.~16.6]{Mat86}, the grade of $J$ is the least $i$ with $\operatorname{Ext}^i(R/J,R)\neq0$. The grade is at least $1$, and it is at least $2$ iff $\operatorname{Ext}^1$ vanishes.
+\end{proof}
+
+\begin{proposition}[torsion of the differentials of a hypersurface]\label{prop:normal}
+Let $S=\{g=0\}$ be a reduced hypersurface in a complex manifold of dimension $n\ge2$. Let $x\in S$, let $R=\mathcal O_{S,x}$, and let $J\subset R$ be the ideal generated by the restrictions of $\partial g/\partial z_1,\dots,\partial g/\partial z_n$. Then
+\[
+T_{S,x}\;\cong\;\operatorname{Ext}^1_R(R/J,R),
+\]
+and $T_{S,x}=0$ iff $\operatorname{ht}J\ge2$. Equivalently, $T_{S,x}=0$ iff the singular locus of $S$ has codimension at least $2$ in $S$ at $x$, that is, iff $S$ is normal at $x$. When a component of $\operatorname{Sing}S$ through $x$ has codimension one, $T_{S,x}\neq0$. Globally, let $\mathcal J\subset\mathcal O_S$ be the Jacobian ideal sheaf, generated locally by the restrictions of the $\partial g/\partial z_i$. Then $\varphi\otimes[g]\mapsto[\varphi\,dg]$ is a canonical isomorphism
+\[
+\mathcal{E}xt^1_{\mathcal O_S}(\mathcal O_S/\mathcal J,\mathcal O_S)\otimes N^*_{S/X}\;\xrightarrow{\ \sim\ }\;T_S .
+\]
+\end{proposition}
+
+\begin{proof}
+The differentials have the presentation $\Omega^1_{S,x}=R^n/Rv$ with $v=(\partial g/\partial z_i|_S)_i$.
+
+\emph{$J$ contains a nonzerodivisor.} The ring $R$ is reduced, so its zerodivisors form the union of its minimal primes. No minimal prime contains $J$, because $dg\neq0$ at the general point of each component. Prime avoidance then gives an element of $J$ outside all minimal primes.
+
+\emph{The torsion.} Lemma~\ref{lem:onerel} gives $T_{S,x}\cong\operatorname{Ext}^1(R/J,R)$, which vanishes iff $\operatorname{grade}J\ge2$.
+
+\emph{Grade, height and codimension.} $R$ is a regular local ring modulo a nonzerodivisor, hence Cohen--Macaulay. So $\operatorname{grade}J=\operatorname{ht}J=\dim R-\dim R/J$ \cite[Thm.~17.4]{Mat86}. A point $y\in S$ is smooth iff $dg(y)\neq0$: if $S$ is smooth at $y$, its ideal is generated by one coordinate function $w$, so $g$ is a unit times $w$. Hence the zero set of $J$ is $\operatorname{Sing}S$, and $\dim R/J$ is the dimension of the germ of $\operatorname{Sing}S$ at $x$ \cite{GR84}. Since $R$ is Cohen--Macaulay, it satisfies Serre's condition $S_2$. So, by Serre's criterion \cite[Thm.~23.8]{Mat86}, it is normal iff it is regular in codimension one, that is, iff the singular locus has codimension at least $2$ (for normal complex spaces see also \cite{GR84}).
+
+\emph{The global form.} Replace $g$ by $ug$ with $u$ a unit. On $S$, $\partial(ug)/\partial z_i=u\,\partial g/\partial z_i$, so $\mathcal J$ does not change. The form $\varphi\,dg$, for $\varphi\in(\mathcal O_S:_Q\mathcal J)$, is holomorphic and does not depend on coordinates, and $(\varphi/u)\,d(ug)=\varphi\,dg$ on $S$. So the local isomorphisms of Lemma~\ref{lem:onerel}, $\varphi\mapsto[\varphi\,dg]$, glue once the generator $[g]$ of $N^*_{S/X}$ is carried along. The identification $(R:_QJ)/R\cong\operatorname{Ext}^1_R(R/J,R)$ of Lemma~\ref{lem:onerel} is canonical.
+\end{proof}
+
+\begin{corollary}\label{cor:normal}
+The implication at issue holds on every normal reduced fibre (for a surface fibre: one whose singular points are isolated). On a non-normal reduced fibre, $T_S\neq0$, and the implication holds exactly when $\delta_A$ is injective.
+\end{corollary}
+
+The first statement is the source manuscript's Remark~10.4, proved there by the second Riemann extension theorem. Proposition~\ref{prop:normal} adds the converse: on a reduced hypersurface the torsion of $\Omega^1_S$ is present at exactly those points where the singular locus has a component of codimension one. The fibre of the candidate threefold to which the step would be applied is the cusp fibre, which the record describes as a degree-six del Pezzo surface glued to itself along curves. The corollary therefore does not cover it, as the record says. On any reduced fibre $N^*_{S/X}\cong\mathcal O_S$ (on a multiple fibre it is a nontrivial torsion bundle), so the map on which the step depends is
+\[
+\delta_A:\ H^0\bigl(S,\ \mathcal{E}xt^1_{\mathcal O_S}(\mathcal O_S/\mathcal J,\mathcal O_S)\otimes A\bigr)\longrightarrow H^1(S,A),
+\]
+a map between groups defined by the fibre and $A$ alone. For a fibre with normal crossings, such as the candidate's cusp fibre, $\mathcal J$ is the reduced ideal of the double curve.
+
+For $p=1$, Proposition~\ref{prop:normal} is a case of theorems of Vetter \cite{Vet70} and Lebelt \cite{Leb74}, summarized in \cite{MV19}. Let a reduced complete intersection have singular locus of codimension $k$. Then $\Omega^p$ is torsion-free for $p<k$ and has torsion for $p=k$ (Vetter), and conversely torsion-freeness forces $p<k$ (Lebelt). The proof above is elementary and gives the torsion as an $\operatorname{Ext}$ sheaf.
+
+\begin{proposition}[the kernel sheaf]\label{prop:kernel}
+Let $S=\{g=0\}$ be a reduced hypersurface in a complex manifold $X$, with Jacobian ideal sheaf $\mathcal J$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The map $\varphi\otimes[g]\mapsto\varphi\,dg$ is an isomorphism $\mathcal{H}om_{\mathcal O_S}(\mathcal J,\mathcal O_S)\otimes N^*\to K_S$, which restricts to $\mathcal O_S\otimes N^*\cong N^*$. So the first sequence of Proposition~\ref{prop:filtration}(b) is the sequence $0\to\mathcal O_S\to\mathcal{H}om(\mathcal J,\mathcal O_S)\to\mathcal{E}xt^1(\mathcal O_S/\mathcal J,\mathcal O_S)\to0$, tensored with $N^*$.
+\item Suppose $S$ has normal crossings: locally $g$ is a unit times $x$, $xy$ or $xyz$ in suitable coordinates. Let $\eta:\tilde S\to S$ be the normalization. Then $\mathcal{H}om(\mathcal J,\mathcal O_S)=\eta_*\mathcal O_{\tilde S}$. Hence, if $H^0(S,\widetilde\Omega^1_S\otimes A)=0$ for a line bundle $A$ on $S$, then
+\[
+H^0(S,\Omega^1_X|_S\otimes A)\;\cong\;H^0\bigl(\tilde S,\eta^*(N^*\otimes A)\bigr).
+\]
+\item On a reduced fibre with normal crossings and with $H^0(S,\widetilde\Omega^1_S\otimes A)=0$, the conclusion $H^0(S,\Omega^1_X|_S\otimes A)=0$ of the step holds if and only if $H^0(\tilde S,\eta^*A)=0$.
+\item In the note's test family, $H^0(S,\Omega^1_{\mathcal X}|_S\otimes A)\cong\C$ for every $\lambda\in\C^*$. For $\lambda=1$ it is spanned by $dt$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Work at $x$ with $R$ and $v$ as in Proposition~\ref{prop:normal}, and identify $\Omega^1_X|_S$ at $x$ with $R^n$ through the $dz_i$.
+\begin{itemize}
+\item A vector $a$ lies in $K_{S,x}$ iff $[a]$ is torsion.
+\item By Lemma~\ref{lem:onerel} this holds iff $[a]=[\varphi v]$ for some $\varphi\in(R:_QJ)$. Since $R\subseteq(R:_QJ)$, this holds iff $a\in(R:_QJ)\,v$.
+\item The map $\varphi\mapsto\varphi v$ is injective, since $J$ contains a unit of $Q$.
+\end{itemize}
+So $K_{S,x}=(R:_QJ)\,dg\cong(R:_QJ)=\operatorname{Hom}_R(J,R)$, and $R\,dg$ is $N^*$. The choices do not matter, as in Proposition~\ref{prop:normal}.
+
+(b) Choose coordinates in which $g=x_1\cdots x_k$ with $k\le3$, the unit being absorbed into $x_1$. The branches are $S_i=\{x_i=0\}$, and $\tilde R=\prod_i\C\{\hat x_i\}$ is the ring of tuples of functions on the branches.
+\begin{itemize}
+\item \emph{$R$ inside $\tilde R$.} $R$ consists of the tuples that agree on the pairwise intersections $S_i\cap S_l$. For $k=2$ this is the note's Lemma~3.1, for $k=3$ the manuscript's Lemma~10.2.
+\item \emph{The generators of $J$.} The generator $\prod_{j\ne i}x_j$ of $J$ vanishes on every branch but $S_i$. So, for $\varphi=(\varphi_l)\in Q$, the product $\varphi\prod_{j\ne i}x_j$ lies in $R$ iff $\varphi_i\prod_{j\ne i}x_j$ is holomorphic on $S_i$ and vanishes on each $S_i\cap S_l$.
+\item \emph{The quotient.} The $x_j$ with $j\ne i$ are distinct primes of $\C\{\hat x_i\}$, so this holds iff $\varphi_i$ is holomorphic. Hence $(R:_QJ)=\tilde R$. For $k=1$ both sides are $R$.
+\end{itemize}
+The projection formula for the finite map $\eta$ gives $H^0(S,K_S\otimes A)=H^0(\tilde S,\eta^*(N^*\otimes A))$. Proposition~\ref{prop:filtration} identifies this group with $H^0(S,\Omega^1_X|_S\otimes A)$ when $H^0(S,\widetilde\Omega^1_S\otimes A)=0$.
+
+(c) On a reduced fibre $N^*\cong\mathcal O_S$.
+
+(d) In the test family, $\eta^*A$ is trivial on the connected surface $\Pp^1\times\Pp^1$. Also $H^0(S,\widetilde\Omega^1_S\otimes A)\hookrightarrow H^0(\Pp^1\times\Pp^1,\Omega^1)=0$ for every $\lambda$, by the proof of Theorem~\ref{thm:testfamily}. For $\lambda=1$ the bundle $A$ is trivial, and $dt$ is a nonzero section.
+\end{proof}
+
+For the candidate's cusp fibre $W$, whose normalization is a degree-six del Pezzo surface, the record states two things for every $L$:
+\begin{itemize}
+\item $\eta^*A\cong\mathcal O$ (the manuscript's Theorem~10.5, Step~1);
+\item $H^0(W,\widetilde\Omega^1_W\otimes A)=0$ (the manuscript's remark on \cite{CDP20} after its main theorem).
+\end{itemize}
+If both hold, Proposition~\ref{prop:kernel}(b) gives $H^0(W,\Omega^1_X|_W\otimes A)\cong\C$ for every $L$: the failure there would have size exactly one.
+
+\status{Lemma~\ref{lem:onerel}, Propositions~\ref{prop:normal} and~\ref{prop:kernel}, and Corollary~\ref{cor:normal}: \textsf{proved here}. Proposition~\ref{prop:normal} is classical in general form. Proposition~\ref{prop:kernel} was found in the first referee pass. The statement about $W$ is conditional on the record.}
+
+\subsection{The test family, audited and sharpened}
+
+Let $\Delta$ be the disc $|t|<4/27$, let
+\[
+\mathcal C=\{([x:y:z],t)\in\Pp^2\times\Delta:\ y^2z=x^2(x+z)+tz^3\},
+\]
+put $\mathcal X=\mathcal C\times\Pp^1$ with $g=t$, and let $S=C_0\times\Pp^1$ be the central fibre. Here $C_0$ is the nodal cubic, with node $n=[0:0:1]$. The double curve of $S$ is $D=\{n\}\times\Pp^1$, and the normalization is $\eta=\nu\times\mathrm{id}:\Pp^1\times\Pp^1\to S$. For $\lambda\in\C^*$, let $A_\lambda$ be the line bundle on $C_0$ obtained by gluing the fibres of the trivial bundle over the two preimages $p=[1:1]$ and $q=[-1:1]$ of the node by $\lambda$, and put $A=\mathrm{pr}_1^*A_\lambda$.
+
+\begin{theorem}[the note's Theorem 4.4]\label{thm:testfamily}
+If $\lambda$ is not a root of unity, then $H^0(S,N^*\otimes A)=0$ and $H^0(S,\widetilde\Omega^1_S\otimes A)=0$, but $H^0(S,\Omega^1_{\mathcal X}|_S\otimes A)\neq0$.
+\end{theorem}
+
+Every step of the note's proof was checked. The recomputed parts are:
+\begin{itemize}
+\item \emph{The total space and the fibres.} $\mathcal C$ is smooth: on $z\ne0$, $\partial F/\partial t=-z^3$; on $z=0$, $\partial F/\partial z=y^2\ne0$. The discriminant of $x^3+x^2+t$ is $-t(27t+4)$, so the only singular fibre over $\Delta$ is $t=0$.
+\item \emph{The node and its normalization.} $\nu[u:v]=[(u^2-v^2)v:u(u^2-v^2):v^3]$ parametrizes $C_0$ and sends $p$ and $q$ to the node. At the node, $t=UV$ with $U=y-x\sqrt{1+x}$ and $V=y+x\sqrt{1+x}$, whose Jacobian determinant at the origin is $-2$.
+\item \emph{The gluing bundle.} $H^0(C_0,A_\lambda)=0$ for $\lambda\ne1$. With the sections $O(t)=[0:1:0]$ and $P(t)=[3:\sqrt{36+t}:1]$, the bundle $\mathcal O_{\mathcal C}(P-O)$ restricts to $A_{1/3}$ (or $A_3$, by convention): the multiplier is $f(1)/f(-1)=1/3$ for $f(r)=r-2$, since $P(0)$ has $r=y/x=2$. So a non-torsion $A$ that extends to $\mathcal X$ exists (the note's Lemma~4.3).
+\item \emph{The torsion at a crossing.} Take $R=\C\{u,v,w\}/(uv)$ and $\tau=v\,du=-u\,dv$. The kernel of $\Omega^1_R\to$ (the differentials of the two branches) is $R\tau$, with $\tau\neq0$ and $(u+v)\tau=0$. Hence $\widetilde\Omega^1_S\hookrightarrow\eta_*\Omega^1_{\Pp^1\times\Pp^1}$, and $H^0(\widetilde\Omega^1_S\otimes A)\hookrightarrow H^0(\Pp^1\times\Pp^1,\Omega^1)=0$.
+\item \emph{The conductor differential.} On each branch, the pullback of $dg=v\,du+u\,dv$ vanishes along the preimage of $D$. So the conductor sequence (the note's Lemma~3.1, checked in the local model) gives a unique $s\neq0$ in $H^0(S,\Omega^1_{\mathcal X}|_S\otimes A)$ with $\eta^*s=\eta^*dg\otimes e$ and $s|_D=0$ (Proposition~3.2).
+\end{itemize}
+
+The monograph's version of this family (its Theorem~13.6, version 1.0) states that no extension of $A$ to the total space is claimed. The note, added in version 1.1, supplies one; the multiplier $1/3$ is reproduced above.
+
+\begin{proposition}[the exact size of the failure]\label{prop:sharp}
+In the test family, let $\lambda\neq1$. Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $T_S\cong\mathcal O_D$, generated by $\tau=v\,du$;
+\item $H^0(S,A)=H^1(S,A)=0$;
+\item $\delta_A=0$, and $H^0(S,\Omega^1_{\mathcal X}|_S\otimes A)\cong H^0(S,T_S\otimes A)\cong\C$, spanned by the conductor differential $s$;
+\item the same holds for the curve alone: $H^0(C_0,\Omega^1_{\mathcal C}|_{C_0}\otimes A_\lambda)\cong\C$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) At a point of $D$ take coordinates $(u,v,w)$ with $w$ a coordinate on $\Pp^1$, so that $\mathcal O_{S}=R=\C\{u,v,w\}/(uv)$. The note shows that the torsion there is $R\tau$. To find its annihilator, suppose $c\,v\,du=h(v\,du+u\,dv)$ in $R\,du\oplus R\,dv\oplus R\,dw$. Then $hu=0$ and $(c-h)v=0$. Since $\operatorname{Ann}(u)=(v)$ and $\operatorname{Ann}(v)=(u)$, this gives $c\in(u,v)$; conversely $u\tau=uv\,du=0$ and $v\tau=-uv\,dv=0$. So $R\tau\cong R/(u,v)=\mathcal O_{D}$. The functions $u,v$ come from the surface $\mathcal C$ and do not depend on the factor $\Pp^1$, so $\tau$ is defined on a whole neighbourhood of $D$ in $S$, and $T_S=\mathcal O_S\tau\cong\mathcal O_D$.
+
+(b) Tensor the conductor sequence with $A$:
+\[
+0\to A\to\eta_*\eta^*A\oplus A|_D\to\eta_*\bigl(\eta^*A|_{D_1\sqcup D_2}\bigr)\to0,
+\]
+where $D_1=\{p\}\times\Pp^1$ and $D_2=\{q\}\times\Pp^1$. Here $\eta^*A\cong\mathcal O$ with a frame $e$, and $A|_D\cong\mathcal O_D$ with a frame $\sigma$. The ratios $e|_{D_i}/\eta^*\sigma$ are nowhere-vanishing holomorphic functions on $\Pp^1$, hence constants $\alpha,\beta$, and $\alpha/\beta=\lambda^{\pm1}$ by the construction of $A_\lambda$. Moreover $H^0(\Pp^1\times\Pp^1,\mathcal O)=H^0(\Pp^1,\mathcal O)=\C$ and $H^1(\Pp^1\times\Pp^1,\mathcal O)=H^1(\Pp^1,\mathcal O)=0$ \cite[Thm.~III.5.1]{Har77}, with GAGA \cite{Ser56} for the analytic groups; for the quadric $\Pp^1\times\Pp^1\subset\Pp^3$ use $0\to\mathcal O_{\Pp^3}(-2)\to\mathcal O_{\Pp^3}\to\mathcal O_Q\to0$. The long exact sequence therefore reads
+\[
+0\to H^0(S,A)\to\C\oplus\C\xrightarrow{\ \mu\ }\C\oplus\C\to H^1(S,A)\to0,\qquad \mu(c,k)=(\alpha c-k,\ \beta c-k).
+\]
+Since $\det\mu=\beta-\alpha\neq0$ for $\lambda\neq1$, both groups vanish.
+
+(c) Since $S$ is a fibre, $N^*\cong\mathcal O_S$. So $\delta_A$ maps into $H^1(S,A)=0$, and $\delta_A=0$. The two endpoint groups vanish: the first by (b), the second as in the note. Proposition~\ref{prop:filtration}(c) then gives $H^0(\Omega^1_{\mathcal X}|_S\otimes A)\cong H^0(S,T_S\otimes A)=H^0(D,A|_D)=\C$, which contains $s\neq0$.
+
+(d) The same argument on $C_0$ gives $T_{C_0}=\C_n\tau$ and $H^i(C_0,A_\lambda)=0$ for $i=0,1$. Hence the dimension is $1$.
+
+An independent count on the normalization agrees. A section of $E=\Omega^1_{\mathcal C}|_{C_0}\otimes A_\lambda$ is a section $\tilde\sigma$ of $\nu^*E\cong\nu^*\Omega^1_{\mathcal C}$ whose values at $p$ and $q$ agree up to the factor $\lambda$ in $T^*_n\mathcal C$. There is an exact sequence $0\to N^*_\nu\to\nu^*\Omega^1_{\mathcal C}\to\Omega^1_{\Pp^1}\to0$, since $\nu$ is an immersion. The conormal bundle $N^*_\nu$ has degree $0-(-2)=2$, because $\deg\nu^*K_{\mathcal C}=K_{\mathcal C}\cdot C_0=\deg\omega_{C_0}-C_0^2=0$ by adjunction. Since $H^0(\Pp^1,\Omega^1)=0$, every global $\tilde\sigma$ is a section of $N^*_\nu$, so it takes values in the conormal lines of the two branches. These lines are distinct at the node, since $dU$ and $dV$ are independent. The gluing condition therefore forces $\tilde\sigma(p)=\tilde\sigma(q)=0$, and $\tilde\sigma\in H^0(N^*_\nu(-p-q))\cong H^0(\Pp^1,\mathcal O)=\C$.
+\end{proof}
+
+\begin{remark}\label{rem:sharp}
+So in the test family $\delta_A$ is not merely non-injective: its target is zero, and every torsion section lifts. Only $\lambda\neq1$ is needed. The condition that $\lambda$ is not a root of unity serves only to meet the non-torsion proviso of the published step. The factor $\Pp^1$ serves only to reach dimension three: the phenomenon is already present on the nodal fibre of a family of curves.
+\end{remark}
+
+Proposition~\ref{prop:kernel}(d) gives the same dimension by a second route, and for every $\lambda\in\C^*$, including $\lambda=1$.
+
+\status{Theorem~\ref{thm:testfamily}: \textsf{audited}. Proposition~\ref{prop:sharp}: \textsf{proved here}; the record states only the nonvanishing.}
+
+\subsection{What survives: the derived global criterion}
+
+\begin{theorem}[the note's Theorem 5.2; the monograph's Theorem 13.28]\label{thm:derived}
+Let $X$ be a connected compact complex threefold with $H^1(X;\ZZ)=H^2(X;\ZZ)=0$ and $a(X)=1$, whose algebraic reduction is a holomorphic map onto a smooth compact curve. If some $L_0\in\operatorname{Pic}(X)$ has $H^2(X,T_X\otimes L_0)=0$, then $H^i(X,T_X\otimes M)=0$ for $i=0,2,3$ and all $M$ in a dense open subset of $\operatorname{Pic}(X)$, and $\langle c_3(T_X),[X]\rangle\le0$. By the note's Corollary~5.3 it suffices that $R^2f_*(T_X\otimes L)=0$ for one $L$.
+\end{theorem}
+
+The proof in the note was checked step by step:
+\begin{itemize}
+\item $\operatorname{Pic}(X)\cong H^1(X,\mathcal O_X)$ by the exponential sequence.
+\item Sections vanishing to all orders along a fibre divisor vanish identically (Krull's intersection theorem), which gives $H^0(T_X(-mD))=0$ and $H^0(\Omega^1_X\otimes K_X(-\ell D))=0$ for large $m,\ell$.
+\item The jump loci are closed analytic subsets, by semicontinuity.
+\item In rational cohomology $c_1=c_2=0$, and $[\mathrm{ch}(T_X)\,\mathrm{td}(X)]_3=\tfrac12c_1^3-\tfrac{19}{24}c_1c_2+\tfrac12c_3$ (recomputed from Chern roots). Hence $\chi(T_X\otimes M)=\tfrac12c_3=-h^1\le0$.
+\end{itemize}
+Two points were found in the audit:
+\begin{itemize}
+\item \emph{Missed generality.} The hypotheses $a(X)=1$ and the holomorphic algebraic reduction enter the proof only to produce a nonzero effective divisor $D$. The note's Lemma~5.1, on which the proof rests, already assumes only such a divisor.
+\begin{itemize}
+\item \emph{Integral cohomology.} When $H^1(X;\ZZ)=H^2(X;\ZZ)=0$, the bundle $\mathcal O_X(D)$ lies in $\operatorname{Pic}(X)=H^1(X,\mathcal O_X)$ automatically, so the same proof applies to every such threefold that carries a nonzero effective divisor.
+\item \emph{Betti numbers.} It suffices that $b_1=b_2=0$. Then $\operatorname{Pic}^0(X)=H^1(X,\mathcal O_X)$ has finite index in $\operatorname{Pic}(X)$, because $H^1(X;\ZZ)=0$ and $H^2(X;\ZZ)$ is finite. Replace $D$ by a multiple $rD$ with $\mathcal O_X(rD)\in\operatorname{Pic}^0(X)$, and work in the component $L_0\cdot\operatorname{Pic}^0(X)$. Rationally $c_1=c_2=0$, and $c_3$ is the Euler number $2-b_3$ \cite[Cor.~11.12 and §14]{MS74}. The conclusion becomes generic vanishing in that component, together with $b_3\ge2$.
+\item \emph{A consequence.} Let $X$ be a compact complex threefold with $b_1=b_2=b_3=0$, for example one homeomorphic to $S^6$, that carries a nonzero effective divisor. Then $H^2(X,T_X\otimes L)\neq0$ for every $L\in\operatorname{Pic}(X)$. By the note's Corollary~5.3, also $R^2f_*(T_X\otimes L)\neq0$ for every $L$ and every holomorphic map $f$ onto a curve. So, granting $c_3(X)=2$ and a divisor, both vanishing hypotheses fail for the candidate by this theorem alone. The record's conductor calculation adds where, and by how much, the relative one fails.
+\end{itemize}
+\item \emph{A citation.} The Riemann--Roch step is applied to $X$, which is not projective (a projective threefold has algebraic dimension $3$). The note cites Hirzebruch's book \cite{Hir66}, which proves the formula for projective manifolds. For compact complex manifolds in general it is a consequence of the Atiyah--Singer index theorem \cite{AS68}.
+\end{itemize}
+For the constructed threefold, which the record says has $c_3(X)=2$, the contrapositive gives $H^2(X,T_X\otimes L_0)\neq0$ for every $L_0$. This is the use the record makes of the theorem.
+
+\status{\textsf{Audited}. The generalizations are \textsf{proved here}; the first was found by claude-ab, the second and the consequence in the first referee pass.}
+
+\subsection{Relative differentials on the local models}\label{subsec:reldiff}
+
+The record corrects a remark of the source manuscript on the relative differentials of $f:X\to\Pp^1$ (the third \textsf{REFUTED} row, Section~\ref{sec:ledger}). The note's Proposition~6.1 computes three local models. The following statement contains them.
+
+\begin{proposition}[relative differentials of a function on a smooth germ]\label{prop:torsion}
+Let $R=\C\{x_1,\dots,x_n\}$ with $n\ge2$, let $0\neq t$ lie in the maximal ideal $\mathfrak m$, and let $M_t=\Omega^1_{R/\C\{t\}}=\bigl(\bigoplus_iR\,dx_i\bigr)/R\,dt$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item Let $\varphi=\gcd(\partial_1t,\dots,\partial_nt)$; $R$ is a unique factorization domain \cite[Thm.~20.3]{Mat86}. Then $\operatorname{Tors}M_t=R\cdot[dt/\varphi]\cong R/(\varphi)$.
+\item $M_t$ is free iff $dt(0)\neq0$. Otherwise it needs $n$ generators while its rank is $n-1$.
+\item If $t=u\,x_1^{m_1}\cdots x_k^{m_k}$ with $u$ a unit, $1\le k\le n$ and all $m_i\ge1$, then $\varphi=x_1^{m_1-1}\cdots x_k^{m_k-1}$ up to a unit. In particular:
+\begin{itemize}
+\item for $t=xy$ and $t=xyz$, $M_t$ is torsion-free and not free at the origin;
+\item for $t=s^m$ with $m\ge2$, $\operatorname{Tors}M_t=R/(s^{m-1})\,ds$.
+\end{itemize}
+\item Let $n=3$ and $\Omega^2_{R/\C\{t\}}=\Omega^2_R/(dt\wedge\Omega^1_R)$.
+\begin{itemize}
+\item For $t=xy$ its torsion is $R/(x,y)\cdot dx\wedge dy\neq0$, supported on the double curve.
+\item For $t=xyz$ its torsion is $R\zeta_1+R\zeta_3\cong R^2/\langle(x,0),(y,-y),(0,z)\rangle$, where $\zeta_1=z\,dx\wedge dy+y\,dx\wedge dz$ and $\zeta_3=y\,dx\wedge dz+x\,dy\wedge dz$. It is $\operatorname{Ext}^2_R(R/J,R)$ for the ideal $J=(yz,xz,xy)$ of the three coordinate axes, that is, the canonical module of that curve germ, and it needs two generators.
+\item For $t=s^m$ with $m\ge2$ its torsion is $(R/(s^{m-1}))^2$, on $ds\wedge dy_1$ and $ds\wedge dy_2$.
+\end{itemize}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Put $w=\nabla t/\varphi$. Then $\varphi[w]=[dt]=0$. Also $c[w]=0$ iff $cw=d\,\nabla t=d\varphi w$ for some $d$, that is, iff $c\in(\varphi)$; so $R[w]\cong R/(\varphi)$. Conversely, let $f[a]=0$ with $f\neq0$, so $fa=h\,\nabla t=h\varphi w$ for some $h\in R$. Write $h\varphi/f=\alpha/\beta$ in lowest terms. Then $\beta a_i=\alpha w_i$ for all $i$, so $\beta$ divides every $w_i$ and therefore divides $\gcd(w)=1$. So $\beta$ is a unit, and $a\in Rw$. (The same argument shows that $R^n/Rv$ is torsion-free for every $v\in R^n$ whose entries have no common prime factor.)
+
+(b) If some $\partial_it(0)\neq0$, then $dt$ is part of a basis and $M_t\cong R^{n-1}$. If all $\partial_it\in\mathfrak m$, then $M_t/\mathfrak mM_t\cong\C^n$, while $M_t\otimes\operatorname{Frac}R$ has dimension $n-1$.
+
+(c) For $j\le k$, $\partial_jt=x^{m-e_j}\bigl(x_j\partial_ju+m_ju\bigr)$, where the bracket is a unit. For $j>k$, $\partial_jt=x^m\partial_ju$. So every partial is divisible by $\prod_{i\le k}x_i^{m_i-1}$. After dividing by it, the quotient for $j\le k$ is a unit times $\prod_{i\le k,\,i\ne j}x_i$. When $k=1$ this quotient is a unit. When $k\ge2$, a prime dividing all the quotients divides the one for $j=1$, so it is an associate of some $x_i$ with $2\le i\le k$; but the quotient for $j=i$ is not divisible by $x_i$. So the quotients have no common prime factor.
+
+(d) In the basis $dx\wedge dy,\ dx\wedge dz,\ dy\wedge dz$, the relations are $dt\wedge dx_i$.
+\begin{itemize}
+\item For $t=xy$ they are $(-x,0,0)$, $(y,0,0)$ and $(0,y,x)$. So $\Omega^2_{R/\C\{t\}}=R/(x,y)\oplus R^2/R(y,x)$. The second summand is torsion-free by the argument of (a), since $x$ and $y$ have no common prime factor, and the first is killed by $x$.
+\item For $t=xyz$, the map $\omega\mapsto dt\wedge\omega$ sends $\Omega^2_{R/\C\{t\}}$ onto $J\,dx\wedge dy\wedge dz$, which is torsion-free. So the torsion is $\ker(dt\wedge)/\operatorname{im}(dt\wedge)$ on $\Omega^2_R$, once this quotient is known to be killed by $J$, which contains nonzerodivisors. Now $dt\wedge(a\,dx\wedge dy+b\,dx\wedge dz+c\,dy\wedge dz)=(xya-xzb+yzc)\,dx\wedge dy\wedge dz$. If $xya-xzb+yzc=0$, then $x\mid c$; writing $c=xc'$ gives $y(a+zc')=zb$, so $z\mid a$; writing $a=za'$ gives $b=y(a'+c')$. Hence the kernel is free on $\zeta_1=(z,y,0)$ and $\zeta_3=(0,y,x)$. In this basis the relations $dt\wedge dx$, $dt\wedge dy$, $dt\wedge dz$ are $-x\zeta_1$, $y(\zeta_1-\zeta_3)$ and $z\zeta_3$, which gives the presentation. The same computation shows that $0\to R^2\xrightarrow{(\zeta_1\ \zeta_3)}R^3\xrightarrow{(xy,\,-xz,\,yz)}R\to R/J\to0$ is exact. The cokernel of the transpose of the first map, $R^2/\langle(z,0),(y,y),(0,x)\rangle$, is therefore $\operatorname{Ext}^2_R(R/J,R)$, and $(u,v)\mapsto(v,-u)$ identifies it with the presentation above. So the torsion is killed by $J$. Since $R/J$ is Cohen--Macaulay (a reduced curve germ), the module $\operatorname{Ext}^2_R(R/J,R)$ is its canonical module \cite[§3.3]{BH93}. Its relations lie in $\mathfrak m$, so it needs two generators.
+\item For $t=s^m$ the relations are $ms^{m-1}ds\wedge dy_1$ and $ms^{m-1}ds\wedge dy_2$.
+\end{itemize}
+\end{proof}
+
+\paragraph{The global form for one-forms.} This was found in the first referee pass. Let $f:X\to B$ be a holomorphic map from a complex manifold onto a curve, whose fibres are locally $\{u\,x_1^{m_1}\cdots x_k^{m_k}=0\}$. Put $Z=\sum_c\bigl(f^*c-(f^*c)_{\mathrm{red}}\bigr)$. Then
+\[
+\operatorname{Tors}\Omega^1_{X/B}\;\cong\;\bigl(f^*\omega_B\otimes\mathcal O_X(Z)\bigr)\big|_Z .
+\]
+\emph{Proof.}
+\begin{itemize}
+\item Locally $Z$ is cut out by $\varphi_0=\prod_ix_i^{m_i-1}$, which divides $dt$ by Proposition~\ref{prop:torsion}(c).
+\item So $dt\otimes h\mapsto h\,dt$ is a holomorphic map $f^*\omega_B\otimes\mathcal O_X(Z)\to\Omega^1_X$.
+\item Followed by the projection to $\Omega^1_{X/B}$, its image is the torsion $R\,[dt/\varphi_0]$. Its kernel is $f^*\omega_B$, since $h\,dt\in\mathcal O_X\,dt$ forces $h$ to be holomorphic.
+\end{itemize}
+For the record's threefold, granting its local models, the multiple fibres $3S_1$ and $4S_2$ give $Z=2S_1+3S_2$.
+
+\paragraph{Consequences for the third \textsf{REFUTED} row.}
+\begin{itemize}
+\item The record's charts at the cusp fibre are $t=xy$ along its double curves and $t=xyz$ at its triple points. On these charts, Proposition~\ref{prop:torsion}(c) shows that $\Omega^1_{X/B}$ is torsion-free and not locally free, as the record says. The manuscript asserts torsion of $\Omega^1_{X/B}$ along all three singular fibres in its Remark~9.21, so the record's \textsf{REFUTED} label is correct for $p=1$.
+\item The manuscript's Remark~1.3, the one named in the ledger, speaks of the sheaves $\Omega^p_{X/B}$. For $p=2$, Proposition~\ref{prop:torsion}(d) shows that the same charts have torsion along the double curves of the cusp fibre, and the multiple-fibre charts have torsion too. So for $p=2$ the torsion statement holds at all three singular fibres.
+\item Scope. These are modules on the smooth total space, not restrictions to a fibre (as the note's Remark~6.2 stresses). The multiple fibres enter through the record's description of their fillings as free quotients, with étale covers on which $t=s^m$; that description was not re-checked here.
+\end{itemize}
+
+\status{Proposition~\ref{prop:torsion}: \textsf{proved here}. It contains the note's Proposition~6.1, which is \textsf{audited}. Part (d) is new relative to the record; the note's Remark~6.2 leaves exterior powers open.}

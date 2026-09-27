@@ -1,0 +1,56 @@
+\begin{abstract}
+\noindent
+OpenAI's manuscript \emph{Finite Time Blowup for Navier--Stokes} constructs, for every viscosity, a smooth solution of the forced three-dimensional Navier--Stokes equations with bounded energy that blows up in finite time. A workbench built by KokunoYumeto with AI systems reconstructs the construction, continues it into a vacuum-hydrodynamics model, and connects it to Yang--Mills and other programmes. This paper states what the workbench establishes and proves three kinds of results.
+
+First, for the shear sector of the cutoff Rindler fluid of the continuation, the hydrodynamic dispersion series $\omega(k)=-i\nu k^2-i(3\nu^3/2c^2)k^4-\cdots$ has radius of convergence exactly $k_*=0.389236400495165\ldots\,c/\nu$. The radius is set by a certified collision of the diffusive pole with the first non-hydrodynamic pole at purely imaginary frequency; the mode is purely damped up to it, the coefficients have exact square-root asymptotics, and the series summed on its circle of convergence returns the collision frequency. These statements are proved with computer assistance in ball arithmetic and verified independently with a second interval library. Second, conditionally on four named statements of the manuscript, the curvature masses of the workbench's map from Navier--Stokes to Yang--Mills grow at explicit rates. Third, under the same statements the blowup is of Type II, with $\|u\|_{L^3}\gtrsim\tau^{-4h/3}$, and every rate is compared with the classical necessary conditions for a singularity. The manuscript's main theorem is imported and is not verified here.
+\end{abstract}
+
+\section*{Introduction}\phantomsection\label{sec:about}
+\addcontentsline{toc}{section}{Introduction}
+
+\subsection*{The problem and this record}
+
+OpenAI's manuscript \cite{OpenAINS} is a 166-page construction of finite-time blowup for the forced Navier--Stokes equations in three dimensions. The workbench around it transcribes the manuscript, adds a 208-page reader and programs that replay its identities, and continues it in two directions: into a vacuum-hydrodynamics model built on the cutoff Rindler fluid of fluid/gravity duality, and into typed maps to the author's other programmes, among them Yang--Mills. Two questions about this material are of independent interest and can be settled by computation: whether the hydrodynamic expansion of the continuation's Rindler fluid converges, and how the manuscript's profile estimates translate into rates for the quantities that the map to Yang--Mills uses. This paper settles the first unconditionally and the second conditionally, re-runs every identity of the workbench's first-pass scripts, and states what each map carries.
+
+The workbench is research carried out with AI systems, which its author used to formulate and test many hypotheses quickly. Some of its directions are finished computations, some are programmes with proved parts, and some are proposals; not every direction is expected to hold. An unfinished programme is still mathematics, and its proved parts stand on their proofs whatever becomes of the rest. The audit behind this paper had limited compute and did not examine every direction; where the paper gives a view rather than a proof, the view is labelled as mine and its reasons are given.
+
+\subsection*{Main results}
+
+The continuation's cutoff Rindler fluid has, for shear perturbations $\propto e^{-i\omega t+ikz}$, the dispersion relation $I'_\alpha(q)=0$ with $q=k\rho_c$, $\alpha=-i\omega\rho_c/c$ and $\rho_c=2\nu/c$ (Section~\ref{sec:rindler}). The hydrodynamic root $\alpha_h$ is the zero that tends to $0$ as $q\to0$; in $x=q^2/4$ it has the expansion $\alpha_h(x)=-2x-3x^2-\tfrac{29}3x^3-\cdots$.
+
+\begin{introthm}[Theorems~\ref{thm:collision} and~\ref{thm:radius}]
+The function $(\alpha,q)\mapsto I'_\alpha(q)$ has a nondegenerate double zero in $\alpha$ at $(\alpha_*,q_*)$ with $q_*=0.778472800990330076180356446189\pm10^{-20}$ and $\alpha_*=-0.5697140809723617\ldots$. The hydrodynamic root $\alpha_h$ is analytic on the disk $|x|<x_*=q_*^2/4$, real and negative on $0<x<x_*$, and has a square-root branch point at $x_*$. So its Taylor series has radius of convergence exactly $x_*$; in physical units, $\omega(k)$ has radius exactly $k_*=q_*c/(2\nu)=0.389236400495165038\ldots\,c/\nu$, and its first singularity is $\omega_*=-0.2848570405\ldots\,i\,c^2/\nu$.
+\end{introthm}
+
+\begin{introthm}[Corollary~\ref{cor:darboux}]
+Write $\alpha_h(x)=\sum_{k\ge1}a_kx^k$. Then $a_k=-C\,x_*^{-k}k^{-3/2}\bigl(1+O(1/k)\bigr)$ with a certified constant $C\in[0.14696,0.14757]$. The series converges absolutely on $|x|=x_*$, and $\sum_ka_kx_*^k=\alpha_*$: the dispersion series summed at $k=k_*$ returns the collision frequency.
+\end{introthm}
+
+The Yang--Mills repository maps a velocity field $u$ to the abelian connection $A_i=\lambda u_iT$ and uses the curvature masses $\mathcal K_B=\lambda^2\|\operatorname{curl}u\|^2$ and $\mathcal K_E=\lambda^2c^{-2}\|\partial_tu\|^2$. With $\tau=1-t$ and the manuscript's small parameter $0<h<1/100$:
+
+\begin{introthm}[Theorem~\ref{thm:rates}, Proposition~\ref{prop:typeII}]
+Conditionally on four named statements (H1)--(H4) of the manuscript, for every viscosity $\nu>0$ and all small $\tau$:
+$\|\operatorname{curl}u_\nu(1-\tau)\|_2^2\ge\nu^{3/2}C_\Omega\,\tau^{-1/2-3h}$ and $\|\partial_tu_\nu(1-\tau)\|_2^2\ge\nu^{5/2}C_{\dot u}\,\tau^{-3/2-3h}$; so $\mathcal K_B\to\infty$ with finite integral and $\mathcal K_E\to\infty$ with infinite integral. Moreover $\|u(1-\tau)\|_{L^3}\ge c\,\tau^{-4h/3}$, $\|\omega(1-\tau)\|_\infty\ge c\,\tau^{-1-h}$ and $\tau^{1/2}\|u(1-\tau)\|_\infty\ge c\,\tau^{-h}$: the blowup is of Type~II.
+\end{introthm}
+
+\subsection*{What the results mean}
+
+The radius theorem places the breakdown of the hydrodynamic gradient expansion of the Rindler fluid at a specific, certified event: the diffusive mode meets the first non-hydrodynamic mode at purely imaginary frequency and real momentum (Figure~\ref{fig:collision}). This is the flat-cutoff instance of the convergence criterion of Grozdanov, Kovtun, Starinets and Tadić \cite{GKST}, with $\eta/s=1/(4\pi)$, and the partner mode starts at the first Matsubara frequency of the cutoff's Unruh temperature. The conditional rates say how singular the manuscript's solutions are: the blowup exceeds the Type~I rate by the angular Reynolds number $\tau^{-h}$, and the classical necessary conditions for a singularity recalled in Section~\ref{sec:rates} hold with margins that are positive powers of $\tau^{-h}$. For the map to Yang--Mills, the rates are exactly those the repository uses, and their status is conditional on named statements rather than unchecked.
+
+\subsection*{The bridges}
+
+The workbench connects the Navier--Stokes construction to the author's other programmes through explicit maps: an abelian and a non-abelian map to Yang--Mills, the auxiliary torus operator that the Erdős--Straus supplement uses, Mellin transforms toward the zeta programme, a Beltrami solution from the $S^6$ oscillator, the divergence-free field of the Jacobian-conjecture counterexample, and the snapshot and Rindler maps to Einstein gravity. Section~\ref{sec:bridges} states what each carries and what is established about it, with my assessment. In the author's view such connections are among the most valuable outcomes of the research. In my assessment the map to Einstein gravity has produced the strongest result so far, the exact radius of Theorem~I, because it settles a question the continuation left open and is of independent interest in fluid/gravity duality.
+
+\subsection*{How this record was made}
+
+This record is an audit, carried out on 27 September 2026, of the workbench folder \texttt{navier-stokes/} of \texttt{KokunoYumeto/yang-mills-interacting-workbench} at commit \texttt{fa79faf}: the source-faithful transcription of the manuscript (cited \emph{src p.~$N$}), the 208-page workbench reader, and the continuation \texttt{continuations/20260919-vacuum-hydrodynamics/} (cited \emph{RESEARCH.md}). The official PDF of the manuscript was checked against the hash that the transcription freezes (Appendix~\ref{app:verification}). The construction is OpenAI's; the reconstruction, the continuation and the maps are the workbench's, whose author is KokunoYumeto.
+
+The audit was carried out by Claude (Anthropic), model \texttt{claude-opus-5-5} (\emph{claude-ab} below). A first-pass inventory was made by a separate Claude instance, and an independent referee, which wrote none of the text, re-verified the certificate of Theorem~\ref{thm:radius} with a second interval library and read the rest in both directions; its findings were verified by claude-ab before they were applied (Appendix~\ref{app:verification}).
+
+Every statement has one of four statuses: \emph{verified} (proved here, with computer assistance where stated, or re-computed by a program listed in Appendix~\ref{app:verification}); \emph{not verified here}, which implies nothing in either direction; \emph{my assessment}, a view in the first person with its reasons; and \emph{proved negative}, stated with its counterexample or derivation (Section~\ref{sec:negative}). Results that rest on statements of the manuscript are labelled \textsf{Conditional} and name them; they are verified relative to those statements. The manuscript's main theorem is \emph{not verified here}.
+
+The audit note \texttt{51\_} on which this paper is based was withdrawn from the branch \texttt{claude/claude-ab-grind-20260925} on 27 September 2026 because of its framing, together with the other notes. It remains, unchanged, in the branch's history at commit \texttt{a90d9e5b}. The scripts cited here are republished in \texttt{contrib/claude-ab/rewrite/checks/ns/} on the same branch.
+
+\subsection*{Organization}
+
+Section~\ref{sec:setting} states the manuscript's theorem, the architecture of its proof and what the re-run of the workbench's scripts verifies. Section~\ref{sec:rindler} proves the collision, the exact radius and the coefficient asymptotics. Section~\ref{sec:rates} proves the conditional curvature rates and the Type~II classification. Section~\ref{sec:negative} collects the proved limits, Section~\ref{sec:bridges} the typed maps to the other programmes with my assessment, and Section~\ref{sec:open} the questions and what was not checked. Appendix~\ref{app:verification} lists the programs, and Appendix~\ref{app:changes} what this typeset version changes relative to the audit note.

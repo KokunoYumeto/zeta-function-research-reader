@@ -1,0 +1,152 @@
+\section{The Rindler shear sector: the collision and the exact radius}\label{sec:rindler}
+
+\subsection{The dispersion relation}
+
+The vacuum-hydrodynamics continuation starts from the static Rindler metric
+\[
+ds^2=-(\rho/\rho_c)^2c^2dt^2+d\rho^2+dz^2+dy^2+dx_\perp^2,\qquad 0<\rho\le\rho_c,\qquad \rho_c=2\nu/c,
+\]
+whose cutoff surface $\rho=\rho_c$ is flat. For a shear perturbation $\propto e^{-i\omega t+ikz}$ the linearised vacuum equations reduce to the modified Bessel equation for a dual scalar $\varphi$, and the boundary condition at the cutoff, zero boundary source, gives $\varphi'(\rho_c)=0$ (RESEARCH.md (10)--(16)). With $q=k\rho_c$, $w=\omega\rho_c/c$ and $\alpha=-iw$, the shear frequencies are therefore the zeros of
+\begin{equation}\label{eq:disp}
+F(\alpha,q):=I'_\alpha(q),
+\end{equation}
+the derivative of the modified Bessel function in its argument. These reductions are re-derived by the first-pass scripts.
+\status{Verified (the first pass re-derived (13)--(14); (16) follows from (12) at $\rho=\rho_c$).}
+
+The statements of this section are theorems about the zeros of $\alpha\mapsto I'_\alpha(q)$; they use no input from the manuscript. Reading those zeros as the Rindler shear frequencies uses the continuation's reduction.
+
+\emph{A normalisation.} Put $x=q^2/4$ and let $(1+\alpha)_m$ be the rising factorial. The series $I_\alpha(q)=\sum_m(q/2)^{2m+\alpha}/(m!\,\Gamma(m+\alpha+1))$ gives
+\begin{equation}\label{eq:G}
+qI'_\alpha(q)=\frac{(q/2)^\alpha}{\Gamma(1+\alpha)}\,G(\alpha,x),\qquad G(\alpha,x)=\sum_{m\ge0}\frac{(\alpha+2m)\,x^m}{m!\,(1+\alpha)_m}.
+\end{equation}
+For $|\alpha|<1$ the prefactor is finite and nonzero, so $G=0$ exactly when $F=0$, and $G=G_\alpha=0$ exactly when $F=F_\alpha=0$. Since $G(\alpha,0)=\alpha$ and $G_\alpha(0,0)=1$, the implicit function theorem gives a unique analytic root $\alpha_h(x)$ with $\alpha_h(0)=0$: the \emph{hydrodynamic root}. Its expansion begins $\alpha_h=-q^2/2-3q^4/16-29q^6/192-\cdots$, which in physical units is
+\[
+\omega(k)=-i\nu k^2-i\frac{3\nu^3}{2c^2}k^4-i\frac{29\nu^5}{6c^4}k^6-\cdots
+\]
+(RESEARCH.md (27)--(28)). The identity \eqref{eq:G} was checked against mpmath's Bessel functions by the referee at $60$ random points with $|\alpha|\le0.95$, $|x|\le0.2$, agreeing to $10^{-60}$.
+
+The question the continuation left open is whether this series converges up to the first collision of the hydrodynamic root with another root, or whether a nearer complex singularity limits it. The answer is the first, and Figure~\ref{fig:collision} shows the two real roots meeting.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.86\linewidth]{fig_ns_collision.pdf}
+\caption{The real zeros of $\alpha\mapsto I'_\alpha(q)$ near the collision, computed with mpmath (the figure's script is in the paper's source folder). For $q^2<q_*^2=0.60602\ldots$ the hydrodynamic root $\alpha_h$ and the first non-hydrodynamic root are real and distinct; they meet at $(q_*^2,\alpha_*)$ in a square-root fold (Theorem~\ref{thm:collision}), and beyond it they form a complex-conjugate pair, shown by its real part and by $\re\alpha\pm\im\alpha$. The figure is an illustration; the statements are certified in Theorems~\ref{thm:collision} and~\ref{thm:radius}.}
+\label{fig:collision}
+\end{figure}
+
+\subsection{The collision}
+
+\begin{theorem}[the collision]\label{thm:collision}
+There is $(\alpha_*,q_*)$ with
+\begin{gather*}
+|q_*-0.778472800990330076180356446189|<10^{-20},\\ |\alpha_*+0.569714080972361784438457668663|<1.5\cdot10^{-10},
+\end{gather*}
+at which $F=F_\alpha=0$. At that point $F_q\in1.75035806\pm7.6\cdot10^{-9}$ and $F_{\alpha\alpha}\in5.00\pm0.0203$, both positive. So the two roots meet in a square-root fold: they are real for $q<q_*$ near $q_*$ and complex conjugate for $q>q_*$ near $q_*$.
+\end{theorem}
+\status{Proved here with computer assistance, in Arb ball arithmetic through python-flint. The program is \note{first\_pass/\allowbreak certify\_collision.py}; it was read line by line and re-run.}
+\begin{proof}
+Let $I=a_0\pm1.5\cdot10^{-10}$ and $J=q_0\pm10^{-20}$ with the centres displayed above. Ball arithmetic shows:
+\begin{enumerate}[label=(\roman*)]
+\item $F>0$ on $\partial I\times J$;
+\item $F(a_0,q_0-10^{-20})<0$;
+\item $F>0$ on $I\times\{q_0+10^{-20}\}$.
+\end{enumerate}
+The function $g(q)=\min_{\alpha\in I}F(\alpha,q)$ is continuous, with $g(q_0-10^{-20})<0<g(q_0+10^{-20})$. At a zero $q_*$ of $g$ the minimiser $\alpha_*$ is interior to $I$ by (i), so $F=F_\alpha=0$ there. By the Bessel equation, $F_q=I''_\alpha(q)=(1+\alpha^2/q^2)I_\alpha-I'_\alpha/q$, which is enclosed directly; $F_{\alpha\alpha}$ is enclosed by a divided difference with a Cauchy remainder, the maximum modulus being taken on a circle of radius $0.05$. Since $F_q\ne0$ and $F_{\alpha\alpha}\ne0$, the two roots split as a square root in $q-q_*$.
+\end{proof}
+
+\subsection{The radius, exactly}
+
+\begin{theorem}[the radius of the hydrodynamic series]\label{thm:radius}
+Let $x_*=q_*^2/4$.
+\begin{enumerate}[label=(\alph*)]
+\item The hydrodynamic root $\alpha_h$ continues analytically to the open disk $|x|<x_*$. It is real and negative for $0<x<x_*$, so the shear mode is purely damped there.
+\item As $x\uparrow x_*$ along the reals, $\alpha_h(x)\to\alpha_*$, and $\alpha_h$ has a square-root branch point at $x_*$.
+\item The Taylor series of $\alpha_h$ in $x$ has radius of convergence exactly $x_*$. Equivalently, the series in $q^2$ has radius exactly $q_*^2=0.6060199018817300556\pm5.3\cdot10^{-20}$; in physical units $\omega(k)$ has radius exactly $k_*=q_*c/(2\nu)=0.389236400495165038\ldots\,c/\nu$ in $k$, and its first singularity is $\omega_*=-0.2848570405\ldots\,i\,c^2/\nu$.
+\item For real $x$ slightly above $x_*$ the two roots near $\alpha_*$ are complex conjugates: the modes propagate.
+\end{enumerate}
+\end{theorem}
+\status{Proved here with computer assistance (\note{certify\_hydro\_radius.py}, certified in $137$\,s). Independently re-verified by the referee: all Krawczyk conditions with a second interval library (\texttt{mpmath.iv}, $36$ terms, an independently derived tail bound), coverage and all consistency pairs in exact integer arithmetic, and the fold patch at twice the resolution.}
+\begin{proof}
+Every step is a finite ball-arithmetic computation.
+
+\emph{Rigorous evaluation.} $G$ and $G_\alpha$ are summed to $M=30$ terms in Arb. For $|\alpha|\le a=0.95$ and $|x|\le X=0.2$ the terms satisfy $|t_m|\le b_m:=(a+2m)X^m/\bigl(m!\prod_{k\le m}(k-a)\bigr)$ and $|\partial_\alpha t_m|\le d_m:=X^m/\bigl(m!\prod_{k\le m}(k-a)\bigr)\cdot\bigl(1+(a+2m)\sum_{k\le m}1/(k-a)\bigr)$. For $m\ge30$, $b_{m+1}/b_m\le2X/((m+1)(m+1-a))\le\frac12$ and $d_{m+1}/d_m\le5X/((m+1)(m+1-a))\le\frac12$, so the tails are at most $2b_M$ and $2d_M$; they are added to the ball radii.
+
+\emph{The Krawczyk tiling.} The closed disk $|x|\le R_{\mathrm{hi}}$, with $R_{\mathrm{hi}}\ge x_*$ the upper end of the certified box, minus the open square of half-width $3\cdot2^{-10}$ about a centre $X_c=x_*+O(3\cdot10^{-8})$, is covered by $42{,}650$ square cells, subdivided adaptively $3\times3$. For each cell $X_i$ and a square $\alpha$-box $A_i$ with centre $c$ and a real scalar $Y$, the Krawczyk operator
+\[
+K_i=c-YG(c,X_i)+\bigl(1-YG_\alpha(A_i,X_i)\bigr)(A_i-c)
+\]
+lies in the interior of $A_i$.
+\begin{itemize}
+\item \emph{Existence.} $A_i$ is convex and $G$ is analytic in $\alpha$. By the mean-value integral $G(\alpha,x)-G(c,x)=\int_0^1G_\alpha(c+t(\alpha-c),x)\,dt\cdot(\alpha-c)$, whose integral lies in the convex enclosure of $G_\alpha(A_i,X_i)$, the map $N_x(\alpha)=\alpha-YG(\alpha,x)$ sends $A_i$ into $K_i\subset A_i$ for every $x\in X_i$. Brouwer's theorem gives a fixed point, which is a zero because $Y\ne0$.
+\item \emph{Uniqueness and simplicity.} Two zeros in $A_i$, or a zero of $G_\alpha$ in $A_i$, would put $0$ in the convex hull of $G_\alpha(A_i,x)$. Then $1\in1-YG_\alpha(A_i,X_i)$, and $K_i$ would contain the translate $c-YG(c,x)+(A_i-c)$ of $A_i$, which cannot lie in the interior of $A_i$.
+\item So for every $x\in X_i$ there is exactly one zero in $A_i$; it is simple, lies in $K_i$ and is analytic in $x$. The cells are enlarged by the factor $1+10^{-9}$, so that the rounding of cell centres leaves no gaps, and every wanted cell is certified or subdivided, with no failures.
+\end{itemize}
+
+\emph{Consistency.} On all $168{,}301$ touching pairs, $K_i\subseteq A_j$ or $K_j\subseteq A_i$, so the unique zeros agree on the overlaps. The cells containing $x=0$ contain $\alpha=0$. So the zeros form one analytic function on the tiled region, the continuation of $\alpha_h$.
+
+\emph{Realness.} The $102$ cells that meet the real axis have real centres and real-symmetric $\alpha$-boxes, and uniqueness forces the zero to be real for real $x$.
+
+\emph{The fold patch.} Let $A_F$ be the square of half-width $\frac14$ about a dyadic $\alpha_0\approx\alpha_*$, and $X_F$ the square of half-width $2^{-8}$ about $X_c$; all corners and boundary points are exact binary numbers.
+\begin{enumerate}[label=(F\alph*)]
+\item $G\ne0$ on $\partial A_F\times X_F$, with $\min|G|\ge0.0774$.
+\item The winding number of $G(\cdot,X_c)$ along $\partial A_F$ is $2$ (enclosure $2.00000\pm3\cdot10^{-10}$). So for every $x\in X_F$, $G(\cdot,x)$ has exactly two zeros $\beta_1,\beta_2$ in $A_F$, counted with multiplicity, and their discriminant $\Delta=(\beta_1-\beta_2)^2=2p_2-p_1^2$, with $p_k=(2\pi i)^{-1}\oint_{\partial A_F}\alpha^kG_\alpha/G\,d\alpha$, is analytic on $X_F$.
+\item On the $256$ boundary segments of $X_F$ the two zeros lie in disjoint Krawczyk boxes inside $A_F$, and the winding number of $\Delta$ along $\partial X_F$ is $1$ (enclosure $1.00000\pm3\cdot10^{-11}$). So $\Delta$ has exactly one zero in $X_F$, and it is simple. That zero is $x_*$, because Theorem~\ref{thm:collision} places the double zero $(\alpha_*,x_*)$ in $A_F\times X_F$.
+\item All $4{,}039$ tiled cells that meet $X_F$ have $K_i\subseteq A_F$, so there $\alpha_h$ is one of $\beta_1,\beta_2$.
+\end{enumerate}
+
+\emph{Conclusion (a).} On $X_F\cap\{|x|<x_*\}$, a convex set with $x_*$ on its boundary, $\Delta\ne0$, so $\beta_1$ and $\beta_2$ are distinct and each is analytic there. The tiled function equals one of them on the connected set formed by the tiled region, $X_F$ and the disk $\{|x|<x_*\}$: this set contains the part of the square annulus between the half-widths $3\cdot2^{-10}$ and $2^{-8}$ that lies inside the disk, and the circle $|x|=x_*$ passes through the central hole. So $\alpha_h$ is analytic on $|x|<x_*$. On the real segment $[X_c-2^{-8},x_*)$, $\alpha_h$ is real at a tiled point, so its partner is real too, $\Delta$ is real and nonzero, and it is positive at the tiled end; hence $\Delta>0$ and both zeros are real up to $x_*$. Finally $G(0,x)=\sum_m2m\,x^m/(m!)^2>0$ for $x>0$, so $\alpha=0$ is never a zero for $x>0$; since $\alpha_h$ is real and continuous with $\alpha_h'(0)=-2$, it stays negative on $(0,x_*)$, and the frequency $w=i\alpha_h$ is negative imaginary.
+
+\emph{Conclusions (b) and (d).} Near $x_*$ the two zeros are $(p_1\pm\sqrt\Delta)/2$ with a simple zero of $\Delta$ at $x_*$, and $\alpha_h\to p_1(x_*)/2=\alpha_*$ as $x\uparrow x_*$. If $\alpha_h$ were analytic at $x_*$, then $\sqrt\Delta=\pm(2\alpha_h-p_1)$ would be analytic there, and $\Delta$ would have a zero of even order. For real $x>x_*$ near $x_*$, $\Delta<0$, since the zero is simple and $\Delta>0$ to its left; so the two zeros are a conjugate pair.
+
+\emph{Conclusion (c).} A power series at $0$ with radius $R>x_*$ would agree with $\alpha_h$ on $|x|<x_*$ and be analytic at $x_*$, contradicting (b); the radius is at least $x_*$ by (a). The physical constants follow from $k=q/\rho_c=qc/(2\nu)$ and $\omega=i\alpha c/\rho_c$.
+\end{proof}
+
+The fold patch gives two further facts. The collision is the only branch point of the two roots in $A_F\times X_F$, and it is nondegenerate independently of the enclosures of $F_q$ and $F_{\alpha\alpha}$ in Theorem~\ref{thm:collision}. And the partner root is certified real, simple and distinct from $\alpha_h$ on $[X_c-2^{-8},x_*)$. As a negative control, the same tiling asked to cover the disk $|x|\le0.158>x_*$ fails on the real axis beyond $x_*$, from $x=0.15451$, as it must: there the two zeros are a conjugate pair, which no real-symmetric box can isolate.
+
+\subsection{The coefficients and the sum on the circle}
+
+\begin{corollary}[coefficient asymptotics and boundary sum]\label{cor:darboux}
+Write $\alpha_h(x)=\sum_{k\ge1}a_kx^k$. Then
+\[
+a_k=-C\,x_*^{-k}\,k^{-3/2}\bigl(1+O(1/k)\bigr),\qquad C=\frac{\kappa\sqrt{x_*}}{2\sqrt\pi},\qquad \kappa^2=\frac{4F_q}{q_*F_{\alpha\alpha}}.
+\]
+The enclosures of Theorem~\ref{thm:collision} give $\kappa^2\in[1.7915,1.8061]$ and $C\in[0.14696,0.14757]$; numerically $\kappa=1.3403764770$ and $C=0.1471754300$. In particular $a_k<0$ for all sufficiently large $k$. The series converges absolutely on $|x|=x_*$, and $\sum_ka_kx_*^k=\alpha_*$: the dispersion series summed at $k=k_*$ equals the collision frequency $\omega_*$.
+\end{corollary}
+\status{Proved here with computer assistance; the numerical value of $C$ uses $F_{\alpha\alpha}$ to $30$ digits (RESEARCH.md (32)). The sign $\kappa>0$ is certified in \note{ns51\_sign\_check.py}.}
+\begin{proof}
+\emph{A $\Delta$-domain.} Every closed tiled cell carries a simple zero, so by the implicit function theorem and compactness $\alpha_h$ extends to an open neighbourhood of the tiled region. The fold square $X_F$ is a full neighbourhood of $x_*$, on which the two zeros are $(p_1\pm\sqrt\Delta)/2$ with $\Delta\ne0$ off $x_*$. Hence $\alpha_h$ is analytic and single-valued on a slit disk $\{|x|<x_*+\varepsilon\}\setminus[x_*,x_*+\varepsilon)$ for some $\varepsilon>0$, which contains a $\Delta$-domain at $x_*$ in the sense of singularity analysis.
+
+\emph{The local expansion.} Near $x_*$, $\alpha_h=(p_1+\sqrt\Delta)/2$ with $p_1$ and $\Delta$ analytic and $\Delta(x_*)=0$ simple, and the quadratic model of $F$ at the fold gives $\Delta=4\kappa^2(x_*-x)(1+O(x_*-x))$. Hence
+\[
+\alpha_h=\alpha_*+\kappa\sqrt{x_*}\,(1-x/x_*)^{1/2}+c_1(x_*-x)+c_2(x_*-x)^{3/2}+\cdots.
+\]
+The sign $\kappa>0$ holds because the hydrodynamic zero is the upper of the two real zeros on $[X_c-2^{-8},x_*)$. This is certified by a chain of $400$ real Krawczyk cells that continues $\alpha_h$ from $\alpha=0$ at $x=0$ to $x_0=X_c-2^{-8}$, where it lies in $[-0.526,-0.474]$; the two fold zeros at $x_0$ are enclosed in $-0.484383876487\pm1.2\cdot10^{-13}$ and $-0.651760880396\pm4\cdot10^{-13}$, and the chain's enclosure meets only the upper one.
+
+\emph{Transfer.} By the transfer theorem of singularity analysis \cite{FlajoletOdlyzko}, $[z^k](1-z)^{1/2}=-k^{-3/2}/(2\sqrt\pi)\,(1+O(1/k))$; the analytic term $c_1(x_*-x)$ contributes nothing for $k\ge2$, and $(x_*-x)^{3/2}$ contributes $O(k^{-5/2})$. This gives the asymptotics, and $a_kx_*^k=O(k^{-3/2})$ gives absolute convergence on the circle. Abel's theorem and $\alpha_h(x)\to\alpha_*$ as $x\uparrow x_*$ give the boundary sum.
+\end{proof}
+
+The first $240$ Taylor coefficients were computed exactly as rationals, with $G(\alpha_h(x),x)=O(x^{241})$ checked exactly (\note{hydro\_series.py}):
+\[
+a_1=-2,\ a_2=-3,\ a_3=-\tfrac{29}3,\ a_4=-\tfrac{2843}{72},\ a_5=-\tfrac{392029}{2160},\ a_6=-\tfrac{14509367}{16200},\ a_7=-\tfrac{63074754607}{13608000}.
+\]
+They reproduce the continuation's series in $q^2=4x$, including its fifth coefficient. All $240$ are negative, and the referee extended this to $320$. The Darboux-corrected ratios $(a_k/a_{k+1})/(1+3/(2k))$ approach $x_*=0.1515049754\ldots$ with error $O(1/k^2)$: $0.15158$ at $k=40$, $0.151517$ at $k=100$ and $0.1515080$ at $k=200$. From the referee's $320$ coefficients, $a_kx_*^kk^{3/2}\to-0.147175429969$ by Richardson extrapolation, which is $-C$ to $12$ digits; the partial sum $S_{320}$ plus the Darboux tail equals $\alpha_*$ to $1.6\cdot10^{-11}$; and the fold-patch discriminant has $\Delta'(x_*)=-7.186436=-4\kappa^2$.
+\status{Checked numerically.}
+
+\subsection{The other modes, and the physical reading}
+
+The root that collides with $\alpha_h$ is the first non-hydrodynamic mode. Followed backwards in $\alpha$ from $\alpha_*$ (near the fold, $q$ is a smooth function of $\alpha$, since $F_q\ne0$), it reaches $q\to0$ as $\alpha\to-1$ with $x\approx1+\alpha$ (\note{track\_partner.py}; numerical). As $q\to0$ the zeros of $\alpha\mapsto I'_\alpha(q)$ tend to the zeros of $1/\Gamma(\alpha)$, namely $\alpha=0,-1,-2,\dots$: indeed
+\[
+2(q/2)^{1-\alpha}I'_\alpha(q)=\sum_m\frac{(2m+\alpha)(q/2)^{2m}}{m!\,\Gamma(m+\alpha+1)}\longrightarrow\frac{\alpha}{\Gamma(\alpha+1)}=\frac1{\Gamma(\alpha)}
+\]
+locally uniformly in $\alpha$, and Hurwitz's theorem applies. (At $q=0$ itself the boundary problem degenerates, so the statement is a limit.) The referee found numerically that $(\alpha+n)/q^{2n}\to(-1)^{n+1}n/((n!)^24^n)$ for $n=1,2,3$. The cutoff observer has proper acceleration $c^2/\rho_c$ and redshift factor $1$ at $\rho=\rho_c$, so its Unruh temperature is $T=\hbar c/(2\pi k_B\rho_c)$, and the non-hydrodynamic frequencies tend to $\omega_n=-inc/\rho_c=-2\pi inT$ (units $\hbar=k_B=1$): the Matsubara frequencies.
+
+\begin{itemize}
+\item \emph{Normalisation.} With $2\pi T=c/\rho_c$, $(w,q)=(\omega,ck)/(2\pi T)$ are exactly the dimensionless variables $(\mathfrak w,\mathfrak q)$ of Grozdanov, Kovtun, Starinets and Tadić \cite{GKST}. The collision is a critical point of the spectral curve $F(\alpha,q)=0$ at real $\mathfrak q_*^2=0.6060199$ and imaginary $\mathfrak w_*=-0.5697141\,i$, and Theorem~\ref{thm:radius} is the flat-cutoff instance of their statement that the radius of the hydrodynamic series is set by the nearest critical point of the spectral curve on the hydrodynamic sheet. Here that critical point lies at real momentum.
+\item \emph{Shear viscosity.} $\rho_c=2\nu/c$ gives $\nu=c^2/(4\pi T)$. With $\eta=\nu(\varepsilon+p)/c^2$ and $\varepsilon+p=Ts$ at zero chemical potential, $\eta/s=\nu T/c^2=1/(4\pi)$ in units $\hbar=k_B=1$.
+\item \emph{Pole collisions.} Areán, Davison, Goutéraux and Suzuki characterise the breakdown of diffusion near AdS$_2$ critical points by a collision of the diffusive pole with a non-hydrodynamic pole \cite{ADGS}; the same kind of event bounds the series here. At the collision, $|\omega_*|/(\nu k_*^2)=|\alpha_*|/(q_*^2/2)=1.8802$, so at the radius the leading diffusive law is off by a factor $1.88$.
+\item \emph{The $k^4$ coefficient.} Compère, McFadden, Skenderis and Taylor write the corrected Rindler Navier--Stokes equation \cite[(6.3)]{CMST}; its linear part is $\partial_\tau v-r_c\partial^2v=-\frac32r_c^2\partial^4v$ in their time $\tau$, with induced metric $-r_c\,d\tau^2+dx^2$. In proper time $t=\sqrt{r_c}\,\tau$ and velocity $v/\sqrt{r_c}$ this becomes $\partial_tv-\sqrt{r_c}\,\partial^2v=-\frac32r_c^{3/2}\partial^4v$, so $\nu=\sqrt{r_c}$ and $\omega=-i\nu k^2-\frac32i\nu^3k^4$ ($c=1$), which is the second coefficient above. (Only the linear terms of (6.3) were read, through a text extraction.) The $k^6$ coefficient and all higher ones come from the exact condition \eqref{eq:disp}.
+\item \emph{A two-pole model.} The telegraph model $w^2+iw-q^2/2=0$, that is $\alpha^2+\alpha+2x=0$, calibrated to the diffusion constant and to the first non-hydrodynamic mode, collides at $x=\frac18$ ($q^2=\frac12$) and $\alpha=-\frac12$, with hydrodynamic branch $-2x-4x^2-16x^3-\cdots$. The exact problem moves the collision to $(q_*^2,\alpha_*)=(0.6060,-0.5697)$, with branch $-2x-3x^2-\frac{29}3x^3-\cdots$.
+\end{itemize}
+\status{The Unruh temperature, the normalisation and $\eta/s$ are derived here; the comparisons with \cite{GKST,ADGS} are readings of those papers' abstracts and statements, not re-derivations.}
+
+A statement of the Rindler radius was not found in \cite{BKLS,CMST,MarolfRangamani,GKST,Withers,HSSSW}; that check was made through their abstracts and text excerpts, and the search was not exhaustive.

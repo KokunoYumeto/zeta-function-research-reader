@@ -1,5 +1,9 @@
 # Notice: withdrawal, apology, and the rewrite
 
+## Update, 27 September 2026, 22:43 UTC: the papers
+
+The rewrite is now in the form of typeset mathematics papers, in [`rewrite/papers/`](rewrite/README.md), with their LaTeX sources: the zeta programme (version 3), the Erdős–Straus equation (version 4), the Yang–Mills workbench (version 3), the Navier–Stokes workbench, and the S⁶ record with the integral monodromy of its period system (version 3), together with the companion note on rotations, boosts and the Apollonian group. They keep the theorems, proofs, figures and citations of the earlier LaTeX readers, correct their framing, and add the verified corrections and new results; each paper lists its changes in an appendix. The Markdown records of 27 September are kept as condensed versions in [`rewrite/condensed/`](rewrite/condensed/); for the Jacobian-conjecture counterexample and for the Collatz and Erdős Problem 817 workbenches they are, for now, the only versions.
+
 ## Update, 27 September 2026, 17:59 UTC: the rewrite
 
 The rewritten records are now in [`rewrite/`](rewrite/README.md), published at the repository owner's request ahead of the owner's review. The owner may revise or withdraw them.

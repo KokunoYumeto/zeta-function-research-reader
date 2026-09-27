@@ -1,0 +1,451 @@
+\section{The author's notes, April--June 2026}\label{sec:notes}
+
+At the author's request this paper also treats the author's notes on the equation, written from April to June 2026. There are two collections:
+\begin{itemize}
+\item one of twenty \TeX{} notes and one 52-page paper;
+\item the Erdős--Straus part of a second collection, about fifty-five further notes, among them the source note of the terminal core.
+\end{itemize}
+They are cited by title and theorem number.
+
+The notes were read in six independent passes by separate Claude instances. Each pass tabulated every numbered statement and checked it with its own programs. Every result proved in this section was then re-derived and re-checked with this paper's own programs (Appendix~\ref{app:verification}). The statements that rest only on a reading pass, on the referee of version~3, or on a cited source say so. Drafts that the author's latest record supersedes are treated only for the results they contain that were verified.
+
+\paragraph{What the notes contain.}
+Their Erdős--Straus arithmetic consists of the shell calculus of Section~\ref{sec:core} and the classical identity families of Rosati, Yamamoto, Elsholtz--Tao, Salez and Lopez. To it they attach structural layers, which are correct where they were checked:
+\begin{itemize}
+\item the Niemeier lattice $A_5^4D_4$, which is also archive Theorem~25.8, and its umbral group $GL_2(3)$, the automorphism group of the glue code (checked by a reading pass);
+\item the Hauptmodul of $\Gamma_0(6)$ and the Monster class $6B$;
+\item Ogg's primes;
+\item Lorentzian and Apollonian geometry;
+\item Cayley--Dickson algebras;
+\item the split-zero semiring, where one isomorphism needs an additional relation (Proposition~\ref{prop:dossier});
+\item mock theta functions, where the notes' identification with the minimal model $M(2,7)$ holds in the form of Theorem~\ref{thm:m27}.
+\end{itemize}
+None of these structures takes a prime, a shell or a certificate as input, so a statement about solvability drawn from them needs a typed map from the shell data to them; Section~\ref{sec:overlaps} states, for each, what is established about such a map.
+
+\paragraph{What this section records.}
+\begin{itemize}
+\item what the notes add to Sections~\ref{sec:core} and~\ref{sec:families}: the exact form of the terminal core, a sieve of quadratic-residue conditions on a counterexample, and facts about single shells, identities and locks;
+\item corrections to the notes, each with its proof or counterexample;
+\item the mock theta functions of the notes, with the theorem that identifies their shadow with the modular representation of $M(2,7)$.
+\end{itemize}
+
+\subsection{The terminal core}\label{ssec:termcore}
+
+Put $M_{23}=840\cdot11\cdot19\cdot23=4{,}037{,}880$. A \emph{base class} is a class $n\equiv r\pmod{840}$ with $r\in S_{840}=\{1,121,169,289,361,529\}$, together with units modulo $11$, $19$ and $23$. There are $23{,}760$ base classes.
+
+The source note, \emph{Finite central-cover reductions for residual Erdős--Straus shells}, calls $(R,m,u)$ an \emph{elementary $j=1$ certificate} when:
+\begin{itemize}
+\item $R\equiv3\pmod4$ and $u\mid m^2$;
+\item $n\equiv-R\pmod{4m}$, $n\equiv-4u\pmod R$, and $\gcd(n,R)=1$.
+\end{itemize}
+Then $m\mid a=(n+R)/4$, $u\mid a^2$ and $u\equiv-a\pmod R$, so the shell is occupied through the middle channel $M_a$. The primes that may divide $m$ are those of $\{2,3,5,7,11,19,23\}$ not dividing $R$ whose divisibility of $a$ the class forces.
+
+The note makes two computations:
+\begin{enumerate}[label=(\roman*)]
+\item The $32$ shells $R\mid M_{23}$ with $R\equiv3\pmod4$ cover all but $4951$ base classes. This is a covering statement.
+\item Over all $R$ built from $3,5,7,11,19,23$, it tests the certificate congruence modulo $\gcd(M_{23},R)$, so that a class counts as hit when some lift of it modulo $\operatorname{lcm}(M_{23},R)$ is certified. Exactly $2970$ classes are then never hit, namely $S_{840}\times Q_{11}\times Q_{19}\times Q_{23}$, where $Q_q$ is the group of non-zero squares modulo $q$.
+\end{enumerate}
+The note calls this set the \emph{support-zero core}. It uses the set to bound from below the residue of any obstruction built from such certificates.
+
+\begin{lemma}\label{lem:j1square}
+Let $(R,m,u)$ be an elementary $j=1$ certificate with $\gcd(m,R)=1$, and let $n$ satisfy its congruences. Put $\varepsilon_\ell(n)=(n/\ell)$ for odd primes $\ell$. Put $\varepsilon_2(n)=1$ if $n\equiv1\pmod8$ and $\varepsilon_2(n)=-1$ if $n\equiv5\pmod8$. Then the Jacobi symbol satisfies
+\[
+\Big(\frac nR\Big)=-\prod_{\ell\mid u}\varepsilon_\ell(n)^{v_\ell(u)}.
+\]
+In particular no $n$ in the class is a unit square modulo $\operatorname{lcm}(4m,R)$.
+\end{lemma}
+\begin{proof}
+From $n\equiv-4u\pmod R$ we get $(n/R)=(-1/R)(4/R)(u/R)=-(u/R)$.
+
+For an odd prime $\ell\mid m$, reciprocity with $R\equiv3\pmod4$ gives $(\ell/R)=(-R/\ell)$. This equals $(n/\ell)$ because $n\equiv-R\pmod\ell$.
+
+If $2\mid m$, then $n\equiv-R\pmod8$. So $(2/R)=1$ exactly when $R\equiv7\pmod 8$, that is, when $n\equiv1\pmod8$.
+
+If $n$ were a square modulo $\operatorname{lcm}(4m,R)$, every $\varepsilon_\ell(n)$ with $\ell\mid m$ would be $1$. Then $(n/R)=-1$, which is impossible for a square.
+\end{proof}
+
+\begin{theorem}[the terminal core]\label{thm:termcore}
+\begin{enumerate}[label=(\alph*)]
+\item A base class has no elementary $j=1$ certificate with $R$ built from $3,5,7,11,19,23$ on any lift if and only if it is a square modulo $11$, $19$ and $23$. So the support-zero core is exactly $S_{840}\times Q_{11}\times Q_{19}\times Q_{23}$, which has $2970$ classes.
+\item The base classes that no single identity among Salez's seven modular equations \cite{Salez} with modulus dividing $M_{23}$ covers number $3520$. They are the $2970$ square classes and $550$ classes that are non-squares modulo $11$, $19$ or $23$.
+\item So the classes left open at level $M_{23}$ strictly contain the core. For example the prime $3361\equiv1\pmod{840}$, $\equiv6\pmod{11}$, lies outside the core, and none of the $64{,}149$ families with modulus dividing $M_{23}$ covers its class. The primes $18{,}481$ and $2{,}840{,}041$ behave in the same way.
+\end{enumerate}
+\end{theorem}
+\status{(a) The \emph{if} direction is proved here. The \emph{only if} direction is a finite computation: the source note's script and an independent program of this paper both give $4951$ and then $2970$. (b) A finite computation, calibrated at Salez's modulus $G_7=840\cdot11\cdot13\cdot17\cdot19\cdot23$, where it leaves $147{,}348$ classes, the number Salez reports. Salez states that his seven equations form a complete set of modular equations. The primes in (c) are of course solvable, for instance $4/3361=1/841+1/110139970+1/950330$.}
+\begin{proof}
+(a), \emph{if}. Let $n$ lie over a square class.
+\begin{itemize}
+\item $S_{840}$ is the group of unit squares modulo $840$, so $n$ is a quadratic residue modulo every prime $\ell\in\{3,5,7,11,19,23\}$.
+\item Also $n\equiv1\pmod8$.
+\item So $(n/R)=1$ for every $R$ built from these primes.
+\item The primes that may divide $m$ lie in $\{2,3,5,7,11,19,23\}$, so Lemma~\ref{lem:j1square} forces $(n/R)=-1$ for any certificate.
+\end{itemize}
+Hence no lift is certified. The remaining statements are the computations in the status line.
+\end{proof}
+
+\begin{remark}\label{rem:termcore}
+The notes' later papers work with the core as the set of hard classes that remain: the 52-page \emph{Terminal residual coordinates for the Erdős--Straus problem} (26 May 2026) and its June replacement \emph{Finite support algebra, cubic middle geometry, and orientation descent}. Theorem~\ref{thm:termcore} locates the core inside the set that single identities leave open. At level $M_{23}$ that set has $3520$ classes. The core is the part of it that quadratic reciprocity forces, and the $550$ further classes are the part that remains from using one identity per class.
+
+In the vocabulary of the split-zero semiring (Section~\ref{ssec:splitzero}):
+\begin{itemize}
+\item the $2970$ core classes are \emph{unsupported};
+\item the $550$ further classes are \emph{supported but not covered}: some lift of each is certified, but no identity of Salez's seven families holds on the whole class.
+\end{itemize}
+Salez's statement that his seven equations are complete concerns identity families of his linear type; the archive's audit of Salez (§13.2) records this scope. Whether combinations of identities cover the $550$ classes at some finite level is Question~\ref{q:550}.
+
+By Dirichlet's theorem the core carries $2970/\varphi(M_{23})=1/256$ of all primes, and the classes left open at level $M_{23}$ carry $3520/760{,}320=1/216$.
+\end{remark}
+
+\subsection{Quadratic-residue conditions on a counterexample}\label{ssec:qrconditions}
+
+Throughout this subsection, $p\equiv1\pmod{24}$ is prime. A certificate is a shell $R\equiv3\pmod4$ with $\gcd(R,pa)=1$ and a divisor $u\mid a^2$ with $R\mid4u+1$ (channel $E$) or $R\mid u+a$ (channel $M$). Theorem~\ref{thm:shell} then gives the solution.
+
+\begin{theorem}[eight shifts]\label{thm:eightshifts}
+Let $q$ be an odd prime dividing
+\[
+F(p)=(p+1)(p+2)(p+3)(p+4)(p+7)(p+8)(2p+1)(3p+1)
+\]
+with $(p/q)=-1$. Then the shell and divisor of Table~\ref{tab:eightshifts} give a certificate. Equivalently, a counterexample $p\equiv1\pmod{24}$ is a quadratic residue modulo every odd prime factor of $F(p)$.
+\end{theorem}
+
+\begin{center}\small
+\begin{longtable}{@{}lllll@{}}
+\caption{The certificates of Theorem~\ref{thm:eightshifts}, with $a=(p+R)/4$.}\label{tab:eightshifts}\\
+\toprule
+shift & $q$ with $(p/q)=-1$ & shell $R$ & $u$ & channel\\
+\midrule
+$p+1$ & $q\equiv3\pmod4$ & $q$ & $a$ & $E$\\
+$p+4$ & $q\equiv3\pmod4$ & $q$ & $1$ & $M$\\
+$p+2$ & $q\equiv5,7\pmod8$ & $q$ if $q\equiv7$, $3q$ if $q\equiv5\pmod 8$ & $a/2$ & $E$\\
+$p+8$ & $q\equiv5,7\pmod8$ & the same & $2$ & $M$\\
+$2p+1$ & $q\equiv5,7\pmod8$ & the same & $2a$ & $E$\\
+$p+3$ & $q\equiv2\pmod3$ & $3$ & $q$ & $E$\\
+$p+7$ & $q\equiv5$, $6$, $3\pmod7$ & $7$ & $q$, $aq$, $2aq$ & $E$, $M$, $M$\\
+$3p+1$ & $q\equiv2\pmod3$ & $(4q+1)/3$ & $q$ & $E$\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\status{Proved here.
+\begin{itemize}
+\item \emph{Recorded rows.} $p+1$ and $p+4$ are archive Theorem~24.50. $p+3$ and $p+7$ are Propositions~\ref{prop:r3} and~\ref{prop:r7}, read through reciprocity. $3p+1$ is archive Theorem~24.171 with $k=3$.
+\item \emph{Salez's charts.} Each of the rows $p+1$, $p+2$, $2p+1$, $p+4$, $p+8$ is the union, over the free divisor $R$, of one of Salez's charts \cite{Salez} with small fixed constants: (15b) with $(B,C)=(1,1),(1,2),(2,1)$ and (14c) with $(B,D)=(1,1),(1,2)$.
+\item \emph{Not in the archive.} The quadratic-residue conditions from $p+2$ and $2p+1$, and the stated condition from $p+8$, are not stated in the archive, in versions~1--2 of this paper, or in \note{43\_}/\note{43a\_}. No literature search was made.
+\item \emph{Checks.} Every certificate for every prime $p\equiv1\pmod{24}$ below $10^7$ was built and verified: $780{,}700$ of them, none bad. $247$ primes survive all eight shifts.
+\end{itemize}}
+\begin{proof}
+\emph{The characters.} For $q\mid p+k$ with $q\nmid k$ we have $(p/q)=(-k/q)$; similarly $(p/q)=(-2/q)$ for $q\mid 2p+1$ and $(p/q)=(-3/q)$ for $q\mid3p+1$. These characters are $-1$ exactly on the classes of $q$ listed in the table; for $p+7$ this uses $(-7/q)=(q/7)$.
+
+\emph{Each row is a certificate.} For each row the stated divisibility is an identity:
+\begin{itemize}
+\item $4a+1=p+R+1$;
+\item $4(a+1)=p+R+4$;
+\item $2(2a+1)=p+R+2$;
+\item $4(a+2)=p+R+8$;
+\item $8a+1=2(p+R)+1$;
+\item $4q+1\equiv q+1\pmod3$;
+\item for $p+7$: $4q+1\equiv0$, $a(q+1)$ and $a(2q+1)$ modulo $7$.
+\end{itemize}
+
+\emph{The rows $p+2$, $p+8$ and $2p+1$.} Since $p\equiv1\pmod3$, $3$ divides each of these shifts, so $R$ divides the shift. Here $q\neq3$ because $(p/3)=1$. Also $R\equiv7\pmod8$, so $8\mid p+R$ and $a$ is even.
+
+\emph{The row $p+7$.} $8\mid p+7$, so $a$ is even, and $q\mid a$.
+
+\emph{The row $3p+1$.} Put $N_3=(3p+1)/4$, which is odd and $\equiv1\pmod3$. Then $h=N_3/q\equiv2\pmod3$. With $a=q(h+1)/3$ one checks $4a-p=(4q+1)/3=R$.
+
+\emph{Coprimality.} A common prime of $R$ and $a$ divides $4a-R=p$, and $p\nmid R$ in every row.
+\end{proof}
+
+At the strict record $p_*=8{,}803{,}369$, whose least occupied shell is $107$, two shifts give four certificates:
+\begin{itemize}
+\item $p_*+2=3\cdot223\cdot13159$, where $223\equiv7$ and $13159\equiv7\pmod8$, giving the shells $223$ and $13{,}159$;
+\item $2p_*+1=3\cdot677\cdot8669$, where $677\equiv5$ and $8669\equiv5\pmod8$, giving the shells $2031$ and $26{,}007$.
+\end{itemize}
+None of the other six shifts gives a certificate at $p_*$. The least primes certified by $p+2$ alone, by $2p+1$ alone and by $p+8$ alone are $2521$, $9601$ and $33{,}961$.
+
+\begin{theorem}[$p+5$]\label{thm:pplus5}
+Let $N=(p+5)/2$, and let $p\equiv9\pmod{40}$, or $p\equiv121\pmod{840}$, or $p\equiv1,361\pmod{840}$ with $p\equiv4\pmod9$. Suppose some prime $q\mid p+5$ has $(p/q)=-1$. Then $N$ has a divisor $d\equiv-p\pmod{20}$ or a divisor $h\equiv-1\pmod{20}$, and either gives a certificate by Proposition~\ref{prop:locks} with $\mu=5$.
+
+So a counterexample in these classes, which contain the hard classes $121$, $169$, $289$ and $529$, is a quadratic residue modulo every odd prime factor of $p+5$.
+\end{theorem}
+\status{Proved here. The case $p\equiv9\pmod{40}$ is in the note \emph{Full divisor locks, QR subtori, and survivor idempotents} in substance (its Theorem~3.7(ii), Corollary~3.8(ii) and Theorem~4.2). The extension to the classes $121$, $1$ and $361$ was found by a reading pass. The theorem was checked on all $41{,}419$ primes $p\equiv9\pmod{40}$ below $10^7$ and on $5688$ primes of the other classes. At $p=12601\equiv1\pmod{840}$, with $p\equiv1\pmod9$, it fails: $p+5=2\cdot3\cdot11\cdot191$ has two non-residue factors, yet $N$ has no divisor in either class.}
+\begin{proof}
+For $q\mid N$ we have $(p/q)=(-5/q)$. This equals $1$ exactly when $q\equiv1,3,7,9\pmod{20}$, a subgroup $H$ of index $2$.
+
+\emph{The case $p\equiv9\pmod{40}$.} Here $N\equiv7\pmod{20}$, and the targets are $11$ and $19$. Let $q\notin H$ divide $N$:
+\begin{itemize}
+\item if $q\equiv11$ or $19$, then $q$ itself is the divisor;
+\item if $q\equiv13$, then $N/q\equiv19$;
+\item if $q\equiv17$, then $N/q\equiv11$.
+\end{itemize}
+
+\emph{The case $p\equiv1\pmod{40}$.} Here $N\equiv3\pmod{20}$, and a divisor $\equiv17$ or $19$ suffices, because its cofactor is then $\equiv19$. Let $q\notin H$ divide $N$:
+\begin{itemize}
+\item $3\mid N$ always, so $q\equiv13$ gives $3q\equiv19$;
+\item $7\mid N$ when $p\equiv121\pmod{840}$, so $q\equiv11$ gives $7q\equiv17$;
+\item $9\mid N$ when $p\equiv4\pmod9$, so $q\equiv11$ gives $9q\equiv19$.
+\end{itemize}
+
+\emph{Conversely}, the targets lie outside $H$, so a divisor in a target class has a prime factor outside $H$.
+\end{proof}
+
+\begin{theorem}[the visible-box principle]\label{thm:visiblebox}
+Let $R\equiv3\pmod4$ be prime and $c$ a class of hard primes modulo $10080=2^5\cdot3^2\cdot5\cdot7$. Let
+\[
+\mathrm{Box}(c)=\Big\{\prod_{f\in\{2,3,5,7\}}f^{i_f}\bmod R:\ 0\le i_f\le2e_f\Big\},
+\]
+where $e_f$ is the least value of $v_f((p+R)/4)$ that $c$ forces. If $\mathrm{Box}(c)$ contains every non-zero square modulo $R$, then for every prime $p\in c$ the shell $R$ is occupied exactly when some odd prime $q\mid p+R$ has $(p/q)=-1$.
+\end{theorem}
+\status{Proved here; found by a reading pass. The archive's census refinements (Theorems~24.228 and~24.233) already give certificates in the shells $R=31$, $47$ and $71$ on parts of these classes; the equivalence is not stated there. The search up to $R=700$ is complete, because $|\mathrm{Box}(c)|\le7\cdot5\cdot3\cdot3=315$. Among the $72$ hard classes modulo $10080$ it finds $72$ good classes for $R=3$ and $R=7$, $48$ for $R=11$, $12$ for $R=19$, $48$ for $R=23$, and $30$, $20$, $4$, $12$, $1$ for $R=31$, $47$, $59$, $71$, $311$. The last five shells are new. All $90{,}897$ tests with $p<10^7$ agree, with $50{,}545$ certificates verified.}
+\begin{proof}
+Every element of $\mathrm{Box}(c)$ is the residue of a divisor of $a^2$.
+
+If $q\mid a$ is a prime with $(q/R)=-1$, then $(p/q)=(-R/q)=(q/R)=-1$. Also $q\cdot\mathrm{Box}(c)$ is the non-square coset, so the divisors reach every unit, including the target $-4^{-1}$ of channel $E$.
+
+The condition $(p/R)=-1$ needs no separate treatment. Let $m$ be the odd part of $p+R$. Since $p\equiv1\pmod8$, reciprocity gives $(p/m)=(m/p)=(R/p)(2/p)^{-v_2(p+R)}=(p/R)$. So if $(p/R)=-1$, some prime factor $q$ of $m$ has $(p/q)=-1$.
+
+Conversely, suppose that no odd prime $q\mid p+R$ has $(p/q)=-1$. For an odd prime $\ell\mid a$, reciprocity gives $(\ell/R)=(-R/\ell)=(p/\ell)=1$; the prime $2$ divides $a$ only when $R\equiv7\pmod8$, and then $(2/R)=1$. So every prime factor of $a$ is a square modulo $R$, and Proposition~\ref{prop:jacobi} shows that the shell is empty.
+\end{proof}
+
+\begin{proposition}[$\mu=17$]\label{prop:mu17}
+Let $p\equiv361$ or $529\pmod{840}$, $p\equiv1\pmod9$ and $p\bmod17\in\{8,15,16\}$. Then $(p+17)/2$ has a divisor $d\equiv-p$ or $h\equiv-1\pmod{68}$, giving a certificate by Proposition~\ref{prop:locks}, if and only if some prime $q\mid p+17$ has $(p/q)=-1$.
+\end{proposition}
+\status{Proved here; found by a referee pass. Checked on all $433$ such primes below $10^7$.}
+\begin{proof}
+Put $N=(p+17)/2$. Then $63\mid N$. The character $(p/q)=(-1/q)(q/17)$ lives modulo $68$, and both targets $-p$ and $-1$ lie outside its kernel. A finite check of the six classes shows that for every non-kernel class $r$ the sets $r\cdot W$ and $N(rW)^{-1}$, with $W=\{1,3,7,9,21,63\}$, meet the targets modulo $68$. The converse holds as in Theorem~\ref{thm:pplus5}.
+\end{proof}
+
+The primes $p\equiv1\pmod{24}$ that satisfy the conditions of Theorems~\ref{thm:eightshifts}, \ref{thm:pplus5} and~\ref{thm:visiblebox} and Proposition~\ref{prop:mu17} are counted in Table~\ref{tab:survivors}.
+
+\begin{center}\small
+\begin{longtable}{@{}lrrr@{}}
+\caption{Primes $p\equiv1\pmod{24}$ satisfying the conditions of Theorems~\ref{thm:eightshifts}, \ref{thm:pplus5} and~\ref{thm:visiblebox} and Proposition~\ref{prop:mu17}, cumulatively. The column $10^8$ is from a referee pass.}\label{tab:survivors}\\
+\toprule
+conditions & below $10^6$ & below $10^7$ & below $10^8$\\
+\midrule
+hard classes & $2370$ & $20{,}513$ & $179{,}468$\\
+and the eight shifts & $54$ & $247$ & $1431$\\
+and $p+5$ on its classes & $29$ & $146$ & $816$\\
+and $\mu=17$ & $29$ & $145$ & $806$\\
+and the visible-box shells & $7$ & $31$ & $165$\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+The first primes that satisfy all the conditions of the table are $43{,}201$, $65{,}521$ and $196{,}561$.
+
+The referee of version~3 found certificates of three further shapes, on parts of the hard classes. Let $R\equiv3\pmod4$ with $a=(p+R)/4$ and $\gcd(R,pa)=1$, and let $s,t\ge1$.
+\begin{itemize}
+\item $u=s$ is an $M$-certificate when $s\mid a^2$ and $R\mid p+4s$, since $4(s+a)=p+4s+R$.
+\item $u=a/t$ is an $E$-certificate when $t\mid a$, $\gcd(t,R)=1$ and $R\mid p+t$, since $t(4a/t+1)=p+R+t$.
+\item $u=ta$ is an $E$-certificate when $t\mid a$ and $R\mid tp+1$, since $4ta+1=t(p+R)+1$.
+\end{itemize}
+Applied to the shifts $p+6$ ($t=6$), $p+12$, $p+16$, $p+20$, $p+24$, $p+36$ ($s=3,4,5,6,9$), $5p+1$ and $6p+1$ ($t=5,6$), they give conditions of the same kind as those above. The referee verified $46{,}441$ such certificates below $10^7$, and its script was re-run here. Below $10^7$, exactly $23$ primes $p\equiv1\pmod{24}$ have no certificate of any of the kinds of this subsection. The prime $43{,}201$, for example, has one from $p+24$: $4/43201=1/10914+1/1036824+1/1885982856$.
+
+The survivors are rare, and already the first condition removes almost all primes.
+
+\begin{proposition}[density zero]\label{prop:densityzero}
+The primes $p\equiv1\pmod{24}$ that satisfy the condition of the row $p+1$ of Theorem~\ref{thm:eightshifts} have relative density zero among the primes $p\equiv1\pmod{24}$. A fortiori, so do the primes that satisfy all the conditions of this subsection.
+\end{proposition}
+\status{Proved here; new in version~4.}
+\begin{proof}
+If a prime $q\equiv3\pmod4$ divides $p+1$, then $(p/q)=(-1/q)=-1$, so the row $p+1$ gives a certificate. Hence a prime satisfying the condition has $p\not\equiv-1\pmod q$ for every prime $q\equiv3\pmod4$. (The prime $q=3$ never divides $p+1$ when $p\equiv1\pmod{24}$.) Let $q_1,\dots,q_k$ be the first $k$ primes $\equiv3\pmod4$ greater than $3$. By Dirichlet's theorem for the progressions modulo $24q_1\cdots q_k$, the primes $p\equiv1\pmod{24}$ with $p\not\equiv-1\pmod{q_i}$ for all $i\le k$ have relative density $\prod_{i\le k}\bigl(1-1/(q_i-1)\bigr)$ among the primes $p\equiv1\pmod{24}$. Since $\sum1/q$ over the primes $q\equiv3\pmod4$ diverges, this product tends to $0$ as $k$ grows, and the relative upper density of the set in question is at most every such product.
+\end{proof}
+
+Whether infinitely many primes survive all the conditions is Question~\ref{q:qrsurvivors}. A negative answer would prove the conjecture at all but finitely many primes.
+
+\begin{remark}[the Collatz reading]\label{rem:collatz}
+For $p\equiv1\pmod8$ the number $(3p+1)/4$ is the odd Collatz successor of $p$. So a counterexample $p\equiv1\pmod{24}$ has an odd Collatz successor built only from primes $\equiv1\pmod3$.
+
+The odd Collatz predecessors of an odd $n$ with $3\nmid n$ satisfy $\Pi_{k+1}=4\Pi_k+1$, which is the notes' map $a\mapsto4a+1$. So $\Pi_k\equiv5\pmod8$ for $k\ge1$. Every prime $P\equiv5\pmod8$ is solved by the shell $R=3$ with $u=2$. Hence only the first member of a predecessor chain can be a hard prime.
+
+This is the classical Syracuse predecessor structure \cite{Lagarias}, and it links this workbench with the Collatz workbench \cite{WorkbenchReader}. The link uses single steps of the Collatz map.
+\end{remark}
+
+\subsection{Single shells}\label{ssec:singleshells}
+
+\begin{proposition}[non-coprime shells]\label{prop:noncoprime}
+Let $p$ be prime and $R\equiv-p\pmod4$. Then $\gcd(R,pa)>1$ exactly when $p\mid R$; write $R=kp$.
+\begin{enumerate}[label=(\alph*)]
+\item If $p\nmid k$, the one-congruence criterion, that some $d\mid N^2$ has $d\equiv-N\pmod R$, is equivalent to occupancy, and every such $d$ gives integral $y$ and $z$.
+\item If $p^2\mid R$, it is not. At $p=73$, $R=7\cdot73^2$, the divisor $d=4\cdot73^3$ satisfies the congruence and gives $y=60$ but $z=1920/73$, and the shell has no solution.
+\end{enumerate}
+\end{proposition}
+\status{Proved here; found by a reading pass. Four of the notes state the criterion without the coprimality hypothesis: the defect-completion article (Lemma~2.1), \emph{Split-zero residual moonshine} (Theorem~3.1), the $A_8$ snowflake note (Theorem~2.1) and \emph{Terminal-core lock covers} (Theorem~2.1). The error does not affect the notes' applications, which are at hard primes with $R<3p^2$ (a reading pass): for $p\equiv1\pmod4$, $p^2\mid R$ forces $R\ge3p^2$. For $p\equiv3\pmod4$ it allows $R=p^2$.}
+\begin{proof}
+(a) Put $m=(k+1)/4$, so that $a=pm$ and $N=p^2m$. A divisor $d$ with $d\equiv-N\pmod{kp}$ is divisible by $p$; write $d=pd_1$, so that $k\mid d_1+pm$.
+\begin{itemize}
+\item If $p^3\nmid d_1$, then $d_1\mid(pm)^2$ is a certificate for the reduced shell $(k,pm)$, and the formulas agree.
+\item If $d_1=p^3w$ with $w\mid m^2$, then $k\mid4p^2w+1$, so $(w/k)=(-1/k)=-1$.
+\item But every prime $\ell\mid m$ has $(\ell/k)=1$: for odd $\ell$ because $k\equiv-1\pmod\ell$ and reciprocity applies; for $\ell=2$ because $k\equiv7\pmod8$. So $(w/k)=1$, a contradiction.
+\end{itemize}
+(b) Direct computation, including a search over all $y$.
+\end{proof}
+
+\begin{proposition}[ramified shells]\label{prop:ramified}
+Let $(R,p)$ be a coprime shell.
+\begin{enumerate}[label=(\alph*)]
+\item If $R\mid p-1$, then $E_a=M_a$.
+\item If $R\mid p^2-1$, then $u\mapsto a^2/u$ maps $E_a$ to itself, and $|E_a|$ is odd exactly when $R\mid p+1$.
+\end{enumerate}
+\end{proposition}
+\status{Proved here; checked on all $947$ coprime shells with $R\mid p^2-1$ and $p\equiv1\pmod4$ below $2000$.}
+\begin{proof}
+(a) $4a\equiv p\equiv1\pmod R$, so $4(u+a)\equiv4u+1$.
+
+(b) The complement sends the class $-4^{-1}$ to $-4a^2\equiv-p^2/4$, which is $-4^{-1}$ again when $p^2\equiv1\pmod R$. The only possible fixed point is $u=a$. Finally $a\in E_a$ exactly when $R\mid4a+1=p+R+1$.
+\end{proof}
+
+\begin{proposition}[the pair-count series]\label{prop:pairzeta}
+Let $A_R(n)$ be the number of triples $(X,Y,Z)$ with $XYZ=n$, $\gcd(X,Y)=1$ and $R\mid X+Y$. For a coprime shell, $A_R(pa)$ is the number of ordered certificates. For $R\ge3$,
+\[
+\sum_{(n,R)=1}\frac{A_R(n)}{n^s}=\frac1{\varphi(R)}\sum_{\chi\bmod R}\chi(-1)\,\frac{\zeta_R(s)\,L(s,\chi)\,L(s,\bar\chi)}{\zeta_R(2s)},
+\]
+where $\zeta_R$ omits the primes dividing $R$.
+\end{proposition}
+\status{Proved here. This is Theorem~4.3 of the defect-completion article; $8757$ coefficients were checked by a referee pass. No positivity statement follows.}
+\begin{proof}
+Write $1_{X\equiv-Y}=\varphi(R)^{-1}\sum_\chi\chi(-1)\chi(X)\bar\chi(Y)$. The variable $Z$ contributes $\zeta_R(s)$. Möbius inversion over the common divisors of $X$ and $Y$ contributes $L(s,\chi)L(s,\bar\chi)/L(2s,\chi\bar\chi)$, and $\chi\bar\chi$ is principal.
+\end{proof}
+
+The divisor-pair note asks for finitely many central and edge templates covering $S_{840}$. As a congruence cover this is impossible, because no template class contains a square modulo its modulus.
+\begin{itemize}
+\item For the edge templates this is Proposition~\ref{prop:nosquare}.
+\item A central template is the class $n\equiv-R\pmod{4c}$ with $s\mid c^2$, $\gcd(c,R)=1$, $R\equiv3\pmod4$ and $R\mid s+c$. If $-R$ were a unit square modulo $4c$, then:
+\begin{itemize}
+\item every odd prime $\ell\mid c$ would have $(-R/\ell)=1$, hence $(\ell/R)=1$;
+\item if $2\mid c$, then $-R\equiv1\pmod8$, so $(2/R)=1$.
+\end{itemize}
+So $(c/R)=(s/R)=1$. But $R\mid s+c$ gives $(s/R)=(-c/R)=-1$. (A reading pass found this argument.)
+\end{itemize}
+By Dirichlet's theorem, primes $p\equiv1$ modulo the product of $840$ and the template moduli exist, and they escape every template.
+
+\subsection{Identities, locks and types}\label{ssec:locks}
+
+\begin{proposition}[Rosati's family]\label{prop:rosati}
+Let $k\ge1$, $c\mid k$ and $m=4k-1$. If $n\equiv-c\pmod m$, then
+\[
+\frac4n=\frac1{kn}+\frac1{k(n+c)/m}+\frac1{kn(n+c)/(mc)}.
+\]
+\end{proposition}
+\status{Proved here; Salez's chart (14a) with $(B,C,D)=(c,1,k/c)$. The case $k=22$, $c=11$ solves every $n\equiv76\pmod{87}$. The two \emph{direct $29$-channels} of \emph{Terminal residual coordinates} (Theorems~7.1--7.2), $n\equiv917\pmod{1276}$ and $n\equiv1605\pmod{2204}$, are correct. They are Salez's chart (15b) with $(B,C,F)=(1,29,11)$ and $(1,29,19)$. The first lies inside this family with $(k,c)=(80,40)$, $m=319$. The second lies inside chart (14a) with $(B,C,D)=(2,23,3)$, $m=551$. The notes' claim that these are the only direct channels holds only for lock divisors that are single primes from $\{5,11,19,23\}$. The lock with $\mu=5$ and $d=31$ solves $n\equiv429\pmod{620}$, a class containing the core prime $33{,}289$.}
+\begin{proof}
+Over the common denominator $kn(n+c)$ the three terms have numerators $n+c$, $mn$ and $mc$, which add up to $(1+m)(n+c)=4k(n+c)$. The denominators are integers because $m\mid n+c$ and $c\mid k$.
+\end{proof}
+
+\begin{proposition}[the full-divisor locks]\label{prop:locks}
+Let $p$ be an odd prime, $\mu$ odd and $N=(p+\mu)/2$.
+\begin{enumerate}[label=(\alph*)]
+\item If $d\mid N$ is odd with $d\equiv-p\pmod{4\mu}$, then the shell $R=d$ carries the $E$-certificate $u=a/\mu$.
+\item If $h\mid N$ with $h\equiv-1\pmod{4\mu}$, put $e=N/h$ and $t=(h+1)/(4\mu)$. Then $a=2\mu et$ and $R=\mu+2e$ satisfy $4a-p=R$, and $u=\mu^2t$ is an $M$-certificate.
+\end{enumerate}
+\end{proposition}
+\status{Proved here. These are the locks of the notes, which a reading pass identifies with the faces $A=1$ of Type~I and $C=1$ of Type~II of \cite{ElsholtzTao}; lock (b) is Lopez's Type~B \cite{Lopez}. In the notes' proof of (a) the numerator should read $ps+p+\mu$, not $ps+p+\mu s$.}
+\begin{proof}
+(a) Here $\mu\mid a$, and $4u+1=(p+d+\mu)/\mu$ is divisible by $d$.
+
+(b) $4a-p=2e(h+1)-2eh+\mu=R$ and $u+a=\mu tR$.
+\end{proof}
+
+\paragraph{Computations on these certificates.}
+\begin{itemize}
+\item Every hard prime below $10^7$ has a lock certificate. A reading pass found the same below $10^8$, where the hard primes number $179{,}468$. Not every prime has one: $409\equiv1\pmod{24}$, which is not hard, has none for any odd $\mu$, by an exhaustive search. It is the only prime $p\equiv1\pmod4$ below $3\cdot10^6$ without one (found by the referee of this version).
+\item Every prime $p\equiv1\pmod{24}$ below $10^7$ has a Type~II solution, that is, an $M$-certificate, in a shell $R\le107$. The record $p_*$ is the only one that needs $107$. A reading pass found the same below $10^8$.
+\item The \emph{complement-square} certificates $u=Q^2$ with $Q\mid a$ (Lopez's Type~C \cite{Lopez}) are not universal. The least prime $p\equiv1\pmod{24}$ without one is $97$, and the least hard prime without one is $3361$.
+\end{itemize}
+
+\subsection{Corrections}\label{ssec:noteserrors}
+
+Besides the scope of the one-congruence criterion (Proposition~\ref{prop:noncoprime}), the numerator in the notes' proof of lock (a) (Proposition~\ref{prop:locks}) and the scope of the direct $29$-channels (Proposition~\ref{prop:rosati}), the checked corrections are the following. Each is stated with its proof or counterexample.
+\begin{itemize}
+\item \emph{Star--Kneser positivity} states a converse of Star--Kneser forcing. The archive records that it fails at $p_*$, $R=107$, and retracts it (§15.3; located).
+\item Four notes identify the umbral group of $A_5^4D_4$, the automorphism group of the glue code, with $GL_2(3)$, by an argument that does not exclude the binary octahedral group. The conclusion holds: $GL_2(3)$ has $13$ involutions, while the binary octahedral group has exactly one element of order $2$ (a reading pass, and \note{misc\_checks.py}).
+\item A decomposition of the shell count over the six hard classes, of the kind the notes call a Coxeter--Fourier decomposition, needs data finer than the class of $p$ modulo $840$, because the count is not a function of that class. With $A_R$ as in Proposition~\ref{prop:pairzeta} and $a=(p+11)/4$, $A_{11}(pa)$ takes the values $0,4,6,8,10$ at the primes $2521$, $5881$, $4201$, $15121$ and $13441$, all $\equiv1\pmod{840}$ (\note{misc\_checks.py}).
+\item The map $(\ZZ/18)^\times\to S_{840}$ of the terminal papers is a bijection and not a homomorphism; the decomposition that uses it holds as stated (Proposition~\ref{prop:torsor}).
+\item One isomorphism of the split-zero dossier, its Theorem~7.2, needs the relation $[\tau]\sim0$ (Proposition~\ref{prop:dossier}).
+\item The Kneser theorem used is that of \cite{Kneser}, of 1955, not the density paper of 1953.
+\end{itemize}
+
+\subsection{The mock theta functions of the notes and the minimal model \texorpdfstring{$M(2,7)$}{M(2,7)}}\label{ssec:mock}
+
+The notes attach to the cubic middle of the shell problem an explicit rank-three modular object. They follow the framework of 3d modularity \cite{CCFGH} and its revision \cite{CCKPS}. There the $\widehat Z$ invariants of plumbed $3$-manifolds are quantum modular, and their companions under orientation reversal are mock or mixed mock modular. For the Brieskorn sphere $\Sigma(2,3,7)$ the relevant objects are Ramanujan's order-$7$ mock theta functions \cite{CFS,CCKPS}.
+
+The note \emph{An explicit mixed-mock Virasoro support realization} works with $m=42$ and the Atkin--Lehner group $K=\{1,6,14,21\}$. It computes the projector $P_7=P^+(6)P^+(14)P^+(21)P^-(42)$ on $\C[\ZZ/84]$ and its image basis
+\begin{align*}
+v_1&=e_1-e_{13}-e_{29}+e_{41}-e_{43}+e_{55}+e_{71}-e_{83},\\
+v_5&=e_5+e_{19}+e_{23}+e_{37}-e_{47}-e_{61}-e_{65}-e_{79},\\
+v_{11}&=e_{11}+e_{17}+e_{25}+e_{31}-e_{53}-e_{59}-e_{67}-e_{73},
+\end{align*}
+and writes regularised indefinite theta functions whose shadows lie on these three vectors.
+
+First, the explicit mixed mock functions of the note are Ramanujan's order-$7$ mock theta functions, in Zagier's vector $M_7$, whose components are $q^{-1/168}F_0$, $q^{-25/168}F_1$ and $q^{47/168}F_2$ up to signs \cite{Zagier}. The $q$-expansions agree through $q^{40}$, up to one sign (a reading pass). For $m=30$ the same construction gives the order-$5$ functions. The first order-$7$ function is the invariant $q^{1/2}\widehat Z_0$ of the Brieskorn sphere $-\Sigma(2,3,7)$ \cite[eq.~(3.20)]{CFS}. So the notes' construction lands exactly on the mock theta functions of $3$-manifold invariants.
+
+Second, the note identifies the shadow of this vector with the characters of the minimal model $M(2,7)$, whose central charge is $c=-68/7$ and whose conformal weights are $h=0,-\tfrac27,-\tfrac37$. The following theorem establishes this identification at the level of modular representations.
+
+For $r\in\{1,5,11\}$ put
+\[
+G_r(\tau)=\sum_{\ell\in\ZZ}v_r(\ell\bmod84)\,\ell\,q^{\ell^2/168},
+\]
+the weight-$\tfrac32$ unary theta series on the three support vectors. For a vector $F$ of weight $k$ define matrices $\rho_F(S)$, $\rho_F(T)$ by $F(-1/\tau)=(-i\tau)^k\rho_F(S)F(\tau)$ and $F(\tau+1)=\rho_F(T)F(\tau)$. Let $\rho=\rho_G$, and let $\rho_{2,7}$ be the representation of $SL_2(\ZZ)$ on the characters $\chi_s=\chi^{(2,7)}_{1,s}$, $s=1,2,3$, given by the Rocha-Caridi formula \cite{RochaCaridi}. Let $\varepsilon$ be the multiplier of Dedekind's $\eta$, so that $\varepsilon(S)=1$ and $\varepsilon(T)=e(1/24)$ in this convention, and write $c_k=(2/\sqrt7)\sin(k\pi/7)$.
+
+\begin{theorem}[the order-$7$ shadow carries the $M(2,7)$ representation]\label{thm:m27}
+In the basis $(G_1,G_5,G_{11})$,
+\[
+\rho(S)=\begin{pmatrix}-c_1&c_2&c_3\\ c_2&c_3&-c_1\\ c_3&-c_1&c_2\end{pmatrix},\qquad \rho(T)=\operatorname{diag}\bigl(e(\tfrac1{168}),e(\tfrac{25}{168}),e(\tfrac{121}{168})\bigr).
+\]
+Let $P$ be the signed permutation sending $(G_1,G_5,G_{11})$ to $(\chi_2,\chi_3,-\chi_1)$. Then
+\[
+\overline{\rho(S)}=P\rho_{2,7}(S)P^{-1},\qquad \overline{\rho(T)}\,e(1/8)=P\rho_{2,7}(T)P^{-1}.
+\]
+Hence $\bar\rho\otimes\varepsilon^3\cong\rho_{2,7}$: the shadow of the order-$7$ mock theta vector, conjugated and twisted by the character of $\eta^3$, transforms exactly as the characters of $M(2,7)$.
+\end{theorem}
+\status{Proved here; new in version~4. The $S$-identity is verified exactly in $\Q(\zeta_{168})$ and numerically to $38$ digits (\note{exact\_shadow\_reps.py}, \note{m7\_vs\_M27.py}). Whether this isomorphism is stated in the literature was not checked.}
+\begin{proof}
+\emph{The $S$-matrix of $\rho$.} The theta decomposition gives
+\[
+\theta_{m,\mu}(-1/\tau,z/\tau)=\sqrt{\tau/2mi}\,e(mz^2/\tau)\sum_\nu e(-\mu\nu/2m)\,\theta_{m,\nu}(\tau,z)
+\]
+\cite[§5]{EichlerZagier}. Differentiating in $z$ at $z=0$ gives
+\[
+\theta^1_{m,\mu}(-1/\tau)=(-i\tau)^{3/2}\,\frac i{\sqrt{2m}}\sum_\nu e(-\mu\nu/2m)\,\theta^1_{m,\nu}(\tau)
+\]
+for the derivative series $\theta^1_{m,\mu}$. The span of $v_1,v_5,v_{11}$ is the image of the projector $P_7$, whose factors are Atkin--Lehner involutions; these commute with the finite Fourier transform above \cite{EichlerZagier,CDH}, so the transform of each $G_a$ lies in the span of $G_1,G_5,G_{11}$, as the direct evaluation below also confirms. Since the vectors $v_r$ are odd with disjoint supports, $\rho(S)_{ab}=(i/\sqrt{84})\sum_rv_a(r)e(-rb/84)$. This formula agrees with a direct evaluation of the series at sample points to $29$ digits.
+
+\emph{The $S$-matrix of $\rho_{2,7}$.} The Rocha-Caridi formula gives $\rho_{2,7}(S)_{s\sigma}=(2/\sqrt7)(-1)^{s+\sigma}\sin(2\pi s\sigma/7)$.
+
+\emph{The $S$-identity.} Both sides lie in $\Q(\zeta_{168})$, using $\sqrt7=-i\sum_{k=1}^6\bigl(\tfrac k7\bigr)\zeta_7^k$ and $\sqrt3=-i(\zeta_3-\zeta_3^2)$. The identity was verified exactly, by reduction modulo the cyclotomic polynomial $\Phi_{168}$.
+
+\emph{The $T$-identity.} It follows from the exponents. The values $-r^2/168+21/168$ for $r=1,5,11$ are $20/168$, $-4/168$ and $68/168$ modulo $1$, that is $5/42$, $-1/42$ and $17/42$. These are the values of $h-c/24$ for $s=2,3,1$: $c/24=-17/42$, and $h_{1,s}=0,-\tfrac27,-\tfrac37$ for $s=1,2,3$.
+\end{proof}
+
+The note reaches the $M(2,7)$ exponents by its cubic phase transport $T\mapsto e(-1/24)T^3$. That map sends the labels $1,5,11$ to $-1/42$, $17/42$ and $5/42$: the correct set of exponents, but a different matching of labels to characters. With the note's matching, $1\mapsto\chi_3$, $5\mapsto\chi_1$ and $11\mapsto\chi_2$, the diagonal $S$-entries differ in absolute value: $\rho(S)_{11}=-c_1$, while $\rho_{2,7}(S)_{33}=c_3$. So no signed permutation and scalar realise that matching, and the pair $(\rho(S),e(-1/24)\rho(T)^3)$ does not satisfy the relation $(ST)^3=S^2$ (\note{m7\_vs\_M27.py}). Theorem~\ref{thm:m27} realises the identification through conjugation and the $\eta^3$ twist instead, and with it the note's claim that the explicit mixed mock functions carry a $c=-68/7$ character shadow holds at the level of modular representations, after conjugation and the $\eta^3$ twist. The note's third-order modular differential equation also checks: in the monic form $\vartheta^3f+\mu_1E_4\vartheta f+\mu_2E_6f=0$, with $\vartheta$ the Serre derivative, the indicial polynomial is $x(x-\tfrac16)(x-\tfrac13)+\mu_1x+\mu_2$, and the roots $\tfrac{17}{42},\tfrac5{42},-\tfrac1{42}$ force $\mu_1=\tfrac1{28}-\tfrac1{18}=-\tfrac5{252}$ and $\mu_2=\tfrac{85}{74088}$, the note's coefficients.
+
+\begin{proposition}[the order-$5$ block carries the Fibonacci data]\label{prop:fibonacci}
+Let $m=30$, $K=\{1,6,10,15\}$, and take the note's vectors
+\[
+w_1=e_1+e_{11}+e_{19}+e_{29}-e_{31}-e_{41}-e_{49}-e_{59},\qquad w_7=e_7+e_{13}+e_{17}+e_{23}-e_{37}-e_{43}-e_{47}-e_{53}.
+\]
+The weight-$\tfrac32$ series $G_r(\tau)=\sum_\ell w_r(\ell\bmod60)\,\ell\,q^{\ell^2/120}$, $r=1,7$, satisfy
+\[
+\rho(S)=\frac2{\sqrt5}\begin{pmatrix}\sin\frac\pi5&\sin\frac{2\pi}5\\ \sin\frac{2\pi}5&-\sin\frac\pi5\end{pmatrix},\qquad \rho(T)\,e(-1/8)=\operatorname{diag}\bigl(e(-\tfrac7{60}),e(\tfrac{17}{60})\bigr).
+\]
+These are the Fibonacci modular data, the data of the level-one $G_2$ WZW model at $c=14/5$ \cite{RSW}. The Lee--Yang data of $M(2,5)$ are not a twist of them by any signed permutation and scalar, since the absolute values of their diagonal $S$-entries are $(2/\sqrt5)\sin(2\pi/5)$, not $(2/\sqrt5)\sin(\pi/5)$.
+\end{proposition}
+\status{Proved here by the method of Theorem~\ref{thm:m27}, with the exact verification in $\Q(\zeta_{120})$; new in version~4. Scripts: \note{exact\_shadow\_reps.py} and \note{m5\_vs\_M25.py}.}
+
+The rank-two note matches the Lee--Yang exponents $-\tfrac1{60}$ and $\tfrac{11}{60}$ through the cubic phase transport. By Proposition~\ref{prop:fibonacci}, the order-$5$ shadow carries the Fibonacci representation rather than the Lee--Yang one. Rank-two modular data are classified in \cite{RSW}, where Lee--Yang is related to Fibonacci by Galois conjugation; that relation was not verified separately here.
+
+\paragraph{What these results add.}
+Theorem~\ref{thm:m27} places Ramanujan's order-$7$ mock theta functions, and with them the $\widehat Z$ invariant of $-\Sigma(2,3,7)$, inside the modular representation of the $(2,7)$ minimal model: after conjugation and a twist by the character of $\eta^3$, their shadow transforms exactly as the $M(2,7)$ characters. The classical relation of this kind for order $5$ is the mock theta conjectures, which express the order-$5$ functions through the Rogers--Ramanujan functions, the characters of $M(2,5)$ \cite{AndrewsGarvan,Hickerson}. Proposition~\ref{prop:fibonacci} shows that for order $5$ the shadow's own modular data are the Fibonacci data, a Galois companion of Lee--Yang.
+
+My assessment: the two results together suggest a pattern for the Brieskorn spheres $\Sigma(2,3,q)$, namely that the shadow representation of the associated mock vector is a twisted minimal-model representation or one of its Galois conjugates. I think so because the two cases $q=5,7$ fall under this description, and the pattern can be tested on further $q$ with the same scripts (Question~\ref{q:brieskorn}). For the Erdős--Straus side, the notes' map from the cubic middle to the three support labels is the link that would carry this structure over. That map is stated in the note's theorem \emph{Coordinate realization of middle support} and is not verified here.
+
+\subsection{Further structural facts}\label{ssec:structfacts}
+
+Three further structural statements of the notes were checked by program in reading passes, and one of them again here.
+\begin{itemize}
+\item \emph{The Niemeier lattice.} The Niemeier lattice with root system $A_5^4D_4$ and glue of order $72$ appears in the notes and as archive Theorem~25.8 \cite{ConwaySloane}. Its umbral group, the automorphism group of the glue code, is $GL_2(3)$ \cite{CDH}; as noted in Section~\ref{ssec:noteserrors}, $GL_2(3)$ and the binary octahedral group are distinguished by their involutions.
+\item \emph{$\Gamma_0(6)$ and the class $6B$.} $T_6=\eta(\tau)^5\eta(3\tau)/(\eta(2\tau)\eta(6\tau)^5)$ is a Hauptmodul of $\Gamma_0(6)$, and $T_6+5+72/T_6$ is the McKay--Thompson series of the Monster class $6B$ \cite{ConwayNorton}.
+\item \emph{Cayley--Dickson algebras.} The statements on sedenion zero divisors were checked in the conventions stated in the notes \cite{Moreno,BaezOctonions}.
+\end{itemize}
+The Busy-Beaver notes propose a pattern in residues modulo $107$, the residual of $p_*$. A test in an earlier reading pass compared these residues with a null model fixed in advance and found their frequencies within it (held-out $p=0.38$); the test was not re-run here, and it concerns that one proposed pattern only. The Lorentzian notes are treated in Section~\ref{ssec:lorentz}, where the relation between the modular flow and the Lorentz boost of their section on finite-dimensional modular flow is made precise (Proposition~\ref{prop:flowboost}).

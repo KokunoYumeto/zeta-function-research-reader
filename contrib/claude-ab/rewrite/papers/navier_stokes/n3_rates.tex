@@ -1,0 +1,69 @@
+\section{Curvature rates for the map to Yang--Mills}\label{sec:rates}
+
+The Yang--Mills repository maps a velocity field $u$ to the abelian connection $A_i=\lambda u_iT$ (the Yang--Mills paper \cite{YMPaper}, Section~6), whose curvature masses are
+\[
+\mathcal K_B=\lambda^2\|\operatorname{curl}u\|^2,\qquad \mathcal K_E=\lambda^2c^{-2}\|\partial_tu\|^2,
+\]
+and it derives lower rates for them from the manuscript's profile estimates (\texttt{ns\_inner\_\allowbreak profile\_\allowbreak curvature\_\allowbreak current\_\allowbreak bridge.md}, §§4--5, in \texttt{yang-mills/\allowbreak sources/\allowbreak ym\_gap\_primary\_20260908/}). The rates are derived from named statements of the manuscript, and every step of the derivation was re-derived here, so their status is \emph{conditional} on those statements.
+
+\subsection{The four statements used}
+
+All four are statements of the manuscript and are imported.
+\begin{itemize}
+\item[(H1)] Theorem~4.6(i) (src p.~33): $E=\sqrt{2X}F>0$ for $X>0$ and every $\eta\in[-1,1]$, with $F=\varphi/\mathsf C$ smooth on $[0,R]\times[-1,1]$. In particular $E_0>0$ on the inner region, and $E_0(X,\eta)=O(\sqrt X)$ at the axis.
+\item[(H2)] Proposition~5.5, (5.42) (src p.~60): for every composition $\mathcal D^I$ of $q\partial_q$, $\partial_X$ and $\partial_\eta$, $\mathcal D^I(q^Au_{\theta,B}-E_0)=O(q^{2h})$ uniformly on $[X_{\mathrm{lo}},X_{\mathrm{hi}}]\times[-1,1]$. The source fixes radial endpoints $0<X_{\mathrm{lo}}<X_a<X_b<X_{\mathrm{hi}}$ and lets the constants depend on them; this is read as holding for each such choice, as the bridge file reads it. It holds for the summed background, with the Stokes streamfunctions summed before differentiation, so the summation cutoffs are already included.
+\item[(H3)] All annular corrections vanish on the fixed inner similarity region $X\in(0,X_a)$, for every $\eta$. Step~5 of Proposition~9.9 (src p.~116) says this at the chosen point $X_{\mathrm{in}}$; the region-wide statement is the sentence after (10.21) on src p.~124, and it is also carried by the support statement of Theorem~4.6(ii), by which the stress vanishes for $X\le X_a$.
+\item[(H4)] Proposition~10.1: the cutoffs equal one on a neighbourhood of the singular point.
+\end{itemize}
+
+\subsection{The rates}
+
+\begin{theorem}[curvature rates]\label{thm:rates}
+Under (H1)--(H4), for every $\nu>0$ there are $C_\Omega,C_{\dot u}>0$ such that for all small $\tau=1-t$
+\[
+\|\operatorname{curl}u_\nu(1-\tau)\|_2^2\ge\nu^{3/2}C_\Omega\,\tau^{-1/2-3h},\qquad \|\partial_tu_\nu(1-\tau)\|_2^2\ge\nu^{5/2}C_{\dot u}\,\tau^{-3/2-3h}.
+\]
+Hence, for the abelian image $A_i=\lambda u_{\nu,i}T$, $\mathcal K_B(1-\tau)\to\infty$ while $\int_0^1\mathcal K_B\le\lambda^2\mathcal F_\nu(1)^2/(2\nu)<\infty$, and $\mathcal K_E(1-\tau)\to\infty$ with $\int_0^1\mathcal K_E=\infty$.
+\end{theorem}
+\status{\textsf{Conditional} on (H1)--(H4); every step re-derived, and every exponent computation checked symbolically, with three negative controls (\note{ns51\_rate\_lemmas.py}, $27$ checks).}
+\begin{proof}
+Choose $X_*\in(X_{\mathrm{lo}},X_a)$ with $e_0=E_0(X_*,0)>0$, and $\eta_*>0$ with $E_0(X_*,\eta)\ge e_0/2$ for $|\eta|\le\eta_*$. By (H2)--(H4), $u_\theta\ge(e_0/4)q^{-A}$ on the circles $r=\sqrt{2X_*q}$, $|\eta|\le\eta_*$, for small $\tau$.
+
+\emph{Enstrophy.} On the disk $D_z$ bounded by such a circle, Stokes' theorem gives $\int_{D_z}\omega_3=2\pi r u_\theta$, and Cauchy--Schwarz gives $\int_{D_z}\omega_3^2\ge(2\pi ru_\theta)^2/(\pi r^2)=4\pi u_\theta^2$. At fixed $\tau$, $dz/d\eta=\tau^D(1-2h\eta^2)(1-\eta^2)^{-D-1}$, and integrating over $|\eta|\le\eta_*$ gives the enstrophy bound with the exponent $D-2A=-\frac12-3h$.
+
+\emph{The time derivative.} At a fixed point, $q_t=-1/L$, $\eta_t=D\eta/(qL)$ and $X_t=X/(qL)$ with $L=1-2h\eta^2$. So $\partial_tu_\theta=q^{-A-1}\bigl(\mathcal H+O(q^{2h})\bigr)$ with $\mathcal H=(AE+XE_X+D\eta E_\eta)/L$. By (H1), $E=\sqrt{2X}F$ gives $\mathcal H(X,0)=(1+h)E(X,0)+O(X^{3/2})>0$ for small $X>0$. Integrating over a rectangle on which $|\mathcal H|\ge h_*>0$, with the volume element $dx=q\tau^DL(1-\eta^2)^{-D-1}\,dX\,d\theta\,d\eta$, gives the exponent $D-2A-1=-\frac32-3h$.
+
+\emph{Finiteness of $\int\mathcal K_B$.} The energy inequality $\|u\|^2+2\nu\int\|\nabla u\|^2\le\mathcal F_\nu(t)^2$ and $\|\operatorname{curl}u\|=\|\nabla u\|$ for divergence-free, compactly supported fields give $\int_0^1\mathcal K_B\le\lambda^2\mathcal F_\nu(1)^2/(2\nu)$.
+
+\emph{Viscosity scaling.} The viscosity map (10.22) gives the factors $\nu^{3/2}$ and $\nu^{5/2}$.
+\end{proof}
+
+\subsection{Type II blowup and the growth of the critical norm}
+
+\begin{proposition}[Type II and critical-norm growth]\label{prop:typeII}
+Under (H1)--(H4), for small $\tau$:
+\begin{enumerate}[label=(\alph*)]
+\item $\|u(1-\tau)\|_p^p\ge c_p\,\tau^{3/2-h-p(1/2+h)}$ for every $1\le p<\infty$. The exponent is negative exactly for $p>p_h=(3-2h)/(1+2h)$, and $p_h<3$. In particular $\|u(1-\tau)\|_{L^3}\ge c\,\tau^{-4h/3}\to\infty$, and the lower bound diverges also for $p_h<p<3$, although these norms are subcritical; for $p=2$ the norm stays bounded by the energy inequality, and the core contribution decays like $\tau^{1/2-3h}$ (src p.~4).
+\item $\|\omega(1-\tau)\|_\infty\ge c\,\tau^{-1-h}$, from a disk mean away from the axis.
+\item $\tau^{1/2}\|u(1-\tau)\|_\infty\ge c\,\tau^{-h}\to\infty$. So the blowup is not of Type~I, $|u|\le C(T-t)^{-1/2}$: it is of Type~II.
+\end{enumerate}
+\end{proposition}
+\status{\textsf{Conditional} on (H1)--(H4); the exponent algebra checked in \note{ns51\_rate\_lemmas.py}.}
+\begin{proof}
+(a) Integrate $|u_\theta|^p\ge(e_0/4)^pq^{-pA}$ over a rectangle as in the proof of Theorem~\ref{thm:rates}; the $\tau$-exponent is $1+D-pA$. For $p=3$ the $\eta$-factor is $L(1-\eta^2)^{-1+4h}$, which is integrable on compact $\eta$-sets.
+(b) The mean of $\omega_3$ on the disk $D_z$ is $2u_\theta/r\ge\sqrt2(e_0/4)X_*^{-1/2}q^{-1-h}$, and the maximum dominates the mean. The disk has radius $\sqrt{2X_*q}$, away from the axis, where (5.42) is not available, so no axis information is needed.
+(c) Use the growth path (10.21) with $q=\tau$.
+\end{proof}
+
+\emph{Comparison with the classical necessary conditions for a singularity.} Each of them is satisfied. The margins stated are lower bounds only, since no matching upper bounds are established here.
+\begin{itemize}
+\item \emph{Leray's rates} \cite{Leray}. A singular time forces $\|\nabla u(t)\|_2^2\gtrsim(T-t)^{-1/2}$, and $\|u(t)\|_p\gtrsim(T-t)^{-(p-3)/(2p)}$ for $p>3$; Robinson, Sadowski and Silva discuss these lower bounds \cite{RSS}. The enstrophy exponent here is $\frac12+3h$, a margin of $\tau^{-3h}$, and $\int\tau^{-1/2-3h}<\infty$ exactly when $h<\frac16$, as the finite dissipation requires. For $p>3$ the margin is $\tau^{-h(1+1/p)}$, and as $p\to\infty$ this becomes (c).
+\item \emph{The $L^3$ criterion.} Escauriaza, Seregin and Šverák prove regularity under a bound in $L^\infty_tL^3_x$ for the unforced Cauchy problem \cite{ESS}, and Seregin shows that $\|u(t)\|_{L^3}\to\infty$ at a potential blowup time \cite{Seregin}. Here $\|u\|_3\gtrsim\tau^{-4h/3}$ diverges. These criteria require divergence, not a rate, and whether they extend verbatim to smooth compactly supported forcing was not checked, so this is a statement of consistency, not of implication.
+\item \emph{Axisymmetric Type~I exclusion.} Chen, Strain, Tsai and Yau \cite{CSTY} and Koch, Nadirashvili, Seregin and Šverák \cite{KNSS} exclude Type~I blowup for axisymmetric unforced solutions. The construction here is axisymmetric only on its inner region (H3), and the equation is forced, so those theorems do not apply as stated. Proposition~\ref{prop:typeII}(c) shows that it exceeds the Type~I rate by at least the factor $\tau^{-h}$, the angular Reynolds number of src p.~4.
+\item \emph{$L^2_tL^\infty_x$ and $\int\|\omega\|_\infty$.} $\int\|u\|_\infty^2\gtrsim\int\tau^{-1-2h}=\infty$ and $\int\|\omega\|_\infty\gtrsim\int\tau^{-1-h}=\infty$, with margins $\tau^{-2h}$ and $\tau^{-h}$ against the scaling rates. These divergences hold for every singular solution, by Leray's bound $\|u(t)\|_\infty\gtrsim(T-t)^{-1/2}$ and by criteria of Beale--Kato--Majda type, so only the exponent arithmetic is claimed.
+\end{itemize}
+
+\subsection{A formula of the growth path}
+
+The official PDF of the manuscript prints (10.20) as $x_\tau=(\sqrt{2X_{\mathrm{in}}\tau},0,0)$, with the radical over $2X_{\mathrm{in}}\tau$ (checked on p.~124 of the PDF whose hash the transcription freezes). With this path, $q=\tau$ and $X=X_{\mathrm{in}}$, and (10.21) follows from (3.6). The workbench's transcription renders the radical over the factor $2$ only; on that path $X=X_{\mathrm{in}}^2\tau\to0$ and $u_\theta$ would grow only like $\tau^{-h}$. So the source is correct, and the transcription's errata ledger, which was empty, gets this correction as its first entry.
+\status{Verified against the official PDF.}

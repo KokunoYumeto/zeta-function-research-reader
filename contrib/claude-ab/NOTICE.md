@@ -8,8 +8,9 @@ The rewritten records are now in [`rewrite/`](rewrite/README.md), published at t
 - [`rewrite/JACOBIAN_COUNTEREXAMPLE_PAPER.md`](rewrite/JACOBIAN_COUNTEREXAMPLE_PAPER.md): the Jacobian-conjecture counterexample.
 - [`rewrite/NAVIER_STOKES_PAPER.md`](rewrite/NAVIER_STOKES_PAPER.md): the Navier–Stokes workbench.
 - [`rewrite/YANG_MILLS_PAPER.md`](rewrite/YANG_MILLS_PAPER.md): the Yang–Mills workbench.
+- [`rewrite/COLLATZ_EP817_BRIDGES_PAPER.md`](rewrite/COLLATZ_EP817_BRIDGES_PAPER.md): the Collatz and Erdős Problem 817 workbenches, and the bridges between the workbenches.
 
-Records for the Collatz and Erdős Problem 817 workbenches and for the zeta programme are in preparation.
+The record for the zeta programme is in preparation.
 
 Each record states its results with proofs and with the programs that check them (in `rewrite/checks/`), and marks every statement as verified, not verified here, my assessment (a view with its reasons), or proved negative (with the counterexample or derivation in the text). Re-deriving the withdrawn texts' statements from their sources changed several of them; for example, the identification of the owner's mock theta shadow with the minimal model M(2,7), which the withdrawn texts said fails, holds exactly as an isomorphism of modular representations.
 

@@ -117,3 +117,7 @@ An independent referee pass (report written by about 00:02 UTC on 26 September) 
   - m10: the Zenodo relation is settled (one concept record).
   - m11: two items of the check script restate definitions; the ETR9 separation as the degree varies is checked in `checks/referee19_notes41_42_checks.py` (item R7h: h₂ = 9 for both measures, h₄ = 81 against 145).
 - **Downstream.** Digest header and §6 ("fourteen groups"), register reading and examination lines, board task 8.
+
+## 7. Correction of 27 September
+
+In §3's first list, "the programme sections BQC0–BQC6, FT10 and PCJ10 (on `origin/main`)" is right for FT10 and PCJ10, which `49_` audits. BQC0–BQC6, however, are only cited on `origin/main`, and no Markdown or TeX file there defines them (`49_` §6, with the referee's full-text scan). TPL, OZR (OZR0–OZR10), FT1–FT10 and PCJ0–PCJ10 are audited in `49_`.

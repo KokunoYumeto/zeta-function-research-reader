@@ -14,14 +14,16 @@ The conjecture is verified up to 10¹⁷ [Sa] and holds for almost all n [Va], a
 
 ### 0.2 Main results
 
-The results fall into four groups. Those marked *new* were obtained for this record.
+The results fall into five groups. Those marked *new* were obtained for this record.
 
 1. **The shell arithmetic** (§§2–4). The shell criterion (Theorem 2.1) counts the solutions with least denominator a exactly as 2|E_a| + |M_a|. The first two shells have exact occupancy criteria (Propositions 3.1–3.3), which recover the hard classes modulo 840. Occupied shells are constrained by residue barriers (Propositions 4.1–4.3); the sharpest of them, the width-one barrier from the author's notes, requires that the primes dividing (p+R)/4 generate −1 or −4 modulo R.
 2. **Records, families and carriers** (§§5–8). The strict records of the least-class function are determined up to 3·10⁹ (Proposition 5.3); the largest is 8,803,369, which needs the shell R = 107. Fixed-divisor families solve the equation on explicit progressions meeting every hard class (Theorem 6.2), and no carrier built from residues reaches a square class (Proposition 6.3, Corollary 6.4).
 3. **The author's notes** (§9). The support-zero core is exactly S₈₄₀ × Q₁₁ × Q₁₉ × Q₂₃, and 550 further classes are supported but not covered by a single identity (Theorem 9.2). Eight shifted forms of p, a p + 5 lock and a visible-box principle give necessary conditions for a counterexample (Theorems 9.3–9.5); the survivors have density zero (Proposition 9.7, *new*), and 23 of them lie below 10⁷. The shadow of the notes' order-7 mock theta vector carries the M(2,7) representation (Theorem 9.14, *new*), and the order-5 block carries the Fibonacci data (Proposition 9.15, *new*).
 4. **The monodromy covers** (§10). The orbits of the (3,4,∞) covers are classified at every level by one invariant, gcd(b, c, gcd(D, 6)) (Theorem 10.1, *new*).
 
-Part B collects exact statements, most of them limits, about fifteen specific mechanisms, each with its witness (§11). Part C describes the structural directions the research explored and gives, for each, what is established and my assessment (§12).
+5. **Bridges to other areas** (§§9.5, 10, 12). A large part of the research consists of bridges from the equation to other areas. Four of them are now theorems that stand independently of the conjecture: the order-7 mock theta shadow carries the M(2,7) representation (Theorem 9.14), the order-5 block carries the Fibonacci data (Proposition 9.15), the (3,4,∞) covers built from the S⁶ monodromy have one orbit invariant at every level (Theorem 10.1), and the modular flow and the boost of the Lorentzian notes are two real forms of one complex one-parameter group (Proposition 12.4). Others are partially constructed: the split-zero support states, the umbral and Ogg structures of the residue layer, the Apollonian thin group, and the Π₁ bridge to computability. For each, §12 states the typed map, what is established, and what the bridge suggests on both sides.
+
+Part B collects exact statements, most of them limits, about fifteen specific mechanisms, each with its witness (§11).
 
 ### 0.3 What the results mean
 
@@ -29,11 +31,13 @@ Taken together, the results locate the difficulty of the conjecture precisely. E
 
 The quadratic-residue sieve shows how restrictive this already is in practice. A counterexample must be a quadratic residue modulo every odd prime factor of eight shifted forms and several more; only 23 primes below 10⁷ pass all conditions, and the survivors have density zero. Whether infinitely many survive is Question 3.
 
+The bridges are a second kind of outcome. A hard problem is valuable in part for the mathematics that its study produces, and several of the bridges explored here now say something precise about the areas they connect, whatever their eventual bearing on the equation.
+
 On the structural side, the notes' bridge to 3d modularity becomes a precise theorem. Ramanujan's order-7 mock theta functions, which give the Ẑ invariant of the Brieskorn sphere −Σ(2,3,7), have a shadow that transforms exactly as the characters of the (2,7) minimal model, after conjugation and a twist by the character of η³. This statement is independent of the Erdős–Straus problem. How far such structures bear on the equation depends on typed maps from the shell data to them, and those maps are what Part C and Questions 9–11 are about.
 
 ### 0.4 How this record was made
 
-This is an audit, carried out by an AI system, of research that was itself carried out with AI systems. It covers the Erdős–Straus workbench (a 619-page archive, a 72-statement supplement, and a continuation written between 17 and 23 September 2026) and the author's notes of April–June 2026 (about twenty TeX notes with a 52-page paper, and about fifty-five further notes).
+This is an audit, carried out by an AI system, of research that was itself carried out with AI systems. It covers the Erdős–Straus workbench (a 619-page archive, a 72-statement supplement, and a continuation written between 17 and 23 September 2026) and the author's notes of April–June 2026 (about twenty TeX notes with a 52-page paper, and about fifty-five further notes), which are published on Zenodo and on which the research programme is built. This audit mined the notes for statements that could be proved or verified; drafts that the author's latest record supersedes are not treated.
 
 The research used a method that AI systems make practical: a large number of hypotheses, across many directions, were formulated and tested quickly. Some directions stay close to the classical arithmetic of the equation; others propose bridges to mock modular forms, moonshine, Lorentzian geometry and computability. Not every hypothesis was expected to hold, and several directions would each amount to a research programme of their own. A direction that is not yet a complete programme is not thereby invalid, and a structural bridge between two areas is mathematics whether or not it bears on the conjecture.
 
@@ -43,11 +47,11 @@ The audit re-derived statements from their sources, re-computed the finite state
 - **my assessment**: a view with its reasons, written in the first person, and open to the possibility that the reasons do not cover everything;
 - **proved negative**: a statement shown false or limited, with the counterexample or derivation printed in the text.
 
-This record replaces texts that were withdrawn on 27 September 2026. Re-deriving their statements from the sources changed several of them. The identification of the notes' mock theta shadow with M(2,7) holds exactly (Theorem 9.14), where the withdrawn texts said it fails. The Lorentz-boost proposition of the Lorentzian notes is correct, and the modular flow and the boost are two real forms of one complex one-parameter group (Proposition 12.4). The statements about the constructive-algebra preprint are restricted to what is proved: three specific facts about its proof (§12.5).
+This record replaces texts that were withdrawn on 27 September 2026. Re-deriving their statements from the sources changed several of them. The identification of the notes' mock theta shadow with M(2,7) holds exactly (Theorem 9.14), where the withdrawn texts said it fails. The Lorentz-boost proposition of the Lorentzian notes is correct, and the modular flow and the boost are two real forms of one complex one-parameter group (Proposition 12.4).
 
 ### 0.5 Organization
 
-Part A (§§1–10) contains the verified results: the classical background (§1), the shell criterion (§2), the first two shells (§3), the residue barriers (§4), records (§5), families and carriers (§6), the shear graph (§7), the quartic encoding (§8), the results from the author's notes (§9) and the monodromy covers (§10). Part B (§11) contains the proved limits of specific mechanisms. Part C (§12) describes the directions explored. §13 lists open questions and §14 the programs that verify the finite statements.
+Part A (§§1–10) contains the verified results: the classical background (§1), the shell criterion (§2), the first two shells (§3), the residue barriers (§4), records (§5), families and carriers (§6), the shear graph (§7), the quartic encoding (§8), the results from the author's notes (§9) and the monodromy covers (§10). Part B (§11) contains the proved limits of specific mechanisms. Part C (§12) describes the bridges to other areas and the directions they open. §13 lists open questions and §14 the programs that verify the finite statements.
 
 ---
 
@@ -464,9 +468,9 @@ Several continuation items also give positive statements:
 
 ---
 
-# Part C. The directions explored
+# Part C. Bridges to other areas, and the directions they open
 
-## 12. Directions, what is established, and my assessment
+## 12. Bridges, what is established, and my assessment
 
 The research behind this record explored many directions quickly, using AI systems to test each hypothesis as it was formulated. This part describes those directions.
 
@@ -539,15 +543,9 @@ My assessment: on its own merit, I think the Descartes setting is a natural plac
 
 For the bearing on the equation, the notes' map from shell data to Descartes quadruples is not verified here. I have not identified a typed map from shell occupancy to the Apollonian group, and I have no view yet on whether one exists.
 
-### 12.5 The terminal papers and the statement of the conjecture
+### 12.5 Drafts that state the conjecture
 
-The preprint *Constructive Algebra of the Centered Erdős–Straus Resolution* (in BEAVERSHINE) states the conjecture as its Theorems 15.1–15.3. The proof runs through its Lemma 13.4 and a reduction of the primes p ≡ 1 (mod 24) to the terminal core. Three facts about these steps are established here; they concern the proof, and the statements of Theorems 15.1–15.3 are the conjecture itself, which remains open.
-
-1. **The involution in Lemma 13.4 does not exist.** The proof of Lemma 13.4 uses an involution exchanging the exterior pieces P₋ and P₊, "induced by the centered relation u − 14 = −(q − 15)". By the preprint's own five-piece resolution theorem, the supports have |𝒞₋| = 30,240 and |𝒞₊| = 37,800 points, and after the deletion factor R₂₉ they have 29,850 and 37,380. No bijection carries one support onto the other, so the proof of Lemma 13.4 is invalid as written.
-2. **The reduction to the core does not follow from the results it rests on.** The proof of Theorem 15.2 states that the finite central-cover construction reduces the primes p ≡ 1 (mod 24) to the terminal core of 2970 classes. What the central-cover computation establishes is Theorem 9.2: the classes with no certificate on any lift form the core, and 550 further classes have certified lifts but are covered by no single identity; the prime 3361 lies in one of them. That every prime in these 550 classes is certified is Question 4, which is open, and the preprint gives no argument for it.
-3. **The removal step in Lemma 13.4 is asserted without proof.** The proof states that a point with both endpoints in {τ, 0} "would have been removed by the factor defining the unresolved projector". The unresolved projector 𝒪 = ∏(1 − e_μ)∏_{b∈𝔅}(1 − b) removes exactly the points covered by some lock e_μ or some certificate b ∈ 𝔅, so the statement says that every such point is covered by a certificate. The proof gives no argument for this, and it is the content of Theorem 15.1.
-
-Consequently the proofs of Theorems 15.1–15.3, which depend on Lemma 13.4 and on the reduction to the core, are incomplete. These facts concern §§13–15 of the preprint; its arithmetic results that were verified are stated in §9, and the rest are not verified here. I found no statement of the conjecture as a theorem in the author's June replacement, *Finite support algebra, cubic middle geometry, and orientation descent*.
+Some drafts in the collections state the conjecture as a theorem. They are superseded by the author's latest record, which says so, and this record does not treat them; the arithmetic results they contain that were verified are stated in §9.
 
 ### 12.6 Additive combinatorics: Kneser's theorem
 
@@ -565,7 +563,7 @@ The Π₁ bridge is exact. The least number of states of a machine that halts ex
 
 ### 12.8 Further directions in the same collections
 
-The collections also contain notes on Cayley–Dickson algebras and sedenion zero divisors, on the Koide relation, on a mass gap, on anomalies, and a split-zero zeta note. The Cayley–Dickson statements were checked in a reading pass in the conventions stated there [Mor, Ba]. The Koide, mass-gap and anomaly notes lie outside the scope of this record and were not read for it. Nothing here assesses them.
+The collections also contain notes on Cayley–Dickson algebras and sedenion zero divisors, on the Koide relation, on a mass gap, on anomalies, and a split-zero zeta note. The Cayley–Dickson statements were checked in a reading pass in the conventions stated there [Mor, Ba]. The Koide, mass-gap and anomaly notes develop bridges of their own, among them the circle geometry of the Koide relation [Ko] and the CPT-symmetric universe of Boyle, Finn and Turok [BFT]. They lie outside the scope of this record, were not read for it, and are not verified here.
 
 ---
 
@@ -604,6 +602,7 @@ The statements on lattices, modular data and Cayley–Dickson algebras in §§9.
 - [Aa] S. Aaronson, The Busy Beaver frontier, SIGACT News 51 (2020), no. 3, 32–54.
 - [AG] G. E. Andrews, F. G. Garvan, Ramanujan's "lost" notebook VI: the mock theta conjectures, Adv. Math. 73 (1989) 242–255.
 - [Ba] J. C. Baez, The octonions, Bull. Amer. Math. Soc. 39 (2002) 145–205.
+- [BFT] L. Boyle, K. Finn, N. Turok, CPT-symmetric universe, Phys. Rev. Lett. 121 (2018) 251301.
 - [CCFGH] M. C. N. Cheng, S. Chun, F. Ferrari, S. Gukov, S. M. Harrison, 3d modularity, J. High Energy Phys. 2019, no. 10, 010.
 - [CCKPS] M. C. N. Cheng, I. Coman, P. Kucharski, D. Passaro, G. Sgroi, 3d modularity revisited, arXiv:2403.14920 (2024).
 - [CDH] M. C. N. Cheng, J. F. R. Duncan, J. A. Harvey, Umbral moonshine and the Niemeier lattices, Res. Math. Sci. 1 (2014), Art. 3.

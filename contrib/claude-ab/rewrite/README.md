@@ -12,8 +12,9 @@ This folder contains readable records of the results of the research collected i
 | [`S6_MONODROMY_PAPER.md`](S6_MONODROMY_PAPER.md) | The S⁶ monodromy group is the kernel of an order-12 character whose Levi half is the author's marked peripheral character (new); its Heisenberg part and the odd theta multiplier; orbit classification (new) |
 | [`JACOBIAN_COUNTEREXAMPLE_PAPER.md`](JACOBIAN_COUNTEREXAMPLE_PAPER.md) | Alpöge's counterexample in explicit coordinates; fibres over every field of characteristic ≠ 2; a torus action and the Whitney-cusp normal form (new); divergence-free lifts; explicit Weyl and Poisson endomorphisms |
 | [`NAVIER_STOKES_PAPER.md`](NAVIER_STOKES_PAPER.md) | The Rindler shear series has radius exactly k* = 0.389236400495165… c/ν, set by a certified pole collision (new); curvature rates for the NS-to-Yang–Mills map and Type II blowup, conditional on four named statements of the manuscript |
+| [`YANG_MILLS_PAPER.md`](YANG_MILLS_PAPER.md) | A gap for the SU(2) Kogut–Susskind Hamiltonian, uniform in box and spacing at strong coupling, with the girth form of its Casimir inequality (new), the gap at every truncation order, on the full space and at complex coupling (new); heat remainder with prefactor 2829/13 (improved); relaxation bounds; an upper bound locating the gap (new) |
 
-Records for the Yang–Mills workbench, the Collatz and Erdős Problem 817 workbenches, and the zeta programme are in preparation.
+Records for the Collatz and Erdős Problem 817 workbenches and for the zeta programme are in preparation.
 
 ## How to read the statuses
 
@@ -27,4 +28,4 @@ Each record is organized as Part A (verified results), Part B (proved negative r
 
 ## Checks
 
-`checks/es/`, `checks/s6/`, `checks/jacobian/` and `checks/ns/` contain the verification programs and their outputs, as listed in the verification section of each record. The Python scripts use `sympy`, `mpmath`, `numpy` and, for the ball-arithmetic certificates, `python-flint`; the two record-prime programs are in C.
+`checks/es/`, `checks/s6/`, `checks/jacobian/`, `checks/ns/` and `checks/ym/` contain the verification programs and their outputs, as listed in the verification section of each record. The Python scripts use `sympy`, `mpmath`, `numpy` and, for the ball-arithmetic certificates, `python-flint`; the two record-prime programs are in C.

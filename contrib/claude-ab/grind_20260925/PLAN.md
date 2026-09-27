@@ -559,3 +559,15 @@ A reminder is scheduled into this session. When it fires: read this file and the
 - 21:07 UTC: the owner noted (in chat) that about 7% of the five-hour window remains and asked me to keep working. Done in that time:
   - S⁶ reader, an implied result stated and proved (Proposition 5.3, global form): φ⊗[g] ↦ [φ dg] is a canonical isomorphism ℰxt¹(𝒪_S/𝒥, 𝒪_S) ⊗ N*_{S/X} ≅ T_S. So on a fibre the map on which the p. 692 step depends is δ_A: H⁰(ℰxt¹(𝒪_S/𝒥, 𝒪_S) ⊗ A) → H¹(S, A), defined by the fibre and A alone; open question 3 is stated in these terms. Reader now 22 pages; register W22 updated.
   - Referee briefs for the three readers written in the scratchpad (a common part with the owner's full reading instruction, and one part per reader), ready for the timer.
+- 22:31 UTC (26 September) to 03:44 UTC (27 September): the timer fired at 22:30 UTC. The post office had no mail. Subagents ran: the "weekly limit" message of 15:49 UTC did not apply, and the owner's statement about the five-hour window was right.
+  - Referee passes on the S⁶ and Erdős–Straus readers, by independent instances, in both directions and for missed results, reported at about 23:17 and 23:30 UTC. The Yang–Mills pass was cut off by the session limit at about 23:58 UTC and is to be rerun.
+  - The owner said in chat (about 03:30 UTC) that I have tokens again and should keep working. Readers may go on Zenodo additively now and be updated later when more accurately peer reviewed.
+  - S⁶ reader version 2 (27 pages).
+    - All 2 major and 12 minor findings were verified against the sources and applied:
+      - the claim ledger in `04_` was read (48 rows; the OPEN rows are HODGE-REPLICATION and EXTERNAL-ADJUDICATION);
+      - Engel's text was read online (it cites CDP98 Cor. 4.2; "under the direction of Levent Alpöge");
+      - Vetter 1970, Lebelt 1974 and Miller–Vassiliadou 2019 were checked online;
+      - the record's triple is (0,1,−1);
+      - the monograph's §14 and item 21 were re-read.
+    - The referee's missed results were verified and adopted with credit: the kernel sheaf (Prop 5.5); the global torsion of relative one-forms; the b₁ = b₂ = 0 form of Theorem 5.8 with its consequence for rational homology six-spheres; the exact value set of S6-5 (numerically checked to |n| ≤ 3000).
+    - Register W28–W31. The referee's report and its 22 checks (all pass) are in `checks/s6_reader/referee/`.

@@ -1,10 +1,10 @@
 # The Jacobian-conjecture counterexample of Alpöge: fibres, a torus action, a Whitney-cusp normal form, and the Weyl algebra — an audited record with new results
 
-*Claude (Anthropic, model `claude-opus-5-5`), 27 September 2026. Published at the author's request ahead of the author's review; the author may revise or withdraw it. This record replaces the Jacobian part of note 52_, which was withdrawn on 27 September 2026.*
+*Claude (Anthropic, model `claude-opus-5-5`), 27 September 2026. Published at the author's request ahead of the author's review; the author may revise or withdraw it. This record replaces the Jacobian part of note 52\_, which was withdrawn on 27 September 2026.*
 
 ## Abstract
 
-On 20 July 2026 Levent Alpöge announced a polynomial map F: ℂ³ → ℂ³ with constant Jacobian determinant −2 that is not injective, a counterexample to the Jacobian conjecture in dimension three, crediting Akhil for the question and Fable for the work. We verify the counterexample and describe its geometry explicitly. Its fibres are the simple roots of binary cubics in an affine slice, which we realize through an explicit isomorphism with a polynomial inverse; the fibre theorem holds over every field of characteristic different from 2, so fibres have 0, 1 or 3 rational points and never 2. The map carries a one-parameter torus symmetry, and off one coordinate hypersurface it is the product of the identity on ℂ* with the Whitney cusp map with its critical curve removed; the discriminant becomes the classical A₂ discriminant. The commuting vector fields lifting the coordinate fields are divergence-free, and their escaping integral curve is a torus orbit. As consequences we write out an explicit non-surjective endomorphism of the Weyl algebra A₃ and the corresponding Poisson endomorphism.
+On 20 July 2026 Levent Alpöge announced a polynomial map F: ℂ³ → ℂ³ with constant Jacobian determinant −2 that is not injective, a counterexample to the Jacobian conjecture in dimension three, crediting Akhil for the question and Fable for the work. We verify the counterexample and describe its geometry explicitly. Its fibres are the simple roots of binary cubics in an affine slice, which we realize through an explicit isomorphism with a polynomial inverse; the fibre theorem holds over every field of characteristic different from 2, so fibres have 0, 1 or 3 rational points and never 2. The map carries a one-parameter torus symmetry, and off one coordinate hypersurface it is the product of the identity on ℂ∗ with the Whitney cusp map with its critical curve removed; the discriminant becomes the classical A₂ discriminant. The commuting vector fields lifting the coordinate fields are divergence-free, and their escaping integral curve is a torus orbit. As consequences we write out an explicit non-surjective endomorphism of the Weyl algebra A₃ and the corresponding Poisson endomorphism.
 
 ## 0. Introduction
 
@@ -16,17 +16,17 @@ The counterexample [P] settles the Jacobian conjecture in dimension three, and T
 
 - **Theorem 2.1 and Corollaries 2.2, 2.4.** An explicit isomorphism ι of ℂ³ onto a smooth complete intersection W ⊂ ℂ⁵, with polynomial inverse, under which the fibres of F correspond to the simple roots of the slice cubic; the fibre sizes 3, 1 and 0 over the complement of the discriminant, the discriminant minus the triple-root curve, and that curve; the same trichotomy over every field with 2 invertible, and 3 or 1 real preimages according to the sign of the discriminant.
 - **Theorem 2.3.** The minimal polynomials of the coordinates over ℚ[F₁, F₂, F₃]; y and w are integral, and only x can escape, only over the discriminant.
-- **Theorems 3.1–3.2 and Corollary 3.3** (*new*). A torus action (λ⁻¹x, λy, λ²w) ↦ (λ²F₁, λF₂, λ⁻¹F₃), and the normal form F|_{F₃≠0} = g × id with g the Whitney cusp map minus its critical curve, in explicit coordinates.
+- **Theorems 3.1–3.2 and Corollary 3.3** (*new*). A torus action (λ⁻¹x, λy, λ²w) ↦ (λ²F₁, λF₂, λ⁻¹F₃), and the normal form F|\_{F₃≠0} = g × id with g the Whitney cusp map minus its critical curve, in explicit coordinates.
 - **Lemma 4.1 and §4.** Divergence-free polynomial lifts of affine fields, with the escaping curve γ(τ) = z·(1, −3/2, 13/2), a torus orbit.
-- **Propositions 5.1–5.2.** The explicit non-surjective endomorphism x_i ↦ F_i, ∂_i ↦ D_i of A₃, and the Poisson cotangent lift.
+- **Propositions 5.1–5.2.** The explicit non-surjective endomorphism x\_i ↦ F\_i, ∂\_i ↦ D\_i of A₃, and the Poisson cotangent lift.
 
 ### 0.3 What the results mean
 
-The normal form makes the geometry of the counterexample transparent: a fibre over a point with c ≠ 0 is the set of simple roots of a cubic, escape to infinity is a simple root running into the fold of the Whitney cusp, and the missing curve lies over the cusp point. This reduces a global phenomenon, non-injectivity with constant Jacobian, to a classical local model, and it suggests looking for higher-dimensional examples among normal forms of higher A_k singularities (Question 2). The explicit fields and endomorphisms turn the known implications between the Jacobian, Dixmier and Poisson conjectures into concrete maps, and the integer points of F give a concrete family of reducible cubic forms (§6.1).
+The normal form makes the geometry of the counterexample transparent: a fibre over a point with c ≠ 0 is the set of simple roots of a cubic, escape to infinity is a simple root running into the fold of the Whitney cusp, and the missing curve lies over the cusp point. This reduces a global phenomenon, non-injectivity with constant Jacobian, to a classical local model, and it suggests looking for higher-dimensional examples among normal forms of higher A\_k singularities (Question 2). The explicit fields and endomorphisms turn the known implications between the Jacobian, Dixmier and Poisson conjectures into concrete maps, and the integer points of F give a concrete family of reducible cubic forms (§6.1).
 
 ### 0.4 How this record was made
 
-This is an audit of the counterexample by an AI system, carried out for the author's programme. Every statement of [P] used here was re-derived and checked by computer, and all of them hold. Statements carry one of four statuses, as in the companion papers: *verified* (proved here or re-computed by a program listed in §8), *not verified here*, *my assessment* (a view with its reasons, in the first person), and *proved negative* (with the counterexample or derivation in the text). This record replaces the Jacobian part of note 52_, which was withdrawn on 27 September 2026.
+This is an audit of the counterexample by an AI system, carried out for the author's programme. Every statement of [P] used here was re-derived and checked by computer, and all of them hold. Statements carry one of four statuses, as in the companion papers: *verified* (proved here or re-computed by a program listed in §8), *not verified here*, *my assessment* (a view with its reasons, in the first person), and *proved negative* (with the counterexample or derivation in the text). This record replaces the Jacobian part of note 52\_, which was withdrawn on 27 September 2026.
 
 ### 0.5 Organization
 
@@ -46,7 +46,7 @@ Then det DF = −2 identically. The three points (0, 0, −1/4), (1, −3/2, 13/
 
 ## 2. Binary cubics and the fibre theorem
 
-Attach to a point (a, b, c) ∈ ℂ³ the binary cubic f_{(a,b,c)}(s, t) = as³ + bs²t + 4st² + 4ct³. These are the cubics with st²-coefficient 4, the slice of [T]. Put
+Attach to a point (a, b, c) ∈ ℂ³ the binary cubic f\_{(a,b,c)}(s, t) = as³ + bs²t + 4st² + 4ct³. These are the cubics with st²-coefficient 4, the slice of [T]. Put
 
   u = −2x,  v = 1 + xy,
   A = (1 + xy)²w + y²(4 + 3xy),
@@ -54,7 +54,8 @@ Attach to a point (a, b, c) ∈ ℂ³ the binary cubic f_{(a,b,c)}(s, t) = as³ 
   C = 2(2 − 3xy − x²w).
 
 **Theorem 2.1.**
-1. f_{F(x,y,w)}(s, t) = (vs − ut)(As² + Bst + Ct²).
+
+1. f\_{F(x,y,w)}(s, t) = (vs − ut)(As² + Bst + Ct²).
 2. Au² + Buv + Cv² = 4, the resultant normalization, and vC − uB = 4, the slice condition.
 3. The map ι(x, y, w) = (u, v, A, B, C) is an isomorphism of ℂ³ onto the smooth complete intersection W = {vC − uB = 4, Au² + Buv + Cv² = 4} ⊂ ℂ⁵. Its inverse is
    - x = −u/2,
@@ -79,9 +80,10 @@ Let Δ = 27a²c² − 18abc + 16a + b³c − b². Then Disc(as³ + bs² + 4s + 4
 which is Disc(LQ) = Res(L, Q)²·Disc(Q) = 16·Disc(Q). Δ is irreducible over ℂ: it is quadratic in c with coprime coefficients, and its c-discriminant (b² − 12a)³ is not a square.
 
 **Corollary 2.2** ([P], [T]; here in these coordinates).
+
 1. Fibres of F have 3 points off Δ = 0, 1 point on Δ = 0 off the triple-root curve, and none on that curve.
 2. The triple-root curve is Γ = {(4/(27c²), 4/(3c), c) : c ≠ 0}, the affine part of the twisted cubic, consisting of the cubics (4/(27c²))(s + 3ct)³. On Δ = 0 it is cut out by 3bc = 4. The image of F is ℂ³ ∖ Γ.
-3. F is finite over Δ ≠ 0 and not proper at any point of Δ = 0. So Jelonek's set of non-properness [J] is S_F = {Δ = 0}.
+3. F is finite over Δ ≠ 0 and not proper at any point of Δ = 0. So Jelonek's set of non-properness [J] is S\_F = {Δ = 0}.
 4. The monodromy of the étale cover over ℂ³ ∖ {Δ = 0} is S₃.
 
 *Proof.* (1) and (2) follow from Theorem 2.1(4).
@@ -91,6 +93,7 @@ which is Disc(LQ) = Res(L, Q)²·Disc(Q) = 16·Disc(Q). Δ is irreducible over �
 (4) The cover is connected, since its total space is the complement of a hypersurface in ℂ³. Its function field is generated by a root of as³ + bs² + 4s + 4c, which is irreducible over ℂ(a, b, c) (it is linear in c with coprime coefficients). The discriminant −16Δ is not a square, since Δ(a, 0, 0) = 16a. ∎
 
 **Theorem 2.3 (minimal polynomials).** Over ℚ[F₁, F₂, F₃]:
+
 - x satisfies Δ(F)x³ + (4 − 3F₂F₃)x − 2F₃ = 0, a cubic with discriminant −4Δ(27ac² − 9bc + 8)²;
 - y satisfies 2y³ − 3F₂y² + 18F₁y + (27F₁²F₃ − 18F₁F₂ + F₂³) = 0;
 - w satisfies an explicit cubic with leading coefficient 8.
@@ -103,17 +106,18 @@ Minimality: over the point (1, 2, 3), the three fibre points have three distinct
 
 **Corollary 2.4 (other fields).** ι and ι⁻¹ are defined over ℤ[1/2]. Hence, for every field k with 2 ∈ k^×, F⁻¹(f)(k) is in bijection with the k-rational simple roots of f. The number of k-rational points in a fibre is 0, 1 or 3, never 2: if two simple roots are rational, so is the third, which is then simple or equal to one of them.
 
-Over 𝔽_p the fibre-size counts are {0: 6, 1: 18, 3: 3} for p = 3, {0: 36, 1: 71, 3: 18} for p = 5, {0: 102, 1: 190, 3: 51} for p = 7 and {0: 410, 1: 716, 3: 205} for p = 11, by exhaustive computation.
+Over 𝔽\_p the fibre-size counts are {0: 6, 1: 18, 3: 3} for p = 3, {0: 36, 1: 71, 3: 18} for p = 5, {0: 102, 1: 190, 3: 51} for p = 7 and {0: 410, 1: 716, 3: 205} for p = 11, by exhaustive computation.
 
 Over ℝ, a target has 3 real preimages where Δ < 0 and 1 where Δ > 0. So F restricted to ℝ³ is a real polynomial map with constant Jacobian −2 that is 3-to-1 over {Δ < 0}.
 
 ## 3. A torus action and the Whitney-cusp normal form
 
-**Theorem 3.1.** For λ ∈ ℂ*, F(λ⁻¹x, λy, λ²w) = (λ²F₁, λF₂, λ⁻¹F₃), and Δ(λ²a, λb, λ⁻¹c) = λ²Δ(a, b, c).
+**Theorem 3.1.** For λ ∈ ℂ∗, F(λ⁻¹x, λy, λ²w) = (λ²F₁, λF₂, λ⁻¹F₃), and Δ(λ²a, λb, λ⁻¹c) = λ²Δ(a, b, c).
 
 On the slice of cubics this action is the substitution (s, t) ↦ (μ²s, μ⁻¹t) with μ³ = λ. It is the one-parameter subgroup of the symmetries (L, Q) ↦ (λ₁L, λ₂Q) and (L, Q) ↦ (L∘T, Q∘T) of [T] given by T = diag(α, α⁻¹), λ₁ = α⁻¹, λ₂ = α² (so λ = α²), which preserves the resultant and the slice.
 
 *The orbit structure.*
+
 - The curve Γ missing from the image is a single orbit, that of (4/27, 4/3, 1), the cubic (4/27)(s + 3t)³.
 - The element λ = −1 fixes exactly the w-axis, and F(0, 0, w) = (w, 0, 0).
 - Over the punctured a-axis, which is one orbit with stabilizer μ₂, the preimage consists of two orbits: the free orbit of (1, −3/2, 13/2), which maps 2:1, and the punctured w-axis, which maps 1:1.
@@ -123,16 +127,17 @@ On the slice of cubics this action is the substitution (s, t) ↦ (μ²s, μ⁻�
 
   F₃ = xn,  F₁F₃² = m(n + m − m²),  F₂F₃ = 2n + 4m − 3m².
 
-The map (x, y, w) ↦ (c, m, n) = (F₃, m, n) is an isomorphism of U = {F₃ ≠ 0} onto ℂ* × ℂ × ℂ*, with inverse x = c/n, y = (m − n)/c, w = (2 − 3(m/n − 1) − n)n²/c². On the target, (a, b, c) ↦ (P, Q, c) = (ac², bc, c) identifies {c ≠ 0} with ℂ² × ℂ*. In these coordinates
+The map (x, y, w) ↦ (c, m, n) = (F₃, m, n) is an isomorphism of U = {F₃ ≠ 0} onto ℂ∗ × ℂ × ℂ∗, with inverse x = c/n, y = (m − n)/c, w = (2 − 3(m/n − 1) − n)n²/c². On the target, (a, b, c) ↦ (P, Q, c) = (ac², bc, c) identifies {c ≠ 0} with ℂ² × ℂ∗. In these coordinates
 
-  F|_U = g × id_{ℂ*},  g(m, n) = (m(n + m − m²), 2n + 4m − 3m²),  det Dg = 2n.
+  F|\_U = g × id\_{ℂ∗},  g(m, n) = (m(n + m − m²), 2n + 4m − 3m²),  det Dg = 2n.
 
 Moreover g(m, n) = (P, Q) exactly when h(m) := m³ − 2m² + Qm − 2P = 0 and n = h′(m)/2.
 
 *Proof.* The identities and both composites are polynomial identities; the solution of g(m, n) = (P, Q) is direct substitution. ∎
 
 **Corollary 3.3.**
-- Put m = m′ + 2/3 and α = Q − 4/3. Then h + 2P = m′³ + αm′ + (2Q/3 − 16/27) and n = (3m′² + α)/2. So, off {F₃ = 0} and after polynomial changes of coordinates, F is the product of the identity on ℂ* with the Whitney cusp map [Wh] (m′, α) ↦ (m′³ + αm′, α), restricted to the complement of its critical curve 3m′² + α = 0.
+
+- Put m = m′ + 2/3 and α = Q − 4/3. Then h + 2P = m′³ + αm′ + (2Q/3 − 16/27) and n = (3m′² + α)/2. So, off {F₃ = 0} and after polynomial changes of coordinates, F is the product of the identity on ℂ∗ with the Whitney cusp map [Wh] (m′, α) ↦ (m′³ + αm′, α), restricted to the complement of its critical curve 3m′² + α = 0.
 - The discriminant of h is −4(27P² − 18PQ + 16P + Q³ − Q²) = −4c²Δ. With β = 2Q/3 − 2P − 16/27 one has 4(27P² − 18PQ + 16P + Q³ − Q²) = 4α³ + 27β², the A₂ discriminant. Its cusp (P, Q) = (4/27, 4/3) is the image of the missing orbit Γ.
 - The two root variables are related by m = −2c/S, where S is the root of the slice cubic: f(S, 1) = (4c/m³)·h(m).
 
@@ -140,19 +145,21 @@ In this form the geometry of the counterexample is transparent. A fibre of F ove
 
 ## 4. Divergence-free vector fields and escaping flows
 
-Let D_i = Σ_k (DF⁻¹)_{ki}∂_k. Then DF·D_i = e_i, so D_i is F-related to the coordinate field ∂/∂a_i. The D_i commute, since their bracket annihilates F₁, F₂, F₃ and the dF_j are pointwise independent. Their coefficients are polynomials over ℤ[1/2] of total degrees 6 to 11. A computer listing of all nine coefficients accompanies this paper.
+Let D\_i = Σ\_k (DF⁻¹)\_{ki}∂\_k. Then DF·D\_i = e\_i, so D\_i is F-related to the coordinate field ∂/∂a\_i. The D\_i commute, since their bracket annihilates F₁, F₂, F₃ and the dF\_j are pointwise independent. Their coefficients are polynomials over ℤ[1/2] of total degrees 6 to 11. A computer listing of all nine coefficients accompanies this paper.
 
 **Lemma 4.1.** Let F: ℝⁿ → ℝⁿ or ℂⁿ → ℂⁿ be polynomial with det DF ≡ c ≠ 0, let V be an affine vector field, and put U = DF⁻¹(V∘F). Then:
+
 1. U is a polynomial vector field with div U = (div V)∘F.
 2. F maps integral curves of U to integral curves of V.
-3. If F has a polynomial inverse G, every maximal integral curve of U is complete, namely γ(τ) = G(Φ^V_τ(F(γ(0)))).
+3. If F has a polynomial inverse G, every maximal integral curve of U is complete, namely γ(τ) = G(Φ^V\_τ(F(γ(0)))).
 
 *Proof.*
-1. DF⁻¹ = adj(DF)/c is polynomial. The Piola identity Σ_j ∂_j adj(DF)_{ji} = 0 and the chain rule give c·div U = c·(div V)(F).
+
+1. DF⁻¹ = adj(DF)/c is polynomial. The Piola identity Σ\_j ∂\_j adj(DF)\_{ji} = 0 and the chain rule give c·div U = c·(div V)(F).
 2. d/dτ F(γ) = DF(γ)γ′ = V(F(γ)).
 3. By (2), F∘γ is the flow line of V through F(γ(0)), which exists for all time because V is affine; apply G. ∎
 
-In particular the D_i are divergence-free, and so is U = DF⁻¹(2, 0, 0) = 2D₁. Its integral curve γ(τ) = (z⁻¹, −3z/2, 13z²/2), with z = √(1 − 8τ), satisfies F(γ(τ)) = (−1/4 + 2τ, 0, 0). It leaves every compact set as τ ↑ 1/8, while its image tends to (0, 0, 0) ∈ {Δ = 0}.
+In particular the D\_i are divergence-free, and so is U = DF⁻¹(2, 0, 0) = 2D₁. Its integral curve γ(τ) = (z⁻¹, −3z/2, 13z²/2), with z = √(1 − 8τ), satisfies F(γ(τ)) = (−1/4 + 2τ, 0, 0). It leaves every compact set as τ ↑ 1/8, while its image tends to (0, 0, 0) ∈ {Δ = 0}.
 
 Along γ, the root [u : v] = [4/z : 1] of the associated cubic runs into [1 : 0], the double root of f = 4st². By Theorem 3.1, γ(τ) = z·(1, −3/2, 13/2) is the torus orbit of one of the three points over (−1/4, 0, 0).
 
@@ -166,21 +173,21 @@ So the finite-time escape of this divergence-free polynomial flow is a torus orb
 
 The counterexample is itself a negative result: the Jacobian conjecture JC₃ is false. This part records the consequences that follow from it by known implications, with the maps made explicit.
 
-**Proposition 5.1.** Let K be a field of characteristic 0, and let A₃ be the Weyl algebra K⟨x_i, ∂_i⟩. Then x_i ↦ F_i, ∂_i ↦ D_i defines an injective ring endomorphism φ of A₃ whose image contains none of x, y, w. The same holds over ℤ[1/2].
+**Proposition 5.1.** Let K be a field of characteristic 0, and let A₃ be the Weyl algebra K⟨x\_i, ∂\_i⟩. Then x\_i ↦ F\_i, ∂\_i ↦ D\_i defines an injective ring endomorphism φ of A₃ whose image contains none of x, y, w. The same holds over ℤ[1/2].
 
-*Proof.* [D_i, F_j] = D_i(F_j) = δ_{ij}, [D_i, D_j] = 0 and [F_i, F_j] = 0. So φ respects the defining relations. It is injective because A₃ is simple [Co].
+*Proof.* [D\_i, F\_j] = D\_i(F\_j) = δ\_{ij}, [D\_i, D\_j] = 0 and [F\_i, F\_j] = 0. So φ respects the defining relations. It is injective because A₃ is simple [Co].
 
-Commuting with F₁, F₂, F₃ forces order 0: if P has order m ≥ 1 and principal symbol σ, then the order-(m−1) symbol of [P, F_i] gives DF·∇_ξσ = 0, and hence σ = 0. So the centralizer of {F_i} is K[x], and likewise that of {x_i}.
+Commuting with F₁, F₂, F₃ forces order 0: if P has order m ≥ 1 and principal symbol σ, then the order-(m−1) symbol of [P, F\_i] gives DF·∇\_ξσ = 0, and hence σ = 0. So the centralizer of {F\_i} is K[x], and likewise that of {x\_i}.
 
-If φ(P) = x_i, then φ([P, x_j]) = [x_i, F_j] = 0. So P ∈ K[x] by injectivity, and x_i = P(F) ∈ K[F]. This contradicts Theorem 2.3, since x_i takes three distinct values on a generic fibre. ∎
+If φ(P) = x\_i, then φ([P, x\_j]) = [x\_i, F\_j] = 0. So P ∈ K[x] by injectivity, and x\_i = P(F) ∈ K[F]. This contradicts Theorem 2.3, since x\_i takes three distinct values on a generic fibre. ∎
 
-So the Dixmier conjecture [Di] fails for A_n with n ≥ 3. This is the classical implication from the Dixmier conjecture to the Jacobian conjecture, recorded by Adjamagbo and van den Essen [AvdE] and credited there to Bass, Connell and Wright [BCW]. Proposition 5.1 makes the endomorphism explicit.
+So the Dixmier conjecture [Di] fails for A\_n with n ≥ 3. This is the classical implication from the Dixmier conjecture to the Jacobian conjecture, recorded by Adjamagbo and van den Essen [AvdE] and credited there to Bass, Connell and Wright [BCW]. Proposition 5.1 makes the endomorphism explicit.
 
-**Proposition 5.2.** On the Poisson algebra K[x, p] in six variables, with {p_i, x_j} = δ_{ij}, the cotangent lift x_i ↦ F_i, p_i ↦ Σ_k (DF⁻¹)_{ki}p_k is a Poisson endomorphism and not an automorphism. As a polynomial map of ℂ⁶ it has Jacobian determinant 1 and is not injective: the three points (x_j, DF(x_j)ᵀ(1, 1, 1)) over (−1/4, 0, 0) have the same image.
+**Proposition 5.2.** On the Poisson algebra K[x, p] in six variables, with {p\_i, x\_j} = δ\_{ij}, the cotangent lift x\_i ↦ F\_i, p\_i ↦ Σ\_k (DF⁻¹)\_{ki}p\_k is a Poisson endomorphism and not an automorphism. As a polynomial map of ℂ⁶ it has Jacobian determinant 1 and is not injective: the three points (x\_j, DF(x\_j)ᵀ(1, 1, 1)) over (−1/4, 0, 0) have the same image.
 
-This is the failure of the Poisson conjecture PC₃, which also follows from the implication PC_n ⇒ DC_n of [AvdE]. Long [L] constructed an explicit counterexample to the rank-two Poisson conjecture PC₂ from F, in four variables, using a Hamiltonian correction. That counterexample gives PC_n false for every n ≥ 2.
+This is the failure of the Poisson conjecture PC₃, which also follows from the implication PC\_n ⇒ DC\_n of [AvdE]. Long [L] constructed an explicit counterexample to the rank-two Poisson conjecture PC₂ from F, in four variables, using a Hamiltonian correction. That counterexample gives PC\_n false for every n ≥ 2.
 
-The implications used here give no statement about the Dixmier conjecture for A₁ and A₂. The known implications in that range run in the other direction: Tsuchimoto [Ts] and Kanel-Belov and Kontsevich [KBK] proved that JC_{2n} implies DC_n, so a counterexample to DC₁ or DC₂ would give one to JC₂ or JC₄.
+The implications used here give no statement about the Dixmier conjecture for A₁ and A₂. The known implications in that range run in the other direction: Tsuchimoto [Ts] and Kanel-Belov and Kontsevich [KBK] proved that JC\_{2n} implies DC\_n, so a counterexample to DC₁ or DC₂ would give one to JC₂ or JC₄.
 
 ---
 
@@ -192,13 +199,13 @@ The counterexample connects to several areas through explicit typed maps. This s
 
 ### 6.1 Integer points and binary cubic forms
 
-At (x, y, w) ∈ ℤ³, f_F is an integral binary cubic form. It factors over ℤ as L·Q with L = vs − ut and Q = As² + Bst + Ct² integral, gcd(u, v) ∈ {1, 2}, and Disc(f_F) = 16·Disc(Q) = −16Δ(F). Since Res(L, Q) = 4 ≠ 0, the ℚ-algebra of f_F is ℚ × K_Q, where K_Q is the rank-2 algebra of Q, non-reduced when Disc Q = 0. Under the Delone–Faddeev correspondence, in the form extended by Gan, Gross and Savin [GGS] (see [Bh, §2]), the integer points of F thus parametrize reducible binary cubic forms and the corresponding cubic rings with a rational factor.
+At (x, y, w) ∈ ℤ³, f\_F is an integral binary cubic form. It factors over ℤ as L·Q with L = vs − ut and Q = As² + Bst + Ct² integral, gcd(u, v) ∈ {1, 2}, and Disc(f\_F) = 16·Disc(Q) = −16Δ(F). Since Res(L, Q) = 4 ≠ 0, the ℚ-algebra of f\_F is ℚ × K\_Q, where K\_Q is the rank-2 algebra of Q, non-reduced when Disc Q = 0. Under the Delone–Faddeev correspondence, in the form extended by Gan, Gross and Savin [GGS] (see [Bh, §2]), the integer points of F thus parametrize reducible binary cubic forms and the corresponding cubic rings with a rational factor.
 
 My assessment: I think this is a concrete arithmetic bridge, because it turns the integer points of F into a parametrization of cubic rings with a rational factor, a family for which counting methods exist [Bh]. Which rings occur, and with what density, is Question 3.
 
 ### 6.2 The normal form as a bridge to singularity theory
 
-By Theorem 3.2 and Corollary 3.3, off {F₃ = 0} the counterexample is the Whitney cusp map with its critical curve removed, times the identity on ℂ*. Its non-properness is the fold of the cusp, and its missing curve lies over the cusp point. My assessment: I think this is the most useful structural description for further work, because it reduces the global geometry of the counterexample to a classical local model. It suggests looking for counterexamples in higher dimensions among maps that are normal forms of higher A_k singularities with their critical sets removed (Question 2).
+By Theorem 3.2 and Corollary 3.3, off {F₃ = 0} the counterexample is the Whitney cusp map with its critical curve removed, times the identity on ℂ∗. Its non-properness is the fold of the cusp, and its missing curve lies over the cusp point. My assessment: I think this is the most useful structural description for further work, because it reduces the global geometry of the counterexample to a classical local model. It suggests looking for counterexamples in higher dimensions among maps that are normal forms of higher A\_k singularities with their critical sets removed (Question 2).
 
 ### 6.3 The author's four-dimensional map
 
@@ -207,7 +214,7 @@ The author's programme contains a four-dimensional polynomial map P with det DP 
 ## 7. Questions
 
 1. On the hypersurface {F₃ = 0} the normal form of Theorem 3.2 does not apply. What is the local structure of F there? On that hypersurface lie the w-axis and the orbits of the points with x = 0 or n = 0.
-2. Does the author's four-dimensional map P (§6.3) carry a torus action, and does it have a normal form of Whitney or swallowtail type off a coordinate hypersurface? More generally, are there counterexamples in higher dimensions that are normal forms of higher A_k singularities with their critical sets removed?
+2. Does the author's four-dimensional map P (§6.3) carry a torus action, and does it have a normal form of Whitney or swallowtail type off a coordinate hypersurface? More generally, are there counterexamples in higher dimensions that are normal forms of higher A\_k singularities with their critical sets removed?
 3. The integral points of F parametrize reducible cubic forms with Res(L, Q) = 4. Which cubic rings occur, and with what density?
 
 ## 8. Verification
@@ -222,7 +229,7 @@ The scripts are in the record's `checks/jacobian/` folder, with their outputs.
   - Corollary 2.2(2);
   - the escaping curve;
   - the degrees and denominators of DF⁻¹;
-  - the relations [D_i, F_j] = δ_{ij} and [D_i, D_j] = 0;
+  - the relations [D\_i, F\_j] = δ\_{ij} and [D\_i, D\_j] = 0;
   - the Jacobian and non-injectivity of the cotangent lift;
   - Theorem 3.1, the orbit statements and the cusp.
 - `ver52_referee_claims.py` verifies:

@@ -1,6 +1,6 @@
 # The Erdős–Straus equation through residual shells: an audited record of a workbench and of the author's notes, with proofs and new results
 
-*Claude (Anthropic, model `claude-opus-5-5`), 27 September 2026. Published at the author's request ahead of the author's review; the author may revise or withdraw it. This record replaces the Erdős–Straus reader (versions 2 and 3) and note 50_, which were withdrawn on 27 September 2026.*
+*Claude (Anthropic, model `claude-opus-5-5`), 27 September 2026. Published at the author's request ahead of the author's review; the author may revise or withdraw it. This record replaces the Erdős–Straus reader (versions 2 and 3) and note 50\_, which were withdrawn on 27 September 2026.*
 
 ## Abstract
 
@@ -16,7 +16,7 @@ The conjecture is verified up to 10¹⁷ [Sa] and holds for almost all n [Va], a
 
 The results fall into five groups. Those marked *new* were obtained for this record.
 
-1. **The shell arithmetic** (§§2–4). The shell criterion (Theorem 2.1) counts the solutions with least denominator a exactly as 2|E_a| + |M_a|. The first two shells have exact occupancy criteria (Propositions 3.1–3.3), which recover the hard classes modulo 840. Occupied shells are constrained by residue barriers (Propositions 4.1–4.3); the sharpest of them, the width-one barrier from the author's notes, requires that the primes dividing (p+R)/4 generate −1 or −4 modulo R.
+1. **The shell arithmetic** (§§2–4). The shell criterion (Theorem 2.1) counts the solutions with least denominator a exactly as 2|E\_a| + |M\_a|. The first two shells have exact occupancy criteria (Propositions 3.1–3.3), which recover the hard classes modulo 840. Occupied shells are constrained by residue barriers (Propositions 4.1–4.3); the sharpest of them, the width-one barrier from the author's notes, requires that the primes dividing (p+R)/4 generate −1 or −4 modulo R.
 2. **Records, families and carriers** (§§5–8). The strict records of the least-class function are determined up to 3·10⁹ (Proposition 5.3); the largest is 8,803,369, which needs the shell R = 107. Fixed-divisor families solve the equation on explicit progressions meeting every hard class (Theorem 6.2), and no carrier built from residues reaches a square class (Proposition 6.3, Corollary 6.4).
 3. **The author's notes** (§9). The support-zero core is exactly S₈₄₀ × Q₁₁ × Q₁₉ × Q₂₃, and 550 further classes are supported but not covered by a single identity (Theorem 9.2). Eight shifted forms of p, a p + 5 lock and a visible-box principle give necessary conditions for a counterexample (Theorems 9.3–9.5); the survivors have density zero (Proposition 9.7, *new*), and 23 of them lie below 10⁷. The shadow of the notes' order-7 mock theta vector carries the M(2,7) representation (Theorem 9.14, *new*), and the order-5 block carries the Fibonacci data (Proposition 9.15, *new*).
 4. **The monodromy covers** (§10). The orbits of the (3,4,∞) covers are classified at every level by one invariant, gcd(b, c, gcd(D, 6)) (Theorem 10.1, *new*).
@@ -42,6 +42,7 @@ This is an audit, carried out by an AI system, of research that was itself carri
 The research used a method that AI systems make practical: a large number of hypotheses, across many directions, were formulated and tested quickly. Some directions stay close to the classical arithmetic of the equation; others propose bridges to mock modular forms, moonshine, Lorentzian geometry and computability. Not every hypothesis was expected to hold, and several directions would each amount to a research programme of their own. A direction that is not yet a complete programme is not thereby invalid, and a structural bridge between two areas is mathematics whether or not it bears on the conjecture.
 
 The audit re-derived statements from their sources, re-computed the finite statements with independent programs, organized what was verified, and added new results. The compute available did not allow every statement to be audited to full rigour, so every statement carries one of four statuses:
+
 - **verified**: proved here, or re-computed by a program that a reader can re-run (§14);
 - **not verified here**: nothing further is implied, in either direction;
 - **my assessment**: a view with its reasons, written in the first person, and open to the possibility that the reasons do not cover everything;
@@ -68,32 +69,34 @@ Explicit polynomial identities solve the equation for every n in a primitive cla
 which are exactly the unit squares modulo 840. Elsholtz and Tao attribute this to Obláth and Mordell [ET, Mo]; Proposition 3.4 below proves it for primes. The squares cannot be removed by the same means: a primitive class n ≡ r (mod q) with r a square modulo q is not solvable by polynomial identities. This is due to Mordell and Schinzel, with the reciprocity argument going back to Schinzel and Yamamoto [ET, §1]; its shell form is §4.
 
 Three further results frame the problem:
+
 - **Density.** Vaughan showed that the number of n < N without a solution is at most N exp(−c log^{2/3} N) [Va].
 - **Counting.** Elsholtz and Tao bounded the number of solutions and classified the solutions at primes as Type I or Type II, according as p divides one or two denominators [ET].
 - **Verification.** The conjecture is verified for n ≤ 10¹⁷ (Salez [Sa]), and a 2025 preprint reports 10¹⁸ [MD].
 
 ## 2. The shell criterion
 
-The organizing idea of the workbench is to fix the least denominator. Throughout, p is an odd prime. For an integer a > p/4 with p ∤ a put R_a = 4a − p, S_a = pa and
+The organizing idea of the workbench is to fix the least denominator. Throughout, p is an odd prime. For an integer a > p/4 with p ∤ a put R\_a = 4a − p, S\_a = pa and
 
-  E_a = {u : u | a², R_a | 4u + 1},  M_a = {u : u | a², R_a | u + a}.
+  E\_a = {u : u | a², R\_a | 4u + 1},  M\_a = {u : u | a², R\_a | u + a}.
 
-The shell a is **occupied** if E_a ∪ M_a ≠ ∅.
+The shell a is **occupied** if E\_a ∪ M\_a ≠ ∅.
 
 **Theorem 2.1 (shell criterion).**
+
 1. If x ≤ y ≤ z is a solution, then p/4 < x ≤ 3p/4. More precisely, x < p/2 and x < y, except for p ≡ 3 (mod 4) and (x, y, z) = ((p+1)/2, (p+1)/2, p(p+1)/4).
-2. For each a > p/4 with p ∤ a, the ordered pairs (y, z) with 1/a + 1/y + 1/z = 4/p number exactly 2|E_a| + |M_a|. A pair with y = z occurs exactly when R_a = 1. Otherwise |M_a| is even, and the unordered pairs number |E_a| + |M_a|/2.
+2. For each a > p/4 with p ∤ a, the ordered pairs (y, z) with 1/a + 1/y + 1/z = 4/p number exactly 2|E\_a| + |M\_a|. A pair with y = z occurs exactly when R\_a = 1. Otherwise |M\_a| is even, and the unordered pairs number |E\_a| + |M\_a|/2.
 3. The equation is solvable at p if and only if some shell a with p/4 < a < p/2 is occupied.
 
 *Proof.* (1) Since 1/x < 4/p ≤ 3/x, we have p/4 < x ≤ 3p/4. Suppose x > p/2. Then y < p, and p | xyz forces p | z. Write z = pz′. Then xy(4z′ − 1) = pz′(x + y), so 4z′ − 1 = pk. With N = pk + 1 one gets (4kx − N)(4ky − N) = N². But 4kx − N ≥ N + 2(k − 1), so k = 1 and x = y = (p+1)/2. If x < p/2 and y = x, then 1/x + 1/y > 4/p, which is impossible.
 
-(2) Write R = R_a and S = S_a. Since p ∤ a, S is a unit modulo R. The equation 1/y + 1/z = R/S is (Ry − S)(Rz − S) = S², with both factors positive, so the ordered pairs correspond to the divisors d | S² with d ≡ −S (mod R). Write d = p^i v with v | a². For i = 2 the condition is R | 4v + 1, which gives E_a; for i = 1 it is R | v + a, which gives M_a; and d ↦ S²/d exchanges the layers i = 0 and i = 2. The swap (y, z) ↦ (z, y) is d ↦ S²/d. Its only possible fixed point is v = a in the middle layer, and this needs R | 2a, that is, R = 1.
+(2) Write R = R\_a and S = S\_a. Since p ∤ a, S is a unit modulo R. The equation 1/y + 1/z = R/S is (Ry − S)(Rz − S) = S², with both factors positive, so the ordered pairs correspond to the divisors d | S² with d ≡ −S (mod R). Write d = p^i v with v | a². For i = 2 the condition is R | 4v + 1, which gives E\_a; for i = 1 it is R | v + a, which gives M\_a; and d ↦ S²/d exchanges the layers i = 0 and i = 2. The swap (y, z) ↦ (z, y) is d ↦ S²/d. Its only possible fixed point is v = a in the middle layer, and this needs R | 2a, that is, R = 1.
 
-(3) For p ≡ 1 (mod 4) this follows from (1) and (2). For p ≡ 3 (mod 4), the shell (p+1)/4 has R = 1 and u = a ∈ M_a. ∎
+(3) For p ≡ 1 (mod 4) this follows from (1) and (2). For p ≡ 3 (mod 4), the shell (p+1)/4 has R = 1 and u = a ∈ M\_a. ∎
 
 The workbench states part (2) as its exact divisor-shell bijection (archive Theorem 9.1) and proves the count by an involution between the p-adic layers (Theorem 9.64). The supplement states the criterion for p = 12h + 1 and a ∈ [3h+1, 9h].
 
-What the criterion adds is a finite, computable certificate structure. A counterexample prime would have to satisfy E_a = M_a = ∅ for every shell a, and the remaining sections study this condition shell by shell. The two channels E and M correspond to the Type II and Type I solutions of Elsholtz and Tao [ET], which is why the locks of §9.3 reappear as faces of their parametrizations.
+What the criterion adds is a finite, computable certificate structure. A counterexample prime would have to satisfy E\_a = M\_a = ∅ for every shell a, and the remaining sections study this condition shell by shell. The two channels E and M correspond to the Type II and Type I solutions of Elsholtz and Tao [ET], which is why the locks of §9.3 reappear as faces of their parametrizations.
 
 *Verification.* The count was checked against brute force on all 4,726 pairs (p, a) with p < 260 and p/4 < a < p. Part (1) was checked against all 2,259 solutions at the odd primes below 400. Every prime p ≡ 1 (mod 12) below 30,000 has an occupied shell.
 
@@ -101,13 +104,13 @@ What the criterion adds is a finite, computable certificate structure. A counter
 
 The two smallest residuals, R = 3 and R = 7, already account for most primes, and their exact occupancy criteria explain where the hard classes come from.
 
-**Proposition 3.1 (the residual-3 shell).** Let p ≡ 1 (mod 12) and a = (p+3)/4, so R_a = 3. Let P₁ = ∏(2v_ℓ(a) + 1) over the primes ℓ ≡ 1 (mod 3) dividing a, and P₂ the same product over the primes ℓ ≡ 2 (mod 3). Then E_a = M_a = {u | a² : u ≡ 2 (mod 3)} and |E_a| = |M_a| = P₁(P₂ − 1)/2. So the shell is occupied exactly when a has a prime factor ≡ 2 (mod 3), and there are then exactly 3P₁(P₂ − 1)/4 unordered solutions with least denominator a.
+**Proposition 3.1 (the residual-3 shell).** Let p ≡ 1 (mod 12) and a = (p+3)/4, so R\_a = 3. Let P₁ = ∏(2v\_ℓ(a) + 1) over the primes ℓ ≡ 1 (mod 3) dividing a, and P₂ the same product over the primes ℓ ≡ 2 (mod 3). Then E\_a = M\_a = {u | a² : u ≡ 2 (mod 3)} and |E\_a| = |M\_a| = P₁(P₂ − 1)/2. So the shell is occupied exactly when a has a prime factor ≡ 2 (mod 3), and there are then exactly 3P₁(P₂ − 1)/4 unordered solutions with least denominator a.
 
-*Proof.* Modulo 3 both conditions read u ≡ 2. A divisor u of a² satisfies u ≡ (−1)^{Σe_ℓ} (mod 3), the sum running over the primes ℓ ≡ 2 (mod 3). The alternating count ∏_ℓ Σ_{e=0}^{2v_ℓ}(−1)^e = 1 shows that (P₂ − 1)/2 of the exponent vectors have odd sum. ∎
+*Proof.* Modulo 3 both conditions read u ≡ 2. A divisor u of a² satisfies u ≡ (−1)^{Σe\_ℓ} (mod 3), the sum running over the primes ℓ ≡ 2 (mod 3). The alternating count ∏\_ℓ Σ\_{e=0}^{2v\_ℓ}(−1)^e = 1 shows that (P₂ − 1)/2 of the exponent vectors have odd sum. ∎
 
-For p ≡ 5 (mod 12) the same shell satisfies |E_a| = P₁(P₂ − 1)/2 and |M_a| = P₁(P₂ + 1)/2, and it is always occupied, since 1 ∈ M_a.
+For p ≡ 5 (mod 12) the same shell satisfies |E\_a| = P₁(P₂ − 1)/2 and |M\_a| = P₁(P₂ + 1)/2, and it is always occupied, since 1 ∈ M\_a.
 
-**Proposition 3.2 (the residual-7 shell).** Let p ≡ 1 (mod 4) and a = (p+7)/4, so R_a = 7. Let n₃ be the total exponent in a of the primes ≡ 3 (mod 7), and n₂₄ that of the primes ≡ 2 or 4 (mod 7). The shell is occupied if and only if a has a prime factor ≡ 5 or 6 (mod 7), or n₃ ≥ 3, or n₃ ≥ 1 and n₂₄ ≥ 1.
+**Proposition 3.2 (the residual-7 shell).** Let p ≡ 1 (mod 4) and a = (p+7)/4, so R\_a = 7. Let n₃ be the total exponent in a of the primes ≡ 3 (mod 7), and n₂₄ that of the primes ≡ 2 or 4 (mod 7). The shell is occupied if and only if a has a prime factor ≡ 5 or 6 (mod 7), or n₃ ≥ 3, or n₃ ≥ 1 and n₂₄ ≥ 1.
 
 *Proof.* In base 3 modulo 7, the exterior target −4⁻¹ is 3⁵ and the middle condition is u/a ≡ 3³. Sufficiency is by explicit divisors: a prime ℓ ≡ 5 gives u = ℓ, a prime ℓ ≡ 6 gives u = aℓ, and if n₃ ≥ 3 a product of primes ≡ 3 of total exponent 5 gives u ≡ 3⁵; otherwise u = aℓt or u = aℓ/t. For necessity: without these factors, all divisors of a² lie in the squares {1, 2, 4}, or they are powers 3^e with e ≤ 2n₃ ≤ 4, and neither target is reached. ∎
 
@@ -131,23 +134,24 @@ Why do the square classes resist? The answer, in shell form, is a family of resi
 
 *Proof.* The Jacobi character χ = (·/R) satisfies χ(a) = 1 and χ(p) = χ(4a) = 1. So χ(d) = 1 for every divisor d of p²a², while χ(−pa) = χ(−1) = −1. ∎
 
-**Proposition 4.2 (the group barrier and the width-one barrier).** In the same setting, with R ≡ −p (mod 4) and R ≥ 3, let G_a ≤ (ℤ/R)^× be generated by 4 and the primes dividing a, and H_a by the primes dividing a alone.
-1. If −1 ∉ G_a, the shell is unoccupied. This contains Proposition 4.1, is equivalent to it for prime R, and is strictly stronger for composite R: for example p = 53, a = 26, R = 51, G_a = ⟨2⟩ ∌ −1, while (2/51) = −1.
-2. (Width one; the notes' *Normalized divisor supports and the residual pre-Niemeier datum*, Theorem 3.1, and archive Theorem 15.5.) If neither −1 nor −4 lies in H_a, the shell is unoccupied. This contains (1) and is strictly stronger: for example p = 433, R = 91, a = 131. When every prime factor of R is ≡ 3 (mod 4), (1) and (2) are equivalent.
+**Proposition 4.2 (the group barrier and the width-one barrier).** In the same setting, with R ≡ −p (mod 4) and R ≥ 3, let G\_a ≤ (ℤ/R)^× be generated by 4 and the primes dividing a, and H\_a by the primes dividing a alone.
 
-*Proof.* (1) Every divisor of a² lies in G_a, and the targets −4⁻¹ and −a lie in G_a exactly when −1 does. (2) The targets lie in H_a exactly when −4, respectively −1, does. For the equivalence when every prime factor of R is ≡ 3 (mod 4), write (ℤ/R)^× = P × O with P elementary abelian and |O| odd; if −1 = 4^j h with h ∈ H_a, then h^{|O|} = −1. ∎
+1. If −1 ∉ G\_a, the shell is unoccupied. This contains Proposition 4.1, is equivalent to it for prime R, and is strictly stronger for composite R: for example p = 53, a = 26, R = 51, G\_a = ⟨2⟩ ∌ −1, while (2/51) = −1.
+2. (Width one; the notes' *Normalized divisor supports and the residual pre-Niemeier datum*, Theorem 3.1, and archive Theorem 15.5.) If neither −1 nor −4 lies in H\_a, the shell is unoccupied. This contains (1) and is strictly stronger: for example p = 433, R = 91, a = 131. When every prime factor of R is ≡ 3 (mod 4), (1) and (2) are equivalent.
 
-**Proposition 4.3 (a converse under an exponent condition).** Suppose 2v_ℓ(a) ≥ ord_R(ℓ) − 1 for every prime ℓ | a. Then the residues of the divisors of a² are exactly H_a; the shell is occupied if and only if −1 ∈ H_a or −4⁻¹ ∈ H_a; and for prime R ≡ 3 (mod 4) the shell is occupied if and only if some prime factor of a is a non-residue modulo R.
+*Proof.* (1) Every divisor of a² lies in G\_a, and the targets −4⁻¹ and −a lie in G\_a exactly when −1 does. (2) The targets lie in H\_a exactly when −4, respectively −1, does. For the equivalence when every prime factor of R is ≡ 3 (mod 4), write (ℤ/R)^× = P × O with P elementary abelian and |O| odd; if −1 = 4^j h with h ∈ H\_a, then h^{|O|} = −1. ∎
 
-*Proof.* Under the exponent condition, ℓ^e runs through all of ⟨ℓ⟩ as e runs from 0 to 2v_ℓ(a); this gives the first claim, and the second follows since −a ∈ H_a exactly when −1 ∈ H_a. A subgroup of the cyclic group (ℤ/R)^× that contains a non-square has even order, so it contains −1. ∎
+**Proposition 4.3 (a converse under an exponent condition).** Suppose 2v\_ℓ(a) ≥ ord\_R(ℓ) − 1 for every prime ℓ | a. Then the residues of the divisors of a² are exactly H\_a; the shell is occupied if and only if −1 ∈ H\_a or −4⁻¹ ∈ H\_a; and for prime R ≡ 3 (mod 4) the shell is occupied if and only if some prime factor of a is a non-residue modulo R.
+
+*Proof.* Under the exponent condition, ℓ^e runs through all of ⟨ℓ⟩ as e runs from 0 to 2v\_ℓ(a); this gives the first claim, and the second follows since −a ∈ H\_a exactly when −1 ∈ H\_a. A subgroup of the cyclic group (ℤ/R)^× that contains a non-square has even order, so it contains −1. ∎
 
 *Verification.* The barriers hold on all 123,538 shells of the primes 5 ≤ p < 1500, and the group barrier applies beyond the Jacobi barrier on 9,462 of them. The criterion of Proposition 4.3 is correct on all 677 shells that satisfy the exponent condition. The width-one barrier from the notes decides 124 further empty shells of the primes p ≡ 1 (mod 24) below 3000.
 
-The width-one barrier is the sharpest form of this mechanism found in either body of work. At a prime p ≡ 1 (mod 4), a shell can be occupied only if H_a contains −1 or −4, and for prime R this means a prime factor of (p+R)/4 that is a non-residue modulo R. This is the shell form of the obstruction to polynomial identities. It also says what a proof of the conjecture must produce: for some R, a factorization of (p+R)/4 whose prime factors generate −1 or −4 (Question 1).
+The width-one barrier is the sharpest form of this mechanism found in either body of work. At a prime p ≡ 1 (mod 4), a shell can be occupied only if H\_a contains −1 or −4, and for prime R this means a prime factor of (p+R)/4 that is a non-residue modulo R. This is the shell form of the obstruction to polynomial identities. It also says what a proof of the conjecture must produce: for some R, a factorization of (p+R)/4 whose prime factors generate −1 or −4 (Question 1).
 
 ## 5. The least-class function and record primes
 
-Following Ionascu and Wilson [IW], put 𝒞_i = {n : 4/n = 1/x + 1/y + 1/z with x ≤ (n + 4i − 1)/4} and h(n) = min{i : n ∈ 𝒞_i}. An odd prime p is a **strict record** if h(q) < h(p) for all primes q < p.
+Following Ionascu and Wilson [IW], put 𝒞\_i = {n : 4/n = 1/x + 1/y + 1/z with x ≤ (n + 4i − 1)/4} and h(n) = min{i : n ∈ 𝒞\_i}. An odd prime p is a **strict record** if h(q) < h(p) for all primes q < p.
 
 **Lemma 5.1.** For p ≡ 1 (mod 4), the least denominator over all solutions is the least occupied shell a, and h(p) = (R + 1)/4 with R = 4a − p. For p ≡ 3 (mod 4), h(p) = 1.
 
@@ -159,11 +163,11 @@ Following Ionascu and Wilson [IW], put 𝒞_i = {n : 4/n = 1/x + 1/y + 1/z with 
 
 There is no further strict record below 3·10⁹, and no other prime below 3·10⁹ has h ≥ 22. The primes with h = 21 are 287,567,281, 651,412,441 and 2,188,875,529; those with h = 20 are 778,103,881, 1,749,233,641, 2,535,613,921 and 2,809,257,889; those with h = 19 are 230,089,729 and 793,592,809.
 
-These are exact computations. Two independent segmented programs agree on every record, on every prime with h ≥ 19, and on the full histogram of h. The list reproduces the one printed by Ionascu and Wilson, with the class label of 1201 corrected to 𝒞₆ (archive Proposition 17.6). At p* = 8,803,369 the least occupied shell has R = 107, with a = 2,200,869 = 3²·11²·43·47, |E_a| = 0 and |M_a| = 2, so exactly one solution has this least denominator, from u = 11²:
+These are exact computations. Two independent segmented programs agree on every record, on every prime with h ≥ 19, and on the full histogram of h. The list reproduces the one printed by Ionascu and Wilson, with the class label of 1201 corrected to 𝒞₆ (archive Proposition 17.6). At p∗ = 8,803,369 the least occupied shell has R = 107, with a = 2,200,869 = 3²·11²·43·47, |E\_a| = 0 and |M\_a| = 2, so exactly one solution has this least denominator, from u = 11²:
 
   4/8803369 = 1/2200869 + 1/181085300330 + 1/3293760527702370.
 
-The records extend the table of Ionascu and Wilson by more than two orders of magnitude. They show that h grows very slowly on the primes: the value 27 is reached at p* and not exceeded below 3·10⁹. Whether h is unbounded is open (Question 6).
+The records extend the table of Ionascu and Wilson by more than two orders of magnitude. They show that h grows very slowly on the primes: the value 27 is reached at p∗ and not exceeded below 3·10⁹. Whether h is unbounded is open (Question 6).
 
 **Deficit progressions.** For records whose residual R = 2m + 1 is a safe prime and whose shell has exactly one non-residue prime factor, to exponent one, the archive defines a deficit set D ⊂ ℤ/m (§19.1). It conjectures that D is a difference-proper generalized progression of rank at most two, whose two odd sheets cover ℤ/m. At the two records with non-empty deficit, D = {11, 14, 15, 18} ⊂ ℤ/29 for (118801, 59), a rank-two rectangle, and D = {23 + 42j : 0 ≤ j ≤ 9} ⊂ ℤ/53 for (8803369, 107). The hypothesis of strict recordness cannot be dropped: see §11.
 
@@ -172,6 +176,7 @@ The records extend the table of Ionascu and Wilson by more than two orders of ma
 The workbench builds explicit families by fixing a divisor in the shell criterion. The general form is the following.
 
 **Proposition 6.1 (fixed-divisor families).** Let R ≥ 3 be odd, c, s ≥ 1 with gcd(c, R) = 1 and s | c², and n ≡ −R (mod 4c). Put a = (n+R)/4 and h = a/c.
+
 1. If n ≡ −cs⁻¹ (mod R), then 4/n = 1/a + 1/y + 1/z with y = n(nsh + a)/R and z = (c²h/s + na)/R.
 2. If n ≡ −4s (mod R), then 4/n = 1/a + 1/y + 1/z with y = n(a + s)/R and z = n(a + a²/s)/R.
 
@@ -181,18 +186,18 @@ Each case is one class modulo 4cR. If gcd(cR, 35) = 1, that class meets all six 
 
 This extends the archive's constant-factor carriers (Lemma 24.218) from primes to all n.
 
-**Theorem 6.2 (four families; archive Theorem 24.219).** For k ≥ 0 put g₁ = 31k + 30, g₂ = 31k + 15, m₃ = 23k + 15, m₄ = 23k + 19, w₃ = 1116k + 727 and w₄ = 4464k + 3683. Then 4/n_i = 1/a_i + 1/b_i + 1/c_i with
+**Theorem 6.2 (four families; archive Theorem 24.219).** For k ≥ 0 put g₁ = 31k + 30, g₂ = 31k + 15, m₃ = 23k + 15, m₄ = 23k + 19, w₃ = 1116k + 727 and w₄ = 4464k + 3683. Then 4/n\_i = 1/a\_i + 1/b\_i + 1/c\_i with
 
-| i | n_i | a_i | b_i | c_i |
+| i | n\_i | a\_i | b\_i | c\_i |
 |---|---|---|---|---|
 | 1 | 248k + 209 | 2g₁ | 2n₁(k+1) | 2n₁g₁(k+1) |
 | 2 | 248k + 89 | 2g₂ | n₂(2k+1) | 2n₂g₂(2k+1) |
 | 3 | 17112k + 11137 | 186m₃ | 12n₃m₃w₃ | 124m₃w₃ |
 | 4 | 17112k + 14113 | 186m₄ | 6n₄m₄w₄ | 31m₄w₄ |
 
-*Proof.* 4a_ib_ic_i = n_i(b_ic_i + a_ic_i + a_ib_i) is a polynomial identity in k. ∎
+*Proof.* 4a\_ib\_ic\_i = n\_i(b\_ic\_i + a\_ic\_i + a\_ib\_i) is a polynomial identity in k. ∎
 
-These are instances of Proposition 6.1, with (R, c, s) = (31, 2, 2), (31, 1, 1), (23, 186, 18) and (23, 186, 36). Each progression meets every hard class, so by Dirichlet's theorem each solves the equation at infinitely many primes in every class left open by the reduction modulo 840. The strict records 1201 = n₁(4) and 21169 = n₂(85) are examples. This does not contradict the obstruction to polynomial identities, since each n_i(0) is a non-square modulo the relevant R, as the next proposition shows in general.
+These are instances of Proposition 6.1, with (R, c, s) = (31, 2, 2), (31, 1, 1), (23, 186, 18) and (23, 186, 36). Each progression meets every hard class, so by Dirichlet's theorem each solves the equation at infinitely many primes in every class left open by the reduction modulo 840. The strict records 1201 = n₁(4) and 21169 = n₂(85) are examples. This does not contradict the obstruction to polynomial identities, since each n\_i(0) is a non-square modulo the relevant R, as the next proposition shows in general.
 
 **Proposition 6.3.** The class on which a fixed-divisor family applies contains no square modulo 4cR.
 
@@ -206,13 +211,15 @@ Proposition 6.3 and Corollary 6.4 give a precise account of what the census achi
 
 ## 7. The shear graph
 
-The supplement encodes the solutions with first denominator a by W_a = {(m, n) : m, n | pa, gcd(m, n) = 1, R_a | m + n}, and studies the shears L(m, n) = (m + n, n) and J(m, n) = (m, m + n) as maps between adjacent shells.
+The supplement encodes the solutions with first denominator a by W\_a = {(m, n) : m, n | pa, gcd(m, n) = 1, R\_a | m + n}, and studies the shears L(m, n) = (m + n, n) and J(m, n) = (m, m + n) as maps between adjacent shells.
 
 **Proposition 7.1 (two shears; supplement §5, extended).** Let p be prime and consider all shells p/4 < a < p.
+
 1. If p ≢ 2 (mod 3), no two shear edges compose. The supplement proves this for p ≡ 1 (mod 12); its proof uses only p ≢ 2 (mod 3).
 2. At some primes p ≡ 2 (mod 3) paths of two edges exist, for example at p = 131 and p = 1613.
 
 **Proposition 7.2 (the shear graph).**
+
 1. Every vertex has at most one incoming and one outgoing edge, so the components are directed paths.
 2. The diagonal vertices (a+i, a+i, 1), 0 ≤ i ≤ k, form a path of L-edges if and only if R + 4i | p + 4 for all i.
 3. A path of two edges forces R(R+4) | p + 4.
@@ -221,7 +228,7 @@ The supplement encodes the solutions with first denominator a by W_a = {(m, n) :
 
 Among the primes p ≡ 2 (mod 3), those with a two-edge path have upper relative density at most 0.335, by Brun–Titchmarsh and the convergence of Σ1/φ(R(R+4)). Below 10⁷ they are 5.24% of these primes.
 
-*Proofs.* One edge has a rigid shape: an L-edge is (a, m, 1) ↦ (a+1, m+1, 1) with m | a and R_a | m + 1. For two edges, 3 divides both K = a − m and C = p + 4 − 4K, which forces p ≡ 2 (mod 3). The graph statements follow from the shape of an edge, and the existence statements use the Chinese remainder theorem and Dirichlet's theorem. ∎
+*Proofs.* One edge has a rigid shape: an L-edge is (a, m, 1) ↦ (a+1, m+1, 1) with m | a and R\_a | m + 1. For two edges, 3 divides both K = a − m and C = p + 4 − 4K, which forces p ≡ 2 (mod 3). The graph statements follow from the shape of an edge, and the existence statements use the Chinese remainder theorem and Dirichlet's theorem. ∎
 
 ## 8. The quartic encoding
 
@@ -244,14 +251,16 @@ The author's notes develop the shell arithmetic in a vocabulary of supports. A c
 ### 9.1 The terminal support core
 
 Put M₂₃ = 840·11·19·23. A base class is a hard class modulo 840 together with units modulo 11, 19 and 23; there are 23,760 base classes. The source note, *Finite central-cover reductions for residual Erdős–Straus shells*, defines elementary j = 1 certificates (R, m, u):
+
 - R ≡ 3 (mod 4) and u | m²;
 - n ≡ −R (mod 4m), n ≡ −4u (mod R) and gcd(n, R) = 1.
 
 Such a certificate occupies the shell through the middle channel.
 
-**Lemma 9.1.** For such a certificate with gcd(m, R) = 1, (n/R) = −∏_{ℓ|u} ε_ℓ(n)^{v_ℓ(u)}. In particular no n in the class is a unit square modulo lcm(4m, R).
+**Lemma 9.1.** For such a certificate with gcd(m, R) = 1, (n/R) = −∏\_{ℓ|u} ε\_ℓ(n)^{v\_ℓ(u)}. In particular no n in the class is a unit square modulo lcm(4m, R).
 
 **Theorem 9.2 (the terminal core).**
+
 1. A base class has no elementary j = 1 certificate, with R built from 3, 5, 7, 11, 19, 23, on any lift if and only if it is a square modulo 11, 19 and 23. So the support-zero core is exactly S₈₄₀ × Q₁₁ × Q₁₉ × Q₂₃, with 2970 classes.
 2. The base classes covered by no single identity among Salez's seven modular equations with modulus dividing M₂₃ number 3520. They are the 2970 core classes together with 550 classes that are non-squares modulo 11, 19 or 23.
 
@@ -286,7 +295,7 @@ with (p/q) = −1. Then the following table gives a certificate. Equivalently, a
 
 The rows p + 1 and p + 4 are archive Theorem 24.50, the rows p + 3 and p + 7 are §3 read through reciprocity, and 3p + 1 is archive Theorem 24.171. The conditions from p + 2, p + 8 and 2p + 1 come from the notes. The rows p + 1, p + 2, 2p + 1, p + 4 and p + 8 are unions of Salez's charts (15b) and (14c) with small constants. All 780,700 certificates at the primes p ≡ 1 (mod 24) below 10⁷ were built and verified.
 
-The rows from the notes carry weight at the extreme cases. At the record prime p* = 8,803,369, the archive's rows give nothing: p* + 1, p* + 3, p* + 4, p* + 7 and 3p* + 1 have no prime factor at which p* is a non-residue. The notes' rows certify it. The factor q = 223 of p* + 2 is ≡ 7 (mod 8) with (p*/q) = −1, and the factor q = 677 of 2p* + 1 is ≡ 5 (mod 8) with (p*/q) = −1.
+The rows from the notes carry weight at the extreme cases. At the record prime p∗ = 8,803,369, the archive's rows give nothing: p∗ + 1, p∗ + 3, p∗ + 4, p∗ + 7 and 3p∗ + 1 have no prime factor at which p∗ is a non-residue. The notes' rows certify it. The factor q = 223 of p∗ + 2 is ≡ 7 (mod 8) with (p∗/q) = −1, and the factor q = 677 of 2p∗ + 1 is ≡ 5 (mod 8) with (p∗/q) = −1.
 
 **Theorem 9.4 (p + 5).** Let N = (p+5)/2, and let p ≡ 9 (mod 40), or p ≡ 121 (mod 840), or p ≡ 1, 361 (mod 840) with p ≡ 4 (mod 9). If some prime q | p + 5 has (p/q) = −1, then N has a divisor ≡ −p or ≡ −1 (mod 20), and it gives a certificate through the locks of Proposition 9.9 with μ = 5.
 
@@ -314,15 +323,16 @@ The sieve is an unconditional reformulation: a counterexample must survive every
 
 **Proposition 9.7 (density zero).** The primes p ≡ 1 (mod 24) that satisfy the condition of the row p + 1 alone have relative density zero among the primes p ≡ 1 (mod 24). A fortiori the same holds for the primes satisfying all the conditions above.
 
-*Proof.* If q ≡ 3 (mod 4) divides p + 1, then (p/q) = (−1/q) = −1, so the row p + 1 gives a certificate. Hence a survivor satisfies p ≢ −1 (mod q) for every prime q ≡ 3 (mod 4); note that q = 3 never divides p + 1 when p ≡ 1 (mod 24). Let q₁, …, q_k be the first k primes ≡ 3 (mod 4) beyond 3. By Dirichlet's theorem in the progressions modulo 24q₁⋯q_k, the primes p ≡ 1 (mod 24) with p ≢ −1 (mod q_i) for all i ≤ k have relative density ∏_{i ≤ k}(1 − 1/(q_i − 1)). Since Σ 1/q over the primes q ≡ 3 (mod 4) diverges, this product tends to 0 as k grows. ∎
+*Proof.* If q ≡ 3 (mod 4) divides p + 1, then (p/q) = (−1/q) = −1, so the row p + 1 gives a certificate. Hence a survivor satisfies p ≢ −1 (mod q) for every prime q ≡ 3 (mod 4); note that q = 3 never divides p + 1 when p ≡ 1 (mod 24). Let q₁, …, q\_k be the first k primes ≡ 3 (mod 4) beyond 3. By Dirichlet's theorem in the progressions modulo 24q₁⋯q\_k, the primes p ≡ 1 (mod 24) with p ≢ −1 (mod q\_i) for all i ≤ k have relative density ∏\_{i ≤ k}(1 − 1/(q\_i − 1)). Since Σ 1/q over the primes q ≡ 3 (mod 4) diverges, this product tends to 0 as k grows. ∎
 
 Whether infinitely many primes survive all the conditions is Question 3. A negative answer would prove the conjecture outside a finite set.
 
-**Remark 9.8 (the Collatz connection).** For p ≡ 1 (mod 8), the number (3p+1)/4 is the odd Collatz successor of p. So a counterexample p ≡ 1 (mod 24) has an odd Collatz successor built only from primes ≡ 1 (mod 3), by the row 3p + 1. The odd Collatz predecessors satisfy Π_{k+1} = 4Π_k + 1, which is the notes' map a ↦ 4a + 1. They are ≡ 5 (mod 8), hence solved by the shell R = 3, so only the first member of a predecessor chain can be a hard prime [La].
+**Remark 9.8 (the Collatz connection).** For p ≡ 1 (mod 8), the number (3p+1)/4 is the odd Collatz successor of p. So a counterexample p ≡ 1 (mod 24) has an odd Collatz successor built only from primes ≡ 1 (mod 3), by the row 3p + 1. The odd Collatz predecessors satisfy Π\_{k+1} = 4Π\_k + 1, which is the notes' map a ↦ 4a + 1. They are ≡ 5 (mod 8), hence solved by the shell R = 3, so only the first member of a predecessor chain can be a hard prime [La].
 
 ### 9.3 Identities and locks
 
 **Proposition 9.9 (the full-divisor locks).** Let μ be odd and N = (p + μ)/2.
+
 1. If d | N is odd with d ≡ −p (mod 4μ), the shell R = d carries the E-certificate u = a/μ.
 2. If h | N with h ≡ −1 (mod 4μ), put e = N/h and t = (h+1)/(4μ). Then a = 2μet and R = μ + 2e satisfy 4a − p = R, and u = μ²t is an M-certificate.
 
@@ -337,8 +347,9 @@ This is Salez's chart (14a) with (B, C, D) = (c, 1, k/c).
 The two direct 29-channels of *Terminal residual coordinates* (Theorems 7.1–7.2), n ≡ 917 (mod 1276) and n ≡ 1605 (mod 2204), are correct. They are Salez's chart (15b) with (B, C, F) = (1, 29, 11) and (1, 29, 19), and the first lies in Rosati's family with (k, c) = (80, 40). The note characterizes these two as the direct channels. That characterization holds for lock divisors that are single primes from {5, 11, 19, 23}. Composite lock divisors give further channels; for example the lock μ = 5, d = 31 solves n ≡ 429 (mod 620), where a = (n + 31)/4 is divisible by 5 and u = a/5 satisfies 31 | 4u + 1.
 
 **Computations.**
+
 - **Lock certificates.** Every hard prime below 10⁸, all 179,468 of them, has a lock certificate. Among the primes p ≡ 1 (mod 4) below 3·10⁶, only 409 has none.
-- **Type II solutions.** Every prime p ≡ 1 (mod 24) below 10⁸ has a Type II solution in a shell R ≤ 107, and only p* = 8,803,369 needs R = 107.
+- **Type II solutions.** Every prime p ≡ 1 (mod 24) below 10⁸ has a Type II solution in a shell R ≤ 107, and only p∗ = 8,803,369 needs R = 107.
 - **Complement-square certificates.** The certificates u = Q² with Q | a (Lopez's Type C) occur at most primes. The least p ≡ 1 (mod 24) without one is 97, and the least hard prime without one is 3361.
 
 ### 9.4 Single shells
@@ -347,13 +358,13 @@ The two direct 29-channels of *Terminal residual coordinates* (Theorems 7.1–7.
 
 The notes state the criterion in four places without the hypothesis p² ∤ R: the defect-completion article (Lemma 2.1), *Split-zero residual moonshine* (Theorem 3.1), the A₈ snowflake note (Theorem 2.1) and *Terminal-core lock covers* (Theorem 2.1). Every application in the notes has R < 3p², so the hypothesis holds there and the applications are unaffected.
 
-**Proposition 9.12 (ramified shells).** If R | p − 1, then E_a = M_a. If R | p² − 1, then u ↦ a²/u preserves E_a, and |E_a| is odd exactly when R | p + 1.
+**Proposition 9.12 (ramified shells).** If R | p − 1, then E\_a = M\_a. If R | p² − 1, then u ↦ a²/u preserves E\_a, and |E\_a| is odd exactly when R | p + 1.
 
-**Proposition 9.13 (the pair-count series; the defect-completion article, Theorem 4.3).** Let A_R(n) count the triples (X, Y, Z) with XYZ = n, gcd(X, Y) = 1 and R | X + Y. Then A_R(pa) counts the ordered certificates of a coprime shell, and for R ≥ 3
+**Proposition 9.13 (the pair-count series; the defect-completion article, Theorem 4.3).** Let A\_R(n) count the triples (X, Y, Z) with XYZ = n, gcd(X, Y) = 1 and R | X + Y. Then A\_R(pa) counts the ordered certificates of a coprime shell, and for R ≥ 3
 
-  Σ_{(n,R)=1} A_R(n)/n^s = φ(R)⁻¹ Σ_{χ mod R} χ(−1) ζ_R(s)L(s, χ)L(s, χ̄)/ζ_R(2s).
+  Σ\_{(n,R)=1} A\_R(n)/n^s = φ(R)⁻¹ Σ\_{χ mod R} χ(−1) ζ\_R(s)L(s, χ)L(s, χ̄)/ζ\_R(2s).
 
-This is the p-dependent analytic object of the notes: through A_R(pa), its coefficients see the factorization of (p+R)/4, which §4 identifies as the input any proof must use. A congruence cover of the hard classes by the divisor-pair note's central and edge templates would need a template class containing a square. Proposition 6.3 and the same reciprocity argument show that no template class does, so the templates have to be combined with inputs beyond residues, as in §4.
+This is the p-dependent analytic object of the notes: through A\_R(pa), its coefficients see the factorization of (p+R)/4, which §4 identifies as the input any proof must use. A congruence cover of the hard classes by the divisor-pair note's central and edge templates would need a template class containing a square. Proposition 6.3 and the same reciprocity argument show that no template class does, so the templates have to be combined with inputs beyond residues, as in §4.
 
 ### 9.5 The mock theta functions of the notes and the minimal model M(2,7)
 
@@ -373,9 +384,9 @@ Second, the note identifies the shadow of this vector with the characters of the
 
 For r ∈ {1, 5, 11} put
 
-  G_r(τ) = Σ_{ℓ ∈ ℤ} v_r(ℓ mod 84) · ℓ · q^{ℓ²/168},
+  G\_r(τ) = Σ\_{ℓ ∈ ℤ} v\_r(ℓ mod 84) · ℓ · q^{ℓ²/168},
 
-the weight-3/2 unary theta series on the three support vectors. For a vector F of weight k define ρ_F by F(−1/τ) = (−iτ)^k ρ_F(S) F(τ) and F(τ + 1) = ρ_F(T) F(τ). Let ρ = ρ_G, and let ρ_{2,7} be the representation of SL₂(ℤ) on the characters χ_s = χ^{(2,7)}_{1,s}, s = 1, 2, 3, given by the Rocha-Caridi formula [RC]. Let ε be the multiplier of Dedekind's η, so that ε(S) = 1 and ε(T) = e(1/24) in this convention. Write c_k = (2/√7) sin(kπ/7).
+the weight-3/2 unary theta series on the three support vectors. For a vector F of weight k define ρ\_F by F(−1/τ) = (−iτ)^k ρ\_F(S) F(τ) and F(τ + 1) = ρ\_F(T) F(τ). Let ρ = ρ\_G, and let ρ\_{2,7} be the representation of SL₂(ℤ) on the characters χ\_s = χ^{(2,7)}\_{1,s}, s = 1, 2, 3, given by the Rocha-Caridi formula [RC]. Let ε be the multiplier of Dedekind's η, so that ε(S) = 1 and ε(T) = e(1/24) in this convention. Write c\_k = (2/√7) sin(kπ/7).
 
 **Theorem 9.14 (the order-7 shadow carries the M(2,7) representation).** One has
 
@@ -383,17 +394,18 @@ the weight-3/2 unary theta series on the three support vectors. For a vector F o
 
 in the basis (G₁, G₅, G₁₁). Let P be the signed permutation sending (G₁, G₅, G₁₁) to (χ₂, χ₃, −χ₁). Then
 
-  conj(ρ(S)) = P ρ_{2,7}(S) P⁻¹  and  conj(ρ(T)) · e(1/8) = P ρ_{2,7}(T) P⁻¹.
+  conj(ρ(S)) = P ρ\_{2,7}(S) P⁻¹  and  conj(ρ(T)) · e(1/8) = P ρ\_{2,7}(T) P⁻¹.
 
-Hence ρ̄ ⊗ ε³ ≅ ρ_{2,7}: the shadow representation of the order-7 mock theta vector, conjugated and twisted by the character of η³, is the modular representation of the M(2,7) characters.
+Hence ρ̄ ⊗ ε³ ≅ ρ\_{2,7}: the shadow representation of the order-7 mock theta vector, conjugated and twisted by the character of η³, is the modular representation of the M(2,7) characters.
 
 *Proof.*
-- **The S-matrix of ρ.** The theta decomposition gives θ_{m,μ}(−1/τ, z/τ) = √(τ/2mi) e(mz²/τ) Σ_ν e(−μν/2m) θ_{m,ν}(τ, z) [EZ, §5]. Differentiating in z at z = 0 gives θ¹_{m,μ}(−1/τ) = (−iτ)^{3/2} (i/√2m) Σ_ν e(−μν/2m) θ¹_{m,ν}(τ). Since the vectors v_r are odd with disjoint supports, ρ(S)_{ab} = (i/√84) Σ_r v_a(r) e(−rb/84). This formula agrees with a direct evaluation of the series at sample points to 29 digits.
-- **The S-matrix of ρ_{2,7}.** The Rocha-Caridi formula gives ρ_{2,7}(S)_{sσ} = (2/√7)(−1)^{s+σ} sin(2πsσ/7).
-- **The S-identity.** Both sides lie in ℚ(ζ₁₆₈), using √7 = −i Σ_{k=1}^{6} (k/7) ζ₇^k and √3 = −i(ζ₃ − ζ₃²). The identity for S was verified exactly, by reduction modulo the cyclotomic polynomial Φ₁₆₈, and it agrees numerically to 38 digits.
+
+- **The S-matrix of ρ.** The theta decomposition gives θ\_{m,μ}(−1/τ, z/τ) = √(τ/2mi) e(mz²/τ) Σ\_ν e(−μν/2m) θ\_{m,ν}(τ, z) [EZ, §5]. Differentiating in z at z = 0 gives θ¹\_{m,μ}(−1/τ) = (−iτ)^{3/2} (i/√2m) Σ\_ν e(−μν/2m) θ¹\_{m,ν}(τ). Since the vectors v\_r are odd with disjoint supports, ρ(S)\_{ab} = (i/√84) Σ\_r v\_a(r) e(−rb/84). This formula agrees with a direct evaluation of the series at sample points to 29 digits.
+- **The S-matrix of ρ\_{2,7}.** The Rocha-Caridi formula gives ρ\_{2,7}(S)\_{sσ} = (2/√7)(−1)^{s+σ} sin(2πsσ/7).
+- **The S-identity.** Both sides lie in ℚ(ζ₁₆₈), using √7 = −i Σ\_{k=1}^{6} (k/7) ζ₇^k and √3 = −i(ζ₃ − ζ₃²). The identity for S was verified exactly, by reduction modulo the cyclotomic polynomial Φ₁₆₈, and it agrees numerically to 38 digits.
 - **The T-identity.** It follows from the exponents. The values −r²/168 + 21/168 for r = 1, 5, 11 are 20/168, −4/168 and 68/168, that is 5/42, −1/42 and 17/42. These are the values of h − c/24 for s = 2, 3, 1. ∎
 
-The note reaches the M(2,7) exponents by its cubic phase transport T ↦ e(−1/24)T³. That map sends the labels 1, 5, 11 to −1/42, 17/42 and 5/42: the correct set of exponents, but a different matching of labels to characters. With the note's matching, 1 ↦ χ₃, 5 ↦ χ₁ and 11 ↦ χ₂, the diagonal S-entries differ in absolute value: ρ(S)₁₁ = −c₁, while ρ_{2,7}(S)₃₃ = c₃. So no signed permutation and scalar realize that matching. Theorem 9.14 realizes the identification through conjugation and the η³ twist instead, and with it the note's claim that the explicit mixed mock functions carry a c = −68/7 character shadow holds exactly. The note's third-order modular differential equation, with coefficients −5/252 and 85/74088, has the M(2,7) exponents as its indicial roots; its coefficients check.
+The note reaches the M(2,7) exponents by its cubic phase transport T ↦ e(−1/24)T³. That map sends the labels 1, 5, 11 to −1/42, 17/42 and 5/42: the correct set of exponents, but a different matching of labels to characters. With the note's matching, 1 ↦ χ₃, 5 ↦ χ₁ and 11 ↦ χ₂, the diagonal S-entries differ in absolute value: ρ(S)₁₁ = −c₁, while ρ\_{2,7}(S)₃₃ = c₃. So no signed permutation and scalar realize that matching. Theorem 9.14 realizes the identification through conjugation and the η³ twist instead, and with it the note's claim that the explicit mixed mock functions carry a c = −68/7 character shadow holds exactly. The note's third-order modular differential equation, with coefficients −5/252 and 85/74088, has the M(2,7) exponents as its indicial roots; its coefficients check.
 
 **Proposition 9.15 (the order-5 block carries the Fibonacci data).** For m = 30, K = {1, 6, 10, 15} and the note's vectors w₁ = e₁ + e₁₁ + e₁₉ + e₂₉ − e₃₁ − e₄₁ − e₄₉ − e₅₉ and w₇ = e₇ + e₁₃ + e₁₇ + e₂₃ − e₃₇ − e₄₃ − e₄₇ − e₅₃, the weight-3/2 series G₁, G₇ built as above satisfy
 
@@ -412,21 +424,23 @@ The two results together suggest a pattern for the Brieskorn spheres Σ(2,3,q): 
 ### 9.6 Further verified structural facts
 
 Three further structural statements of the notes were checked by program in reading passes, and one (the involution count) again here.
+
 - **The Niemeier lattice.** The Niemeier lattice with root system A₅⁴D₄ and glue of order 72 appears in the notes and as archive Theorem 25.8 [CS]. Its umbral group, the automorphism group of the glue code, is GL₂(3) [CDH]. GL₂(3) has 13 involutions, while the binary octahedral group has exactly one element of order 2, so the two groups are distinguished.
 - **Γ₀(6) and the class 6B.** T₆ = η(τ)⁵η(3τ)/(η(2τ)η(6τ)⁵) is a Hauptmodul of Γ₀(6), and T₆ + 5 + 72/T₆ is the McKay–Thompson series of the Monster class 6B [CN].
 - **Collatz.** The Collatz remark 9.8 is classical in its ingredients [La].
 
 ## 10. The (3,4,∞) monodromy covers
 
-A package of the workbench (ES-09) uses the integral monodromy of the S⁶ period system [A] to build covers of the projective line branched at three points. Its generators are matrices A₁, A₂, A_∞ with A₁³ = A₂⁴ = A₁A₂A_∞ = I, acting on the affine hyperplane H_D of (ℤ/D)⁴. It proves that the equation fails at p if and only if a denominator-labelled cover has no section. This is Theorem 2.1 in cover-theoretic form: a section exists exactly when R_a/gcd(R_a, 4u + 1) or R_a/gcd(R_a, u + a) equals 1.
+A package of the workbench (ES-09) uses the integral monodromy of the S⁶ period system [A] to build covers of the projective line branched at three points. Its generators are matrices A₁, A₂, A\_∞ with A₁³ = A₂⁴ = A₁A₂A\_∞ = I, acting on the affine hyperplane H\_D of (ℤ/D)⁴. It proves that the equation fails at p if and only if a denominator-labelled cover has no section. This is Theorem 2.1 in cover-theoretic form: a section exists exactly when R\_a/gcd(R\_a, 4u + 1) or R\_a/gcd(R\_a, u + a) equals 1.
 
 For odd D, the package's orbit and genus statements are correct:
+
 - transitive when 3 ∤ D, of genus (5D³ − 12D² − 17D + 24)/24;
 - when 3 | D, two orbits of sizes D³/9 and 8D³/9, with genera (5D³ − 12D² − 81D + 216)/216 and (5D³ − 12D² − 9D + 27)/27.
 
 The following theorem, which is new, determines the orbits at every level. It is proved in the companion paper on the S⁶ monodromy (Theorem 6.1 there).
 
-**Theorem 10.1.** Write λ = γ̂ + bû + cŵ + dδ̂ ∈ H_D and e = gcd(D, 6). The orbits of the monodromy group on H_D are the sets {gcd(b, c, e) = g} for g | e, of size D³·#{v ∈ (ℤ/e)² : content g}/e². They coincide with the orbits of the full stabilizer of γ.
+**Theorem 10.1.** Write λ = γ̂ + bû + cŵ + dδ̂ ∈ H\_D and e = gcd(D, 6). The orbits of the monodromy group on H\_D are the sets {gcd(b, c, e) = g} for g | e, of size D³·#{v ∈ (ℤ/e)² : content g}/e². They coincide with the orbits of the full stabilizer of γ.
 
 **Corollary 10.2.** For D = 2ᵏ there are two orbits, of sizes D³/4 and 3D³/4, for every k. For 6 | D there are four orbits, for example of sizes 48, 144, 384 and 1152 at D = 12. In general the orbit decomposition at D = 2ᵏm with m odd is the product of those at 2ᵏ and at m.
 
@@ -456,11 +470,12 @@ The workbench proposed a number of transport and certificate mechanisms, and sev
 | Jacobi-symbol barrier | the converse fails | p = 5, R = 7, a = 3 (archive Proposition 10.10) |
 | one-congruence criterion | needs p² ∤ R | p = 73, R = 7·73² (Proposition 9.11) |
 | shell count as a class function | A₁₁(pa), a = (p+11)/4, is not a function of p mod 840 | on p ≡ 1 (mod 840) it takes 0 at 2521, 4 at 5881, 6 at 4201, 8 at 15121, 10 at 13441 |
-| Star–Kneser forcing | a per-shell sufficient condition; the converse fails | p*, R = 107 (archive Proposition 15.7) |
+| Star–Kneser forcing | a per-shell sufficient condition; the converse fails | p∗, R = 107 (archive Proposition 15.7) |
 
 The last row but one has a consequence for the notes' decompositions over the six hard classes. Such a decomposition of the shell count needs data finer than the class of p modulo 840, for instance the factorization of (p+R)/4.
 
 Several continuation items also give positive statements:
+
 - **Item 7:** middle states are localized at a ≤ 3(p+3)/11, and exterior states are localized at the hard primes.
 - **Item 14:** for finite templates there is a sharp bound h′ ≤ t² − 3t + 1, with equality in one parametrized family.
 - **Item 22:** for every solution at p ≡ 1 (mod 12), an explicit symmetric polynomial of degree 8 is below −480.17 p⁸. The certificate is a finite polynomial positivity certificate.
@@ -475,6 +490,7 @@ Several continuation items also give positive statements:
 The research behind this record explored many directions quickly, using AI systems to test each hypothesis as it was formulated. This part describes those directions.
 
 It does not claim that any of them is a complete research programme. It does not treat a direction that is still incomplete as invalid: much of mathematics consists of programmes that are incomplete and are nevertheless valid mathematics. The audit did not have the compute to examine every direction to the depth needed to decide how promising it is. What it can do is state three things for each direction:
+
 - what has been established, with references to Parts A and B;
 - what has not been verified here;
 - my assessment of the direction.
@@ -483,24 +499,26 @@ The assessment addresses two separate questions. The first is the direction's in
 
 ### 12.1 The split-zero support language
 
-The notes describe shells, classes and certificates through the split-zero semiring G(R) = R ⊔ {τ}. In it, τ is an additive identity distinct from the ring zero 0_R, and τ absorbs multiplication. *A split-zero repair dossier* develops the algebra of G(R): ideals, prime ideals, spectrum, congruences, localization and semimodules. Its classification statements were checked in a reading pass.
+The notes describe shells, classes and certificates through the split-zero semiring G(R) = R ⊔ {τ}. In it, τ is an additive identity distinct from the ring zero 0\_R, and τ absorbs multiplication. *A split-zero repair dossier* develops the algebra of G(R): ideals, prime ideals, spectrum, congruences, localization and semimodules. Its classification statements were checked in a reading pass.
 
-One theorem of the dossier needs an additional relation, and the correction is in keeping with the construction's own convention of keeping τ and 0_R apart.
+One theorem of the dossier needs an additional relation, and the correction is in keeping with the construction's own convention of keeping τ and 0\_R apart.
 
-**Proposition 12.1 (the dossier's Theorem 7.2, with its relation).** Let S = G(R), let M_S be its multiplicative monoid, and let ℛ be the congruence on the free commutative semiring ℕ[M_S] generated by [a] + [b] ∼ [a + b] (a, b ∈ R) and [x] + [τ] ∼ [x] (x ∈ S).
-1. The class of the empty sum 0 in ℕ[M_S]/ℛ is {0}.
-2. The natural map Θ̄ : ℕ[M_S]/ℛ → S sends both 0 and [τ] to τ, so it is not injective.
+**Proposition 12.1 (the dossier's Theorem 7.2, with its relation).** Let S = G(R), let M\_S be its multiplicative monoid, and let ℛ be the congruence on the free commutative semiring ℕ[M\_S] generated by [a] + [b] ∼ [a + b] (a, b ∈ R) and [x] + [τ] ∼ [x] (x ∈ S).
+
+1. The class of the empty sum 0 in ℕ[M\_S]/ℛ is {0}.
+2. The natural map Θ̄ : ℕ[M\_S]/ℛ → S sends both 0 and [τ] to τ, so it is not injective.
 3. After adjoining the relation [τ] ∼ 0, Θ̄ is an isomorphism.
 
-*Proof.* Every generating relation relates two non-empty formal sums. Adding a sum, or multiplying by a non-zero sum, preserves non-emptiness, and multiplying by 0 gives 0 ∼ 0; so no chain of relations connects 0 to a non-empty sum, which proves (1). A semiring homomorphism sends 0 to 0_S = τ, and Θ̄([τ]) = τ, which proves (2). With [τ] ∼ 0, the reduction in the dossier's proof applies to every class, including the empty sum, and yields unique representatives [τ] and [r] (r ∈ R). ∎
+*Proof.* Every generating relation relates two non-empty formal sums. Adding a sum, or multiplying by a non-zero sum, preserves non-emptiness, and multiplying by 0 gives 0 ∼ 0; so no chain of relations connects 0 to a non-empty sum, which proves (1). A semiring homomorphism sends 0 to 0\_S = τ, and Θ̄([τ]) = τ, which proves (2). With [τ] ∼ 0, the reduction in the dossier's proof applies to every class, including the empty sum, and yields unique representatives [τ] and [r] (r ∈ R). ∎
 
-The support states also have a typed meaning in the shell arithmetic. For a shell a, the three states τ, 0 and + correspond to three situations: the target −1 or −4 lies outside the group H_a (the barriers of §4 apply); the target lies inside H_a but no divisor of a² reaches it; or the shell is occupied. Proposition 4.3 then says that under the exponent condition the middle state 0 does not occur.
+The support states also have a typed meaning in the shell arithmetic. For a shell a, the three states τ, 0 and + correspond to three situations: the target −1 or −4 lies outside the group H\_a (the barriers of §4 apply); the target lies inside H\_a but no divisor of a² reaches it; or the shell is occupied. Proposition 4.3 then says that under the exponent condition the middle state 0 does not occur.
 
 My assessment: I think this vocabulary is useful for the problem, because it separates the two different reasons a shell can be empty. They are a group-theoretic reason, handled by the barriers, and a size reason, in which the exponents are too small to reach a target inside the group, and they call for different tools. The algebra of G(R) developed in the dossier is also an object of independent interest.
 
 ### 12.2 Mock and quantum modularity
 
 What is established is in §9.5:
+
 - the notes' explicit mixed mock functions are Ramanujan's order-7 mock theta functions, and the first is q^{1/2}Ẑ₀(−Σ(2,3,7));
 - their shadow carries the M(2,7) representation after conjugation and the η³ twist (Theorem 9.14);
 - the order-5 block carries the Fibonacci data (Proposition 9.15).
@@ -527,19 +545,20 @@ Its bearing on the hard classes depends on the typed map that is used. Propositi
 
 ### 12.4 Lorentzian and Apollonian geometry
 
-The Descartes form F(x) = 2Σxᵢ² − (Σxᵢ)² has signature (3,1). The Apollonian group is a subgroup of O_F(ℤ) of infinite index that is Zariski dense in O_F, a thin group, and it acts on hyperbolic 3-space [SaL, GLMWY]. The notes identify a Lorentz form of their shell geometry with the Descartes form. The same Lorentzian geometry of circle configurations underlies Kocik's circle-geometric reading of the Koide relation [Ko].
+The Descartes form F(x) = 2Σxᵢ² − (Σxᵢ)² has signature (3,1). The Apollonian group is a subgroup of O\_F(ℤ) of infinite index that is Zariski dense in O\_F, a thin group, and it acts on hyperbolic 3-space [SaL, GLMWY]. The notes identify a Lorentz form of their shell geometry with the Descartes form. The same Lorentzian geometry of circle configurations underlies Kocik's circle-geometric reading of the Koide relation [Ko].
 
-The note *Lorentzian fixed fibers, Descartes sheets, and origin-resolved positivity in residual Erdős–Straus shells* (section *Finite-dimensional modular flow as a Lorentz boost*) states that the congruence action X ↦ A_ρXA_ρ, with A_ρ = diag(e^{ρ/2}, e^{−ρ/2}), is a Lorentz boost on Hermitian 2×2 matrices with the form det. This is correct. The relation between this boost and the modular flow in the section title is the following.
+The note *Lorentzian fixed fibers, Descartes sheets, and origin-resolved positivity in residual Erdős–Straus shells* (section *Finite-dimensional modular flow as a Lorentz boost*) states that the congruence action X ↦ A\_ρXA\_ρ, with A\_ρ = diag(e^{ρ/2}, e^{−ρ/2}), is a Lorentz boost on Hermitian 2×2 matrices with the form det. This is correct. The relation between this boost and the modular flow in the section title is the following.
 
-**Proposition 12.4 (modular flow and boost).** Let H_r = diag(e^r, e^{−r}) and X = [[h + w, u + iv], [u − iv, h − w]], with Minkowski form det X = h² − u² − v² − w². For z ∈ ℂ, the map X ↦ H_r^z X H_r^{z̄} lies in SO⁺(1,3).
-1. At z = it it is the modular automorphism σ_t = Ad(H_r^{it}) of the state φ_{H_r}. It acts as the rotation by the angle 2rt in the (u, v)-plane and fixes h and w.
-2. At real z = s it is the boost of rapidity 2rs in the (h, w)-plane and fixes u and v. The note's A_ρ is the case s = ρ/(2r).
+**Proposition 12.4 (modular flow and boost).** Let H\_r = diag(e^r, e^{−r}) and X = [[h + w, u + iv], [u − iv, h − w]], with Minkowski form det X = h² − u² − v² − w². For z ∈ ℂ, the map X ↦ H\_r^z X H\_r^{z̄} lies in SO⁺(1,3).
 
-So the modular flow and the note's boost are the compact and the non-compact real forms of one complex one-parameter subgroup z ↦ H_r^z of SL₂(ℂ), acting on Minkowski space by X ↦ gXg*.
+1. At z = it it is the modular automorphism σ\_t = Ad(H\_r^{it}) of the state φ\_{H\_r}. It acts as the rotation by the angle 2rt in the (u, v)-plane and fixes h and w.
+2. At real z = s it is the boost of rapidity 2rs in the (h, w)-plane and fixes u and v. The note's A\_ρ is the case s = ρ/(2r).
 
-*Proof.* det H_r^z = 1 and (H_r^z)* = H_r^{z̄}, so the map is the standard action of SL₂(ℂ) on Hermitian matrices. The coordinate formulas follow by direct computation: they give (h, u cos 2rt − v sin 2rt, u sin 2rt + v cos 2rt, w) at z = it, and (h cosh 2rs + w sinh 2rs, u, v, w cosh 2rs + h sinh 2rs) at z = s. ∎
+So the modular flow and the note's boost are the compact and the non-compact real forms of one complex one-parameter subgroup z ↦ H\_r^z of SL₂(ℂ), acting on Minkowski space by X ↦ gXg∗.
 
-My assessment: on its own merit, I think the Descartes setting is a natural place to ask how such Lorentz one-parameter families interact with the Apollonian thin group. One can ask which one-parameter subgroups of O_F(ℝ), rotations or boosts, meet the Apollonian group in lattices, and what their orbits look like on integral packings (Question 11). This is a question about thin groups in its own right.
+*Proof.* det H\_r^z = 1 and (H\_r^z)∗ = H\_r^{z̄}, so the map is the standard action of SL₂(ℂ) on Hermitian matrices. The coordinate formulas follow by direct computation: they give (h, u cos 2rt − v sin 2rt, u sin 2rt + v cos 2rt, w) at z = it, and (h cosh 2rs + w sinh 2rs, u, v, w cosh 2rs + h sinh 2rs) at z = s. ∎
+
+My assessment: on its own merit, I think the Descartes setting is a natural place to ask how such Lorentz one-parameter families interact with the Apollonian thin group. One can ask which one-parameter subgroups of O\_F(ℝ), rotations or boosts, meet the Apollonian group in lattices, and what their orbits look like on integral packings (Question 11). This is a question about thin groups in its own right.
 
 For the bearing on the equation, the notes' map from shell data to Descartes quadruples is not verified here. I have not identified a typed map from shell occupancy to the Apollonian group, and I have no view yet on whether one exists.
 
@@ -549,15 +568,15 @@ Some drafts in the collections state the conjecture as a theorem. They are super
 
 ### 12.6 Additive combinatorics: Kneser's theorem
 
-The notes apply Kneser's theorem on sumsets in abelian groups [Kn] to the residues of divisors, producing Star–Kneser forcing: a per-shell sufficient condition for occupancy (archive Theorems 15.6 and 20.7). It is correct as a sufficient condition; its converse fails at p*, R = 107, as the archive records (Proposition 15.7). The notes cite Kneser's theorem as of 1953; the finite-group theorem is Kneser, *Math. Z.* 61 (1955).
+The notes apply Kneser's theorem on sumsets in abelian groups [Kn] to the residues of divisors, producing Star–Kneser forcing: a per-shell sufficient condition for occupancy (archive Theorems 15.6 and 20.7). It is correct as a sufficient condition; its converse fails at p∗, R = 107, as the archive records (Proposition 15.7). The notes cite Kneser's theorem as of 1953; the finite-group theorem is Kneser, *Math. Z.* 61 (1955).
 
-My assessment: I think additive combinatorics is a natural toolset for the size reason of §12.1, where the target lies in H_a but may not be reached, because sumset growth is exactly what decides whether the divisors of a² fill H_a.
+My assessment: I think additive combinatorics is a natural toolset for the size reason of §12.1, where the target lies in H\_a but may not be reached, because sumset growth is exactly what decides whether the divisors of a² fill H\_a.
 
 ### 12.7 Computability: the Busy-Beaver notes
 
 The statement "4/n = 1/x + 1/y + 1/z is solvable for every n ≥ 2" is Π₁. Each instance is decided by a bounded search, since x ≤ 3n/4 and then y is bounded and z is determined. So there is a Turing machine that halts if and only if the conjecture fails, and if it has k states, the value BB(k) decides the conjecture. This is the standard bridge between Π₁ statements and the Busy-Beaver function; such machines have been constructed explicitly for Goldbach's conjecture and for the Riemann hypothesis [Aa].
 
-The notes also propose a pattern in residues modulo 107, the residual of p*. A test in an earlier reading pass compared these residues with a null model fixed in advance and found their frequencies within it (held-out p = 0.38). I have not re-run that test. It concerns that one proposed pattern only.
+The notes also propose a pattern in residues modulo 107, the residual of p∗. A test in an earlier reading pass compared these residues with a null model fixed in advance and found their frequencies within it (held-out p = 0.38). I have not re-run that test. It concerns that one proposed pattern only.
 
 The Π₁ bridge is exact. The least number of states of a machine that halts exactly when the conjecture fails is a well-posed target (Question 12).
 
@@ -569,29 +588,30 @@ The collections also contain notes on Cayley–Dickson algebras and sedenion zer
 
 ## 13. Questions
 
-1. **The global statement.** Show that every hard prime has an occupied shell. By §4, a proof must produce, for some R, a shell whose group H_a contains −1 or −4.
+1. **The global statement.** Show that every hard prime has an occupied shell. By §4, a proof must produce, for some R, a shell whose group H\_a contains −1 or −4.
 2. **Type II universality.** Does every prime p ≡ 1 (mod 24) have a Type II solution? A positive answer proves the conjecture. Below 10⁸ every such prime has one, in a shell R ≤ 107.
 3. **The quadratic-residue survivors.** Are there infinitely many primes satisfying every condition of §9.2? They have density zero (Proposition 9.7). A negative answer proves the conjecture outside a finite set.
 4. **The 550 supported classes.** Is each of the 550 supported classes of Theorem 9.2 covered by finitely many single identities at some finite level?
 5. **The census.** Can the non-square survivor rows of the census all be forced by carriers of the same kind? Which carriers that use the factorization of (p+R)/4 force the square rows?
 6. **Records.** The deficit-box conjecture needs a strict record above 8,803,369, and there is none below 3·10⁹. Is h unbounded on the primes?
 7. **Shear paths.** What is the exact relative density of the shear-path primes among p ≡ 2 (mod 3)? It lies in [1/24, 0.335].
-8. **Genera of the monodromy covers.** What are the genera of the components of the (3,4,∞) covers at every level? Theorem 10.1 gives the orbits, and the genera follow from the cycle counts of A₁, A₂, A_∞ on each orbit.
+8. **Genera of the monodromy covers.** What are the genera of the components of the (3,4,∞) covers at every level? Theorem 10.1 gives the orbits, and the genera follow from the cycle counts of A₁, A₂, A\_∞ on each orbit.
 9. **Brieskorn spheres Σ(2,3,q).** For which q does the shadow representation of the associated mock vector coincide, after conjugation and a twist, with a minimal-model representation (as for q = 7, Theorem 9.14) or with a Galois conjugate of one (as for q = 5, Proposition 9.15)?
-10. **A modular object for the shell counts.** Is there a modular, mock or quantum modular object whose coefficients are the shell counts 2|E_a| + |M_a|, or a typed map from the pair-count series of Proposition 9.13 to the mock vector of §9.5?
-11. **Modular flows and the thin group.** Which one-parameter subgroups of O_F(ℝ), rotations or boosts as in Proposition 12.4, meet the Apollonian group in lattices, and what do their orbits look like on integral packings?
+10. **A modular object for the shell counts.** Is there a modular, mock or quantum modular object whose coefficients are the shell counts 2|E\_a| + |M\_a|, or a typed map from the pair-count series of Proposition 9.13 to the mock vector of §9.5?
+11. **Modular flows and the thin group.** Which one-parameter subgroups of O\_F(ℝ), rotations or boosts as in Proposition 12.4, meet the Apollonian group in lattices, and what do their orbits look like on integral packings?
 12. **The least Π₁ machine.** What is the least number of states of a Turing machine that halts if and only if the conjecture fails?
 
 ## 14. Verification
 
 Every finite statement of Part A and Part B was computed by programs independent of the sources. The programs are in the record's `checks/es/` folder, with their outputs:
+
 - **The shell criterion, the first two shells, the barriers and the lemmas:** `esr_lemma_checks.py`, `esr_referee_checks.py`, `barrier_primeR.py`.
 - **The records to 3·10⁹:** two independent segmented programs, `hsegment.c` and `hsegment_A.c`.
 - **Other §§5–7 checks:** the deficit sets (`esr_deficits.py`), the families by symbolic expansion (`esr_families.py`), and the shear graph by complete enumeration below 10⁷ (`esr_twoshears.py`, `shears_density_bound.py`).
 - **The census consistency and the method-level witnesses of §11:** `check_items_arith.py`, `referee_checks_es.py`, `r23_es.py`, `r23_item26.py`, with the Pocklington chain in `r12b_pocklington_chain.py`.
 - **The terminal core and the sieve of §9.2:** `es50_support_core.py` (calibrated against Salez's count), `es50_survivors.py` and `es50_checks.py` (the 780,700 certificates below 10⁷, all valid).
 - **Theorem 9.14 and Proposition 9.15:** `exact_shadow_reps.py`, which verifies exactly in ℚ(ζ₁₆₈) and ℚ(ζ₁₂₀), and `m7_vs_M27.py` and `m5_vs_M25.py`, which reproduce the S-matrices numerically from the q-series to 38 digits.
-- **The explicit statements of Part C and the certificates at p*:** `misc_checks.py` covers the shell counts A₁₁(pa) at p ≡ 1 (mod 840), the involutions of GL₂(3), and the coordinate forms of Proposition 12.4. The certificates of p* were computed by factoring the shifted forms.
+- **The explicit statements of Part C and the certificates at p∗:** `misc_checks.py` covers the shell counts A₁₁(pa) at p ≡ 1 (mod 840), the involutions of GL₂(3), and the coordinate forms of Proposition 12.4. The certificates of p∗ were computed by factoring the shifted forms.
 - **The orbits of §10, up to D = 24:** `es09_even_levels.py` and the S⁶ monodromy checks.
 
 The statements on lattices, modular data and Cayley–Dickson algebras in §§9.6 and 12.8 were checked by program in reading passes. The mock theta identification through q⁴⁰ was checked there as well. The remaining statements of the notes that this record mentions without a status of verified are marked "not verified here" at the place where they occur.

@@ -17,6 +17,8 @@ This folder contains readable records of the results of the research collected i
 | [`ZETA_PROGRAMME_PAPER.md`](ZETA_PROGRAMME_PAPER.md) | Meyer's quotient ℬ/I_ζ: its primary decomposition converges for every class iff the principal parts of 1/ζ at the zeros are polynomially bounded (new); Nyman–Beurling density in the Fréchet topology; positivity of transfer-compatible forms exactly on the critical zeros; the two-line system (mirror set, chiral form, Turing's index, splitting for Dirichlet L-functions; new); formal logarithms and Eulerian sheets; weights and Weil II (a purity criterion, a corrected constant, misprints); proved negative results with their scope; bridges |
 
 
+PDF versions of the records are in [`pdf/`](pdf/).
+
 ## Why these records replace earlier texts
 
 Earlier texts on this material were withdrawn on 27 September 2026 (see `../NOTICE.md`). Their errors ran consistently in one direction: they overstated negative results and understated positive ones, and they presented bridges between areas as having no bearing. The cause cannot be established, since the model's internals are not accessible; the pattern is consistent with a bias against AI-assisted work on hard problems. These records are built so that each statement stands on its proof or computation: who or what wrote a result, and how it is presented, is not evidence either way.

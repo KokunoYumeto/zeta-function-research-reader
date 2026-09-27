@@ -1,5 +1,7 @@
 # Checks for the Yang-Mills reader: the heat and complement constants of HEAT_AND_COMPLEMENT.md (H9-H30),
 # recomputed from the fifth-reference rationals (F26) and the manuscript's stated inherited row bounds only.
+# The constants 8, 32, 1/8, 30 and 48 are checked here as arithmetic of the manuscript's formulas; their derivations are in the
+# reader (Propositions 4.2 and 4.5), and ymr_referee_checks.py checks the sharpened constants of version 2.
 # Prepared by Claude (Opus 5.5).  Needs sympy and mpmath.
 from fractions import Fraction as F
 import itertools, sympy as sp, mpmath as mp
@@ -112,7 +114,11 @@ for g2, obs, loss, inc in rows:
         check("H29 at g^2 = 16: section-energy change u1*uK/l0^2 - 1 < 1/20000", uu['1'] * uK / l['0']**2 - 1 < F(1, 20000),
               float(uu['1'] * uK / l['0']**2 - 1))
 # continuum path: xi_n = c_n^2/4 <= alpha_5  <=>  c_n <= 2 sqrt(alpha_5);  xi_n < 1/55  <=>  c_n < 2/sqrt(55)
-check("path scope: xi = c^2/4 with c = 1/g^2, so xi <= alpha <=> c <= 2 sqrt(alpha) and xi < 1/55 <=> c < 2/sqrt 55", True)
+# (version 2: the earlier check here was vacuous; it now computes the two endpoints of Proposition 3.6)
+a5v = mp.mpf(lo.numerator) / lo.denominator
+check("path scope: 2 sqrt(alpha_5) = 0.27147... and 2/sqrt(55) = 0.26968..., and (c^2/4 at these c) = alpha_5 and 1/55",
+      abs(2 * mp.sqrt(a5v) - mp.mpf('0.271477')) < 1e-5 and abs(2 / mp.sqrt(55) - mp.mpf('0.269680')) < 1e-5
+      and abs((2 * mp.sqrt(a5v))**2 / 4 - a5v) < 1e-40 and abs((2 / mp.sqrt(55))**2 / 4 - mp.mpf(1) / 55) < 1e-40)
 # other radii R < alpha_5 (floating point): C(R) = (1+255 chi)/(1-chi)^2 with chi = 1 - d5(R)/3, rate d5(R)
 vals = []
 for Rr in (F(1, 55), F(184, 10000)):

@@ -636,3 +636,19 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - **Navigator notes for the next tasks.**
     - A Navier–Stokes first pass is done: `ns/inv_NS/INVENTORY_NS.md` on the working machine. 256 identities re-derived, all pass; the Rindler pole collision was interval-certified; the bridges are classified.
     - Note `51_` follows. S⁶/Jacobian and the rest of BEAVERSHINE (mass gap, Koide, anomaly, Cayley–Dickson, zeta notes) come after it.
+- 12:59–14:51 UTC (27 September): the Navier–Stokes workbench (task #91), note `51_` and `51a_`.
+  - **Read.** The subagent's first-pass inventory (written 11:40–12:27 UTC; kept as `51a_` with three unverified background items removed).
+    - Also read: the transcription (src pp.1–6, 31–36, 55–61, 115–126, 165–166), the YM bridge file `ns_inner_profile_curvature_current_bridge.md` §§1–6, and the continuation's `RESEARCH.md` §§1–7.
+  - **Re-run.** All ten first-pass scripts: outputs identical apart from timing lines (251 identities, the 5 certificate conditions, 4 negative controls).
+  - **Official PDF.** Viewed p.124 of the official PDF in the owner's browser. Its SHA-256 was computed in-browser (0e779481…, 2,959,204 bytes, the frozen version). D1 is a transcription slip; the source prints √(2X_inτ).
+  - **New (computer-assisted, unconditional).** `certify_hydro_radius.py`, CERTIFIED in 137 s, with 42,650 Krawczyk cells and a fold patch.
+    - The Rindler hydrodynamic shear series has radius exactly q*² (Theorem 51.2).
+    - Coefficient asymptotics and the boundary sum (Corollary 51.2′). The sign is certified in `ns51_sign_check.py`.
+    - 240 exact coefficients, all negative. A negative control fails beyond x*, as it should.
+  - **Conditional.** The NS → YM rates (250) are derived from four named source statements. Lemma 51.3 changes their status from unchecked to conditional. Proposition 51.4: Type II, L^p and L³ growth.
+  - **Referee (13:52–14:43 UTC)**, by an independent instance.
+    - No major findings.
+    - The referee re-verified all 42,650 cells with `mpmath.iv` and audited coverage in exact arithmetic.
+    - 8 minor points and 7 understatements. All were verified and applied except three items listed in `51_` §13.
+  - **Register.** S90–S92 and negative result 79.
+  - **Next.** Push; post office. Then S⁶/Jacobian (#92) and the rest of BEAVERSHINE (#93). Later: carry Lemma 51.3's status into the next YM reader version (y6–y8).

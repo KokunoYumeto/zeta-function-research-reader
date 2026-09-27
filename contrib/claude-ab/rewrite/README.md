@@ -14,8 +14,12 @@ This folder contains readable records of the results of the research collected i
 | [`NAVIER_STOKES_PAPER.md`](NAVIER_STOKES_PAPER.md) | The Rindler shear series has radius exactly k* = 0.389236400495165… c/ν, set by a certified pole collision (new); curvature rates for the NS-to-Yang–Mills map and Type II blowup, conditional on four named statements of the manuscript |
 | [`YANG_MILLS_PAPER.md`](YANG_MILLS_PAPER.md) | A gap for the SU(2) Kogut–Susskind Hamiltonian, uniform in box and spacing at strong coupling, with the girth form of its Casimir inequality (new), the gap at every truncation order, on the full space and at complex coupling (new); heat remainder with prefactor 2829/13 (improved); relaxation bounds; an upper bound locating the gap (new) |
 | [`COLLATZ_EP817_BRIDGES_PAPER.md`](COLLATZ_EP817_BRIDGES_PAPER.md) | Collatz: a Gaussian threshold for the history law (new proof), merging families, a sharp descent criterion, cycle bounds from 1636 to 72,057,431,991 odd steps, and the Hurwitz zero-cluster encoding; Problem 817: lim g₄(n)^{1/n} = 19^{1/3}, Λ_k as an infimum over certificates, Λ₃ > Λ₄ > Λ₅, exact small values (new); the bridges between all the workbenches as typed maps |
+| [`ZETA_PROGRAMME_PAPER.md`](ZETA_PROGRAMME_PAPER.md) | Meyer's quotient ℬ/I_ζ: its primary decomposition converges for every class iff the principal parts of 1/ζ at the zeros are polynomially bounded (new); Nyman–Beurling density in the Fréchet topology; positivity of transfer-compatible forms exactly on the critical zeros; the two-line system (mirror set, chiral form, Turing's index, splitting for Dirichlet L-functions; new); formal logarithms and Eulerian sheets; weights and Weil II (a purity criterion, a corrected constant, misprints); proved negative results with their scope; bridges |
 
-The record for the zeta programme is in preparation.
+
+## Why these records replace earlier texts
+
+Earlier texts on this material were withdrawn on 27 September 2026 (see `../NOTICE.md`). Their errors ran consistently in one direction: they overstated negative results and understated positive ones, and they presented bridges between areas as having no bearing. The cause cannot be established, since the model's internals are not accessible; the pattern is consistent with a bias against AI-assisted work on hard problems. These records are built so that each statement stands on its proof or computation: who or what wrote a result, and how it is presented, is not evidence either way.
 
 ## How to read the statuses
 
@@ -29,4 +33,4 @@ Each record is organized as Part A (verified results), Part B (proved negative r
 
 ## Checks
 
-`checks/es/`, `checks/s6/`, `checks/jacobian/`, `checks/ns/`, `checks/ym/` and `checks/collatz_ep817/` contain the verification programs and their outputs, as listed in the verification section of each record. The Python scripts use `sympy`, `mpmath`, `numpy` and, for the ball-arithmetic certificates, `python-flint`; the two record-prime programs are in C.
+`checks/es/`, `checks/s6/`, `checks/jacobian/`, `checks/ns/`, `checks/ym/`, `checks/collatz_ep817/` and `checks/zeta/` contain the verification programs and their outputs, as listed in the verification section of each record. The Python scripts use `sympy`, `mpmath`, `numpy` and, for the ball-arithmetic certificates, `python-flint`; the two record-prime programs are in C.

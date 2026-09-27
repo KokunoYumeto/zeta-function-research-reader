@@ -26,7 +26,7 @@ The Clay problem asks for a quantum Yang–Mills theory on ℝ⁴ with a mass ga
 
 At strong coupling the workbench obtains, for the SU(2) Hamiltonian on open boxes, a spectral gap with explicit constants that is uniform in the volume and holds on the entire physical space. The proof rests on two structural facts: gauge invariance forces the Casimir of every nonconstant physical block to be at least 3 (the girth of the cubic lattice is 4), and the vacuum, written as an exponential, can be controlled in local Fourier-algebra norms that do not grow with the box. The same control gives box-independent heat correlations, near-complete relaxation of the plaquette family, analyticity of the ground state in the coupling on a box-independent disk, and an upper bound that pins the gap within 0.03% of 3κ at g² ≥ 13.
 
-These are statements at fixed lattice spacing and strong bare coupling. The continuum problem requires a → 0 with g → 0, the opposite regime, and the workbench's standing continuum path leaves the domain of these estimates after finitely many steps (Proposition 6.2). What would connect the two regimes is a bound of this kind that persists along a path to weak coupling; the questions in §8 state precisely which ingredients of the present proof would have to be extended.
+These are statements at fixed lattice spacing and strong bare coupling. The continuum problem requires a → 0 with g → 0, the opposite regime, and the workbench's standing continuum path leaves the domain of these estimates after finitely many steps (Proposition 6.2). What would connect the two regimes is a bound of this kind that persists along a path to weak coupling; the questions in §8 state precisely which ingredients of the present proof would have to be extended. The workbench also pursues the opposite construction: sequences driven by the S⁶ period data in which box, spacing and coupling vary together, aimed at models that are gapped at every regulator but whose continuum limit is gapless (§7).
 
 ### 0.4 How this record was made
 
@@ -256,7 +256,6 @@ So the estimates of §§2–3 hold along the path only down to a spacing bounded
 - re-centring the elementary order-1, single-norm certificate to extend the source domain returns its old endpoint 3/256 = α₁ (§H7);
 - lower bounds for dressed channels are not bounds for the whole spectral measure (quantum line §11);
 - along the logarithmic coupling path the upper end of the certified spectral window of the weighted covariance diverges, which the document calls a limitation of its own estimate (volume line §26);
-- on a selected weak-coupling diagonal the finite gaps close while the magnetic probability escapes to high energy (spatial line §§17–18), and a selected macroscopic limit of a second observable has a unique-vacuum realization (§20);
 - the zero-quotient sequence of the Navier–Stokes branch exists only along couplings tending to 0 (§5).
 
 In the passages read, each is stated by the workbench with the scope of its proof.
@@ -268,6 +267,8 @@ In the passages read, each is stated by the workbench with the scope of its proo
 ## 7. The open directions, and my assessment
 
 The workbench explored its problem the way the other programmes did: many routes, tested quickly with AI systems, some of which produced theorems and some of which mapped out what a route needs. This part states, for each open direction, what is established and my assessment.
+
+**Locally gapped, globally gapless sequences.** The spatial line (129 pages) builds sequences in which the box, the spacing and the coupling vary together, driven by the S⁶ period data through the magnetic background of §5. Its conclusion (§28) states three results: along a fixed-coupling diagonal with g₀⁴ ≥ 12288 the magnetic excitation probability eventually has zero weight on every bounded energy interval; for fixed Wilson-loop states there is a positive high-energy mass and a failure of strong continuity; and on a selected weak-coupling diagonal the finite gaps close while the corrected magnetic probability escapes to high energy (§§17–18), with a unique-vacuum realization of a selected macroscopic limit of a second observable (§20). These are statements of the workbench and are not verified here. The aim of the direction, as the author describes it, is an object that has a gap at every finite regulator but whose continuum limit has none, because in the limit the spectrum becomes continuous; the S⁶ period data supply the background that drives the sequences, and the author proposes extending the construction to higher-dimensional period data related to the Leech lattice (not verified here). My assessment: the mechanism the spatial line exhibits, finite gaps that close along a joint limit while spectral weight escapes, is the phenomenon that separates a lattice gap from a continuum gap, so the direction is well posed. Its next requirement is a sequence of this kind whose limit satisfies the reconstruction axioms under which the continuum problem is posed [JW, §4], since the present sequences are selected diagonals (Question 7).
 
 **Toward weak coupling.** Every result of the workbench holds at a fixed lattice spacing and strong bare coupling, and Proposition 6.2 says how far along the standing path the estimates reach. The spatial line's conclusion names the interacting local continuum and a nonzero low-energy spectral weight as its target (§28). My assessment: I think the most transferable ingredients of the present proof are Lemma 2.2, which is purely combinatorial and holds for every coupling, and the ground-state transform of Lemma 2.4, which is exact; what is specific to strong coupling is the convergence of the vacuum expansion in local norms. A route toward weak coupling would have to replace that expansion by a multiscale control of the vacuum, and the workbench's blocking maps of the quantum line are a natural starting point for that.
 
@@ -289,6 +290,7 @@ The workbench explored its problem the way the other programmes did: many routes
 4. Is there c > 0 with Δ_L ≥ κ(3 − cξ²) for all L and all small ξ > 0?
 5. Prove the locality statement of §H34 for the heat coefficients.
 6. For the Jacobian branch, which properties of the map move the energy quotients of the trial states outside the window around the free two-gluon threshold?
+7. Can a sequence of the spatial line's kind, in which finite gaps close while spectral weight escapes to high energy, be realized along a path whose limit satisfies the reconstruction axioms of the continuum problem?
 
 ## 9. Verification
 

@@ -1,0 +1,86 @@
+==============================================================================
+deligne_part1_checks.py : audit checks for DP0-DP9, DMG0-DMG7, DLM1-DLM15
+==============================================================================
+
+--- DP0-DP1: weights, Tate twists, rank-one characters, the 1.3.6 degree factor
+[C01] PASS (   0.1s) - DP0: Tate twist (r) multiplies F_x by N(x)^{-r} and changes w_{N(x)} by -2r
+        w(a N^-r) - w(a) = -2*r
+[C02] PASS (   0.1s) - DP1.2-1.3: chi = c^deg eps with eps^h = 1 gives chi^h = b^deg, |chi(F_x)| = |c|^{d_x}, and w_{N(x)}(chi(F_x)) = w_q(c)
+[C03] PASS (   0.1s) - DP1.5: weights of eigenvalues add to the weight of the determinant (only the SUM is controlled)
+[C04] PASS (   0.1s) - DP1.6 / DMG7.10-11: twist by constant F_p-line with Frobenius b multiplies det at x by b^{n f d} (not b^{n d/f}); DMG7's b^{rgd} is the same statement
+
+--- DP2 / DMG2: central element and determinant-weight bookkeeping
+[C05] PASS (   0.2s) - DP2.3 / DMG2.3: u^r = c^m eps(z) and beta = w_q(c)/r give |u| = q^{m beta/2}
+[C06] PASS (   0.2s) - DP2.4 and DP6.2: determinant weights of wedge^a are exactly {sum a(g)g : 0<=a(g)<=n(g), sum a(g)=a}; max for a = N_beta+1 is r_beta
+[C07] PASS (   0.2s) - DP2 / DMG2.2: if y commutes with c=[y,h] then [y^e,h]=c^e; exponent of the finite centre kills it
+[C08] PASS (   0.2s) - DMG5.2-5.4: |u| = (q^{d_X})^{(m/d_X) beta/2} = q^{m beta/2} and |u^a| = (q^{d_Y})^{(am/d_Y) beta/2}
+[C08b] PASS (   0.4s) - DMG6.5-6.6: a root x of a monic polynomial with coefficients a_i satisfies |x|_p <= max(1, max|a_i|_p) (200 random rational examples)
+
+--- DP3-DP5: even tensor powers of iota-real data, positivity, pole radii
+[C09] PASS (   0.6s) - DP4.1-4.2: for iota-real eigenvalue multisets, every local factor of the 2k-th tensor power has real nonnegative Taylor coefficients, dominated coefficientwise by the product
+[C10] PASS (   0.6s) - DP4 negative: without iota-reality positivity fails (eigenvalue i gives coefficient -1; {1,i} gives a non-real coefficient 2i)
+        [t^1] for {i}: (-1.0 + 0.0j);  [t^1] for {1,i}: (0.0 + 2.0j)
+[C11] PASS (   3.0s) - DP5.2-5.3: the reciprocal local determinant has pole radius |alpha|^{-2k/d_x}; radius >= q^{-(2kr+2)/2} <=> w_{N(x)}(alpha) <= r + 1/k
+[C12] PASS (   4.0s) - DP6: with determinant equalities fixed, the wedge^{N_beta+1} bound is violated iff some constituent is impure; wedge powers of iota-real data are iota-real
+        26 pure and 34 impure weight configurations tested
+[C13] PASS (   4.0s) - DP7: pure weight n => F + F^v(-n) is iota-real (also with L_beta, real beta); impure complex eigenvalue => not real; converse fails (a real eigenvalue 2 with N(x)^n=9 gives a real companion)
+
+--- DLM1: monodromy filtration, primitive decomposition, strictness
+[C14] PASS (   6.1s) - DLM1.2: closed formula and the text's recursion (M_d=V, M_{d-1}=ker N^d, M_{-d}=im N^d, recurse) give the same filtration (random conjugated nilpotents)
+[C15] PASS (   6.1s) - DLM1.1: N M_i in M_{i-2} and N^k : Gr_k -> Gr_{-k} is an isomorphism
+[C16] PASS (   6.1s) - DLM1.3-1.5: P_i = 0 for i>0; Gr_{-j} = P_{-j} + N^{j+1}Gr_{j+2}; dim Gr_i = sum_{j>=|i|, j=i mod 2} dim P_{-j}
+[C17] PASS (   6.1s) - DLM1.6-1.7: strictness N(M_{i+2}) = im N cap M_i for all i, and Gr_i(ker N) = P_i
+[C18] PASS (   6.1s) - DLM1 / correction 1: on a string M_i = span{e_k: k<=i}; N e_{-d} = 0 while N e_d != 0 (d>=1); the primitive vector is the lowest one
+
+--- DLM2: SL(2) triple, tensor and dual filtrations, Clebsch-Gordan
+[C19] PASS (   6.1s) - DLM2.1: H e_r=(-d+2r)e_r, F e_r=e_{r-1}, E e_r=(d-r)(r+1)e_{r+1} satisfy [H,E]=2E, [H,F]=-2F, [E,F]=H (d<=8)
+[C20] PASS (   7.6s) - DLM2.3: M_i(V'(x)V'') = sum_{a+b=i} M_a V' (x) M_b V'' for N'(x)1+1(x)N'' (random conjugated pairs)
+[C21] PASS (   7.6s) - DLM2.4: with the contragredient operator -N^t, M_i(V*) = (M_{-i-1}V)^perp
+[C22] PASS (   8.6s) - DLM2.5: Jordan type of N'(x)1+1(x)N'' on S_{d'}(x)S_{d''} is {S_j : j in P(d',d'')}, each once (d',d''<=6)
+[C23] PASS (   8.6s) - DLM2.6 + DLM3.3 (dimensions): dim P_{-j}(V'(x)V'') = sum over (j',j'') with j in P(j',j'') of dim P_{-j'} dim P_{-j''}
+
+--- DLM3: Tate twists on primitive decompositions (weights; Q(1) has weight -2)
+[C24] PASS (   9.0s) - DLM3.2 / DLM10.1, pure model of weight beta: Gr_i is pure of weight beta+i and P_{-j} of weight beta-j
+[C25] PASS (   9.0s) - DLM3.2 / correction 3: Gr_i = sum_j P_{-j}(-(i+j)/2) matches the weights exactly; the positive twist ((i+j)/2) is inconsistent whenever a summand with j != -i is present
+[C26] PASS (  13.8s) - DLM3.3: primitive parts of a tensor product of pure models (weights b', b'') have weight b'+b''-j, i.e. P_{-j'}(x)P_{-j''} twisted by ((j-j'-j'')/2)
+[C27] PASS (  13.8s) - DLM3.4: P_{-j}(V*) has weight -beta-j = weight of P_{-j}(V)^*(j) (dual operator -N^t)
+
+--- DLM4 / DLM11: relative monodromy filtration (mixed models)
+[C28] PASS (  15.0s) - DLM11.1 (mixed Frobenius models, Q=4): the Frobenius weight filtration satisfies N^b: Gr^M_{a+b}Gr^W_a(b) ~ Gr^M_{a-b}Gr^W_a for every a,b
+        8 models, 7 with several W-degrees, 4 with nonzero W-lowering extension part
+[C29] PASS (  15.0s) - DLM4.2: the three recursion formulas (descending r) reconstruct exactly that filtration
+[C30] PASS (  15.0s) - DLM4 remark: in mixed models the relative filtration differs from every shift of the absolute monodromy filtration (so W is genuinely needed)
+[C31] PASS (  15.0s) - DLM4 / correction 2: k-2r-2 >= 2j-k whenever k >= a+r+1 and j <= a; the displayed 'k-2i-2 >= k' is impossible for i>=0; the one-sign repair 'k-2i-2 >= -k' holds and implies the needed inequality for j<=0
+
+--- DLM5-DLM6: F N F^{-1} = Q^{-1} N, independence of the lift, the 1.7.5 displays
+[C32] PASS (  15.1s) - DLM5.3: in the model F = diag(Q^{w/2}), N lowering weight by 2, F N F^{-1} = Q^{-1} N
+[C33] PASS (  15.1s) - DLM6.2 / correction 5: exp(mu N) F^n exp(-mu N) = exp(mu(1-Q^{-n})N) F^n, so mu = lam/(1-Q^{-n}) conjugates F^n to exp(lam N) F^n
+[C34] PASS (  15.1s) - Correction 5 caveat: the displayed factor 1-q^n is EXACT for F''^n = F'^n exp(lam N) with conjugation exp(-mu N)(.)exp(mu N), and for arithmetic Frobenius; the 'correction' is convention-dependent
+[C35] PASS (  15.1s) - DLM6.1: the filtration by generalized eigenspaces of weight <= i is the same for F' and F''=exp(lam N)F', N maps V_j to V_{j-2}; a sum over j < i would give Gr_i of weight i-1 (correction 4)
+[C36] PASS (  15.8s) - DLM3/DLM10/DLM13: M and the primitive subspaces are unchanged when N is replaced by eN, e != 0
+
+--- DLM8-DLM9: invariants of tensor powers, amplification algebra
+[C37] PASS (  15.8s) - DLM8.6: (V^I)^{(x)r} is contained in (V^{(x)r})^I and is generally smaller (unipotent S_1: 1 < 2; finite-order chi+chi^{-1}: 0 < 4); DLM8.7 algebra |a|^r <= N^{(r beta+2)/2} <=> w <= beta + 2/r
+
+--- DLM10: the Jordan-string vector, the dual primitive eigenvalue, the purity criterion
+[C38] PASS (  15.8s) - DLM10.2: z = sum_s (-1)^s N^s y (x) N^{j-s} y (y = top of a j-string) is nonzero, killed by N(x)1+1(x)N, of degree 0, and has eigenvalue Q^j alpha^2; P_{-j}(V*) has eigenvalue alpha^{-1}Q^{-j} (Q=7, alpha=3/5)
+[C39] PASS (  15.8s) - DLM10.3-10.6 algebra: upper bound w(alpha) <= beta-j, lower bound w(alpha) >= beta-j, and Q^{(beta-j)/2} Q^{(i+j)/2} = Q^{(beta+i)/2}
+[C40] PASS (  15.9s) - Extracted lemma (algebraic core of DLM10): for (V,N,F) with F N F^{-1}=Q^{-1}N, Gr^M_i is pure of weight beta+i for all i  <=>  ker N on V(x)V has weights <= 2beta and ker N* on V*(x)V* has weights <= -2beta
+        18 pure and 22 impure random configurations
+[C41] PASS (  15.9s) - Negative: the bounds on ker N of V and V* alone (the DLM8 input without the tensor square) do not force purity: a 1-string centred at beta+1 passes them but fails the tensor-square criterion
+
+--- DLM13: positive combinations of commuting logarithms
+[C42] PASS (  16.0s) - DLM13: for commuting N1 = N(x)1, N2 = N(x)1+1(x)N on S_1(x)S_2 the filtration of c1N1+c2N2 equals the weight filtration for positive (c1,c2); it differs for (1,0) and (1,-1)
+
+--- BRIDGES: W_p (commuting), p^rho S_p (regraded), P_b (ramification)
+[C43] PASS (  16.0s) - Bridge (a): an operator W commuting with N has Q=1: mu = lam/(1-Q^{-n}) is undefined, exp(lam N)W need not be conjugate to W, N preserves (does not lower) the eigenvalue filtration of W, and on a Jordan block W has a single eigenvalue on all Gr_i (so Gr_i cannot have weight beta+i unless N=0)
+[C44] PASS (  16.1s) - Bridge (a'): S_p N S_p^{-1} = p^{-1} N; with one scalar rho on blocks of different lengths the centres 2rho-d differ and the DLM10 purity criterion fails for every beta; with rho_b = (beta+d_b)/2 (e.g. P = p^{H/2}) it holds and the P-weight filtration is the monodromy filtration
+[C45] PASS (  16.1s) - Bridge (b): N P_b = b P_b N <=> P_b N P_b^{-1} = b^{-1} N; for |b|>1 the DLM6 construction applies verbatim (lift-independence with mu = lam/(1-b^{-n})); for |b| = 1 it fails (b=-1: P^2=1 not conjugate to exp(N)P^2)
+
+--- CONTROLS: deliberately wrong variants are detected (guards against vacuous PASS)
+[C46] PASS (  16.2s) - Controls: an off-by-one tensor formula, a dual formula without the shift, the wrong centre in the purity criterion, a trivial W in the relative recursion, and the positive twist sign are all detected as mismatches
+        individual controls: [True, True, True, True, True]
+
+==============================================================================
+SUMMARY: 47 PASS, 0 FAIL, 47 checks
+==============================================================================

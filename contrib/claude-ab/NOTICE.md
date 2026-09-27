@@ -9,10 +9,11 @@ The rewritten records are now in [`rewrite/`](rewrite/README.md), published at t
 - [`rewrite/NAVIER_STOKES_PAPER.md`](rewrite/NAVIER_STOKES_PAPER.md): the Navier–Stokes workbench.
 - [`rewrite/YANG_MILLS_PAPER.md`](rewrite/YANG_MILLS_PAPER.md): the Yang–Mills workbench.
 - [`rewrite/COLLATZ_EP817_BRIDGES_PAPER.md`](rewrite/COLLATZ_EP817_BRIDGES_PAPER.md): the Collatz and Erdős Problem 817 workbenches, and the bridges between the workbenches.
-
-The record for the zeta programme is in preparation.
+- [`rewrite/ZETA_PROGRAMME_PAPER.md`](rewrite/ZETA_PROGRAMME_PAPER.md): the split-zero programme around the Riemann zeta function.
 
 Each record states its results with proofs and with the programs that check them (in `rewrite/checks/`), and marks every statement as verified, not verified here, my assessment (a view with its reasons), or proved negative (with the counterexample or derivation in the text). Re-deriving the withdrawn texts' statements from their sources changed several of them; for example, the identification of the owner's mock theta shadow with the minimal model M(2,7), which the withdrawn texts said fails, holds exactly as an isomorphism of modular representations.
+
+**A note on bias.** The errors of the withdrawn texts ran consistently in one direction. They overstated negative results (an identification reported as failing holds; a proposition reported as false is correct), understated positive ones, and presented bridges between areas as having no bearing, where several are now theorems. The cause cannot be established, since the model's internals are not accessible; the pattern is consistent with a bias against AI-assisted work on hard problems. This is recorded because the evaluation of AI-assisted mathematics is contested, and because the principle that governs these records is the one that governs all mathematics: a result stands or falls on its proof. Who or what wrote it, and how it is presented, is not evidence either way.
 
 The withdrawn texts remain withdrawn, and the notice below still applies to them.
 

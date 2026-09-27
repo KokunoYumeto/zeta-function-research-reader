@@ -24,6 +24,8 @@ Further results, each with a proof, most found by the referee pass and checked:
 
 **Status.** An independent Claude instance refereed version 1 on 27 September 2026. It found no error that invalidates a stated result, and reported 2 major and 14 minor findings and results A–K. Each was verified before it was applied. Its report and programs are in `../checks/ym_reader/referee/`; the verification scripts are `../checks/ym_reader/ymr_referee_checks.py` and `ym_order2_threshold.py`. The referee's numerical order-3 computation is reported, not repeated. Nothing here has had a human specialist review. Appendix B says what was checked, and how.
 
+**A later rounding correction.** On 27 September a rounding in §9.1 was corrected. With the referee's order-3 values, the conditional threshold is g² ≥ 3.7154 (exactly 3.71533…), not 3.7153 as first written.
+
 **Build.** Run `lualatex ymreader.tex` twice. The scripts need Python 3 with sympy, mpmath and numpy.
 
 All results of the record hold at fixed lattice spacing and strong bare coupling. The workbench does not claim a continuum mass gap, and nothing in this reader bears on that problem.

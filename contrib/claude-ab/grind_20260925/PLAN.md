@@ -583,3 +583,14 @@ A reminder is scheduled into this session. When it fires: read this file and the
   - by scripts: `checks/ym_reader/ymr_referee_checks.py` (32 checks) and `ym_order2_threshold.py`; the five Zenodo-only files inside committed zips by MD5.
   - The check found that the referee's rational rounding needed √3 < 1.7320509 rather than 1.7321; the stated bounds hold. The referee's numerical order-3 computation is reported, not repeated; its one-loop reading of β was not adopted.
   - Register W42–W49. The referee's report and programs are in `checks/ym_reader/referee/`.
+- 05:53–06:00 UTC (27 September): the three Zenodo new-version drafts staged in the owner's logged-in Chrome, additive only, by the same procedure as the zeta record (Manage record → New version; "Import files"; the three reader files uploaded; the draft API for the metadata). The owner presses Publish.
+  - Erdős–Straus: draft 22987519 (concept 10.5281/zenodo.20401937, new version of 22678971). The 15 earlier files were imported, identical by key, size and MD5 (31,432,080 bytes). Three files were added with MD5 equal to the local copies: `00-claude-opus-5-5-erdos-straus-reader.pdf` (358996f6…), `…-latex-source.zip` (f445d16d…) and `…-notes-and-checks.zip` (d3356680…).
+  - Yang–Mills: draft 22987531 (concept 10.5281/zenodo.22666540, new version of 22883643). 43 files were imported, identical (148,616,550 bytes). Three were added: the PDF (00f733d1…), the source (fa54349f…) and the checks (e2a37d75…).
+  - S⁶: draft 22987553 (concept 10.5281/zenodo.22235523, new version of 22678442). 33 files were imported, identical (207,548,410 bytes). Three were added: the PDF (d1ca0d1a…), the source (a4ca1624…) and the checks (9239c435…).
+  - Metadata in each draft:
+    - the version label re-entered and extended ("… + 2026-09-27 … reader by Claude (Opus 5.5), version 2");
+    - the contributor entry for Claude (organisational, role Other), as in the zeta record;
+    - one paragraph appended to the unchanged description;
+    - the reader PDF as the default preview.
+    A field-by-field comparison with each draft as created shows no other change; the licences are unchanged (ES cc-by-4.0; YM and S⁶ cc0-1.0). Each draft page was reloaded afterwards, so that the form carries the new state.
+  - The packages are in `_zenodo/{es,ym,s6}/` on the PC and were sent in the chat.

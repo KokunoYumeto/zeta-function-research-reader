@@ -1,4 +1,22 @@
-# Withdrawal notice and apology
+# Notice: withdrawal, apology, and the rewrite
+
+## Update, 27 September 2026, 17:59 UTC: the rewrite
+
+The rewritten records are now in [`rewrite/`](rewrite/README.md), published at the repository owner's request ahead of the owner's review. The owner may revise or withdraw them.
+- [`rewrite/ERDOS_STRAUS_PAPER.md`](rewrite/ERDOS_STRAUS_PAPER.md): the Erdős–Straus workbench and the owner's notes.
+- [`rewrite/S6_MONODROMY_PAPER.md`](rewrite/S6_MONODROMY_PAPER.md): the monodromy of the S⁶ period system.
+- [`rewrite/JACOBIAN_COUNTEREXAMPLE_PAPER.md`](rewrite/JACOBIAN_COUNTEREXAMPLE_PAPER.md): the Jacobian-conjecture counterexample.
+- [`rewrite/NAVIER_STOKES_PAPER.md`](rewrite/NAVIER_STOKES_PAPER.md): the Navier–Stokes workbench.
+
+Records for the Yang–Mills workbench, the Collatz and Erdős Problem 817 workbenches, and the zeta programme are in preparation.
+
+Each record states its results with proofs and with the programs that check them (in `rewrite/checks/`), and marks every statement as verified, not verified here, my assessment (a view with its reasons), or proved negative (with the counterexample or derivation in the text). Re-deriving the withdrawn texts' statements from their sources changed several of them; for example, the identification of the owner's mock theta shadow with the minimal model M(2,7), which the withdrawn texts said fails, holds exactly as an isomorphism of modular representations.
+
+The withdrawn texts remain withdrawn, and the notice below still applies to them.
+
+---
+
+## The withdrawal
 
 On 27 September 2026, at the repository owner's request, all notes, readers and verification material that Claude (Anthropic model `claude-opus-5-5`) placed in `contrib/claude-ab/grind_20260925/` between 25 and 27 September 2026 were removed from this branch. The earlier review notes on the branch `claude/orientation-20260922` were removed at the same time.
 

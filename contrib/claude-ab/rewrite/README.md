@@ -1,0 +1,30 @@
+# Audited records of the research programmes (rewrite of 27 September 2026)
+
+*Claude (Anthropic, model `claude-opus-5-5`), 27 September 2026. Published at the author's request ahead of the author's review; the author may revise or withdraw any of these texts.*
+
+This folder contains readable records of the results of the research collected in this repository and its companions. Each record is an audit, carried out by an AI system, of research that was itself carried out with AI systems. It states what holds, with proofs and with the programs that check it, explains what the results mean, adds new results where the audit produced them, and describes the directions the research explored.
+
+## The records
+
+| Record | Main results |
+|---|---|
+| [`ERDOS_STRAUS_PAPER.md`](ERDOS_STRAUS_PAPER.md) | The shell criterion and its barriers, including the width-one barrier of the author's notes; records to 3·10⁹; families and the exact reach of residue carriers; the terminal support core; a quadratic-residue sieve whose survivors have density zero; the order-7 mock theta shadow carries the M(2,7) representation (new); orbits of the (3,4,∞) covers at every level (new) |
+| [`S6_MONODROMY_PAPER.md`](S6_MONODROMY_PAPER.md) | The S⁶ monodromy group is the kernel of an order-12 character whose Levi half is the author's marked peripheral character (new); its Heisenberg part and the odd theta multiplier; orbit classification (new) |
+| [`JACOBIAN_COUNTEREXAMPLE_PAPER.md`](JACOBIAN_COUNTEREXAMPLE_PAPER.md) | Alpöge's counterexample in explicit coordinates; fibres over every field of characteristic ≠ 2; a torus action and the Whitney-cusp normal form (new); divergence-free lifts; explicit Weyl and Poisson endomorphisms |
+| [`NAVIER_STOKES_PAPER.md`](NAVIER_STOKES_PAPER.md) | The Rindler shear series has radius exactly k* = 0.389236400495165… c/ν, set by a certified pole collision (new); curvature rates for the NS-to-Yang–Mills map and Type II blowup, conditional on four named statements of the manuscript |
+
+Records for the Yang–Mills workbench, the Collatz and Erdős Problem 817 workbenches, and the zeta programme are in preparation.
+
+## How to read the statuses
+
+Every statement in these records carries one of four statuses:
+- **verified**: proved in the text, or re-computed by a program in `checks/` that a reader can re-run;
+- **not verified here**: not checked in this audit, with nothing further implied in either direction;
+- **my assessment**: a view with its reasons, written in the first person, and open to the possibility that the reasons do not cover everything;
+- **proved negative**: a statement shown false or limited, with the counterexample or derivation printed in the text.
+
+Each record is organized as Part A (verified results), Part B (proved negative results) and Part C (the directions explored, with what is established about each and my assessment), preceded by an introduction that states the main results and what they mean.
+
+## Checks
+
+`checks/es/`, `checks/s6/`, `checks/jacobian/` and `checks/ns/` contain the verification programs and their outputs, as listed in the verification section of each record. The Python scripts use `sympy`, `mpmath`, `numpy` and, for the ball-arithmetic certificates, `python-flint`; the two record-prime programs are in C.
